@@ -130,7 +130,7 @@
 
 <h2>Introduction</h2>
 
-<p>Once you have created layouts and assigned content to panes, there are numerous customization options available to fine-tune how your ViewApp looks and behaves at runtime. This section covers the key layout and pane properties that control sizing, display modes, appearance, and interaction behavior. Understanding these properties is essential for creating polished, professional operator interfaces.</p>
+<p>Once you have created layouts and assigned content to panes, there are numerous customization options available to fine-tune how your ViewApp looks and behaves at runtime. This section covers the key layout and pane properties that control sizing, display modes, appearance, and interaction behavior. Understanding these properties is essential for creating polished, professional operator interfaces that respond well to different screen sizes and user workflows.</p>
 
 <h2>Layout Properties</h2>
 
@@ -177,8 +177,8 @@ Layout properties affect the entire layout — things like the overall content t
 </table>
 
 <div class="screenshot">
-<img src="../images/page_0303_0.jpeg" alt="Properties tab showing NavBreadcrumbControl1 with General, Navigation, Alarms, and Appearance property groups expanded">
-<div class="caption">A control's Properties tab organized into collapsible groups: General, Navigation, Alarms, Appearance, and Event Handlers</div>
+<img src="../images/page_0303_0.jpeg" alt="Properties tab showing NavBreadcrumbControl1 with expandable property groups: General (Name, Content, Pane), Navigation (Root Path, Show Root), Alarms (Show Alarms checked), Appearance (Background, Foreground, FontFamily, FontSize), and Event Handlers">
+<div class="caption">A control's Properties tab organized into collapsible groups: General, Navigation, Alarms, Appearance, and Event Handlers — each with configurable settings</div>
 </div>
 
 <h2>Pane Display Modes</h2>
@@ -193,13 +193,13 @@ Layout properties affect the entire layout — things like the overall content t
 </table>
 
 <div class="screenshot">
-<img src="../images/page_0307_0.jpeg" alt="Layout Editor showing four panes with a dropdown menu offering Single, Multiple, and Tabbed display mode options">
-<div class="caption">The display mode dropdown on a pane divider, offering Single, Multiple, and Tabbed viewing modes</div>
+<img src="../images/page_0307_0.jpeg" alt="Layout Editor showing four panes (Pane1 default, Pane2, Pane3, Pane4) with a dropdown menu on Pane3 offering Single, Multiple, and Tabbed display mode options with icons">
+<div class="caption">The display mode dropdown on a pane divider, offering Single (full-screen), Multiple (tiled), and Tabbed (switchable tabs) viewing modes</div>
 </div>
 
 <div class="screenshot">
-<img src="../images/page_0308_0.png" alt="Layout Editor showing Pane3 selected with a blue border and three-dot menu, with Pane4 below it">
-<div class="caption">Selecting a pane in the Layout Editor shows its properties and provides access to pane-specific options via the three-dot menu</div>
+<img src="../images/page_0308_0.png" alt="Layout Editor showing Pane3 selected with a blue selection border and three-dot menu button, with Pane4 partially visible below it and add-pane buttons on the edges">
+<div class="caption">Selecting a pane in the Layout Editor reveals its blue selection border, drag handle, and three-dot menu for pane-specific options</div>
 </div>
 
 <h2>Navigation Controls</h2>
@@ -217,32 +217,32 @@ Layout properties affect the entire layout — things like the overall content t
 </ul>
 
 <div class="screenshot">
-<img src="../images/page_0305_0.png" alt="Navigation properties showing Root Path field and Show Root dropdown with Constant option selected">
-<div class="caption">Configuring the NavBreadcrumbControl's Navigation properties, including Root Path and Show Root settings</div>
+<img src="../images/page_0305_0.png" alt="Navigation properties panel showing Root Path field with a dropdown menu offering Constant, In, Out, InOut, and Reset options, and Show Root checkbox below it">
+<div class="caption">Configuring the NavBreadcrumbControl's Root Path property — the dropdown offers Constant, In, Out, InOut, and Reset options for navigation direction</div>
 </div>
 
 <div class="screenshot">
-<img src="../images/page_0305_1.png" alt="Navigation properties showing Root Path with In option and Show Root checkbox unchecked">
-<div class="caption">The Show Root option set to In, with the checkbox controlling root visibility</div>
+<img src="../images/page_0305_1.png" alt="Navigation properties showing Root Path with the In option selected in a dark tooltip, and Show Root checkbox unchecked below it">
+<div class="caption">The Root Path set to 'In' with the Show Root checkbox unchecked — this controls whether the root navigation item appears in the breadcrumb</div>
 </div>
 
 <div class="screenshot">
-<img src="../images/page_0305_2.png" alt="Navigation properties showing Root Path with Out option selected">
-<div class="caption">Alternative Root Path configuration using the Out direction setting</div>
+<img src="../images/page_0305_2.png" alt="Navigation properties showing Root Path with the Out option selected in a dark tooltip, indicating navigation direction away from root">
+<div class="caption">Alternative Root Path configuration using the 'Out' direction setting for navigation away from the root</div>
 </div>
 
 <div class="screenshot">
-<img src="../images/page_0305_3.png" alt="Navigation properties showing InOut option tooltip for the Root Path control">
-<div class="caption">The InOut option provides bidirectional navigation from the root path</div>
+<img src="../images/page_0305_3.png" alt="Navigation properties showing Root Path with the InOut option selected in a dark tooltip, providing bidirectional navigation from the root path">
+<div class="caption">The 'InOut' option provides bidirectional navigation — users can navigate both toward and away from the root path</div>
 </div>
 
 <h3>NavTreeControl</h3>
 
-<p>The tree control displays a hierarchical navigation tree that users can expand and collapse to navigate through the plant model. It is typically assigned to a slide-in pane and provides a comprehensive view of the asset hierarchy.</p>
+<p>The tree control displays a hierarchical navigation tree that users can expand and collapse to navigate through the plant model. It is typically assigned to a slide-in pane and provides a comprehensive view of the asset hierarchy. The NavTreeControl has an extensive property list for customization, including background, border, content template, and data binding options.</p>
 
 <div class="screenshot">
-<img src="../images/page_0306_0.png" alt="Galaxy Browser showing NavTreeControl1 selected with its full property table including ActualHeight, Background, BorderBrush, and ContentTemplate">
-<div class="caption">The NavTreeControl in the Galaxy Browser, showing its extensive property list for customization</div>
+<img src="../images/page_0306_0.png" alt="Galaxy Browser showing NavTreeControl1 selected with its full property table including ActualHeight (Double), ActualWidth, AllowDrop, Background (Brush), BorderBrush, BorderThickness, and many other WPF properties">
+<div class="caption">The NavTreeControl in the Galaxy Browser, showing its extensive property list — 109 properties available for customization including layout, appearance, and data binding</div>
 </div>
 
 <h2>Show Actions</h2>
@@ -250,8 +250,8 @@ Layout properties affect the entire layout — things like the overall content t
 <p>Controls can be configured with Show actions that make other controls visible when triggered. This is useful for creating conditional UI elements that appear or disappear based on user interaction. The Actions panel lists all configured Show actions, with each action specifying the target control, source pane, and trigger condition.</p>
 
 <div class="screenshot">
-<img src="../images/page_0306_1.png" alt="Actions panel showing two Show actions - one for NavBreadcrumbControl from Pane2 and one for AdditionalTools from Pane8 with edit and remove options">
-<div class="caption">Configuring Show actions to control visibility of navigation and additional tool controls</div>
+<img src="../images/page_0306_1.png" alt="Actions panel showing two Show actions: one to show NavBreadcrumbControl from Pane2, and one to show AdditionalTools from Pane8, with the second action's three-dot menu open showing Edit and Remove options">
+<div class="caption">Configuring Show actions to control visibility of navigation and additional tool controls — each action specifies the target control and the source pane that triggers it</div>
 </div>
 
 <div class="key-concept">
@@ -267,7 +267,7 @@ The background color property uses RGBA hex codes where the first two characters
 </details>
 <details>
 <summary>Q2: How do you make a pane's background fully transparent?</summary>
-<p class="answer">Set the Alpha channel of the Background color to 0 (e.g., <code>#00E4E4E4</code>). You can also change the first two digits of the hex code to 00.</p>
+<p class="answer">Set the Alpha channel of the Background color to 0 (e.g., <code>#00E4E4E4</code>). The first two digits of the RGBA hex code control transparency.</p>
 </details>
 <details>
 <summary>Q3: What is the difference between layout-level and pane-level Content Type(s)?</summary>

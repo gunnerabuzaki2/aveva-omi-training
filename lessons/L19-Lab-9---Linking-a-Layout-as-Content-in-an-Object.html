@@ -144,8 +144,8 @@ Upon completion of this lab, you will be able to:
 <p>After creating the layout, you will link it to the <code>$Mixer</code> template. At runtime, when navigated to a mixer object, you will see the mixer symbol alongside the faceplate symbol showing information about that specific mixer.</p>
 
 <div class="screenshot">
-<img src="../images/page_0291_0.png" alt="Lab 9 layout preview showing two panes - one empty default pane and one containing a faceplate symbol with asset information fields">
-<div class="caption">The Asset_Layout structure: two panes side by side, with Pane2 containing the prebuilt faceplate symbol displaying asset data fields</div>
+<img src="../images/page_0291_0.png" alt="Layout Editor showing Asset_Layout structure with two panes — Pane1 (default) empty on the left and Pane2 containing a faceplate symbol on the right, with General Information and Device Information sections visible">
+<div class="caption">The Asset_Layout structure: two panes side by side, with Pane2 containing the prebuilt faceplate symbol displaying General Information and Device Information fields for the asset</div>
 </div>
 
 <h2>Import a Faceplate Symbol</h2>
@@ -157,7 +157,7 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 2.</strong> Navigate to <code>C:\Training</code>, select <code>Lab 9 - AssetInfo Faceplate_Prebuilt.aaPKG</code>, and then click <strong>Open</strong>.</p>
 
 <div class="screenshot">
-<img src="../images/page_0292_0.png" alt="Windows file dialog showing C:\Training folder with Lab 9 AssetInfo Faceplate package file selected for import">
+<img src="../images/page_0292_0.png" alt="Windows Import Objects from package dialog showing C:\Training folder with the Lab 9 AssetInfo Faceplate_Prebuilt.aaPKG file selected and highlighted in blue">
 <div class="caption">Selecting the pre-built faceplate package file from the Training folder for import into the Galaxy</div>
 </div>
 
@@ -172,7 +172,7 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 6.</strong> On the Graphics tab, in the <code>Training \ Symbols</code> toolset, verify that the <code>AssetInfo_Faceplate</code> symbol is listed.</p>
 
 <div class="screenshot">
-<img src="../images/page_0293_0.png" alt="Graphics tab showing Training\Symbols folder expanded with AssetInfo_Faceplate symbol highlighted in the tree view">
+<img src="../images/page_0293_0.png" alt="Graphics tab tree view showing Training folder expanded with Symbols subfolder containing AssetInfo_Faceplate highlighted in blue, alongside other symbols like Agitator_Detailed and CommandPanel">
 <div class="caption">Verifying the AssetInfo_Faceplate symbol appears in the Training\Symbols toolset after import</div>
 </div>
 
@@ -186,13 +186,18 @@ Upon completion of this lab, you will be able to:
 
 <p><strong>Step 7.</strong> On the Graphics tab, in the <code>Training \ Layouts</code> toolset, create a new layout and name it <code>Asset_Layout</code>.</p>
 
+<div class="screenshot">
+<img src="../images/page_0294_0.png" alt="Graphics tab tree view showing Training\Layouts folder with Asset_Layout newly created and highlighted in blue, alongside the existing Main layout">
+<div class="caption">The newly created Asset_Layout appears in the Training\Layouts toolset alongside the existing Main layout</div>
+</div>
+
 <p><strong>Step 8.</strong> Double-click <code>Asset_Layout</code> to open it in the Layout Editor.</p>
 
 <p><strong>Step 9.</strong> With Pane1 selected in the preview area, click the <strong>Add new pane</strong> right-arrow button to add a pane to the right.</p>
 
 <div class="screenshot">
-<img src="../images/page_0294_0.png" alt="Layout Editor showing Asset_Layout with a single Pane1 and the Add new pane button highlighted with a red arrow">
-<div class="caption">Creating Asset_Layout with Pane1 and the Add new pane button ready to add a second pane</div>
+<img src="../images/page_0294_1.png" alt="Layout Editor showing Pane1 (default) with a tooltip reading 'Add new pane' on the right-arrow button, indicating the control for adding a second pane">
+<div class="caption">The Add new pane tooltip appears when hovering over the right-arrow button in the Layout Editor</div>
 </div>
 
 <p>A new pane named <code>Pane2</code> is added to the right of Pane1.</p>
@@ -202,24 +207,29 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 10.</strong> With Pane1 selected, on the Properties tab, configure the <strong>General → Content Type(s)</strong> property as <code>Detailed</code>.</p>
 
 <div class="screenshot">
-<img src="../images/page_0295_0.png" alt="Properties tab showing Pane1 with Content Type set to Detailed and Use For Auto-Fill enabled">
-<div class="caption">Configuring Pane1 with Detailed content type and enabling AutoFill support</div>
+<img src="../images/page_0295_0.png" alt="Layout Editor showing two-pane layout with Pane1 selected (blue border, four-way drag handle) and Pane2 unselected on the right, with add-pane buttons visible around the edges">
+<div class="caption">The two-pane layout after adding Pane2, with Pane1 selected and ready for property configuration</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0295_1.png" alt="Properties tab showing Pane properties with Content Type(s) set to Detailed, Use For Auto-Fill checked, Width 960, Width Sizing set to Variable, and Hide Column When Empty checked">
+<div class="caption">Configuring Pane1 properties: Content Type set to Detailed with AutoFill support enabled and sizing set to Variable</div>
 </div>
 
 <h2>Assign the Faceplate Symbol</h2>
 
 <p><strong>Step 11.</strong> On the Toolbox tab, search for the <code>AssetInfo_Faceplate</code> symbol.</p>
 
+<div class="screenshot">
+<img src="../images/page_0296_0.png" alt="Toolbox tab with search field containing 'asset' and showing one matching result — the AssetInfo_Faceplate symbol thumbnail">
+<div class="caption">Searching the Toolbox for the AssetInfo_Faceplate symbol by typing 'asset' in the search field</div>
+</div>
+
 <p><strong>Step 12.</strong> Assign the <code>AssetInfo_Faceplate</code> symbol to Pane2 by dragging it from the Toolbox onto the pane.</p>
 
 <div class="screenshot">
-<img src="../images/page_0296_0.png" alt="Toolbox tab with AssetInfo_Faceplate search result and the symbol being dragged into Pane2 with a blue drop indicator">
-<div class="caption">Searching for and assigning the AssetInfo_Faceplate symbol to Pane2 via drag-and-drop</div>
-</div>
-
-<div class="screenshot">
-<img src="../images/page_0296_1.png" alt="Layout Editor showing AssetInfo_Faceplate successfully placed in Pane2 with General Information and Device Information sections visible">
-<div class="caption">The AssetInfo_Faceplate successfully placed in Pane2, displaying General Information and Device Information sections</div>
+<img src="../images/page_0296_1.png" alt="Layout Editor showing the AssetInfo_Faceplate symbol successfully placed in Pane2 with a blue selection border, displaying General Information and Device Information sections with data fields">
+<div class="caption">The AssetInfo_Faceplate successfully placed in Pane2, displaying General Information (Asset Name, Description, Host Area) and Device Information (Metering Value, Totalizer, RateTotal) sections</div>
 </div>
 
 <h2>Configure the Layout Content Type</h2>
@@ -233,8 +243,13 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 15.</strong> Save and close <code>Asset_Layout</code>, and check it in.</p>
 
 <div class="screenshot">
-<img src="../images/page_0297_0.png" alt="Layout properties showing Content Type set to Detailed and the Link Content button highlighted with a red arrow in the toolbar">
-<div class="caption">Setting the layout Content Type to Detailed and locating the Link Content button for the next step</div>
+<img src="../images/page_0297_0.png" alt="Layout properties panel showing Title Mode set to IncludeDefaultPaneContent, Content Type(s) set to Detailed, and Target group with Orientation Landscape, Width 1920, Height 1080, and Aspect Ratio 16:9">
+<div class="caption">Setting the layout-level Content Type to Detailed, with target dimensions of 1920×1080 (16:9 aspect ratio)</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0297_1.png" alt="Content pane of the Object Editor showing the Link Content button tooltip highlighted in the toolbar, with MixingProcess_Detailed listed as the existing content item for the $Mixer template">
+<div class="caption">The Link Content button in the Content pane toolbar — clicking this opens the Galaxy Browser to select a layout to link</div>
 </div>
 
 <h2>Link the Layout to the Mixer Template</h2>
@@ -248,16 +263,16 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 18.</strong> In the Graphic Toolbox pane on the left, select the <code>Training \ Layouts</code> toolset, and in the right pane, select <code>Asset_Layout</code>.</p>
 
 <div class="screenshot">
-<img src="../images/page_0298_0.png" alt="Galaxy Browser showing Training\Layouts toolset with Asset_Layout selected and a preview of the two-pane layout">
+<img src="../images/page_0298_0.png" alt="Galaxy Browser showing TrainingGalaxy with Training\Layouts expanded in the left pane and Asset_Layout selected (highlighted blue) in the right pane with a layout preview thumbnail">
 <div class="caption">Selecting Asset_Layout from the Training\Layouts toolset in the Galaxy Browser</div>
 </div>
 
-<div class="screenshot">
-<img src="../images/page_0298_1.png" alt="Object Editor Content pane showing Asset_Layout now linked alongside MixingProcess_Detailed content item">
-<div class="caption">After linking, Asset_Layout appears alongside MixingProcess_Detailed in the $Mixer template's Content pane</div>
-</div>
-
 <p><strong>Step 19.</strong> Click <strong>OK</strong> to close the Galaxy Browser. <code>Asset_Layout</code> is now linked to the <code>$Mixer</code> template.</p>
+
+<div class="screenshot">
+<img src="../images/page_0298_1.png" alt="Object Editor Content pane showing two content items: Asset_Layout (selected, highlighted blue with a move-up arrow) and MixingProcess_Detailed, with the $Mixer template tab at the bottom showing an asterisk for unsaved changes">
+<div class="caption">After linking, Asset_Layout appears alongside MixingProcess_Detailed in the $Mixer template's Content pane — the asterisk indicates unsaved changes</div>
+</div>
 
 <p><strong>Step 20.</strong> Save and close the <code>$Mixer</code> template, and check it in.</p>
 
@@ -268,13 +283,13 @@ Upon completion of this lab, you will be able to:
 <p><strong>Step 21.</strong> Switch to the ViewApp preview session and ensure you are navigated to <code>Mixer100</code>.</p>
 
 <div class="screenshot">
-<img src="../images/page_0299_0.jpeg" alt="AVEVA OMI Training Application showing Mixer100 with process diagram in left pane and faceplate with General Information and Device Information in right pane">
-<div class="caption">Mixer100 at runtime: the mixer symbol displays in the left pane and the faceplate symbol shows general and device information in the right pane</div>
+<img src="../images/page_0299_0.jpeg" alt="AVEVA OMI Training Application showing Mixer100 with a process flow diagram in the left pane (pumps, valves, mixer with live values) and a faceplate in the right pane displaying General Information and Device Information">
+<div class="caption">Mixer100 at runtime: the mixer process diagram displays in the left pane with live values (Level: 53.85, Temperature: 132.68), while the faceplate shows General and Device Information in the right pane</div>
 </div>
 
 <div class="screenshot">
-<img src="../images/page_0299_1.jpeg" alt="Mixer100 view with faceplate showing Mixing Time Setpoint field highlighted with a red arrow for editing">
-<div class="caption">The faceplate includes an editable Mixing Time Setpoint field in the Device Information area</div>
+<img src="../images/page_0299_1.jpeg" alt="Mixer100 faceplate close-up showing General Information (Mixer100, Mixing system, Line1) and Device Information with Mixing Time Setpoint field highlighted with a red arrow pointing to the value of 15 Seconds">
+<div class="caption">The faceplate includes an editable Mixing Time Setpoint field (currently 15 Seconds) highlighted in the Device Information area</div>
 </div>
 
 <p>Notice that the mixer symbol displays in the left pane and the faceplate symbol displays in the right pane. The faceplate symbol contains an area for general information as well as an area for some device-specific information. In the faceplate graphic, notice that the Device Information area includes a <strong>Mixing Time Setpoint</strong> field.</p>
@@ -283,16 +298,16 @@ Upon completion of this lab, you will be able to:
 
 <p><strong>Step 22.</strong> Click in the <em>Mixing Time Setpoint</em> field to make the value editable.</p>
 
+<div class="screenshot">
+<img src="../images/page_0300_0.png" alt="Faceplate showing General Information and Device Information panels with the Mixing Time Setpoint field highlighted in blue showing the current value of 15, ready for editing">
+<div class="caption">Clicking the Mixing Time Setpoint field makes it editable — the current value of 15 is highlighted with a blue border</div>
+</div>
+
 <p><strong>Step 23.</strong> In the <em>Mixing Time Setpoint</em> field, enter <code>10</code> and press ENTER.</p>
 
 <div class="screenshot">
-<img src="../images/page_0300_0.png" alt="Faceplate showing Mixing Time Setpoint field with editable value of 15 highlighted in blue">
-<div class="caption">Clicking the Mixing Time Setpoint field makes it editable — the current value of 15 is highlighted</div>
-</div>
-
-<div class="screenshot">
-<img src="../images/page_0300_1.jpeg" alt="Faceplate showing updated Mixing Time Setpoint value of 10 seconds confirmed">
-<div class="caption">After pressing ENTER, the Mixing Time Setpoint is updated to 10 seconds</div>
+<img src="../images/page_0300_1.jpeg" alt="Faceplate showing updated Mixing Time Setpoint value of 10 Seconds confirmed, with Totalizer 1 showing 8.94 and Totalizer 2 and 3 at 0.00">
+<div class="caption">After pressing ENTER, the Mixing Time Setpoint is updated to 10 Seconds — the Totalizer values have also reset</div>
 </div>
 
 <p>The Mixing Time Setpoint is set to 10 seconds.</p>

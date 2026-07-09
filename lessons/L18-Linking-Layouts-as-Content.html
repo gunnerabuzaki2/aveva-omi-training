@@ -130,7 +130,7 @@
 
 <h2>Introduction</h2>
 
-<p>The link content feature allows you to associate a layout from the Graphics tab with an asset or template in the Galaxy. This is a powerful way to organize your ViewApp content — instead of manually placing graphics into every pane, you can link an entire layout to an automation object and let the system handle content display at runtime.</p>
+<p>The link content feature allows you to associate a layout from the Graphics tab with an asset or template in the Galaxy. This is a powerful way to organize your ViewApp content — instead of manually placing graphics into every pane, you can link an entire layout to an automation object and let the system handle content display at runtime. The layout and all of its panes become part of the object's content, appearing automatically when the user navigates to that object in the ViewApp.</p>
 
 <p>To link a layout, open the Object Editor for the target asset or template, navigate to the Attributes tab, and click the <strong>Link Content</strong> button in the Content pane. This opens the Galaxy Browser, where you can browse the Graphics tab and select a layout to link. A preview of the selected layout appears directly in the Object Editor so you can confirm your choice before committing.</p>
 
@@ -143,23 +143,36 @@ The layout you want to link must already exist in the Graphics tab. You cannot c
 
 <p>Once a layout is linked to an object, you can rename it and add a description directly in the Object Editor. The linked layout remains in the Graphics tab as a standalone item, but it is also associated with the automation object as content. This means the layout is accessible from both locations — you can open it for editing from the Graphics tab or from the Object Editor by double-clicking it or clicking the Edit button.</p>
 
-<p>When editing layouts, a linked layout can also be assigned to a pane within another layout. At runtime, when a user navigates to an object that has a linked layout, that layout and its content appear in the running ViewApp. The layouts themselves are configured in the Layout Editor, including the content type for the layout and the content types for individual panes within it.</p>
+<p>When editing layouts, a linked layout can also be assigned to a pane within another layout. At runtime, when a user navigates to an object that has a linked layout, that layout and its content appear in the running ViewApp. The layouts themselves are configured in the Layout Editor, including the content type for the layout and the content types for individual panes within it. This dual accessibility makes it easy to iterate on your layout designs while keeping them associated with the automation objects they serve.</p>
 
 <h2>AutoFill with Linked Layouts</h2>
 
-<p>The AutoFill feature works hand-in-hand with linked layouts to automatically populate empty panes with relevant content. When AutoFill is enabled for a layout, any empty panes that have the <strong>Use For Autofill</strong> property enabled will attempt to fill with content from the linked asset using the <em>Current Only AutoFill</em> setting.</p>
+<p>The AutoFill feature works hand-in-hand with linked layouts to automatically populate empty panes with relevant content. When AutoFill is enabled for a layout, any empty panes that have the <strong>Use For Autofill</strong> property enabled will attempt to fill with content from the linked asset using the <em>Current Only AutoFill</em> setting. This means the system looks only at the current object's linked content — it does not traverse up or down the object hierarchy.</p>
 
 <div class="key-concept">
 <strong>Key Concept: AutoFill Fills in Alphabetical Order</strong><br>
-AutoFill populates empty panes based on the alphabetical order of layout names, symbol names, and other linked items. The naming convention of your layouts and symbols directly affects which content appears in which pane. Plan your naming strategy accordingly.
+AutoFill populates empty panes based on the alphabetical order of layout names, symbol names, and other linked items. The naming convention of your layouts and symbols directly affects which content appears in which pane. Plan your naming strategy accordingly — for example, if you want a specific symbol to appear in a particular pane, prefix its name so it sorts before others.
 </div>
 
-<p>There are a couple of important limitations to keep in mind. When a layout is assigned to or displayed in another layout pane, the navigation buttons in that pane are not visible. If you need to navigate to other content from within an assigned layout, you will need to build custom symbols or scripts to handle that navigation.</p>
+<p>There are a couple of important limitations to keep in mind. When a layout is assigned to or displayed in another layout pane, the navigation buttons in that pane are not visible. If you need to navigate to other content from within an assigned layout, you will need to build custom symbols or scripts to handle that navigation. This is a common requirement in complex ViewApp designs where you want to provide drill-down or cross-navigation capabilities within nested layouts.</p>
 
 <div class="pitfall">
 <strong>⚠ Multi-Galaxy Limitation</strong><br>
 In a multi-Galaxy environment, AutoFill is unable to fill panes if the <code>OwningObject</code> property for the linked layout is set to an object in a remote Galaxy. Ensure your layouts and their owning objects reside in the same Galaxy to avoid this issue.
 </div>
+
+<h2>Summary</h2>
+
+<table>
+<tr><th>Feature</th><th>Description</th></tr>
+<tr><td><strong>Link Content</strong></td><td>Associates a Graphics tab layout with an asset or template via the Object Editor</td></tr>
+<tr><td><strong>Linked Layout Location</strong></td><td>Remains in the Graphics tab; also accessible from the Object Editor</td></tr>
+<tr><td><strong>Editing Linked Layouts</strong></td><td>Double-click in Object Editor, click Edit, or open from Graphics tab</td></tr>
+<tr><td><strong>AutoFill</strong></td><td>Automatically fills empty panes with content from the linked asset</td></tr>
+<tr><td><strong>AutoFill Order</strong></td><td>Alphabetical by layout/symbol name</td></tr>
+<tr><td><strong>Navigation Buttons</strong></td><td>Hidden when a layout is assigned to a pane in another layout</td></tr>
+<tr><td><strong>Multi-Galaxy</strong></td><td>AutoFill fails if OwningObject is in a remote Galaxy</td></tr>
+</table>
 
 <div class="quiz">
 <h3>Knowledge Check</h3>

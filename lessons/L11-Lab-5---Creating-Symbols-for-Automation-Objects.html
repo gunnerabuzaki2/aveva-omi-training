@@ -133,9 +133,11 @@
 
 <p>In this hands-on lab, you will create visual symbols for equipment modeled in the Galaxy — such as valves, agitators, pumps, level meters, and temperature sensors. You will use pre-built symbols from the Situational Awareness Library and configure them to match the specific requirements of each piece of equipment.</p>
 
+<p>Once the new symbols are created and configured, you will associate them with corresponding template objects using the Link Content feature. This is the critical step that connects your visual symbols to the automation objects in your Galaxy, enabling the ViewApp to display the right symbol at the right level of the navigation hierarchy.</p>
+
 <div class="key-concept">
   <strong>Lab Objectives</strong><br>
-  Upon completion of this lab, you will be able to:<br>
+  Upon completion of this lab, you will be able to:
   <ul>
     <li>Link symbols to template objects using the Content pane</li>
     <li>Configure symbols with custom properties using relative references</li>
@@ -154,7 +156,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0188_0.png" alt="Properties tab showing ContentType set to Detailed">
-  <div class="caption">Properties tab for the Level_Detailed symbol — the ContentType is set to "Detailed" under Runtime Behavior, which determines when this symbol is displayed in the ViewApp. (Section 3-50)</div>
+  <div class="caption">Properties tab for the Level_Detailed symbol — the ContentType is set to "Detailed" under Runtime Behavior, which determines when this symbol is displayed in the ViewApp. The symbol also has FixedWidth and FixedHeight of 500, with Smoothing enabled and MultiplePopups set to True. (Section 3-50)</div>
 </div>
 
 <div class="screenshot">
@@ -167,17 +169,17 @@
   Drag <code>SA_Meters</code> from the Toolbox preview area to the drawing canvas. With SA_Meters1 selected, configure the following Wizard Options on the Properties tab:
 </div>
 
+<div class="screenshot">
+  <img src="../images/page_0189_0.png" alt="SA_Meters symbol placed on drawing canvas">
+  <div class="caption">SA_Meters symbol placed on the drawing canvas — a vertical level indicator placeholder with a yellow Label icon, placeholder text for numerical values and engineering units, and a black dot binding point at the bottom. The symbol is selected with blue handles for resizing. (Section 3-51)</div>
+</div>
+
 <table>
   <tr><th>Property</th><th>Value</th></tr>
   <tr><td>Wizard Options \ Type</td><td><strong>Level</strong></td></tr>
   <tr><td>Wizard Options \ LabelType</td><td><strong>ObjectTagname</strong></td></tr>
   <tr><td>Wizard Options \ EngUnitsType</td><td><strong>CustomPropertyLabel</strong></td></tr>
 </table>
-
-<div class="screenshot">
-  <img src="../images/page_0189_0.png" alt="SA_Meters symbol placed on drawing canvas">
-  <div class="caption">SA_Meters symbol placed on the drawing canvas — a vertical level indicator with placeholder text for numerical values and engineering units. The symbol is selected with blue handles for resizing. (Section 3-51)</div>
-</div>
 
 <div class="screenshot">
   <img src="../images/page_0189_1.png" alt="Properties panel showing Wizard Options configuration">
@@ -200,13 +202,13 @@
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0190_0.png" alt="Right-click context menu showing Duplicate option">
-  <div class="caption">Duplicating the Level_Detailed symbol — right-click and select Duplicate (Ctrl+D) to create a copy that can be reconfigured for temperature display. (Section 3-52)</div>
+  <img src="../images/page_0190_0.png" alt="Right-click context menu showing Duplicate option on Level_Detailed">
+  <div class="caption">Duplicating the Level_Detailed symbol — right-click and select Duplicate (Ctrl+D) to create a copy that can be reconfigured for temperature display. The Graphics panel shows Level_Detailed highlighted in the Training \ Symbols toolset. (Section 3-52)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0191_0.png" alt="Graphics panel showing Temperature_Detailed in the symbol tree">
-  <div class="caption">The Graphics panel after renaming the duplicate — Temperature_Detailed now appears in the Training \ Symbols toolset alongside Level_Detailed and other symbols. (Section 3-53)</div>
+  <div class="caption">The Graphics panel after renaming the duplicate — Temperature_Detailed now appears in the Training \ Symbols toolset alongside Level_Detailed and other overview symbols. (Section 3-53)</div>
 </div>
 
 <div class="screenshot">
@@ -225,12 +227,12 @@
 
 <div class="screenshot">
   <img src="../images/page_0192_0.png" alt="Toolbox search for valve_a showing SA_Valve_And_Damper">
-  <div class="caption">Toolbox search for "valve_a" — the SA_Valve_And_Damper component is found. This pre-built valve/damper graphic supports discrete commands, actuators, and limit switches. (Section 3-54)</div>
+  <div class="caption">Toolbox search for "valve_a" — the SA_Valve_And_Damper component is found. This pre-built valve/damper graphic supports discrete commands, actuators, and limit switches for comprehensive valve monitoring. (Section 3-54)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0192_1.png" alt="SA_Valve_And_Damper placed on the drawing canvas">
-  <div class="caption">SA_Valve_And_Damper placed on the drawing canvas — the valve/damper graphic is selected with blue handles, ready for property configuration. (Section 3-54)</div>
+  <div class="caption">SA_Valve_And_Damper placed on the drawing canvas — the valve/damper graphic is selected with blue handles, ready for property configuration. The component features a mechanical valve symbol with a status indicator and damper section below. (Section 3-54)</div>
 </div>
 
 <div class="lab">
@@ -250,7 +252,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0193_0.png" alt="Valve properties configuration in Properties panel">
-  <div class="caption">Properties panel for SA_Valve_And_Damper1 — all Wizard Options are configured for discrete valve control with open/close commands, a control actuator, dual limit switches, and the direction of travel indicator enabled. (Section 3-55)</div>
+  <div class="caption">Properties panel for SA_Valve_And_Damper1 — all Wizard Options are configured for discrete valve control with open/close commands, a control actuator, dual limit switches, and the direction of travel indicator enabled. The SymbolMode is set to Advanced for full dynamic status visualization. (Section 3-55)</div>
 </div>
 
 <div class="screenshot">
@@ -271,7 +273,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0194_0.png" alt="Edit Custom Properties dialog showing CmdClose and CmdOpen configuration">
-  <div class="caption">Edit Custom Properties dialog — CmdClose is set to "not Me.Cmd" and CmdOpen is set to "Me.Cmd". These relative references automatically resolve to the correct valve command attributes at runtime. (Section 3-56)</div>
+  <div class="caption">Edit Custom Properties dialog — CmdClose is set to "not Me.Cmd" and CmdOpen is set to "Me.Cmd". These relative references automatically resolve to the correct valve command attributes at runtime. The dialog also shows LimitSwitchClosed and LimitSwitchOpen properties. (Section 3-56)</div>
 </div>
 
 <p>Click OK, save and close Valve_Detailed, and check it in.</p>
@@ -287,7 +289,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0194_1.png" alt="SA_Agitator_Settler placed on the drawing canvas">
-  <div class="caption">SA_Agitator_Settler placed on the drawing canvas — a vertical agitator/settler symbol with a motor, vertical shaft, and impeller. Selected with blue handles for configuration. (Section 3-56)</div>
+  <div class="caption">SA_Agitator_Settler placed on the drawing canvas — a vertical agitator/settler symbol with a motor, vertical shaft, and impeller at the bottom. The symbol is selected with blue handles for configuration. (Section 3-56)</div>
 </div>
 
 <div class="lab">
@@ -308,7 +310,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0195_0.png" alt="Agitator Wizard Options configuration in Properties panel">
-  <div class="caption">Properties panel for SA_Agitator_Settler1 — the Wizard Options show the agitator configured with ObjectTagname labels, PV numeric display, engineering units, advanced symbol mode, equipment status indicator, and setpoint display. (Section 3-57)</div>
+  <div class="caption">Properties panel for SA_Agitator_Settler1 — the Wizard Options show the agitator configured with ObjectTagname labels, PV numeric display, engineering units from CustomPropertyLabel, Advanced symbol mode, EquipmentStatusIndicator enabled, and SetPoint display enabled. (Section 3-57)</div>
 </div>
 
 <div class="lab">
@@ -324,7 +326,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0196_0.png" alt="Substitute Reference dialog showing Find and Replace operations">
-  <div class="caption">Substitute Reference dialog — "Me.PV" is being replaced with "Me.Speed.PV" using Find &amp; Replace All. The reference table shows the old and new values, with a status of "4 String(s) replaced". (Section 3-58)</div>
+  <div class="caption">Substitute Reference dialog — "Me.PV" is being replaced with "Me.Speed.PV" using Find &amp; Replace All. The reference table shows the old and new values, with a status of "4 String(s) replaced". The dialog also shows related references like Me.PV.EngUnits being updated to Me.Speed.PV.EngUnits. (Section 3-58)</div>
 </div>
 
 <div class="lab">
@@ -341,7 +343,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0197_0.png" alt="Edit Custom Properties dialog for agitator showing EquipState properties">
-  <div class="caption">Edit Custom Properties dialog for the agitator — EquipState, EquipStateActive, and EquipStatePassive are configured with relative references to Me.PV to control the equipment state visualization. (Section 3-59)</div>
+  <div class="caption">Edit Custom Properties dialog for the agitator — EquipState, EquipStateActive, and EquipStatePassive are configured with relative references to Me.PV to control the equipment state visualization. The dialog shows EquipStatePassive described as "Indicates if a piece of equipment is operational but not active." (Section 3-59)</div>
 </div>
 
 <p>Save and close Agitator_Detailed, and check it in.</p>
@@ -367,12 +369,12 @@
 
 <div class="screenshot">
   <img src="../images/page_0198_0.png" alt="Pump properties configuration in Properties panel">
-  <div class="caption">Properties panel for SA_Pump_Blower_RotaryValve1 — the Wizard Options show Type set to "Pump", LabelType to "ObjectTagname", and various other pump-specific options. (Section 3-60)</div>
+  <div class="caption">Properties panel for SA_Pump_Blower_RotaryValve1 — the Wizard Options show Type set to "Pump", LabelType to "ObjectTagname", Orientation to "Right", MotorType to "Fixed", and ConnectionPoint enabled. (Section 3-60)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0198_1.png" alt="Edit Custom Properties dialog for pump showing EquipState">
-  <div class="caption">Edit Custom Properties dialog for the pump — EquipState is set to "Me.PV", which indicates the current state of the fixed speed motor (True = On/Running/Open). (Section 3-60)</div>
+  <div class="caption">Edit Custom Properties dialog for the pump — EquipState is set to "Me.PV", which indicates the current state of the fixed speed motor (True = On/Running/Open). The property is configured as a Boolean with Public visibility. (Section 3-60)</div>
 </div>
 
 <p>Save and close Pump_Detailed, and check it in.</p>
@@ -390,17 +392,17 @@
 
 <div class="screenshot">
   <img src="../images/page_0199_0.png" alt="Object Editor for $Agitator showing Content pane before linking">
-  <div class="caption">Object Editor for $Agitator — the Content pane is empty, showing "Press one of the '+' buttons above to create or link content." The red arrow points to the "Link Content" button. (Section 3-61)</div>
+  <div class="caption">Object Editor for $Agitator — the Attributes tab is active, showing the inherited attributes (Cmd, PV, Speed.PV, Speed.SP). The red arrow points to the "Configure Wizard Options" button. The Content pane below is empty, showing "Press one of the '+' buttons above to create or link content." (Section 3-61)</div>
 </div>
 
 <div class="screenshot">
-  <img src="../images/page_0199_1.png" alt="Galaxy Browser showing Relative References tab with Me.Agitator selected">
-  <div class="caption">Galaxy Browser with Relative References tab active — Me.Agitator is selected in the left pane, and the Agitator_Detailed symbol preview appears in the right pane. Click OK to link this symbol to the $Agitator template. (Section 3-61)</div>
+  <img src="../images/page_0199_1.png" alt="Galaxy Browser showing symbol selection for linking">
+  <div class="caption">The Galaxy Browser after selecting Agitator_Detailed from the Training \ Symbols toolset — the symbol preview appears in the right pane. Click OK to link this symbol to the $Agitator template object. (Section 3-61)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0199_2.png" alt="Content pane after linking showing Agitator_Detailed symbol">
-  <div class="caption">Content pane after linking — Agitator_Detailed now appears in the Content pane with a small preview of the symbol. The status shows "1 of 1 displayed, 1 selected." (Section 3-61)</div>
+  <div class="caption">Content pane after linking — Agitator_Detailed now appears in the Content pane with a small preview of the symbol showing "Level" and "MV" labels. The status shows "1 of 1 displayed, 1 selected." (Section 3-61)</div>
 </div>
 
 <div class="lab">
@@ -418,7 +420,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0200_0.png" alt="Check-in dialog with propagation warning">
-  <div class="caption">Check-in dialog — the warning states that changes will be propagated to 10 derived objects. This is expected behavior when checking in a template that other objects inherit from. (Section 3-62)</div>
+  <div class="caption">Check-in dialog — the warning states that "This check-in operation will propagate changes to 10 derived objects." This is expected behavior when checking in a template that other objects inherit from. The "Do not prompt for check-in comments" option is selected. (Section 3-62)</div>
 </div>
 
 <div class="lab">
@@ -428,12 +430,12 @@
 
 <div class="screenshot">
   <img src="../images/page_0201_0.jpeg" alt="Content Type dropdown showing Overview and Detailed checked">
-  <div class="caption">Content Type(s) dropdown for Pane1 — both "Overview" and "Detailed" are checked, allowing this pane to display either content type depending on the navigation context. (Section 3-63)</div>
+  <div class="caption">Content Type(s) dropdown for Pane1 — both "Overview" and "Detailed" are checked, allowing this pane to display either content type depending on the navigation context. The full list includes Overview, Detailed, Faceplate, Alarm Banner, and many other content types. (Section 3-63)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0201_1.png" alt="Properties panel showing Content Types set to Overview and Detailed with Use For Auto-Fill enabled">
-  <div class="caption">Properties panel after configuration — Content Type(s) shows "Overview, Detailed" and Use For Auto-Fill is checked, ensuring the pane automatically displays the correct symbol. (Section 3-63)</div>
+  <div class="caption">Properties panel after configuration — Content Type(s) shows "Overview, Detailed" and Use For Auto-Fill is checked, ensuring the pane automatically displays the correct symbol based on the current navigation depth. (Section 3-63)</div>
 </div>
 
 <!-- ============================================================ -->
@@ -447,7 +449,7 @@
 
 <div class="screenshot">
   <img src="../images/page_0202_0.jpeg" alt="AVEVA OMI Training Application showing Line1 Overview with bar charts">
-  <div class="caption">AVEVA OMI Training Application — Line1 Overview showing two bar charts: "Current level of mixers in Line 1" and "Current temperature of mixers in Line 1". Pane1 is configured for Overview content type. (Section 3-64)</div>
+  <div class="caption">AVEVA OMI Training Application — Line1 Overview showing two bar charts: "Current level of mixers in Line 1" (M1: 76, M2: 100, M3: 12, M4: 0) and "Current temperature of mixers in Line 1" (M1: 130, M2: 116, M3: 107, M4: 97). Pane1 is configured for Overview content type. (Section 3-64)</div>
 </div>
 
 <div class="lab">
@@ -457,12 +459,12 @@
 
 <div class="screenshot">
   <img src="../images/page_0203_0.jpeg" alt="AVEVA OMI showing Mixer100 with Overview bar charts">
-  <div class="caption">Navigating to Mixer100 — Pane1 still shows the Overview symbol from the Line1 area. The Overview content type is displayed because the current navigation context matches. (Section 3-65)</div>
+  <div class="caption">Navigating to Mixer100 — Pane1 still shows the Overview symbol from the Line1 area. The breadcrumb path shows Assets > Plant > Production > Line1 > Mixer100. The Overview content type is displayed because the current navigation context matches. (Section 3-65)</div>
 </div>
 
 <div class="screenshot">
   <img src="../images/page_0203_1.png" alt="AVEVA OMI showing Agitator_001 with Detailed agitator symbol">
-  <div class="caption">Navigating to Agitator_001 — Pane1 now shows the Detailed agitator symbol with a live reading of 50.04 rpm. The system automatically switched from Overview to Detailed content type based on the navigation depth. (Section 3-65)</div>
+  <div class="caption">Navigating to Agitator_001 — Pane1 now shows the Detailed agitator symbol with a live reading of 50.04 rpm. The breadcrumb reflects the full path: Assets > Plant > Production > Line1 > Mixer100 > Agitator_001. The system automatically switched from Overview to Detailed content type based on the navigation depth. (Section 3-65)</div>
 </div>
 
 <div class="lab">
@@ -491,7 +493,7 @@
 </div>
 
 <div class="pitfall">
-  <strong>Think About It:</strong> When navigating to Level_001, Outlet_001, Temperature_001, Inlet1_002, and Pump1_002, consider what you expect to see in Pane1 and why. Each object should display its corresponding Detailed symbol (Level_Detailed, Valve_Detailed, Temperature_Detailed, etc.) because you linked those symbols to the template objects and configured Pane1 for both Overview and Detailed content types.
+  <strong>Think About It:</strong> When navigating to Level_001, Outlet_001, Temperature_001, Inlet1_002, and Pump1_002, consider what you expect to see in Pane1 and why. Each object should display its corresponding Detailed symbol (Level_Detailed, Valve_Detailed, Temperature_Detailed, etc.) because you linked those symbols to the template objects and configured Pane1 for both Overview and Detailed content types with Use For Auto-Fill enabled.
 </div>
 
 <!-- ============================================================ -->

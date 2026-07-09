@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 54: Lab 27 – Using the ShowGraphic() Function</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -16,6 +17,8 @@
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  pre { background: #f4f4f4; padding: 1em; border-radius: 4px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; }
+  pre code { background: none; padding: 0; }
   .screenshot { text-align: center; margin: 1.5em 0; }
   .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
@@ -25,14 +28,17 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
+
 <nav>
-  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">← L53: Lab 26 – Using the ShowContent() Functio</a> &nbsp;|&nbsp;
-  <a href="../index.html">Home →</a>
+  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">← L53: Lab 26 – Using the ShowContent() Function</a> &nbsp;|&nbsp;
+  <span style="color:#999;">L54: Lab 27 – Using the ShowGraphic() Function (current)</span>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -42,13 +48,11 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
-<br>
 <strong>Module 2 — Getting Started</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
-<br>
 <strong>Module 3 — Industrial Graphics</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
@@ -60,7 +64,6 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
-<br>
 <strong>Module 4 — ViewApp Customizations</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
@@ -68,27 +71,22 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
-<br>
 <strong>Module 5 — External Content</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
-<br>
 <strong>Module 6 — Widgets</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
-<br>
 <strong>Module 7 — ViewApp Namespaces</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
-<br>
 <strong>Module 8 — Security</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
-<br>
 <strong>Module 9 — Alarms and Events</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
@@ -96,21 +94,17 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
-<br>
 <strong>Module 10 — Trends</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
-<br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
-<br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
-<br>
 <strong>Module 13 — Scripting in Graphics</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
@@ -122,184 +116,250 @@
 </nav>
 
 <h1>🔬 L54: Lab 27 – Using the ShowGraphic() Function</h1>
-<p class="source">Module 13 — Scripting in Graphics | Pages 735-744</p>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>Introduction</p>
-<p>In this lab, you will create an external content item configured to open an application help</p>
-<p>document using the PDF viewer. Then you will create a layout and assign the external content</p>
-<p>item to it.</p>
-<p>You will also add a Help button to the AdditionalTools symbol and configure it to open the</p>
-<p>application help document in a popup window at runtime.</p>
-<p>Content workflow highlight: Showing content using the ShowGraphic() script function</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use the ShowGraphic() function to show content in a popup window</p>
-<div class="screenshot">
-  <img src="../images/page_0735_0.png" alt="Page 735">
-  <div class="caption">Page 735</div>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics</p>
+<p class="page-ref">Covers creating an external content item for a PDF help document, building a layout with a PDF viewer, adding a Help button to the AdditionalTools symbol, and configuring the ShowGraphic() function to display content in a popup window. (pages 735–743)</p>
+
+<hr>
+
+<div class="lab">
+<strong>Lab Introduction:</strong>
+<p>In this lab, you will create an external content item configured to open an application help document using the PDF viewer. Then you will create a layout and assign the external content item to it. Finally, you will add a Help button to the AdditionalTools symbol and configure it to open the application help document in a popup window at runtime.</p>
 </div>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Create an External Content Item</p>
-<p>First, you will create an external content item for the application help document.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ External Content toolset, create a new external</p>
-<p>content item and name it ApplicationHelpPDF.</p>
-<p>2.</p>
-<p>Double-click ApplicationHelpPDF to open it in the External Content Editor.</p>
-<p>3.</p>
-<p>To the right of the URL or URI field, click the ellipsis and select Browse for file.</p>
-<p>The Open dialog box appears.</p>
-<p>4.</p>
-<p>Navigate to the C:\Training\Other Files folder, select Training_Application_Help.pdf, and</p>
-<p>click Open.</p>
-<p>The path to the file appears in the URL or URI field.</p>
-<p>5.</p>
-<p>For Media Type, click Suggest.</p>
-<p>Media Type changes to application/pdf.</p>
-<p>6.</p>
-<p>Save and close the ApplicationHelpPDF external content item, and check it in.</p>
-<div class="screenshot">
-  <img src="../images/page_0736_0.png" alt="Page 736">
-  <div class="caption">Page 736</div>
+
+<div class="key-concept">
+<strong>Content Workflow Highlight:</strong> Showing content using the <code>ShowGraphic()</code> script function
 </div>
-<div class="screenshot">
-  <img src="../images/page_0736_1.png" alt="Page 736">
-  <div class="caption">Page 736</div>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong>
+<ul>
+  <li>Use the <code>ShowGraphic()</code> function to show content in a popup window</li>
+</ul>
 </div>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Create a Layout</p>
-<p>In the following steps, you will create a new layout and assign the ApplicationHelpPDF external</p>
-<p>content item to it.</p>
-<p>7.</p>
-<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
-<p>UserHelp.</p>
-<p>8.</p>
-<p>Double-click UserHelp to open it in the Layout Editor.</p>
-<p>9.</p>
-<p>On the Toolbox tab, enter a search string to find the ApplicationHelpPDF external content</p>
-<p>item, and drag it to Pane1.</p>
-<p><strong>10.</strong> Click outside of Pane1 to display layout properties on the Properties tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0737_0.png" alt="Page 737">
-  <div class="caption">Page 737</div>
+  <img src="../images/page_0735_0.png" alt="Lab 27 introduction showing the target layout with four stacked buttons: Live Alarms, Historical Trend, Historical Data Grid, and Help">
+  <div class="caption">Lab 27 overview: the target layout showing four stacked buttons — Live Alarms, Historical Trend, Historical Data Grid, and the new <strong>Help</strong> button at the bottom. This button will be configured to open a PDF help document in a popup window.</div>
 </div>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>11.</strong> On the Properties tab, configure layout properties as follows:</p>
-<p><strong>12.</strong> Save and close the UserHelp layout, and check it in.</p>
-<p>Behavior \ Initial State:</p>
-<p>Normal</p>
-<p>Behavior \ Display in Taskbar:</p>
-<p>unchecked</p>
+
+<!-- ============================================================ -->
+<h2>54.1 Create an External Content Item</h2>
+<p class="page-ref">Reference: Module 13, Lab 27 — Create an External Content Item (page 736)</p>
+
+<p>First, you will create an external content item that points to the application help PDF document. On the Graphics tab, in the Training \ External Content toolset, create a new external content item and name it <strong>ApplicationHelpPDF</strong>. Double-click it to open in the External Content Editor.</p>
+
+<p>Click the ellipsis next to the <strong>URL or URI</strong> field and select <strong>Browse for file</strong>. The Open dialog box appears. Navigate to <code>C:\Training\Other Files</code> and select <strong>Training_Application_Help.pdf</strong>, then click Open. The path to the file appears in the URL or URI field.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0738_0.jpeg" alt="Page 738">
-  <div class="caption">Page 738</div>
+  <img src="../images/page_0736_0.png" alt="Windows Open file dialog navigating to C:\Training\Other Files with Training_Application_Help.pdf selected">
+  <div class="caption">The Windows Open file dialog showing the navigation to <code>C:\Training\Other Files</code>. The file <strong>Training_Application_Help.pdf</strong> (472 KB) is selected, ready to be linked as external content.</div>
 </div>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Add a Help Button to the AdditionalTools Symbol</p>
-<p>Next, you will add another button in the AdditionalTools symbol. You will configure the new button</p>
-<p>with the ShowGraphic() function to open the application help document as a popup window.</p>
-<p><strong>13.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click AdditionalTools to</p>
-<p>open it in the Graphic Editor.</p>
-<p><strong>14.</strong> Add a button element below the Historical Data Grid button and enter Help as the text.</p>
-<p>The name of the button is Button1.</p>
-<p>Now you will use alignment tools to make Button1 the same size as the other buttons.</p>
-<p><strong>15.</strong> With Button1 selected on the canvas, press Shift, and then select the Historical Data Grid</p>
-<p>button.</p>
-<div class="key-concept">Note:</div>
-<p>Alternatively, you can make your selections from the Elements list using CTRL +</p>
-<p>click.</p>
-<p>Notice that the Historical Data Grid button has blue selection handles, while Button1 has</p>
-<p>white selection handles. The blue selection handles indicate that the Historical Data Grid</p>
-<p>button will be the point of reference for resizing Button1.</p>
+
+<p>For the <strong>Media Type</strong> field, click <strong>Suggest</strong>. The field automatically changes to <code>application/pdf</code>, which tells the system to use the built-in PDF viewer when displaying this content. Save and close the ApplicationHelpPDF external content item, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0739_0.png" alt="Page 739">
-  <div class="caption">Page 739</div>
+  <img src="../images/page_0736_1.png" alt="External Content Editor showing ApplicationHelpPDF with the file URI and application/pdf media type">
+  <div class="caption">The External Content Editor for ApplicationHelpPDF. The URL field points to the PDF file (with URL-encoded spaces), and the Media Type is set to <code>application/pdf</code> — automatically suggested by the system based on the file extension.</div>
 </div>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> External content items allow you to embed third-party documents (PDFs, images, web pages) into your ViewApp. The <strong>Media Type</strong> field determines which viewer application renders the content — in this case, the built-in PDF viewer.
+</div>
+
+<!-- ============================================================ -->
+<h2>54.2 Create a Layout for the Help Document</h2>
+<p class="page-ref">Reference: Module 13, Lab 27 — Create a Layout (pages 737–738)</p>
+
+<p>With the external content item ready, you now need a layout that will host it. On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it <strong>UserHelp</strong>. Double-click to open it in the Layout Editor.</p>
+
+<p>On the Toolbox tab, search for <strong>ApplicationHelpPDF</strong> and drag it into <strong>Pane1</strong>. The pane now shows a placeholder indicating it contains the external content — the system automatically recognizes the media type and assigns the PDF viewer application.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0739_1.png" alt="Page 739">
-  <div class="caption">Page 739</div>
+  <img src="../images/page_0737_0.png" alt="Layout Editor showing Pane1 with the ApplicationHelpPDF external content placeholder">
+  <div class="caption">The Layout Editor with Pane1 selected. The dashed placeholder confirms the external content is correctly configured: it displays the content name (ApplicationHelpPDF), media type (application/pdf), and the viewer app (PDFViewerApp) that will render the document.</div>
 </div>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>16.</strong> Click the Make Same Size alignment tool.</p>
-<p>Button1 becomes the same size as the Historical Data Grid button.</p>
-<p><strong>17.</strong> Click the drawing canvas to release the selections.</p>
-<p>The buttons on the canvas should look similar to the following:</p>
+
+<p>Click outside of Pane1 to display the layout properties on the Properties tab. Configure the following settings:</p>
+
+<table>
+  <tr><th>Property</th><th>Value</th><th>Purpose</th></tr>
+  <tr><td>Behavior \ Initial State</td><td>Normal</td><td>Window opens in standard (non-maximized) state</td></tr>
+  <tr><td>Behavior \ Display in Taskbar</td><td>Unchecked</td><td>Popup window won't clutter the Windows taskbar</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0740_0.png" alt="Page 740">
-  <div class="caption">Page 740</div>
+  <img src="../images/page_0738_0.jpeg" alt="Properties panel showing Initial State set to Normal and Display in Taskbar unchecked">
+  <div class="caption">The Layout Properties panel with two key settings: <strong>Initial State</strong> is set to <em>Normal</em> (the popup opens at a standard window size), and <strong>Display In Taskbar</strong> is unchecked (the popup stays contained within the application rather than appearing as a separate taskbar item).</div>
 </div>
+
+<p>Save and close the UserHelp layout, and check it in. The layout is now ready to be referenced by a <code>ShowGraphic()</code> script call.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> Setting <em>Display in Taskbar</em> to unchecked ensures the help popup behaves as a modal-style window within the application, rather than appearing as a separate Windows taskbar entry. This keeps the user experience clean and contained.
+</div>
+
+<!-- ============================================================ -->
+<h2>54.3 Add a Help Button to AdditionalTools</h2>
+<p class="page-ref">Reference: Module 13, Lab 27 — Add a Help Button (pages 739–741)</p>
+
+<p>Next, you will add a fourth button to the AdditionalTools symbol you created in Lab 26. This button will be configured with the <code>ShowGraphic()</code> function to open the application help document as a popup window. Open the AdditionalTools symbol in the Graphic Editor and add a new button element below the Historical Data Grid button. Enter <strong>Help</strong> as the button text — the element is automatically named Button1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0740_1.png" alt="Page 740">
-  <div class="caption">Page 740</div>
+  <img src="../images/page_0739_0.png" alt="Canvas showing four buttons with Help (Button1) added at the bottom and actively selected">
+  <div class="caption">The AdditionalTools canvas with the new Help button (Button1) added below the existing three buttons. Button1 is actively selected with white square handles, ready to be resized to match the other buttons.</div>
 </div>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>18.</strong> Double-click Button1 and add an Action Scripts animation.</p>
-<p><strong>19.</strong> For Trigger type, ensure On Left/Key/Touch Up is selected.</p>
-<p><strong>20.</strong> For the script body, enter the following:</p>
-<div class="key-concept">Note:</div>
-<p>For convenience, a text file is available in the C:\Training folder that includes the</p>
-<p>script for this lab. The name of the file is Lab 27 - Using the ShowGraphic() Function.txt.</p>
-<p>'Script body begins...</p>
-<p>'Use the ShowGraphic() function to display a layout named as</p>
-<p>"UserHelp" in a window with Identity as "Help".</p>
-<p>Dim graphicInfo as aaGraphic.GraphicInfo;</p>
-<p>graphicInfo.Identity = "Help";</p>
-<p>graphicInfo.GraphicName = "UserHelp";</p>
-<p>'Simply customize the graphic size.</p>
-<p>graphicInfo.RelativeTo = aaGraphic.RelativeTo.CustomizedWidthHeight;</p>
-<p>graphicInfo.Width = 1200;</p>
-<p>graphicInfo.Height = 600;</p>
-<p>'Show graphic.</p>
-<p>ShowGraphic( graphicInfo );</p>
-<p>'Script body ends.</p>
-<p><strong>21.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>22.</strong> Save and close the AdditionalTools symbol, and check it in.</p>
+
+<p>Now you will use alignment tools to make Button1 the same size as the other buttons. With Button1 selected on the canvas, press <strong>Shift</strong> and then select the <strong>Historical Data Grid</strong> button. The Historical Data Grid button shows blue selection handles (indicating it is the reference object), while Button1 shows white selection handles (the object to be resized).</p>
+
 <div class="screenshot">
-  <img src="../images/page_0741_0.jpeg" alt="Page 741">
-  <div class="caption">Page 741</div>
+  <img src="../images/page_0739_1.png" alt="Multi-selection state with Historical Data Grid (blue handles) and Help button (white handles) selected">
+  <div class="caption">Multi-selection state: the Historical Data Grid button has blue solid handles (reference object), while Button1 has white outlined handles (object to be resized). This visual distinction tells you which button determines the target dimensions.</div>
 </div>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the preview session.</p>
-<p><strong>23.</strong> Switch to the preview session.</p>
-<p><strong>24.</strong> On the right side of the ViewApp, click the Display Slide-In Pane button to show the</p>
-<p>AdditionalTools symbol.</p>
-<p>Notice the Help button at the bottom.</p>
-<p><strong>25.</strong> Click Help.</p>
-<p>The user help document displays in a pop-up window.</p>
+
+<p>Click the <strong>Make Same Size</strong> alignment tool in the toolbar. Button1 instantly resizes to match the Historical Data Grid button. Click the drawing canvas to release the selections.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0742_0.png" alt="Page 742">
-  <div class="caption">Page 742</div>
+  <img src="../images/page_0740_0.png" alt="Graphic Editor with Make Same Size alignment tool highlighted in the toolbar">
+  <div class="caption">The alignment toolbar with the <strong>Make Same Size</strong> tool indicated by a red arrow. Clicking this tool applies the reference object's dimensions to the selected object.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0742_1.jpeg" alt="Page 742">
-  <div class="caption">Page 742</div>
+  <img src="../images/page_0740_1.png" alt="Final canvas showing all four buttons aligned with uniform size and spacing">
+  <div class="caption">The finalized AdditionalTools canvas with four uniformly sized and evenly spaced buttons: Live Alarms, Historical Trend, Historical Data Grid, and Help. The alignment tools ensure a professional, consistent appearance.</div>
 </div>
-<p>Lab 27 – Using the ShowGraphic() Function</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>26.</strong> Close the pop-up window.</p>
-<p><strong>27.</strong> Close the preview session.</p>
-<p><strong>28.</strong> Close $ViewApp_Training and check it in.</p>
-<div class="key-concept">Note:</div>
-<p>You can deploy the ViewApp to test the final application on the PROD node.</p>
-<p><End of Lab></p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">← L53: Lab 26 – Using the ShowContent() Functio</a> &nbsp;|&nbsp;
-  <a href="../index.html">Home →</a>
+
+<h3>Configure the ShowGraphic() Script</h3>
+
+<p>Double-click Button1 and add an <strong>Action Scripts</strong> animation. Ensure the Trigger type is set to <strong>On Left/Key/Touch Up</strong>. Enter the following script:</p>
+
+<pre><code>'Script body begins...
+
+'Use the ShowGraphic() function to display a layout named as
+'"UserHelp" in a window with Identity as "Help".
+Dim graphicInfo as aaGraphic.GraphicInfo;
+graphicInfo.Identity = "Help";
+graphicInfo.GraphicName = "UserHelp";
+
+'Simply customize the graphic size.
+graphicInfo.RelativeTo = aaGraphic.RelativeTo.CustomizedWidthHeight;
+graphicInfo.Width = 1200;
+graphicInfo.Height = 600;
+
+'Show graphic.
+ShowGraphic( graphicInfo );
+
+'Script body ends.</code></pre>
+
+<div class="screenshot">
+  <img src="../images/page_0741_0.jpeg" alt="Edit Animations dialog showing Action Scripts with the ShowGraphic() script code">
+  <div class="caption">The Edit Animations dialog for Button1. The Action Script creates a <code>GraphicInfo</code> object, sets its identity to "Help" and graphic name to "UserHelp", configures a custom window size of 1200×600 pixels, and calls <code>ShowGraphic()</code> to display the layout in a popup window.</div>
+</div>
+
+<div class="key-concept">
+<strong>Key Concept — The ShowGraphic() Function:</strong>
+<p>The <code>ShowGraphic()</code> function opens a layout in a separate popup window. The <code>GraphicInfo</code> object controls three important aspects:</p>
+<ul>
+  <li><strong>Identity</strong> — a unique string that identifies this popup window (used by <code>HideGraphic()</code> to close it later)</li>
+  <li><strong>GraphicName</strong> — the name of the layout to display (in this case, "UserHelp")</li>
+  <li><strong>Size settings</strong> — using <code>RelativeTo.CustomizedWidthHeight</code> lets you specify exact pixel dimensions (1200×600), rather than inheriting the layout's default size</li>
+</ul>
+</div>
+
+<p>Click OK to close the Edit Animations dialog box. Save and close the AdditionalTools symbol, and check it in.</p>
+
+<div class="tip">
+<strong>Tip:</strong> For convenience, a text file is available in the <code>C:\Training</code> folder that includes the script for this lab. The file name is <em>Lab 27 - Using the ShowGraphic() Function.txt</em>.
+</div>
+
+<!-- ============================================================ -->
+<h2>54.4 Test the ViewApp in a Preview Session</h2>
+<p class="page-ref">Reference: Module 13, Lab 27 — Test the ViewApp (pages 742–743)</p>
+
+<p>Switch to the preview session and click the <strong>Display Slide-In Pane</strong> button on the right side of the ViewApp to show the AdditionalTools symbol. Notice the new Help button at the bottom of the pane, below the three existing buttons.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0742_0.png" alt="ViewApp preview showing the slide-in pane with four buttons including the new Help button at the bottom">
+  <div class="caption">The ViewApp preview with the slide-in pane open. All four buttons are visible: Live Alarms, Historical Trend, Historical Data Grid, and the new <strong>Help</strong> button at the bottom. The Help button is ready to trigger the ShowGraphic() popup.</div>
+</div>
+
+<p>Click the <strong>Help</strong> button. The user help document opens in a popup window — a 1200×600 pixel window with the PDF viewer displaying the Training Application Users Guide. The popup appears over the main ViewApp window, which remains visible in the background.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0742_1.jpeg" alt="Help popup showing the Training Application Users Guide PDF document over the ViewApp main window">
+  <div class="caption">The Help popup window displaying the <strong>Training Application Users Guide</strong> (page 1 of 5). The PDF viewer provides standard controls for zooming, page navigation, and text selection. The main ViewApp's Simulated Factory Layout remains visible in the background, showing the popup is a separate window.</div>
+</div>
+
+<p>Close the popup window, then close the preview session. Close <code>$ViewApp_Training</code> and check it in.</p>
+
+<div class="tip">
+<strong>Note:</strong> You can deploy the ViewApp to test the final application on the PROD node.
+</div>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2>Lab Summary</h2>
+
+<div class="key-concept">
+<strong>What You Accomplished:</strong>
+<ul>
+  <li>Created an <strong>ApplicationHelpPDF</strong> external content item linked to a PDF help document with <code>application/pdf</code> media type</li>
+  <li>Created a <strong>UserHelp</strong> layout with the external content assigned to Pane1, configured with Normal initial state and taskbar-hidden behavior</li>
+  <li>Added a <strong>Help</strong> button to the AdditionalTools symbol, sized to match existing buttons using alignment tools</li>
+  <li>Configured an <strong>Action Script</strong> using <code>ShowGraphic()</code> with a <code>GraphicInfo</code> object specifying identity, layout name, and custom dimensions (1200×600)</li>
+  <li>Tested the popup functionality — clicking Help opens the PDF viewer in a floating window while the main application remains accessible</li>
+</ul>
+</div>
+
+<div class="key-concept">
+<strong>ShowContent() vs. ShowGraphic() — When to Use Each:</strong>
+<table>
+  <tr><th>Function</th><th>Behavior</th><th>Best For</th></tr>
+  <tr><td><code>ShowContent()</code></td><td>Displays content within a pane of the current layout</td><td>Toggle panels, tabbed panes, slide-in drawers</td></tr>
+  <tr><td><code>ShowGraphic()</code></td><td>Opens a layout in a separate popup window</td><td>Help documents, detail views, modal dialogs</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- Quiz -->
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+<details>
+<summary>Q1: What is the purpose of an external content item?</summary>
+<p class="answer">An external content item references a file outside the Galaxy (such as a PDF, image, or web page) and specifies the media type so the system knows which viewer application to use when displaying it. It acts as a bridge between the ViewApp and third-party content.</p>
+</details>
+
+<details>
+<summary>Q2: What does the Media Type field control in an external content item?</summary>
+<p class="answer">The Media Type field tells the system which viewer application to use. For example, <code>application/pdf</code> triggers the built-in PDF viewer, while other MIME types would trigger different viewers. The Suggest button auto-detects the type from the file extension.</p>
+</details>
+
+<details>
+<summary>Q3: Why set "Display in Taskbar" to unchecked for the UserHelp layout?</summary>
+<p class="answer">Unchecking Display in Taskbar ensures the popup window stays contained within the application rather than appearing as a separate entry in the Windows taskbar. This creates a cleaner, more cohesive user experience where the help window is clearly subordinate to the main application.</p>
+</details>
+
+<details>
+<summary>Q4: What does the Identity property of GraphicInfo control?</summary>
+<p class="answer">The Identity is a unique string that identifies the popup window. It can later be used with <code>HideGraphic()</code> to programmatically close a specific popup, even if multiple popups are open. It acts as a handle for window management.</p>
+</details>
+
+<details>
+<summary>Q5: What is the difference between ShowContent() and ShowGraphic()?</summary>
+<p class="answer"><code>ShowContent()</code> displays content within a pane of the current layout — it stays inside the existing window structure. <code>ShowGraphic()</code> opens a layout in a separate, independent popup window. Use ShowContent() for toggle panels and ShowGraphic() for modal-style windows like help documents or detail views.</p>
+</details>
+</div>
+
+<hr>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics, Lab 27</p>
+<p class="page-ref">Pages 735–743</p>
+
+<nav>
+  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">← L53: Lab 26 – Using the ShowContent() Function</a> &nbsp;|&nbsp;
+  <span style="color:#999;">L54: Lab 27 – Using the ShowGraphic() Function (last lesson)</span>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
