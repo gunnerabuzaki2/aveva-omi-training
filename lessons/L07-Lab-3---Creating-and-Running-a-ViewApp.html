@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 07: Lab 3 – Creating and Running a ViewApp</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L06-ViewApps-Overview.html">← L06: ViewApps Overview</a> &nbsp;|&nbsp;
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and  →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html" style="font-weight:bold;color:#1a1a1a;">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L07: Lab 3 – Creating and Running a ViewApp</h1>
+<p class="source">Module 2 — Getting Started | Pages 107-138</p>
+
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>Introduction</p>
+<p>In this lab, you will perform steps necessary to create a ViewApp. You will:</p>
+<p></p>
+<p>Derive a template from the base $ViewApp template</p>
+<p></p>
+<p>Initialize the derived template with the screen profile and layout you created in the</p>
+<p>previous lab</p>
+<p></p>
+<p>Review the derived template in the ViewApp Editor and configure it</p>
+<p></p>
+<p>Test the ViewApp with a preview session from the ViewApp Editor</p>
+<p></p>
+<p>Edit and save the configuration</p>
+<p>You will create an instance from the derived ViewApp template and deploy the instance to runtime</p>
+<p>on the production node. Once the instance is deployed, you will switch to the production node and</p>
+<p>launch the ViewApp to see its behavior in runtime.</p>
+<p>Then you will switch back to the engineering node, make changes to the Main layout, and redeploy</p>
+<p>the ViewApp. On the production node, you will view the changes in runtime by opening the</p>
+<p>updated ViewApp.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Create a ViewApp template for building an Operations Management Interface application</p>
+<p></p>
+<p>Initialize a ViewApp application with a screen profile and layout</p>
+<p></p>
+<p>Use preview mode from the ViewApp Editor</p>
+<p></p>
+<p>Use the navigation Apps to review and navigate the default navigation items</p>
+<p></p>
+<p>Use the TitleBarApp at runtime</p>
+<p></p>
+<p>Create a ViewApp instance</p>
+<p></p>
+<p>Deploy a ViewApp instance to the runtime environment</p>
+<p></p>
+<p>Launch a ViewApp application in the runtime environment</p>
+<p></p>
+<p>Deploy changes to a running ViewApp</p>
+<div class="screenshot">
+  <img src="../images/page_0108_0.png" alt="Page 108">
+  <div class="caption">Page 108</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0108_1.png" alt="Page 108">
+  <div class="caption">Page 108</div>
+</div>
+<p>Create a ViewApp</p>
+<p>In the following steps, you will create a new template toolset on the Templates tab for organizing</p>
+<p>ViewApps created in this course. Then, you will create a derived ViewApp template, initialize it with</p>
+<p>a screen profile and the layout you created in the previous lab, and open it in the ViewApp Editor.</p>
+<p>1.</p>
+<p>On the Templates tab, expand TrainingGalaxy.</p>
+<p>2.</p>
+<p>Right-click the Training toolset and select New Template Toolset.</p>
+<p>A new toolset with the default name is created under the Training toolset.</p>
+<div class="screenshot">
+  <img src="../images/page_0109_0.png" alt="Page 109">
+  <div class="caption">Page 109</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0109_1.png" alt="Page 109">
+  <div class="caption">Page 109</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>3.</p>
+<p>Rename the new toolset to ViewApps.</p>
+<p>4.</p>
+<p>On the Templates tab, expand the TrainingGalaxy \ System toolset.</p>
+<div class="screenshot">
+  <img src="../images/page_0110_0.png" alt="Page 110">
+  <div class="caption">Page 110</div>
+</div>
+<p>5.</p>
+<p>Right-click the $ViewApp object and select New | Derived Template.</p>
+<div class="screenshot">
+  <img src="../images/page_0111_0.png" alt="Page 111">
+  <div class="caption">Page 111</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0111_1.png" alt="Page 111">
+  <div class="caption">Page 111</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>A derived template is created with the default name in the System toolset.</p>
+<p>6.</p>
+<p>Rename the derived template to $ViewApp_Training and move it to the Training \ ViewApps</p>
+<p>toolset.</p>
+<p>Notice the error icon for $ViewApp_Training. The icon indicates that the ViewApp template</p>
+<p>has not yet been configured.</p>
+<div class="screenshot">
+  <img src="../images/page_0112_0.png" alt="Page 112">
+  <div class="caption">Page 112</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0112_1.png" alt="Page 112">
+  <div class="caption">Page 112</div>
+</div>
+<p>7.</p>
+<p>Double-click $ViewApp_Training to open it in the ViewApp Editor.</p>
+<p>The ViewApp Initialization dialog box appears.</p>
+<p>The first step of ViewApp initialization is Select Screen Profile. This allows you to select the</p>
+<p>screen profile that will be used by the ViewApp. Notice that both the DualScreen and</p>
+<p>SingleScreen screen profiles you created in the previous lab are listed and the first one in the</p>
+<p>list is selected.</p>
+<p>8.</p>
+<p>Select the SingleScreen screen profile and click Next.</p>
+<div class="screenshot">
+  <img src="../images/page_0113_0.png" alt="Page 113">
+  <div class="caption">Page 113</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0113_1.jpeg" alt="Page 113">
+  <div class="caption">Page 113</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>The next step, Associate Layout, appears.</p>
+<p>Notice that the Main layout you created in the previous lab is listed and already selected for</p>
+<p>the Primary screen in the profile. A preview of the screen with the layout appears on the left.</p>
+<p>9.</p>
+<p>Click Finish.</p>
+<p>The ViewApp Editor opens.</p>
+<p>You may want to maximize the editor to get a better view.</p>
+<div class="screenshot">
+  <img src="../images/page_0114_0.png" alt="Page 114">
+  <div class="caption">Page 114</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0114_1.png" alt="Page 114">
+  <div class="caption">Page 114</div>
+</div>
+<p>Notice that the selections you made during ViewApp Initialization are reflected in the preview</p>
+<p>area. The SingleScreen screen profile is selected and the Main layout is displayed. The Main</p>
+<p>layout shows the content you assigned to Pane2 and Pane3 in the previous lab.</p>
+<p>Open a Preview Session and Test Navigation</p>
+<p>In the next steps, you will open a ViewApp preview session from the ViewApp Editor and use the</p>
+<p>session to test the ViewApp navigation.</p>
+<p><strong>10.</strong> In the top-right corner of the ViewApp Editor, click Preview.</p>
+<div class="screenshot">
+  <img src="../images/page_0115_0.png" alt="Page 115">
+  <div class="caption">Page 115</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0115_1.png" alt="Page 115">
+  <div class="caption">Page 115</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0115_2.jpeg" alt="Page 115">
+  <div class="caption">Page 115</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>A message appears indicating that preview mode is for testing only, and not intended for</p>
+<p>production use.</p>
+<p><strong>11.</strong> Review the message, and then check Do not show this message again.</p>
+<p><strong>12.</strong> Click OK to close the message.</p>
+<p>A ViewApp preview session opens and an icon is available in the task bar.</p>
+<p>This may take a few moments.</p>
+<div class="screenshot">
+  <img src="../images/page_0116_0.jpeg" alt="Page 116">
+  <div class="caption">Page 116</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0116_1.jpeg" alt="Page 116">
+  <div class="caption">Page 116</div>
+</div>
+<p><strong>13.</strong> From the task bar, select the preview session to open it.</p>
+<p>Notice that when the ViewApp preview session opens, Pane2 at the top takes up the entire</p>
+<p>display area and Pane1 does not show. This is because:</p>
+<p></p>
+<p>Panes configured for AutoFill are set to Hide When Empty by default, and there is no</p>
+<p>content to fill Pane1 automatically based on the current navigation.</p>
+<p></p>
+<p>Pane2 is configured with its Height Sizing set to Variable by default.</p>
+<p><strong>14.</strong> Click the Display Slide-In Pane button on the left side of the layout to view Pane3, which</p>
+<p>contains the NavTreeControl.</p>
+<div class="screenshot">
+  <img src="../images/page_0117_0.png" alt="Page 117">
+  <div class="caption">Page 117</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0117_1.jpeg" alt="Page 117">
+  <div class="caption">Page 117</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>The slide-in pane opens.</p>
+<p>Notice that there is a Search entry field at the top of the navigation tree.</p>
+<p><strong>15.</strong> In the Search entry field, enter a search string, such as mix, to quickly find navigation items</p>
+<p>that match the search string.</p>
+<p>This example shows navigation items that match the search string mix.</p>
+<div class="screenshot">
+  <img src="../images/page_0118_0.jpeg" alt="Page 118">
+  <div class="caption">Page 118</div>
+</div>
+<p><strong>16.</strong> Select a navigation item from the results list.</p>
+<p>This example shows Mixer100 selected in the results list.</p>
+<div class="screenshot">
+  <img src="../images/page_0119_0.png" alt="Page 119">
+  <div class="caption">Page 119</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0119_1.png" alt="Page 119">
+  <div class="caption">Page 119</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>17.</strong> Click off the slide-in pane or press the ESC key to close the slide-in pane.</p>
+<p>This example shows the NavBreadcrumbControl navigated to Mixer100.</p>
+<p><strong>18.</strong> At the top-right of the preview, click Minimize to minimize the preview session.</p>
+<div class="screenshot">
+  <img src="../images/page_0120_0.jpeg" alt="Page 120">
+  <div class="caption">Page 120</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0120_1.png" alt="Page 120">
+  <div class="caption">Page 120</div>
+</div>
+<p>Edit Layout from the ViewApp Editor</p>
+<p>In the following steps, you will open the Main layout for editing in the Layout Editor from within the</p>
+<p>ViewApp Editor. After saving changes made to the Main layout, you will see your changes in the</p>
+<p>ViewApp preview session.</p>
+<p><strong>19.</strong> In the ViewApp Editor, click the vertical ellipsis on the right side of the Layout field, which</p>
+<p>shows the assigned layout is Main.</p>
+<p><strong>20.</strong> From the drop-down list, select Edit Layout.</p>
+<p>The Main layout opens in the Layout Editor.</p>
+<div class="screenshot">
+  <img src="../images/page_0121_0.png" alt="Page 121">
+  <div class="caption">Page 121</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0121_1.png" alt="Page 121">
+  <div class="caption">Page 121</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>21.</strong> In the preview area for the layout, ensure Pane2 is selected.</p>
+<p><strong>22.</strong> Right-click Pane2 and select Pane Properties.</p>
+<p><strong>23.</strong> On the Properties tab, change the Size \ Height Sizing property to Fixed.</p>
+<p><strong>24.</strong> Save and close the Main layout, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0122_0.png" alt="Page 122">
+  <div class="caption">Page 122</div>
+</div>
+<p><strong>25.</strong> Switch to the ViewApp preview session.</p>
+<p>Notice that the configuration changes made in the Layout Editor are reflected in preview.</p>
+<p>Pane2 with the NavBreadcrumbControl at the top no longer takes up the whole screen, but</p>
+<p>Pane1 set for AutoFill is still hidden.This is because:</p>
+<p></p>
+<p>Panes configured for AutoFill are set to Hide When Empty by default, and there is still no</p>
+<p>content to fill Pane1 automatically based on the current navigation.</p>
+<p></p>
+<p>Pane2 is now configured with its Height Sizing property set to Fixed.</p>
+<p>The following example shows the view when navigated to Mixer100.</p>
+<p><strong>26.</strong> In the top-right of the preview, click Close to close the preview session.</p>
+<div class="screenshot">
+  <img src="../images/page_0123_0.jpeg" alt="Page 123">
+  <div class="caption">Page 123</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0123_1.png" alt="Page 123">
+  <div class="caption">Page 123</div>
+</div>
+<p>• Line2, Packaging, Plant, ProdPLC1</p>
+<p>• <strong>Right-Click Context Menu</strong> on $ViewApp_Training:</p>
+<p>• Open (Ctrl+O), Open Read-Only</p>
+<p>• Check Out, Check In (greyed), Undo Check Out (greyed)</p>
+<p>• Override Check Out (greyed), Validate</p>
+<p>• <strong>New</strong> submenu:</p>
+<p>• <strong>Instance (Ctrl+N)</strong> (highlighted/selected)</p>
+<p>• Derived Template (Ctrl+Shift+N)</p>
+<p>• Delete (Del), Rename (F2)</p>
+<p>• Assign To..., Unassign (greyed)</p>
+<p>• Import/Export (submenu arrows)</p>
+<p>• Object Help... (Ctrl+F1)</p>
+<p>• Synchronize Views (Ctrl+Shift+Z)</p>
+<p>• Properties... (Alt+Enter)</p>
+<p>• Application Information (Ctrl+I)]</p>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>27.</strong> Close the ViewApp Editor and check in the $ViewApp_Training template.</p>
+<p>Create a ViewApp Instance</p>
+<p>Now you will create a ViewApp instance from the derived ViewApp template.</p>
+<p><strong>28.</strong> On the Templates tab, in the Training \ ViewApps toolset, right-click $ViewApp_Training</p>
+<p>and select New | Instance.</p>
+<div class="screenshot">
+  <img src="../images/page_0124_0.png" alt="Page 124">
+  <div class="caption">Page 124</div>
+</div>
+<p>• Mixer100, Mixer200, Mixer300, Mixer400 (blue sphere icons)</p>
+<p>• Line2 [Line2]</p>
+<p>• Packaging [Packaging]</p>
+<p>• Plant</p>
+<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
+<p>In the Deployment view, notice that the new instance with the default name of</p>
+<p>ViewApp_Training_001 is created in UnAssigned Host.</p>
+<p>Leave the default name for the instance.</p>
+<div class="screenshot">
+  <img src="../images/page_0125_0.png" alt="Page 125">
+  <div class="caption">Page 125</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>Create a ViewEngine to Host the ViewApp Instance</p>
+<p>To deploy the ViewApp instance to the runtime environment, the instance must be hosted by a</p>
+<p>ViewEngine. In the following steps, you will create a ViewEngine instance and assign the ViewApp</p>
+<p>instance to it.</p>
+<p><strong>29.</strong> On the Templates tab, in the System toolset, right-click the $ViewEngine template and</p>
+<p>select New | Derived Template.</p>
+<p><strong>30.</strong> Rename the derived template to $gViewEngine and move it to the Training \ Global toolset.</p>
+<div class="screenshot">
+  <img src="../images/page_0126_0.png" alt="Page 126">
+  <div class="caption">Page 126</div>
+</div>
+<p>• Line2, Packaging, Plant, ProdPLC1</p>
+<p>• Production, Receiving, Shipping, Sys</p>
+<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
+<p><strong>31.</strong> Create a new instance from $gViewEngine and rename the instance to ViewEngine1.</p>
+<div class="screenshot">
+  <img src="../images/page_0127_0.png" alt="Page 127">
+  <div class="caption">Page 127</div>
+</div>
+<p>• Line2, Packaging, Plant, ProdPLC1</p>
+<p>• Production, Receiving, Shipping, Sys</p>
+<p>• <strong>ViewEngine1</strong> (red circle highlight)</p>
+<p>• <strong>ViewApp_Training_001</strong> (red circle highlight)</p>
+<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>32.</strong> In the Deployment view, assign ViewEngine1 to PROD_Platform1.</p>
+<div class="key-concept">Note: For the purposes of this lab, PROD_Platform1 will be used as the production visualization client node. 33. Assign ViewApp_Training_001 to ViewEngine1.</div>
+<div class="screenshot">
+  <img src="../images/page_0128_0.png" alt="Page 128">
+  <div class="caption">Page 128</div>
+</div>
+<p>• Production [Production]</p>
+<p>• Receiving [Receiving]</p>
+<p>• Shipping [Shipping]</p>
+<p>• <strong>Sys [Sys]</strong> (expanded, red box highlight):</p>
+<p>• AppEngine1</p>
+<p>• GRPlatform</p>
+<p>• PROD_Platform1</p>
+<p>• ProdPLC1</p>
+<p>• <strong>ViewApp_Training_001</strong> (blue selection bar)</p>
+<p>• <strong>ViewEngine1</strong></p>
+<p>• <strong>Bottom Tabs</strong>: Model - Tagname (active), Deployment, Derivation]</p>
+<p><strong>34.</strong> In the Model view, assign ViewEngine1 and ViewApp_Training_001 to the Sys area.</p>
+<div class="screenshot">
+  <img src="../images/page_0129_0.png" alt="Page 129">
+  <div class="caption">Page 129</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>Deploy the ViewApp</p>
+<p>Now you will deploy the ViewEngine and ViewApp instances to the runtime environment.</p>
+<p><strong>35.</strong> In the Deployment view, right-click ViewEngine1 and select Deploy.</p>
+<p><strong>36.</strong> Leave the default deployment options and click Deploy.</p>
+<p>ViewEngine1 and ViewApp_Training_001 are deployed.</p>
+<p>Notice that at first, the icon for the ViewApp instance is an orange synchronization icon. The</p>
+<p>orange icon indicates that the ViewApp files are in the process of being transferred to the</p>
+<p>target node. Once the file transfer is complete, the icon changes to the ViewApp icon.</p>
+<p><strong>37.</strong> In the Deploy dialog box, click Close when the deployment completes.</p>
+<div class="screenshot">
+  <img src="../images/page_0130_0.png" alt="Page 130">
+  <div class="caption">Page 130</div>
+</div>
+<p>Launch the ViewApp in Runtime</p>
+<p>Now, you will launch the ViewApp in runtime. Recall that the ViewApp was deployed to the</p>
+<p>production node, so you will switch to that node to launch the ViewApp.</p>
+<p><strong>38.</strong> Switch to the production node.</p>
+<div class="key-concept">Note: Your instructor will provide instructions for switching to the production node. 39. On the production node, open the AVEVA OMI Application Manager. A shortcut to the AVEVA OMI Application Manager is located on the desktop of the production node. You can also find it in the list of applications on the node. VIEWAPP_TRAINING_001 appears in the list of ViewApps deployed to the node. 40. Click LAUNCH to launch VIEWAPP_TRAINING_001. The ViewApp opens maximized to the full screen by default. This may take a few moments. Note: You may need to manually minimize the AVEVA OMI Application Manager.</div>
+<div class="screenshot">
+  <img src="../images/page_0131_0.png" alt="Page 131">
+  <div class="caption">Page 131</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p>Once the ViewApp opens, you can use the NavBreadcrumbControl at the top or the</p>
+<p>NavTreeControl in the left slide-in pane to navigate through the ViewApp.</p>
+<p>The following example shows the ViewApp navigated to Mixer100.</p>
+<p><strong>41.</strong> Leave the ViewApp running on the production node.</p>
+<p><strong>42.</strong> Switch back to the engineering node.</p>
+<p>Edit the Main Layout and Deploy the Changes</p>
+<p>In the following steps, you will open the Main layout in the Layout Editor on the engineering node.</p>
+<p>You will add a pane to the top of the layout, configure the size of the pane, and add the</p>
+<p>TitleBarControl to it. Then you will deploy the changes to the ViewApp running on the production</p>
+<p>node.</p>
+<p><strong>43.</strong> Ensure you are working on the engineering node.</p>
+<p><strong>44.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
+<p>Layout Editor.</p>
+<p><strong>45.</strong> In the layout preview area, select Pane2.</p>
+<div class="screenshot">
+  <img src="../images/page_0132_0.png" alt="Page 132">
+  <div class="caption">Page 132</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0132_1.jpeg" alt="Page 132">
+  <div class="caption">Page 132</div>
+</div>
+<p><strong>46.</strong> With Pane2 selected, right-click the pane and select Add Pane | Above.</p>
+<p>A new pane named Pane4 is added above Pane2.</p>
+<div class="screenshot">
+  <img src="../images/page_0133_0.jpeg" alt="Page 133">
+  <div class="caption">Page 133</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0133_1.jpeg" alt="Page 133">
+  <div class="caption">Page 133</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>47.</strong> Select Pane4, and on the Properties tab, notice that the Size \ Height Sizing property of</p>
+<p>Pane4 is Fixed.</p>
+<p>This is because Pane4 was created based on the properties of Pane2, and the Size \ Height</p>
+<p>Sizing property for Pane2 is Fixed.</p>
+<p><strong>48.</strong> Modify the Size \ Height property for Pane4 to 80.</p>
+<div class="screenshot">
+  <img src="../images/page_0134_0.png" alt="Page 134">
+  <div class="caption">Page 134</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0134_1.png" alt="Page 134">
+  <div class="caption">Page 134</div>
+</div>
+<p><strong>49.</strong> On the Toolbox tab, enter a search string to find the TitleBarControl and select it.</p>
+<p><strong>50.</strong> Drag the TitleBarControl to Pane4.</p>
+<div class="screenshot">
+  <img src="../images/page_0135_0.jpeg" alt="Page 135">
+  <div class="caption">Page 135</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0135_1.png" alt="Page 135">
+  <div class="caption">Page 135</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>51.</strong> With Pane4 selected, on the Properties tab, change the Content and Display Area \ Title</p>
+<p>property to AVEVA OMI Training Application.</p>
+<p><strong>52.</strong> In the Layout Editor, click outside of the panes to select the layout and display layout</p>
+<p>properties on the Properties tab.</p>
+<div class="screenshot">
+  <img src="../images/page_0136_0.png" alt="Page 136">
+  <div class="caption">Page 136</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0136_1.png" alt="Page 136">
+  <div class="caption">Page 136</div>
+</div>
+<p><strong>53.</strong> On the Properties tab, uncheck the Behavior \ Has Title Bar property.</p>
+<p><strong>54.</strong> Save and close the Main layout, and check it in.</p>
+<p><strong>55.</strong> In the Deployment view, right-click ViewApp_Training_001 and select Deploy.</p>
+<p><strong>56.</strong> Leave the default deployment options and click Deploy.</p>
+<p><strong>57.</strong> Click Close when the deployment process completes.</p>
+<p><strong>58.</strong> Switch to the production node.</p>
+<p>An Open Updated ViewApp message appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0137_0.png" alt="Page 137">
+  <div class="caption">Page 137</div>
+</div>
+<p>Lab 3 – Creating and Running a ViewApp</p>
+<p><strong>59.</strong> Click OPEN NOW.</p>
+<p>The updated ViewApp opens.</p>
+<p>Notice that its appearance is different.</p>
+<p>Instead of the default title bar, the TitleBarControl displays at the top and the title that you</p>
+<p>configured is shown.</p>
+<div class="key-concept">Note: You can leave the ViewApp running on the production node. 60. Switch back to the engineering node. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L06-ViewApps-Overview.html">← Previous: ViewApps Overview</a> &nbsp;|&nbsp;
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">Next: Introduction to Industrial Graphics and  →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

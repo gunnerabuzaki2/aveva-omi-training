@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 37: Lab 18 – Adding Alarm Information to Graphics</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L36-Alarming-Overview.html">← L36: Alarming Overview</a> &nbsp;|&nbsp;
+  <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html" style="font-weight:bold;color:#1a1a1a;">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L37: Lab 18 – Adding Alarm Information to Graphics</h1>
+<p class="source">Module 9 — Alarms and Events | Pages 507-530</p>
+
+<div class="screenshot">
+  <img src="../images/page_0507_0.png" alt="Page 507">
+  <div class="caption">Page 507</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p>Lab 18 – Adding Alarm Information to</p>
+<p>Graphics</p>
+<p>Introduction</p>
+<p>In this lab, you will add and configure Alarm Border and Visibility animations for various graphic</p>
+<p>elements and symbols.</p>
+<p>You will add a text box element to the MixingProcess_Detailed symbol and configure it as an alarm</p>
+<p>indicator, with alarm border animations and other settings.</p>
+<p>You will use the SA_AlarmSeverity symbol from the Situational Awareness Library to create two</p>
+<p>symbols, customized for area and non-area objects. Then you will link the symbols to area and</p>
+<p>non-area objects.</p>
+<p>When testing in the ViewApp preview session, you will observe the notifications for alarms that you</p>
+<p>configured in this lab. You will interact with the SA_AlarmSeverity symbol to modify alarm modes</p>
+<p>and observe the visual indicators that show for area and non-area objects in the graphics built in</p>
+<p>this lab and also in the existing NavtreeControl and NavBreadcrumbControl Apps.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Add an Alarm Border animation to a graphic element</p>
+<p></p>
+<p>Enable alarm border Wizard Options for Situational Awareness Library symbols</p>
+<p></p>
+<p>Configure the SA_AlarmSeverity symbol</p>
+<p></p>
+<p>Use the SA_AlarmSeverity symbol to change alarm modes</p>
+<p></p>
+<p>Review alarm adorners in the built-in navigation Apps</p>
+<div class="screenshot">
+  <img src="../images/page_0508_0.png" alt="Page 508">
+  <div class="caption">Page 508</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0508_1.png" alt="Page 508">
+  <div class="caption">Page 508</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0508_2.png" alt="Page 508">
+  <div class="caption">Page 508</div>
+</div>
+<p>• MixingProcess_Detailed (selected, highlighted blue)</p>
+<p>• Status: "3 of 3 displayed, 1 selected"</p>
+<p>• In Tools pane, select Text Box tool</p>
+<p><strong>Screenshot: Tools Panel</strong></p>
+<p>• Drawing tools (selection, line, rectangle, text, etc.)</p>
+<p>• Text Box tool highlighted with tooltip</p>
+<p>• On drawing canvas, add text box below AreaName element</p>
+<p><strong>Screenshot: Drawing Canvas (grid background)</strong></p>
+<p>• Top: Labels "5Mixer" and "Area Name"</p>
+<p>• Middle: Blue text box labeled "TextBox1" (selected with blue handles)</p>
+<p>• Bottom: Symbol labeled "SA_Pump_Blower_RotaryValve" (pump/blower/rotary valve icon)]</p>
+<p>Create System Malfunction Display with Alarm Border Animation</p>
+<p>In the following steps, you will add a text box element to a symbol in the $Mixer template. You will</p>
+<p>also add and configure an Alarm Border animation for the text box.</p>
+<p>1.</p>
+<p>On the Templates tab, in the Training \ Project toolset, double-click $Mixer to open it in the</p>
+<p>Object Editor.</p>
+<p>2.</p>
+<p>In the Content pane, double-click the MixingProcess_Detailed symbol.</p>
+<p>The Graphic Editor opens.</p>
+<p>3.</p>
+<p>In the Tools pane, select the Text Box tool.</p>
+<p>4.</p>
+<p>On the drawing canvas, add a text box element below the AreaName element.</p>
+<div class="screenshot">
+  <img src="../images/page_0509_0.png" alt="Page 509">
+  <div class="caption">Page 509</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0509_1.png" alt="Page 509">
+  <div class="caption">Page 509</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0509_2.png" alt="Page 509">
+  <div class="caption">Page 509</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p>5.</p>
+<p>On the Properties tab, configure the text box element as follows:</p>
+<p>6.</p>
+<p>With the AlarmIndicator text box element selected, configure the Text Style \ Alignment</p>
+<p>property to Centers.</p>
+<p>The text elements at the top of the symbol should look similar to the following:</p>
+<p>Graphic \ Name:</p>
+<p>AlarmIndicator</p>
+<p>Appearance \ ElementStyle:</p>
+<p>Alarm_Critical_UNACK</p>
+<p>Appearance \ Width:</p>
+<p>160</p>
+<p>Appearance \ Height:</p>
+<p>30</p>
+<p>Appearance \ Text:</p>
+<p>System Malfunction</p>
+<div class="screenshot">
+  <img src="../images/page_0510_0.png" alt="Page 510">
+  <div class="caption">Page 510</div>
+</div>
+<p>7.</p>
+<p>Double-click AlarmIndicator to display the Edit Animations dialog box, and add an</p>
+<p>Alarm Border animation.</p>
+<p>8.</p>
+<p>In the Object or Field-Attribute Name field, enter Me.Alarm.Condition.</p>
+<p>Notice that all alarm urgency references are automatically populated.</p>
+<div class="screenshot">
+  <img src="../images/page_0511_0.png" alt="Page 511">
+  <div class="caption">Page 511</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p>9.</p>
+<p>Add a Visibility animation, and configure the Expression Or Reference (Boolean) as:</p>
+<p>Me.Alarm.Condition.InAlarm or not Me.Alarm.Condition.Acked</p>
+<p><strong>10.</strong> Click OK to close the Edit Animations dialog box.</p>
+<p><strong>11.</strong> Save and close the MixingProcess_Detailed symbol.</p>
+<p><strong>12.</strong> Save and close the $Mixer template, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0512_0.png" alt="Page 512">
+  <div class="caption">Page 512</div>
+</div>
+<p>Add Alarm Border Wizards to Other Symbols</p>
+<p>In the following steps, you will configure alarm border options and custom properties for the</p>
+<p>Level_Detailed symbol.</p>
+<p><strong>13.</strong> On the Graphics tab, in the Training \ Symbols toolset, open Level_Detailed.</p>
+<p><strong>14.</strong> Select the SA_Meters1 symbol on the drawing canvas.</p>
+<p><strong>15.</strong> On the Properties tab, configure the Wizard Options \ SymbolMode property to Advanced.</p>
+<p><strong>16.</strong> Set the Wizard Options \ AlarmBorder property to True.</p>
+<div class="screenshot">
+  <img src="../images/page_0513_0.png" alt="Page 513">
+  <div class="caption">Page 513</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>17.</strong> Right-click the symbol on the drawing canvas and select Custom Properties.</p>
+<p>The Edit Custom Properties dialog box appears.</p>
+<p><strong>18.</strong> Select the AlarmMostUrgentShelved custom property, and for Default Value,</p>
+<p>change False to:</p>
+<p>Me.PV.AlarmMostUrgentShelved</p>
+<p><strong>19.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
+<p><strong>20.</strong> Save and close the Level_Detailed symbol, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0514_0.png" alt="Page 514">
+  <div class="caption">Page 514</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0514_1.png" alt="Page 514">
+  <div class="caption">Page 514</div>
+</div>
+<p>Customize SA_AlarmSeverity Symbols</p>
+<p>In the following steps, you will create and configure two new symbols: one to display alarm</p>
+<p>severity information for area objects and the other to display alarm severity information for non-</p>
+<p>area objects.</p>
+<p><strong>21.</strong> On the Graphics tab, in the Training \ Symbols toolset, create a new symbol and name it</p>
+<p>AlarmSummary_Area.</p>
+<p><strong>22.</strong> Double-click AlarmSummary_Area to open it in the Graphic Editor.</p>
+<p><strong>23.</strong> On the Toolbox tab, enter a search string to find the SA_AlarmSeverity symbol and embed</p>
+<p>the symbol on the drawing canvas.</p>
+<div class="screenshot">
+  <img src="../images/page_0515_0.png" alt="Page 515">
+  <div class="caption">Page 515</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0515_1.png" alt="Page 515">
+  <div class="caption">Page 515</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>24.</strong> Ensure the SA_AlarmSeverity1 symbol is selected on the drawing canvas, and on the</p>
+<p>Properties tab, configure properties as follows:</p>
+<p><strong>25.</strong> Click the drawing canvas, and then on the Properties tab, configure the following properties</p>
+<p>for the symbol:</p>
+<p><strong>26.</strong> With the drawing canvas still selected, on the Properties tab, in the Runtime Behavior \</p>
+<p>ContentType field, select Alarm Summary.</p>
+<p>Wizard Options \ Type:</p>
+<p>AlarmPanel</p>
+<p>Wizard Options \ LabelType:</p>
+<p>ObjectTagname</p>
+<p>Wizard Options \ AlarmBorder:</p>
+<p>True</p>
+<p>Graphic \ Size:</p>
+<p>Fixed</p>
+<p>Graphic \ FixedWidth:</p>
+<p>250</p>
+<p>Graphic \ FixedHeight:</p>
+<p>250</p>
+<div class="screenshot">
+  <img src="../images/page_0516_0.png" alt="Page 516">
+  <div class="caption">Page 516</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0516_1.png" alt="Page 516">
+  <div class="caption">Page 516</div>
+</div>
+<p><strong>27.</strong> Reposition the symbol in the center of the canvas.</p>
+<p>The drawing canvas should look similar to the following:</p>
+<p><strong>28.</strong> Save and close the AlarmSummary_Area symbol, and check it in.</p>
+<p><strong>29.</strong> On the Graphics tab, in the Training \ Symbols toolset, duplicate the AlarmSummary_Area</p>
+<p>symbol and name the duplicate AlarmSummary_nonArea.</p>
+<div class="screenshot">
+  <img src="../images/page_0517_0.png" alt="Page 517">
+  <div class="caption">Page 517</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0517_1.png" alt="Page 517">
+  <div class="caption">Page 517</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>30.</strong> Double-click AlarmSummary_nonArea to open it in the Graphic Editor.</p>
+<p><strong>31.</strong> On the drawing canvas, select SA_AlarmSeverity1.</p>
+<p><strong>32.</strong> On the Properties tab, configure the Wizard Options \ IsAreaObject property to False.</p>
+<p>The SA_AlarmSeverity1 symbol changes on the drawing canvas because it is now</p>
+<p>configured for a non-area object.</p>
+<p><strong>33.</strong> Save and close the AlarmSummary_nonArea symbol, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0518_0.jpeg" alt="Page 518">
+  <div class="caption">Page 518</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0518_1.png" alt="Page 518">
+  <div class="caption">Page 518</div>
+</div>
+<p>• Right Panel: Name = AlarmSummary (red arrow)</p>
+<p>• Description: (empty)</p>
+<p><strong>Step 37:</strong> Save and close $gArea template and check it in]</p>
+<p>Link Alarm Severity Symbols to Templates</p>
+<p>Now, you will link the new alarm severity symbols to templates.</p>
+<p><strong>34.</strong> On the Templates tab, in the Training \ Global toolset, double-click $gArea to open it in the</p>
+<p>Object Editor.</p>
+<p><strong>35.</strong> On the Attributes tab, in the Content pane, link the AlarmSummary_Area symbol to the</p>
+<p>template.</p>
+<p><strong>36.</strong> In the Name field, change the symbol name to AlarmSummary.</p>
+<p><strong>37.</strong> Save and close the $gArea template, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0519_0.png" alt="Page 519">
+  <div class="caption">Page 519</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0519_1.png" alt="Page 519">
+  <div class="caption">Page 519</div>
+</div>
+<p>• Asset_Layout (grid icon)</p>
+<p>• EquipmentList [MixerEquipmentList] (labeled "application", "External Content")</p>
+<p>• Right Configuration Panel:</p>
+<p>• Label Section: Critical (red triangle), High (yellow triangle), Medium (green checkmark)</p>
+<p>• Mode Setting: Mode: Inhibit (checked)</p>
+<p>• Properties: Name = AlarmSummary (red arrow), Description: (empty)</p>
+<p>• Bottom Status: $Mixer * (unsaved changes)</p>
+<p><strong>Steps 41-43: $HeatExchanger Template</strong></p>
+<p>• Open $HeatExchanger from Templates tab > Training \ Project toolset</p>
+<p>• Link AlarmSummary_nonArea symbol</p>
+<p>• Rename to AlarmSummary</p>
+<p>• Save, close, check in</p>
+<p><strong>Screenshot: $HeatExchanger Template Editor</strong></p>
+<p>• Header: "1 of 102 displayed. 1 selected."</p>
+<p>• Top toolbar: Same as above</p>
+<p>• Left Content Panel:</p>
+<p>• AlarmSummary [AlarmSummary_nonArea] (selected, purple highlight)</p>
+<p>• Right Configuration Panel:</p>
+<p>• Label Section: Same severity labels</p>
+<p>• Mode Setting: Mode: Inhibit (checked)</p>
+<p>• Properties: Name = AlarmSummary (red arrow), Description: (empty)</p>
+<p>• Bottom Status: $HeatExchanger * (unsaved changes)]</p>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>38.</strong> On the Templates tab, in the Training \ Project toolset, open $Mixer and link the</p>
+<p>AlarmSummary_nonArea symbol to the template.</p>
+<p><strong>39.</strong> In the Name field, change the symbol name to AlarmSummary.</p>
+<p><strong>40.</strong> Save and close the $Mixer template, and check it in.</p>
+<p><strong>41.</strong> In the Training \ Project toolset, open $HeatExchanger and link the</p>
+<p>AlarmSummary_nonArea symbol to the template.</p>
+<p><strong>42.</strong> In the Name field, change the symbol name to AlarmSummary.</p>
+<p><strong>43.</strong> Save and close the $HeatExchanger template, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0520_0.jpeg" alt="Page 520">
+  <div class="caption">Page 520</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0520_1.png" alt="Page 520">
+  <div class="caption">Page 520</div>
+</div>
+<p>Update the Main Layout</p>
+<p><strong>44.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
+<p>Layout Editor.</p>
+<p><strong>45.</strong> With Pane1 selected, add a new pane at the bottom.</p>
+<p>A new pane named Pane7 is added below Pane1.</p>
+<p><strong>46.</strong> Select Pane7, and on the Properties tab, configure properties as follows:</p>
+<p>General \ Content Type(s):</p>
+<p>Alarm Summary</p>
+<p>Size \ Height:</p>
+<p>300</p>
+<div class="screenshot">
+  <img src="../images/page_0521_0.jpeg" alt="Page 521">
+  <div class="caption">Page 521</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0521_1.png" alt="Page 521">
+  <div class="caption">Page 521</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>47.</strong> Select the divider between Pane1 and Pane7, but do not move the divider.</p>
+<p>Divider properties appear on the Properties tab.</p>
+<p><strong>48.</strong> On the Properties tab, check the General \ Is Interactive property.</p>
+<p><strong>49.</strong> Save and close the Main layout, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0522_0.png" alt="Page 522">
+  <div class="caption">Page 522</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will test the changes in the ViewApp preview session to verify that the graphics</p>
+<p>configured with alarm border animations indicate alarm information at runtime.</p>
+<p><strong>50.</strong> Switch to the ViewApp preview session, and ensure you are navigated to Mixer100.</p>
+<p>Notice that <domain>\jamess is still logged in.</p>
+<div class="screenshot">
+  <img src="../images/page_0523_0.jpeg" alt="Page 523">
+  <div class="caption">Page 523</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0523_1.png" alt="Page 523">
+  <div class="caption">Page 523</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p>In the Mixer100 display in the top-left pane, notice the System Malfunction label has an</p>
+<p>alarm border, and Level_001 displays with an alarm border as well.</p>
+<p>In the bottom pane, notice the Mixer100.AlarmSummary symbol configured for a non-area</p>
+<p>object also displays with an alarm border.</p>
+<div class="screenshot">
+  <img src="../images/page_0524_0.jpeg" alt="Page 524">
+  <div class="caption">Page 524</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0524_1.jpeg" alt="Page 524">
+  <div class="caption">Page 524</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0524_2.jpeg" alt="Page 524">
+  <div class="caption">Page 524</div>
+</div>
+<p><strong>51.</strong> Navigate to Line1.</p>
+<p>In the bottom pane, notice the Line1.AlarmSummary symbol configured for an area object</p>
+<p>displays with an alarm border.</p>
+<p><strong>52.</strong> Navigate to Production Lines.</p>
+<p><strong>53.</strong> In the Production.AlarmSummary symbol in the bottom pane, click the up-arrow to the right</p>
+<p>of the Mode label.</p>
+<p>A command panel appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0525_0.jpeg" alt="Page 525">
+  <div class="caption">Page 525</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0525_1.jpeg" alt="Page 525">
+  <div class="caption">Page 525</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>54.</strong> In the command panel, click the down-arrow next to Enable to display a drop-down list of</p>
+<p>alarm modes, and then select Inhibit from the drop-down list.</p>
+<div class="key-concept">Note: Some of the text in the drop-down list overlaps. This is because the combo box in the SA symbol uses the HMI Element, Label style that sets the background to transparent. Although not done in this lab, it is possible to edit the Label style in the Galaxy Styles configuration to change the transparency of the Label style. The command panel shows Inhibit with an empty check box on the left. 55. Check the check box to the left of Inhibit. Notice that an Apply button appears to the right of Inhibit.</div>
+<div class="screenshot">
+  <img src="../images/page_0526_0.jpeg" alt="Page 526">
+  <div class="caption">Page 526</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0526_1.jpeg" alt="Page 526">
+  <div class="caption">Page 526</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0526_2.jpeg" alt="Page 526">
+  <div class="caption">Page 526</div>
+</div>
+<p><strong>56.</strong> Click the Apply button.</p>
+<p>The Mode for Production.AlarmSummary changes to Inhibit.</p>
+<p><strong>57.</strong> At the top-left of the ViewApp preview, in the NavBreadcrumbControl, notice the Plant node</p>
+<p>shows the alarm adorner, but the Production Lines node does not.</p>
+<p>The alarm aggregation totals shown in the Plant node do not include alarms from Production</p>
+<p>Lines. The Production Lines have been inhibited.</p>
+<p><strong>58.</strong> Navigate to Line1.</p>
+<p>Notice that the Mode for Line1.AlarmSummary displays as Disable.</p>
+<div class="screenshot">
+  <img src="../images/page_0527_0.png" alt="Page 527">
+  <div class="caption">Page 527</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>59.</strong> Navigate to Mixer100.</p>
+<p>In the Mixer100 display, notice that the alarm indicator for Level_001 changes to indicate it is</p>
+<p>disabled.</p>
+<p>Also notice that the System Malfunction label is disabled, because the alarms of the source</p>
+<p>attribute Alarm.Condition have been disabled and there is no alarm active for that attribute.</p>
+<p>Additionally, notice the NavBreadcrumbControl shows the Inhibit mode has affected all the</p>
+<p>sub-areas and automation objects below Production Lines.</p>
+<div class="screenshot">
+  <img src="../images/page_0528_0.jpeg" alt="Page 528">
+  <div class="caption">Page 528</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0528_1.jpeg" alt="Page 528">
+  <div class="caption">Page 528</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0528_2.jpeg" alt="Page 528">
+  <div class="caption">Page 528</div>
+</div>
+<p><strong>60.</strong> Navigate to Line2 and view the display.</p>
+<p>Notice that the Mode for Line2.AlarmSummary displays as Disable.</p>
+<p><strong>61.</strong> Navigate back to Production Lines.</p>
+<p><strong>62.</strong> In the Production.AlarmSummary symbol, click the up-arrow to the right of Mode to display</p>
+<p>the command panel.</p>
+<p><strong>63.</strong> In the command panel, uncheck Inhibit and click Apply.</p>
+<p>Notice that Mode for Production.AlarmSummary is set to Enable.</p>
+<div class="screenshot">
+  <img src="../images/page_0529_0.jpeg" alt="Page 529">
+  <div class="caption">Page 529</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0529_1.jpeg" alt="Page 529">
+  <div class="caption">Page 529</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0529_2.png" alt="Page 529">
+  <div class="caption">Page 529</div>
+</div>
+<p>Lab 18 – Adding Alarm Information to Graphics</p>
+<p><strong>64.</strong> Navigate to the following to verify that Mode is changed to Enable:</p>
+<p></p>
+<p>Line1</p>
+<p></p>
+<p>Mixer100</p>
+<p></p>
+<p>Line2</p>
+<p>The following example shows Mode for Line2.AlarmSummary as Enable.</p>
+<p><strong>65.</strong> Navigate back to Production Lines.</p>
+<p><strong>66.</strong> In Production.AlarmSummary, display the command panel and change the Mode to</p>
+<p>Disable.</p>
+<p><strong>67.</strong> Navigate to Mixer100 and verify that all the nodes in the NavBreadcrumbControl from</p>
+<p>Production Lines to Mixer100 are disabled.</p>
+<div class="screenshot">
+  <img src="../images/page_0530_0.jpeg" alt="Page 530">
+  <div class="caption">Page 530</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0530_1.jpeg" alt="Page 530">
+  <div class="caption">Page 530</div>
+</div>
+<p><strong>68.</strong> Navigate back to Production Lines.</p>
+<p><strong>69.</strong> In Production.AlarmSummary, display the command panel and change the Mode to</p>
+<p>Silence.</p>
+<p><strong>70.</strong> Navigate to the following and observe the changes to the AlarmPanel.</p>
+<p></p>
+<p>Line1</p>
+<p></p>
+<p>Mixer100</p>
+<p><strong>71.</strong> When you are finished testing alarm modes, navigate back to Production Lines and change</p>
+<p>Mode for Production.AlarmSummary to Enable.</p>
+<div class="key-concept">Note: Be sure to change Mode for Production.AlarmSummary to Enable so you will be able to see alarm activity in later labs. 72. Minimize the preview session. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L36-Alarming-Overview.html">← Previous: Alarming Overview</a> &nbsp;|&nbsp;
+  <a href="L38-Live-Alarm-Visualization.html">Next: Live Alarm Visualization →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

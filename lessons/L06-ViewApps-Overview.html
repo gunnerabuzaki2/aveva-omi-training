@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 06: ViewApps Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">← L05: Lab 2 – Creating a Screen Profile and La</a> &nbsp;|&nbsp;
+  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html" style="font-weight:bold;color:#1a1a1a;">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L06: ViewApps Overview</h1>
+<p class="source">Module 2 — Getting Started | Pages 95-106</p>
+
+<div class="screenshot">
+  <img src="../images/page_0095_0.png" alt="Page 95">
+  <div class="caption">Page 95</div>
+</div>
+<p>Section 4 – ViewApps</p>
+<p>Section 4 – ViewApps</p>
+<p>Introduction</p>
+<p>$ViewApp is provided in the Galaxy as a base system object to create Operations Management</p>
+<p>Interface applications. A derived ViewApp template can be configured in the ViewApp Editor for</p>
+<p>creating a view application as needed. After a derived ViewApp object is configured, an instance</p>
+<p>can be derived and deployed to run the view application.</p>
+<p>Derive a ViewApp Template</p>
+<p>To create a ViewApp, you must derive a ViewApp template from the $ViewApp base system</p>
+<p>object, initialize and configure the template, and then derive a ViewApp instance from the ViewApp</p>
+<p>template.</p>
+<p>ViewApp Initialization</p>
+<p>The first time you open the derived ViewApp template, the ViewApp Initialization wizard appears</p>
+<p>so that you can select a screen profile and layouts for the screens to use in the ViewApp.</p>
+<p>From the Templates tab, double-click the new derived ViewApp template. The ViewApp</p>
+<p>Initialization wizard appears. On the first wizard page, select a screen profile and click Next.</p>
+<p>This section introduces the ViewApp object, including its editor, capabilities, and components.</p>
+<div class="screenshot">
+  <img src="../images/page_0096_0.png" alt="Page 96">
+  <div class="caption">Page 96</div>
+</div>
+<p>On the second wizard page, select a screen and a layout for that screen and click Finish. You can</p>
+<p>assign layouts to additional screens through this wizard page, but at a minimum, you must specify</p>
+<p>a layout for at least one screen in the profile.</p>
+<p>Once you click Finish, the ViewApp Editor appears.</p>
+<p>The initialization wizard appears only the first time a derived ViewApp template is opened.</p>
+<p>However, you can edit or change screen profiles and layouts from the ViewApp Editor.</p>
+<p>ViewApp Editor</p>
+<p>You use the ViewApp Editor to build a ViewApp and perform operations such as:</p>
+<p></p>
+<p>Configure and customize the navigation model for the ViewApp</p>
+<p></p>
+<p>Edit or change the screen profile associated with the ViewApp</p>
+<p></p>
+<p>Edit, change, or remove a layout associated with the ViewApp</p>
+<p></p>
+<p>Edit or add content to layout panes</p>
+<p></p>
+<p>Test the ViewApp in preview mode, without deploying or redeploying the instance</p>
+<p>If you are configuring a derived ViewApp template for the first time, the ViewApp Initialization</p>
+<p>wizard will appear first. The ViewApp Editor will open when you click Finish from the Initialization</p>
+<div class="screenshot">
+  <img src="../images/page_0097_0.jpeg" alt="Page 97">
+  <div class="caption">Page 97</div>
+</div>
+<p>Section 4 – ViewApps</p>
+<p>wizard. Otherwise, you can open the ViewApp Editor by double-clicking the derived ViewApp</p>
+<p>template from the Templates tab.</p>
+<p></p>
+<p>(1) Navigation List: Shows the hierarchy of items in the navigation model for the</p>
+<p>ViewApp. The default built-in navigation model is based on the plant model, but the</p>
+<p>navigation model can be customized.</p>
+<p></p>
+<p>(2) Actions List: Shows a list of content assigned to the panes of the layout applied to the</p>
+<p>selected screen. By default, it lists items for the primary screen.</p>
+<p></p>
+<p>(3) Selected Screen Profile, Layout, Pane Content: Shows the screen profile and layout</p>
+<p>associated with the ViewApp. Zoom and pan controls are available for display.</p>
+<p></p>
+<p>(4) Tabbed Area:</p>
+<p></p>
+<p>Properties tab provides access to all available properties for navigation items and</p>
+<p>content.</p>
+<p></p>
+<p>Toolbox tab provides access to symbols and controls from the Graphics tab.</p>
+<p></p>
+<p>Assets tab provides access to the Model view of the Galaxy.</p>
+<p>A search field is available for all tabs. A preview area is available at the bottom of the</p>
+<p>tabbed area for previewing available content, such as graphics and assets.</p>
+<p></p>
+<p>(5) Preview Commands: Allow you to view the ViewApp in a preview session and enable/</p>
+<p>disable automatic updates for the preview session.</p>
+<p>ViewApp Navigation</p>
+<p>The navigation mechanism within a ViewApp controls the presentation of content at runtime. For</p>
+<p>example, a ViewApp can include a tree control that shows the hierarchical organization of the built-</p>
+<p>in navigation of the ViewApp. Selecting an item from the tree at runtime displays corresponding</p>
+<p>content in one or more panes of the ViewApp layout.</p>
+<p>As another example, consider a pane with Enable Hierarchy Navigation and Show Navigation</p>
+<p>Buttons properties checked. A navigation tool appears on the top or bottom of the pane when the</p>
+<p>user hovers a mouse over the pane at runtime, allowing the user to navigate to the “next” or</p>
+<p>“previous” sibling navigation item as reflected in the defined navigation hierarchy of the ViewApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0098_0.jpeg" alt="Page 98">
+  <div class="caption">Page 98</div>
+</div>
+<p>• Production [Production]: Line1, Line2, Receiving, Shipping, Sys</p>
+<p>• Tabs at bottom: Model - Tagname (selected), Deployment, Derivation</p>
+<p><strong>Right Pane - "Navigation" (ViewApp navigation list)</strong>:</p>
+<p>• Tree mirrors left pane: Home → Assets → Plant</p>
+<p>• Packaging (HeatEx100-HeatEx400)</p>
+<p>• Production (Line1, Line2, Receiving, Shipping, Sys)</p>
+<p>• Menu icon at top-right for additional options</p>
+<p>• "In the System Platform IDE Model view, it is possible to assign alias names to objects to provide more meaningful names for operators. The alias names appear in the navigation model of a running ViewApp and in preview mode."]</p>
+<p>There are three essential components of ViewApp navigation:</p>
+<p></p>
+<p>Navigation model: Defines a hierarchy of navigation items, references to visual content</p>
+<p>used by navigation-aware controls, and actions to execute for a navigation item. The</p>
+<p>navigation model drives the presentation of content from a layout or ViewApp to the</p>
+<p>screen viewed by a user.</p>
+<p></p>
+<p>Navigation item: A unique element in the navigation model that contains the necessary</p>
+<p>information to show a visual representation of an item and triggers one or more navigation</p>
+<p>actions after being selected during runtime.</p>
+<p></p>
+<p>Navigation actions: Navigation behavior during runtime by navigation-aware controls to</p>
+<p>show information present in the navigation model.</p>
+<p>Both the Layout Editor and the ViewApp Editor provide integrated components and properties for</p>
+<p>configuring ViewApp navigation.</p>
+<p>Built-In Navigation</p>
+<p>By default, the built-in ViewApp navigation model reflects the plant model for the Galaxy.</p>
+<p>In the navigation list in the ViewApp Editor, the root of the model is named Home, with Assets</p>
+<p>shown as a top-level item for objects as reflected in the Model view.</p>
+<p>The navigation is customizable. For example, you can add and remove custom navigation items to</p>
+<p>the navigation hierarchy. The root item (named Home by default) cannot be deleted, but it can be</p>
+<p>renamed.</p>
+<div class="key-concept">Note: In the System Platform IDE Model view, it is possible to assign alias names to objects to provide more meaningful names for operators. The alias names appear in the navigation model of a running ViewApp and in preview mode.</div>
+<p>Section 4 – ViewApps</p>
+<p>Auto-Fill</p>
+<p>Auto-Fill is a navigation behavior that controls how content is automatically placed in panes,</p>
+<p>without having to configure each view of a running ViewApp.</p>
+<p>To use this feature:</p>
+<p></p>
+<p>The layout panes of the ViewApp must have the Use For Auto-Fill property enabled.</p>
+<p></p>
+<p>The navigation items of the ViewApp must have Auto-Fill Content configured as Current</p>
+<p>only; Current, then up; or Current, up, then down; but not None.</p>
+<p>In the ViewApp Editor, Auto-Fill Content only needs to be configured for each top-level navigation</p>
+<p>item, which by default includes Home and Assets.</p>
+<p>Auto-Fill Content options are:</p>
+<p></p>
+<p>Current only: At runtime, content from the current navigation item is automatically placed</p>
+<p>in available panes of the layouts assigned to screens of the screen profile. If there is no</p>
+<p>layout assigned to screens for the current navigation item, layouts assigned to screens for</p>
+<p>the Home navigation item are displayed and used for auto-fill content associated with the</p>
+<p>current navigation item.</p>
+<p></p>
+<p>Current, then up: At runtime, Auto-Fill searches for layouts that initially fill the screens</p>
+<p>prior to determining the content to be shown in specific panes. The current navigation item</p>
+<p>is inspected for any commands that place layouts or content full screen. For screens that</p>
+<p>remain empty, Auto-Fill examines the parent navigation item up to the root of the</p>
+<p>navigation hierarchy for additional content to apply to the empty screens. After content has</p>
+<p>been assigned to screens, any content residing on the current navigation item is shown on</p>
+<p>the screen using the best available pane algorithm for each individual piece of content.</p>
+<p></p>
+<p>Current, up, then down: Similar to Current, then up with an additional action. At runtime,</p>
+<p>if the Auto-Fill search reaches the root of the navigation hierarchy and there are still empty</p>
+<p>screens or panes, the first child of the current navigation item is inspected to see if it has</p>
+<p>content that applies to the available screens or panes. This process continues down the</p>
+<p>navigation hierarchy by inspecting the first child navigation item at each level until arriving</p>
+<p>at a leaf node. Then, Auto-Fill stops.</p>
+<p></p>
+<p>None: At runtime, no content associated with this navigation item is automatically shown</p>
+<p>unless specific commands have been created to show content in a running ViewApp.</p>
+<p>Content must be manually assigned to specific panes when configuring the ViewApp.</p>
+<p>Content Navigation</p>
+<p>At runtime, content for a navigation item is displayed in the layout panes of a ViewApp based</p>
+<p>on the:</p>
+<p></p>
+<p>Content types of the content found from the navigation</p>
+<p></p>
+<p>Available panes configured to display content with those content types</p>
+<p></p>
+<p>Auto-Fill settings</p>
+<p>Auto-Fill settings include the Use For Auto-Fill property configured for layout panes, as well as the</p>
+<p>Auto-Fill Content property associated with navigation items. Panes enabled for Auto-Fill have their</p>
+<p>Use For Auto-Fill property checked. Navigation items enabled for Auto-Fill have their Auto-Fill</p>
+<p>Content property set to an option such as Current only; Current, then up; or Current, up, then</p>
+<p>down.</p>
+<p>With Auto-Fill in effect, if there are panes available to receive the content types of the content in</p>
+<p>the current navigation item, parent items, and child items, the panes will be populated with that</p>
+<p>content.</p>
+<div class="screenshot">
+  <img src="../images/page_0100_0.png" alt="Page 100">
+  <div class="caption">Page 100</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0100_1.png" alt="Page 100">
+  <div class="caption">Page 100</div>
+</div>
+<p>For example, assume that the Auto-Fill Content property for the current navigation item is Current</p>
+<p>only. The navigation item contains three symbols with content types of Overview, Detail, and</p>
+<p>Trend. If three panes with content types that match the content types of the symbols are available,</p>
+<p>the panes will be populated at runtime as follows:</p>
+<p>If multiple panes configured for the same content types are available, but there is only one symbol</p>
+<p>with a content type that matches the panes, then only that symbol will be populated in one of the</p>
+<p>panes. Panes are filled in alphabetical order of the pane names. In the following example, only the</p>
+<p>Detail symbol is filled to Pane01.</p>
+<p>Additionally, multi-content panes can be the destination of multiple content items for an Auto-Fill</p>
+<p>navigation action. Multi-content panes include panes with a presentation style of Tabbed or</p>
+<p>Multiple.</p>
+<p>As another example, assume that the Auto-Fill Content property for the current navigation item is</p>
+<p>Current, then up. The current navigation item contains one symbol with a content type of Trend.</p>
+<p>Only Pane03 is available to display Trend content, so Pane03 is filled first with the Trend symbol.</p>
+<div class="screenshot">
+  <img src="../images/page_0101_0.png" alt="Page 101">
+  <div class="caption">Page 101</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0101_1.jpeg" alt="Page 101">
+  <div class="caption">Page 101</div>
+</div>
+<p>Section 4 – ViewApps</p>
+<p>However, additional panes are available for content and the Auto-Fill Content property for the</p>
+<p>navigation item is Current, then up. So, the next navigation item up from the current navigation</p>
+<p>item is inspected for possible content items to display in the available panes. An Overview symbol</p>
+<p>and a Detail symbol are found, which matches the content types for the available panes. So</p>
+<p>Pane01 is filled next, followed by Pane02.</p>
+<p>Preview Mode</p>
+<p>You can use the preview mode from the ViewApp Editor to test your ViewApp without deploying or</p>
+<p>redeploying it to runtime. The preview session launches immediately and runs in a separate</p>
+<p>window to show the current content and ViewApp configuration. The current navigation item in the</p>
+<p>preview session is based on which navigation item is selected in the ViewApp Editor.</p>
+<p>The preview session can be kept open while editing the ViewApp in the ViewApp Editor.</p>
+<p>Additionally, the preview feature supports an automatic update mode. With automatic update</p>
+<p>enabled, the preview refreshes to show updates when you save changes to the ViewApp.</p>
+<div class="key-concept">Note: Preview mode is intended for testing purposes only: It is not intended for production use. Show a Preview Session To show the runtime preview, you can click the Preview button in the top-right corner of the ViewApp Editor to view the ViewApp in a native ViewApp. By default, switching to runtime preview saves the changes made to the ViewApp.</div>
+<div class="screenshot">
+  <img src="../images/page_0102_0.jpeg" alt="Page 102">
+  <div class="caption">Page 102</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0102_1.jpeg" alt="Page 102">
+  <div class="caption">Page 102</div>
+</div>
+<p>Update a Preview Session</p>
+<p>If a preview session is active and changes are made to the ViewApp in the ViewApp Editor but not</p>
+<p>saved, the Preview button changes to Update. Clicking Update will save and update the changes</p>
+<p>in the preview session.</p>
+<p>Automatic Update Mode</p>
+<p>Preview mode supports an automatic update option. It is enabled by default, but you can disable it</p>
+<p>or enable it again by clicking the automatic update toggle icon on the left side of the Preview</p>
+<p>button.</p>
+<p></p>
+<p>When automatic update is enabled, changes saved to the ViewApp are automatically</p>
+<p>reflected in the preview session.</p>
+<p></p>
+<p>When automatic update is disabled, changes saved to the ViewApp can be reflected in</p>
+<p>the preview session by manually clicking Update.</p>
+<p>Close a Preview Session</p>
+<p>To close the preview, you can click the Close button, which is the X icon in the upper-right corner of</p>
+<p>the preview display. Note that closing the ViewApp Editor also closes the preview session.</p>
+<p>Derive a ViewApp Instance</p>
+<p>Once the derived ViewApp template is configured, a ViewApp instance object can be derived from</p>
+<p>the derived ViewApp template. Right-click the derived ViewApp template and select New |</p>
+<p>Instance. In the Deployment view, the ViewApp instance must be hosted by a ViewEngine object</p>
+<p>before it can be deployed to the target node where the application will run.</p>
+<p>Note that:</p>
+<p></p>
+<p>You cannot derive an instance directly from the $ViewApp base system object. The</p>
+<p>instance must be derived from a derived ViewApp template.</p>
+<p></p>
+<p>In Deployment view, only ViewEngine objects can host ViewApp objects. The host</p>
+<p>ViewEngine object must be deployed before ViewApp instances can be deployed.</p>
+<p></p>
+<p>In Model view, a ViewApp object can be assigned to an area object to organize the</p>
+<p>ViewApp instances.</p>
+<div class="screenshot">
+  <img src="../images/page_0103_0.png" alt="Page 103">
+  <div class="caption">Page 103</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0103_1.png" alt="Page 103">
+  <div class="caption">Page 103</div>
+</div>
+<p>Section 4 – ViewApps</p>
+<p>Deploy a ViewApp</p>
+<p>ViewApp instances are deployed like other objects from the System Platform IDE. For example,</p>
+<p>you can right-click the ViewApp instance from Deployment view and select Deploy with the</p>
+<p>applicable deployment options to use. Progress and status of the deployment operation are</p>
+<p>displayed.</p>
+<p>ViewApp application files are asynchronously transferred to the target node at the end of the</p>
+<p>deployment operation. While this happens, an orange icon appears for the ViewApp application in</p>
+<p>Deployment view. Once the files are transferred to the target node, the icon for the ViewApp</p>
+<p>application changes as shown below, and the ViewApp can be launched with the AVEVA OMI</p>
+<p>Application Manager or the AVEVA Application Manager. You can deploy multiple instances of a</p>
+<p>ViewApp to the same node. Multiple instances of the same view application can be running on a</p>
+<p>node.</p>
+<p>Note that if changes are made to the derived ViewApp template for which its instance object is</p>
+<p>already deployed, the icon for the instance object will change to reflect deployed, but pending</p>
+<p>configuration changes. If you attempt to redeploy a ViewApp that is running, the following</p>
+<p>message appears, allowing you to choose to update the running ViewApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0104_0.png" alt="Page 104">
+  <div class="caption">Page 104</div>
+</div>
+<p>Launch a ViewApp</p>
+<p>Operations Management Interface ViewApps can be launched with the AVEVA OMI Application</p>
+<p>Manager or the InTouch HMI Application Manager. You can find these application managers from</p>
+<p>the Windows Start menu. A shortcut to the AVEVA OMI Application Manager is provided on the</p>
+<p>node where the Operations Management Interface runtime components were installed.</p>
+<p>With the AVEVA OMI Application Manager, ViewApps are listed by the names of their associated</p>
+<p>ViewApp instance objects, along with other information such as the path to the location of the View</p>
+<p>application’s files on the target node, the size of the application, and the date and time it was</p>
+<p>deployed. Multiple ViewApps can be deployed and running the same node.</p>
+<p>The AVEVA OMI Application Manager is used to launch Operations Management Interface</p>
+<p>ViewApps. It is not used to launch InTouch or InTouch for System Platform view applications.</p>
+<div class="screenshot">
+  <img src="../images/page_0105_0.png" alt="Page 105">
+  <div class="caption">Page 105</div>
+</div>
+<p>Section 4 – ViewApps</p>
+<p>With the AVEVA Application Manager, deployed ViewApps appear on the OMI page as shown in</p>
+<p>the following example. You can click the Details button to view the path to the location of the View</p>
+<p>application’s files on the target node, the date and time it was deployed, and other information.</p>
+<p>In addition to launching Operations Management Interface applications, the AVEVA Application</p>
+<p>Manager can also be used to launch InTouch applications.</p>
+<div class="screenshot">
+  <img src="../images/page_0106_0.jpeg" alt="Page 106">
+  <div class="caption">Page 106</div>
+</div>
+<p>TitleBarApp</p>
+<p>The TitleBarApp is an OMI App that shows title bar information in a running ViewApp.</p>
+<p>Assign TitleBarApp to a Pane</p>
+<p>You can add the TitleBarApp to a pane from the Layout Editor or the ViewApp Editor. Select the</p>
+<p>TitleBarApp from the Toolbox tab, and from the preview area, drag TitleBarControl to the pane.</p>
+<p>The TitleBarControl would typically be used in a pane placed at the top of a ViewApp window.</p>
+<p>Configure the TitleBarApp</p>
+<p>Properties available for configuring the TitleBarApp include settings to specify the appearance of</p>
+<p>the title bar, text to display in the title bar, and functional components to add to the title bar. They</p>
+<p>are organized into categories as shown below:</p>
+<p></p>
+<p>Appearance: Properties that specify visual characteristics of the TitleBarApp, such</p>
+<p>foreground and background color, font for text, and more. You can also enable a</p>
+<p>secondary row in the TitleBarApp.</p>
+<p></p>
+<p>Content and Display Area: Properties that specify content to be displayed on the</p>
+<p>TitleBarApp and their locations. For example, you can configure the Home button to</p>
+<p>display on the left side of the primary row.</p>
+<p></p>
+<p>Window Buttons: These properties allow you to enable the minimize, maximize, and</p>
+<p>close buttons. Close buttons include buttons to close the ViewApp and close the layout</p>
+<p>window.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">← Previous: Lab 2 – Creating a Screen Profile and La</a> &nbsp;|&nbsp;
+  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">Next: Lab 3 – Creating and Running a ViewApp →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

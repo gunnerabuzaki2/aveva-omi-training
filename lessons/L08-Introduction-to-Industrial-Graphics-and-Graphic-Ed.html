@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 08: Introduction to Industrial Graphics and Graphic Editor</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">← L07: Lab 3 – Creating and Running a ViewApp</a> &nbsp;|&nbsp;
+  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dash →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html" style="font-weight:bold;color:#1a1a1a;">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L08: Introduction to Industrial Graphics and Graphic Editor</h1>
+<p class="source">Module 3 — Industrial Graphics | Pages 141-154</p>
+
+<div class="screenshot">
+  <img src="../images/page_0141_0.jpeg" alt="Page 141">
+  <div class="caption">Page 141</div>
+</div>
+<p>Section 1 – Introduction to Industrial Graphics</p>
+<p>Section 1 – Introduction to Industrial Graphics</p>
+<p>Introduction</p>
+<p>Industrial graphics can be used to customize graphic representations of your processes in a view</p>
+<p>application. They can be embedded in or linked to automation objects, providing an efficient way to</p>
+<p>visualize object-specific information in your application, such as processing status, alarms, history,</p>
+<p>and more. They also support the use of custom properties, relative references, scripts, and more.</p>
+<p>Industrial graphics are also known as symbols. Prebuilt libraries of symbols are provided with</p>
+<p>System Platform, including the Industrial Graphic Library and the Situational Awareness Library.</p>
+<p>You can use symbols from these libraries in your applications, or create your own symbols with the</p>
+<p>Graphic Editor in the System Platform IDE.</p>
+<p>Graphics Tab</p>
+<p>The Graphics tab in the System Platform IDE hosts libraries of symbols, controls, profiles, layouts,</p>
+<p>and other graphic-related content that can be used in the Galaxy. Items available on the Graphics</p>
+<p>tab by default depend on which Galaxy template was used to create the Galaxy.</p>
+<p>For example, the following shows the default items on the Graphics tab for a Galaxy created with</p>
+<p>the Blank template, which creates a Galaxy based on the Default_EMPTY.cab Galaxy type. It</p>
+<p>contains pre-built symbol libraries, as well as a basic set of OMI Apps, widgets, and controls.</p>
+<p>This section introduces industrial graphics, including managing them in the System Platform IDE</p>
+<p>and the out-of-the-box symbol libraries provided with Application Server. It also provides an</p>
+<p>overview of Situational Awareness concepts.</p>
+<div class="screenshot">
+  <img src="../images/page_0142_0.png" alt="Page 142">
+  <div class="caption">Page 142</div>
+</div>
+<p>As another example, the following shows the default items in the Graphics tab for a Galaxy</p>
+<p>created with the Default template, which creates a Galaxy based on the Default.cab Galaxy type. It</p>
+<p>contains pre-built symbols, screen profiles, and layouts, as well as OMI Apps, widgets, and</p>
+<p>controls.</p>
+<p>Some of the pre-built content items provided by default on the Graphics tab are specifically for</p>
+<p>Operations Management Interface ViewApps. Some examples are screen profiles, layouts, and</p>
+<p>out-of-the-box OMI Apps.</p>
+<p>Graphic Toolsets</p>
+<p>Symbols, controls, and other items listed in the Graphics tab can be organized into a hierarchy of</p>
+<p>toolsets. Some toolsets are included on the Graphics tab by default, depending on the Galaxy type</p>
+<p>used to create the Galaxy. You can also create your own toolsets and sub-toolsets to organize</p>
+<p>your symbols, controls, and other items as needed.</p>
+<p>Graphic toolsets and the organization of items within the Graphics tab are shared by all users of</p>
+<p>the Galaxy. Top-level graphic toolsets can be hidden or shown in the toolbox as needed, which in</p>
+<p>turn will hide or show any sub-toolsets. The configuration is associated with the currently logged-in</p>
+<p>user and saved as part of the Galaxy configuration. This allows users to access the Galaxy from</p>
+<p>different computers using the System Platform IDE and retrieve their custom views of the Graphics</p>
+<p>tab.</p>
+<p>Section 1 – Introduction to Industrial Graphics</p>
+<p>Symbol Management</p>
+<p>Depending on your application development needs, you can create symbols in the Graphics tab or</p>
+<p>create them directly in automation objects. Some guidelines include:</p>
+<p></p>
+<p>Create symbols on the Graphics tab to use them as reusable, standard symbols.</p>
+<p></p>
+<p>Create symbols in an object template to use them in objects derived from the template.</p>
+<p></p>
+<p>Create symbols in an object instance to use them only in that object instance.</p>
+<p>Symbols created within automation objects only exist in the objects and are not listed on the</p>
+<p>Graphics tab.</p>
+<p>Create Symbols on the Graphics Tab</p>
+<p>To create a symbol on the Graphics tab, right-click the Galaxy name or a toolset name on the</p>
+<p>Graphics tab and select New | Symbol. The default name for the newly created symbol is</p>
+<p>Symbol_00n, where n is the number of the symbol, but you can rename the symbol. Once created,</p>
+<p>you can double-click the symbol to edit it in the Graphic Editor.</p>
+<p>Import and Export Symbols</p>
+<p>You can export one or more selected symbols or graphic toolsets to an aaPKG file. From the</p>
+<p>Graphics tab, select the symbols or graphic toolsets that you want to export. Then from the Galaxy</p>
+<p>menu, select Export | Object(s).</p>
+<p>Note that when exporting automation objects that contain symbols:</p>
+<p></p>
+<p>The symbols are exported with the automation objects.</p>
+<p></p>
+<p>Exporting all automation objects also exports all symbols contained by automation objects</p>
+<p>and all symbols on the Graphics tab.</p>
+<p></p>
+<p>If symbols in an automation object contain embedded symbols from the Graphics tab, then</p>
+<p>these symbols along with the ones on the Graphics tab are all exported with the</p>
+<p>automation object.</p>
+<p></p>
+<p>If symbols in an automation object contain symbols embedded from other automation</p>
+<p>objects, exporting the automation object does not export other automation objects and</p>
+<p>their symbols.</p>
+<p></p>
+<p>If a symbol on the Graphics tab contains embedded symbols from an automation object,</p>
+<p>exporting the symbol can also export embedded symbols and its host automation object.</p>
+<p></p>
+<p>The export process preserves the toolset hierarchy containing the symbol.</p>
+<p>You can import symbols from an aaPKG file to the Graphics tab.</p>
+<p>Note that when importing automation objects that contain symbols:</p>
+<p></p>
+<p>When you import templates or instances that contain symbols, the symbols are imported</p>
+<p>with the template or instance.</p>
+<p></p>
+<p>When you import all automation objects, the contained symbols and the symbols in the</p>
+<p>graphic toolsets are also imported.</p>
+<div class="screenshot">
+  <img src="../images/page_0144_0.png" alt="Page 144">
+  <div class="caption">Page 144</div>
+</div>
+<p>Symbol Libraries</p>
+<p>Two symbol libraries are provided on the Graphics tab for all Galaxy types:</p>
+<p></p>
+<p>Industrial Graphic Library contains pre-built, realistic-looking symbols of standard</p>
+<p>industrial objects.</p>
+<p></p>
+<p>Situational Awareness Library contains pre-built symbols with a simplified look and</p>
+<p>minimum visual detail, designed to enhance an operator’s situational awareness of current</p>
+<p>process conditions.</p>
+<p>Situational Awareness Visualization</p>
+<p>Situational awareness visualization provides an operator with contextual information to allow them</p>
+<p>to figure out what actions to take. In broad terms, it can be broken down into three levels: the</p>
+<p>perception of new information, the comprehension of the information, and the projection of</p>
+<p>impact the information has on goals. Achieving proper situational awareness can help you make</p>
+<p>effective decisions to deliver overall business success.</p>
+<p>In an HMI/SCADA application, situational awareness is a visual design approach devoted to</p>
+<p>providing operators with the most relevant and necessary information at the right time. The idea is</p>
+<p>to present users with contextualized and easily-interpreted information that is specific to the most</p>
+<p>important process issues, while filtering out “visual noise” to keep operators focused on what</p>
+<p>matters most. Operators see the situation at hand in full context of what is happening in real time,</p>
+<p>how the current situation links to previous events, and where the process might be headed. This</p>
+<p>enables operators to more easily move from perception to comprehension and then to projection</p>
+<p>for better and safer operating conditions.</p>
+<p>Section 1 – Introduction to Industrial Graphics</p>
+<p>The situational awareness approach also encourages standardization, which helps to eliminate</p>
+<p>the confusion of an inconsistent use of color and other visual elements. Some of the benefits of</p>
+<p>incorporating situational awareness principles into visualization applications include:</p>
+<p></p>
+<p>Faster problem identification</p>
+<p></p>
+<p>Maximized uptime</p>
+<p></p>
+<p>Accelerated alarm recognition</p>
+<p></p>
+<p>Increased operational consistency</p>
+<p></p>
+<p>Safer conditions</p>
+<p>System Platform includes features and tools that allow the creation of displays based on</p>
+<p>situational awareness concepts.</p>
+<p>Situational Awareness Library Symbols</p>
+<p>The Situational Awareness Library provided with System Platform contains symbols created with</p>
+<p>situational awareness in mind. The symbols have a simplified look and provide a minimum of</p>
+<p>visual detail to efficiently convey their functional purpose and status, without showing extraneous</p>
+<p>information that could be distracting to operators.</p>
+<p>By default, symbols in the Situational Awareness Library use a color palette designed to increase</p>
+<p>the contrast between normal operating conditions and abnormal operating conditions. Normal</p>
+<p>operating conditions are shown in largely monochromatic colors, while abnormal operating</p>
+<p>conditions are shown in more vivid colors.</p>
+<p>Most Situational Awareness Library symbols are designed as symbol wizards that incorporate</p>
+<p>multiple visual and functional configurations in each symbol. Selecting a functional configuration of</p>
+<p>a symbol is a simple matter of selecting options from the symbol’s Wizard Options. One example is</p>
+<p>the SA_Meters symbol, which can be used as a flow meter, temperature meter, level meter, or</p>
+<p>other meter types simply by configuring Wizard Options for the symbol.</p>
+<p>Situational Awareness Library symbols are provided with an extensive set of default custom</p>
+<p>properties. The properties can be set to show or hide parts of the symbol itself, set a full array of</p>
+<p>alarm conditions, and show reported values based on the configuration.</p>
+<p>Symbols in Automation Objects</p>
+<p>When adding symbols into an automation object, you can create symbols in the object and then</p>
+<p>develop the symbol as needed. These symbols become content of the automation object.</p>
+<p>Alternatively, you can create symbols on the Graphics tab and use the linked content feature,</p>
+<p>whereby you directly link external symbols from the Graphics tab to the automation object. Linked</p>
+<p>symbols remain on the Graphics tab, but are associated with the automation object as its content.</p>
+<div class="screenshot">
+  <img src="../images/page_0146_0.png" alt="Page 146">
+  <div class="caption">Page 146</div>
+</div>
+<p><strong>2.</strong> <code>Overview [Line1_Overview]</code> (bar graph thumbnail)</p>
+<p>• Status: "2 of 2 displayed, 1 selected"</p>
+<p>• <strong>Red arrow</strong> points to <strong>Link Content</strong> button — critical UI element for linking external symbols</p>
+<p><strong>Footer:</strong> Object name "Line1"</p>
+<p>---]</p>
+<p>When editing an object in the Object Editor, you can link an external symbol to the object from the</p>
+<p>Content pane on the Attributes tab. Clicking the Link Content button opens the Galaxy Browser,</p>
+<p>allowing you to browse for and select a symbol from the Graphics tab to link.</p>
+<div class="key-concept">Note: You can also use the Link Content icon in the Object Editor to link external content or a layout to an automation object.</div>
+<div class="screenshot">
+  <img src="../images/page_0147_0.jpeg" alt="Page 147">
+  <div class="caption">Page 147</div>
+</div>
+<p>Section 2 – Graphic Editor</p>
+<p>Section 2 – Graphic Editor</p>
+<p>Introduction</p>
+<p>You can use the Graphic Editor to create, configure, and modify symbols. The editor provides a</p>
+<p>drawing area called the canvas, on which you can build symbols. You can embed basic graphic</p>
+<p>elements, such as lines, rectangles, curves, and more onto the canvas. Or, you can embed</p>
+<p>symbols from Toolbox tab, Assets tab, and Templates tab onto the canvas and use the symbols</p>
+<p>as-is or modify them.</p>
+<p>The appearance of graphic elements and embedded symbols on the canvas can be changed</p>
+<p>through their properties or tools available from toolbars and menus. Additionally, you can configure</p>
+<p>elements and embedded symbols with animations, scripts, custom properties, and more.</p>
+<p></p>
+<p>(1) Toolbars and Menus: Buttons and menu commands for performing various functions,</p>
+<p>such as saving the symbol, zooming the display, selecting line color, and more.</p>
+<p></p>
+<p>(2) Drawing Canvas: Area where elements are placed and arranged to create a symbol.</p>
+<p></p>
+<p>(3) Elements List: Hierarchical list of elements on the canvas.</p>
+<p></p>
+<p>(4) Element Tools: Collection of elements that you can use to create symbols on the</p>
+<p>canvas. Includes basic elements, such as lines, rectangles, and so on, as well as other</p>
+<p>tools and controls.</p>
+<p></p>
+<p>(5) Tabbed Area:</p>
+<p></p>
+<p>Properties tab: Lists properties belonging to selected elements or the embedded</p>
+<p>symbols on the canvas. When no element is selected on the canvas, this tab lists</p>
+<p>properties belonging to the symbol itself.</p>
+<p></p>
+<p>Assets tab: Provides access to graphics found in instances.</p>
+<p></p>
+<p>Toolbox tab: Provides access to graphics found in the symbol libraries.</p>
+<p></p>
+<p>Templates tab: Provides access to graphics found in templates.</p>
+<p>This section describes the Graphic Editor, including an overview of its interface and configuration</p>
+<p>of embedded symbols.</p>
+<div class="screenshot">
+  <img src="../images/page_0148_0.jpeg" alt="Page 148">
+  <div class="caption">Page 148</div>
+</div>
+<p>Properties of the Canvas</p>
+<p>When the canvas is selected, the Properties tab updates to show properties of the entire symbol.</p>
+<p>The properties are organized into categories, such as the ones listed below.</p>
+<p></p>
+<p>Graphic: Includes a description of the symbol and canvas sizing properties. By default,</p>
+<p>the Size property of a symbol is set to Auto, which automatically sizes the symbol by</p>
+<p>cropping all white space outside of the graphics that appear at runtime. When set to Fixed,</p>
+<p>the FixedWidth and FixedHeight properties determine the absolute size at runtime. This</p>
+<p>allows the designer to add additional white space where desired.</p>
+<p></p>
+<p>Appearance: Includes anchor properties and smoothing properties.</p>
+<p></p>
+<p>Runtime Behavior: Includes content types, faceplate mode, scripts, zoom percent</p>
+<p>properties.</p>
+<p></p>
+<p>Custom Properties: Lists custom properties defined for the symbol.</p>
+<p>Apply Content Types to Symbols</p>
+<p>A content type can be assigned to a symbol using the ContentType property in the Graphic Editor.</p>
+<p>The available types match the content types that can be associated with a layout pane.</p>
+<p>By default, ContentType for a symbol is set to None. You can check one or more available content</p>
+<p>types that apply to the symbol. Symbols can be assigned the All content type, which will match any</p>
+<p>type of layout pane.</p>
+<div class="key-concept">Note: For more information about how content types are used in a ViewApp, refer to the sections “Auto-Fill” on page 2-57 and “Content Navigation” on page 2-57.</div>
+<div class="screenshot">
+  <img src="../images/page_0149_0.jpeg" alt="Page 149">
+  <div class="caption">Page 149</div>
+</div>
+<p>Section 2 – Graphic Editor</p>
+<p>Embedded Symbols</p>
+<p>Embedding a symbol creates a linked copy of the original symbol. If the original symbol is</p>
+<p>modified, the changes are propagated to all the embedded locations. Existing symbols can be</p>
+<p>embedded onto the Graphic Editor’s drawing canvas and edited as needed. They can be</p>
+<p>embedded from the Industrial Graphic Library and the Situational Awareness Library in the</p>
+<p>Graphics tab, and from templates and instances available in the Galaxy.</p>
+<p>In the Graphic Editor, there are two ways of using the Galaxy Browser to select a source symbol to</p>
+<p>embed onto the drawing canvas. One way is by clicking the Embed Graphic icon from the Graphic</p>
+<p>Editor’s toolbar. Another way is by right-clicking the canvas and selecting Embed Industrial</p>
+<p>Graphic from the context menu. Both approaches open the Galaxy Browser, allowing you to select</p>
+<p>a graphic from the Graphics tab.</p>
+<p>Another way of embedding a graphic is by finding the graphic from Toolbox, Assets, or Templates</p>
+<p>tabs available in the Graphic Editor, and then dragging and dropping the symbol from the preview</p>
+<p>area onto the canvas. For example, you can navigate to the Situational Awareness Library from</p>
+<p>the Toolbox tab and select the Meters toolset. All the symbols in that toolset appear in the Toolbox</p>
+<p>tab preview area, and you can drag the symbol you want to embed onto the drawing canvas.</p>
+<p>Additionally, the Toolbox, Assets, and Templates tabs include a search feature, allowing you to</p>
+<p>search for symbols. For example, on the Toolbox tab, you can enter text in the search box to</p>
+<p>search for symbol names that match the text. In this example, the text meter is entered in the</p>
+<p>search box and symbols with names that include the search string are found.</p>
+<p>Note that embedding a symbol from a template will initiate a process to create an instance, and</p>
+<p>then embed the symbol on the canvas.</p>
+<p>Once a source symbol is embedded in another symbol, changes to the source symbol are</p>
+<p>propagated to all other symbols in which the source symbol is embedded.</p>
+<p>An embedded symbol can be customized by configuring its available properties and other</p>
+<p>configurations. For example, if wizard options are available for the embedded symbol, they can be</p>
+<p>configured as needed. Changes made to the embedded symbol will not impact the source symbol.</p>
+<p>The embedded symbol can also be duplicated to create another embedded symbol or converted</p>
+<p>to a group of elements.</p>
+<div class="screenshot">
+  <img src="../images/page_0150_0.jpeg" alt="Page 150">
+  <div class="caption">Page 150</div>
+</div>
+<p>Properties of Embedded Symbols</p>
+<p>Properties for a graphic embedded on the Graphic Editor’s drawing canvas are available on the</p>
+<p>Properties tab, when the embedded graphic is selected. The properties are organized into</p>
+<p>categories such as the ones listed below, as appropriate for the selected embedded graphic.</p>
+<p></p>
+<p>Graphic: Name of selected embedded symbol.</p>
+<p></p>
+<p>Appearance: Parameters related to the appearance of the selected embedded symbol,</p>
+<p>such as X and Y location, size, orientation, and more.</p>
+<p></p>
+<p>Runtime Behavior: Parameters related to visibility, tab order, symbol reference, and other</p>
+<p>runtime behaviors.</p>
+<p></p>
+<p>Custom Properties: User-defined properties that have been created in the embedded</p>
+<p>symbol to extend its functionality. Only public custom properties are available in this</p>
+<p>category.</p>
+<p>OwningObject Property</p>
+<p>The OwningObject property is one of the Runtime Behavior properties of an embedded symbol. It</p>
+<p>is a runtime property that is used to dynamically change the references within an embedded</p>
+<p>symbol from one instance to another.</p>
+<p>The OwningObject property can be used as the object reference to replace all "Me." references in</p>
+<p>expressions and scripts. The object name can be set, either using the tagname or hierarchical</p>
+<p>name of an Automation Object.</p>
+<div class="screenshot">
+  <img src="../images/page_0151_0.png" alt="Page 151">
+  <div class="caption">Page 151</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0151_1.png" alt="Page 151">
+  <div class="caption">Page 151</div>
+</div>
+<p>Section 2 – Graphic Editor</p>
+<p>Symbol Wizard Options</p>
+<p>If a graphic for which Wizard Options have been configured is selected on the drawing canvas, its</p>
+<p>Wizard Options properties appear on the Properties tab. Many of the symbols from the Situational</p>
+<p>Awareness Library have Wizard Options already configured.</p>
+<p>Custom Properties Configuration</p>
+<p>You can configure custom properties with the Edit Custom Properties dialog box. Right-click an</p>
+<p>embedded symbol and select Custom Properties. If custom properties are available within the</p>
+<p>embedded symbol, the Edit Custom Properties dialog box appears.</p>
+<p>Each available custom property has a defined data type, default value, visibility setting, and a</p>
+<p>description. The default value is the initial value as defined in the source symbol, which can be</p>
+<p>overridden with a value, reference, or expression.</p>
+<p>Available custom properties for a selected symbol and their default value configurations are also</p>
+<p>listed and editable on the Properties tab in the Graphic Editor.</p>
+<div class="screenshot">
+  <img src="../images/page_0152_0.png" alt="Page 152">
+  <div class="caption">Page 152</div>
+</div>
+<p>Substitute Strings</p>
+<p>You can search for and replace strings of any element on the canvas that has the Text property.</p>
+<p>To substitute strings for an embedded symbol that has text graphics, select the embedded symbol</p>
+<p>on the drawing canvas, and then select Special | Substitute Strings from the menu. Or, right-click</p>
+<p>the embedded symbol on the canvas and select Substitute | Substitute Strings from the context</p>
+<p>menu. The Substitute Strings dialog box appears.</p>
+<p>You can use the basic mode to replace the strings in a list, or use Find & Replace functions, such</p>
+<p>as Find What and Replace with, Match Case, Use Wildcards, and others.</p>
+<div class="screenshot">
+  <img src="../images/page_0153_0.png" alt="Page 153">
+  <div class="caption">Page 153</div>
+</div>
+<p>Section 2 – Graphic Editor</p>
+<p>Substitute References</p>
+<p>You can search for and replace references used by any element on the canvas.</p>
+<p>To substitute references for an embedded symbol that has references configured, select the</p>
+<p>embedded symbol on the drawing canvas, and then select Special | Substitute References from</p>
+<p>the menu. Or, right-click the embedded symbol on the canvas and select Substitute | Substitute</p>
+<p>References from the context menu. The Substitute Reference dialog box appears.</p>
+<p>You can use the basic mode to replace references in a list, or use Find & Replace functions, such</p>
+<p>as Find What and Replace with, Match Case, Use Wildcards, and others.</p>
+<div class="key-concept">Note: You can use the Galaxy Browser to select a new reference, but the auto-complete function is not available in the Substitute Reference dialog box.</div>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">← Previous: Lab 3 – Creating and Running a ViewApp</a> &nbsp;|&nbsp;
+  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">Next: Lab 4 – Using Situational Awareness Dash →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

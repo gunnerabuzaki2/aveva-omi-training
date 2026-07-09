@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 32: Security Overview and ViewApp Security</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← L31: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a View →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html" style="font-weight:bold;color:#1a1a1a;">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L32: Security Overview and ViewApp Security</h1>
+<p class="source">Module 8 — Security | Pages 435-444</p>
+
+<p>Section 1 – Security Overview</p>
+<p>Section 1 – Security Overview</p>
+<p>Introduction</p>
+<p>The security system in Application Server is a global function that applies to every object in the</p>
+<p>Galaxy database. It is a relationship-based security system between users and the objects and</p>
+<p>functions of the Galaxy.</p>
+<p>The security system allows system administrators to easily define users and assign the operations</p>
+<p>they can perform. Security permissions are defined in terms of the operations users can perform</p>
+<p>using automation objects. It also supports multi-user environments, in both development and</p>
+<p>runtime.</p>
+<p>Authentication Modes</p>
+<p>Security for the Galaxy is enabled in the System Platform IDE. When enabling Galaxy security, the</p>
+<p>following authentication modes are available:</p>
+<p></p>
+<p>Galaxy: Uses local Galaxy configuration to authenticate users. All security for the Galaxy</p>
+<p>is specified and contained at the Galaxy level. When the user logs on, security credentials</p>
+<p>are checked, and access to areas and activities is granted at the Galaxy level.</p>
+<p></p>
+<p>OS User based: Uses the user authentication system of the operating system on an</p>
+<p>individual user level. All security for the Galaxy is specified and contained in the operating</p>
+<p>system on a user-level basis. When the user logs on, security credentials are checked,</p>
+<p>and access to areas and activities is decided at the OS-user level.</p>
+<p></p>
+<p>OS Group based: Uses the user authentication system of the operating system on a</p>
+<p>group basis. All security for the Galaxy is specified and contained in the user-to-roles</p>
+<p>mapping created in the operating system to assign security. When a user logs on, security</p>
+<p>credentials are checked and verified at the OS group level. OS groups are mapped to</p>
+<p>security roles in the Galaxy to allow access to areas and activities in the Galaxy.</p>
+<p></p>
+<p>Authentication providers: Uses the AVEVA Identity Manager (AIM) to create a unified</p>
+<p>security management infrastructure across your local System Platform nodes and Azure</p>
+<p>VMs by leveraging operating system security and Azure Active Directory (AD). Refer to</p>
+<p>your System Platform documentation for more information about the AVEVA Identity</p>
+<p>Manager and configuring Azure AD as an identity provider.</p>
+<p>Security Users</p>
+<p>With OS User Based and OS Group Based authentication modes, operating system users with</p>
+<p>local accounts are added as authorized users for the Galaxy. If OS Group Based is selected, the</p>
+<p>local account must exist on each node in the Galaxy for successful authentication of users on any</p>
+<p>computer in the Galaxy.</p>
+<p>Two users are defined by default: Administrator and DefaultUser. These cannot be deleted in an</p>
+<p>open security setting and both are associated with default roles.</p>
+<p>This section provides an overview of security in Application Server, including authentication</p>
+<p>modes, permissions, roles, and users.</p>
+<div class="screenshot">
+  <img src="../images/page_0436_0.png" alt="Page 436">
+  <div class="caption">Page 436</div>
+</div>
+<p>Security Roles</p>
+<p>You can create and manage user roles that apply to your organization’s processes and work-</p>
+<p>based authorities. Two roles are defined by default: Administrator and Default.</p>
+<p>Roles are listed with an assigned Access level, which is an integer from 0 to 9999. Access level</p>
+<p>can be used in graphic animations for security purposes, and to configure navigation item security</p>
+<p>in a ViewApp.</p>
+<p>General and Operational Permissions</p>
+<p>You can specify General and Operational permissions for each role:</p>
+<p></p>
+<p>General permissions relate to application configuration and administrative tasks.</p>
+<p></p>
+<p>Operational permissions relate to security groups listed on the Security Groups page.</p>
+<p>By default, the Administrator and Default roles have all permissions. All users belong to the Default</p>
+<p>role and this relationship cannot be changed. Therefore, it is highly recommended that you remove</p>
+<p>all permissions from the Default role.</p>
+<div class="key-concept">Note: You cannot modify the General permissions for the role of Administrator.</div>
+<div class="screenshot">
+  <img src="../images/page_0437_0.png" alt="Page 437">
+  <div class="caption">Page 437</div>
+</div>
+<p>Section 1 – Security Overview</p>
+<p>General Permissions for Industrial Graphics Management</p>
+<p>The list of General permissions includes the permission “Graphic Management Permissions,”</p>
+<p>which is specific to industrial graphics.</p>
+<p>Security Audit Trail</p>
+<p>The Galaxy generates events for user actions, such as users logging in or logging off an</p>
+<p>application, successful and failed attempts to write to an attribute, and others. Event messages are</p>
+<p>logged to history blocks or the Alarms and Events database through Historian Server and can be</p>
+<p>retrieved for future analysis and reporting.</p>
+<p>Section 2 – ViewApp Security</p>
+<p>Section 2 – ViewApp Security</p>
+<p>Introduction</p>
+<p>A ViewApp has built-in security that is integrated with Galaxy security. Industrial graphics can be</p>
+<p>shown or hidden during runtime in the ViewApp, based on current logged in user information. For</p>
+<p>example, you can use the current logged in user information as a condition to configure the</p>
+<p>visibility animation for a specific graphic element. If the condition is true, the graphic will display at</p>
+<p>runtime.</p>
+<p>During runtime, ViewApp navigation items can be shown or hidden based on the access level</p>
+<p>assigned to, and/or user roles selected for, the navigation items. The navigation item will be visible</p>
+<p>only to logged in users who satisfy each of these conditions, if configured. Using access levels and</p>
+<p>user roles to control the display of content in a ViewApp is an effective way of preventing access to</p>
+<p>a ViewApp's sensitive controls from unauthorized users.</p>
+<p>Before you implement security in a ViewApp, the following must be completed:</p>
+<p></p>
+<p>Security must be enabled for the Galaxy with an authentication mode of Galaxy, OS User</p>
+<p>Based, or OS Group Based. Additionally, roles and users must be created and configured</p>
+<p>with the proper Operational permissions.</p>
+<p></p>
+<p>Based on the authentication mode you select, ViewApp users must be added to the</p>
+<p>security system with a user name and password. The user should be associated with a</p>
+<p>role in the security authentication system with a defined Access Level.</p>
+<p>Major tasks for implementing security for ViewApps include the following:</p>
+<p></p>
+<p>Implement login security within the ViewApp by using the security-related method</p>
+<p>ShowLoginDialog(), for example, in an action script of a button. Additionally, the</p>
+<p>TitleBarApp has an optional Login button, which the user can use to login, switch users,</p>
+<p>and logout of the running ViewApp.</p>
+<p></p>
+<p>Implement visibility or disable animations using security-related attributes within the</p>
+<p>symbols that are going to be used as content of the ViewApp. For example,</p>
+<p>MyViewApp.Security.LoggedInAccessLevel can be used.</p>
+<p></p>
+<p>Configure the Access Level property for a navigation item in the ViewApp, which</p>
+<p>determines whether the navigation item and its referenced hierarchy are accessible in</p>
+<p>runtime.</p>
+<p>This section describes how to implement security in a ViewApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0440_0.png" alt="Page 440">
+  <div class="caption">Page 440</div>
+</div>
+<p>Navigation Item Security Properties</p>
+<p>Security properties can be configured to implement various types of navigation item security. The</p>
+<p>Access Level property specifies the access levels associated with a navigation item. The User</p>
+<p>Roles property specifies one or more user roles associated with the navigation item. If both the</p>
+<p>Access Level and User Roles properties are configured, both conditions must be satisfied for the</p>
+<p>navigation item to be visible to the logged-in user at runtime.</p>
+<p>When a navigation item is selected in the ViewApp Editor, the Access Level and User Roles</p>
+<p>properties are available in the Security category on the Properties tab. They are set to “Not</p>
+<p>Configured” by default.</p>
+<p>Security</p>
+<p>Security Item Property</p>
+<p>Configurations</p>
+<p>Security Item Visibility Requirements</p>
+<p>No security</p>
+<p>Access Level = Not Configured</p>
+<p>User Roles = Not Configured</p>
+<p>Navigation item always visible</p>
+<p>Access Level Only</p>
+<p>security</p>
+<p>Access Level = Integer <N></p>
+<p>in the range 0-9999</p>
+<p>User Roles = Not Configured</p>
+<p>Security must be configured in the Galaxy.</p>
+<p>User must log in to the ViewApp.</p>
+<p>Logged-in user must have an access level</p>
+<p>equal to or higher than the specified value</p>
+<p><N> of the Access Level property.</p>
+<p>The logged-in user can belong to any role.</p>
+<p>User Roles Only</p>
+<p>security</p>
+<p>Access Level = Not Configured</p>
+<p>User Roles = Role1,Role2,Role3</p>
+<p>Security must be configured in the Galaxy.</p>
+<p>User must log in to the ViewApp.</p>
+<p>Logged-in user can be assigned any access</p>
+<p>level.</p>
+<p>Logged in user must be a member of at</p>
+<p>least one of the specified user roles.</p>
+<p>Access Level and</p>
+<p>User Role security</p>
+<p>Access Level = Integer <N></p>
+<p>in the range 0-9999</p>
+<p>User Roles = Role1,Role2,Role3</p>
+<p>Security must be configured in the Galaxy.</p>
+<p>User must log in to the ViewApp.</p>
+<p>Logged-in user must have an access level</p>
+<p>equal to or higher than the specified value</p>
+<p><N> of the Access Level property.</p>
+<p>Logged in user must be a member of at</p>
+<p>least one of the specified user roles.</p>
+<div class="screenshot">
+  <img src="../images/page_0441_0.png" alt="Page 441">
+  <div class="caption">Page 441</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0441_1.png" alt="Page 441">
+  <div class="caption">Page 441</div>
+</div>
+<p>Section 2 – ViewApp Security</p>
+<p>To configure the Access Level property, click the down-arrow to the right of the Access Level</p>
+<p>property and select an access level from the drop-down list. The list includes access levels</p>
+<p>assigned to security roles in the Galaxy. Selecting an access level from the list automatically</p>
+<p>selects access levels greater than or equal to the one selected. The following example shows the</p>
+<p>result of selecting the 0 (Default) access level.</p>
+<p>Or, you can click the Access Level field, enter a numerical value, and press Enter. The following</p>
+<p>example shows an Access Level value entered as 5000.</p>
+<div class="screenshot">
+  <img src="../images/page_0442_0.png" alt="Page 442">
+  <div class="caption">Page 442</div>
+</div>
+<p>To configure the User Roles property, click the down-arrow to the right of the User Roles property,</p>
+<p>and select one or more user roles. The following example shows two user roles selected:</p>
+<p>Cloud\Application Administators and Cloud\Plant Operators 1.</p>
+<p>Note that if a parent navigation item is not visible during runtime because the logged in user does</p>
+<p>not meet the requirement based on the security settings for this navigation item, then all child</p>
+<p>navigation items are also hidden from this user, regardless how the security configurations of the</p>
+<p>child items are configured.</p>
+<p>Security-Related Functions</p>
+<p>A typical login interface includes a login button and a logout button. The login button displays an</p>
+<p>interface to allow a user to enter their user name and password to gain access to the ViewApp.</p>
+<p>The logout button logs the user off the ViewApp. Additionally, information about the logged-in user</p>
+<p>can be displayed in the ViewApp at runtime.</p>
+<p>The following Action Script functions can be used to show a login dialog box and to log a user out</p>
+<p>of the ViewApp:</p>
+<p>Function</p>
+<p>Description</p>
+<p>ShowLoginDialog()</p>
+<p>Shows a login dialog box with fields to enter a user name and password.</p>
+<p>LogOff()</p>
+<p>Logs a user off of a ViewApp.</p>
+<p>Section 2 – ViewApp Security</p>
+<p>Security Namespace and Security-Related System Attributes</p>
+<p>Security-related system attributes operate in the MyViewApp.Security namespace. The names of</p>
+<p>the security attributes are specified with the prefix MyViewApp.Security. For example, you might</p>
+<p>use MyViewApp.Security.attribute_name.</p>
+<div class="key-concept">Note: The security-related attributes described below are predefined and available only for Operations Management Interface ViewApps. They cannot be included in an InTouch application. The following security-related attributes can be used in Value Display animations to display information about the user logged in to a running ViewApp: Single Sign-On Security for the ViewApp If security is enabled in the Galaxy with an authentication mode of OS User Based or OS Group Based, the current Windows user will log on automatically to the ViewApp when the ViewApp starts.  If the current Windows user is a valid user of the Galaxy, it will log on the ViewApp successfully.  If the current Windows user is not a valid user of the Galaxy, it will fail to log on the ViewApp, which will leave the ViewApp running without a logged in user. Other users can log on manually. Attribute Data Type Type Description AutoLogOff Boolean Read/Write Returns True or False to indicate if a user will be logged off after a period of inactivity. When set to True, the user is logged off from the ViewApp when the inactivity period is exceeded. The default value is False. AutoLogOffRemainingTime Integer Read Only Returns the remaining length of a user’s inactivity period in seconds. AutoLogOffTimeSpan Integer Read/Write Specifies the length of the inactivity period in seconds a logged in user is allowed. The default value is 600 seconds. AutoLogOnCurrentUser Boolean Read/Write Returns True or False to indicate if users can log on automatically to a ViewApp with their Windows credentials. The default value is True. LoggedInAccessLevel Integer Read Only Access level of the security role assigned to the user logged in to ViewApp. LastSuccessfulLogin Date Time Read Only UTC time stamp of the most recent successful log. LoggedIn Boolean Read Only Returns True or False, indicating if a user is currently logged into a ViewApp or not. LoggedInUserName String Read Only User name specified by the user logged in to a ViewApp. LoggedInUserRoles String Read Only User roles assigned to the logged-in user, in CSV format.</div>
+<p>Note that the first time the Preview session is launched from the ViewApp Editor, the current</p>
+<p>Windows user will automatically attempt to log on the Preview session.</p>
+<p>The Single Sign-On feature can be enabled or disabled by setting the AutoLogonCurrentUser</p>
+<p>attribute of the Security namespace to True or False.</p>
+<p>Single Sign-On Security for OMI Apps</p>
+<p>OMI Apps that use the Single Sign-On feature (SSO) will run in the context of the logged on</p>
+<p>ViewApp user. Messages will appear if the current logged on ViewApp user is not a valid user for</p>
+<p>the OMI Apps, or does not have enough permissions to access the functions of the OMI Apps.</p>
+<p>For example, the InSightApp is an OMI App that uses the single sign-on service of the ViewApp.</p>
+<p>More information about the InSightApp is provided in Module 10.</p>
+<p>Credential Management for ViewApps</p>
+<p>Additional security credentials may be needed for some ViewApps to gain access to third-party</p>
+<p>data and applications that do not support standard authentication methods, such as Windows OS</p>
+<p>credentials, Active Directory, or OpenID Connect. You can add these credentials on the</p>
+<p>Credentials tab in the Configure Security dialog box.</p>
+<p>Refer to the documentation that came with your product for details about managing credentials.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← Previous: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">Next: Lab 16 – Implementing Security in a View →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 01: Course Introduction + System Platform Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">← Home</a> &nbsp;|&nbsp;
+  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html" style="font-weight:bold;color:#1a1a1a;">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L01: Course Introduction + System Platform Overview</h1>
+<p class="source">Module 1 — Introduction | Pages 7-12</p>
+
+<p>Section 1 – Course Introduction</p>
+<p>Section 1 – Course Introduction</p>
+<p>Course Description</p>
+<p>The AVEVA™ Operations Management Interface 2023 course is a 5-day, instructor-led class</p>
+<p>designed to provide an overview of the features and functionalities released with the AVEVA</p>
+<p>Operations Management Interface software. It covers the components and capabilities of the</p>
+<p>software, as well as topics to help you build and deploy an AVEVA Operations Management</p>
+<p>Interface visualization application for System Platform. It also introduces tools for creating</p>
+<p>graphics, visualizing alarms and events, visualizing trends and history, and implementing security</p>
+<p>in an AVEVA Operations Management Interface application. Hands-on labs are provided to</p>
+<p>reinforce the knowledge necessary to use the AVEVA Operations Management Interface software.</p>
+<p>Objectives</p>
+<p>Upon completion of this course, you will be able to:</p>
+<p></p>
+<p>Describe AVEVA Operations Management Interface visualization components</p>
+<p></p>
+<p>Create display layouts for visualization applications</p>
+<p></p>
+<p>Create and run visualization applications</p>
+<p></p>
+<p>Describe situational awareness concepts</p>
+<p></p>
+<p>Create and use graphics</p>
+<p></p>
+<p>Create and use namespaces and attributes</p>
+<p></p>
+<p>Implement navigation for visualization applications</p>
+<p></p>
+<p>Implement visualization application security</p>
+<p></p>
+<p>Implement alarm visualization</p>
+<p></p>
+<p>Implement trend visualization</p>
+<p></p>
+<p>Implement historical playback visualization</p>
+<p>Audience</p>
+<p>Individuals who need to configure or modify AVEVA Operations Management Interface</p>
+<p>applications</p>
+<p>This section describes the objectives, prerequisites, intended audience, and agenda for the</p>
+<p>course.</p>
+<p>Prerequisites</p>
+<p>Knowledge of the following tools, features, and technologies is required:</p>
+<p></p>
+<p>Industrial automation software concepts</p>
+<p></p>
+<p>From the AVEVA™ Application Server software product:</p>
+<p></p>
+<p>System Platform IDE</p>
+<p></p>
+<p>Automation objects</p>
+<p></p>
+<p>Alarms of attributes</p>
+<p></p>
+<p>Historization of attributes</p>
+<p></p>
+<p>Security</p>
+<p></p>
+<p>Deployment model</p>
+<p></p>
+<p>Plant model</p>
+<p></p>
+<p>QuickScript .NET scripting language</p>
+<p>Section 1 – Course Introduction</p>
+<p>Course Outline</p>
+<p>Section 1 – Course Introduction</p>
+<p>This section describes the objectives, prerequisites, intended audience, and agenda for the</p>
+<p>course.</p>
+<p>Section 2 – System Platform Overview</p>
+<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA</p>
+<p>System Platform Enterprise. It also introduces ArchestrA technology.</p>
+<p>Section 3 – Visualization Overview</p>
+<p>This section introduces visualization concepts and describes AVEVA Operations Management</p>
+<p>Interface as one of the visualization clients of AVEVA Application Server.</p>
+<p>Section 4 – Encrypted Communication</p>
+<p>This section describes the encrypted communication for end-to-end communication between</p>
+<p>server and client software applications.</p>
+<p>Section 5 – System Requirements and Licensing</p>
+<p>This section describes system requirements for System Platform software and introduces the</p>
+<p>licensing model.</p>
+<p>Section 1 – Introduction</p>
+<p>This section introduces features and components of AVEVA Operations Management</p>
+<p>Interface, including screen profiles, layouts, and panes, and describes how they work as part</p>
+<p>of the framework for a ViewApp.</p>
+<p>Section 2 – Screen Profiles</p>
+<p>This section describes how to create and configure screen profiles and screens using the</p>
+<p>Screen Profile Editor.</p>
+<p>Section 3 – Layouts and Panes</p>
+<p>This section describes how to create and configure layouts and panes using the Layout Editor.</p>
+<p>Section 4 – ViewApps</p>
+<p>This section introduces the ViewApp object, including its editor, capabilities, and components.</p>
+<p>Section 1 – Introduction to Industrial Graphics</p>
+<p>This section introduces industrial graphics, including managing them in the System Platform</p>
+<p>IDE and the out-of-the-box symbol libraries provided with Application Server. It also provides</p>
+<p>an overview of Situational Awareness concepts.</p>
+<p>Section 2 – Graphic Editor</p>
+<p>This section describes the Graphic Editor, including an overview of its interface and</p>
+<p>configuration of embedded symbols.</p>
+<p>Section 3 – Industrial Graphics with Objects</p>
+<p>This section describes using and managing symbols with automation objects.</p>
+<p>Section 4 – Tools and Animations</p>
+<p>This section describes element tools and menus available in the Graphic Editor, symbol and</p>
+<p>graphic element properties, and visualization and interaction animations.</p>
+<p>Section 5 – Custom Properties</p>
+<p>This section provides an overview of custom properties for symbols.</p>
+<p>Section 6 – Galaxy Styles</p>
+<p>This section explains how to work with Galaxy Styles.</p>
+<p>Section 1 – Link a Layout as Content in an Object</p>
+<p>This section describes how to link a layout to an asset or template as content. It explains how</p>
+<p>autofill works within the scope of the object and the ViewApp.</p>
+<p>Section 2 – Layout and Pane Customizations</p>
+<p>This section describes options for customizing the appearance, navigation, and runtime</p>
+<p>behaviors for layouts and panes.</p>
+<p>Section 3 – Custom Navigation</p>
+<p>This section describes how to customize the built-in navigation in a ViewApp.</p>
+<p>Section 1 – Introduction to External Content</p>
+<p>This section introduces using external content in ViewApps, including how to create,</p>
+<p>configure, and manage external content items.</p>
+<p>Section 1 – Introduction</p>
+<p>This section introduces using widgets in your ViewApps. It describes the widgets provided out-</p>
+<p>of-the-box with Application Server, as well as how to import other widgets into a Galaxy.</p>
+<p>Section 1 – Introduction</p>
+<p>This section introduces ViewApp namespaces, describes predefined namespaces and</p>
+<p>attributes available for a ViewApp, and describes using MyViewApp as a reserved keyword to</p>
+<p>reference namespaces and attributes.</p>
+<p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
+<p>This section describes how to manage and configure ViewApp namespace attributes using the</p>
+<p>ViewApp Namespace Editor.</p>
+<p>Section 1 – Security Overview</p>
+<p>This section provides an overview of security in Application Server, including authentication</p>
+<p>modes, permissions, roles, and users.</p>
+<p>Section 2 – ViewApp Security</p>
+<p>This section describes how to implement security in a ViewApp.</p>
+<p>Section 1 – Course Introduction</p>
+<p>Section 3 – Signed Writes</p>
+<p>This section describes security classifications for object attributes, including configuring</p>
+<p>Secured Writes and Verified Writes and using them at runtime.</p>
+<p>Section 1 – Alarming Overview</p>
+<p>This section provides an overview of alarms and events.</p>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>This section describes how to use the AlarmApp to display and manage alarms and events in</p>
+<p>a ViewApp. It also describes how to customize the appearance and runtime behavior of the</p>
+<p>AlarmApp.</p>
+<p>Section 3 – Logged Alarms and Events Visualization</p>
+<p>This section introduces alarm and event logging, and describes how to configure the</p>
+<p>AlarmApp to display logged alarms and events.</p>
+<p>Section 1 – Historization Overview</p>
+<p>This section provides an overview of historization and introduces viewing trend data in a</p>
+<p>ViewApp.</p>
+<p>Section 2 – Real-Time Trending</p>
+<p>This section describes the Trend Pen element for symbols and introduces trend pen symbols</p>
+<p>from the Situational Awareness Library.</p>
+<p>Section 3 – Historical Trending</p>
+<p>This section describes using the InSightApp and the HistoricalTrendApp for historical trending</p>
+<p>in a ViewApp.</p>
+<p>Section 1 – Historical Playback</p>
+<p>This section describes how to configure and start the historical playback service, and how to</p>
+<p>implement historical playback in a ViewApp.</p>
+<p>Section 1 – Introduction</p>
+<p>This section describes importing external controls as OMI Apps for use in ViewApps and</p>
+<p>exposing certain controls by including a manifest file.</p>
+<p>Section 1 – Introduction</p>
+<p>This section provides an overview of the scripting environment and introduces symbol scripts</p>
+<p>and layout scripts.</p>
+<p>Section 2 – Symbol Scripts</p>
+<p>This section describes predefined and named symbol scripts, explains script triggers, and</p>
+<p>describes the Action Scripts animation.</p>
+<p>Section 3 – Layout Scripts</p>
+<p>This section describes predefined and named layout scripts, including script triggers and the</p>
+<p>Event Handler.</p>
+<p>Section 4 – Graphic Client Functions</p>
+<p>This section explains the ShowContent(), Hide Content(), ShowGraphic(), HideGraphic(), and</p>
+<p>HideSelf() script functions.</p>
+<p>Section 2 – System Platform Overview</p>
+<p>Section 2 – System Platform Overview</p>
+<p>AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform</p>
+<p>built on ArchestrA technology. It contains an integrated set of services and an extensible data</p>
+<p>model to manage plant control and information management systems. System Platform supports</p>
+<p>both the supervisory control layer and the manufacturing execution system layer, presenting them</p>
+<p>as a single information source.</p>
+<p>System Platform and its clients provide the framework and tools for developing, executing,</p>
+<p>monitoring, and visualizing your applications. Services such as data acquisition, historization, and</p>
+<p>alarming are provided by System Platform components. Services such as visualization and</p>
+<p>trending are provided by System Platform clients.</p>
+<p>The System Platform software is based on industry standards and Microsoft technologies, such as</p>
+<p>Windows, .NET, SQL Server, IIS, and others. ArchestrA provides the fundamental technology and</p>
+<p>services for the multi-user, object-oriented platform.</p>
+<p>System Platform Components and Clients</p>
+<p>System Platform components access and process external data from controllers, software</p>
+<p>applications, and other data sources. System Platform clients access information from System</p>
+<p>Platform.</p>
+<p>System Platform components are as follows:</p>
+<p></p>
+<p>oriented framework with tools for developing and deploying applications.</p>
+<p></p>
+<p>Application Server. Data is exposed through SQL Server and/or an Open Data Protocol</p>
+<p>(oData) interface.</p>
+<p></p>
+<p>controllers and other data sources. Besides controller-specific protocols, they support</p>
+<p>open communication connectivity protocols such as MQTT, OPC DA, and OPC UA.</p>
+<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA System</p>
+<p>Platform Enterprise. It also introduces ArchestrA technology.</p>
+<p>Formerly called OI Servers, they also include legacy DA Servers and I/O Servers. System</p>
+<p>Platform also communicates directly with third-party drivers, such as third-party OPC</p>
+<p>Server.</p>
+<p>System Platform clients include:</p>
+<p></p>
+<p>Supervisory clients run the operator interface and provide real-time access to</p>
+<p>Application Server data, alarms, and events. There are two supervisory client products,</p>
+<p>based on different technologies. Both can coexist in the same System Platform solution.</p>
+<p></p>
+<p>framework with tools, and provides out-of-the-box navigation to display content based</p>
+<p>on the application’s data model.</p>
+<p></p>
+<p>create displays and the corresponding navigation framework from scratch. It is not</p>
+<p>included with AVEVA System Platform Enterprise.</p>
+<p>Supervisory client applications can be accessed remotely through a web browser with the</p>
+<p>use of AVEVA™ InTouch Access Anywhere. With InTouch Access Anywhere, you simply</p>
+<p>enter a URL in a web browser running on a desktop computer or mobile device and log on,</p>
+<p>without the necessity of having any separate client application installed on the portable</p>
+<p>device or desktop computer.</p>
+<p></p>
+<p>historized with Historian. This client includes a Trend application for plotting data on a</p>
+<p>graphical display, a Query application for constructing SQL queries through a point-and-</p>
+<p>click interface, and add-ins to Microsoft Excel and Word for generating reports.</p>
+<p></p>
+<p>and analysis of data historized with Historian. It provides an intuitive interface for easy</p>
+<p>access and use.</p>
+<p>Together, System Platform and its clients provide the core services needed to develop, implement,</p>
+<p>and deploy industrial automation applications. Some of these services include:</p>
+<p></p>
+<p>Real-time data acquisition from field devices</p>
+<p></p>
+<p>Scaling, statistics, and manipulation of data</p>
+<p></p>
+<p>Process control</p>
+<p></p>
+<p>Alarm triggering, logging, acknowledgment, and management</p>
+<p></p>
+<p>Historization, trending, and analysis of process data</p>
+<p></p>
+<p>Visualization of real-time process data</p>
+<p></p>
+<p>Reporting</p>
+<p>Applications built on System Platform are extensible through the use of scripting within the product</p>
+<p>itself or through several available toolkits. For example, an application can access a third-party</p>
+<p>web service by means of a script.</p>
+<p>ArchestrA Technology</p>
+<p>ArchestrA is a distributed architecture developed for supervisory control and manufacturing</p>
+<p>information systems. It is an open and extensible technology based on a distributed, object-</p>
+<p>oriented design. It leverages the Microsoft .NET Framework for the industrial automation world.</p>
+<p>ArchestrA provides the following system services:</p>
+<p></p>
+<p>Object management for creating object-oriented applications</p>
+<p></p>
+<p>A component object framework for application modeling of plants, factories,</p>
+<p>and equipment</p>
+<p>Section 2 – System Platform Overview</p>
+<p></p>
+<p>A common, global name space for all application types, from single-node to distributed</p>
+<p>networked applications</p>
+<p></p>
+<p>Inter-process advanced communications with system maintenance and diagnostic</p>
+<p>information</p>
+<p></p>
+<p>Centralized security services with support for multi-user environments for development</p>
+<p>and runtime</p>
+<p></p>
+<p>Version management for every object in the application, including logging of</p>
+<p>development operations</p>
+<p>Most of these services are exposed, configured, and managed by Application Server.</p>
+<p>AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to</p>
+<p>bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise</p>
+<p>users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the</p>
+<p>AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in</p>
+<p>a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription</p>
+<p>activated product. Although not the focus of this course, contact your distributor for more</p>
+<p>information about AVEVA System Platform Enterprise.</p>
+<p>System Platform Enterprise Features</p>
+<p>Exclusive features of System Platform Enterprise include:</p>
+<p></p>
+<p>A web client for Operations Management Interface (OMI)</p>
+<p></p>
+<p>Additional web widgets</p>
+<p></p>
+<p>ScatterChart widget</p>
+<p></p>
+<p>Breadcrumb widget</p>
+<p></p>
+<p>NavigationTree widget</p>
+<p></p>
+<p>Hamburger widget</p>
+<p></p>
+<p>TitleBar widget</p>
+<p></p>
+<p>Graphic Repeater widget</p>
+<p></p>
+<p>MapApp widget</p>
+<p></p>
+<p>Additional OMI Apps</p>
+<p></p>
+<p>Power BI OMI app</p>
+<p></p>
+<p>PI Vision app</p>
+<p></p>
+<p>Sankey app</p>
+<p></p>
+<p>UOC documentation</p>
+<p>System Platform Enterprise does not include InTouch HMI (WindowMaker and WindowViewer),</p>
+<p>InTouch Web client, and InTouch Workspaces.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="../index.html">← Home</a> &nbsp;|&nbsp;
+  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">Next: Lab 1 – Creating and Deploying a Galaxy →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

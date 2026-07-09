@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 22: Custom Navigation</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">← L21: Lab 10 – Enhancing the ViewApp Layout</a> &nbsp;|&nbsp;
+  <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html" style="font-weight:bold;color:#1a1a1a;">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L22: Custom Navigation</h1>
+<p class="source">Module 4 — ViewApp Customizations | Pages 327-334</p>
+
+<div class="screenshot">
+  <img src="../images/page_0327_0.jpeg" alt="Page 327">
+  <div class="caption">Page 327</div>
+</div>
+<p>Section 3 – Custom Navigation</p>
+<p>Section 3 – Custom Navigation</p>
+<p>Introduction</p>
+<p>A ViewApp provides built-in navigation, which can be customized to give users the ability to view</p>
+<p>specific types of content associated with each navigation item.</p>
+<p>In the ViewApp Editor, you can configure a custom navigation item to reference items in the Model</p>
+<p>view hierarchy (plant model) or the Visual ToolBox hierarchy (Graphics tab). The navigation item</p>
+<p>will replicate the hierarchy of the referenced items. During runtime, the ViewApp will display</p>
+<p>associated content from the custom navigation item and its referencing hierarchy according to</p>
+<p>auto-fill settings.</p>
+<p>You can also configure the custom navigation item to be associated with one or more specific</p>
+<p>content items, by assigning the content items to the associated layout panes.</p>
+<p>Or, you can assign a different layout to selected custom navigation items and then associate</p>
+<p>content to each pane of that layout. During runtime, when the custom navigation item is selected in</p>
+<p>the ViewApp, the associated layout displays associated content in each pane.</p>
+<p>Custom Navigation Commands</p>
+<p>The ViewApp Editor includes commands for customizing the Navigation model for a ViewApp.</p>
+<p></p>
+<p>Add: Adds a custom navigation item as a child of the selected item in the Navigation</p>
+<p>model.</p>
+<p></p>
+<p>Add Sibling: Adds a custom navigation item as a sibling of the selected item in the</p>
+<p>Navigation model. Sibling items are at the same level within a navigation hierarchy. In the</p>
+<p>default Navigation model, a sibling item cannot be added to the root (Home).</p>
+<p></p>
+<p>Remove: Removes the selected custom navigation item and all child items beneath it in</p>
+<p>the navigation hierarchy. In the default Navigation model, the root (Home) cannot be</p>
+<p>removed.</p>
+<p></p>
+<p>Rename: Makes the custom navigation item name editable in the Navigation model. In the</p>
+<p>default Navigation model, Home and Assets can also be renamed.</p>
+<p>This section describes how to customize the built-in navigation in a ViewApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0328_0.png" alt="Page 328">
+  <div class="caption">Page 328</div>
+</div>
+<p>Add Navigation Items</p>
+<p>Custom child navigation items can be added to the Navigation model by selecting a navigation</p>
+<p>item and clicking Add. The new item is added as a child item to the selected item.</p>
+<p>For example, to add a navigation item as a child of a navigation item named Plant, select Plant</p>
+<p>and click Add. An item is added to the Navigation model as a child of Plant. The name is editable,</p>
+<p>so you can click the name and enter a new name. The following example shows adding a child</p>
+<p>navigation under Plant and naming it Receiving.</p>
+<p>By default, the Add command is not available for navigation items that reference an asset from the</p>
+<p>Model hierarchy (plant model) or a toolset in the Visual ToolBox hierarchy (Graphics tab). For</p>
+<p>example, when the default built-in Assets navigation item is selected, the Add command is</p>
+<p>disabled. You cannot add child navigation items to Assets.</p>
+<p>Add Sibling Navigation Items</p>
+<p>Custom sibling navigation items can be added to the Navigation model by selecting a navigation</p>
+<p>item at the same level as the item you want to add and clicking Add Sibling. The new item is added</p>
+<p>at the same level as the selected item.</p>
+<p>Note that the Add Sibling command is not available when the root (Home) item is selected. You</p>
+<p>cannot add sibling navigation items to the root of the navigation hierarchy shown in the ViewApp</p>
+<p>Editor.</p>
+<p>Remove Navigation Items</p>
+<p>Custom navigation items can be removed from the Navigation model by selecting the item to</p>
+<p>remove and clicking Remove. The selected custom navigation item and any child items beneath it</p>
+<p>are removed.</p>
+<p>The Remove command is not available when a child navigation item is selected if its parent</p>
+<p>navigation item references an asset from the Model hierarchy (plant model) or a toolset in the</p>
+<p>Visual ToolBox hierarchy (Graphics tab). However, the parent navigation item can be removed,</p>
+<p>which will remove the parent item and all its child items.</p>
+<p>For example, consider the default built-in navigation item Assets, which references the Model view</p>
+<p>hierarchy. When a child navigation item beneath Assets is selected, the Remove command is not</p>
+<p>available. However, when Assets is selected, the Remove command is available. Clicking Remove</p>
+<p>removes the Assets item and all its child items. The Home item remains in the list. It is the root of</p>
+<p>the navigation hierarchy shown in the ViewApp Editor and cannot be removed.</p>
+<p>Section 3 – Custom Navigation</p>
+<p>Rearrange Navigation Items</p>
+<p>Custom navigation items can be rearranged in the Navigation list by dragging and dropping as</p>
+<p>needed.</p>
+<p>Navigation Item Properties</p>
+<p>Each navigation item in the Navigation model contains properties that define the item. With a</p>
+<p>navigation item selected, properties for that item appear on the right side of the ViewApp Editor.</p>
+<p>Properties include navigation-specific and security properties.</p>
+<p>Navigation Property</p>
+<p>Description</p>
+<p>Title</p>
+<p>Display name of the selected custom navigation item.</p>
+<p>If you are configuring the Title property and the Reference property, configure</p>
+<p>Reference first. If you configure Title before configuring Reference, the Title</p>
+<p>property will be overwritten by the selected reference name.</p>
+<p>Note that if a navigation item is replicated from the plant model and the</p>
+<p>referenced object has an alias assigned, the Title property uses the alias</p>
+<p>name of the referenced object.</p>
+<p>Reference</p>
+<p>Full path of the item in the Model (plant model) or Visual ToolBox (Graphics</p>
+<p>tab) hierarchy.</p>
+<p>Include Children</p>
+<p>This property becomes available if the item selected for Reference is an asset</p>
+<p>from the Model view that has its own hierarchy. It determines whether the</p>
+<p>referenced asset item will include its child items in the Navigation list.</p>
+<p>Checking this property will replicate that hierarchy beneath the navigation</p>
+<p>item being configured. Unchecking this property will not include the child</p>
+<p>items of the referenced asset. This property is checked by default.</p>
+<p>Auto-Fill Content</p>
+<p>Auto-Fill content mode of the selected navigation item to determine its</p>
+<p>navigation behaviors. It includes a drop-down list of Auto-Fill options, which</p>
+<p>are the same as the options for the Auto-Fill Content field in the Actions view.</p>
+<p>Refer to Module 2 for more information about Auto-Fill Content options.</p>
+<p>Security Property</p>
+<p>Description</p>
+<p>Access Level</p>
+<p>Security access level assigned to the selected navigation item. Can be a</p>
+<p>value between -1 and 9999. Refer to Module 8 for more information.</p>
+<p>User Roles</p>
+<p>User role(s) assigned to the selected navigation item. At runtime, if the</p>
+<p>logged-in user has been assigned one or more of the selected roles, the</p>
+<p>navigation item will be visible to that user. If set to “not configured,” the</p>
+<p>navigation item will be available to any user, even if they are not logged in to</p>
+<p>the running ViewApp.</p>
+<p>If both Access Level and User Roles are configured, then both conditions</p>
+<p>must be satisfied for the navigation item to be visible to the logged-in user at</p>
+<p>runtime.</p>
+<div class="screenshot">
+  <img src="../images/page_0330_0.png" alt="Page 330">
+  <div class="caption">Page 330</div>
+</div>
+<p>Navigation Item References</p>
+<p>One of the properties for a Navigation item is Reference, which is the full path referenced by the</p>
+<p>item in the Navigation model hierarchy. To configure the Reference property, click the down-arrow</p>
+<p>to the right of the Reference field. You can configure a reference to an asset from the Model</p>
+<p>hierarchy (plant model) or to a specific toolset from the Graphics tab.</p>
+<p>To have the navigation item reference an asset in the Galaxy, click the down-arrow for the</p>
+<p>Reference field. The objects shown reflect the plant model and you can expand the hierarchy to</p>
+<p>make a selection. The following example shows Plant selected.</p>
+<div class="screenshot">
+  <img src="../images/page_0331_0.png" alt="Page 331">
+  <div class="caption">Page 331</div>
+</div>
+<p>Section 3 – Custom Navigation</p>
+<p>The value of the Reference property changes to show the full path of the selected reference and</p>
+<p>the Title field changes accordingly. The Include Children property becomes available and is</p>
+<p>checked by default, if the reference selected for the Reference property has its own hierarchy in</p>
+<p>the Model view.</p>
+<p>If the selected reference for a navigation item has its own hierarchy in Model view, that hierarchy</p>
+<p>will be replicated beneath the navigation item being configured. The hierarchy will reflect the order</p>
+<p>of the instances as listed in the plant model.</p>
+<p>To have the navigation item reference an item in the Graphics tab, expand Visual ToolBox and</p>
+<p>select the item. The items shown reflect toolsets from the Graphics tab, such as the Industrial</p>
+<p>Graphic Library, the Situational Awareness Library, and custom toolsets.</p>
+<p>Updating Objects in Model View for ViewApp Navigation</p>
+<p>When a navigation item in the ViewApp is configured with a reference to an asset from the Model</p>
+<p>view hierarchy (plant model), and it has its own hierarchy, the child items are replicated in the</p>
+<p>navigation model and they are not editable within the ViewApp Editor.</p>
+<p>To update the referenced model hierarchy, you can perform the following operations in the Model</p>
+<p>view:</p>
+<p></p>
+<p>Rearranging Objects: In the Model view, by default, objects are organized in alphabetic</p>
+<p>order based on their names within the same level of the hierarchy. For navigation purpose,</p>
+<p>objects can be rearranged to more closely resemble the functional organization of different</p>
+<p>components in the production process. When the hierarchy is referenced by a navigation</p>
+<p>item in the ViewApp, the updated Model hierarchy is used for the navigation model.</p>
+<p>When you drag an object to move it up or down in the Model view, a green line indicator</p>
+<p>appears to show the new position where the object can be dropped. You need to make</p>
+<p>sure that the indicator displays in the desired position before dropping the object.</p>
+<div class="screenshot">
+  <img src="../images/page_0332_0.png" alt="Page 332">
+  <div class="caption">Page 332</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0332_1.png" alt="Page 332">
+  <div class="caption">Page 332</div>
+</div>
+<p>Otherwise, you may inadvertently assign the object being moved to another object. The</p>
+<p>following example shows moving the Receiving object to the first item listed under Plant.</p>
+<p></p>
+<p>Assigning Alias Names to Objects: Each object in the Model view can be assigned an</p>
+<p>alias name, which is a string. It will be used as the default Title of the navigation item that</p>
+<p>references the object in the ViewApp. It does not provide another way to address items in</p>
+<p>the navigation model of a ViewApp. The alias name cannot be used to reference an object</p>
+<p>or its attributes in scripts and animations. You must still reference an object based on its</p>
+<p>unique object name or hierarchical name.</p>
+<p>You can assign or update the alias name for an object in the Model view. For example,</p>
+<p>you can right-click an object and select Rename Alias. You can toggle the Model view to</p>
+<p>display the objects by their tag names or alias names.</p>
+<p>Section 3 – Custom Navigation</p>
+<p>The AliasName attribute is available for objects. It is a read-only attribute that stores the</p>
+<p>alias name string specified for an object. Note that assigning an alias name starting with</p>
+<p>an underscore hides the object from the navigation model.</p>
+<p>To rearrange the objects in the model hierarchy or change the object alias name, the objects must</p>
+<p>be undeployed first. After updating the objects in the Model view, the referenced items will be</p>
+<p>updated accordingly in the ViewApp, and you can view and test before redeploying any objects.</p>
+<p>For more information about rearranging objects in the Model view and assigning alias name to an</p>
+<p>object, please refer to the Application Server User Guide.</p>
+<p>Associate Content to Custom Navigation Items</p>
+<p>A custom navigation item can be associated with one or more specific content items by manually</p>
+<p>assigning the content items to panes of the assigned layout. In the ViewApp Editor, you can select</p>
+<p>a specific content item from the Toolbox or Assets tabs and drag and drop the content on the</p>
+<p>pane.</p>
+<p>Or, the custom navigation item can be associated with a different layout, so that when that</p>
+<p>navigation item is selected at runtime, the associated layout and panes display all associated</p>
+<p>content of the navigation item, based on auto-fill settings and available panes in the layout. In the</p>
+<p>ViewApp Editor, with a custom navigation item selected, you can change the assigned layout to</p>
+<p>each screen of the associated screen profile by selecting available layouts.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">← Previous: Lab 10 – Enhancing the ViewApp Layout</a> &nbsp;|&nbsp;
+  <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">Next: Lab 11 – Rebuilding the Navigation Model →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

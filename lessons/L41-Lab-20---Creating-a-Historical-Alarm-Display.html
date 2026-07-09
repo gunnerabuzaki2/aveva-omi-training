@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 41: Lab 20 – Creating a Historical Alarm Display</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L40-Logged-Alarms-and-Events-Visualization.html">← L40: Logged Alarms and Events Visualization</a> &nbsp;|&nbsp;
+  <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html" style="font-weight:bold;color:#1a1a1a;">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L41: Lab 20 – Creating a Historical Alarm Display</h1>
+<p class="source">Module 9 — Alarms and Events | Pages 573-600</p>
+
+<div class="screenshot">
+  <img src="../images/page_0573_0.png" alt="Page 573">
+  <div class="caption">Page 573</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>Introduction</p>
+<p>In this lab, you will use the AlarmApp to create a display for historical alarms and events. You will</p>
+<p>also create an additional symbol with configurations to help view and organize historical alarms</p>
+<p>and events at runtime.</p>
+<p>When testing the historical AlarmApp display, you will see how to query logged alarms and events</p>
+<p>from the historical alarms and events views. You will also see how to use the custom symbol to</p>
+<p>change the AlarmApp settings at runtime.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Configure the AlarmApp to display historical alarms and events</p>
+<p></p>
+<p>Use the AlarmApp to query logged alarms and events at runtime</p>
+<p></p>
+<p>Customize the AlarmApp at runtime using Runtime Behavior properties</p>
+<div class="screenshot">
+  <img src="../images/page_0574_0.png" alt="Page 574">
+  <div class="caption">Page 574</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0574_1.jpeg" alt="Page 574">
+  <div class="caption">Page 574</div>
+</div>
+<p>Configure Layouts for Historical Alarms and Events</p>
+<p>In the following steps, you will create and configure a new layout for historical alarms and events.</p>
+<p>1.</p>
+<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
+<p>HistoricalAlarmsEvents.</p>
+<p>2.</p>
+<p>Double-click HistoricalAlarmsEvents to open it in the Layout Editor.</p>
+<p>3.</p>
+<p>On the Toolbox tab, enter a search string to find the AlarmControl and drag it to Pane1.</p>
+<div class="screenshot">
+  <img src="../images/page_0575_0.jpeg" alt="Page 575">
+  <div class="caption">Page 575</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>4.</p>
+<p>On the Properties tab, to the right of the Configuration property, click the ellipsis button.</p>
+<p>The Configuration dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0576_0.png" alt="Page 576">
+  <div class="caption">Page 576</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0576_1.png" alt="Page 576">
+  <div class="caption">Page 576</div>
+</div>
+<p>5.</p>
+<p>On the Alarm Mode tab, change Client Mode to Historical Alarms.</p>
+<p>6.</p>
+<p>For Database Connectivity \ Server Name, enter the node where Historian is set up.</p>
+<div class="key-concept">Note: Your instructor will provide the Historian node name. In the following example, S00ENG is used as the Database Connectivity \ Server Name. 7. For Database Connectivity \ Database Name, select History Blocks from the drop-down list. The following Configuration Warning appears.</div>
+<div class="screenshot">
+  <img src="../images/page_0577_0.png" alt="Page 577">
+  <div class="caption">Page 577</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0577_1.png" alt="Page 577">
+  <div class="caption">Page 577</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>8.</p>
+<p>Click Yes to continue.</p>
+<p>9.</p>
+<p>Click Test Connection.</p>
+<p>When the connection test is successful, the following Info message appears:</p>
+<p><strong>10.</strong> Click OK to dismiss the message.</p>
+<div class="screenshot">
+  <img src="../images/page_0578_0.png" alt="Page 578">
+  <div class="caption">Page 578</div>
+</div>
+<p><strong>11.</strong> In the Other Settings area, Time Range duration field, click the drop-down arrow and select</p>
+<p>15 minutes.</p>
+<p>The duration determines the total number of records returned.</p>
+<p><strong>12.</strong> On the Column Details tab, uncheck the following columns, which are repeated or</p>
+<p>unnecessary for the historical alarms and events display.</p>
+<div class="key-concept">Note: Most of the columns for the current alarm mode will not apply to the historical alarm mode, and they will take too much space in the alarm display.  User1  State  Node  Group  Name  AlarmComment  Type  TimeLCT  Limit  CurrentValue  AlarmDuration  Operator  UnAckDuration</div>
+<div class="screenshot">
+  <img src="../images/page_0579_0.png" alt="Page 579">
+  <div class="caption">Page 579</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>13.</strong> On the Column Details tab, check the following columns, which will be useful for the historical</p>
+<p>alarms display:</p>
+<p></p>
+<p>Severity</p>
+<p></p>
+<p>Comment</p>
+<p></p>
+<p>Provider_Nodename</p>
+<p></p>
+<p>Provider_ApplicationName</p>
+<p></p>
+<p>User Account</p>
+<p></p>
+<p>User Name</p>
+<p></p>
+<p>Source_Area</p>
+<p></p>
+<p>Source_ConditionVariable</p>
+<p></p>
+<p>Source_Object</p>
+<p></p>
+<p>Source_ProcessVariable</p>
+<p></p>
+<p>Alarm_Type</p>
+<p></p>
+<p>Alarm_Condition</p>
+<p></p>
+<p>Alarm_LimitString</p>
+<p></p>
+<p>Alarm_State</p>
+<p></p>
+<p>Verifier Account</p>
+<p></p>
+<p>Verifier Name</p>
+<p></p>
+<p>EventTime</p>
+<p>The following shows only some of the checked column names in the Column Details list.</p>
+<div class="screenshot">
+  <img src="../images/page_0580_0.png" alt="Page 580">
+  <div class="caption">Page 580</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0580_1.png" alt="Page 580">
+  <div class="caption">Page 580</div>
+</div>
+<p><strong>14.</strong> With EventTime checked, to the right of the Column Details list, click the up-arrow multiple</p>
+<p>times until EventTime is moved above Comment and below Severity in the list.</p>
+<div class="key-concept">Note: Alternatively, you can rearrange columns in the preview area at the bottom of the tab using drag and drop. 15. In the Sorting area, change the First Sort Criteria to EventTime and Descending. In the preview area, notice the EventTime column has a down-arrow indicating descending sort order.</div>
+<div class="screenshot">
+  <img src="../images/page_0581_0.png" alt="Page 581">
+  <div class="caption">Page 581</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0581_1.png" alt="Page 581">
+  <div class="caption">Page 581</div>
+</div>
+<p>• <strong>Highlighted Action</strong>: Red rectangle around "Save User Queries and Filters" (unchecked)</p>
+<p>• <strong>Sub-settings</strong>: File path field (greyed out), "Overwrite Design Time Queries and Filters" (unchecked)</p>
+<p>• <strong>Right Pane - Show Context Menu</strong>: Commands: Ack Selected, Ack Others, Shelve Selected, Unshelve Selected, Hide Selected, Sort, Queries and Filters, Freeze, Requery</p>
+<p>• <strong>Context</strong>: Configuring column width and runtime behavior for historical alarm display]</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>16.</strong> In the Column Details list, in the Comment row, select the Width field.</p>
+<p><strong>17.</strong> Click the Width field, change the value to 300, and then press Enter to confirm.</p>
+<p><strong>18.</strong> On the Run-Time Behavior tab, uncheck Save User Queries and Filters.</p>
+<div class="screenshot">
+  <img src="../images/page_0582_0.jpeg" alt="Page 582">
+  <div class="caption">Page 582</div>
+</div>
+<p><strong>19.</strong> Click OK to close the Configuration dialog box.</p>
+<p><strong>20.</strong> On the Properties tab, configure the Command Bar properties as follows:</p>
+<p><strong>21.</strong> Save and close the HistoricalAlarmsEvents layout, and check it in.</p>
+<p>Show Command Bar:</p>
+<p>unchecked</p>
+<p>Show Ack Selected:</p>
+<p>unchecked</p>
+<p>Show Ack All:</p>
+<p>unchecked</p>
+<p>Show Ack Visible:</p>
+<p>unchecked</p>
+<p>Show Connect:</p>
+<p>checked</p>
+<p>Show Disconnect:</p>
+<p>checked</p>
+<div class="screenshot">
+  <img src="../images/page_0583_0.png" alt="Page 583">
+  <div class="caption">Page 583</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>Create a Symbol for Additional Settings</p>
+<p>In the next steps, you will create a symbol and configure custom properties for it.</p>
+<p><strong>22.</strong> On the Graphics tab, in the Training \ Symbols toolset, create a new symbol and name it</p>
+<p>Hist_AlarmAppConfigurations.</p>
+<p><strong>23.</strong> Double-click Hist_AlarmAppConfigurations to open it in the Graphic Editor.</p>
+<p><strong>24.</strong> Right-click the drawing canvas and select Custom Properties.</p>
+<p>The Edit Custom Properties dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0584_0.png" alt="Page 584">
+  <div class="caption">Page 584</div>
+</div>
+<p><strong>25.</strong> In the Edit Custom Properties dialog box, create the following custom properties:</p>
+<p><strong>26.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
+<p>Name</p>
+<p>Data Type</p>
+<p>Default Value</p>
+<p>Description</p>
+<p>ClientMode</p>
+<p>Integer</p>
+<p>3</p>
+<p>3-Historical Alarms; 4-</p>
+<p>Historical Events; 5-Historical</p>
+<p>Alarms and Events</p>
+<p>GroupByHeader</p>
+<p>Boolean (default)</p>
+<p>False (default)</p>
+<p>When True, enable group by</p>
+<p>header for the alarm grid</p>
+<p>ShowCommandBar</p>
+<p>Boolean (default)</p>
+<p>False (default)</p>
+<p>When True, display the</p>
+<p>command bar</p>
+<div class="screenshot">
+  <img src="../images/page_0585_0.png" alt="Page 585">
+  <div class="caption">Page 585</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0585_1.png" alt="Page 585">
+  <div class="caption">Page 585</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0585_2.png" alt="Page 585">
+  <div class="caption">Page 585</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0585_3.png" alt="Page 585">
+  <div class="caption">Page 585</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>27.</strong> In the Tools pane, select the Text tool, add a text element to the canvas, and then enter Client</p>
+<p>Mode: for the string.</p>
+<p>The name of the text element is Text1.</p>
+<p><strong>28.</strong> With Text1 selected, change its Appearance / Element Style property to Title.</p>
+<p>Text1 should look similar to the following on the drawing canvas:</p>
+<p><strong>29.</strong> In the Tools pane, select the Combo Box tool and add a combo box element to the drawing</p>
+<p>canvas.</p>
+<p>The name of the combo box element is ComboBox1.</p>
+<p><strong>30.</strong> Place ComboBox1 to the right of the Text1 element.</p>
+<div class="key-concept">Note: You can consider increasing the width of ComboBox1 to fit all captions at runtime. An example width is 220 pixels.</div>
+<div class="screenshot">
+  <img src="../images/page_0586_0.png" alt="Page 586">
+  <div class="caption">Page 586</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0586_1.png" alt="Page 586">
+  <div class="caption">Page 586</div>
+</div>
+<p><strong>31.</strong> Double-click the ComboBox1 element to open the Edit Animations dialog box.</p>
+<p><strong>32.</strong> For States, ensure Static is selected and configure the Selected Item Value (Reference) as</p>
+<p>ClientMode.</p>
+<p><strong>33.</strong> For Static Values and Captions, change Caption and Value as follows:</p>
+<p><strong>34.</strong> Leave the other settings as default, and click OK to close the Edit Animations dialog box.</p>
+<p><strong>35.</strong> In the Tools pane, select the Check Box tool.</p>
+<p>Caption</p>
+<p>Value</p>
+<p>Historical Alarms</p>
+<p>3</p>
+<p>Historical Events</p>
+<p>4</p>
+<p>Historical Alarms & Events</p>
+<p>5</p>
+<div class="screenshot">
+  <img src="../images/page_0587_0.png" alt="Page 587">
+  <div class="caption">Page 587</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0587_1.png" alt="Page 587">
+  <div class="caption">Page 587</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>36.</strong> On the drawing canvas, add a check box element to the right of the ComboBox1 element.</p>
+<p>The name of the check box element is CheckBox1.</p>
+<p><strong>37.</strong> On the Properties tab, configure the following properties for CheckBox1:</p>
+<p><strong>38.</strong> Resize the width of the CheckBox1 element to display all of the characters.</p>
+<p><strong>39.</strong> Double-click CheckBox1 to open the Edit Animations dialog box.</p>
+<p><strong>40.</strong> Configure the Checked value (Boolean) reference as GroupByHeader.</p>
+<p><strong>41.</strong> Leave the other settings as default, and click OK to close the Edit Animations dialog box.</p>
+<p>Appearance / Element Style:</p>
+<p>Title</p>
+<p>Text Style / Caption:</p>
+<p>Group by Header</p>
+<div class="screenshot">
+  <img src="../images/page_0588_0.png" alt="Page 588">
+  <div class="caption">Page 588</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0588_1.png" alt="Page 588">
+  <div class="caption">Page 588</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0588_2.png" alt="Page 588">
+  <div class="caption">Page 588</div>
+</div>
+<p><strong>42.</strong> Duplicate CheckBox1 to create a CheckBox2 element, and place CheckBox2 to the right of</p>
+<p>CheckBox1.</p>
+<p><strong>43.</strong> For CheckBox2, configure the Text Style \ Caption property to Show / Hide Command Bar.</p>
+<p><strong>44.</strong> Resize the width of the CheckBox2 element to display all of the characters in one line.</p>
+<p><strong>45.</strong> Double-click CheckBox2 to open the Edit Animations dialog box.</p>
+<p><strong>46.</strong> Configure the Checked value (Boolean) reference as ShowCommandBar.</p>
+<p><strong>47.</strong> Leave the other settings as default, and click OK to close the Edit Animations dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0589_0.png" alt="Page 589">
+  <div class="caption">Page 589</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0589_1.jpeg" alt="Page 589">
+  <div class="caption">Page 589</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>48.</strong> With all elements selected, click Align Middle to align the elements to the middle.</p>
+<p><strong>49.</strong> Save and close the Hist_AlarmAppConfigurations symbol, and check it in.</p>
+<p>Update the HistoricalAlarmsEvents Layout</p>
+<p>In the following steps, you will assign the symbol to the HistoricalAlarmsEvents layout and</p>
+<p>configure some references using the custom properties configured for the symbol.</p>
+<p><strong>50.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click HistoricalAlarmsEvents</p>
+<p>to open it in the Layout Editor.</p>
+<p><strong>51.</strong> With Pane1 selected, add a new pane on top of Pane1.</p>
+<p>The name of the new pane is Pane2.</p>
+<div class="screenshot">
+  <img src="../images/page_0590_0.png" alt="Page 590">
+  <div class="caption">Page 590</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0590_1.jpeg" alt="Page 590">
+  <div class="caption">Page 590</div>
+</div>
+<p><strong>52.</strong> Select Pane2 and configure the following properties:</p>
+<p><strong>53.</strong> On the Toolbox tab, enter a search string to find Hist_AlarmAppConfigurations and drag it</p>
+<p>to Pane2.</p>
+<p>Size \ Height:</p>
+<p>40</p>
+<p>Size \ Height Sizing:</p>
+<p>Fixed</p>
+<p>Appearance \ Content Alignment:</p>
+<p>Left</p>
+<div class="screenshot">
+  <img src="../images/page_0591_0.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0591_1.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0591_2.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>54.</strong> Ensure that Pane1 is selected.</p>
+<p><strong>55.</strong> On the Properties tab, for the Run-Time Behavior \ Group by Header property, click the</p>
+<p>down-arrow to the left of the check box and select In from the drop-down list.</p>
+<p>This changes the binding mode for the property to Dynamic and you can use a reference or</p>
+<p>expression in the value field.</p>
+<p><strong>56.</strong> To the right of the property, in the value field, enter the following:</p>
+<p>MyContent.Hist_AlarmAppConfigurations1.GroupByHeader</p>
+<p><strong>57.</strong> Repeat Steps 55-56 for the following properties:</p>
+<p>The following shows the Command Bar \ Show Command Bar property:</p>
+<p>The following shows the Alarm Mode \ Client Mode property:</p>
+<p><strong>58.</strong> Save and close the HistoricalAlarmsEvents layout, and check it in.</p>
+<p>Property Name</p>
+<p>Binding Mode</p>
+<p>Reference</p>
+<p>Command Bar \</p>
+<p>Show Command Bar</p>
+<p>In</p>
+<p>MyContent.Hist_AlarmAppConfigurations1.ShowCommandBar</p>
+<p>Alarm Mode \</p>
+<p>Client Mode</p>
+<p>In</p>
+<p>MyContent.Hist_AlarmAppConfigurations1.ClientMode</p>
+<div class="screenshot">
+  <img src="../images/page_0592_0.png" alt="Page 592">
+  <div class="caption">Page 592</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0592_1.png" alt="Page 592">
+  <div class="caption">Page 592</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0592_2.png" alt="Page 592">
+  <div class="caption">Page 592</div>
+</div>
+<p>Associate HistoricalAlarmsEvents with a Navigation Item</p>
+<p>In the following steps, you will create a new navigation item in the ViewApp Editor and configure it</p>
+<p>to display historical alarms and events.</p>
+<p><strong>59.</strong> In the ViewApp Editor, in the Navigation list, select Home, and then click Add to add a new</p>
+<p>child navigation item under Home.</p>
+<p><strong>60.</strong> Rename the new navigation item to HistoricalAlarmsEvents.</p>
+<p><strong>61.</strong> On the Properties tab, change the Navigation \ Title property to</p>
+<p>Historical Alarms and/or Events.</p>
+<div class="screenshot">
+  <img src="../images/page_0593_0.jpeg" alt="Page 593">
+  <div class="caption">Page 593</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0593_1.png" alt="Page 593">
+  <div class="caption">Page 593</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>62.</strong> With the new navigation item selected, on the Toolbox tab, enter a search string to find</p>
+<p>HistoricalAlarmsEvents and drag it to Pane1.</p>
+<p>You can confirm the assignment in the Actions list.</p>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will test your changes in the preview session.</p>
+<p><strong>63.</strong> Click Update to update the preview session.</p>
+<p>The preview session opens with HistoricalAlarms and/or Events displayed.</p>
+<div class="screenshot">
+  <img src="../images/page_0594_0.png" alt="Page 594">
+  <div class="caption">Page 594</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0594_1.png" alt="Page 594">
+  <div class="caption">Page 594</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0594_2.png" alt="Page 594">
+  <div class="caption">Page 594</div>
+</div>
+<p>Notice the column headings that you configured for the control, and filter icons appear in the</p>
+<p>column headings.</p>
+<p>Also notice that a Requery button appears at the bottom of the display to the right of the status</p>
+<p>bar.</p>
+<p><strong>64.</strong> On the Severity column heading, click the filter icon, and select 1 from the Severity list.</p>
+<div class="screenshot">
+  <img src="../images/page_0595_0.png" alt="Page 595">
+  <div class="caption">Page 595</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0595_1.png" alt="Page 595">
+  <div class="caption">Page 595</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>The display filters all Severity 1 alarms.</p>
+<p><strong>65.</strong> Click Requery to update records for the last 15 minutes.</p>
+<p>Notice the severity filter is reset after clicking Requery. You can also reset the filter by</p>
+<p>selecting (All) from the filter selector of the Severity column.</p>
+<p>On the status bar, the number of records may change every time records get updated.</p>
+<div class="screenshot">
+  <img src="../images/page_0596_0.png" alt="Page 596">
+  <div class="caption">Page 596</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0596_1.png" alt="Page 596">
+  <div class="caption">Page 596</div>
+</div>
+<p><strong>66.</strong> At the top of the HistoricalAlarms and/or Events display, check Group by Header.</p>
+<p>Notice that a group-by field appears, with the tip Drag a column header here to group by</p>
+<p>that column.</p>
+<p><strong>67.</strong> Drag the EventTime column to the group-by field.</p>
+<p>Notice that alarm records are grouped by different event times.</p>
+<div class="screenshot">
+  <img src="../images/page_0597_0.jpeg" alt="Page 597">
+  <div class="caption">Page 597</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0597_1.png" alt="Page 597">
+  <div class="caption">Page 597</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>68.</strong> On the HistoricalAlarms and/or Events display, check Show / Hide Command Bar.</p>
+<p>Notice that the command bar appears, with buttons to Navigate, Requery, Connect, and</p>
+<p>Disconnect.</p>
+<p><strong>69.</strong> From the command bar, click Requery.</p>
+<div class="screenshot">
+  <img src="../images/page_0598_0.png" alt="Page 598">
+  <div class="caption">Page 598</div>
+</div>
+<p>Notice the group-by field is reset, because Requery resets the grouping.</p>
+<div class="key-concept">Note: You can also test Navigate, Disconnect, and Connect from the command bar. However, if you test disconnecting, ensure you enable the connection to continue later steps. 70. From the Client Mode combo box, click the drop-down list and select Historical Events. You may not have any events for the last 15 minutes, so in the next step, you will generate some events. 71. Ensure &lt;domain&gt;\jamess is logged in and perform actions to generate events. For example, you can navigate to Mixer100 in the ViewApp display and perform the following:  Open and close valves  Start and stop the agitator  Change the speed setpoint for the agitator Important: To ensure automatic operation of the simulator, ensure the valves are in the same state as their associated pumps, so that the level in the tank begins moving again. For example, if Pump 1 is started, then Inlet 1 must be open. 72. After performing actions to generate new events, navigate back to Historical Alarms and/or Events.</div>
+<div class="screenshot">
+  <img src="../images/page_0599_0.png" alt="Page 599">
+  <div class="caption">Page 599</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p><strong>73.</strong> For Client Mode, select Historical Events.</p>
+<p>Notice the recent operational events are listed in the event display, and they are sorted by</p>
+<p>Event Time in descending order.</p>
+<div class="key-concept">Note: For verified write events, you can scroll to the right of the event display to view operator and verifier information. 74. When you are finished testing, minimize the preview session and the ViewApp Editor. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L40-Logged-Alarms-and-Events-Visualization.html">← Previous: Logged Alarms and Events Visualization</a> &nbsp;|&nbsp;
+  <a href="L42-Historization-and-Real-Time-Trending.html">Next: Historization and Real-Time Trending →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

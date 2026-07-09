@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 09: Lab 4 – Using Situational Awareness Dashboard Symbols</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">← L08: Introduction to Industrial Graphics and </a> &nbsp;|&nbsp;
+  <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html" style="font-weight:bold;color:#1a1a1a;">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L09: Lab 4 – Using Situational Awareness Dashboard Symbols</h1>
+<p class="source">Module 3 — Industrial Graphics | Pages 155-182</p>
+
+<div class="screenshot">
+  <img src="../images/page_0155_0.jpeg" alt="Page 155">
+  <div class="caption">Page 155</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p>Lab 4 – Using Situational Awareness</p>
+<p>Dashboard Symbols</p>
+<p>Introduction</p>
+<p>In this lab, you will create a sub-toolset under Training on the Graphics tab for organizing symbols.</p>
+<p>You will use the SA_ColumnChart symbol from Dashboard Tools in the Situational Awareness</p>
+<p>Library to create an overview symbol and configure it to show level and temperature information</p>
+<p>for mixers in an area. Then, you will link the symbol to an area object in the Galaxy.</p>
+<p>Once you create one symbol and link it to an area object, you will import some prebuilt symbols</p>
+<p>and link them to other area objects in the Galaxy.</p>
+<p>You will test your ViewApp in a ViewApp preview session and be able to view the symbols, such as</p>
+<p>the one shown below.</p>
+<p>Content workflow highlight: Linking content to an object</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Create a symbol on the Graphics tab</p>
+<p></p>
+<p>Search for symbols to embed in the Graphic Editor</p>
+<p></p>
+<p>Embed symbols from the Situational Awareness Library</p>
+<p></p>
+<p>Configure embedded symbol wizard options and custom properties</p>
+<p></p>
+<p>Substitute strings for an embedded symbol</p>
+<p></p>
+<p>Substitute references for an embedded symbol</p>
+<p></p>
+<p>Configure the Content Type property of a symbol</p>
+<p></p>
+<p>Link content to instance objects</p>
+<p></p>
+<p>Change content name within an object</p>
+<p></p>
+<p>Import symbols</p>
+<p></p>
+<p>Use the Auto-Fill content feature to display content while navigating a ViewApp at runtime</p>
+<div class="screenshot">
+  <img src="../images/page_0156_0.png" alt="Page 156">
+  <div class="caption">Page 156</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0156_1.png" alt="Page 156">
+  <div class="caption">Page 156</div>
+</div>
+<p>Create a New Graphic Toolset and a Symbol</p>
+<p>In the following steps, you will create a graphic toolset on the Graphics tab to organize the symbols</p>
+<p>you will create for this course. Then you will create a new symbol named Line1_Overview.</p>
+<p>1.</p>
+<p>On the Graphics tab, right-click the Training toolset and select New | Graphic Toolset.</p>
+<p>A new toolset with the default name is created under Training.</p>
+<p>2.</p>
+<p>Rename the new toolset to Symbols.</p>
+<p>3.</p>
+<p>Right-click the Training \ Symbols toolset and select New | Symbol.</p>
+<div class="screenshot">
+  <img src="../images/page_0157_0.png" alt="Page 157">
+  <div class="caption">Page 157</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0157_1.png" alt="Page 157">
+  <div class="caption">Page 157</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p>A new symbol with the default name is created in the Training \ Symbols toolset.</p>
+<p>4.</p>
+<p>Rename the new symbol to Line1_Overview.</p>
+<div class="screenshot">
+  <img src="../images/page_0158_0.png" alt="Page 158">
+  <div class="caption">Page 158</div>
+</div>
+<p>Configure Content Type for the Symbol</p>
+<p>In the next steps, you will open the Line1_Overview symbol in the Graphic Editor and configure a</p>
+<p>content type for it.</p>
+<p>5.</p>
+<p>On the Graphics tab, in the Training \ Symbols toolset, double-click Line1_Overview to</p>
+<p>open it in the Graphic Editor.</p>
+<p>The Graphic Editor appears.</p>
+<p>You can maximize the editor to optimize the view.</p>
+<div class="screenshot">
+  <img src="../images/page_0159_0.png" alt="Page 159">
+  <div class="caption">Page 159</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0159_1.png" alt="Page 159">
+  <div class="caption">Page 159</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p>6.</p>
+<p>On the Properties tab for the symbol, select the Runtime Behavior \ ContentType property.</p>
+<p>7.</p>
+<p>Click the down-arrow on the right side of the field to display a drop-down list of content types.</p>
+<p>8.</p>
+<p>Check Overview as the content type.</p>
+<div class="key-concept">Note: You may need to click the canvas to close the drop-down list.</div>
+<div class="screenshot">
+  <img src="../images/page_0160_0.png" alt="Page 160">
+  <div class="caption">Page 160</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0160_1.png" alt="Page 160">
+  <div class="caption">Page 160</div>
+</div>
+<p>The Runtime Behavior \ ContentType property is set to Overview.</p>
+<p>Embed Symbols and Configure the Embedded Symbols</p>
+<p>Now, you will search for symbols and embed SA_ColumnChart from the Situational Awareness</p>
+<p>Library dashboard tools. You will configure custom properties for the embedded symbols to</p>
+<p>reference level and temperature attributes from objects within Line1. You will also use string</p>
+<p>substitution to customize the labels in the embedded symbols to display chart information, such as</p>
+<p>the chart heading and the horizontal axis description.</p>
+<p>9.</p>
+<p>On the right side of the Graphic Editor, select the Toolbox tab.</p>
+<p>Notice that it provides a Search field.</p>
+<div class="screenshot">
+  <img src="../images/page_0161_0.png" alt="Page 161">
+  <div class="caption">Page 161</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0161_1.png" alt="Page 161">
+  <div class="caption">Page 161</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>10.</strong> In the Search field, enter columnchart as a search string.</p>
+<p>Items matching the columnchart search string are found.</p>
+<p><strong>11.</strong> From the Toolbox tab preview area, drag SA_ColumnChart to the drawing canvas.</p>
+<p>A symbol named SA_ColumnChart1 is placed on the canvas.</p>
+<p>Notice that by default, the symbol includes ten bars.</p>
+<div class="screenshot">
+  <img src="../images/page_0162_0.png" alt="Page 162">
+  <div class="caption">Page 162</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0162_1.png" alt="Page 162">
+  <div class="caption">Page 162</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0162_2.png" alt="Page 162">
+  <div class="caption">Page 162</div>
+</div>
+<p><strong>12.</strong> With SA_ColumnChart1 still selected on the drawing canvas, select the Properties tab.</p>
+<p><strong>13.</strong> On the Properties tab, select Wizard Options \ NumberofBars.</p>
+<p><strong>14.</strong> Click the down-arrow to display a drop-down list, and then select Four.</p>
+<p>The Wizard Options \ NumberofBars property is set to Four.</p>
+<p>Notice that the SA_ColumnChart1 symbol on the drawing canvas changes to display four</p>
+<p>bars.</p>
+<div class="screenshot">
+  <img src="../images/page_0163_0.png" alt="Page 163">
+  <div class="caption">Page 163</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0163_1.png" alt="Page 163">
+  <div class="caption">Page 163</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>15.</strong> Right-click the SA_ColumnChart1 symbol and select Custom Properties.</p>
+<p>The Edit Custom Properties dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0164_0.png" alt="Page 164">
+  <div class="caption">Page 164</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0164_1.png" alt="Page 164">
+  <div class="caption">Page 164</div>
+</div>
+<p><strong>16.</strong> In the left pane, ensure Bar01 is selected.</p>
+<p><strong>17.</strong> In the right pane, in the Default Value field, remove the three dashes ( --- ) from the field.</p>
+<p>The field appears with a red outline.</p>
+<p><strong>18.</strong> Click the ellipsis button to the right of the Default Value field.</p>
+<div class="screenshot">
+  <img src="../images/page_0165_0.png" alt="Page 165">
+  <div class="caption">Page 165</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0165_1.png" alt="Page 165">
+  <div class="caption">Page 165</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0165_2.png" alt="Page 165">
+  <div class="caption">Page 165</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p>The Galaxy Browser appears.</p>
+<p><strong>19.</strong> In the Galaxy Browser, click Show Hierarchical Name.</p>
+<p><strong>20.</strong> In the Instances list, select Mixer100.Level, and in the Attribute list, select PV.</p>
+<div class="screenshot">
+  <img src="../images/page_0166_0.png" alt="Page 166">
+  <div class="caption">Page 166</div>
+</div>
+<p><strong>21.</strong> Click OK to close the Galaxy Browser.</p>
+<p>The Default Value field for Bar01 now shows Mixer100.Level.PV.</p>
+<div class="screenshot">
+  <img src="../images/page_0167_0.png" alt="Page 167">
+  <div class="caption">Page 167</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>22.</strong> In the Edit Custom Properties dialog box, configure other custom properties as follows:</p>
+<div class="key-concept">Note: You can refer to Steps 16-21 to configure the custom properties by selecting attributes from the Galaxy Browser. Or, you can use the auto-complete feature to complete the configuration for each custom property by typing the reference in the Default Value field. Custom properties appear as shown below. 23. Click OK to close the Edit Custom Properties dialog box. Name Default Value Bar02 Mixer200.Level.PV Bar03 Mixer300.Level.PV Bar04 Mixer400.Level.PV</div>
+<div class="screenshot">
+  <img src="../images/page_0168_0.png" alt="Page 168">
+  <div class="caption">Page 168</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0168_1.png" alt="Page 168">
+  <div class="caption">Page 168</div>
+</div>
+<p><strong>24.</strong> On the drawing canvas, right-click the SA_ColumnChart1 symbol and select Substitute |</p>
+<p>Substitute Strings.</p>
+<p>The Substitute Strings dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0169_0.png" alt="Page 169">
+  <div class="caption">Page 169</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>25.</strong> In the Substitute Strings dialog box, configure strings in the New column as follows:</p>
+<p>The strings that were changed appear as bold in the New column.</p>
+<p>Old</p>
+<p>New</p>
+<p>Chart Heading</p>
+<p>Line 1</p>
+<p>Horizontal Axis Description</p>
+<p>Mixers</p>
+<p>Short Description</p>
+<p>Current level of mixers in Line 1</p>
+<p>Vertical Axis Description</p>
+<p>Current Level</p>
+<div class="screenshot">
+  <img src="../images/page_0170_0.png" alt="Page 170">
+  <div class="caption">Page 170</div>
+</div>
+<p><strong>26.</strong> Click Find & Replace.</p>
+<p>The Find & Replace area expands to show additional fields.</p>
+<p><strong>27.</strong> In the Find What? field, enter B, and in the Replace with field, enter M.</p>
+<div class="key-concept">Note: For the purposes of this lab, the letter M is used in the column headings for this symbol to stand for “mixers.”</div>
+<div class="screenshot">
+  <img src="../images/page_0171_0.png" alt="Page 171">
+  <div class="caption">Page 171</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>28.</strong> Click Replace All.</p>
+<p>Notice that the replaced text displays as bold in the New column.</p>
+<p><strong>29.</strong> Click OK to close the Substitute Strings dialog box.</p>
+<p>The strings on SA_ColumnChart1 are updated.</p>
+<div class="screenshot">
+  <img src="../images/page_0172_0.png" alt="Page 172">
+  <div class="caption">Page 172</div>
+</div>
+<p><strong>30.</strong> On the drawing canvas, right-click the SA_ColumnChart1 symbol and select Duplicate.</p>
+<p>The SA_ColumnChart1 symbol is duplicated on the canvas.</p>
+<p>The name of the duplicate symbol is EmbeddedSymbol1.</p>
+<p><strong>31.</strong> On the drawing canvas, ensure EmbeddedSymbol1 is selected and move it to the right of</p>
+<p>SA_ColumnChart1.</p>
+<div class="screenshot">
+  <img src="../images/page_0173_0.png" alt="Page 173">
+  <div class="caption">Page 173</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0173_1.png" alt="Page 173">
+  <div class="caption">Page 173</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>32.</strong> Right-click EmbeddedSymbol1 and select Substitute | Substitute References.</p>
+<p>The Substitute Reference dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0174_0.png" alt="Page 174">
+  <div class="caption">Page 174</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0174_1.png" alt="Page 174">
+  <div class="caption">Page 174</div>
+</div>
+<p><strong>33.</strong> Click Find & Replace.</p>
+<p><strong>34.</strong> In the Find What? field, enter Level, and in the Replace with field, enter Temperature.</p>
+<p><strong>35.</strong> Click Replace All.</p>
+<p>The references in the New column appear as shown below.</p>
+<p><strong>36.</strong> Click OK to close the Substitute Reference dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0175_0.png" alt="Page 175">
+  <div class="caption">Page 175</div>
+</div>
+<p><strong>Screenshot — Substitute Strings Dialog:</strong></p>
+<p>• Row "Current Level" → <strong>Current Temperature</strong> (bold)</p>
+<p>• Row "Current level of mixers in Line 1" → <strong>Current temperature of mixers in Line 1</strong> (bold)</p>
+<p>• Row "Line 1" → <strong>|</strong> (single space, red arrow with annotation "This is one space")</p>
+<p>• Status: String 6 of 11</p>
+<p>• Find & Replace section collapsed</p>
+<p>---]</p>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>37.</strong> Right-click EmbeddedSymbol1 and select Substitute | Substitute Strings.</p>
+<p><strong>38.</strong> In the Substitute Strings dialog box, configure strings in the New column as follows:</p>
+<div class="key-concept">Note: Line 1 already displays as the chart heading in the SA_ColumnChart1 symbol, so there is no need to have it display for EmbeddedSymbol1. 39. Click OK to close the Substitute Strings dialog box. Old New Current Level Current Temperature Current level of mixers in Line 1 Current temperature of mixers in Line 1 Line 1 &lt;Enter one space. Empty strings cannot be used in the New column.&gt;</div>
+<div class="screenshot">
+  <img src="../images/page_0176_0.png" alt="Page 176">
+  <div class="caption">Page 176</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0176_1.png" alt="Page 176">
+  <div class="caption">Page 176</div>
+</div>
+<p>Save and Check In the Symbol</p>
+<p><strong>40.</strong> Click Save and Close to save the symbol and close the Graphic Editor.</p>
+<p>The Check-in dialog box appears.</p>
+<p><strong>41.</strong> Click Check-in to check in the symbol.</p>
+<p>Associate the Symbol with an Automation Object</p>
+<p>In the following steps, you will link the Line1_Overview symbol to the Line1 automation object.</p>
+<p><strong>42.</strong> In the Deployment view, double-click Line1 to open it in the Object Editor.</p>
+<p><strong>43.</strong> On the Attributes tab, in the Content pane, click Link Content.</p>
+<p>The Galaxy Browser appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0177_0.png" alt="Page 177">
+  <div class="caption">Page 177</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0177_1.jpeg" alt="Page 177">
+  <div class="caption">Page 177</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>44.</strong> In the Graphic Toolbox pane, select the Training \ Symbols toolset, and in the Symbols</p>
+<p>pane, select Line1_Overview.</p>
+<p><strong>45.</strong> Click OK to close the Galaxy Browser.</p>
+<p>Notice that Line1_Overview is linked to the Line1 object.</p>
+<div class="screenshot">
+  <img src="../images/page_0178_0.png" alt="Page 178">
+  <div class="caption">Page 178</div>
+</div>
+<p>• Name field: red arrow points here</p>
+<p>• Description field: empty</p>
+<p>• Preview: Two vertical bars M1, M2 (0.00), 0 at bottom</p>
+<p>• Status: 1 of 1 displayed, 1 selected</p>
+<p>• Blue footer: Line1 * (asterisk = unsaved)</p>
+<p><strong>Step 47:</strong> Save and close Line1 object, check it in.</p>
+<p><strong>Section: Update Other Area Objects</strong></p>
+<p>• Import prebuilt .aaPKG file (ContentType = Overview)</p>
+<p>• Steps 48-51:</p>
+<p><strong>48.</strong> Galaxy menu → Import | Objects | From package</p>
+<p><strong>49.</strong> Navigate to C:\Training, select "Lab 4 - Overview Symbols_Prebuilt.aaPKG", click Open</p>
+<p><strong>50.</strong> Leave default import preferences, click Import</p>
+<p><strong>51.</strong> Click Close when complete</p>
+<p>---]</p>
+<p><strong>46.</strong> In the Name field, rename the symbol to Overview and press Enter.</p>
+<p><strong>47.</strong> Save and close the Line1 object, and check it in.</p>
+<p>Update Other Area Objects</p>
+<p>Now you will update other area objects to include overview symbols. For the purposes of this lab,</p>
+<p>you will import the other overview symbols from a prebuilt aaPKG file. These symbols have</p>
+<p>already been configured with the ContentType property set to Overview.</p>
+<p><strong>48.</strong> On the ribbon, select the Galaxy menu, and then select Import | Objects | From package.</p>
+<p>The Import Objects from package dialog box appears.</p>
+<p><strong>49.</strong> Navigate to C:\Training, select the Lab 4 - Overview Symbols_Prebuilt.aaPKG file, and</p>
+<p>then click Open.</p>
+<p>The Import preferences dialog box appears.</p>
+<p><strong>50.</strong> Leave the default import preferences and click Import.</p>
+<p><strong>51.</strong> When the import process is complete, click Close.</p>
+<div class="screenshot">
+  <img src="../images/page_0179_0.png" alt="Page 179">
+  <div class="caption">Page 179</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>52.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
+<p>page of the System Platform IDE.</p>
+<p>Several symbols are imported to the Graphics tab and listed in the Training \ Symbols</p>
+<p>toolset with Line1_Overview.</p>
+<p><strong>53.</strong> Repeat Steps 42-47 to link symbols to automation objects as follows:</p>
+<p>Area Object</p>
+<p>Symbol</p>
+<p>Name</p>
+<p>Line2</p>
+<p>Line2_Overview</p>
+<p>Overview</p>
+<p>Packaging</p>
+<p>Packaging_Overview</p>
+<p>Overview</p>
+<p>Production</p>
+<p>Production_Overview</p>
+<p>Overview</p>
+<div class="screenshot">
+  <img src="../images/page_0180_0.jpeg" alt="Page 180">
+  <div class="caption">Page 180</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will test the ViewApp in a preview session to see the symbols.</p>
+<p><strong>54.</strong> On the Templates tab, in the Training \ ViewApps toolset, double-click $ViewApp_Training</p>
+<p>to open it in the ViewApp Editor.</p>
+<p><strong>55.</strong> In the top-right corner of the ViewApp Editor, click Preview.</p>
+<div class="key-concept">Note: You may need to wait for a few seconds for Preview to become available. The preview session opens and is available in the task bar. When the preview session opens, notice that the Overview symbol from the Packaging area displays in Pane1, which is configured to display Overview type of content.</div>
+<div class="screenshot">
+  <img src="../images/page_0181_0.jpeg" alt="Page 181">
+  <div class="caption">Page 181</div>
+</div>
+<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
+<p><strong>56.</strong> Use the navigation tools to navigate to different areas and observe the auto-fill behavior.</p>
+<div class="key-concept">Note: You can navigate using the NavBreadcrumbControl or the NavTreeControl. For example:  Navigate to Production. The display shows Production Overview.  Navigate to Line1. The display shows Line1 Overview. The following example shows the ViewApp navigated to Line1. 57. Now navigate to the following:  Navigate to Line2:  What do you expect to see? ________________________________________  Why? __________________________________________________________  Navigate to Mixer500:  What do you expect to see? ________________________________________  Why? __________________________________________________________ 58. When you are finished testing, minimize the preview session and the ViewApp Editor. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">← Previous: Introduction to Industrial Graphics and </a> &nbsp;|&nbsp;
+  <a href="L10-Industrial-Graphics-with-Objects.html">Next: Industrial Graphics with Objects →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

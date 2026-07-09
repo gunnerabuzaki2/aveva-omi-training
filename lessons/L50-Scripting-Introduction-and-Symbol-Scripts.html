@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 50: Scripting Introduction and Symbol Scripts</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L49-Lab-24---Working-with-NET-Controls.html">← L49: Lab 24 – Working with .NET Controls</a> &nbsp;|&nbsp;
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navi →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html" style="font-weight:bold;color:#1a1a1a;">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L50: Scripting Introduction and Symbol Scripts</h1>
+<p class="source">Module 13 — Scripting in Graphics | Pages 687-692</p>
+
+<p><strong>Page 13-3, Section 1 – Introduction</strong>.</p>
+<p>• <strong>Gray Intro Box</strong>: Overview of scripting environment, symbol scripts, and layout scripts</p>
+<p>• <strong>Introduction Subsection</strong>:</p>
+<p>• Scripts attached to symbols or layouts using QuickScript .NET</p>
+<p>• Supports assignments, math functions, conditional branching/looping</p>
+<p>• References to object properties, element/symbol attributes, ViewApp settings, local variables</p>
+<p>• Runtime methods like ShowLoginDialog()</p>
+<p>• <strong>Execution Order of Symbol and Layout Scripts</strong>:</p>
+<p>• Symbol scripts execute <strong>before</strong> layout scripts</p>
+<p>• Exception: On Hide layout scripts run before symbol scripts</p>
+<p>• Data Change triggered scripts run first time reference is subscribed to</p>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 1 – Introduction</p>
+<p>Section 1 – Introduction</p>
+<p>Introduction</p>
+<p>You can add scripts to symbols or their elements to animate the symbols or modify their elements</p>
+<p>while a ViewApp is running. You can also add scripts to layouts to customize the runtime behavior</p>
+<p>of the layouts and layout content. You use the QuickScript .NET scripting language to write the</p>
+<p>scripts.</p>
+<p>Scripts can include assignments, comparisons, simple math functions, and similar actions. They</p>
+<p>can also include logical operations using conditional branching, code looping, and more. The</p>
+<p>references that can be used in scripts include attributes of automation objects, properties of</p>
+<p>elements and embedded symbols, custom properties, and attributes of the ViewApp. Local</p>
+<p>variables can also be defined within the scripts.</p>
+<p>Additionally, supported methods can be used in the scripts to perform various functions at runtime.</p>
+<p>For example, you can use ShowLoginDialog() method in a script, so that when the script is</p>
+<p>executed at runtime, it will prompt with the login dialog box if security in the Galaxy is enabled.</p>
+<p>Execution Order of Symbol and Layout Scripts</p>
+<p>In general, symbol scripts run before layout scripts run in a running ViewApp. This is to ensure that</p>
+<p>any references within the layout script will exist when a layout script calls the reference. The</p>
+<p>exception to this rule is a layout On Hide script, which, when triggered by the layout closing, will</p>
+<p>run before any symbol scripts that are still waiting to execute.</p>
+<p>Note the following:</p>
+<p></p>
+<p>The On Hide layout script has precedence over symbol scripts.</p>
+<p></p>
+<p>Symbol scripts have precedence over the On Show layout script.</p>
+<p></p>
+<p>Named layout scripts can run in any order (not necessarily in the listed order), and may be</p>
+<p>interspersed with symbol scripts.</p>
+<p></p>
+<p>Any named script that is triggered by the Data Change trigger type runs the first time when</p>
+<p>the reference is subscribed to. This behavior is different than the Data Change trigger</p>
+<p>behavior of Application Server scripts and can take considerable time in intermittent</p>
+<p>networks.</p>
+<p>This section provides an overview of the scripting environment and introduces symbol scripts and</p>
+<p>layout scripts.</p>
+<p><strong>Page 13-4, Section Title Page</strong>.</p>
+<p>• Blank page with only header and footer</p>
+<p>• <strong>Header</strong>: 13-4, Module 13 – Scripting in Graphics</p>
+<p>• <strong>Watermark</strong>: "Do Not Copy"</p>
+<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<div class="screenshot">
+  <img src="../images/page_0689_0.png" alt="Page 689">
+  <div class="caption">Page 689</div>
+</div>
+<p><strong>Page 13-5, Section 2 – Symbol Scripts</strong>.</p>
+<p>• <strong>Gray Text Box</strong>: "This section describes predefined and named symbol scripts, explains script triggers, and describes the Action Scripts animation."</p>
+<p>• <strong>Introduction</strong>: Scripts added to symbols via Edit Scripts dialog (right-click canvas > Scripts)</p>
+<p>• <strong>Screenshot - Edit Scripts Dialog</strong>:</p>
+<p>• <strong>Left Pane</strong>: Symbol Scripts tree with Predefined Scripts (expanded), + button to add</p>
+<p>• <strong>Right Pane</strong>: Predefined Scripts configuration:</p>
+<p>• Trigger section: type dropdown (On Show), Data Timeout: 1000 ms, scripts used: 0</p>
+<p>• Script editor area (empty), Line: 1 Col: 1</p>
+<p>• Toolbar icons: Test (green play), Check (yellow triangle), Confirm (blue check)</p>
+<p>• Bottom: OK, Cancel buttons</p>
+<p>• <strong>Bullet List - Symbol Script Capabilities</strong>:</p>
+<p>• Configure predefined scripts</p>
+<p>• Add named scripts</p>
+<p>• Edit/rename/remove named scripts</p>
+<p>• Substitute references</p>
+<p>• Use element methods</p>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 2 – Symbol Scripts</p>
+<p>Section 2 – Symbol Scripts</p>
+<p>Introduction</p>
+<p>You can add scripts to symbols to animate the symbols or modify their elements while a view</p>
+<p>application is running. You can add a script to a symbol with the Edit Scripts dialog box. From the</p>
+<p>Graphic Editor, right-click the drawing canvas and select Scripts to display the dialog box.</p>
+<p>With symbol scripts, you can:</p>
+<p></p>
+<p>Configure the predefined scripts for a symbol</p>
+<p></p>
+<p>Add named scripts to a symbol</p>
+<p></p>
+<p>Edit existing named or predefined scripts in a symbol</p>
+<p></p>
+<p>Rename named scripts in a symbol</p>
+<p></p>
+<p>Remove named scripts from a symbol</p>
+<p></p>
+<p>Substitute references in predefined or named scripts</p>
+<p></p>
+<p>Use element methods in named or predefined scripts</p>
+<p>This section describes predefined and named symbol scripts, explains script triggers, and</p>
+<p>describes the Action Scripts animation.</p>
+<div class="screenshot">
+  <img src="../images/page_0690_0.jpeg" alt="Page 690">
+  <div class="caption">Page 690</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0690_1.jpeg" alt="Page 690">
+  <div class="caption">Page 690</div>
+</div>
+<p><strong>Page 13-6, Types of Symbol Scripts and Triggers</strong>.</p>
+<p>• <strong>Predefined Symbol Scripts</strong>:</p>
+<p>• On Show: Runs once when symbol opens/becomes visible</p>
+<p>• While Showing: Runs periodically while symbol visible</p>
+<p>• On Hide: Runs once when symbol closes/becomes hidden</p>
+<p>• <strong>Screenshot 1 - Predefined Scripts Trigger Dropdown</strong>:</p>
+<p>• Left: Symbol Scripts with +, -, sort buttons, Predefined Scripts selected</p>
+<p>• Right: Trigger type dropdown showing <strong>On Show</strong>, While Showing, On Hide</p>
+<p>• <strong>Named Symbol Scripts</strong>:</p>
+<p>• WhileTrue: Runs while expression is True</p>
+<p>• WhileFalse: Runs while expression is False</p>
+<p>• OnTrue: Runs on False→True transition</p>
+<p>• OnFalse: Runs on True→False transition</p>
+<p>• DataChange: Runs when value/quality changes</p>
+<p>• <strong>Screenshot 2 - Named Scripts Configuration</strong>:</p>
+<p>• Left: Named Scripts with <strong>TestScript</strong> selected, red arrow on + Add button</p>
+<p>• Right: Expression field, Trigger dropdown (WhileTrue selected), Deadband field</p>
+<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<p>Types of Symbol Scripts and Triggers</p>
+<p>You can use predefined and named scripts for symbols. The following sections describe the types</p>
+<p>of symbol scripts and applicable triggers.</p>
+<p>Predefined Symbol Scripts</p>
+<p>Predefined symbol scripts run based on the display of the symbol in the running view application.</p>
+<p>The predefined script triggers are On Show, While Showing, and On Hide. Based on how the</p>
+<p>trigger is configured, predefined symbol scripts can run:</p>
+<p></p>
+<p>Once after the symbol opens or is shown (On Show)</p>
+<p></p>
+<p>Periodically while the symbol appears in a running view application (While Showing)</p>
+<p></p>
+<p>Once after the symbol closes or is hidden (On Hide)</p>
+<p>Named Symbol Scripts</p>
+<p>You can add a named script by clicking the Add Script button. Named scripts run when an</p>
+<p>expression or references associated with the script change state. The expression in the</p>
+<p>Expression field acts as a data source for the script trigger.</p>
+<p>Predefined triggers are WhileTrue, WhileFalse, OnTrue, OnFalse, and DataChange. Based on</p>
+<p>how the trigger is configured, named symbol scripts can run:</p>
+<p></p>
+<p>While the trigger expression is true (WhileTrue)</p>
+<p></p>
+<p>While the trigger expression is false (WhileFalse)</p>
+<p></p>
+<p>When the trigger expression transitions from false to true (OnTrue)</p>
+<p></p>
+<p>When the trigger expression transitions from true to false (OnFalse)</p>
+<p></p>
+<p>When data associated with the trigger expression changes value or its quality state</p>
+<p>changes value. (DataChange)</p>
+<div class="screenshot">
+  <img src="../images/page_0691_0.jpeg" alt="Page 691">
+  <div class="caption">Page 691</div>
+</div>
+<p><strong>Page 13-7, Action Scripts Animation</strong>.</p>
+<p>• <strong>Text</strong>: Add Action Scripts via Edit Animations dialog (double-click element > Add Animation > Action Scripts)</p>
+<p>• <strong>Triggers</strong>: On Left Click, While Left, On Left Double-Click, etc.</p>
+<p>• <strong>Symbol Script Development Environment</strong>: Script Function Browser, Graphic Browser, autocomplete, Clear Value icon, Validate Value icon</p>
+<p>• <strong>Screenshot - Edit Animations Dialog</strong>:</p>
+<p>• <strong>Left Pane</strong>: Animations list - Visualization, Its: Value Display, Interaction > <strong>Action Scripts</strong> (highlighted blue, Enabled)</p>
+<p>• Red arrow annotation: "Add Animation" pointing to + button</p>
+<p>• <strong>Right Pane - Action Scripts Details</strong>:</p>
+<p>• Preview: Button1 label</p>
+<p>• Key Equivalent: Ctrl, Shift checkboxes, Key dropdown (None)</p>
+<p>• Trigger Type dropdown (expanded): On Left Click/Key/Touch Down, While Left/Key/Touch Down, On Left/Key/Touch Up, On Left Double Click/Double Tap, On Right Click/Long Press, While Right Down, On Right Up, On Right Double Click</p>
+<p>• Every: ms field (empty)</p>
+<p>• <strong>Script Editor</strong>: Code with Dim graphicInfo, graphicInfo.Is, ShowGraphic(...)</p>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 2 – Symbol Scripts</p>
+<p>Action Scripts Animation</p>
+<p>You can add an Action Scripts animation to a graphic element with the Edit Animations dialog box.</p>
+<p>From the Graphic Editor, double-click an element on the drawing canvas. The Edit Animations</p>
+<p>dialog box appears. Click the Add Animation button and then select the Action Scripts animation.</p>
+<p>Triggers to use for an Action Scripts animation include On Left Click, While Left, On Left Double-</p>
+<p>Click, and so on, as shown below. One or more action scripts can be added to a graphic element.</p>
+<p>Additionally, Action Scripts animations can be added for an embedded symbol, but the embedded</p>
+<p>symbol must be configured with the TreatAsIcon property set to True.</p>
+<p>At runtime, action scripts execute one time or periodically when an operator performs a mouse</p>
+<p>action. Mouse actions include mouse clicks, double-clicks, hovering, and so on.</p>
+<p>Symbol Script Development Environment</p>
+<p>When writing the code for a script, you can use the Script Function Browser, Graphic Browser,</p>
+<p>Automation Object Browser, and the Attribute Browser to select external data. The script editor</p>
+<p>supports autocomplete.</p>
+<p>The Clear Value icon on the top right of the script editor can be used to clear all code written for the</p>
+<p>script. The Validate Value icon can be used to validate all code for the script, and if there are any</p>
+<p>warnings or errors, they will be indicated in the script editor. If the validation succeeds, no</p>
+<p>message is provided.</p>
+<div class="screenshot">
+  <img src="../images/page_0692_0.jpeg" alt="Page 692">
+  <div class="caption">Page 692</div>
+</div>
+<p><strong>Page 13-8, Module 13 – Scripting in Graphics</strong>.</p>
+<p>• <strong>Text</strong>: Additional configurations for different trigger types (e.g., On Show allows Data Timeout configuration)</p>
+<p>• <strong>Screenshot - Predefined Scripts Window</strong>:</p>
+<p>• Title: Predefined Scripts with script icon</p>
+<p>• Window controls: Minimize, Close (red X), Checkmark (save)</p>
+<p>• Script navigation: 1 of 1 with arrows</p>
+<p>• <strong>Trigger Section</strong>:</p>
+<p>• type: <strong>On Show</strong> (selected)</p>
+<p>• Data Timeout: <strong>1000</strong> ms</p>
+<p>• scripts used: 1</p>
+<p>• <strong>Script Editor</strong> (yellow-highlighted):</p>
+<p>• Line 1: <code>Button1.Text = "Turn On";</code></p>
+<p>• Toolbar: Save, Undo, Redo, Run/Execute icons</p>
+<p>• Cursor: Line: 1 Col: 1</p>
+<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<p>Additional configurations are available for different types of scripts. For example, if the trigger type</p>
+<p>is On Show, you can configure the Data Timeout in milliseconds.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L49-Lab-24---Working-with-NET-Controls.html">← Previous: Lab 24 – Working with .NET Controls</a> &nbsp;|&nbsp;
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">Next: Lab 25 – Creating a Back Button for Navi →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

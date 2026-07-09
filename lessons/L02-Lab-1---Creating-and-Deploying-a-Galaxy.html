@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 02: Lab 1 – Creating and Deploying a Galaxy</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L01-Course-Introduction-System-Platform-Overview.html">← L01: Course Introduction + System Platform Ov</a> &nbsp;|&nbsp;
+  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requi →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html" style="font-weight:bold;color:#1a1a1a;">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L02: Lab 1 – Creating and Deploying a Galaxy</h1>
+<p class="source">Module 1 — Introduction | Pages 17-32</p>
+
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>Introduction</p>
+<p>In this lab, you will create a Galaxy based on the Blank Galaxy template and connect to it using the</p>
+<p>System Platform IDE. Then you will import some prebuilt automation objects into the Galaxy and</p>
+<p>configure some of them. For example, you will configure a WinPlatform to work in a multi-node</p>
+<p>environment and an AppEngine to historize data to Historian.</p>
+<p>Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that</p>
+<p>attributes are receiving data in runtime.</p>
+<p>The Galaxy you create in this lab will be used for the other labs in this course.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Create a Galaxy</p>
+<p></p>
+<p>Import objects into a Galaxy</p>
+<p></p>
+<p>Deploy objects</p>
+<p></p>
+<p>Verify data using Object Viewer</p>
+<div class="screenshot">
+  <img src="../images/page_0018_0.jpeg" alt="System Platform IDE: Galaxies Dialog — AVEVA System Platform IDE &quot;G">
+  <div class="caption">System Platform IDE: Galaxies Dialog  Screenshot: AVEVA System Platform IDE &quot;Galaxies&quot; dialog box — the startup dialog: - Left Navigation Sidebar: Home (active, blue highlight), New (plus i...</div>
+</div>
+<p>Create a Galaxy</p>
+<p>First, you will create a Galaxy based on the Blank Galaxy template and connect to it.</p>
+<p>1.</p>
+<p>Open the System Platform IDE.</p>
+<p>The Galaxies dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0019_0.png" alt="Create Galaxy Dialog  Screenshot: &quot;Create Galaxy&quot; dialog box overlaid on the">
+  <div class="caption">Create Galaxy Dialog  Screenshot: &quot;Create Galaxy&quot; dialog box overlaid on the Galaxies window: - Galaxy name field: empty text input (blue underline, active), placeholder &quot;Galaxy name&quot; — no text...</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>2.</p>
+<p>In the New area, select the Blank Galaxy template.</p>
+<div class="key-concept">Note: Be sure to select the Blank Galaxy template. This will create a Galaxy that contains only base template objects. In a later step, you will import some prebuilt objects into your Galaxy. The Create Galaxy dialog box appears.</div>
+<div class="screenshot">
+  <img src="../images/page_0020_0.png" alt="Galaxy Creation Steps  Step 3: Enter &quot;TrainingGalaxy&quot; in Galaxy name field. ">
+  <div class="caption">Galaxy Creation Steps  Step 3: Enter &quot;TrainingGalaxy&quot; in Galaxy name field. Connect to this Galaxy enabled by default. Screenshot 1: Create Galaxy dialog with &quot;TrainingGalaxy&quot; entered (red ...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0020_1.png" alt="Galaxy Creation Steps  Step 3: Enter &quot;TrainingGalaxy&quot; in Galaxy name field. ">
+  <div class="caption">Galaxy Creation Steps  Step 3: Enter &quot;TrainingGalaxy&quot; in Galaxy name field. Connect to this Galaxy enabled by default. Screenshot 1: Create Galaxy dialog with &quot;TrainingGalaxy&quot; entered (red ...</div>
+</div>
+<p>3.</p>
+<p>In the Galaxy name field, enter TrainingGalaxy.</p>
+<p>Notice that the Connect to this Galaxy option is enabled by default.</p>
+<p>4.</p>
+<p>Click Create.</p>
+<p>The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as</p>
+<p>informational message details. This will take a few moments.</p>
+<p>It is important to review the messages shown in the Create Galaxy dialog box to make sure no</p>
+<p>errors occurred.</p>
+<div class="screenshot">
+  <img src="../images/page_0021_0.png" alt="Galaxy Creation Complete &amp; IDE  Create Galaxy completion dialog: &quot;Successful">
+  <div class="caption">Galaxy Creation Complete &amp; IDE  Create Galaxy completion dialog: &quot;Successfully created TrainingGalaxy on S00ENG. Please review the details below.&quot; Details list: Restore file repository, Restore...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0021_1.jpeg" alt="Galaxy Creation Complete &amp; IDE  Create Galaxy completion dialog: &quot;Successful">
+  <div class="caption">Galaxy Creation Complete &amp; IDE  Create Galaxy completion dialog: &quot;Successfully created TrainingGalaxy on S00ENG. Please review the details below.&quot; Details list: Restore file repository, Restore...</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>When the Galaxy creation progress indicates Successfully created TrainingGalaxy, the</p>
+<p>Close button becomes enabled.</p>
+<p>5.</p>
+<p>Click Close.</p>
+<p>After a few moments, the Galaxy opens in the System Platform IDE.</p>
+<div class="screenshot">
+  <img src="../images/page_0022_0.png" alt="Import Objects Backstage  Screenshot 1: System Platform IDE Backstage (Galaxy ">
+  <div class="caption">Import Objects Backstage  Screenshot 1: System Platform IDE Backstage (Galaxy &gt; Import): - Left sidebar: Home, New, Open, User, AVEVA Connect, Import (highlighted light blue), Export, Confi...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0022_1.png" alt="Import Objects from package file dialog showing Documents folder">
+  <div class="caption">Import Objects Backstage  Screenshot 1: System Platform IDE Backstage (Galaxy &gt; Import) with Import highlighted. Screenshot 2: Import Objects from package file dialog showing Documents folder with package file filter (*.aaPKG; *.aaPDF).</div>
+</div>
+<p>Import Objects</p>
+<p>Next, you will import some prebuilt objects into the Galaxy.</p>
+<p>6.</p>
+<p>On the ribbon, select the Galaxy menu, and then select Import | Objects | From package.</p>
+<div class="key-concept">Note: Selecting the Galaxy menu opens the System Platform IDE backstage. The Import Objects from package dialog box appears.</div>
+<div class="screenshot">
+  <img src="../images/page_0023_0.png" alt="Import Package &amp; Preferences  Screenshot 1: File picker in C:\Training folde">
+  <div class="caption">Import Package &amp; Preferences  Screenshot 1: File picker in C:\Training folder showing: Other Files folder, Lab 1 - Galaxy_Prebuilt.aaPKG (selected, 19,355 KB), Lab 4, Lab 9, Lab 23 package file...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0023_1.png" alt="Import preferences dialog showing conflict resolution options">
+  <div class="caption">Import Package &amp; Preferences  Screenshot 1: File picker in C:\Training folder with Lab 1 - Galaxy_Prebuilt.aaPKG selected. Screenshot 2: Import preferences dialog with options for handling duplicate objects, base templates, naming conflicts, and template protection.</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>7.</p>
+<p>Navigate to C:\Training, select the Lab 1 - Galaxy_Prebuilt.aaPKG file, and then click Open.</p>
+<p>The Import preferences dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0024_0.png" alt="Import Completion  Step 8: Leave defaults, click Import. Step 9: Click C">
+  <div class="caption">Import Completion  Step 8: Leave defaults, click Import. Step 9: Click Close when &quot;Import completed&quot;. Step 10: Click back arrow. Screenshot 1: Import completion dialog: &quot;Import comp...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0024_1.png" alt="System Platform IDE Backstage Import view after import completion">
+  <div class="caption">Import Completion  Step 8: Leave defaults, click Import. Step 9: Click Close when "Import completed". Step 10: Click back arrow. Screenshot 1: Import completion dialog showing "Import completed" status. Screenshot 2: Backstage Import view after closing completion dialog, before clicking back arrow.</div>
+</div>
+<p>8.</p>
+<p>Leave the default import preferences and click Import.</p>
+<p>The Import Objects from package dialog box shows the progress of the import process, as</p>
+<p>well as informational message details.</p>
+<p>It is important to review the messages shown in the Import Objects from package dialog box</p>
+<p>to make sure no errors occurred.</p>
+<p>9.</p>
+<p>When the import progress indicates Import completed, click Close.</p>
+<p><strong>10.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
+<p>page of the System Platform IDE.</p>
+<div class="screenshot">
+  <img src="../images/page_0025_0.png" alt="Configure Platform  Step 11: Navigate Deployment view to TrainingGalaxy &gt; PR">
+  <div class="caption">Configure Platform  Step 11: Navigate Deployment view to TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1. Step 12: Double-click PROD_Platform1 to open Object Editor. Step 13: Enter...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0025_1.png" alt="Configure Platform  Step 11: Navigate Deployment view to TrainingGalaxy &gt; PR">
+  <div class="caption">Configure Platform  Step 11: Navigate Deployment view to TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1. Step 12: Double-click PROD_Platform1 to open Object Editor. Step 13: Enter...</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>Configure the Platform</p>
+<p>In the following steps, you will configure the network address of a WinPlatform object, which is</p>
+<p>named PROD_Platform1.</p>
+<p><strong>11.</strong> In the Deployment view, expand TrainingGalaxy \ PROD_Platform1 \ AppEngine1 \ Line1</p>
+<p>to see the objects.</p>
+<p><strong>12.</strong> Double-click PROD_Platform1 to open it in the Object Editor.</p>
+<p><strong>13.</strong> On the General tab, in the Network address field, enter the name of the computer to deploy</p>
+<p>this platform.</p>
+<div class="key-concept">Note: Your instructor will provide the node name for this computer. In the example below, S00PROD is shown as the name of the computer.</div>
+<div class="screenshot">
+  <img src="../images/page_0026_0.png" alt="Check-in Dialog  Step 14: Save and close PROD_Platform1 editor. Check-in dia">
+  <div class="caption">Check-in Dialog  Step 14: Save and close PROD_Platform1 editor. Check-in dialog appears. Step 15: Enter comment and click Check-in. Screenshot: &quot;Check-in&quot; dialog: Comment text box with ...</div>
+</div>
+<p><strong>14.</strong> Save and close the PROD_Platform1 editor.</p>
+<p>The Check-in dialog box appears.</p>
+<p><strong>15.</strong> Enter a comment and click Check-in.</p>
+<div class="key-concept">Note: Entering a comment in the Check-in dialog box is optional, but recommended.</div>
+<div class="screenshot">
+  <img src="../images/page_0027_0.png" alt="Configure Engine for Historian &amp; Deploy  Step 16: Double-click AppEngine1 to">
+  <div class="caption">Configure Engine for Historian &amp; Deploy  Step 16: Double-click AppEngine1 to open Object Editor. Step 17: Enter Historian node name on General tab. Screenshot 1: AppEngine1 Object Editor*...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0027_1.png" alt="Deployment tree right-click context menu on AppEngine1 showing Deploy option">
+  <div class="caption">Configure Engine for Historian &amp; Deploy  Step 16: Double-click AppEngine1 to open Object Editor. Step 17: Enter Historian node name on General tab. Screenshot 1: AppEngine1 Object Editor with Historian field set to S00ENG. Screenshot 2: Deployment tree with right-click context menu on AppEngine1 showing Deploy, Undeploy, and other options.</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p>Configure the Engine for Historian</p>
+<p>In the following steps, you will configure the Historian connection for an AppEngine object, which is</p>
+<p>named AppEngine1.</p>
+<p><strong>16.</strong> In the Deployment view, double-click AppEngine1 to open it in the Object Editor.</p>
+<p><strong>17.</strong> On the General tab, in the Historian field, enter the node name where Historian is installed.</p>
+<div class="key-concept">Note: Your instructor will provide the node name for this computer. In the example below, S00ENG is shown as the Historian node name. 18. Save and close the AppEngine1 editor, and check in the object. Deploy the Galaxy Now you will deploy the Galaxy to runtime. 19. In the Deployment view, right-click TrainingGalaxy and select Deploy.</div>
+<div class="screenshot">
+  <img src="../images/page_0028_0.png" alt="Deploy Dialog  Screenshot: &quot;Deploy 104 objects&quot; dialog — Two tabs: General (">
+  <div class="caption">Deploy Dialog  Screenshot: &quot;Deploy 104 objects&quot; dialog — Two tabs: General (active), InTouchViewApp. Sections: 1. Deployment defaults: Cascade deploy (checked), Include redundant partner (unche...</div>
+</div>
+<p>The Deploy dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0029_0.png" alt="Deploy Complete  Step 20: Click Deploy with default settings. Step 21: C">
+  <div class="caption">Deploy Complete  Step 20: Click Deploy with default settings. Step 21: Click Close when &quot;Deploy complete&quot;. Screenshot: &quot;Deploying Objects&quot; dialog: Status: &quot;Deploy complete. Please revie...</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p><strong>20.</strong> Leave the default deployment settings and click Deploy.</p>
+<p>The Deploying Objects dialog box shows the progress of the deployment process, as well as</p>
+<p>informational message details. This will take a few moments.</p>
+<p>It is important to review the messages shown in the Deploying Objects dialog box to make</p>
+<p>sure no errors occurred.</p>
+<p><strong>21.</strong> When the deployment progress shows Deploy complete, click Close.</p>
+<div class="screenshot">
+  <img src="../images/page_0030_0.png" alt="Object Viewer &amp; Watch List  Step 22: Right-click Mixer100 &gt; View in Object V">
+  <div class="caption">Object Viewer &amp; Watch List  Step 22: Right-click Mixer100 &gt; View in Object Viewer. Step 23: Right-click Watch List 1 &gt; Open. Screenshot 1: Object Viewer window — Left pane: tree view of...</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0030_1.png" alt="Object Viewer &amp; Watch List  Step 22: Right-click Mixer100 &gt; View in Object V">
+  <div class="caption">Object Viewer &amp; Watch List  Step 22: Right-click Mixer100 &gt; View in Object Viewer. Step 23: Right-click Watch List 1 &gt; Open. Screenshot 1: Object Viewer window — Left pane: tree view of...</div>
+</div>
+<p><strong>Screenshot 2: Watch List 1 context menu</strong> — Open... (highlighted), Modify..., View Detailed Info, Remove from Watch, Activate, Suspend, Add Attribute Reference..., Add Watch Window, Remove Watch Window, Rename Tab..., Save, Save As...]</p>
+<p>View Runtime Data</p>
+<p>Now that your Galaxy is deployed, you will use Object Viewer to monitor runtime data and verify</p>
+<p>that attributes are receiving data. A saved watch list is provided.</p>
+<p><strong>22.</strong> In the Deployment view, right-click Mixer100 and select View in Object Viewer.</p>
+<div class="key-concept">Note: You can right-click any object in the Deployment view to open Object Viewer. The Object Viewer window appears, showing the list of attributes for Mixer100. 23. Right-click in the Watch List 1 window and select Open. The Open dialog box appears.</div>
+<div class="screenshot">
+  <img src="../images/page_0031_0.png" alt="Object Viewer with Watch Window  Step 24: Open Lab 1 - Watchlist_Prebuilt.xm">
+  <div class="caption">Object Viewer with Watch Window  Step 24: Open Lab 1 - Watchlist_Prebuilt.xml from C:\Training. Opens Mixer100 watch window. Screenshot: Object Viewer — Full application window with menu ba...</div>
+</div>
+<p>Lab 1 – Creating and Deploying a Galaxy</p>
+<p><strong>24.</strong> Navigate to C:\Training, select Lab 1 - Watchlist_Prebuilt.xml, and then click Open.</p>
+<p>The Mixer100 watch window appears in Object Viewer, with some attributes already added.</p>
+<p>You can resize the watch window if needed to view the whole list of attributes.</p>
+<p><strong>25.</strong> In the Mixer100 watch window, verify that all attributes are receiving data.</p>
+<p>The received data values are simulated values provided by a simulation application, to which</p>
+<p>the OI.MBTCP connects.</p>
+<div class="key-concept">Note: Notify your instructor if any attributes are not receiving Good quality data. 26. When you are finished reviewing attribute data, close Object Viewer. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L01-Course-Introduction-System-Platform-Overview.html">← Previous: Course Introduction + System Platform Ov</a> &nbsp;|&nbsp;
+  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">Next: Visualization, Encrypted Comms and Requi →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

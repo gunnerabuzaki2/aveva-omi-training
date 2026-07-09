@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 38: Live Alarm Visualization</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
+  <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html" style="font-weight:bold;color:#1a1a1a;">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L38: Live Alarm Visualization</h1>
+<p class="source">Module 9 — Alarms and Events | Pages 531-542</p>
+
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Introduction</p>
+<p>Application Server handles the real-time reporting of alarms, and provides clients for viewing</p>
+<p>current alarms. Application Server can detect events and report them to clients as recent events.</p>
+<p>You can create ViewApps that include a display for alarms and events, and allow operators to view</p>
+<p>and manage alarms and events. Current alarms require immediate attention, and operators can</p>
+<p>acknowledge alarms within the ViewApp. Operators can also view recent events for analysis and</p>
+<p>reporting.</p>
+<p>An out-of-the box OMI App is provided to display alarms and events in ViewApps. Using the</p>
+<p>AlarmApp, an operator can view the current alarms and recent events, acknowledge current</p>
+<p>alarms, query and filter alarms and events, and more.</p>
+<p>AlarmApp</p>
+<p>AlarmApp is an OMI App that you can place in your ViewApps to show live and historical alarms</p>
+<p>and events. At runtime, the pane configured with the AlarmApp shows alarms and events in</p>
+<p>tabular form, with each row representing a single alarm or event. The background color of a row</p>
+<p>for an alarm indicates the severity and current state of the alarms.</p>
+<p>You can configure the AlarmApp to show current alarms, recent alarms and events, historical</p>
+<p>alarms, historical events, or historical alarms and events. You can specify queries to subscribe</p>
+<p>alarms and events from the alarm provider. You can specify conditions to filter alarms and events</p>
+<p>displayed in the AlarmApp.</p>
+<p>To use the AlarmApp in a ViewApp, you must assign it to a layout pane. You can assign the</p>
+<p>AlarmApp to a pane from the Layout Editor or ViewApp Editor. Select the AlarmApp from the</p>
+<p>Toolbox tab, and then from the preview area, drag and drop the AlarmControl to the pane.</p>
+<p>Configure the AlarmApp</p>
+<p>You can configure AlarmControl properties from either the Layout Editor or the ViewApp Editor.</p>
+<p>When configuring the AlarmApp, properties appear on the Properties tab when the pane that</p>
+<p>contains the AlarmControl is selected.</p>
+<p></p>
+<p>General properties are:</p>
+<p></p>
+<p>Name: Shows the name of the content. By default, it is an auto-generated name</p>
+<p>based on the assigned control. It is editable.</p>
+<p></p>
+<p>Content: Shows the name of the AlarmControl assigned as the content. By default, it</p>
+<p>displays as AlarmApp.AlarmControl.</p>
+<p></p>
+<p>Pane: Shows the pane that contains the AlarmControl.</p>
+<p>This section describes how to use the AlarmApp to display and manage alarms and events in a</p>
+<p>ViewApp. It also describes how to customize the appearance and runtime behavior of the</p>
+<p>AlarmApp.</p>
+<p></p>
+<p>Run-Time Behavior properties provide configurations for AlarmApp runtime behaviors,</p>
+<p>such as how the AlarmApp works within the context of the current area, whether column</p>
+<p>headings are shown in the alarm grid, how alarms can be grouped by column within the</p>
+<p>alarm grid, whether signatures are required to acknowledge alarms, and others. Some</p>
+<p>examples are:</p>
+<p></p>
+<p>Follow Current Context: Determines if the AlarmApp participates in the context of</p>
+<p>the current area. When this property is enabled, the alarm query automatically</p>
+<p>changes to “\Galaxy!<CurrentArea>” at runtime.</p>
+<p></p>
+<p>Only Show Alarms on Current Asset: Determines if the AlarmApp shows</p>
+<p>aggregated alarms for all assets contained in the currently-selected area, or if it shows</p>
+<p>only alarms for the currently-selected asset. When this property is enabled, only</p>
+<p>alarms for the currently-selected asset are shown, even if the asset is an area. This</p>
+<p>property only has an effect when Follow Current Context is enabled.</p>
+<p></p>
+<p>Navigate On Double Click: Determines if the user must double-click on an alarm to</p>
+<p>navigate to the asset from which the alarm is generated. This property is enabled by</p>
+<p>default.</p>
+<p></p>
+<p>Configuration properties are:</p>
+<p></p>
+<p>Configuration: Provides an ellipsis button to open the configuration editor for the</p>
+<p>AlarmApp.</p>
+<p></p>
+<p>Run-Time Values properties are:</p>
+<p></p>
+<p>Selected Row Tagname: Read-only property that can be used to bind a reference,</p>
+<p>such as a ViewApp namespace attribute to get the Selected Row Tagname. At</p>
+<p>runtime, the selected row tagname will output to the reference as a String value. This</p>
+<p>is only applicable when a user manually selects the row, not when the system selects</p>
+<p>the row.</p>
+<p></p>
+<p>Selected Row Asset: Read-only property that can be used to bind a reference, such</p>
+<p>as a ViewApp namespace attribute to get the Selected Row Asset. At runtime, the</p>
+<p>selected row asset name will output to the reference as a String value.</p>
+<p></p>
+<p>Appearance properties include the configurations of the background and foreground</p>
+<p>colors for the AlarmControl. These colors may apply to the command bar and buttons and</p>
+<p>the area hierarchy display. These colors do not apply to the Alarm grid.</p>
+<p></p>
+<p>Command Bar properties include configurations for the AlarmApp command bar. For</p>
+<p>example, Show Command Bar determines if the command bar is shown above the alarm</p>
+<p>grid area at runtime, and other properties in this category determine which buttons are</p>
+<p>included in the displayed command bar. Available buttons include Navigate, Ack Selected,</p>
+<p>Ack All, Ack Visible, Requery, Connect, and Disconnect. The Show Command Bar</p>
+<p>property can be used to bind a reference, such as a ViewApp namespace attribute, which</p>
+<p>can show or hide the Command Bar at runtime based on the reference value.</p>
+<p></p>
+<p>Alarm Mode properties are:</p>
+<p></p>
+<p>Alarm Query: Read/write property to get or set an alarm query dynamically at</p>
+<p>runtime. It can be used to bind a reference to a ViewApp namespace attribute or to an</p>
+<p>application object attribute. This query overrides the query configured in the</p>
+<p>Configuration dialog box.</p>
+<p></p>
+<p>Client Mode: Read/Write integer value (1-5) that determines the type of alarm data</p>
+<p>shown in the AlarmApp. This property can dynamically bind to a namespace reference</p>
+<p>or to an attribute.</p>
+<div class="screenshot">
+  <img src="../images/page_0533_0.jpeg" alt="Page 533">
+  <div class="caption">Page 533</div>
+</div>
+<p>Section 2 – Live Alarm Visualization</p>
+<p></p>
+<p>Area Hierarchy properties determine if the area hierarchy tree is shown or hidden in the</p>
+<p>AlarmApp at runtime. Also included are properties for configuring font settings for the</p>
+<p>hierarchy tree if shown. Some examples of Area Hierarchy properties include:</p>
+<p></p>
+<p>Show Area Hierarchy: Determines if the area hierarchy tree view appears within the</p>
+<p>AlarmApp. This property is disabled by default, which hides the area hierarchy tree</p>
+<p>view. This property can be used to bind a reference, such as a ViewApp namespace</p>
+<p>attribute, which can show or hide the area hierarchy tree at runtime based on the</p>
+<p>reference value.</p>
+<p></p>
+<p>Show Alarm Indicator: Determines if an alarm indicator appears beneath an area</p>
+<p>name shown on the area hierarchy of the AlarmApp. This property is enabled by</p>
+<p>default, which shows the alarm indicators.</p>
+<p></p>
+<p>.NET Alarm Client control properties are from the underlying .NET control of the</p>
+<p>AlarmApp, which are exposed and can be assigned values from the Layout Editor or</p>
+<p>included in scripts.</p>
+<p>.NET property groups are identified by the AlarmClientControl prefix in their titles that</p>
+<p>appear on the Properties tab. For example, the AlarmClientControl.Accessibility title</p>
+<p>appears immediately beneath the Area Hierarchy group of properties.</p>
+<p>For more information about .NET properties. please refer to Microsoft resources, such as:</p>
+<p>http://docs.microsoft.com/en-us/donet/api/system.windows.forms</p>
+<p>For more information about Alarm Client Control properties and methods, refer to the AVEVA</p>
+<p>Alarm Client Control User Guide that is delivered with System Platform 2023.</p>
+<div class="screenshot">
+  <img src="../images/page_0534_0.png" alt="Page 534">
+  <div class="caption">Page 534</div>
+</div>
+<p>Binding AlarmApp Run-Time Properties</p>
+<p>The AlarmApp includes runtime properties that are exposed as configurable properties, which</p>
+<p>determine the visual aspects or functional behaviors of the AlarmApp during runtime. Configuring</p>
+<p>some of these properties also applies to the configurations available in the Configuration Editor,</p>
+<p>such as Alarm Query, Client Mode, and Requires Ack Signature.</p>
+<p>Most of the properties include a list of binding options to configure a static or dynamic value based</p>
+<p>on the type of binding between the property and its associated reference. You can select a</p>
+<p>dynamic binding option from the list and then configure the value by specifying a reference, such</p>
+<p>as a reference to an attribute defined in a custom ViewApp namespace or a public custom</p>
+<p>property of a symbol assigned in the same layout. With a dynamic binding option, these properties</p>
+<p>can be changed dynamically based on the reference values at runtime.</p>
+<p>In the example below, the Show Command Bar property is binding to the reference:</p>
+<p>MyContent.AlarmAppConfig1.ShowCommands</p>
+<p>ShowCommands is a public custom property defined in a symbol named AlarmAppConfig, which</p>
+<p>is assigned to the same layout with the AlarmControl.</p>
+<div class="screenshot">
+  <img src="../images/page_0535_0.jpeg" alt="Page 535">
+  <div class="caption">Page 535</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0535_1.png" alt="Page 535">
+  <div class="caption">Page 535</div>
+</div>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Event Handlers</p>
+<p>The Event Handlers category on the Properties tab lists all available events for the control, and</p>
+<p>you can create an event handler script by selecting an event from the list.</p>
+<p>The underlying control of the AlarmApp includes a set of public events that can be used for</p>
+<p>creating event handler scripts. These events are identified by the AlarmClientControl prefix in their</p>
+<p>names that appear in the list of the available events. You can select a public event of the control</p>
+<p>from the list to add an event handler script.</p>
+<p>After the event handler script is created, you can navigate to the Script page to edit the script by</p>
+<p>clicking the ellipsis button to the right of the added script. More information about layout scripts is</p>
+<p>provided in Module 13.</p>
+<p>In the example below, the AlarmClientControl.NewAlarm event handler script is created.</p>
+<div class="screenshot">
+  <img src="../images/page_0536_0.png" alt="Page 536">
+  <div class="caption">Page 536</div>
+</div>
+<p>AlarmApp Configuration Editor</p>
+<p>The AlarmApp configuration editor allows you to configure alarm mode, color, column detail,</p>
+<p>queries and filters, time, and runtime behavior settings.</p>
+<p></p>
+<p>Alarm Mode: Allows you to specify Client Mode, a default Alarm Query, and a default</p>
+<p>acknowledgment comment.</p>
+<p></p>
+<p>Colors: Allows you to specify text and background colors for events, headings, alarm</p>
+<p>states, and more.</p>
+<p></p>
+<p>Column Details: Allows you to specify display names and widths for columns, as well the</p>
+<p>sort order for alarm records shown at runtime.</p>
+<p></p>
+<p>Queries and Filters: Allows you to specify query and filter favorites.</p>
+<p></p>
+<p>Time Settings: Allows you to specify time zones and date/time formats for alarm and</p>
+<p>event records shown at runtime.</p>
+<p></p>
+<p>Runtime Behavior: Allows you to configure the behavior and appearance of the</p>
+<p>AlarmApp at runtime.</p>
+<p>Alarm Mode Page</p>
+<p>Options on the Alarm Mode page depend on which Client Mode is selected. For example:</p>
+<p></p>
+<p>If Current Alarms or Recent Alarms and Events is selected, fields for specifying a default</p>
+<p>alarm query and default acknowledgment comment appear. A default alarm query must</p>
+<p>include Provider and Group as criteria.</p>
+<p></p>
+<p>If Historical Alarms, Historical Events, or Historical Alarms and Events is selected, fields</p>
+<p>for specifying database connectivity and other settings appear.</p>
+<p>Configure AlarmApp for Current or Recent Alarms and Events</p>
+<p>To configure the AlarmApp to show current alarms, set Client Mode to Current Alarms. To</p>
+<p>configure the AlarmApp to show recent alarms and events, set Client Mode to Recent Alarms and</p>
+<p>Events. Then, provide the default query filter.</p>
+<p>Optionally, you check the Use Default Ack Comment option and enter text for the default</p>
+<p>acknowledgment comment.</p>
+<div class="screenshot">
+  <img src="../images/page_0537_0.png" alt="Page 537">
+  <div class="caption">Page 537</div>
+</div>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Alarm Queries</p>
+<p>The AlarmApp supports standard Galaxy alarm query formats. Some example formats are:</p>
+<p></p>
+<p>\galaxy!area</p>
+<p></p>
+<p>\\node\galaxy!area</p>
+<p>Query syntax is the same for both Current Alarms and Recent Alarms and Events. Queries for</p>
+<p>Historical Alarms, Historical Events, and Historical Alarms and Events follow syntax rules for SQL</p>
+<p>Server database queries.</p>
+<p>Queries and Filters Page</p>
+<p>You can use the Queries and Filters page to create queries and filters to show alarms and events</p>
+<p>as needed. When the AlarmApp is configured for Current Alarms or Recent Alarms and Events,</p>
+<p>the default query specified on the Alarm Mode page is displayed on the Queries and Filters page</p>
+<p>as the “Default” query. The default query cannot be deleted, but it can be customized from the</p>
+<p>Queries and Filters page.</p>
+<p>Queries and filters configured on this page are available from a list of preconfigured queries and</p>
+<p>filters at runtime. At runtime, you can also create new queries and filters or modify existing queries</p>
+<p>and filters to show alarms and events as needed.</p>
+<p>For example, the following shows the default query is configured to display current alarms from</p>
+<p>Line1 and Line2 areas:</p>
+<p>Queries and filters can be exported to an XML file, and you can load queries and filters from a file.</p>
+<div class="screenshot">
+  <img src="../images/page_0538_0.png" alt="Page 538">
+  <div class="caption">Page 538</div>
+</div>
+<p>Runtime Behavior Page</p>
+<p>You use the Runtime Behavior page to configure the appearance and behavior of the AlarmApp at</p>
+<p>runtime.</p>
+<p>For example, you can enable or disable options such as Show Heading, Show Grid, and Show</p>
+<p>Status Bar to control the appearance of the control at runtime. For configuring runtime behavior,</p>
+<p>options such as Disable File Browsing, Overwrite Design Time Queries and Filters, and options for</p>
+<p>requiring signatures for shelving and acknowledging alarms are available.</p>
+<p>Manage Alarms at Runtime</p>
+<p>You can use the AlarmApp to manage alarms at runtime, including acknowledging alarms,</p>
+<p>shelving and unshelving alarms, hiding alarms and events, filtering alarms and events, and more.</p>
+<p>Acknowledge Alarms</p>
+<p>Acknowledging current alarms ensures that an operator is aware of a temporary alarm state</p>
+<p>change. To be able to acknowledge alarms through the AlarmApp in a running ViewApp, the</p>
+<p>AlarmApp must have the Client Mode configured as Current Alarms.</p>
+<p>You can use the AlarmApp to acknowledge:</p>
+<p></p>
+<p>One or more selected alarms</p>
+<p></p>
+<p>All alarms, including alarms that are not visible due to the limited display space of the</p>
+<p>AlarmApp</p>
+<p></p>
+<p>All visible alarms</p>
+<p></p>
+<p>All alarms with common values, such as alarm priority</p>
+<p>A comment can optionally be entered when acknowledging an alarm at runtime. The comment will</p>
+<p>be logged with the alarm acknowledgment record.</p>
+<p>When security is enabled in the Galaxy, alarms can be acknowledged only by operators with</p>
+<p>proper authorization.</p>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Shelve and Unshelve Alarms</p>
+<p>Shelving alarms allows operators to temporarily suppress them for a fixed period. Shelving alarms</p>
+<p>will temporarily filter them from showing through the alarm grid. The shelved alarms can only be</p>
+<p>shown when a query or filter that is configured to show the shelved alarms is selected at runtime.</p>
+<p>To shelve or unshelve alarms through the AlarmControl at runtime only applies when the</p>
+<p>AlarmControl has the Client Mode configured as Current Alarms.</p>
+<p>You can use the AlarmApp to shelve:</p>
+<p></p>
+<p>One or more selected alarms</p>
+<p></p>
+<p>All alarms</p>
+<p></p>
+<p>All visible alarms</p>
+<p></p>
+<p>All alarms with common values, such as alarm priority</p>
+<p>When shelving alarms, you must provide a duration for which the alarms remain shelved and enter</p>
+<p>a mandatory comment.</p>
+<p>Shelved alarms can be manually unshelved before the shelved duration expires. To unshelve</p>
+<p>alarms, you need to create a query or filter to show the currently shelved alarms, and then use the</p>
+<p>context menu within the alarm grid to unshelve alarms as needed.</p>
+<p>When security is enabled in the Galaxy, alarms can be shelved and unshelved only by operators</p>
+<p>with proper authorization.</p>
+<p>Query and Filter Alarms at Runtime</p>
+<p>Alarms can be queried and filtered at runtime by using the queries and filters that are already</p>
+<p>defined in the configuration. You can select an existing query to subscribe alarms and events that</p>
+<p>meet the criteria, and then select a filter to narrow the criteria without re-running the query or</p>
+<p>modifying the query.</p>
+<p>Queries and filters can also be created at runtime, and if the AlarmControl is configured with</p>
+<p>Overwrite Design Time Queries and Filters enabled, the queries and filters created at runtime</p>
+<p>always take precedence over the queries and filters created at design time. If Disable File</p>
+<p>Browsing is unchecked, the AlarmApp allows queries and filters to be exported to an *.xml file and</p>
+<p>queries and filters to be imported from an existing *.xml file.</p>
+<p>Hide Alarms and Events</p>
+<p>Alarms can be hidden or unhidden in the AlarmApp grid. When the AlarmApp is hiding alarms, it</p>
+<p>ignores the hidden alarms until they are unhidden. The actual alarm generation is completely</p>
+<p>unaffected by hiding the alarm records. Alarm records are still logged into the alarm history.</p>
+<p>Sort Alarms During Runtime</p>
+<p>The AlarmApp supports alarm sorting for up to four columns at design time and runtime. At</p>
+<p>runtime, operators can configure sorting of even more columns by clicking on the column headers</p>
+<p>of the AlarmControl. You can sort alarms in ascending or descending order for selected columns.</p>
+<p>Changes made to the sorting at runtime are lost when you switch back to design time.</p>
+<p>Acknowledge Alarms that Require Signatures</p>
+<p>When the AlarmControl is configured to require an acknowledgment signature for alarms with an</p>
+<p>alarm priority range, you must provide your signature in the Ack Alarm dialog box to acknowledge</p>
+<p>alarms at runtime. If one or more of the selected alarms falls within the configured priority range,</p>
+<div class="screenshot">
+  <img src="../images/page_0540_0.png" alt="Page 540">
+  <div class="caption">Page 540</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0540_1.png" alt="Page 540">
+  <div class="caption">Page 540</div>
+</div>
+<p>the comment is prefixed in the alarm record with "Signed ACK -" indicating that it is a signed</p>
+<p>acknowledgment. Otherwise, it is prefixed with "Std ACK -" indicating that it is a standard</p>
+<p>acknowledgment.</p>
+<p>Shelve Alarms that Require Signatures</p>
+<p>If a shelving signature is required and application security is active, attempting to shelve alarms</p>
+<p>from the alarm grid displays a Shelve Comment dialog box. The dialog box includes fields for the</p>
+<p>operator to enter user credentials (name, password, domain), select a shelve duration, and enter a</p>
+<p>mandatory comment.</p>
+<p>By default, the logged-in user appears in the Username field. If the application security type is</p>
+<p>ArchestrA, then ArchestrA appears in the Domain field and cannot be edited. If the credentials are</p>
+<p>valid, the AlarmApp attempts to shelve the selected alarms.</p>
+<p>If the user credentials are not valid, the AlarmApp shows an error message. When the operator</p>
+<p>clicks OK on the error message, the Shelve Comment dialog appears again with the entered user</p>
+<p>name, comment, and duration. The Password (or PIN) field is blank. The operator can attempt to</p>
+<p>authenticate again or cancel.</p>
+<p>Section 2 – Live Alarm Visualization</p>
+<p>Freeze and Unfreeze the AlarmApp Grid</p>
+<p>You can freeze the alarm grid to prevent the grid from being updated with changes. For example, if</p>
+<p>new alarms occur while the alarm grid is frozen, the new alarms are only shown after you unfreeze</p>
+<p>the alarm grid.</p>
+<p>If a duration is configured for freezing alarms, then after that time period, the alarm grid</p>
+<p>automatically unfreezes to avoid the grid unintentionally remaining frozen. An example would be if</p>
+<p>an operator leaves the workstation and returns without realizing that the alarm grid is still frozen.</p>
+<p>The alarm grid automatically unfreezes when any of the following change:</p>
+<p></p>
+<p>Alarm Mode</p>
+<p></p>
+<p>Alarm Query</p>
+<p></p>
+<p>Query Filter</p>
+<p>After you unfreeze the alarm grid, it updates with the new alarm records and any other updates</p>
+<p>that occurred while the grid was frozen.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← Previous: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
+  <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">Next: Lab 19 – Creating a Live Alarm Display →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 52: Layout Scripts and Graphic Client Functions</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">← L51: Lab 25 – Creating a Back Button for Navi</a> &nbsp;|&nbsp;
+  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Functio →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html" style="font-weight:bold;color:#1a1a1a;">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L52: Layout Scripts and Graphic Client Functions</h1>
+<p class="source">Module 13 — Scripting in Graphics | Pages 705-712</p>
+
+<div class="screenshot">
+  <img src="../images/page_0705_0.jpeg" alt="Page 705">
+  <div class="caption">Page 705</div>
+</div>
+<p><strong>Page 13-21, Section 3 – Layout Scripts</strong>.</p>
+<p>• <strong>Gray Intro Box</strong>: "This section describes predefined and named layout scripts, including triggers and the Event Handler."</p>
+<p>• <strong>Introduction</strong>: Layout scripts customize runtime behavior, run after symbol scripts, triggered by PropertyChange, MouseDown events</p>
+<p>• <strong>Layout Editor - Script Page</strong>: Interface for adding/editing layout scripts</p>
+<p>• <strong>Screenshot - Annotated Layout Editor</strong>:</p>
+<p><strong>1.</strong> <strong>Build/Script Selector</strong>: Toggle between Build (design) and <strong>Script</strong> (editing) tabs</p>
+<p><strong>2.</strong> <strong>Scripts List</strong>: On Show (4 Lines), While Showing (0 Lines), On Hide (4 Lines)</p>
+<p><strong>3.</strong> <strong>Script Configuration Area</strong>: Expression, Trigger=On Show, Data Timeout=1000ms, Period=1000ms, Deadband</p>
+<p><strong>4.</strong> <strong>Script Editing Area</strong>: Code with autocomplete, toolbar (undo/redo, cut, duplicate, zoom, find, formatting)</p>
+<p><strong>5.</strong> <strong>Add Script Button</strong>: "+" button at bottom of Scripts List</p>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 3 – Layout Scripts</p>
+<p>Section 3 – Layout Scripts</p>
+<p>Introduction</p>
+<p>You can customize runtime behavior for layouts and layout content with layout scripts. Layout</p>
+<p>scripts work much like symbol scripts that can be added to symbols to enable animations for the</p>
+<p>symbol or its elements. Layout scripts are executed after any symbol scripts contained within</p>
+<p>symbols in the layout. You can also add scripts triggered by events in an App or control, such as</p>
+<p>PropertyChange, MouseDown, and so on.</p>
+<p>Layout Editor - Script Page</p>
+<p>The Layout Editor provides an interface for adding and editing layout scripts for execution at</p>
+<p>runtime. You can add different triggers, such as opening or closing the layout or setting an interval</p>
+<p>at which the script executes while the layout is open.</p>
+<p></p>
+<p>(1) Build/Script Selector: Switches between the Build and Script pages of the Layout</p>
+<p>Editor. Refer to Module 2 for more information about the Build page.</p>
+<p></p>
+<p>(2) Scripts List: A list of all scripts in the layout. Includes three built-in scripts for On</p>
+<p>Show, While Showing, and On Hide, as well as any named and event handler scripts</p>
+<p>added to the layout.</p>
+<p></p>
+<p>(3) Script Configuration Area: This area provides fields for entering an expression and</p>
+<p>script trigger type, as well as other fields applicable to the selected trigger.</p>
+<p></p>
+<p>(4) Script Editing Area: The editing area is for entering lines of code for the script. It</p>
+<p>supports autocomplete, so that as you type, the editor presents a drop-down list of</p>
+<p>namespaces, attributes, custom properties, and other items that match the characters you</p>
+<p>entered, and you can select from the drop-down list. Items in the drop-down lists are</p>
+<p>filtered by context, so that only valid items are listed. Buttons at the top of this area provide</p>
+<p>editing functions, such as undo and redo, cut, duplicate, and other editor functions.</p>
+<p></p>
+<p>(5) Add Script Button: Click to display the Add New Script dialog box, from which you</p>
+<p>can specify adding a named script or an event handler script.</p>
+<p>This section describes predefined and named layout scripts, including script triggers and the</p>
+<p>Event Handler.</p>
+<p><strong>Page 13-22, Types of Layout Scripts and Triggers</strong>.</p>
+<p>• <strong>Built-In Scripts</strong> (3 types):</p>
+<p>• On Show: Runs once when layout opens, configurable timeout</p>
+<p>• While Showing: Runs at specified interval while layout open</p>
+<p>• On Hide: Runs once when layout closes, no configurable parameters</p>
+<p>• Note: Max 1 of each type per layout (3 total)</p>
+<p>• <strong>Named Scripts</strong> (5 types):</p>
+<p>• While True: Runs periodically while expression is true</p>
+<p>• While False: Runs periodically while expression is false</p>
+<p>• On True: Runs once on false→true transition</p>
+<p>• On False: Runs once on true→false transition</p>
+<p>• Data Changed: Runs when data changes, configurable deadband and quality changes</p>
+<p>• <strong>Event Handler Scripts</strong>:</p>
+<p>• Can be added for Apps/controls with public events</p>
+<p>• Examples: Got Focus, Mouse Move, Mouse Double Click, Drag Over, Drop, Key Up, Context Menu Opening</p>
+<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<p>Types of Layout Scripts and Triggers</p>
+<p>You can use built-in scripts, named scripts, and event handler scripts for your layouts. The</p>
+<p>following sections describe the types of layout scripts and applicable triggers.</p>
+<p>Built-In Scripts</p>
+<p>There are three built-in scripts that are automatically added to all layouts. These are listed in the</p>
+<p>Script tab and are always shown, whether or not they have been configured. The three built-in</p>
+<p>scripts are:</p>
+<p></p>
+<p>On Show: The script runs one time when the layout opens. You can specify a timeout</p>
+<p>period for the script in milliseconds to stop the script if a referenced attribute cannot be</p>
+<p>accessed.</p>
+<p></p>
+<p>While Showing: The script runs at a specified interval (in milliseconds) while the layout is</p>
+<p>open.</p>
+<p></p>
+<p>On Hide: The script runs one time when the layout closes. There are no configurable</p>
+<p>trigger parameters.</p>
+<p>You can have only one built-in script of each type, for a maximum of three built-in scripts, per</p>
+<p>layout.</p>
+<p>Named Scripts</p>
+<p>You can add named layout scripts that are triggered by an expression or reference. The</p>
+<p>expression or reference is used to define the specified condition. There is no limit on how many</p>
+<p>expression-based scripts that you can include in a layout.</p>
+<p></p>
+<p>While True: The script runs periodically, at a specified interval (in milliseconds), for as</p>
+<p>long as the expression remains true.</p>
+<p></p>
+<p>While False: The script runs periodically, at a specified interval (in milliseconds), for as</p>
+<p>long as the expression remains false.</p>
+<p></p>
+<p>On True: The script runs one time when the expression transitions to true.</p>
+<p></p>
+<p>On False: The script runs one time when the expression transitions to false.</p>
+<p></p>
+<p>Data Changed: The script runs whenever data referenced by the expression changes.</p>
+<p>You can specify a dead band to filter out inconsequential data changes. In addition, you</p>
+<p>can specify if quality changes will also be used to trigger the script to run.</p>
+<p>Event Handler Scripts</p>
+<p>Event handler scripts can be added and configured for Apps and controls in the layout that contain</p>
+<p>public events. There are numerous types of events that can be scripted, and the events will be</p>
+<p>different between Apps. Some examples of the types of events that can be scripted include:</p>
+<p></p>
+<p>Got Focus</p>
+<p></p>
+<p>Mouse Move</p>
+<p></p>
+<p>Mouse Double Click</p>
+<p></p>
+<p>Drag Over</p>
+<p></p>
+<p>Drop</p>
+<p></p>
+<p>Key Up</p>
+<p></p>
+<p>Context Menu Opening</p>
+<div class="screenshot">
+  <img src="../images/page_0707_0.jpeg" alt="Page 707">
+  <div class="caption">Page 707</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0707_1.png" alt="Page 707">
+  <div class="caption">Page 707</div>
+</div>
+<p><strong>Page 13-23, Section 3 – Layout Scripts</strong>.</p>
+<p>• <strong>Section Title</strong>: "Add an Event Handler Script"</p>
+<p>• <strong>Text</strong>: Can only add event handler scripts after adding an App/control with public events</p>
+<p>• <strong>Screenshot 1 - Add New Script Dialog (Named Script)</strong>:</p>
+<p>• Radio buttons: <strong>Named Script</strong> (selected), Event Handler (greyed out)</p>
+<p>• Name field: Script001</p>
+<p>• Source, Event fields greyed out</p>
+<p>• Bottom: ADD, CANCEL buttons</p>
+<p>• Red arrow pointing to + Add Script button at bottom of Scripts panel</p>
+<p>• <strong>Screenshot 2 - Add New Script Dialog (Event Handler)</strong>:</p>
+<p>• Radio button: <strong>Event Handler</strong> (selected)</p>
+<p>• Named Script disabled</p>
+<p>• Source: dropdown = <strong>AlarmControl1</strong></p>
+<p>• Event: dropdown = <strong>DataContextChanged</strong></p>
+<p>• Bottom: ADD, CANCEL buttons</p>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 3 – Layout Scripts</p>
+<p>Add an Event Handler Script</p>
+<p>You can add event handler scripts to a layout if you have already added an App or control to a</p>
+<p>pane within the layout that contains public events.</p>
+<p>For example, to add an event handler script from the Script page, click the Add Script button to</p>
+<p>display the Add New Script dialog box.</p>
+<p>Check the Event Handler option, and then select the source App or control and an event. The</p>
+<p>following shows the Source as AlarmControl1 and the Event as DataContextChanged.</p>
+<div class="screenshot">
+  <img src="../images/page_0708_0.jpeg" alt="Page 708">
+  <div class="caption">Page 708</div>
+</div>
+<p><strong>Page 13-24, Module 13 – Scripting in Graphics</strong>.</p>
+<p>• <strong>Text</strong>: Click ADD to add script to Event Handler Scripts list, then edit in right panel</p>
+<p>• <strong>Screenshot - Script Editor</strong>:</p>
+<p>• Title: LiveAlarms - AlarmControl1 [DataContextChanged]</p>
+<p>• Tabs: Build, <strong>Script</strong> (active)</p>
+<p>• Left: Predefined Scripts, <strong>Event Handler Scripts</strong> > AlarmControl1DataContextChanged (1 Script), red arrow on + button</p>
+<p>• Right: <strong>Parameters</strong> table:</p>
+<p>• System.Object → sender</p>
+<p>• System.Windows.DependencyPropertyChangedEventArgs → e</p>
+<p>• Toolbar: save, cut, copy, paste, find icons</p>
+<p>• Script text area (blank)</p>
+<p>• <strong>Alternative Method</strong>: Can add from Properties tab on Build page, then switch to Script page</p>
+<p>• <strong>Namespaces for Layout Scripts</strong>:</p>
+<p>• <strong>MyContent</strong>: Local to each layout</p>
+<p>• <strong>ViewApp</strong>: Global across Galaxy</p>
+<p>• Event-Handler Scripts: Use control name (e.g., AlarmControl1) instead of MyContent</p>
+<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<p>Then click ADD. The script is added to the list of Event Handler Scripts on the left side of the Script</p>
+<p>page as shown below, and you can enter the script in the script editing area on the right.</p>
+<p>You can also add an event handler script from the Properties tab on the Layout Editor’s Build</p>
+<p>page, and then switch to the Script page to configure the script.</p>
+<p>Namespaces for Use in Layout Scripts</p>
+<p>Layout scripts can leverage both local and global namespaces, including the MyContent</p>
+<p>namespace, which is local to each individual layout, and ViewApp namespaces, which are global</p>
+<p>across the Galaxy. The MyContent namespace can be referenced by layout scripts and</p>
+<p>expressions used within that layout. This provides the ability to isolate attributes within an</p>
+<p>individual layout, as opposed to the ViewApp namespace, which can be referenced by all layouts</p>
+<p>and ViewApps in the Galaxy.</p>
+<p>Event-handler scripts, unlike named and built-in scripts, do not require the use of the MyContent</p>
+<p>namespace when scripting content properties and methods. To script a property or method, start</p>
+<p>by entering the name of the control instead of "MyContent." The autocomplete function will allow</p>
+<p>you to see the properties and methods contained in the control as you type.</p>
+<p><strong>Page 13-25, Section 4 – Graphic Client Functions</strong>.</p>
+<p>• <strong>Introduction</strong>: Covers ShowContent(), HideContent(), ShowGraphic(), HideGraphic(), HideSelf() functions</p>
+<p>• <strong>ShowContent() Function</strong>:</p>
+<p>• Purpose: Load symbol, layout, or external content into a layout pane</p>
+<p>• Syntax:</p>
+<pre><code class="vb">Dim contentInfo as aaContent.ContentInfo;
+contentInfo.Content = &quot;&lt;ContentName&gt;&quot;;
+ShowContent(contentInfo);
+</code></pre>
+<p>• Property Reference Table:</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Description</th><th>Data Type</th></tr>
+<tr><th>Content</th><th>Required: Unique name of content to load</th><th>String</th></tr>
+<tr><th>ScreenName</th><th>Optional: Target screen</th><th>String</th></tr>
+<tr><th>PaneName</th><th>Optional: Target pane</th><th>String</th></tr>
+<tr><th>ContentType</th><th>Optional: Override default content type</th><th>String</th></tr>
+<tr><th>SearchScope</th><th>Optional: AllScreens, SourceScreen, PrimaryScreen</th><th>Enum</th></tr>
+</thead>
+</table>
+<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
+<p>Section 4 – Graphic Client Functions</p>
+<p>Section 4 – Graphic Client Functions</p>
+<p>Introduction</p>
+<p>Graphic client functions include several methods to show and hide content, open and close</p>
+<p>content in popup windows, log in and log off users, or query custom properties contained in a</p>
+<p>symbol. You can use these methods within scripts for industrial graphics.</p>
+<p>ShowContent() Function</p>
+<p>The ShowContent() function loads a symbol, a layout, or an external content item into an</p>
+<p>Operations Management Interface layout pane.</p>
+<p>The syntax for the ShowContent() function is as follows:</p>
+<p>Dim contentInfo as aaContent.ContentInfo;</p>
+<p>contentInfo.Content = "<ContentName>";</p>
+<p>ShowContent(contentInfo);</p>
+<p>where contentInfo is a predefined structure that specifies the content to be loaded as described</p>
+<p>below:</p>
+<p>This section explains the ShowContent(), Hide Content(), ShowGraphic(), HideGraphic(), and</p>
+<p>HideSelf() script functions.</p>
+<p>Property</p>
+<p>Description</p>
+<p>Data Type</p>
+<p>Content</p>
+<p>(Required) Unique name that specifies the content to be</p>
+<p>loaded. Can be a symbol, a layout, or an external content</p>
+<p>item. Can be specified as a relative reference, such as</p>
+<p>Me.S1.</p>
+<p>String</p>
+<p>ScreenName</p>
+<p>(Optional) Specifies the screen that contains a pane in which</p>
+<p>to place the content.</p>
+<p>String</p>
+<p>PaneName</p>
+<p>(Optional) Specifies the pane in which to place the content.</p>
+<p>String</p>
+<p>ContentType</p>
+<p>(Optional) Overrides the content type of the Content. If the</p>
+<p>ContentType property is not specified, the content type</p>
+<p>specified for the Content is used.</p>
+<p>String</p>
+<p>SearchScope</p>
+<p>(Optional) When ScreenName is not specified, SearchScope</p>
+<p>specifies which screen(s) are searched for a pane that</p>
+<p>matches the specified PaneName or content type. Can be</p>
+<p>specified as AllScreens to search all screens; SourceScreen</p>
+<p>to search only the screen from which ShowContent() is called;</p>
+<p>or PrimaryScreen to search only the primary screen of the</p>
+<p>screen profile.</p>
+<p>If SearchScope is not specified and ShowContent() is called</p>
+<p>from an embedded layout, ShowContent() will search locally</p>
+<p>for a matching pane within the embedded layout. If</p>
+<p>SearchScope or ScreenName is specified, ShowContent()</p>
+<p>will search for a pane globally. It uses the SearchScope</p>
+<p>setting to determine which screens within the screen profile</p>
+<p>are searched.</p>
+<p>Enum</p>
+<p><strong>Page 13-26, Module 13 – Scripting in Graphics</strong>.</p>
+<p>• <strong>Additional Properties Table</strong>:</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Description</th><th>Data Type</th></tr>
+<tr><th>PropertyOverrides</th><th>Optional: Custom property overrides (name + value pairs)</th><th>PropertyOverrideValuePair[] Array</th></tr>
+<tr><th>OwningObject</th><th>Optional: Owning parent object for loaded content</th><th>String</th></tr>
+</thead>
+</table>
+<p>• <strong>ShowContent() Code Example</strong>:</p>
+<pre><code class="vb">dim contentInfo as aaContent.ContentInfo;
+Dim cpValues [2] as aaContent.PropertyOverrideValue;
+cpValues[1] = new aaContent.PropertyOverrideValue(&quot;CP1&quot;, &quot;20&quot;, true);
+cpValues[2] = new aaContent.PropertyOverrideValue(&quot;CP2&quot;, &quot;Pump.PV.TagName&quot;,false);
+contentInfo.Content = &quot;S1&quot;;
+contentInfo.ContentType = &quot;Overview&quot;;
+contentInfo.OwningObject = &quot;Enterprise&quot;;
+contentInfo.PaneName = &quot;Panel&quot;;
+contentInfo.ScreenName = &quot;Wall&quot;;
+contentInfo.PropertyOverrideValues = cpValues;
+contentInfo.SearchScope = aaContent.SearchScope.PrimaryScreen;
+ShowContent ( contentInfo );
+</code></pre>
+<p>• <strong>HideContent() Function</strong>:</p>
+<p>• Purpose: Close one or more matching content items within a ViewApp</p>
+<p>• Syntax:</p>
+<pre><code class="vb">Dim contentInfo as aaContent.ContentInfo;
+contentInfo.Content = &quot;&lt;ContentName&gt;&quot;;
+HideContent( contentInfo );
+</code></pre>
+<p>• Properties:</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Description</th><th>Data Type</th></tr>
+<tr><th>Content</th><th>Optional: Unique name - closes ALL instances with this name</th><th>String</th></tr>
+<tr><th>Name</th><th>Optional: Unique auto-generated name - closes single instance only</th><th>String</th></tr>
+</thead>
+</table>
+<p>• <strong>Footer</strong>: AVEVA™ Training</p>
+<p><em>Analysis complete for all pages 667-710.</em>]</p>
+<p>For example:</p>
+<p>dim contentInfo as aaContent.ContentInfo;</p>
+<p>Dim cpValues [2] as aaContent.PropertyOverrideValue;</p>
+<p>cpValues[1] = new aaContent.PropertyOverrideValue("CP1", "20", true);</p>
+<p>cpValues[2] = new aaContent.PropertyOverrideValue("CP2", "Pump.PV.TagName",</p>
+<p>false);</p>
+<p>contentInfo.Content = "S1";</p>
+<p>contentInfo.ContentType = "Overview";</p>
+<p>contentInfo.OwningObject = "Enterprise";</p>
+<p>contentInfo.PaneName = "Pane1";</p>
+<p>contentInfo.ScreenName = "Wall";</p>
+<p>contentInfo.PropertyOverrideValues = cpValues;</p>
+<p>contentInfo.SearchScope = aaContent.SearchScope.PrimaryScreen;</p>
+<p>ShowContent ( contentInfo );</p>
+<p>HideContent() Function</p>
+<p>The HideContent() function closes one or more matching content items within a ViewApp. Multiple</p>
+<p>content items can be closed if they match the parameters specified in the HideContent call. The</p>
+<p>HideContent() function uses a subset of the parameters that ShowContent() uses.</p>
+<p>The syntax for the HideContent() function is as follows:</p>
+<p>Dim contentInfo as aaContent.ContentInfo;</p>
+<p>contentInfo.Content = "<ContentName>";</p>
+<p>HideContent( contentInfo );</p>
+<p>where contentinfo is a predefined structure that specifies the content to be closed as described</p>
+<p>below:</p>
+<p>PropertyOverrides</p>
+<p>(Optional) Sets custom property overrides if a symbol has</p>
+<p>been specified by the Content property. Each override must</p>
+<p>include the custom property name and override value.</p>
+<p>Property Override</p>
+<p>ValuePair[] Array</p>
+<p>OwningObject</p>
+<p>(Optional) Sets the owning object of the content shown by the</p>
+<p>ShowContent() function. Can be a concatenation of constant</p>
+<p>strings and reference strings.</p>
+<p>String</p>
+<p>Property</p>
+<p>Description</p>
+<p>Data Type</p>
+<p>Property</p>
+<p>Description</p>
+<p>Data Type</p>
+<p>Content</p>
+<p>(Optional) A unique name for an item, either in the Graphics tab or</p>
+<p>associated with an asset, that specifies the content to be loaded into</p>
+<p>the pane. Content can be a symbol, a layout, or external content.</p>
+<p>Content names are the names shown in the Graphics tab or relative</p>
+<p>names of the content in an object.</p>
+<p>When Content is specified, the HideContent() method will close all</p>
+<p>content with the same name. To hide a single instance of a content</p>
+<p>item in the layout, use the Name property instead.</p>
+<p>String</p>
+<p>Name</p>
+<p>(Optional) The auto-generated (or user-edited) name of a unique</p>
+<p>content item. The name is created when the content item is added to a</p>
+<p>layout pane. Note that the content Name property is shown in the</p>
+<p>Properties tab of the Layout Editor, and is auto-generated from the</p>
+<p>Content property, which is also shown in the Properties tab. Name of</p>
+<p>the content is editable.</p>
+<p>When Name is specified, the HideContent() method will only close the</p>
+<p>uniquely-named content in the layout.</p>
+<p>String</p>
+<p>Section 4 – Graphic Client Functions</p>
+<p>When ContentInfo does not define any properties in the HideContent call, the content (symbol or</p>
+<p>layout) from which this method is called will be closed. In this case, it works identically to the</p>
+<p>HideSelf() method.</p>
+<p>For example:</p>
+<p>Dim contentInfo as aaContent.ContentInfo;</p>
+<p>contentInfo.Content = "SA_Valve_2Way";</p>
+<p>contentInfo.Name = "SA_Valve_2Way1";</p>
+<p>contentInfo.ContentType = "Level_3";</p>
+<p>contentInfo.PaneName = "Pane2";</p>
+<p>contentInfo.ScreenName = "Primary";</p>
+<p>contentInfo.SearchScope = aaContent.SearchScope.Self;</p>
+<p>HideContent( contentInfo );</p>
+<p>ShowGraphic() Function</p>
+<p>The ShowGraphic() function allows you to write graphic scripts to display content in a pop-up</p>
+<p>window.</p>
+<p>The ShowGraphic() function uses the name of the symbol, layout, or external content item as a</p>
+<p>parameter. You must ensure that the content exists in the Galaxy.</p>
+<p>The syntax for the ShowGraphic() function is as follows:</p>
+<p>Dim graphicInfo as aaGraphic.GraphicInfo;</p>
+<p>graphicInfo.Identity = "<Identity>";</p>
+<p>graphicInfo.GraphicName = "<SymbolName>";</p>
+<p>ShowGraphic( graphicInfo );</p>
+<p>The ShowGraphic() function is in addition to the Show Symbol animation feature, which allows you</p>
+<p>to display a symbol as a pop-up window through an animation. You can use either a Show Symbol</p>
+<p>animation or the ShowGraphic() function. Like the Show Symbol animation feature, you can</p>
+<p>control the properties of the symbol through the ShowGraphic() function in scripting.</p>
+<p>You can configure the show graphic script to specify:</p>
+<p></p>
+<p>Which graphic will appear as the pop-up window or appear in a pane</p>
+<p></p>
+<p>Whether the window will have a title bar</p>
+<p></p>
+<p>The initial position of the pop-up window</p>
+<p></p>
+<p>Whether the window can be resized</p>
+<p></p>
+<p>Whether the window type will be modal or modeless</p>
+<p></p>
+<p>The relative position of the pop-up window</p>
+<p></p>
+<p>Passing the owning object to the symbol to display</p>
+<p></p>
+<p>Values of the custom properties of the symbol</p>
+<p>ScreenName</p>
+<p>(Optional) Specifies the screen that contains the pane with the content</p>
+<p>to be closed.</p>
+<p>String</p>
+<p>PaneName</p>
+<p>(Optional) Specifies the pane containing the content to be closed.</p>
+<p>String</p>
+<p>ContentType</p>
+<p>(Optional) Specifies the content type of the content to be closed, for</p>
+<p>example “Overview,” “Navigation,” or “Faceplate.”</p>
+<p>String</p>
+<p>SearchScope</p>
+<p>(Optional) When ScreenName is not specified, SearchScope specifies</p>
+<p>which screen or screens to search for a pane that matches the</p>
+<p>specified PaneName or content type. The default SearchScope is</p>
+<p>“Self.”</p>
+<p>Enum</p>
+<p>Property</p>
+<p>Description</p>
+<p>Data Type</p>
+<p>HideGraphic() Function</p>
+<p>You can also include a script that contains the HideGraphic() function. The HideGraphic() function</p>
+<p>allows the closing of a graphic displayed through the ShowGraphic() function.</p>
+<p>The syntax for the HideGraphic() function is as follows:</p>
+<p>HideGraphic(string identity);</p>
+<p>HideSelf() Function</p>
+<p>The HideSelf() function can be used to close the displayed graphic itself when it is shown in the</p>
+<p>running ViewApp.</p>
+<p>The syntax for the HideSelf() function is as follows:</p>
+<p>HideSelf();</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">← Previous: Lab 25 – Creating a Back Button for Navi</a> &nbsp;|&nbsp;
+  <a href="L53-Lab-26---Using-the-ShowContent-Function.html">Next: Lab 26 – Using the ShowContent() Functio →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

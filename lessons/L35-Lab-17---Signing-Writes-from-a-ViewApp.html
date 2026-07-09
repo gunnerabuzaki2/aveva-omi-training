@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 35: Lab 17 – Signing Writes from a ViewApp</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L34-Signed-Writes.html">← L34: Signed Writes</a> &nbsp;|&nbsp;
+  <a href="L36-Alarming-Overview.html">L36: Alarming Overview →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html" style="font-weight:bold;color:#1a1a1a;">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L35: Lab 17 – Signing Writes from a ViewApp</h1>
+<p class="source">Module 8 — Security | Pages 481-494</p>
+
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p>Introduction</p>
+<p>In this lab, you will configure security classifications for attributes in the $Mixer.Agitator template.</p>
+<p>You will configure the Cmd attribute security classification to SecuredWrite and the Speed.SP</p>
+<p>attribute security classification to VerifiedWrite.</p>
+<p>During testing, you will attempt to write to attributes as users with different operational</p>
+<p>permissions. You will use the Secured Write and Verified Write dialog boxes to operate the agitator</p>
+<p>in a running ViewApp.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Configure security classifications for attributes in automation objects</p>
+<p></p>
+<p>Operate Secured Writes and Verified Writes as users with required permissions</p>
+<p></p>
+<p>Use the Secured Write and Verified Write dialog boxes in a running ViewApp</p>
+<p>$Mixer.Agitator Attribute</p>
+<p>Security Classification</p>
+<p>Cmd</p>
+<p>SecuredWrite</p>
+<p>Speed.SP</p>
+<p>VerifiedWrite</p>
+<div class="screenshot">
+  <img src="../images/page_0482_0.png" alt="Page 482">
+  <div class="caption">Page 482</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0482_1.jpeg" alt="Page 482">
+  <div class="caption">Page 482</div>
+</div>
+<p>• Status ([$Motor])</p>
+<p>• Speed,PV ([$Agitator])</p>
+<p>• Speed,SP ([$Agitator])</p>
+<p>• Bottom info: "4 of 265 displayed, 1 selected"</p>
+<p>• Name: Cmd</p>
+<p>• Description: Command</p>
+<p>• Data type: Boolean</p>
+<p>• False label: Stop</p>
+<p>• True label: Start</p>
+<p>• Writable: User writable</p>
+<p>• Initial value: Stop</p>
+<p>• <strong>Security Classification icon</strong> (shield with checkmark, red arrow)</p>
+<p>• <strong>Dropdown menu</strong> showing:</p>
+<p>• FreeAccess</p>
+<p>• Operate</p>
+<p>• <strong>SecuredWrite</strong> (selected)</p>
+<p>• VerifiedWrite</p>
+<p>• Configure</p>
+<p>• ViewOnly]</p>
+<p>Configure Attributes with Signed Write Security Classifications</p>
+<p>In the following steps, you will configure agitator objects with attributes with signed write security</p>
+<p>classifications.</p>
+<p>1.</p>
+<p>On the Templates tab, in the Training \ Project toolset, double-click $Mixer.Agitator to open</p>
+<p>it in the Object Editor.</p>
+<p>2.</p>
+<p>On the Attributes tab, in the Attributes list, select the Cmd attribute.</p>
+<p>3.</p>
+<p>In the right pane, to the right of the Initial value field, click the Security Classification icon,</p>
+<p>and then select SecuredWrite.</p>
+<div class="screenshot">
+  <img src="../images/page_0483_0.png" alt="Page 483">
+  <div class="caption">Page 483</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0483_1.jpeg" alt="Page 483">
+  <div class="caption">Page 483</div>
+</div>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p>4.</p>
+<p>Click the Lock icon to the right of the Initial value field to propagate the changes down to</p>
+<p>objects derived from this template.</p>
+<p>5.</p>
+<p>In the Attributes list, select the Speed.SP attribute.</p>
+<p>6.</p>
+<p>In the right pane, to the right of the Initial value field, click the Security Classification icon,</p>
+<p>and then select VerifiedWrite.</p>
+<div class="screenshot">
+  <img src="../images/page_0484_0.png" alt="Page 484">
+  <div class="caption">Page 484</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0484_1.png" alt="Page 484">
+  <div class="caption">Page 484</div>
+</div>
+<p>7.</p>
+<p>Click the Lock icon to the right of the Initial value field.</p>
+<p>8.</p>
+<p>Save and close the $Mixer.Agitator template, and check it in.</p>
+<p>9.</p>
+<p>Open $Mixer.Agitator again.</p>
+<p><strong>10.</strong> In the Attributes list, ensure that the Cmd attribute is selected.</p>
+<p><strong>11.</strong> In the right pane, to the right of the Initial value field, click the Lock icon to unlock it.</p>
+<p>This will allow the attribute values to be changed at runtime.</p>
+<div class="screenshot">
+  <img src="../images/page_0485_0.png" alt="Page 485">
+  <div class="caption">Page 485</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0485_1.png" alt="Page 485">
+  <div class="caption">Page 485</div>
+</div>
+<p>• <strong>Close</strong> button (blue)]</p>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p><strong>12.</strong> In the Attributes list, select Speed.SP.</p>
+<p><strong>13.</strong> In the right pane, to the right of the Initial value field, click the Lock icon to unlock it.</p>
+<p><strong>14.</strong> Save and close the $Mixer.Agitator template, and check it in.</p>
+<p>Redeploy the Agitator Objects</p>
+<p>Now you will redeploy the updated agitator instances.</p>
+<p><strong>15.</strong> In the Deployment view, right-click AppEngine1 and select Deploy to deploy the changed</p>
+<p>objects.</p>
+<p>Use the default deployment settings.</p>
+<p>Notice that eight Agitator objects are deployed.</p>
+<p><strong>16.</strong> Click Close to close the Deploy dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0486_0.jpeg" alt="Page 486">
+  <div class="caption">Page 486</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0486_1.png" alt="Page 486">
+  <div class="caption">Page 486</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>In the preview session, you will test writing to attributes of the agitator instances as different users.</p>
+<p><strong>17.</strong> Switch to the ViewApp preview session.</p>
+<p>Notice that the user that was logged in for the previous lab is still logged in, which for the</p>
+<p>examples below, is <domain>\jamess.</p>
+<p><strong>18.</strong> Navigate to Mixer100.</p>
+<p><strong>19.</strong> In the left pane, click Agitator_001.</p>
+<p>The command panel appears.</p>
+<p><strong>20.</strong> On the command panel, click Stop.</p>
+<p>The Secured Write dialog box appears.</p>
+<p>Notice that the current logged in user appears in the Domain and User name fields.</p>
+<div class="screenshot">
+  <img src="../images/page_0487_0.png" alt="Page 487">
+  <div class="caption">Page 487</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0487_1.png" alt="Page 487">
+  <div class="caption">Page 487</div>
+</div>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p><strong>21.</strong> Enter <domain>\karent for the user with a password as required, and then enter a comment</p>
+<p>in the Comments field as Command agitator to stop.</p>
+<div class="key-concept">Note: Your instructor will provide the domain, user, and password information. The following example shows cloud as the domain and karent as the user. 22. In the Secured Write dialog box, click Set.</div>
+<div class="screenshot">
+  <img src="../images/page_0488_0.png" alt="Page 488">
+  <div class="caption">Page 488</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0488_1.png" alt="Page 488">
+  <div class="caption">Page 488</div>
+</div>
+<p>Notice that the command panel shows a security error. This is because the user entered for</p>
+<p>setting the command does not have the proper permissions, so the operation failed.</p>
+<p><strong>23.</strong> On the command panel, click Stop again.</p>
+<p><strong>24.</strong> Enter <domain>\johnj for the user with a password as required, and then enter a comment in</p>
+<p>the Comments field as Command agitator to stop.</p>
+<div class="screenshot">
+  <img src="../images/page_0489_0.jpeg" alt="Page 489">
+  <div class="caption">Page 489</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0489_1.png" alt="Page 489">
+  <div class="caption">Page 489</div>
+</div>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p><strong>25.</strong> Click Set.</p>
+<p>Notice that the agitator stops and there is no security error. This is because the user entered to</p>
+<p>set the command had the proper permissions, so the operation succeeded.</p>
+<p><strong>26.</strong> On the command panel, click Start.</p>
+<p>The Secured Write dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0490_0.png" alt="Page 490">
+  <div class="caption">Page 490</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0490_1.jpeg" alt="Page 490">
+  <div class="caption">Page 490</div>
+</div>
+<p><strong>27.</strong> Enter <domain>\lisay for the user and a password as required, and a comment as Command</p>
+<p>agitator to start.</p>
+<p><strong>28.</strong> Click Set.</p>
+<p>Notice that the agitator starts.</p>
+<div class="screenshot">
+  <img src="../images/page_0491_0.png" alt="Page 491">
+  <div class="caption">Page 491</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0491_1.png" alt="Page 491">
+  <div class="caption">Page 491</div>
+</div>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p><strong>29.</strong> In the command panel, enter a Setpoint speed as 70 and press Enter.</p>
+<p>The Verified Write dialog box appears.</p>
+<p><strong>30.</strong> Enter <domain>\johnj for both the operator and verifier with passwords as required, and a</p>
+<p>Comment as Reset the setpoint as operators.</p>
+<div class="screenshot">
+  <img src="../images/page_0492_0.png" alt="Page 492">
+  <div class="caption">Page 492</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0492_1.png" alt="Page 492">
+  <div class="caption">Page 492</div>
+</div>
+<p><strong>31.</strong> Click Set.</p>
+<p>Notice that the Verified Write dialog box displays a message as Operator and Verifier have</p>
+<p>to be two different users.</p>
+<p><strong>32.</strong> Change the verifier to <domain>\lisay and click Set.</p>
+<div class="screenshot">
+  <img src="../images/page_0493_0.png" alt="Page 493">
+  <div class="caption">Page 493</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0493_1.png" alt="Page 493">
+  <div class="caption">Page 493</div>
+</div>
+<p>Lab 17 – Signing Writes from a ViewApp</p>
+<p>The Verified Write dialog box closes, and the command panel shows a security error to the</p>
+<p>left of the speed setpoint value.</p>
+<p><strong>33.</strong> In the command panel, enter the Speed setpoint as 70 again and press Enter.</p>
+<p>The Verified Write dialog box appears.</p>
+<p><strong>34.</strong> Enter <domain>\johnj for the operator and <domain>\karent for the verifier with passwords</p>
+<p>as required, and a Comment as Reset the setpoint approved by supervisor.</p>
+<div class="screenshot">
+  <img src="../images/page_0494_0.png" alt="Page 494">
+  <div class="caption">Page 494</div>
+</div>
+<p><strong>35.</strong> Click Set.</p>
+<p>Notice that the Speed setpoint for Agitator_001 is written as 70 this time.</p>
+<p><strong>36.</strong> Close the command panel.</p>
+<p><strong>37.</strong> When you are finished testing, minimize the preview session.</p>
+<p><End of Lab></p>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L34-Signed-Writes.html">← Previous: Signed Writes</a> &nbsp;|&nbsp;
+  <a href="L36-Alarming-Overview.html">Next: Alarming Overview →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

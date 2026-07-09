@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 26: Widgets Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
+  <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html" style="font-weight:bold;color:#1a1a1a;">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L26: Widgets Overview</h1>
+<p class="source">Module 6 — Widgets | Pages 379-382</p>
+
+<p>Section 1 – Introduction</p>
+<p>Section 1 – Introduction</p>
+<p>Overview</p>
+<p>Widgets are “mini apps” that you can use in your visualization applications. They are reusable</p>
+<p>controls designed with web technology and generally display data. They take up more space in the</p>
+<p>interface than a single icon and can be interactive and resizable. Widgets are most frequently used</p>
+<p>to provide on-screen user interface elements that integrate with other platforms and data sources.</p>
+<p>They are supported in Operations Management Interface applications.</p>
+<p>Widgets are different from OMI Apps: Widgets are self-contained programs that run automatically</p>
+<p>to show information when the ViewApp starts, whereas Apps are typically programs that you must</p>
+<p>interact with to run.</p>
+<p>Out-of-the-Box Widgets</p>
+<p>The following widgets are provided out-of-the-box with Application Server. They are available from</p>
+<p>the Graphics tab in Galaxies created with the Default or the Default_EMPTY Galaxy types.</p>
+<p></p>
+<p>Carousel widget cycles through a series of selected graphics, rotating them at a</p>
+<p>configurable, predefined interval. For example, it might be used to display dashboards,</p>
+<p>alerts, or alarm information on large monitors on the plant floor.</p>
+<p></p>
+<p>Datagrid widget shows tabular data within a layout pane of a ViewApp during runtime.</p>
+<p>Data shown in the widget can be filtered by the user. The widget also includes a set of</p>
+<p>visual properties to customize the appearance of the widget and its displayed tabular data.</p>
+<p></p>
+<p>MapApp widget shows a map containing symbols within a running application. During</p>
+<p>runtime, the map provides controls and touch support to enable users to pan to different</p>
+<p>areas of the map and zoom in or out to show more or less map detail. Custom symbols</p>
+<p>displayed on the map are user-interactive. For example, clicking a symbol that represents</p>
+<p>an asset can be used to automatically navigate the ViewApp to that asset. Symbols shown</p>
+<p>on the map typically use latitude and longitude for accurate geo location.</p>
+<p>This section introduces using widgets in your ViewApps. It describes the widgets provided out-of-</p>
+<p>the-box with Application Server, as well as how to import other widgets into a Galaxy.</p>
+<p>Property</p>
+<p>Description</p>
+<p>Autoplay</p>
+<p>If True, the Carousel widget will automatically start on load. If False, the</p>
+<p>user must select the next item to start the carousel. The default is True.</p>
+<p>BackgroundColor</p>
+<p>The background color of the widget.</p>
+<p>GraphicNames</p>
+<p>A comma-separated list of graphics for the carousel to display at runtime.</p>
+<p>Linked graphics that are renamed cannot be displayed with the Carousel</p>
+<p>widget. At runtime, they will appear as empty graphics.</p>
+<p>Interval</p>
+<p>The amount of time (in milliseconds) to delay between automatically</p>
+<p>cycling to the next item in the list of graphics to display.</p>
+<p>Keyboard</p>
+<p>If True, the carousel will respond to keyboard inputs. The default is True.</p>
+<p>Loop</p>
+<p>If True, the carousel will continuously cycle through the items to display. If</p>
+<p>False, the carousel will stop after a single cycle. The default is True.</p>
+<p>Pause</p>
+<p>If True, the carousel will pause when it detects a mouse-enter or a touch-</p>
+<p>down event, and resume cycling of graphics on mouse-leave or touch-up.</p>
+<p>If False, the carousel will not pause. The default is True.</p>
+<p></p>
+<p>QRCode_Scanner widget connects to a camera to scan a QR code and returns the result</p>
+<p>as a string. The default value of the string is an empty string.</p>
+<p>To use this widget, the device showing the ViewApp must have a camera. It is</p>
+<p>recommended for use on a physical machine instead of a virtual machine.</p>
+<p>When using the Web Client remotely, use a secure URL (https://).</p>
+<p>You can configure a script to read the QR code and display a graphic based on the</p>
+<p>scanned value. At runtime, the QRCode_Scanner object will appear with two buttons:</p>
+<p>Start Camera and Stop Camera. Users can click Start Camera to scan the QR code. If the</p>
+<p>scanned code matches the return value of the script or graphic name, the graphic will</p>
+<p>display.</p>
+<p></p>
+<p>Teamwork widget is a Software-as-a-Service (SaaS) interface that allows workers to</p>
+<p>connect to AVEVA Teamwork to perform tasks, achieve learning goals, identify and</p>
+<p>manage issues, and capture and document standards. Industrial organizations use</p>
+<p>Teamwork to implement skills development, knowledge sharing, and collaboration</p>
+<p>management across their enterprise from the cloud. This can be done by using the</p>
+<p>Teamwork widget to provide training videos, digital logbook, or for answering calls for</p>
+<p>help.</p>
+<p></p>
+<p>Web_Browser widget can display a web site.</p>
+<p>Assign a Widget to a Layout Pane</p>
+<p>For Operations Management Interface ViewApps, you can assign widgets to a pane from the</p>
+<p>Layout Editor or ViewApp Editor. Select the widget from the Toolbox tab, and then from the</p>
+<p>preview area, drag and drop the widget to the pane. Once assigned, you can configure properties</p>
+<p>for the widget from the Properties tab.</p>
+<p>Property</p>
+<p>Description</p>
+<p>QRCode</p>
+<p>The resulting string of the scanned QR code.</p>
+<p>AutoStart</p>
+<p>If True, the camera will start on load.</p>
+<p>AutoStop</p>
+<p>If True, the camera will stop after the QR code is scanned.</p>
+<p>StartStop</p>
+<p>If True, the camera will start. If False, the camera will stop.</p>
+<p>BackgroundColor</p>
+<p>The background color of the widget.</p>
+<p>Property</p>
+<p>Description</p>
+<p>URL</p>
+<p>The address of a web page to display. The URL must be a valid URL.</p>
+<p>If the Web Client is running in HTTPS, then only the HTTPS URL page can</p>
+<p>be loaded. If running in HTTP, then both HTTP and HTTPS can be loaded. If</p>
+<p>the policy of the web site blocks cross-domain access, then this widget will</p>
+<p>not work.</p>
+<p>Section 1 – Introduction</p>
+<p>Layout Considerations</p>
+<p>It will be tempting to lay out your widgets according to the dimensions of the placement grid of a</p>
+<p>particular device that you own and develop with. This can be a useful initial approximation as you</p>
+<p>lay out your widget, but keep the following in mind:</p>
+<p></p>
+<p>The number, size, and spacing of cells can vary widely from device to device, so it is very</p>
+<p>important that your widget is flexible and can accommodate more or less space than</p>
+<p>anticipated.</p>
+<p></p>
+<p>As the user resizes a widget, the system will respond with a device independent (dp) size</p>
+<p>range in which your widget can redraw itself. Planning your widget-resizing strategy</p>
+<p>across “size buckets” rather than variable grid dimensions will give you the most reliable</p>
+<p>results.</p>
+<p>Gestures</p>
+<p>Because widgets live on the home screen, they have to co-exist with the navigation that is</p>
+<p>established there. This limits the gesture support that is available in a widget compared to a full-</p>
+<p>screen App. For example, while Apps may support a view pager that allows the user to navigate</p>
+<p>between screens laterally, that gesture is already taken on the home screen for the purpose of</p>
+<p>navigating between home panels.</p>
+<p>The only gestures available for widgets are touch and vertical swipe.</p>
+<p>Import and Export Widgets</p>
+<p>You can import a widget into your Galaxy for use in an Operations Management Interface ViewApp</p>
+<p>or an InTouch application.</p>
+<p>From the Galaxy menu, select Import | HTML5 Widget and then select a .CWP (Custom Widget</p>
+<p>Package) file to import. The .CWP file includes HTML5, CSS, and Javascript files.</p>
+<p>When the import is complete, the widget will appear in the Galaxy Toolbox and is available for use</p>
+<p>in a symbol or a layout. Available widget properties can be configured after the widget is</p>
+<p>embedded in a symbol or assigned to a layout pane.</p>
+<p>Widgets can also be imported and exported from a Galaxy as objects. In this case, the widget(s)</p>
+<p>are imported or exported as aaPKG files.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← Previous: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
+  <a href="L27-Lab-13---Adding-a-Home-Carousel.html">Next: Lab 13 – Adding a Home Carousel →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

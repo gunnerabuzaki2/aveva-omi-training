@@ -1,0 +1,4 @@
+reference/
+*.json
+generate_lessons.py
+.git/

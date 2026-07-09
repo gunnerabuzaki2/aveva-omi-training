@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 36: Alarming Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">← L35: Lab 17 – Signing Writes from a ViewApp</a> &nbsp;|&nbsp;
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Gra →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html" style="font-weight:bold;color:#1a1a1a;">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L36: Alarming Overview</h1>
+<p class="source">Module 9 — Alarms and Events | Pages 497-506</p>
+
+<p>Section 1 – Alarming Overview</p>
+<p>Section 1 – Alarming Overview</p>
+<p>Introduction to Alarms and Events</p>
+<p>The alarm and event capabilities allow users to automate the detection, notification, historization,</p>
+<p>and viewing of application (process) alarms and events or system/software alarms and events.</p>
+<p>Alarms and events are both occurrences in the runtime system. They are different and the system</p>
+<p>distinguishes between the two.</p>
+<p>An alarm represents the occurrence of a condition that is considered abnormal and requires</p>
+<p>immediate attention from a user. Examples of alarms include:</p>
+<p></p>
+<p>A process measurement exceeded a predefined limit, such as a high temperature alarm.</p>
+<p></p>
+<p>A process device is not in the desired state, such as a pump that should be running has</p>
+<p>stopped.</p>
+<p>An event is an occurrence of a condition at a certain point in time. Examples of events include:</p>
+<p></p>
+<p>The system engineer changed the runtime system configuration, such as the deployment</p>
+<p>of a new automation object.</p>
+<p></p>
+<p>A Platform came back on line, after it had a failure or shutdown.</p>
+<p>The following items are not considered alarms or events:</p>
+<p></p>
+<p>Configuration actions within the Galaxy Repository, such as import or checkout</p>
+<p></p>
+<p>A message sent to the system logger (OCMCLogger)</p>
+<div class="key-concept">Note: Sometimes certain software events may log a message, in addition to generating an event. Logger messages are not events. The Platform as an Alarm Provider A Platform can act as a single alarm provider that provides alarms to the visualization client’s distributed alarm subsystem. A Boolean check box is provided in the Platform automation object indicating whether or not it subscribes to Areas for alarm and event reporting. The Platform is responsible for routing all alarms and events for all areas, which have been subscribed to by that Platform, to the distributed alarming infrastructure. An alarm generated by Application Server contains information that is generated by the alarm functions inside the automation object. This information includes:  Timestamp of alarm events  Attribute name  Common message text string  Area  Common name for alarm primitive (for example, PV.HiAlarm)  New alarm state (for example, ACK or RTN)  Priority (1-999)  Severity (1-4) This section provides an overview of alarms and events.</div>
+<p></p>
+<p>Value</p>
+<p></p>
+<p>Limit</p>
+<p></p>
+<p>Category</p>
+<p>Visualization Clients as Alarm Consumers</p>
+<p>Visualization clients can be configured to consume the alarms and events subscribed by the alarm</p>
+<p>providers. An alarm provider is specified by providing the node name and the name of the</p>
+<p>provider. The deployed Platform on a node can be configured as the alarm provider; therefore,</p>
+<p>only one alarm provider can exist per node. In addition, visualization clients can be configured with</p>
+<p>specified query filters to determine the consumption of alarms from the alarm providers. The query</p>
+<p>filters can be based on areas that have been subscribed by the alarm providers.</p>
+<p>Alarm Acknowledgment from Distributed Alarming</p>
+<p>Visualization clients can be configured to allow operators to acknowledge alarms that are reported</p>
+<p>by the Platform. The Platform receives the request to acknowledge an alarm and forwards it to the</p>
+<p>target automation object. The alarmed attribute in the automation object will be set to</p>
+<p>acknowledged. Security needs to be considered as part of this operation. An optional comment</p>
+<p>can be entered when an acknowledgment is requested.</p>
+<p>Alarm Enable/Disable</p>
+<p>Alarming on any automation object can be enabled or disabled. The Platform receives the enable</p>
+<p>request and forwards it to the target automation object’s AlarmMode attribute. Security needs to be</p>
+<p>considered as part of this operation.</p>
+<p>The Platform can also be an event provider that provides events to the visualization client’s</p>
+<p>distributed Event subsystem. This provider routes all events that are generated by automation</p>
+<p>objects hosted by that Platform to Application Server. An event generated by Application Server</p>
+<p>contains information that is generated by the event functions inside the automation object.</p>
+<p>For different types of events, information is included as follows:</p>
+<p></p>
+<p>System events:</p>
+<p></p>
+<p>Type (or Category) = System</p>
+<p></p>
+<p>Timestamp</p>
+<p></p>
+<p>Tagname</p>
+<p></p>
+<p>Tag description</p>
+<p></p>
+<p>Area</p>
+<p></p>
+<p>System event description (started, stopped)</p>
+<p></p>
+<p>Security audit events:</p>
+<p></p>
+<p>Type = Operator Change</p>
+<p></p>
+<p>Timestamp</p>
+<p></p>
+<p>TagName</p>
+<p></p>
+<p>Tag.primitive.attribute</p>
+<p></p>
+<p>Tag description</p>
+<p></p>
+<p>Area</p>
+<p>Section 1 – Alarming Overview</p>
+<p></p>
+<p>ViewEngine name</p>
+<p></p>
+<p>Operator 1 name</p>
+<p></p>
+<p>Operator 2 name</p>
+<p></p>
+<p>Old value</p>
+<p></p>
+<p>New value</p>
+<p></p>
+<p>Application change events:</p>
+<p></p>
+<p>Type = Data Change</p>
+<p></p>
+<p>Timestamp</p>
+<p></p>
+<p>TagName</p>
+<p></p>
+<p>Tag.primitive.attribute</p>
+<p></p>
+<p>Tag description</p>
+<p></p>
+<p>Area</p>
+<p></p>
+<p>ViewEngine name</p>
+<p></p>
+<p>Old value</p>
+<p></p>
+<p>New value</p>
+<p>Alarm Queries</p>
+<p>Alarm queries are used within Alarm Clients to retrieve real-time alarm information and event</p>
+<p>reports from the Galaxy.</p>
+<p>The fully qualified syntax of an alarm query to retrieve a single alarm within an object as reported</p>
+<p>by a specific Platform object is:</p>
+<p>\\nodename\Galaxy!area!object.attribute</p>
+<p>If the Platform object that serves as an alarm provider is located in the local computer, the</p>
+<p>following syntax of the alarm query is allowed:</p>
+<p>\Galaxy!area!object.attribute</p>
+<p>The following table lists variants of the alarm query and their return data:</p>
+<p>Alarm Query</p>
+<p>Results</p>
+<p>\\nodename\Galaxy!area</p>
+<p>All alarms and events from the area object itself.</p>
+<p>All alarms and events from all the objects hosted in the area.</p>
+<p>All alarms and events from all subareas contained in the area,</p>
+<p>as configured in the Model view of the System Platform IDE.</p>
+<p>All alarms and events from all the objects hosted in the</p>
+<p>contained areas.</p>
+<p>\\nodename\Galaxy!area!area</p>
+<p>All alarms and events from the object itself.</p>
+<p>\\nodename\Galaxy!winplatform</p>
+<p>All alarms and events from the Platform object itself.</p>
+<p>\\nodename\Galaxy!engine</p>
+<p>All alarms and events from the engine object (AppEngine or</p>
+<p>ViewEngine) itself.</p>
+<p>\\nodename\Galaxy!dio</p>
+<p>All alarms and events from the device integration object itself.</p>
+<p>Use of a Wildcard</p>
+<p>The asterisk (*) is a wildcard character that may be used to substitute any character or characters</p>
+<p>in the object.attribute part of the alarm query.</p>
+<p>The following table lists different examples on the use of the wildcard character on alarm queries</p>
+<p>and their return data:</p>
+<p>Using Multiple Queries</p>
+<p>Multiple queries can be submitted by an Alarm Client. For example, if Area1 and Area2 are two</p>
+<p>mutually exclusive areas, the following two queries can be submitted at once:</p>
+<p>\Galaxy!Area1 \Galaxy!Area2</p>
+<p>By using multiple queries it is possible to retrieve alarms from different nodes (Platform objects) at</p>
+<p>the same time, for example:</p>
+<p>\\NodeNameA\Galaxy!Area1 \\NodeNameB\Galaxy!Area2</p>
+<p>Alarm Aggregation</p>
+<p>Alarm aggregation provides an efficient way to identify whether any alarms on an object are</p>
+<p>currently in the InAlarm state, the overall status of the most important of those alarms, and how</p>
+<p>many alarms are active at each level of alarm severity and at each level of containment. This</p>
+<p>makes it possible to follow a trail from one level to the next to find the underlying cause of a</p>
+<p>complex object’s alarms.</p>
+<p>You can view alarm aggregation statuses in runtime clients such as Object Viewer. You can build</p>
+<p>graphical representations to view alarm aggregation statuses in visualization applications using</p>
+<p>animations, such as the alarm border animation with Situational Awareness Library symbols or</p>
+<p>with symbols.</p>
+<p>Alarm aggregation functionality can be described for an:</p>
+<p></p>
+<p>Object</p>
+<p></p>
+<p>Area</p>
+<p></p>
+<p>Attribute</p>
+<p>Alarms are aggregated if they are in one of three states:</p>
+<p></p>
+<p>UNACK_ALM</p>
+<p></p>
+<p>ACK_ALM</p>
+<p></p>
+<p>UNACK_RTN</p>
+<p>Alarms in the ACK_RTN state are not aggregated.</p>
+<p>Alarms in silenced or shelved mode are aggregated, even though they do not appear in the alarm</p>
+<p>client at runtime.</p>
+<p>Alarm Query</p>
+<p>Results</p>
+<p>\\nodename\Galaxy!area!object.*</p>
+<p>All alarms and events from a specific object within an area.</p>
+<p>\\nodename\Galaxy!area!*.attribute</p>
+<p>All alarms and events from all the objects in the area for the</p>
+<p>specific attribute.</p>
+<p>\\nodename\Galaxy!area!objectprefix*</p>
+<p>All alarms and events from objects whose name begins with</p>
+<p>the specific prefix.</p>
+<div class="screenshot">
+  <img src="../images/page_0501_0.png" alt="Page 501">
+  <div class="caption">Page 501</div>
+</div>
+<p>• Enable aggregation by checking <code>Aggregate Alarms</code> checkbox</p>
+<p>• Sets <code>AlarmAggregationStateCmd</code> attribute to <code>True</code></p>
+<p>• Window title: <code>$gArea</code> with minimize/maximize/close buttons</p>
+<p>• Tabs: General (active), Attributes, Scripts, Object Information</p>
+<p><strong>General Tab Contents:</strong></p>
+<p>• Historize active alarm counter (unchecked)</p>
+<p>• Historize unacknowledged alarm counter (unchecked)</p>
+<p>• Historize disabled (or silenced) alarm counter (unchecked)</p>
+<p><strong>Historization Fields (for each counter):</strong></p>
+<p>• Force storage period: [ms]</p>
+<p>• Value deadband: [EU]</p>
+<p>• Rollover Value</p>
+<p>• Trend High: [EU]</p>
+<p>• Trend Low: [EU]</p>
+<p>• Rate DeadBand: [%]</p>
+<p>• Interpolation Type (dropdown)</p>
+<p>• Enable Swinging Door (unchecked)</p>
+<p><strong>Bottom Checkboxes (red arrow highlighting):</strong></p>
+<p>• ☑ Aggregate Alarms (checked - enables aggregation)</p>
+<p>• ☑ Shelve Alarms (checked)]</p>
+<p>Section 1 – Alarming Overview</p>
+<p>Alarm Aggregation Attributes</p>
+<p>A set of five read-only attributes provide runtime aggregated alarm status information. These</p>
+<p>attributes are available for all Objects. If alarm aggregation is enabled on the Area, the following</p>
+<p>attributes aggregate their respective alarm status values for the Area, for all sub-Areas, contained</p>
+<p>objects, and their descendants assigned to the Area. If alarm aggregation is disabled, these</p>
+<p>attributes remain at their default values.</p>
+<p>These attributes are referenced as follows:</p>
+<p></p>
+<p><Object or Attribute>.AlarmMostUrgentInAlarm</p>
+<p></p>
+<p><Object or Attribute>.AlarmMostUrgentAcked</p>
+<p></p>
+<p><Object or Attribute>.AlarmMostUrgentMode</p>
+<p></p>
+<p><Object or Attribute>.AlarmMostUrgentSeverity</p>
+<p></p>
+<p><Object or Attribute>.AlarmMostUrgentShelved</p>
+<p>Additionally, an array attribute is used to provide counts of all alarms by severity levels and status.</p>
+<p>It can be referenced as follows:</p>
+<p></p>
+<p><Object or Attribute>.AlarmCntsBySeverity[ ]</p>
+<p>Configuring Alarm State Aggregation</p>
+<p>Configuring alarm state aggregation consists of normal alarm configuration procedures, plus an</p>
+<p>added step of enabling the aggregation feature on each relevant Area object. Check the</p>
+<p>Aggregate Alarms check box in the area object configuration editor to enable alarm aggregation.</p>
+<p>This sets the value of the AlarmAggregationStateCmd attribute to True.</p>
+<div class="screenshot">
+  <img src="../images/page_0502_0.jpeg" alt="Page 502">
+  <div class="caption">Page 502</div>
+</div>
+<p>Alarm Border Animation</p>
+<p>Alarm Border animation shows a highly visible border around a symbol or graphic element when</p>
+<p>an alarm occurs. The color and fill pattern of the border indicates the severity and current state of</p>
+<p>the alarm. Plant operators can quickly recognize alarm conditions when Alarm Border animation is</p>
+<p>used.</p>
+<p>Alarm Border animation also shows an indicator icon at the top left corner of the border around a</p>
+<p>closed graphic element. For open pie or arc graphic elements, the indicator icon is placed at the</p>
+<p>top-left most location of the start and end points.</p>
+<p>Alarm severity (1-4) or the current alarm mode (Shelved, Silenced, Disabled) appear as part of the</p>
+<p>indicator icon. The indicator icon can be shown or hidden as a configurable option of Alarm Border</p>
+<p>animation.</p>
+<p>Alarm border animation can be applied to all types of symbols except embedded symbols and</p>
+<p>nested groups. Alarm border animation can also be applied to graphic elements and grouped</p>
+<p>elements.</p>
+<p>Understanding the Behavior of Alarm Border Animations</p>
+<p>Alarm Border animation appears around a graphic element based on the current state of the</p>
+<p>object's aggregated alarm attributes. The appearance of the alarm border itself reflects the current</p>
+<p>alarm state and the user’s interaction with the alarm.</p>
+<p></p>
+<p>Symbol’s process value transition into an alarm state: Alarm Border animation</p>
+<p>appears around the symbol based on alarm severity with blinking.</p>
+<p></p>
+<p>User acknowledges an alarm with the process value still in an alarm state: Alarm</p>
+<p>Border animation appears around the symbol without blinking.</p>
+<p></p>
+<p>Alarm value returns to normal without the user acknowledging the alarm: Alarm</p>
+<p>Border animation remains around the symbol in a defined Return to Normal visual style</p>
+<p>without blinking.</p>
+<p></p>
+<p>Alarm value returns to normal and the user acknowledges the alarm: Alarm Border</p>
+<p>animation no longer appears around a symbol.</p>
+<p></p>
+<p>User suppresses an alarm: Alarm Border animation remains around the symbol in a</p>
+<p>defined Suppressed visual style; however, an alarm indicator icon does not appear for a</p>
+<p>Suppressed state.</p>
+<p></p>
+<p>New alarm condition occurs when Alarm Border animation appears around a</p>
+<p>symbol: The animation updates to show the new alarm state.</p>
+<p></p>
+<p>In the case of aggregation alarms: Alarm Border animation shows the highest current</p>
+<p>alarm state.</p>
+<div class="screenshot">
+  <img src="../images/page_0503_0.png" alt="Page 503">
+  <div class="caption">Page 503</div>
+</div>
+<p>Section 1 – Alarming Overview</p>
+<p>Alarm Border animation can be configured by selecting Alarm Border from the list of Visualization</p>
+<p>animations. The Alarm Border pane contains mutually exclusive fields to set the referenced</p>
+<p>attributes for aggregate or individual alarms.</p>
+<p>To define the source of aggregated alarms, users specify Alarm Border animation by entering an</p>
+<p>attribute or object name in the Use Standard Alarm-Urgency References field of the Alarm Border</p>
+<p>pane. The selected object attributes map to the following alarm urgency attributes:</p>
+<p></p>
+<p>AlarmMostUrgentAcked: Indicates the acknowledgment status (True/False) of the</p>
+<p>highest priority current alarm</p>
+<p></p>
+<p>AlarmMostUrgentInAlarm: Indicates the InAlarm status (True/False) of the highest</p>
+<p>priority current alarm</p>
+<p></p>
+<p>AlarmMostUrgentMode: Indicates the mode (Enabled/Silenced/Disabled) of the highest</p>
+<p>priority current alarm</p>
+<p></p>
+<p>AlarmMostUrgentSeverity: Indicates the severity as an integer (1-4) of the highest</p>
+<p>priority current alarm; if no alarms are in an InAlarm state or waiting to be acknowledged,</p>
+<p>the value is 0</p>
+<p></p>
+<p>AlarmMostUrgentShelved: Indicates the shelved status (True/False) of the highest</p>
+<p>priority current alarm</p>
+<p>To configure Alarm Border animation for individual alarms, users specify references to the</p>
+<p>following alarm urgency sources:</p>
+<p></p>
+<p>InAlarm Source</p>
+<p></p>
+<p>Acked Source</p>
+<p></p>
+<p>Mode Source</p>
+<p></p>
+<p>Severity Source</p>
+<p></p>
+<p>Shelved Source</p>
+<p>Alarm Border animation subscribes to these attributes. Based on the alarm state of these</p>
+<p>attributes, Alarm Border animation is applied to the graphic element in runtime.</p>
+<p>Changing the Alarm Border Indicator Icon</p>
+<p>Alarm border animation shows an indicator icon at the top left corner of the border with alarm</p>
+<p>severity as a number from 1 to 4. Other indicator images represent alarm suppressed, silenced</p>
+<p>and shelved modes.</p>
+<div class="screenshot">
+  <img src="../images/page_0504_0.png" alt="Page 504">
+  <div class="caption">Page 504</div>
+</div>
+<p>A default Alarm Border indicator image is assigned to each alarm mode and severity level. The</p>
+<p>default images appear in the Image fields of the Alarm and events dialog box. The images are</p>
+<p>saved as files in the installation path.</p>
+<p>The default Alarm Border indicator images can be replaced by custom images. Supported image</p>
+<p>file types include:</p>
+<p></p>
+<p>.bmp</p>
+<p></p>
+<p>.gif</p>
+<p></p>
+<p>.jpg</p>
+<p></p>
+<p>.jpeg</p>
+<p></p>
+<p>.tif</p>
+<p></p>
+<p>.tiff</p>
+<p></p>
+<p>.png</p>
+<p></p>
+<p>.ico</p>
+<p></p>
+<p>.emf</p>
+<p>Additional settings, such as settings for alarm plant states and alarm adorner options are available</p>
+<p>from the Alarms and events dialog box.</p>
+<p>Modify Alarm Border Animation Element Styles</p>
+<p>The color and fill pattern of alarm borders are set by the Outline properties of a set of AlarmBorder</p>
+<p>Element Styles. The following table shows the Element Styles applied to Alarm Border animations</p>
+<p>by alarm severity and alarm state.</p>
+<p>Section 1 – Alarming Overview</p>
+<p>The assignment of these Element Styles to alarm conditions cannot be changed. Only the</p>
+<p>assigned Element Style’s Outline properties can be changed to modify the line pattern, line weight,</p>
+<p>and line color of alarm borders.</p>
+<p>Shelving Alarms</p>
+<p>You can shelve alarms to temporarily hide them from displays for a fixed period. Alarms continue</p>
+<p>to be historized, even when they are shelved.</p>
+<p>Shelving typically is used to reduce alarm noise, or to temporarily suppress alarms that might be</p>
+<p>triggered during system modifications or repairs, allowing you to focus on correcting other more</p>
+<p>urgent alarms.</p>
+<p>Shelving is similar to silencing an alarm, but shelved alarms differ from silenced alarms in the</p>
+<p>following ways:</p>
+<p></p>
+<p>Shelved alarms have a built-in associated timeout. Shelved alarms are automatically</p>
+<p>unshelved when the configured shelving period expires. You can also manually unshelve</p>
+<p>alarms and return them to an active, displayed state.</p>
+<p></p>
+<p>Alarm shelving must be enabled at an area level, but shelving applies only to individual</p>
+<p>alarms. You cannot shelve a hierarchy of alarms for an entire area or for an entire object.</p>
+<p>You cannot propagate alarm shelving through the Model View hierarchy.</p>
+<p></p>
+<p>The system enforces role-based limitations on permission to shelve alarms, alarm severity</p>
+<p>levels that can be shelved, and the total number of alarms a user can shelve.</p>
+<p>The system tracks who shelved the alarm, from what workstation, the reason for shelving the</p>
+<p>alarm, when shelving began, and when shelving will expire. Shelved alarms aggregate in similar</p>
+<p>fashion to silenced alarms.</p>
+<p>Enable Alarm Shelving</p>
+<p>Alarm shelving can be configured for each alarm severity with the Alarms and events dialog box.</p>
+<p>You can open this dialog box from the Galaxy menu by selecting Configure | Alarms and Events</p>
+<p>Alarm Severity</p>
+<p>Alarm State</p>
+<p>Element Style</p>
+<p>1</p>
+<p>UnAcknowledged</p>
+<p>AlarmBorder_Critical_UNACK</p>
+<p>1</p>
+<p>Acknowledged</p>
+<p>AlarmBorder_Critical_ACK</p>
+<p>1</p>
+<p>Return To Normal</p>
+<p>AlarmBorder_Critical_RTN</p>
+<p>2</p>
+<p>UnAcknowledged</p>
+<p>AlarmBorder_High_UNACK</p>
+<p>2</p>
+<p>Acknowledged</p>
+<p>AlarmBorder_High_ACK</p>
+<p>2</p>
+<p>Return To Normal</p>
+<p>AlarmBorder_High_RTN</p>
+<p>3</p>
+<p>UnAcknowledged</p>
+<p>AlarmBorder_Medium_UNACK</p>
+<p>3</p>
+<p>Acknowledged</p>
+<p>AlarmBorder_Medium_ACK</p>
+<p>3</p>
+<p>Return To Normal</p>
+<p>AlarmBorder_Medium_RTN</p>
+<p>4</p>
+<p>UnAcknowledged</p>
+<p>AlarmBorder_Low_UNACK</p>
+<p>4</p>
+<p>Acknowledged</p>
+<p>AlarmBorder_Low_ACK</p>
+<p>4</p>
+<p>Return To Normal</p>
+<p>AlarmBorder_Low_RTN</p>
+<p>All</p>
+<p>Inhibited</p>
+<p>AlarmBorder_Inhibited</p>
+<p>All</p>
+<p>Shelved</p>
+<p>AlarmBorder_Shelved</p>
+<p>All</p>
+<p>Suppressed</p>
+<p>AlarmBorder_Suppressed</p>
+<p>All</p>
+<p>Silenced</p>
+<p>AlarmBorder_Silenced</p>
+<div class="screenshot">
+  <img src="../images/page_0506_0.png" alt="Page 506">
+  <div class="caption">Page 506</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0506_1.png" alt="Page 506">
+  <div class="caption">Page 506</div>
+</div>
+<p>Configuration. By default, only Medium and Low severity alarms are selected on this dialog box for</p>
+<p>shelving at runtime.</p>
+<p>Shelving operations can be enabled or disabled for area objects, which can be configured in the</p>
+<p>Object Editor for an area. On the General tab, you can check or uncheck the Shelve Alarms</p>
+<p>option. By default, the option is checked, which allows alarms in that area to be shelved at runtime.</p>
+<p>Shelving Alarms at Run Time</p>
+<p>Use a runtime client to shelve and unshelve alarms. From Application Server, you can use Object</p>
+<p>Viewer to monitor and control shelved alarm attributes. From a visualization client, you can use the</p>
+<p>alarm client to monitor and control shelved alarms.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">← Previous: Lab 17 – Signing Writes from a ViewApp</a> &nbsp;|&nbsp;
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">Next: Lab 18 – Adding Alarm Information to Gra →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

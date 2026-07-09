@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 45: Lab 22 – Using the InSightApp for Historical Trending</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L44-Historical-Trending.html">← L44: Historical Trending</a> &nbsp;|&nbsp;
+  <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html" style="font-weight:bold;color:#1a1a1a;">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L45: Lab 22 – Using the InSightApp for Historical Trending</h1>
+<p class="source">Module 10 — Trends | Pages 625-636</p>
+
+<div class="screenshot">
+  <img src="../images/page_0625_0.jpeg" alt="Page 625">
+  <div class="caption">Page 625</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p>Lab 22 – Using the InSightApp for Historical</p>
+<p>Trending</p>
+<p>Introduction</p>
+<p>In this lab, you will use the InSightApp to add a display for historical trending in your ViewApp. You</p>
+<p>will configure the InSightApp to retrieve relevant information from Historian.</p>
+<p>When testing, you will be able to use different tools to view data and alarm-related information</p>
+<p>through the InSightApp.</p>
+<p>For example, you will be able to zoom, pan, and extend the trend display based on the time range.</p>
+<p>You will be able to move your mouse over the trend line to view data based on the cursor position</p>
+<p>on the line, and click the highlighted part of the line to view alarm information. You will also be able</p>
+<p>to view the data in different units of measure.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Configure the InSightApp</p>
+<p></p>
+<p>Use the InSightApp for historical trending</p>
+<div class="screenshot">
+  <img src="../images/page_0626_0.jpeg" alt="Page 626">
+  <div class="caption">Page 626</div>
+</div>
+<p>Create a Layout and Add the InSightApp</p>
+<p>In the following steps, you will create a new layout, add the InSightChartControl to a pane, and</p>
+<p>configure properties for the control.</p>
+<p>1.</p>
+<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
+<p>HistoricalTrend.</p>
+<p>2.</p>
+<p>Double-click HistoricalTrend to open it in the Layout Editor.</p>
+<p>3.</p>
+<p>On the Toolbox tab, enter a search string to find the InSightChartControl and drag the</p>
+<p>control to Pane1.</p>
+<p>4.</p>
+<p>On the Properties tab, configure properties as follows:</p>
+<div class="key-concept">Note: Your instructor will provide the Historian node name. The following example uses S00ENG for the Historian node name. 5. Save and close the HistoricalTrend layout, and check it in. Chart Configuration \ Historian InSight Server URL: http://&lt;Historian node name&gt;:32569 Chart Configuration \ Chart Duration: 5</div>
+<div class="screenshot">
+  <img src="../images/page_0627_0.png" alt="Page 627">
+  <div class="caption">Page 627</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0627_1.jpeg" alt="Page 627">
+  <div class="caption">Page 627</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p>Associate HistoricalTrend to a Navigation Item</p>
+<p>Now you will assign the HistoricalTrend layout to the tabbed pane in the ViewApp Editor and</p>
+<p>associate the Plant navigation item to it.</p>
+<p>6.</p>
+<p>In the ViewApp Editor, in the Navigation list, select Plant.</p>
+<p>7.</p>
+<p>On the Toolbox tab, enter a search string to find the HistoricalTrend layout and drag it to</p>
+<p>Pane8.</p>
+<p>You can verify that HistoricalTrend is assigned to Pane8 from the Actions list.</p>
+<div class="screenshot">
+  <img src="../images/page_0628_0.png" alt="Page 628">
+  <div class="caption">Page 628</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0628_1.png" alt="Page 628">
+  <div class="caption">Page 628</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will test your changes in the ViewApp preview session.</p>
+<p>8.</p>
+<p>Click Update to update the preview session.</p>
+<p>Notice that <domain> \jamess is still logged in and the preview is navigated to Plant.</p>
+<p>Also notice the bottom-left pane has two tabs: LiveAlarms and HistoricalTrend.</p>
+<p>9.</p>
+<p>Click the HistoricalTrend tab.</p>
+<p>Notice that the InSightChartControl refreshes, but the control indicates that no historized</p>
+<p>attributes match.</p>
+<div class="screenshot">
+  <img src="../images/page_0629_0.jpeg" alt="Page 629">
+  <div class="caption">Page 629</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0629_1.jpeg" alt="Page 629">
+  <div class="caption">Page 629</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p><strong>10.</strong> Navigate to Production Lines \ Line1 \ Mixer100 \ Level_001.</p>
+<p><strong>11.</strong> In the bottom-left pane, click the HistoricalTrend tab.</p>
+<p><strong>12.</strong> Hover your mouse over the divider between the pane with the Level_001 graphic and the</p>
+<p>tabbed pane, and move the divider up to get better view of the historical trend.</p>
+<p>Notice that the trend appears in the pane, including some alarm-related information for</p>
+<p>Level_001. The yellow highlights indicate Severity 2 alarms for the attribute and the red</p>
+<p>highlights indicate Severity 1 alarms.</p>
+<p>You can double-click on the trend to zoom in, and you can also use the mouse wheel to zoom</p>
+<p>in and out.</p>
+<div class="screenshot">
+  <img src="../images/page_0630_0.jpeg" alt="Page 630">
+  <div class="caption">Page 630</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0630_1.jpeg" alt="Page 630">
+  <div class="caption">Page 630</div>
+</div>
+<p><strong>13.</strong> Move your mouse over the trend.</p>
+<p>Data displays for the date and time, based on the position of the cursor on the trend line.</p>
+<p>Notice that the units of measure used for the data is l, which is configured with the historized</p>
+<p>attribute in the object.</p>
+<p><strong>14.</strong> At the bottom-left of the InSightControl, click the ellipsis button in the Level_001.PV legend to</p>
+<p>display a popup menu of units of measure.</p>
+<div class="screenshot">
+  <img src="../images/page_0631_0.jpeg" alt="Page 631">
+  <div class="caption">Page 631</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0631_1.png" alt="Page 631">
+  <div class="caption">Page 631</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p><strong>15.</strong> Select m3 to convert the units used for the trend from l to m3.</p>
+<p>Notice the legend indicates the units of measure for the data is m3, and the Y-axis values</p>
+<p>display cubic meter values.</p>
+<div class="screenshot">
+  <img src="../images/page_0632_0.png" alt="Page 632">
+  <div class="caption">Page 632</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0632_1.jpeg" alt="Page 632">
+  <div class="caption">Page 632</div>
+</div>
+<p><strong>16.</strong> Move your mouse over the trend.</p>
+<p>Data displays in units of m3.</p>
+<p>You can change the units of measure to other units, and then view the data on the trend.</p>
+<p><strong>17.</strong> Click the ellipsis button again and switch the units of measure for the trend data to back to l.</p>
+<div class="screenshot">
+  <img src="../images/page_0633_0.png" alt="Page 633">
+  <div class="caption">Page 633</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p><strong>18.</strong> Click a red highlighted area on the trend line.</p>
+<p>Alarm data displays, based on the cursor position on the trend line.</p>
+<div class="screenshot">
+  <img src="../images/page_0634_0.png" alt="Page 634">
+  <div class="caption">Page 634</div>
+</div>
+<p><strong>19.</strong> Hover your mouse over the time line at the bottom of the trend chart, and notice a floating</p>
+<p>toolbar appears.</p>
+<p>The toolbar includes tools to expand the display left or right, pan left or right, and zoom.</p>
+<p>The following example shows the floating toolbar with the Zoom button highlighted.</p>
+<div class="screenshot">
+  <img src="../images/page_0635_0.png" alt="Page 635">
+  <div class="caption">Page 635</div>
+</div>
+<p>Lab 22 – Using the InSightApp for Historical Trending</p>
+<p><strong>20.</strong> Use the floating toolbar to perform the following for the trend chart:</p>
+<p></p>
+<p>Zoom in and out</p>
+<p></p>
+<p>Pan left and right</p>
+<p></p>
+<p>Expand left and right</p>
+<p>When the duration of the chart exceeds 5 minutes, the colored highlights are replaced by</p>
+<p>markers indicating the start and end points of each alarm limit.</p>
+<div class="screenshot">
+  <img src="../images/page_0636_0.jpeg" alt="Page 636">
+  <div class="caption">Page 636</div>
+</div>
+<p><strong>21.</strong> Navigate to Agitator_001, and then click the HistoricalTrend tab to view its trends.</p>
+<p>Notice the agitator motor state, boolean attribute PV, is displayed at the bottom of the chart as</p>
+<p>a thick blue square wave form indicating the periods in which the motor is running and</p>
+<p>stopped.</p>
+<p><strong>22.</strong> Navigate to other objects, and then click the HistoricalTrend tab to view different trends. For</p>
+<p>example, you can navigate to:</p>
+<p></p>
+<p>Temperature_001</p>
+<p></p>
+<p>TT1_001 (contained in the Packaging \ HeatEx100 object)</p>
+<p><strong>23.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
+<p><End of Lab></p>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L44-Historical-Trending.html">← Previous: Historical Trending</a> &nbsp;|&nbsp;
+  <a href="L46-Historical-Playback-Overview.html">Next: Historical Playback Overview →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

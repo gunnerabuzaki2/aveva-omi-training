@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 47: Lab 23 – Implementing Historical Playback in a ViewApp</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L46-Historical-Playback-Overview.html">← L46: Historical Playback Overview</a> &nbsp;|&nbsp;
+  <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html" style="font-weight:bold;color:#1a1a1a;">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L47: Lab 23 – Implementing Historical Playback in a ViewApp</h1>
+<p class="source">Module 11 — Historical Playback | Pages 643-666</p>
+
+<div class="screenshot">
+  <img src="../images/page_0643_0.jpeg" alt="Page 643">
+  <div class="caption">Page 643</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>Lab 23 – Implementing Historical Playback in</p>
+<p>a ViewApp</p>
+<p>Introduction</p>
+<p>In this lab, you will implement the historical playback feature in your ViewApp.</p>
+<p>You will start by configuring the historical data playback service in your Galaxy.</p>
+<p>Then, you will import some prebuilt symbols, including a playback control panel (shown below), a</p>
+<p>playback status indicator, and a playback dashboard symbol.</p>
+<p>You will update the Main layout with a slide-in pane on the bottom and assign the playback control</p>
+<p>panel symbol to it. You will also add a small pane at the top and assign the playback status</p>
+<p>indicator symbol to it.</p>
+<p>Then, in the ViewApp, you will add a navigation item to access the playback dashboard symbol</p>
+<p>and test historical playback in a preview session.</p>
+<p>Note that the playback control panel symbol is configured such that only users with access levels</p>
+<p>greater than 9000 can start historical playback.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Configure the historical data replay service in the Galaxy</p>
+<p></p>
+<p>Use prebuilt symbols for historical playback functions in a running ViewApp</p>
+<p></p>
+<p>View historical data in playback mode in a running ViewApp</p>
+<div class="screenshot">
+  <img src="../images/page_0644_0.png" alt="Page 644">
+  <div class="caption">Page 644</div>
+</div>
+<p>Create and Deploy an Instance of the Playback Service</p>
+<p>First, you will create an instance of the historical playback service and rename the service instance</p>
+<p>with the name of the Historian node. Then you will deploy the instance.</p>
+<p>1.</p>
+<p>On the Galaxy menu, select Configure | System | Services.</p>
+<div class="screenshot">
+  <img src="../images/page_0645_0.png" alt="Page 645">
+  <div class="caption">Page 645</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0645_1.jpeg" alt="Page 645">
+  <div class="caption">Page 645</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>The Configure Services dialog box appears.</p>
+<p>2.</p>
+<p>In the left pane, expand TrainingGalaxy.</p>
+<p>3.</p>
+<p>Right-click ASB.HistoricalDataReplayService.1.0 and select Create.</p>
+<div class="screenshot">
+  <img src="../images/page_0646_0.jpeg" alt="Page 646">
+  <div class="caption">Page 646</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0646_1.png" alt="Page 646">
+  <div class="caption">Page 646</div>
+</div>
+<p>An instance of the service named HistoricalDataReplayService_001 is created.</p>
+<p>You may need to expand ASB.HistoricalDataReplayService.1.0 to see the new instance in</p>
+<p>the list.</p>
+<p>4.</p>
+<p>Rename the service instance to the name of the Historian node in your Galaxy.</p>
+<div class="key-concept">Note: Your instructor will provide you with the name of the Historian node. In the following example, S00ENG is used as the name of the service instance.</div>
+<div class="screenshot">
+  <img src="../images/page_0647_0.png" alt="Page 647">
+  <div class="caption">Page 647</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0647_1.png" alt="Page 647">
+  <div class="caption">Page 647</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0647_2.png" alt="Page 647">
+  <div class="caption">Page 647</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>5.</p>
+<p>In the left pane, ensure that the service instance is selected.</p>
+<p>6.</p>
+<p>In the bottom-right pane under Assignments, check the node(s) for the assignment.</p>
+<p>You can assign the service to one or more nodes in the Galaxy. As long as there is a node in</p>
+<p>the Galaxy running the deployed service, the playback feature can be used for any running</p>
+<p>ViewApp in the Galaxy. In some scenarios, nodes to which the service is assigned might be</p>
+<p>turned off, so it is better to deploy the playback service on the nodes on which the ViewApp</p>
+<p>will be running and using the playback feature.</p>
+<div class="key-concept">Note: Your instructor will provide information about which node or nodes to select under Assignments. In the example below, S00ENG and S00PROD are selected. 7. Click Update. On the bottom-left status bar, a message indicates that the assignment operation was successful.</div>
+<div class="screenshot">
+  <img src="../images/page_0648_0.png" alt="Page 648">
+  <div class="caption">Page 648</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0648_1.png" alt="Page 648">
+  <div class="caption">Page 648</div>
+</div>
+<p>8.</p>
+<p>In the left pane, right-click the service instance and select Deploy.</p>
+<p>When the deployment is complete, the icon for the instance changes to indicate that it is</p>
+<p>deployed and a Deploy Success message appears in the status bar.</p>
+<p>9.</p>
+<p>Close the Configure Services dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0649_0.png" alt="Page 649">
+  <div class="caption">Page 649</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>Import Playback Content</p>
+<p>In the following steps, you will continue in the backstage to import three prebuilt symbols.</p>
+<p><strong>10.</strong> Ensure you are still in the backstage and select Import | Objects | From package.</p>
+<p>The Import Objects from package dialog box appears.</p>
+<p><strong>11.</strong> Navigate to C:\Training, select Lab 23 - Content for Playback_Prebuilt.aaPKG, and then</p>
+<p>click Open.</p>
+<p>The Import Preferences dialog box appears.</p>
+<p><strong>12.</strong> Leave the default settings and click Import.</p>
+<div class="screenshot">
+  <img src="../images/page_0650_0.png" alt="Page 650">
+  <div class="caption">Page 650</div>
+</div>
+<p><strong>13.</strong> When the status of the import process is complete, click Close, and then return to the main</p>
+<p>page of the System Platform IDE.</p>
+<p>On the Graphics tab, notice that three new symbols are imported into the Training \ Symbols</p>
+<p>toolset: Playback_ControlPanel, Playback_Dashboard, and Playback_Status.</p>
+<div class="screenshot">
+  <img src="../images/page_0651_0.png" alt="Page 651">
+  <div class="caption">Page 651</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>Update the Main Layout</p>
+<p>In the following steps, you will update the Main layout.</p>
+<p><strong>14.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
+<p>Layout Editor.</p>
+<p><strong>15.</strong> At the bottom of the layout, click the Add Slide-In Pane button.</p>
+<p>A slide-in pane is added at the bottom.</p>
+<p>The name of the new pane is Pane9.</p>
+<div class="screenshot">
+  <img src="../images/page_0652_0.jpeg" alt="Page 652">
+  <div class="caption">Page 652</div>
+</div>
+<p><strong>16.</strong> On the Properties tab, click the down-arrow to the right of the Appearance \ Background</p>
+<p>property to display the color picker.</p>
+<p><strong>17.</strong> In the list of RGBA color code value fields, change the last field to a value of 0.</p>
+<p>You may need to click off the color picker to close it.</p>
+<div class="screenshot">
+  <img src="../images/page_0653_0.jpeg" alt="Page 653">
+  <div class="caption">Page 653</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0653_1.png" alt="Page 653">
+  <div class="caption">Page 653</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>18.</strong> For the Appearance \ Content Alignment property, change the value to Bottom.</p>
+<p><strong>19.</strong> On the Toolbox tab, enter a search string to find the Playback_ControlPanel symbol, and</p>
+<p>drag it to Pane9.</p>
+<div class="screenshot">
+  <img src="../images/page_0654_0.png" alt="Page 654">
+  <div class="caption">Page 654</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0654_1.png" alt="Page 654">
+  <div class="caption">Page 654</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0654_2.png" alt="Page 654">
+  <div class="caption">Page 654</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0654_3.png" alt="Page 654">
+  <div class="caption">Page 654</div>
+</div>
+<p><strong>20.</strong> Select Pane2, and then right-click and select Add Pane | Right.</p>
+<p>A new pane named Pane10 is added to the right of Pane2.</p>
+<p><strong>21.</strong> Select Pane10.</p>
+<p><strong>22.</strong> On the Properties tab, change the Size \ Width property to 170.</p>
+<p>The width of Pane10 is reduced in the preview.</p>
+<div class="screenshot">
+  <img src="../images/page_0655_0.png" alt="Page 655">
+  <div class="caption">Page 655</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0655_1.jpeg" alt="Page 655">
+  <div class="caption">Page 655</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>23.</strong> On the Toolbox tab, enter a search string to find the Playback_Status symbol, and drag it to</p>
+<p>Pane10.</p>
+<p><strong>24.</strong> Save and close the Main layout, and check it in.</p>
+<p>Add a Navigation Item</p>
+<p>In the following steps, you will add a navigation item to the ViewApp and configure it to access the</p>
+<p>Playback_Dashboard symbol.</p>
+<p><strong>25.</strong> Switch to the ViewApp Editor.</p>
+<p><strong>26.</strong> Ensure Home is selected in the Navigation list.</p>
+<div class="screenshot">
+  <img src="../images/page_0656_0.png" alt="Page 656">
+  <div class="caption">Page 656</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0656_1.png" alt="Page 656">
+  <div class="caption">Page 656</div>
+</div>
+<p><strong>27.</strong> Click Add to add a new navigation item, and name it PlaybackDashboard.</p>
+<p><strong>28.</strong> On the Properties tab, update its Navigation \ Title property to Playback Dashboard.</p>
+<div class="screenshot">
+  <img src="../images/page_0657_0.jpeg" alt="Page 657">
+  <div class="caption">Page 657</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>29.</strong> On the Toolbox tab, enter a search string to find the Playback_Dashboard symbol, and drag</p>
+<p>it to Pane1.</p>
+<div class="screenshot">
+  <img src="../images/page_0658_0.jpeg" alt="Page 658">
+  <div class="caption">Page 658</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0658_1.jpeg" alt="Page 658">
+  <div class="caption">Page 658</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0658_2.jpeg" alt="Page 658">
+  <div class="caption">Page 658</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will update the preview session to test the new navigation item and historical playback</p>
+<p>feature.</p>
+<p><strong>30.</strong> Click Update to update the preview session.</p>
+<p>The preview session opens navigated to Playback Dashboard. The graphic displays all of the</p>
+<p>live data from totalizers for each mixer.</p>
+<p>Notice that <domain>\jamess is still logged in. Recall that this user is in the Application</p>
+<p>Administrators role, which is configured with an access level of 9999.</p>
+<p>Also notice the Display Slide-In Pane button at the bottom of the display.</p>
+<p><strong>31.</strong> At the bottom of the display, click the Display Slide-In Pane button to show the</p>
+<p>Playback_ControlPanel symbol.</p>
+<p>Notice the Historical Playback Enable switch on the Playback_ControlPanel symbol. It</p>
+<p>shows that historical playback mode is not enabled.</p>
+<div class="screenshot">
+  <img src="../images/page_0659_0.png" alt="Page 659">
+  <div class="caption">Page 659</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0659_1.jpeg" alt="Page 659">
+  <div class="caption">Page 659</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0659_2.jpeg" alt="Page 659">
+  <div class="caption">Page 659</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0659_3.jpeg" alt="Page 659">
+  <div class="caption">Page 659</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>32.</strong> Hover your mouse over the Historical Playback Enable switch.</p>
+<p>Notice that a floating tooltip displays the security access level requirement for enabling</p>
+<p>playback mode. By default, the requirement is an access level higher than 9000.</p>
+<p><strong>33.</strong> Click the Historical Playback Enable switch to enable historical playback mode in the</p>
+<p>ViewApp.</p>
+<p>Notice that additional controls appear on the Playback_ControlPanel symbol.</p>
+<p>Also notice the Playback_Status symbol in the top-right of the ViewApp. It blinks to indicate</p>
+<p>Playback Mode Active in the ViewApp.</p>
+<p><strong>34.</strong> In the Playback_ControlPanel symbol, click the From time to input an initial time to start the</p>
+<p>playback.</p>
+<div class="screenshot">
+  <img src="../images/page_0660_0.png" alt="Page 660">
+  <div class="caption">Page 660</div>
+</div>
+<p>The Time User Input dialog box appears.</p>
+<div class="key-concept">Note: This dialog box shows time in 24-hour format.</div>
+<div class="screenshot">
+  <img src="../images/page_0661_0.png" alt="Page 661">
+  <div class="caption">Page 661</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0661_1.jpeg" alt="Page 661">
+  <div class="caption">Page 661</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>35.</strong> In the Time area, increase the Hour field by seven hours.</p>
+<p><strong>36.</strong> Click OK.</p>
+<p><strong>37.</strong> In the Playback_ControlPanel symbol, click the Play button to start historical playback.</p>
+<div class="screenshot">
+  <img src="../images/page_0662_0.jpeg" alt="Page 662">
+  <div class="caption">Page 662</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0662_1.jpeg" alt="Page 662">
+  <div class="caption">Page 662</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0662_2.jpeg" alt="Page 662">
+  <div class="caption">Page 662</div>
+</div>
+<p>Notice the Playback_Dashboard symbol starts displaying historical data.</p>
+<p>At the top of the Playback_ControlPanel symbol, notice the circle in the history time progress</p>
+<p>bar is moving to the right.</p>
+<p><strong>38.</strong> Click the circle in the history time progress bar and drag it to the right.</p>
+<p>Notice that floating tooltips show the date and time of the historical data based on the position</p>
+<p>of the progress bar.</p>
+<div class="screenshot">
+  <img src="../images/page_0663_0.png" alt="Page 663">
+  <div class="caption">Page 663</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0663_1.jpeg" alt="Page 663">
+  <div class="caption">Page 663</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0663_2.jpeg" alt="Page 663">
+  <div class="caption">Page 663</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p><strong>39.</strong> On the right side of the Playback_ControlPanel symbol, slide the Speed slider to the right</p>
+<p>and to the left, to see the playback speed up and slow down.</p>
+<p>In the next steps, you will disable historical playback mode, navigate to a different view, and then</p>
+<p>enable playback mode again.</p>
+<p><strong>40.</strong> In the Playback_ControlPanel symbol, click the Historical Playback Enable switch to disable</p>
+<p>playback.</p>
+<p><strong>41.</strong> Click off the bottom slide-in pane to close it, and then navigate the ViewApp to Mixer100.</p>
+<div class="screenshot">
+  <img src="../images/page_0664_0.jpeg" alt="Page 664">
+  <div class="caption">Page 664</div>
+</div>
+<p><strong>42.</strong> At the bottom of the display, click the Display Slide-In Pane button to show the</p>
+<p>Playback_ControlPanel symbol again.</p>
+<p><strong>43.</strong> Click the Historical Playback Enable switch to enable playback.</p>
+<p>Notice that a Live Value Playback icon appears over graphics that contain non-historized</p>
+<p>values during historical playback. This is a feature built in to Situational Awareness Library</p>
+<p>symbols. This icon informs the viewer that not all references used in the graphics can be</p>
+<p>resolved from historical sources.</p>
+<p>For example, the engineering units for level and temperature are pulled from live sources</p>
+<p>because these values are not actually historized.</p>
+<div class="screenshot">
+  <img src="../images/page_0665_0.png" alt="Page 665">
+  <div class="caption">Page 665</div>
+</div>
+<p>Lab 23 – Implementing Historical Playback in a ViewApp</p>
+<p>In the following steps, you will identify the source of the Live Value Playback icon.</p>
+<p><strong>44.</strong> In the System Platform IDE, on the Galaxy menu, select Configure | Galaxy | Styles.</p>
+<p>The Styles area appears.</p>
+<p><strong>45.</strong> On the Quality & Status tab, notice the Live Value Playback style.</p>
+<p>This style is used automatically when the value being displayed is not historized.</p>
+<p><strong>46.</strong> Return to the main page of the System Platform IDE.</p>
+<p><strong>47.</strong> Switch to the ViewApp preview.</p>
+<p>In the next steps you will turn off playback mode, switch to a different user, and then attempt to</p>
+<p>enable playback again.</p>
+<p><strong>48.</strong> In the Playback_ControlPanel symbol, click the Historical Playback Enable switch to disable</p>
+<p>playback.</p>
+<p><strong>49.</strong> On the title bar, click the logged-in user name, and then select Switch User.</p>
+<div class="screenshot">
+  <img src="../images/page_0666_0.png" alt="Page 666">
+  <div class="caption">Page 666</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0666_1.png" alt="Page 666">
+  <div class="caption">Page 666</div>
+</div>
+<p><strong>50.</strong> In the Login dialog box enter <domain>\johnj and a password to log in.</p>
+<div class="key-concept">Note: Your instructor will provide log in information. 51. At the bottom of the display, click the Display Slide-In Pane button to show the Playback_ControlPanel symbol again. 52. In the Playback_ControlPanel symbol, click the Historical Playback Enable switch to enable playback. Because Johnj has an insufficient access level, playback mode is not enabled. Recall that enabling playback requires an access level of 9000. Johnj belongs to the Plant Operators 1 role, which is configured with an access level of 2000. 53. When you are finished testing, close the preview session and close the ViewApp Editor. Note: Be sure that the preview session is closed and the ViewApp is checked in. In the next lab, you will import an external control into your Galaxy and will need to start a new preview session. &lt;End of Lab&gt;</div>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L46-Historical-Playback-Overview.html">← Previous: Historical Playback Overview</a> &nbsp;|&nbsp;
+  <a href="L48-NET-Controls-Overview.html">Next: .NET Controls Overview →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

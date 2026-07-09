@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 15: Lab 7 – Creating a Custom Symbol</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L14-Custom-Properties.html">← L14: Custom Properties</a> &nbsp;|&nbsp;
+  <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html" style="font-weight:bold;color:#1a1a1a;">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>🔬 L15: Lab 7 – Creating a Custom Symbol</h1>
+<p class="source">Module 3 — Industrial Graphics | Pages 237-258</p>
+
+<div class="screenshot">
+  <img src="../images/page_0237_0.png" alt="Page 237">
+  <div class="caption">Page 237</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p>Introduction</p>
+<p>In this lab, you will create a custom symbol to be used as a common command panel for opening</p>
+<p>and closing valves and starting and stopping pumps and agitators, as well as changing the speed</p>
+<p>setpoint for an agitator.</p>
+<p>You will create and configure custom properties, as well as add button elements to the symbol.</p>
+<p>You will configure the button elements with Pushbutton, Element Style, and Value Display</p>
+<p>animations using custom properties.</p>
+<p>You will also add Show Symbol animations for the Agitator, Pump, and Valve symbols to be able to</p>
+<p>show their command panels when they are clicked in runtime.</p>
+<p>When testing your ViewApp, you will use the command panels to perform operations on the</p>
+<p>equipment.</p>
+<p>Objectives</p>
+<p>Upon completion of this lab, you will be able to:</p>
+<p></p>
+<p>Create and configure custom properties in a symbol</p>
+<p></p>
+<p>Add Button elements and configure Pushbutton animations</p>
+<p></p>
+<p>Use Element Style Animations</p>
+<p></p>
+<p>Use Show Symbol animations</p>
+<p></p>
+<p>Configure the FaceplateMode property for a symbol</p>
+<p></p>
+<p>Configure the TreatAsIcon property for embedded symbols</p>
+<div class="screenshot">
+  <img src="../images/page_0238_0.png" alt="Page 238">
+  <div class="caption">Page 238</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0238_1.png" alt="Page 238">
+  <div class="caption">Page 238</div>
+</div>
+<p>Create a Command Panel Symbol</p>
+<p>In the following steps, you will create a CommandPanel symbol and create and configure custom</p>
+<p>properties for it. You will also add and configure buttons for the symbol.</p>
+<p>1.</p>
+<p>On the Graphics tab, in the Training \ Symbols toolset, create a symbol and rename it to</p>
+<p>CommandPanel.</p>
+<p>2.</p>
+<p>Double-click CommandPanel to open it in the Graphic Editor.</p>
+<p>3.</p>
+<p>Right-click the drawing canvas and select Custom Properties.</p>
+<p>The Edit Custom Properties dialog box appears.</p>
+<p>4.</p>
+<p>Click Add custom property to add a new custom property.</p>
+<div class="screenshot">
+  <img src="../images/page_0239_0.png" alt="Page 239">
+  <div class="caption">Page 239</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p>5.</p>
+<p>Name the new custom property Cmd and press Enter.</p>
+<p>6.</p>
+<p>For Data Type, leave the data type as Boolean.</p>
+<p>7.</p>
+<p>In Default Value, delete False and enter Me.Cmd.</p>
+<div class="key-concept">Note: The relative reference used for the Default Value will be resolved within context later in runtime. 8. In Description, enter the following: A Boolean value that sends a command to the device.</div>
+<div class="screenshot">
+  <img src="../images/page_0240_0.png" alt="Page 240">
+  <div class="caption">Page 240</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0240_1.png" alt="Page 240">
+  <div class="caption">Page 240</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0240_2.png" alt="Page 240">
+  <div class="caption">Page 240</div>
+</div>
+<p>9.</p>
+<p>Add another new custom property and name it CmdOnMsg.</p>
+<p><strong>10.</strong> For Data Type, select String.</p>
+<p><strong>11.</strong> Click the icon to the left of the Default Value field, to switch to Expression or Reference</p>
+<p>mode.</p>
+<p>The icon changes as shown below and the Default Value field appears with a red outline.</p>
+<p><strong>12.</strong> In Default Value, enter the following:</p>
+<p>Me.Cmd.OnMsg</p>
+<p><strong>13.</strong> In Description, enter the following:</p>
+<p>A String value that can be used to display the actual True command message,</p>
+<p>such as Start, Open.</p>
+<div class="screenshot">
+  <img src="../images/page_0241_0.png" alt="Page 241">
+  <div class="caption">Page 241</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0241_1.png" alt="Page 241">
+  <div class="caption">Page 241</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>14.</strong> Add another custom property and name it CmdOffMsg.</p>
+<p><strong>15.</strong> For Data Type, select String.</p>
+<p><strong>16.</strong> Click the icon to the left of the Default Value field to switch to Expression or Reference</p>
+<p>mode.</p>
+<p><strong>17.</strong> In Default Value, enter the following:</p>
+<p>Me.Cmd.OffMsg</p>
+<p><strong>18.</strong> In Description, enter the following:</p>
+<p>A String value that can be used to display the actual False command message,</p>
+<p>such as Stop, Close.</p>
+<p><strong>19.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
+<p><strong>20.</strong> In the Tools pane, select the Button tool.</p>
+<div class="screenshot">
+  <img src="../images/page_0242_1.png" alt="Page 242">
+  <div class="caption">Page 242</div>
+</div>
+<p><strong>21.</strong> Draw a button on the drawing canvas, and enter Open for the text.</p>
+<p>The name assigned to the button is Button1. It should look similar to the following.</p>
+<p>In this example, the Appearance \ Width property for Button1 is 100 pixels and the</p>
+<p>Appearance \ Height property is 40 pixels.</p>
+<p><strong>22.</strong> On the drawing canvas, double-click Button1 to add animations.</p>
+<p>The Edit Animations dialog box appears.</p>
+<p><strong>23.</strong> Click Add Animation to add a new animation to Button1.</p>
+<p><strong>24.</strong> In the list of animations, select Pushbutton.</p>
+<p>The Pushbutton animation is added.</p>
+<div class="screenshot">
+  <img src="../images/page_0243_0.jpeg" alt="Page 243">
+  <div class="caption">Page 243</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0243_1.jpeg" alt="Page 243">
+  <div class="caption">Page 243</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>25.</strong> Configure the Pushbutton animation as follows:</p>
+<p><strong>26.</strong> Add another animation and select Element Style.</p>
+<p>States:</p>
+<p>Boolean</p>
+<p>Reference (Boolean):</p>
+<p>Cmd</p>
+<p>Action:</p>
+<p>Set</p>
+<p>Send Value:</p>
+<p>On button release checked</p>
+<div class="screenshot">
+  <img src="../images/page_0244_0.png" alt="Page 244">
+  <div class="caption">Page 244</div>
+</div>
+<p><strong>27.</strong> Configure the Element Style animation as follows:</p>
+<p>States:</p>
+<p>Boolean</p>
+<p>Expression Or Reference (Boolean):</p>
+<p>Cmd</p>
+<p>Values \ True, 1, On:</p>
+<p>Element Style checked (default)</p>
+<p>Active selected</p>
+<p>Values \ False, 0, Off:</p>
+<p>Element Style checked (default)</p>
+<p>Passive selected</p>
+<div class="screenshot">
+  <img src="../images/page_0245_0.png" alt="Page 245">
+  <div class="caption">Page 245</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0245_1.png" alt="Page 245">
+  <div class="caption">Page 245</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>28.</strong> Add another animation and select Value Display.</p>
+<p><strong>29.</strong> Configure the Value Display animation as follows:</p>
+<p><strong>30.</strong> Click OK to close the Edit Animations dialog box.</p>
+<p><strong>31.</strong> On the drawing canvas, right-click Button1 and select Duplicate.</p>
+<p>The Button1 symbol is duplicated. The name of the duplicate symbol is Button2.</p>
+<p><strong>32.</strong> Ensure Button2 is selected and move it to the right side of Button1.</p>
+<p>The buttons should look similar to the following.</p>
+<p>States:</p>
+<p>String</p>
+<p>Expression or Reference (String):</p>
+<p>CmdOnMsg</p>
+<div class="screenshot">
+  <img src="../images/page_0246_0.png" alt="Page 246">
+  <div class="caption">Page 246</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0246_1.png" alt="Page 246">
+  <div class="caption">Page 246</div>
+</div>
+<p><strong>33.</strong> On the Properties tab for Button2, modify the Appearance \ Text property to Close.</p>
+<p>The text on Button2 changes as follows:</p>
+<p><strong>34.</strong> Double-click Button2 to edit the animations.</p>
+<p>The Edit Animations dialog box appears.</p>
+<p><strong>35.</strong> For the Value Display animation, change Expression Or Reference (String) to CmdOffMsg.</p>
+<div class="screenshot">
+  <img src="../images/page_0247_0.png" alt="Page 247">
+  <div class="caption">Page 247</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0247_1.jpeg" alt="Page 247">
+  <div class="caption">Page 247</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>36.</strong> For the Element Style animation, change Expression Or Reference (Boolean) to not Cmd.</p>
+<p><strong>37.</strong> For the Pushbutton animation, change Action to Reset.</p>
+<p><strong>38.</strong> Click OK to close the Edit Animations dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0248_0.png" alt="Page 248">
+  <div class="caption">Page 248</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0248_1.png" alt="Page 248">
+  <div class="caption">Page 248</div>
+</div>
+<p>Add Display for Speed Setpoint</p>
+<p>Now you will add a numerical symbol to the CommandPanel symbol, for displaying and changing</p>
+<p>the speed setpoint.</p>
+<p><strong>39.</strong> On the Toolbox tab, enter a search string to find SA_NumericalEntry.</p>
+<p><strong>40.</strong> From the Toolbox tab preview area, drag SA_NumericalEntry to the drawing canvas and</p>
+<p>place it below the buttons.</p>
+<p>The elements on the canvas should look similar to the following:</p>
+<p><strong>41.</strong> With SA_NumericalEntry1 selected, on the Properties tab, configure properties as follows:</p>
+<p>Wizard Options \ LabelType:</p>
+<p>CustomPropertyLabel</p>
+<p>Wizard Options \ EngUnitsType:</p>
+<p>CustomPropertyLabel</p>
+<p>Wizard Options \ Outline:</p>
+<p>False</p>
+<div class="screenshot">
+  <img src="../images/page_0249_0.png" alt="Page 249">
+  <div class="caption">Page 249</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>42.</strong> Right-click SA_NumericalEntry1 and select Substitute | Substitute References.</p>
+<p><strong>43.</strong> Use Find & Replace to replace all occurrences of the following:</p>
+<p>Important: Be sure to click Replace All to replace all of the references.When you are</p>
+<p>finished, ensure that the references in the New column are as shown below.</p>
+<p><strong>44.</strong> Click OK to close the Substitute Reference dialog box.</p>
+<p>Find What?:</p>
+<p>Me.PV</p>
+<p>Replace with:</p>
+<p>Me.Speed.SP</p>
+<div class="screenshot">
+  <img src="../images/page_0250_0.png" alt="Page 250">
+  <div class="caption">Page 250</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0250_1.png" alt="Page 250">
+  <div class="caption">Page 250</div>
+</div>
+<p><strong>45.</strong> Right-click SA_NumericalEntry1 and select Custom Properties.</p>
+<p><strong>46.</strong> Select Label from the Custom Properties list.</p>
+<p><strong>47.</strong> For Default Value, switch to Expression or Reference mode and enter</p>
+<p>Me.Speed.SP.Description.</p>
+<p><strong>48.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
+<p><strong>49.</strong> Click the drawing canvas.</p>
+<p><strong>50.</strong> On the Properties tab, change the Graphic \ Size property to Fixed.</p>
+<p><strong>51.</strong> Resize the canvas to smaller, but make sure all visual elements are included on the canvas.</p>
+<p>Your canvas should look similar to the following:</p>
+<p>In this example, the Graphic \ FixedWidth property for the symbol is 320 pixels and the</p>
+<p>Graphic \ FixedHeight property is 230 pixels.</p>
+<div class="screenshot">
+  <img src="../images/page_0251_0.png" alt="Page 251">
+  <div class="caption">Page 251</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0251_1.png" alt="Page 251">
+  <div class="caption">Page 251</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>52.</strong> On the Properties tab, set the Runtime Behavior \ FaceplateMode property to True.</p>
+<p>This will hide the embedded SA_NumericalEntry symbol at runtime when the</p>
+<p>CommandPanel symbol is used for objects that do not have setpoint attributes.</p>
+<p><strong>53.</strong> Save and close the CommandPanel symbol, and check it in.</p>
+<p>Configure Show Symbol Animations</p>
+<p>In the following steps, you will configure Show Symbol animations for the Pump_Detailed,</p>
+<p>Agitator_Detailed, and Valve_Detailed symbols. You will configure the animation for one symbol,</p>
+<p>and then copy the animation configuration to the other two symbols.</p>
+<p><strong>54.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Agitator_Detailed to</p>
+<p>open it in the Graphic Editor.</p>
+<p><strong>55.</strong> Select the SA_Agitator_Settler1 symbol on the drawing canvas, and on the Properties tab,</p>
+<p>change the Runtime Behavior \ TreatAsIcon property to True.</p>
+<p><strong>56.</strong> Double-click the symbol and add a Show Symbol animation.</p>
+<div class="screenshot">
+  <img src="../images/page_0252_0.png" alt="Page 252">
+  <div class="caption">Page 252</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0252_1.jpeg" alt="Page 252">
+  <div class="caption">Page 252</div>
+</div>
+<p><strong>57.</strong> For Reference, use the Galaxy Browser to browse Graphic Toolbox \ Training \ Symbols</p>
+<p>and select CommandPanel.</p>
+<p><strong>58.</strong> Click OK to close the Galaxy Browser.</p>
+<p><strong>59.</strong> For Title, uncheck Use Symbol Name for Window Title.</p>
+<p><strong>60.</strong> For Title, switch to Expression or Reference mode, and enter Me.Tagname.</p>
+<p><strong>61.</strong> For Position, select Top Left Corner, and then select Mouse.</p>
+<p><strong>62.</strong> Click OK to close the Edit Animations dialog box.</p>
+<div class="screenshot">
+  <img src="../images/page_0253_0.png" alt="Page 253">
+  <div class="caption">Page 253</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p><strong>63.</strong> Right-click the SA_Agitator_Settler1 symbol on the drawing canvas, and select</p>
+<p>Animations | Copy.</p>
+<p><strong>64.</strong> Save and close the Agitator_Detailed symbol, and check it in.</p>
+<p><strong>65.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Pump_Detailed to</p>
+<p>open it in the Graphic Editor.</p>
+<p><strong>66.</strong> Select the SA_Pump_Blower_RotaryValve1 symbol on the drawing canvas, and on the</p>
+<p>Properties tab, change the Runtime Behavior \ TreatAsIcon property to True.</p>
+<p><strong>67.</strong> Right-click the symbol, and select Animations | Paste.</p>
+<p><strong>68.</strong> Save and close the Pump_Detailed symbol, and check it in.</p>
+<p><strong>69.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Valve_Detailed to</p>
+<p>open it in the Graphic Editor.</p>
+<p><strong>70.</strong> Select the SA_Valve_And_Damper1 symbol on the drawing canvas, and on the Properties</p>
+<p>tab, change the Runtime Behavior \ TreatAsIcon property to True.</p>
+<p><strong>71.</strong> Right-click the symbol, and select Animations | Paste.</p>
+<p><strong>72.</strong> Save and close the Valve_Detailed symbol, and check it in.</p>
+<div class="screenshot">
+  <img src="../images/page_0254_0.jpeg" alt="Page 254">
+  <div class="caption">Page 254</div>
+</div>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will review the ViewApp changes in the preview session. You will click on symbols in the</p>
+<p>ViewApp display to show the command panels for the symbols. The title and buttons on the</p>
+<p>command panels will be different depending on which symbol was clicked. The colors of the</p>
+<p>buttons will change based on the Element Style animation configuration, and the speed setpoint</p>
+<p>will only appear on the command panel for the agitator.</p>
+<p><strong>73.</strong> Switch to the ViewApp preview session.</p>
+<p><strong>74.</strong> Navigate to Mixer100.</p>
+<p><strong>75.</strong> On the ViewApp display, click the Inlet1_001 symbol to view its command panel.</p>
+<div class="screenshot">
+  <img src="../images/page_0255_0.jpeg" alt="Page 255">
+  <div class="caption">Page 255</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p>Notice that the command panel appears with its top-left corner at the position where you</p>
+<p>clicked your mouse. The title for the panel is Inlet_001 and the text on the buttons is Open</p>
+<p>and Close.</p>
+<p>The setpoint graphic is not available because valve objects do not have the speed setpoint</p>
+<p>attribute. The FaceplateMode property for the CommandPanel symbol is set to True, so</p>
+<p>graphic elements for the setpoint entry symbol are hidden.</p>
+<p>Also notice that the Element Style animation applied to the buttons causes their visual</p>
+<p>characteristics to change, based on whether the valve is open or closed. The following</p>
+<p>example shows the buttons when the valve is closed.</p>
+<p><strong>76.</strong> On the command panel, click Open and then click Close to operate the valve.</p>
+<p><strong>77.</strong> Click the X at the top of the command panel for Inlet1_001 to close it.</p>
+<div class="screenshot">
+  <img src="../images/page_0256_0.jpeg" alt="Page 256">
+  <div class="caption">Page 256</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0256_1.jpeg" alt="Page 256">
+  <div class="caption">Page 256</div>
+</div>
+<p><strong>78.</strong> On the ViewApp display, click the Pump1_001 symbol to view its command panel.</p>
+<p>The command panel appears with its top-left corner at the position where you clicked your</p>
+<p>mouse. The title for the panel is Pump1_001 and the text on the buttons is Start and Stop.</p>
+<p>There are no speed setpoint graphics, and the visual characteristics of the buttons change</p>
+<p>based on whether the pump is started or stopped.</p>
+<p><strong>79.</strong> Close the command panel for Pump1_001.</p>
+<p>Important: To ensure automatic operation of the simulator, click Start or Stop to ensure the</p>
+<p>pumps are in the same state as their associated valves, so that the level in the tank begins</p>
+<p>moving again. For example, if Inlet 1 is active, then Pump 1 must also be active (started).</p>
+<p><strong>80.</strong> On the ViewApp display, click the Agitator_001 symbol to view its command panel.</p>
+<p>The command panel appears with its top-left corner at the position where you clicked your</p>
+<p>mouse. The title on the command panel displays as Agitator_001 and the text on the buttons</p>
+<p>is Start and Stop. The Speed setpoint entry symbol displays, and the buttons change based</p>
+<p>on whether the agitator is started or stopped.</p>
+<div class="screenshot">
+  <img src="../images/page_0257_0.png" alt="Page 257">
+  <div class="caption">Page 257</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0257_1.jpeg" alt="Page 257">
+  <div class="caption">Page 257</div>
+</div>
+<p>Lab 7 – Creating a Custom Symbol</p>
+<p>In the following steps, you will change the Speed setpoint to a different value. The setpoint will</p>
+<p>apply when the Agitator is running.</p>
+<p><strong>81.</strong> On the Agitator_001 command panel, click Speed setpoint.</p>
+<p>The field becomes editable.</p>
+<p><strong>82.</strong> Enter 25 as the speed setpoint value and press ENTER.</p>
+<p>The speed setpoint is now set to 25. The setpoint value may include a fractional part due to IO</p>
+<p>scaling settings.</p>
+<p>Notice that the speed setpoint changes on the command panel, and also on the Agitator_001</p>
+<p>symbol.</p>
+<p><strong>83.</strong> Close the command panel for Agitator_001.</p>
+<p><strong>84.</strong> Review the results of your testing in the preview session and think about the factors that</p>
+<p>affected the display of the command panel at runtime:</p>
+<p></p>
+<p>Which configurations determined the text on the buttons?</p>
+<p>___________________________________________________________________</p>
+<p></p>
+<p>Why did the visual characteristics of the buttons change in runtime?</p>
+<p>___________________________________________________________________</p>
+<p></p>
+<p>Why did the speed setpoint graphic appear on the command panel for the agitator, but</p>
+<p>not for the pump or the inlet?</p>
+<p>___________________________________________________________________</p>
+<p><strong>85.</strong> When you are finished testing, minimize the preview session.</p>
+<p><End of Lab></p>
+
+
+<div class="quiz">
+  <h3>Lab Review</h3>
+  <details>
+    <summary>Q1: What are the key steps you performed in this lab?</summary>
+    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
+  </details>
+  <details>
+    <summary>Q2: What would happen if you skipped a configuration step?</summary>
+    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L14-Custom-Properties.html">← Previous: Custom Properties</a> &nbsp;|&nbsp;
+  <a href="L16-Galaxy-Styles.html">Next: Galaxy Styles →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

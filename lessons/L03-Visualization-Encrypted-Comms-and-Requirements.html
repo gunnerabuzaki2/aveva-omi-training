@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 03: Visualization, Encrypted Comms and Requirements</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">← L02: Lab 1 – Creating and Deploying a Galaxy</a> &nbsp;|&nbsp;
+  <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html" style="font-weight:bold;color:#1a1a1a;">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L03: Visualization, Encrypted Comms and Requirements</h1>
+<p class="source">Module 1 — Introduction | Pages 33-42</p>
+
+<p>Section 3 – Visualization Overview</p>
+<p>Section 3 – Visualization Overview</p>
+<p>Introduction</p>
+<p>Application Server provides tools for developing interactive and animated graphical displays. The</p>
+<p>behavior of these displays, including animations and visual representations, can be associated</p>
+<p>with properties of processes and equipment through real-time data provided by System Platform.</p>
+<p>System Platform’s visualization clients provide multiple user interface capabilities, including</p>
+<p>keyboard, mouse, tablet, and touch-screen inputs, as well as multi-screen outputs.</p>
+<p>Visualization Clients</p>
+<p>System Platform clients for visualization are Operations Management Interface and InTouch for</p>
+<p>System Platform. Both run the operator interface and display data from objects defined in an</p>
+<p>Application Server Galaxy. They can coexist in the same System Platform solution and share data</p>
+<p>and graphics.</p>
+<p></p>
+<p>Operations Management Interface leverages both HMI and SCADA systems to deliver a</p>
+<p>convergence platform for both Operational Technology (OT) and Information Technology</p>
+<p>(IT). It provides a visualization engine for rich, modern user experiences across platforms.</p>
+<p>Key features, capabilities, and components are described starting in Module 2, as well as</p>
+<p>in the documentation provided with the product.</p>
+<p></p>
+<p>InTouch for System Platform provides traditional development tools for creating displays</p>
+<p>and corresponding navigation. For more details, refer to the documentation provided with</p>
+<p>that product.</p>
+<p>Visualization Content</p>
+<p>Several types of content that can be used to build visualization client applications are described</p>
+<p>below.</p>
+<p>Industrial Graphics</p>
+<p>Industrial graphics allow you to create customized graphical representations of processes and</p>
+<p>integrate other visualization tools into your application. They can be embedded or associated with</p>
+<p>automation objects in Application Server, so that alarms, history, logic, graphics, and so on can all</p>
+<p>be defined with the same automation object. This allows greater flexibility of application</p>
+<p>development, including:</p>
+<p></p>
+<p>Object reuse: Objects can be derived from templates and preconfigured to work within</p>
+<p>the environment in which they are embedded to reference applicable object attributes.</p>
+<p></p>
+<p>Centralized development: Application development can be centralized, including</p>
+<p>graphical representations of equipment.</p>
+<p>Industrial graphics are also referred to as symbols in Application Server.</p>
+<p>This section introduces visualization concepts and describes AVEVA Operations Management</p>
+<p>Interface as one of the visualization clients of AVEVA Application Server.</p>
+<p>Client Controls</p>
+<p>Client controls provide functionality contained in .NET controls that you can use in symbols.</p>
+<p>External .NET controls can be imported into a Galaxy and used in symbols by embedding them.</p>
+<p>Symbols with embedded .NET controls are only supported by InTouch for System Platform. To use</p>
+<p>a .NET control in an Operations Management Interface application, it must be imported as an OMI</p>
+<p>App.</p>
+<p>Operations Management Interface Content</p>
+<p>The following types of content or components are designed and supported in Operations</p>
+<p>Management Interface applications only:</p>
+<p></p>
+<p>Screen profiles determine where, meaning on which display screens, you want to</p>
+<p>present content in a running Operations Management Interface application.</p>
+<p></p>
+<p>Layouts define how you want to organize content in a running Operations Management</p>
+<p>Interface application.</p>
+<p></p>
+<p>OMI Apps are prebuilt, special-purpose collections of one or more controls that can be</p>
+<p>added to layouts to display content in a running Operations Management Interface</p>
+<p>application. These are sometimes referred to as Apps.</p>
+<p></p>
+<p>Widgets are mini-apps that can be added to Operations Management Interface</p>
+<p>applications. They are also supported for InTouch applications and the Web Client.</p>
+<p>Widgets generally display data, take up more space than a single icon, and can be</p>
+<p>interactive and resizable. They are sometimes referred to as HTML5 Widgets.</p>
+<p></p>
+<p>External content refers to media content outside of a Galaxy that can be linked to an</p>
+<p>Operations Management Interface application and displayed at runtime.</p>
+<p>AVEVA Connect for Graphics</p>
+<p>AVEVA Connect provides a cloud-based repository that lets you share graphics between</p>
+<p>locations, Galaxies, and nodes. You can sign in to AVEVA Connect within the System Platform IDE</p>
+<p>to add AVEVA Connect to the Graphics toolbox, which provides a centralized storage and access</p>
+<p>point for reusable industrial graphics.</p>
+<p>Graphics in AVEVA Connect are stored in stores, which can be global, tenant, or user specific.</p>
+<p>Multiple drives can be configured within each store, and each drive can be configured with</p>
+<p>different access levels for different users. An AVEVA Connect account is required to manage</p>
+<p>graphics in the cloud.</p>
+<p>AVEVA Connect users can have read-only or read/write access, depending on the access granted</p>
+<p>by their administrator. Read-only users can view graphics in the cloud, but cannot upload or</p>
+<p>download graphics. Multiple users can access the graphics in the same drive, but only one user at</p>
+<p>a time can edit or save a graphic to the drive.</p>
+<p>For more information, refer to the topic “Using AVEVA Connect” in the System Platform 2023</p>
+<p>online Help.</p>
+<p>Section 4 – Encrypted Communication</p>
+<p>Section 4 – Encrypted Communication</p>
+<p>The end-to-end communication between software applications (server and client) can be</p>
+<p>encrypted and secured to prevent eavesdropping and malicious tampering (also known as Man-in-</p>
+<p>the-Middle) attacks.</p>
+<p>To enable encrypted network communication, one of the nodes in the network must be configured</p>
+<p>to host and run the System Management Server (SMS). The role of the System Management</p>
+<p>Server is to generate, manage, and distribute secure digital certificates used for establishing and</p>
+<p>maintaining secure communications.</p>
+<p>All other nodes need to be configured to connect to the SMS so they all become part of the same</p>
+<p>community.</p>
+<p>The SMS does not need to be available at runtime for secure communications to be established.</p>
+<p>In fact, once joined to the SMS, a node will not need access to the SMS until it is time to renew the</p>
+<p>certificates.</p>
+<p>Protocols that Benefit From Encrypted Communication</p>
+<p>With encrypted communication, all of the following protocols are secured:</p>
+<p></p>
+<p>SuiteLink</p>
+<p></p>
+<p>Message Exchange (MX)</p>
+<p></p>
+<p>iData</p>
+<p></p>
+<p>iBrowse</p>
+<p></p>
+<p>HCAL</p>
+<p>This section describes the encrypted communication for end-to-end communication between</p>
+<p>server and client software applications.</p>
+<div class="screenshot">
+  <img src="../images/page_0036_0.jpeg" alt="Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: A">
+  <div class="caption">Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: Application Server 2017 Update 3+, InTouch OMI 2017 Update 3+, InTouch for System Platform 2017 Update 3+, OI Server (...</div>
+</div>
+<p>Software that Supports Secured Communication</p>
+<p>The following software supports secured communication:</p>
+<p></p>
+<p>Application Server 2017 Update 3 and later</p>
+<p></p>
+<p>InTouch Operations Management Interface 2017 Update 3 and later</p>
+<p></p>
+<p>InTouch for System Platform 2017 Update 3 and later</p>
+<p></p>
+<p>*OI Server</p>
+<p></p>
+<p>InTouch Web Client in 2017 Update 3 and later</p>
+<p></p>
+<p>Historian 2017 Update 3 and later</p>
+<p></p>
+<p>Sentinel System Monitor 1.1 for System Platform 2017 Update 3 and later</p>
+<p>*Communications from the specific OI Server to any other products listed above can be encrypted.</p>
+<p>This is generic and applies to all OI Server versions.</p>
+<div class="screenshot">
+  <img src="../images/page_0037_0.jpeg" alt="Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scen">
+  <div class="caption">Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scenarios: one node has software before 2017 Update 3, one node points to SMS but other doesn&#x27;t, no SMS configured. If no...</div>
+</div>
+<p>Section 4 – Encrypted Communication</p>
+<p>Node-to-Node Communication</p>
+<p>Node-to-node communication is unsecured under certain scenarios, including the following:</p>
+<p></p>
+<p>The version of the software installed on one or more nodes is earlier than 2017 Update 3</p>
+<p>(Communication Driver version has no impact)</p>
+<p></p>
+<p>One node points to a System Management Server, but there is no System Management</p>
+<p>Server configured on the other node</p>
+<p></p>
+<p>There is no System Management Server configured for both nodes</p>
+<p>Please note that if one node points to one System Management Server and the other node points</p>
+<p>to another System Management Server, there will be NO network connection between the nodes.</p>
+<p>Section 5 – System Requirements and Licensing</p>
+<p>Section 5 – System Requirements and Licensing</p>
+<p>Software and Hardware Requirements</p>
+<p>The following topics describe software and hardware requirements for System Platform.</p>
+<div class="key-concept">Note: Please refer to the readme file that came with your software for more details about hardware and software requirements, compatibility information, key product notes, and additional resources. Or, visit the Knowledge &amp; Support Center at https://softwaresupport.aveva.com. Software Requirements The following table lists supported and preferred software requirements for various nodes in your system: Note: System Platform 2020 (and above) supports 64-bit operating systems only. Hardware Requirements The following tables list minimum and recommended hardware requirements.  For server nodes, such as Historian Server, the GR node, AppEngine host (Application Objects Server), and the System Platform IDE (development environment):  For client nodes, such as nodes that run WindowViewer, an Operations Management Interface application, Historian Client, and remote System Platform IDE: This section describes system requirements for System Platform software and introduces the licensing model. Development (System Platform IDE) Galaxy Repository Automation Object Server Supervisory Client Windows Server Preferred Preferred Preferred Supported Windows Workstation Supported Supported Supported Preferred SQL Server Not required Required Not required Not required .NET Framework Required Required Required Required Level Logical Processors RAM Free Disk Space Network Speed Small Minimum 4 2 GB 100 GB 100 Mbps 1-25K I/O per node Recommended 8 4 GB 200 GB 1 Gbps Medium Minimum 8 8 GB 200 GB 1 Gbps 25-50K I/O per node Recommended 16 12 GB 500 GB 1 Gbps Large Minimum 16 16 GB 500 GB 1 Gbps &gt; 50K I/O per node Recommended 32 24 GB 1 TB Dual 1 Gbps Level Logical Processors RAM Free Disk Space Network Speed Minimum 4 1 GB 100 GB 100 Mbps Recommended 8 4 GB 200 GB 1 Gbps</div>
+<p></p>
+<p>For all-in-one nodes with all products on a single node. An all-in-one node includes</p>
+<p>Application Server, InTouch, Historian, Historian Client, and Licensing components.</p>
+<p>Licensing</p>
+<p>The following topics provide general information about System Platform licensing.</p>
+<div class="key-concept">Note: Please contact your local distributor for details about licensing and pricing. Licensing Models Two licensing models are available:  Perpetual licensing offers permanent licenses with no expiration date. A perpetual license applies to a specific purchased software version.  Flex licensing offers subscription-based licenses that are renewed for a specific term. The license is for credits redeemable to access a wide range of software based on needs at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex program. Note: Subscription-based licenses are also available for development consignments (for example, System Integrator consignments). Activated Licensing AVEVA software is license-enforced using an activated licensing framework with an activation code. Management and activation of licenses are performed with the following components, which are installed as part of the installation of your purchased products:  License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy and failover.  License Manager: Web-based user interface to access and maintain licenses. License activation can be performed online or offline. Activation requires Internet access in both cases. Consult your sales representative for availability of email and phone activation.  Online refers to Internet access on the License Server network.  Offline refers to activation off-site. Refer to the documentation provided with your software product for more information on using the License Server and License Manager. Level Logical Processors RAM Free Disk Space Network Speed Small Minimum 8 8 GB 200 GB 100 Mbps 1,000 IO Max Recommended 12 12 GB 500 GB 1 Gbps Medium Minimum 12 16 GB 500 GB 1 Gbps 20,000 IO Max Recommended 16 32 GB 1 TB 1 Gbps Large Minimum 20 32 GB 2 TB 1 Gbps 100,000 IO Max Recommended 24 64 GB 4 TB 1 Gbps</div>
+<p>Section 5 – System Requirements and Licensing</p>
+<p>System Platform Perpetual Licenses</p>
+<p>System Platform perpetual licenses are available in different sizes. Each option is a combination of</p>
+<p>a certain number of I/O points, Historian tags, and Communication Driver licenses.</p>
+<p>Each System Platform license also includes:</p>
+<p></p>
+<p>One AVEVA Historian Client Web license</p>
+<p></p>
+<p>Remote Response Objects, which are not available out-of-the-box. They must be</p>
+<p>downloaded from the Support site.</p>
+<p>Note that:</p>
+<p></p>
+<p>One System Platform license is required per Galaxy.</p>
+<p></p>
+<p>System Platform licenses with 25K I/O points or less do not include a Microsoft SQL</p>
+<p>Server Standard license.</p>
+<p></p>
+<p>System Platform licenses are provided for the runtime environment. For development</p>
+<p>purposes, a Development Studio license is required. Otherwise, tools such as the System</p>
+<p>Platform IDE will not launch. Development Studio licenses are offered only with the</p>
+<p>subscription model.</p>
+<p>Supervisory Client Licenses</p>
+<p>A Supervisory Client license enables the use of Operations Management Interface and InTouch for</p>
+<p>System Platform. It can be used for thick clients (desktop), thin clients (remote access, such as</p>
+<p>Remote Desktop Server), or web clients through InTouch Access Anywhere (which uses Remote</p>
+<p>Desktop Server).</p>
+<p>Additionally, Supervisory Client licenses are available with or without a Historian Client license. A</p>
+<p>read-only option is also available, which does not include capabilities to write back to the Galaxy or</p>
+<p>acknowledge alarms.</p>
+<p>Note that:</p>
+<p></p>
+<p>Each node running a supervisory client or multiple supervisory client applications</p>
+<p>consumes one Supervisory Client license.</p>
+<p></p>
+<p>Supervisory Client licenses are provided for the runtime environment only. For</p>
+<p>development purposes, a Development Studio license is required. Otherwise, tools such</p>
+<p>as the System Platform IDE will not launch. Development Studio licenses are offered only</p>
+<p>with the subscription model.</p>
+<div class="screenshot">
+  <img src="../images/page_0042_0.png" alt="AVEVA Operations Control &amp; Azure AD  AVEVA Operations Control: Commercial su">
+  <div class="caption">AVEVA Operations Control &amp; Azure AD  AVEVA Operations Control: Commercial subscription offering for AVEVA operations control software portfolio. AVEVA Flex subscription required, named-user lic...</div>
+</div>
+<p>AVEVA Operations Control</p>
+<p>AVEVA Operations Control is a commercial offering that includes access to the AVEVA portfolio of</p>
+<p>operations control software. It can only be licensed with an AVEVA Flex subscription using a</p>
+<p>simplified license measured by named users. It is available in three editions:</p>
+<p></p>
+<p>Enterprise edition for IT/OT convergence aimed at driving collaboration and enterprise</p>
+<p>visibility across regional or global operations</p>
+<p></p>
+<p>Supervisory edition for centralized management of distributed SCADA or operations</p>
+<p></p>
+<p>Edge edition for local process monitoring and control at the asset, equipment, or line</p>
+<p>level. The AVEVA Historian license allows for retrieval of the last seven days of data.</p>
+<p>Azure Active Directory</p>
+<p>Starting with System Platform 2023, user identity authentication and single sign-on via Azure</p>
+<p>Active Directory (AD) is supported. After setting Galaxy security to use an external identity</p>
+<p>provider, Azure AD can be used to authenticate users. System Platform users can then use their</p>
+<p>Microsoft-managed identities to log into the System Platform IDE, Operations Control</p>
+<p>Management Console, Operations Management Interface ViewApps, and to perform secured and</p>
+<p>verified writes.</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">← Previous: Lab 1 – Creating and Deploying a Galaxy</a> &nbsp;|&nbsp;
+  <a href="L04-Screen-Profiles-and-Layouts.html">Next: Screen Profiles and Layouts →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>

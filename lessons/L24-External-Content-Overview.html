@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 24: External Content Overview</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+  h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
+  h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
+  h3 { font-size: 1.1em; color: #555; }
+  .key-concept { background: #f0f7f0; border-left: 4px solid #2c5f2d; padding: 1em; margin: 1em 0; }
+  .pitfall { background: #fff3f3; border-left: 4px solid #c0392b; padding: 1em; margin: 1em 0; }
+  .lab { background: #f0f4ff; border-left: 4px solid #2c3e50; padding: 1em; margin: 1em 0; }
+  .tip { background: #fffde7; border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
+  th { background: #f5f5f5; }
+  code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  .screenshot { text-align: center; margin: 1.5em 0; }
+  .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
+  .quiz { background: #fffde7; border: 1px solid #f0e68c; padding: 1em; margin: 2em 0; }
+  .quiz h3 { margin-top: 0; }
+  .answer { color: #2c5f2d; font-weight: bold; }
+  nav { margin-bottom: 2em; font-size: 0.9em; }
+  nav a { color: #2c5f2d; }
+  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
+  .checkbox-label { cursor: pointer; }
+  .checkbox-label input { margin-right: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">← L23: Lab 11 – Rebuilding the Navigation Model</a> &nbsp;|&nbsp;
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a →</a>
+</nav>
+
+<nav style="margin-bottom:1.5em;">
+<summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
+<div style="margin-top:0.8em;line-height:2;">
+<strong>Module 1 — Introduction</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
+<br>
+<strong>Module 2 — Getting Started</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
+<br>
+<strong>Module 3 — Industrial Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
+<br>
+<strong>Module 4 — ViewApp Customizations</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
+<br>
+<strong>Module 5 — External Content</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html" style="font-weight:bold;color:#1a1a1a;">L24: External Content Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
+<br>
+<strong>Module 6 — Widgets</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
+<br>
+<strong>Module 7 — ViewApp Namespaces</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
+<br>
+<strong>Module 8 — Security</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
+<br>
+<strong>Module 9 — Alarms and Events</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
+<br>
+<strong>Module 10 — Trends</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
+<br>
+<strong>Module 11 — Historical Playback</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<br>
+<strong>Module 12 — .NET Controls</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
+<br>
+<strong>Module 13 — Scripting in Graphics</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<br><span id="progress-text"></span>
+</div>
+</nav>
+
+
+
+<h1>📖 L24: External Content Overview</h1>
+<p class="source">Module 5 — External Content | Pages 351-356</p>
+
+<div class="screenshot">
+  <img src="../images/page_0351_0.jpeg" alt="Page 351">
+  <div class="caption">Page 351</div>
+</div>
+<p>Section 1 – Introduction to External Content</p>
+<p>Section 1 – Introduction to External Content</p>
+<p>Introduction</p>
+<p>External content refers to media content outside of a Galaxy that can be linked to a ViewApp and</p>
+<p>displayed during runtime. System Platform includes some pre-built Apps to show content specified</p>
+<p>by external content items, such as web content, Microsoft Word documents, images, and more.</p>
+<p>An external content item is created in the Graphics tab, and then configured with the External</p>
+<p>Content Editor to identify the location of the external media and content types. External content</p>
+<p>items are managed within the Graphics tab hierarchy of content items, which is visible in the</p>
+<p>System Platform IDE and the Toolbox or Assets areas of the Layout and ViewApp Editors.</p>
+<p>To associate external content to a ViewApp, you can manually assign the external content item to</p>
+<p>a layout pane. You can also link an external content item to an automation object for auto-fill</p>
+<p>navigation. A single external content item can be linked to multiple objects.</p>
+<p>Media Files</p>
+<p>Keep the following in mind for your media files:</p>
+<p></p>
+<p>If you are placing media files for the external content on a remote computer in your</p>
+<p>network, ensure the connectivity between the computer where the ViewApp will run and</p>
+<p>the computer where the remote media is stored.</p>
+<p></p>
+<p>If you are planning to specify the location of a media file for external content with a URI set</p>
+<p>to a standard Windows mapped drive, it is important that the computer on which the</p>
+<p>ViewApp is launched has the same drive letter mapped to the location having the</p>
+<p>referenced content.</p>
+<p></p>
+<p>If you intend to show videos within a running ViewApp on a computer running a supported</p>
+<p>version of Windows Server 2012, ensure the Desktop Experience feature is enabled.</p>
+<p>Desktop Experience includes required media features that are not enabled by default on</p>
+<p>the different versions of Windows Server 2012 supported by System Platform.</p>
+<p>In later operating systems, installing the Full GUI includes the Desktop Experience and</p>
+<p>support for showing videos within a running ViewApp.</p>
+<p>This section introduces using external content in ViewApps, including how to create, configure,</p>
+<p>and manage external content items.</p>
+<div class="screenshot">
+  <img src="../images/page_0352_0.png" alt="Page 352">
+  <div class="caption">Page 352</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0352_1.png" alt="Page 352">
+  <div class="caption">Page 352</div>
+</div>
+<p>Create External Content Items</p>
+<p>You create external content items in the Graphics tab in the System Platform IDE. From the</p>
+<p>Graphics tab, right-click the Galaxy name or a toolset name and select New | External Content.</p>
+<p>The following shows creating a new external content item in a toolset named Training.</p>
+<p>The external content item appears in the Graphics tab with an identifying icon. It is created with a</p>
+<p>default name of ExternalContent_001 for the first external content item, but you can rename it.</p>
+<p>Once the external content item is created, you can configure it in the External Content Editor.</p>
+<div class="key-concept">Note: Before configuring an external content item in the External Content Editor, you must know the location of the external media, the type of media, and the content types of the layout pane that can host the external content. External Content Editor You configure external content items in the External Content Editor. From the Graphics tab, double-click the external content item to open it in the editor.  URL or URI: The location of an external media item using a standard format. Can be specified as either a static string or an expression/reference.</div>
+<div class="screenshot">
+  <img src="../images/page_0353_0.png" alt="Page 353">
+  <div class="caption">Page 353</div>
+</div>
+<p>Section 1 – Introduction to External Content</p>
+<p>The Mode icon on the left of the field provides options to select Constant or Reference Or</p>
+<p>Expression to set the mode for the field. Click the down-arrow to display the drop-down</p>
+<p>list.</p>
+<p>If set to Constant, an ellipsis to the right of the field provides options to browse for an</p>
+<p>external media file and to specify a URL using HTTP or HTTPs. If set to Reference Or</p>
+<p>Expression, an ellipsis to the right of the field opens the Galaxy Browser that can be used</p>
+<p>to select references. You can build a custom expression to specify the location of the</p>
+<p>media file.</p>
+<p></p>
+<p>Open: If the mode for the URL or URI field is Constant, the Open button validates the</p>
+<p>location of external media specified in the URL or URI field. An attempt is made to display</p>
+<p>the external media in an application assigned as the default by the operating system, not</p>
+<p>the App specified for the external content media type. A warning appears if the external</p>
+<p>media cannot be found at the location specified in the URL or URI field.</p>
+<p>If the mode for the URL or URI field is Expression Or Reference, the Open button is</p>
+<p>disabled.</p>
+<p></p>
+<p>Media Type: A two-part identifier that specifies the type of application required to process</p>
+<p>or view the media item. A media type can be entered in the field or selected from a drop-</p>
+<p>down list. Available media types are listed in the drop-down list in bold text. If an</p>
+<p>unavailable media type is entered or selected, the external content may not display</p>
+<p>properly in the running ViewApp.</p>
+<p></p>
+<p>Suggest: If the mode for the URL or URI field is Constant, the Suggest button selects a</p>
+<p>media type based on the entry in the URL or URI field. The entered value can be changed</p>
+<p>if the suggestion does not match the expected media type.</p>
+<p>If the mode for the URL or URI field is Expression Or Reference, the Suggest button is</p>
+<p>disabled.</p>
+<p></p>
+<p>Content Type(s): Content type(s) of the external media item. The content types specified</p>
+<p>for the external media must match with the content types configured for the layout panes</p>
+<p>that will show the external media at runtime.</p>
+<div class="screenshot">
+  <img src="../images/page_0354_0.png" alt="Page 354">
+  <div class="caption">Page 354</div>
+</div>
+<p>Out-of-the-Box Viewer OMI Apps</p>
+<p>Out-of-the-box Apps for viewing external content include the WebBrowser control, which provides</p>
+<p>a full-featured, standards-complaint web browser to the ViewApp, as well as the following:</p>
+<p></p>
+<p>DocViewerApp shows a Microsoft Word document within a pane of a running ViewApp. It</p>
+<p>initially shows the first page of the document at 100 percent zoom scale. It includes a set</p>
+<p>of visual controls for zooming the display of the document or searching the content. No</p>
+<p>permanent editing changes can be made to the Word document from within the</p>
+<p>DocViewerApp.</p>
+<p></p>
+<p>ImageViewerApp shows an image within a pane of a running ViewApp. It includes a set</p>
+<p>of visual controls for zooming, flipping, or rotating the display of the image. No permanent</p>
+<p>editing changes can be made to the image from within the ImageViewerApp.</p>
+<p></p>
+<p>PDFViewerApp shows a Portable Document Format (PDF) document within a pane of a</p>
+<p>running ViewApp. It initially shows the first page of the document at 100 percent zoom</p>
+<p>scale. It includes a set of visual controls for zooming, searching the content, paging</p>
+<p>through the document, rotating the document, or changing the number of pages displayed.</p>
+<p>No permanent editing changes can be made to the PDF document from within the</p>
+<p>PDFViewerApp.</p>
+<p></p>
+<p>SpreadsheetViewerApp shows a Microsoft Excel spreadsheet within a pane of a running</p>
+<p>ViewApp. It initially shows the first worksheet of the spreadsheet at 100 percent zoom</p>
+<p>scale. It includes a set of visual controls for zooming the content. No permanent editing</p>
+<p>changes can be made to the spreadsheet from within the SpreadsheetViewerApp.</p>
+<p>External Content in Automation Objects</p>
+<p>You can link an external content item to an automation object for auto-fill navigation. A single</p>
+<p>external content item can be linked to multiple objects.</p>
+<p>When editing an object in the Object Editor, you can link an external content item to the object from</p>
+<p>the Content pane on the Attributes tab. Clicking the Link Content button opens the Galaxy</p>
+<p>Browser, allowing you to navigate to the location where the external content is stored and select</p>
+<p>the media file.</p>
+<div class="screenshot">
+  <img src="../images/page_0355_0.png" alt="Page 355">
+  <div class="caption">Page 355</div>
+</div>
+<p>Section 1 – Introduction to External Content</p>
+<p>Delete an External Content Item</p>
+<p>You can delete an external content item from the Graphics tab by right-clicking the external</p>
+<p>content item and selecting Delete. The Confirm delete dialog box appears, listing any references</p>
+<p>to the external content item and allowing you to confirm or cancel the deletion.</p>
+<p>Import and Export External Content Items</p>
+<p>An external content item in a Galaxy can be managed from the Graphics tab using standard</p>
+<p>options from the right-click shortcut menu or from the Edit options of the System Platform IDE</p>
+<p>menu bar. For example, you can right-click an external content item in the Graphics tab and select</p>
+<p>from the shortcut menu.</p>
+<p>A ViewApp containing Apps designed to display external content can be exported from one Galaxy</p>
+<p>and imported to another Galaxy. The External Content Editor is capable of recognizing a new</p>
+<p>media type from the imported App.</p>
+<p>An external content item can be:</p>
+<p></p>
+<p>Exported to an aaPKG file</p>
+<p></p>
+<p>Imported from an aaPKG file</p>
+<p></p>
+<p>Included in a Galaxy backup</p>
+<p></p>
+<p>Restored from a Galaxy backup</p>
+<p></p>
+<p>Included in an export of layouts or ViewApps that have external content items associated</p>
+<p>with them</p>
+
+
+<div class="quiz">
+  <h3>Knowledge Check</h3>
+  <details>
+    <summary>Q1: What are the main concepts covered in this lesson?</summary>
+    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
+  </details>
+  <details>
+    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
+    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
+  </details>
+</div>
+
+<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+  <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">← Previous: Lab 11 – Rebuilding the Navigation Model</a> &nbsp;|&nbsp;
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">Next: Lab 12 – Creating External Content for a →</a>
+</nav>
+
+
+<script>
+function saveProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
+  });
+  updateProgressText();
+}
+function loadProgress() {
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  var total = document.querySelectorAll('input[data-lesson]').length;
+  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
+  var el = document.getElementById('progress-text');
+  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
+}
+window.addEventListener('load', loadProgress);
+</script>
+</body>
+</html>
