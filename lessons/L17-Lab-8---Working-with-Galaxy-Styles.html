@@ -83,6 +83,10 @@
 
 <p>In this lab, you will add a Status element to the CommandPanel symbol for displaying quality and status information at runtime. You will observe how the Pending status indicator appears when commands are sent, then configure a font color override for the Pending status style using Galaxy Styles. You will also import additional style libraries, rename them, export them, and finally configure the TitleBarApp to display a style selector dropdown for dynamic style switching at runtime.</p>
 
+<div class="key-concept">
+<strong>Key Concept — Galaxy Styles Categories:</strong> Galaxy Styles provide three categories of visual overrides: <em>Quality</em> (how data quality appears), <em>Status</em> (how status indicators like Pending, Good, Bad appear), and <em>HMI element overrides</em> (font color, blink, and other visual properties for specific elements). These categories let you create consistent visual themes across all ViewApp graphics without modifying individual symbols.
+</div>
+
 <div class="lab">
 <strong>Objectives</strong> — Upon completion of this lab, you will be able to:
 <ul style="margin:0.5em 0;">
@@ -112,8 +116,12 @@
 
 <p>In the Edit Animations dialog, the DataStatus animation requires you to select which graphic elements should be affected by the status display. On the Graphics tab, move both Button1 and Button2 from the Available Graphic Elements list to the Selected Graphic Elements list using the <code>&gt;&gt;</code> button. This tells the Status element to monitor and display status information for both buttons.</p>
 
+<div class="key-concept">
+<strong>Key Concept — The Status Element:</strong> The Status element monitors selected graphic elements and displays quality/status indicators at runtime. When a command is sent, a Pending indicator (yellow hourglass) appears briefly, providing visual feedback that the command is being processed. The DataStatus animation links the Status element to the specific buttons it should monitor.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0267_0.jpeg" alt="Edit Animations dialog showing DataStatus with Available and Selected Graphic Elements lists">
+<img src="../images/page_0267_0.jpeg" alt="Edit Animations dialog showing DataStatus with Available and Selected Graphic Elements lists">
   <div class="caption">DataStatus animation initial state — the Graphics tab shows Button1 and Button2 in the Available Graphic Elements list. Select each and click &gt;&gt; to move them to the Selected list.</div>
 </div>
 
@@ -294,8 +302,12 @@
 
 <p>Enable dynamic style switching by opening the Main layout in the Layout Editor, selecting the TitleBarApp (Pane4), and changing the <strong>Content and Display Area → Style Libraries</strong> property to <code>SecondaryRight</code>. Save, close, and check in the layout.</p>
 
+<div class="key-concept">
+<strong>Key Concept — Dynamic Style Switching at Runtime:</strong> The TitleBarApp can display a style selector dropdown by setting its Style Libraries property to a title bar position (e.g., SecondaryRight). Operators can then switch between imported styles (Aqua, APG, Standard_Style, etc.) at runtime, and the entire ViewApp updates its visual theme immediately.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0283_0.png" alt="Layout Editor showing TitleBarApp selected in the hierarchy">
+<img src="../images/page_0283_0.png" alt="Layout Editor showing TitleBarApp selected in the hierarchy">
   <div class="caption">Layout Editor — Pane4 (TitleBarApp) selected in the layout hierarchy. This element will display the style selector button.</div>
 </div>
 

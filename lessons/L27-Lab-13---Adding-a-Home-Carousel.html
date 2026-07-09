@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -122,158 +123,172 @@
 </nav>
 
 <h1>🔬 L27: Lab 13 – Adding a Home Carousel</h1>
-<p class="source">Module 6 — Widgets | Pages 383-392</p>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>Introduction</p>
-<p>In this lab, you will add the Carousel widget to your ViewApp. You will create a layout, assign the</p>
-<p>Carousel widget to a pane, and configure the widget to display a set of Overview graphics.</p>
-<p>Then you will assign the new layout to the Home navigation item in the ViewApp Editor and</p>
-<p>configure AutoFill settings.</p>
-<p>When you test your ViewApp in the preview session, you will navigate to Home and see the</p>
-<p>Carousel widget cycle through a display of Overview graphics.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use the Carousel widget in a ViewApp</p>
-<p></p>
-<p>Configure a Home display in a ViewApp</p>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p>Create a Layout for the Carousel Widget</p>
-<p>In the following steps, you will create a layout and assign the Carousel widget to a pane. You will</p>
-<p>also specify the graphics to appear in the carousel.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
-<p>Home_Carousel.</p>
-<p>2.</p>
-<p>Double-click Home_Carousel to open it in the Layout Editor.</p>
-<div class="screenshot">
-  <img src="../images/page_0384_0.png" alt="Page 384">
-  <div class="caption">Page 384</div>
+<p class="source">AVEVA™ Operations Management Interface 2023</p>
+<p class="page-ref">Module 6 — Widgets | Pages 383–392</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will add the Carousel widget to your ViewApp. You will create a layout, assign the Carousel widget to a pane, and configure the widget to display a set of Overview graphics. Then you will assign the new layout to the Home navigation item in the ViewApp Editor and configure AutoFill settings.</p>
+
+<p>When you test your ViewApp in the preview session, you will navigate to Home and see the Carousel widget cycle through a display of Overview graphics.</p>
+
+<div class="key-concept">
+<strong>Objectives:</strong> Upon completion of this lab, you will be able to:
+<ul style="margin-bottom:0;">
+  <li>Use the Carousel widget in a ViewApp</li>
+  <li>Configure a Home display in a ViewApp</li>
+</ul>
 </div>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>3.</p>
-<p>On the Toolbox tab, select the Widgets toolset.</p>
-<p>Notice that widgets appear in the preview area.</p>
-<p>4.</p>
-<p>Select the Carousel widget and drag it to Pane1.</p>
+
+<h2>Create a Layout for the Carousel Widget</h2>
+
+<p>In the following steps, you will create a layout and assign the Carousel widget to a pane. You will also specify the graphics to appear in the carousel.</p>
+
+<ol>
+  <li>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it <strong>Home_Carousel</strong>.</li>
+  <li>Double-click Home_Carousel to open it in the Layout Editor.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0385_0.png" alt="Page 385">
-  <div class="caption">Page 385</div>
+  <img src="../images/page_0384_0.png" alt="Graphics panel showing the TrainingGalaxy tree with Training expanded to reveal Layouts folder containing Asset_Layout, Home_Carousel (highlighted in blue), and Main">
+  <div class="caption">The Graphics panel showing the new Home_Carousel layout in the Training > Layouts toolset</div>
 </div>
+
+<ol start="3">
+  <li>On the Toolbox tab, select the <strong>Widgets</strong> toolset. Notice that widgets appear in the preview area.</li>
+  <li>Select the <strong>Carousel</strong> widget and drag it to Pane1.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0385_1.png" alt="Page 385">
-  <div class="caption">Page 385</div>
+  <img src="../images/page_0385_0.png" alt="Toolbox panel showing the Widgets folder expanded with Carousel highlighted in blue, alongside Datagrid, Map_App, QRCode, Teamwork, and Web_Browser widgets displayed as thumbnails">
+  <div class="caption">Step 3: Selecting the Carousel widget from the Widgets toolset</div>
 </div>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p>5.</p>
-<p>On the Properties tab, configure the Widget Properties \ GraphicNames property as</p>
-<p>follows:</p>
-<p>Production_Overview, Line1_Overview, Line2_Overview, Packaging_Overview</p>
-<p>6.</p>
-<p>Leave the other properties as default.</p>
-<p>7.</p>
-<p>Save and close the Home_Carousel layout, and check it in.</p>
-<p>Assign the Layout with the Carousel to Home</p>
-<p>To display the layout with the carousel in your ViewApp, you need to associate it with the Home</p>
-<p>navigation item. In the following steps, you will assign the layout with the Carousel widget to</p>
-<p>Pane1 of the Main layout from within the ViewApp Editor.</p>
-<p>8.</p>
-<p>In the ViewApp Editor, in the Navigation list, select Home.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0386_0.png" alt="Page 386">
-  <div class="caption">Page 386</div>
+  <img src="../images/page_0385_1.png" alt="Layout Editor showing Pane1 with the Carousel widget dropped in, displaying a placeholder with WEB WIDGET and the widget name CAROUSEL text">
+  <div class="caption">Step 4: The Carousel widget is dragged and dropped into Pane1</div>
 </div>
+
+<ol start="5">
+  <li>On the Properties tab, configure the Widget Properties \ GraphicNames property as follows:<br>
+  <code>Production_Overview, Line1_Overview, Line2_Overview, Packaging_Overview</code></li>
+  <li>Leave the other properties as default.</li>
+  <li>Save and close the Home_Carousel layout, and check it in.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0386_1.jpeg" alt="Page 386">
-  <div class="caption">Page 386</div>
+  <img src="../images/page_0386_0.png" alt="Properties panel showing Widget Properties with GraphicNames set to Production_Overview, Line1_Overview, Line2_Overview, Packaging_Overview, Interval at 5000, Pause checked, Loop checked, Autoplay checked, Keyboard checked, and Background white">
+  <div class="caption">Steps 5–6: Configuring the Carousel widget properties — GraphicNames, Interval, Pause, Loop, and Autoplay</div>
 </div>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>9.</p>
-<p>On the Toolbox tab, search for the Home_Carousel layout.</p>
-<p><strong>10.</strong> Drag the Home_Carousel layout to Pane1 to assign it to the Home navigation item.</p>
-<p><strong>11.</strong> In the Navigation list, ensure Home is selected.</p>
+
+<h2>Assign the Layout with the Carousel to Home</h2>
+
+<p>To display the layout with the carousel in your ViewApp, you need to associate it with the Home navigation item. In the following steps, you will assign the layout with the Carousel widget to Pane1 of the Main layout from within the ViewApp Editor.</p>
+
+<ol start="8">
+  <li>In the ViewApp Editor, in the Navigation list, select <strong>Home</strong>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0387_0.png" alt="Page 387">
-  <div class="caption">Page 387</div>
+  <img src="../images/page_0386_1.jpeg" alt="Navigation panel showing Home selected in the navigation tree with Plant as a sub-item below">
+  <div class="caption">Step 8: Selecting Home in the Navigation list</div>
 </div>
+
+<ol start="9">
+  <li>On the Toolbox tab, search for the <strong>Home_Carousel</strong> layout.</li>
+  <li>Drag the Home_Carousel layout to Pane1 to assign it to the Home navigation item.</li>
+  <li>In the Navigation list, ensure Home is selected.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0387_1.png" alt="Page 387">
-  <div class="caption">Page 387</div>
+  <img src="../images/page_0387_0.png" alt="Toolbox search showing hom entered in the search field with one result: Home_Carous layout highlighted in blue">
+  <div class="caption">Step 9: Searching for the Home_Carousel layout in the Toolbox</div>
 </div>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p><strong>12.</strong> In the Actions pane, change the Auto-Fill Content option to Current only.</p>
-<p>This is to avoid having content from child navigation items automatically fill the panes in the</p>
-<p>Main layout.</p>
-<p>Alternatively, you can change the Navigation \ Auto-Fill Content option on the Properties</p>
-<p>tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0388_0.jpeg" alt="Page 388">
-  <div class="caption">Page 388</div>
+  <img src="../images/page_0387_1.png" alt="Layout Editor showing Pane1 with the Home_Carousel layout content displaying LAYOUT and THIS PANE CONTAINS THE LAYOUT NAMED HOME_CAROUSEL placeholder text">
+  <div class="caption">Step 10: Dragging the Home_Carousel layout to Pane1 for the Home navigation item</div>
 </div>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>13.</strong> In the Navigation list, select Plant.</p>
-<p>Notice that its Auto-Fill Content option is changed to Current only as well.</p>
-<p>This is because changing the Auto-Fill Content option for Home causes the setting to be</p>
-<p>cascaded down to its child navigation items.</p>
+
+<ol start="12">
+  <li>In the Actions pane, change the Auto-Fill Content option to <strong>Current only</strong>. This is to avoid having content from child navigation items automatically fill the panes in the Main layout. Alternatively, you can change the Navigation \ Auto-Fill Content option on the Properties tab.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0389_0.jpeg" alt="Page 389">
-  <div class="caption">Page 389</div>
+  <img src="../images/page_0388_0.jpeg" alt="ViewApp Editor showing the Actions pane with Auto-Fill Content set to Current only for Home, with a list of actions including Show Main from Home, Show HamburgerButton, Show NavBreadcrumb, Show NavTreeControl, Show TitleBarControl, and Show Home_Carousel from Home on Pane1">
+  <div class="caption">Step 12: Setting Auto-Fill Content to Current only for the Home navigation item</div>
 </div>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p>In the next step, you will manually change the Auto-Fill Content option for Plant back to Current,</p>
-<p>Up, then Down to ensure the content from the navigation items auto-fills properly.</p>
-<p><strong>14.</strong> With Plant selected in the Navigation list, change the Auto-Fill Content option to Current,</p>
-<p>up, then down.</p>
-<p>Test the ViewApp in a Preview Session</p>
+
+<ol start="13">
+  <li>In the Navigation list, select <strong>Plant</strong>. Notice that its Auto-Fill Content option is changed to Current only as well. This is because changing the Auto-Fill Content option for Home causes the setting to be cascaded down to its child navigation items.</li>
+</ol>
+
+<div class="screenshot">
+  <img src="../images/page_0389_0.jpeg" alt="ViewApp Editor showing Plant selected in the Navigation list with Auto-Fill Content showing Current only in the Actions pane, and the actions list showing Show PlantLayout from Plant on Pane1">
+  <div class="caption">Step 13: Plant's Auto-Fill Content also changed to Current only — the setting cascades from Home to children</div>
+</div>
+
+<div class="pitfall">
+<strong>Important:</strong> When you change Auto-Fill Content for Home, it cascades down to child items like Plant. You must manually change Plant's setting back to ensure content auto-fills properly.
+</div>
+
+<p>In the next step, you will manually change the Auto-Fill Content option for Plant back to Current, Up, then Down to ensure the content from the navigation items auto-fills properly.</p>
+
+<ol start="14">
+  <li>With Plant selected in the Navigation list, change the Auto-Fill Content option to <strong>Current, up, then down</strong>.</li>
+</ol>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
 <p>Now you will test your changes in the ViewApp preview session.</p>
-<p><strong>15.</strong> On the top-right of the ViewApp Editor, click Update to save the changes to the ViewApp and</p>
-<p>update the preview session.</p>
-<p>The preview session opens, navigated to Plant.</p>
-<p><strong>16.</strong> Click the Home icon to navigate to Home.</p>
+
+<ol start="15">
+  <li>On the top-right of the ViewApp Editor, click <strong>Update</strong> to save the changes to the ViewApp and update the preview session. The preview session opens, navigated to Plant.</li>
+  <li>Click the <strong>Home</strong> icon to navigate to Home.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0390_0.jpeg" alt="Page 390">
-  <div class="caption">Page 390</div>
+  <img src="../images/page_0390_0.jpeg" alt="ViewApp Editor with Update button visible in the top-right corner, and the Plant Auto-Fill Content setting changed to Current up then down">
+  <div class="caption">Steps 14–15: Changing Plant's Auto-Fill Content back to Current, up, then down and clicking Update</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0390_1.png" alt="Page 390">
-  <div class="caption">Page 390</div>
+  <img src="../images/page_0390_1.png" alt="AVEVA OMI Training Application showing the Home navigation with the Home icon highlighted and Plant selected, with hamburger menu and status indicators showing 32 red, 24 yellow, 10 blue">
+  <div class="caption">Step 16: Navigating to Home by clicking the Home icon</div>
 </div>
-<p>Lab 13 – Adding a Home Carousel</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The Production_Overview graphic appears.</p>
-<p>It may take some time for the content to be loaded and converted for the carousel to display.</p>
-<p><strong>17.</strong> Hover your mouse over a graphic in the carousel, leave it there for longer than 5 seconds, and</p>
-<p>then move it to the title bar.</p>
-<p>Notice that the cycling of the carousel graphics pauses when you hover the mouse over the</p>
-<p>display and resumes when you move it off the display. This is because, by default, the Pause</p>
-<p>property for the widget is enabled.</p>
+
+<p>The Production_Overview graphic appears. It may take some time for the content to be loaded and converted for the carousel to display.</p>
+
+<ol start="17">
+  <li>Hover your mouse over a graphic in the carousel, leave it there for longer than 5 seconds, and then move it to the title bar. Notice that the cycling of the carousel graphics pauses when you hover the mouse over the display and resumes when you move it off the display. This is because, by default, the Pause property for the widget is enabled.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0391_0.jpeg" alt="Page 391">
-  <div class="caption">Page 391</div>
+  <img src="../images/page_0391_0.jpeg" alt="AVEVA OMI Training Application showing the Production_Overview graphic with two bar charts side by side: Production level of mixers and Current temperature of mixers, with mixer data from M1 through M8">
+  <div class="caption">Step 17: The Production_Overview graphic displayed in the carousel — hovering pauses the cycling</div>
 </div>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p>When not paused, the carousel continuously cycles through the assigned graphics to display,</p>
-<p>with a 5-second delay between graphics. This is because, by default, the Interval property for</p>
-<p>the widget is set for a 5-second delay, and the Loop and Autoplay properties for the widget</p>
-<p>are enabled.</p>
+
+<div class="key-concept">
+<strong>Carousel behavior:</strong> When not paused, the carousel continuously cycles through the assigned graphics with a 5-second delay between graphics. This is because the <strong>Interval</strong> property defaults to 5000 ms (5 seconds), and the <strong>Loop</strong> and <strong>Autoplay</strong> properties are enabled by default.
+</div>
+
 <p>The following shows the carousel cycled to the Packaging graphic.</p>
-<p><strong>18.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<p><End of Lab></p>
+
+<ol start="18">
+  <li>When you are finished testing, minimize the preview session and the ViewApp Editor.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0392_0.png" alt="Page 392">
-  <div class="caption">Page 392</div>
+  <img src="../images/page_0392_0.png" alt="AVEVA OMI Training Application showing the Packaging graphic in the carousel with a bar chart of heat exchanger temperatures across four HeatEx units (HeatEx100 through HeatEx400) each with four temperature sensors (TT1 through TT4)">
+  <div class="caption">The carousel cycled to the Packaging graphic — showing heat exchanger temperatures across four units</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="quiz"><h3>Knowledge Check</h3>
+<details><summary>Q1: What properties control the Carousel widget's cycling behavior?</summary><p class="answer">The Interval property (default 5000 ms) controls the delay between graphics. The Loop property enables continuous cycling. The Autoplay property starts cycling automatically. The Pause property pauses cycling on mouse hover.</p></details>
+<details><summary>Q2: Why must you change Plant's Auto-Fill Content back to "Current, up, then down" after setting Home to "Current only"?</summary><p class="answer">Changing Auto-Fill Content for Home cascades the setting down to all child navigation items. Setting it to Current only for Plant would prevent content from child navigation items (like Receiving, Production Lines, etc.) from auto-filling properly. Changing it back ensures the content hierarchy works correctly.</p></details>
+<details><summary>Q3: How do you assign a layout to a navigation item in the ViewApp Editor?</summary><p class="answer">Select the navigation item in the Navigation list, then search for the layout on the Toolbox tab and drag it onto the desired pane (e.g., Pane1) of the Main layout.</p></details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L26-Widgets-Overview.html">← L26: Widgets Overview</a> &nbsp;|&nbsp;
   <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction →</a>

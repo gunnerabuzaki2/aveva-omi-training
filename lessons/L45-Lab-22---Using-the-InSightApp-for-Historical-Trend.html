@@ -140,7 +140,11 @@
 
 <p>In this lab, you will use the InSightApp to add a display for historical trending in your ViewApp. You will configure the InSightApp to retrieve relevant information from Historian. When testing, you will be able to use different tools to view data and alarm-related information through the InSightApp.</p>
 
-<p>For example, you will be able to zoom, pan, and extend the trend display based on the time range. You will be able to move your mouse over the trend line to view data based on the cursor position on the line, and click the highlighted part of the line to view alarm information. You will also be able to view the data in different units of measure.</p>
+<div class="key-concept">
+<strong>Key Concept — InSightApp Configuration:</strong> The InSightChartControl requires two critical properties: the <strong>Historian InSight Server URL</strong> (e.g., <code>http://&lt;node&gt;:32569</code>) to connect to Historian, and the <strong>Chart Duration</strong> (in minutes) to define the default time range for the trend display. Without these, the control cannot retrieve or display any historical data.
+</div>
+
+<p>For example, you will be able to zoom, pan, and extend the trend display based on the time range.</p>
 
 <div class="screenshot">
   <img src="../images/page_0625_0.jpeg" alt="InSightApp trend display showing Level_001 historical trend with LiveAlarms and HistoricalTrend tabs">
@@ -226,6 +230,11 @@
 
 <ol start="13">
 <li>Move your mouse over the trend. Data displays for the date and time, based on the position of the cursor on the trend line. Notice that the units of measure used for the data is <code>l</code> (liters), which is configured with the historized attribute in the object.</li>
+
+<div class="key-concept">
+<strong>Key Concept — Interactive Trend Features:</strong> The InSightApp provides rich interactive capabilities: <em>hover tooltips</em> show timestamp and value at the cursor position, <em>alarm highlights</em> (yellow for Severity 2, red for Severity 1) appear on the trend line, and the <em>ellipsis menu</em> on the pen legend allows on-the-fly unit conversion (e.g., liters to cubic meters). Double-click zooms in, and the mouse wheel controls zoom level.
+</div>
+
 <li>At the bottom-left of the InSightControl, click the ellipsis button in the Level_001.PV legend to display a popup menu of units of measure.</li>
 </ol>
 

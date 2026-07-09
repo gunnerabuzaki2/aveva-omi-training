@@ -144,6 +144,10 @@
   You can attach visual symbols to automation objects using either <strong>linked symbols</strong> (creating a reference to an existing symbol on the Graphics tab) or <strong>added symbols</strong> (creating a new symbol natively hosted by the object). Each approach has different implications for how changes propagate, how symbols are managed, and what happens when objects are deleted.
 </div>
 
+<p>Linking an external symbol to an automation object creates an association between the object and a symbol that lives on the Graphics tab. The same Graphics tab symbol can be linked to multiple automation objects, even those in entirely different derivation hierarchies. When you edit the symbol from the Graphics tab, the changes apply to every linked object simultaneously — making linked symbols ideal for standardized graphics shared across many pieces of equipment.</p>
+
+<p>Adding a symbol, by contrast, creates a new symbol that is natively hosted inside the automation object itself. You have full control over its content: you can embed a Graphics tab symbol and then customize it for the specific needs of that object. When a template object's symbol changes, those changes propagate to its child objects wherever they are referenced.</p>
+
 <table>
   <tr><th>Aspect</th><th>Linked Symbols</th><th>Added Symbols</th></tr>
   <tr>
@@ -182,23 +186,17 @@
   <strong>Tip — Which approach to choose?</strong> Use <strong>linked symbols</strong> when you want a single symbol definition shared across many objects (e.g., a standard valve symbol used by every valve in your plant). Use <strong>added symbols</strong> when you need per-object customization that goes beyond what a shared symbol can provide.
 </div>
 
-<p>Additional notes about linked symbols:</p>
-<ul>
-  <li>Symbols on the Graphics tab can be linked to automation objects</li>
-  <li>Linked symbols in automation objects can themselves be embedded into other symbols</li>
-  <li>Changes made to a linked or embedded symbol propagate to all automation objects to which the symbol is linked and to all graphics in which the symbol is embedded</li>
-  <li>Relative references used in a linked symbol will be resolved through the object to which it is linked</li>
-</ul>
+<p>There are a few additional points worth noting about linked symbols. First, symbols on the Graphics tab can themselves be linked to automation objects — and those linked symbols can then be embedded into other symbols, creating a chain of references. Second, changes made to a linked or embedded symbol propagate to all automation objects to which the symbol is linked <em>and</em> to all graphics in which the symbol is embedded. Third, relative references used in a linked symbol will be resolved through the object to which it is linked at runtime.</p>
 
 <div class="pitfall">
-  <strong>Limitations of Linked Symbols:</strong> Custom properties in a linked symbol cannot be customized directly. Additionally, only symbols from the Graphics tab can be linked to an object — you cannot link symbols from other automation objects' Content panes.
+  <strong>Limitations of Linked Symbols:</strong> Custom properties in a linked symbol cannot be customized directly — since the symbol is shared across multiple objects, changing properties for one object would affect all others. Additionally, only symbols from the Graphics tab can be linked to an object — you cannot link symbols from other automation objects' Content panes.
 </div>
 
 <!-- ============================================================ -->
 <h2>Managing Symbols from the Object Editor</h2>
 <p class="page-ref">Reference: Section 3-46 (Page 184)</p>
 
-<p>When you edit an automation object in the Object Editor, you manage its symbols through the Content pane on the Attributes tab. This pane provides two primary actions for adding visual content to your object.</p>
+<p>When you edit an automation object in the Object Editor, you manage its symbols through the Content pane on the Attributes tab. This pane provides two primary actions for adding visual content to your object, and additional options for managing symbols you've already added.</p>
 
 <div class="screenshot">
   <img src="../images/page_0184_0.png" alt="Content pane in Object Editor showing Add and Link Content buttons">
@@ -219,13 +217,13 @@
   </tr>
 </table>
 
-<p>From within the Object Editor, you can also rename symbols, add or edit descriptions, duplicate symbols, and delete symbols. To edit a symbol, double-click it in the Content pane or click the Edit button to open the Graphic Editor. For linked symbols, you can alternatively open and edit them directly from the Graphics tab.</p>
+<p>From within the Object Editor, you can also rename symbols, add or edit descriptions for symbols, duplicate symbols, and delete symbols. To edit a symbol, double-click it in the Content pane or click the Edit button to open the Graphic Editor. For linked symbols, you can alternatively open and edit them directly from the Graphics tab rather than from the Object Editor.</p>
 
 <!-- ============================================================ -->
 <h2>Relative References</h2>
 <p class="page-ref">Reference: Section 3-47 (Page 185)</p>
 
-<p>Relative references are a powerful mechanism for navigating the object hierarchy. Instead of using absolute paths to reference attributes, you use short reference strings that automatically resolve based on where the symbol is being used. This makes symbols portable and reusable across different objects in your hierarchy.</p>
+<p>Relative references are a powerful mechanism for navigating the object hierarchy. Instead of using absolute paths to reference attributes, you use short reference strings that automatically resolve based on where the symbol is being used. This makes symbols portable and reusable across different objects in your hierarchy — you write the reference once, and it works everywhere.</p>
 
 <div class="key-concept">
   <strong>Key Concept — Valid Relative References</strong><br>

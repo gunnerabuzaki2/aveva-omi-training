@@ -147,14 +147,22 @@
 <strong>Security Note:</strong> The playback control panel symbol is configured such that only users with access levels <strong>greater than 9000</strong> can start historical playback.
 </div>
 
+<div class="key-concept">
+<strong>Key Concept — Historical Playback Access Levels:</strong> Enabling historical playback requires a user access level greater than 9000. Users in roles with lower access levels (e.g., Plant Operators at level 2000) will be unable to activate playback mode. The control panel displays a floating tooltip showing the security requirement when hovered, and the switch simply refuses to activate for insufficient access levels.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0643_0.jpeg" alt="SCADA Playback control panel showing the enable toggle, time range, playback buttons, and current time display">
+<img src="../images/page_0643_0.jpeg" alt="SCADA Playback control panel showing the enable toggle, time range, playback buttons, and current time display">
   <div class="caption">The SCADA Playback control panel symbol with the enable switch, From/To time range fields, play/pause/next/previous buttons, and current time display</div>
 </div>
 
 <h2>Part 1: Create and Deploy the Playback Service</h2>
 
 <p>First, you will create an instance of the historical playback service and rename the service instance with the name of the Historian node. Then you will deploy the instance.</p>
+
+<div class="key-concept">
+<strong>Key Concept — SCADA Playback Service:</strong> Historical playback requires the <code>ASB.HistoricalDataReplayService.1.0</code> service to be created, assigned to nodes, and deployed via Configure &gt; System &gt; Services. The service instance is typically renamed to match the Historian server hostname (e.g., <code>S00ENG</code>). As long as one node in the Galaxy runs this service, any ViewApp in the Galaxy can use playback.
+</div>
 
 <ol>
 <li>On the Galaxy menu, select <strong>Configure | System | Services</strong>.</li>
@@ -422,6 +430,10 @@
 <h2>Part 6: Test Live Value Playback Icon</h2>
 
 <p>In the next steps, you will disable historical playback mode, navigate to a different view, and then enable playback mode again to observe the Live Value Playback icon.</p>
+
+<div class="key-concept">
+<strong>Key Concept — Live Value Playback Icon:</strong> The green triangle icon appears over graphics during historical playback to indicate that some displayed values are from live (non-historized) sources. This informs operators that not all data references can be resolved from historical data — for example, engineering unit labels or calculated values may still show current values rather than historical ones.
+</div>
 
 <ol start="40">
 <li>Click the Historical Playback Enable switch to <strong>disable</strong> playback.</li>

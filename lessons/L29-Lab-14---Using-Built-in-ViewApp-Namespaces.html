@@ -131,7 +131,11 @@
 
 <p>In this lab, you will create a symbol with two buttons for navigating to the previous and next sibling navigation items within the Line1 and Line2 areas at runtime. When configuring animations for the buttons, you will use attributes from the Navigation namespace to control whether the buttons are active or disabled at runtime, based on whether a next or previous sibling navigation item is available within the area.</p>
 
-<p>You will then add a pane to Asset_Layout and assign the symbol to it. You will also configure the divider for the pane so that it will be hidden at runtime.</p>
+<div class="key-concept">
+<strong>Key Concept — ViewApp Predefined Namespaces:</strong> ViewApps provide built-in namespaces such as <code>Navigation</code> that expose runtime state about the current view. The Navigation namespace includes attributes like <code>Current</code> (current navigation item), <code>PrevSibling</code>/<code>NextSibling</code> (adjacent items), and <code>PrevSiblingCount</code>/<code>NextSiblingCount</code> (count of available siblings) — all of which can be used in animation expressions and references.
+</div>
+
+<p>You will then add a pane to Asset_Layout and assign the symbol to it.</p>
 
 <div class="lab">
 <strong>Objectives:</strong>
@@ -182,6 +186,10 @@
 </div>
 
 <p><strong>Step 6:</strong> Add a Disable animation and configure it as follows:</p>
+
+<div class="key-concept">
+<strong>Key Concept — Namespace-Driven Button State:</strong> The Disable and Element Style animations use Navigation namespace attributes to dynamically control button behavior. When <code>PrevSiblingCount == 0</code>, the Previous button is disabled and displayed with the Intensity2 (dimmed) style; when a sibling exists, the button uses the Navigation (active) style. This pattern lets you build navigation controls that automatically adapt to the hierarchy structure.
+</div>
 
 <table>
 <tr><th>Property</th><th>Value</th></tr>

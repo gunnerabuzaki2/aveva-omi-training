@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -122,232 +123,252 @@
 </nav>
 
 <h1>🔬 L23: Lab 11 – Rebuilding the Navigation Model</h1>
-<p class="source">Module 4 — ViewApp Customizations | Pages 335-348</p>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>Introduction</p>
-<p>In this lab, you will switch to the ViewApp Editor to customize the ViewApp navigation. You will</p>
-<p>rename some of the existing navigation items, add new ones, and configure references and other</p>
-<p>properties for the navigation items.</p>
-<p>Then you will test the navigation in a running ViewApp.</p>
-<p>Content workflow highlight: Assigning content to a custom navigation item</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Edit existing navigation items</p>
-<p></p>
-<p>Add new navigation items</p>
-<p></p>
-<p>Configure navigation item properties</p>
-<p></p>
-<p>Rearrange custom navigation items</p>
-<div class="screenshot">
-  <img src="../images/page_0335_0.png" alt="Page 335">
-  <div class="caption">Page 335</div>
+<p class="source">AVEVA™ Operations Management Interface 2023</p>
+<p class="page-ref">Module 4 — ViewApp Customizations | Pages 335–348</p>
+
+<div class="lab">
+<strong>Content workflow highlight:</strong> Assigning content to a custom navigation item
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Edit Navigation Items</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will switch to the ViewApp Editor to customize the ViewApp navigation. You will rename some of the existing navigation items, add new ones, and configure references and other properties for the navigation items. Then you will test the navigation in a running ViewApp.</p>
+
+<div class="key-concept">
+<strong>Objectives:</strong> Upon completion of this lab, you will be able to:
+<ul style="margin-bottom:0;">
+  <li>Edit existing navigation items</li>
+  <li>Add new navigation items</li>
+  <li>Configure navigation item properties</li>
+  <li>Rearrange custom navigation items</li>
+</ul>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0335_0.png" alt="AVEVA OMI Training Application showing the initial navigation tree with Plant, Production Lines, Line1, Line2, Packaging, Shipping, and System nodes with alarm status indicators">
+  <div class="caption">The AVEVA OMI Training Application with the initial navigation tree showing Plant and System sections</div>
+</div>
+
+<h2>Edit Navigation Items</h2>
+
 <p>In the following steps, you will edit the navigation model for your ViewApp.</p>
-<p>1.</p>
-<p>In the ViewApp Editor, in the Navigation list on the left, select Assets and click in the name.</p>
-<p>The name of the navigation item becomes editable.</p>
-<p>2.</p>
-<p>Enter Plant and press Enter to rename the navigation item.</p>
+
+<ol>
+  <li>In the ViewApp Editor, in the Navigation list on the left, select <strong>Assets</strong> and click in the name. The name of the navigation item becomes editable.</li>
+  <li>Enter <strong>Plant</strong> and press Enter to rename the navigation item.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0336_0.png" alt="Page 336">
-  <div class="caption">Page 336</div>
+  <img src="../images/page_0336_0.png" alt="Navigation panel showing Assets item selected and in editable state with an input field and cursor">
+  <div class="caption">Step 1: Assets is selected and in editable state</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0336_1.png" alt="Page 336">
-  <div class="caption">Page 336</div>
+  <img src="../images/page_0336_1.png" alt="Navigation panel showing the renamed Plant item under Home, no longer in editable state">
+  <div class="caption">Step 2: The item has been renamed to Plant</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>3.</p>
-<p>On the Properties tab, next to the Navigation \ Reference property, click the down-arrow and</p>
-<p>browse to and select Model\Plant.</p>
-<p>The Include Children option appears and is checked.</p>
-<p>4.</p>
-<p>Uncheck Include Children.</p>
-<p>A message appears indicating that the selected item and its children will be replaced by a new</p>
-<p>hierarchy.</p>
+
+<ol start="3">
+  <li>On the Properties tab, next to the Navigation \ Reference property, click the down-arrow and browse to and select <code>Model\Plant</code>. The Include Children option appears and is checked.</li>
+  <li>Uncheck <strong>Include Children</strong>. A message appears indicating that the selected item and its children will be replaced by a new hierarchy.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0337_0.png" alt="Page 337">
-  <div class="caption">Page 337</div>
+  <img src="../images/page_0337_0.png" alt="Properties panel showing the Reference dropdown expanded with the Model hierarchy, Plant highlighted alongside Packaging, Production, Receiving, and Shipping">
+  <div class="caption">Step 3: Selecting Model\Plant from the Reference dropdown</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0337_1.png" alt="Page 337">
-  <div class="caption">Page 337</div>
+  <img src="../images/page_0337_1.png" alt="Modal dialog titled Navigation Item asking The selected item and its children are going to be replaced by a new hierarchy. Do you want to continue? with YES and NO buttons">
+  <div class="caption">Step 4: Confirmation dialog when unchecking Include Children</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>5.</p>
-<p>Click Yes to continue.</p>
-<p>Include Children is unchecked.</p>
-<p>6.</p>
-<p>With Plant selected in the Navigation list, click Add to add a new navigation item.</p>
-<p>A new navigation item is added as a child of Plant.</p>
-<p>7.</p>
-<p>Rename the new navigation item to Receiving.</p>
+
+<ol start="5">
+  <li>Click <strong>Yes</strong> to continue. Include Children is unchecked.</li>
+  <li>With Plant selected in the Navigation list, click <strong>Add</strong> to add a new navigation item. A new navigation item is added as a child of Plant.</li>
+  <li>Rename the new navigation item to <strong>Receiving</strong>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0338_0.png" alt="Page 338">
-  <div class="caption">Page 338</div>
+  <img src="../images/page_0338_0.png" alt="Properties panel showing Plant with Include Children unchecked, Reference set to Model backslash Plant, and Auto-Fill Content set to Current up then down">
+  <div class="caption">Step 5: Include Children is unchecked after confirmation</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0338_1.png" alt="Page 338">
-  <div class="caption">Page 338</div>
+  <img src="../images/page_0338_1.png" alt="Navigation panel with Add Navigation Item tooltip on the Add button, Plant selected in the tree">
+  <div class="caption">Step 6: Clicking Add to create a child item under Plant</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0338_2.png" alt="Page 338">
-  <div class="caption">Page 338</div>
+  <img src="../images/page_0338_2.png" alt="Navigation tree showing Home expanded with Plant, which contains the newly named Receiving item selected">
+  <div class="caption">Step 7: The new child item is renamed to Receiving</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>8.</p>
-<p>On the Properties tab, next to the Navigation \ Reference property, click the down-arrow and</p>
-<p>browse to and select Model\Plant\Receiving.</p>
-<p>9.</p>
-<p>With Receiving selected in the Navigation list, click Add Sibling to add a sibling navigation</p>
-<p>item.</p>
-<p>A sibling navigation item is added.</p>
+
+<ol start="8">
+  <li>On the Properties tab, next to the Navigation \ Reference property, click the down-arrow and browse to and select <code>Model\Plant\Receiving</code>.</li>
+  <li>With <strong>Receiving</strong> selected in the Navigation list, click <strong>Add Sibling</strong> to add a sibling navigation item. A sibling navigation item is added.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0339_0.png" alt="Page 339">
-  <div class="caption">Page 339</div>
+  <img src="../images/page_0339_0.png" alt="Properties panel showing Receiving with Reference set to Model backslash Plant backslash Receiving, Include Children checked, and Auto-Fill Content set to Current up then down">
+  <div class="caption">Step 8: Setting the Reference for Receiving to Model\Plant\Receiving</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0339_1.png" alt="Page 339">
-  <div class="caption">Page 339</div>
+  <img src="../images/page_0339_1.png" alt="Navigation panel with Add Navigation Item Sibling tooltip on the Add Sibling button, Receiving selected in the tree">
+  <div class="caption">Step 9: Clicking Add Sibling to create a peer item at the same level as Receiving</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>10.</strong> Rename the sibling navigation item to Production.</p>
-<p><strong>11.</strong> With Production selected in the Navigation list, on the Properties tab, set the</p>
-<p>Navigation \ Reference property to Model\Plant\Production.</p>
-<p><strong>12.</strong> Uncheck Include Children and click Yes to continue.</p>
-<p><strong>13.</strong> On the Properties tab, change Navigation \ Title to Production Lines.</p>
+
+<ol start="10">
+  <li>Rename the sibling navigation item to <strong>Production</strong>.</li>
+  <li>With Production selected in the Navigation list, on the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Production</code>.</li>
+  <li>Uncheck <strong>Include Children</strong> and click <strong>Yes</strong> to continue.</li>
+  <li>On the Properties tab, change Navigation \ Title to <strong>Production Lines</strong>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0340_0.png" alt="Page 340">
-  <div class="caption">Page 340</div>
+  <img src="../images/page_0340_0.png" alt="Navigation panel showing Home expanded with Plant containing Receiving and the newly renamed Production item selected">
+  <div class="caption">Step 10: The sibling item is renamed to Production</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0340_1.png" alt="Page 340">
-  <div class="caption">Page 340</div>
+  <img src="../images/page_0340_1.png" alt="Properties panel showing Title set to Production Lines, Reference to Model backslash Plant backslash Production, Include Children unchecked, and Auto-Fill Content set to Current up then down">
+  <div class="caption">Steps 11–13: Configuring Production Lines with its Reference and title</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>14.</strong> With Production selected in the Navigation list, click Add to add a child navigation item, and</p>
-<p>name it Line1.</p>
-<p><strong>15.</strong> On the Properties tab, set the Navigation \ Reference property to</p>
-<p>Model\Plant\Production\Line1.</p>
+
+<ol start="14">
+  <li>With Production selected in the Navigation list, click <strong>Add</strong> to add a child navigation item, and name it <strong>Line1</strong>.</li>
+  <li>On the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Production\Line1</code>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0341_0.png" alt="Page 341">
-  <div class="caption">Page 341</div>
+  <img src="../images/page_0341_0.png" alt="Navigation tree showing Home expanded with Plant containing Receiving and Production, with Production expanded to show the new Line1 item selected">
+  <div class="caption">Step 14: Adding Line1 as a child of Production</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0341_1.png" alt="Page 341">
-  <div class="caption">Page 341</div>
+  <img src="../images/page_0341_1.png" alt="Properties panel showing Line1 with Reference set to Model backslash Plant backslash Production backslash Line1, Include Children checked, and Auto-Fill Content set to Current up then down">
+  <div class="caption">Step 15: Setting the Reference for Line1</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>16.</strong> Select Production in the Navigation list, click Add to add another navigation item, and name</p>
-<p>it Line2.</p>
-<p><strong>17.</strong> On the Properties tab, set the Navigation \ Reference property to</p>
-<p>Model\Plant\Production\Line2.</p>
+
+<ol start="16">
+  <li>Select Production in the Navigation list, click <strong>Add</strong> to add another navigation item, and name it <strong>Line2</strong>.</li>
+  <li>On the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Production\Line2</code>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0342_0.png" alt="Page 342">
-  <div class="caption">Page 342</div>
+  <img src="../images/page_0342_0.png" alt="Navigation tree showing Production expanded with Line1 and the newly added Line2 item">
+  <div class="caption">Step 16: Adding Line2 under Production</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0342_1.png" alt="Page 342">
-  <div class="caption">Page 342</div>
+  <img src="../images/page_0342_1.png" alt="Properties panel showing Line2 with Reference set to Model backslash Plant backslash Production backslash Line2, Include Children checked">
+  <div class="caption">Step 17: Setting the Reference for Line2</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>18.</strong> In the Navigation list, select Plant, click Add to add a new child navigation item, and name it</p>
-<p>Packaging.</p>
-<p><strong>19.</strong> On the Properties tab, set the Navigation \ Reference property to Model\Plant\Packaging.</p>
+
+<ol start="18">
+  <li>In the Navigation list, select Plant, click <strong>Add</strong> to add a new child navigation item, and name it <strong>Packaging</strong>.</li>
+  <li>On the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Packaging</code>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0343_0.png" alt="Page 343">
-  <div class="caption">Page 343</div>
+  <img src="../images/page_0343_0.png" alt="Navigation tree showing Plant with Receiving, Production (expanded with Line1, Line2), and the new Packaging item selected">
+  <div class="caption">Step 18: Adding Packaging under Plant</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0343_1.png" alt="Page 343">
-  <div class="caption">Page 343</div>
+  <img src="../images/page_0343_1.png" alt="Properties panel showing Packaging with Reference set to Model backslash Plant backslash Packaging, Include Children checked">
+  <div class="caption">Step 19: Setting the Reference for Packaging</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>20.</strong> In the Navigation list, select Plant, click Add to add a new child navigation item, and name it</p>
-<p>Shipping.</p>
-<p><strong>21.</strong> On the Properties tab, set the Navigation \ Reference property to Model\Plant\Shipping.</p>
+
+<ol start="20">
+  <li>In the Navigation list, select Plant, click <strong>Add</strong> to add a new child navigation item, and name it <strong>Shipping</strong>.</li>
+  <li>On the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Shipping</code>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0344_0.png" alt="Page 344">
-  <div class="caption">Page 344</div>
+  <img src="../images/page_0344_0.png" alt="Navigation tree showing Plant with Receiving, Production (expanded with Line1, Line2), Packaging, and the new Shipping item selected">
+  <div class="caption">Step 20: Adding Shipping under Plant</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0344_1.png" alt="Page 344">
-  <div class="caption">Page 344</div>
+  <img src="../images/page_0344_1.png" alt="Properties panel showing Shipping with Reference set to Model backslash Plant backslash Shipping, Include Children checked">
+  <div class="caption">Step 21: Setting the Reference for Shipping</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>22.</strong> In the Navigation list, select Plant, click Add to add a new child navigation item, and</p>
-<p>name it Sys.</p>
-<p><strong>23.</strong> On the Properties tab, set the Navigation \ Reference property to Model\Plant\Sys.</p>
-<p><strong>24.</strong> On the Properties tab, change Navigation \ Title to System.</p>
+
+<ol start="22">
+  <li>In the Navigation list, select Plant, click <strong>Add</strong> to add a new child navigation item, and name it <strong>Sys</strong>.</li>
+  <li>On the Properties tab, set the Navigation \ Reference property to <code>Model\Plant\Sys</code>.</li>
+  <li>On the Properties tab, change Navigation \ Title to <strong>System</strong>.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0345_0.png" alt="Page 345">
-  <div class="caption">Page 345</div>
+  <img src="../images/page_0345_0.png" alt="Navigation tree showing Plant with Receiving, Production (expanded), Packaging, Shipping, and the new Sys item selected">
+  <div class="caption">Step 22: Adding Sys under Plant</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0345_1.png" alt="Page 345">
-  <div class="caption">Page 345</div>
+  <img src="../images/page_0345_1.png" alt="Properties panel showing Title changed to System, Reference set to Model backslash Plant backslash Sys, Include Children checked">
+  <div class="caption">Steps 23–24: Setting the Reference for Sys and renaming its Title to System</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>In the following steps, you will update the preview session for the changes you made in the</p>
-<p>ViewApp Editor. Then you will test the navigation items you configured in this lab.</p>
-<p><strong>25.</strong> On the top-right of the ViewApp Editor, click Update to save changes to the ViewApp and</p>
-<p>update the preview session.</p>
-<p>The preview session window opens, navigated to System.</p>
-<p>You can maximize the ViewApp preview to optimize the view.</p>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
+<p>In the following steps, you will update the preview session for the changes you made in the ViewApp Editor. Then you will test the navigation items you configured in this lab.</p>
+
+<ol start="25">
+  <li>On the top-right of the ViewApp Editor, click <strong>Update</strong> to save changes to the ViewApp and update the preview session. The preview session window opens, navigated to System.</li>
+</ol>
+
+<div class="tip">
+<strong>Tip:</strong> You can maximize the ViewApp preview to optimize the view.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0346_0.png" alt="Page 346">
-  <div class="caption">Page 346</div>
+  <img src="../images/page_0346_0.png" alt="ViewApp Editor top-right corner showing the Preview Web and Update buttons with Update highlighted">
+  <div class="caption">Step 25: Clicking Update to save changes and update the preview session</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0346_1.jpeg" alt="Page 346">
-  <div class="caption">Page 346</div>
+  <img src="../images/page_0346_1.jpeg" alt="AVEVA OMI Training Application preview showing the System view with Home icon and System breadcrumb in the navigation bar">
+  <div class="caption">The preview session opens navigated to System</div>
 </div>
-<p>Lab 11 – Rebuilding the Navigation Model</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>26.</strong> Click the Slide-In Pane button on the left side of the layout to view the navigation tree and</p>
-<p>review the changes you made in this lab.</p>
-<p>Notice that the title in the navigation displays as System.</p>
-<p><strong>27.</strong> In the Navigation tree, expand Production Lines to see the child items Line1 and Line2 that</p>
-<p>you added in this lab.</p>
+
+<ol start="26">
+  <li>Click the <strong>Slide-In Pane</strong> button on the left side of the layout to view the navigation tree and review the changes you made in this lab. Notice that the title in the navigation displays as System.</li>
+  <li>In the Navigation tree, expand <strong>Production Lines</strong> to see the child items Line1 and Line2 that you added in this lab.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0347_0.png" alt="Page 347">
-  <div class="caption">Page 347</div>
+  <img src="../images/page_0347_0.png" alt="AVEVA OMI Training Application showing the navigation tree with Plant expanded to show Receiving, Production Lines, Packaging, Shipping, and System">
+  <div class="caption">Step 26: Opening the slide-in pane to review the navigation tree changes</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0347_1.png" alt="Page 347">
-  <div class="caption">Page 347</div>
+  <img src="../images/page_0347_1.png" alt="AVEVA OMI Training Application showing Production Lines expanded to reveal Line1 and Line2 as child items with alarm status indicators">
+  <div class="caption">Step 27: Expanding Production Lines to see Line1 and Line2</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>28.</strong> Navigate to Packaging, and then click the hamburger button to close the slide-in pane.</p>
-<p>Notice that the updated navigation does not impact the content display. Because we</p>
-<p>referenced the model for each of our new navigation items, all of the existing content is</p>
-<p>reused. For example, the Packaging Overview graphic is displayed.</p>
-<p><strong>29.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<p><End of Lab></p>
+
+<ol start="28">
+  <li>Navigate to <strong>Packaging</strong>, and then click the hamburger button to close the slide-in pane. Notice that the updated navigation does not impact the content display. Because we referenced the model for each of our new navigation items, all of the existing content is reused. For example, the Packaging Overview graphic is displayed.</li>
+  <li>When you are finished testing, minimize the preview session and the ViewApp Editor.</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0348_0.jpeg" alt="Page 348">
-  <div class="caption">Page 348</div>
+  <img src="../images/page_0348_0.jpeg" alt="AVEVA OMI Training Application showing the Packaging view with a bar chart of heat exchanger temperatures across four HeatEx units with temperature sensor readings">
+  <div class="caption">Step 28: Navigating to Packaging shows the Packaging Overview graphic — existing content is reused through model references</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="key-concept">
+<strong>Key takeaway:</strong> Because each new navigation item references the model hierarchy directly, the existing content and graphics are automatically reused. No additional content assignment was needed for the new navigation items.
+</div>
+
+<div class="quiz"><h3>Knowledge Check</h3>
+<details><summary>Q1: What is the first step when renaming a built-in navigation item like Assets?</summary><p class="answer">Select the item in the Navigation list and click in its name to make it editable, then type the new name and press Enter.</p></details>
+<details><summary>Q2: Why do you uncheck Include Children when configuring a navigation item reference?</summary><p class="answer">To prevent the system from automatically replicating the entire asset hierarchy under the navigation item, allowing you to manually add and configure specific child items instead.</p></details>
+<details><summary>Q3: Why does navigating to Packaging still display the correct content after rebuilding the navigation?</summary><p class="answer">Because each navigation item references the model hierarchy directly (e.g., Model\Plant\Packaging), so the existing content and graphics are automatically reused through those model references.</p></details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L22-Custom-Navigation.html">← L22: Custom Navigation</a> &nbsp;|&nbsp;
   <a href="L24-External-Content-Overview.html">L24: External Content Overview →</a>

@@ -152,8 +152,12 @@
 
 <p><strong>Step 1:</strong> On the Graphics tab, create a new graphic toolset under the Training toolset and name it <code>ViewApp Namespaces</code>.</p>
 
+<div class="key-concept">
+<strong>Key Concept — Custom ViewApp Namespaces:</strong> Custom namespaces let you define your own attributes (like <code>URL1</code>, <code>HomeAddress</code>, <code>File_HTML</code>) that store application-specific data within the ViewApp. These attributes can be referenced by animations, bound to App properties, and updated at runtime — providing a flexible way to share state between symbols and Apps.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0414_0.png" alt="New ViewApp Namespaces Toolset">
+<img src="../images/page_0414_0.png" alt="New ViewApp Namespaces Toolset">
   <div class="caption">The Graphics tab showing the newly created "Viewapp Namespaces" folder under the Training toolset, alongside existing symbols and the Widgets folder.</div>
 </div>
 
@@ -341,6 +345,10 @@
 
 <p><strong>Step 27:</strong> Double-click TextBox1 and add a User Input animation.</p>
 
+<div class="key-concept">
+<strong>Key Concept — User Input Animation:</strong> The User Input animation allows an operator to type a value into a text box at runtime. It writes the entered value to a specified namespace attribute (in this case, <code>MyViewApp.Sources.URL1</code>), which other symbols and Apps then read — enabling dynamic user-driven navigation to different web pages.
+</div>
+
 <p><strong>Step 28:</strong> Configure the animation:</p>
 
 <table>
@@ -406,10 +414,14 @@
 
 <h2>Configure WebBrowser Address Property Binding</h2>
 
-<p><strong>Step 39:</strong> With Pane1 selected, on the Properties tab for the Browser \ Address property, click the down-arrow to the left of the field. A drop-down list appears.</p>
+<p><strong>Step 39:</strong> With Pane1 selected, on the Properties tab for the Browser \\ Address property, click the down-arrow to the left of the field. A drop-down list appears.</p>
+
+<div class="key-concept">
+<strong>Key Concept — WebBrowser Address Binding (In vs. Constant):</strong> The WebBrowser's Address property must be set to <strong>In</strong> binding mode (Dynamic) instead of the default Constant mode. This allows the WebBrowser to read its URL from the ViewApp namespace attribute at runtime — so when buttons or the text box update the URL1 attribute, the browser automatically navigates to the new URL.
+</div>
 
 <div class="screenshot">
-  <img src="../images/page_0427_0.jpeg" alt="Browser Address Property">
+<img src="../images/page_0427_0.jpeg" alt="Browser Address Property">
   <div class="caption">The Properties tab for the WebBrowser control showing the Browser section with the Address field highlighted. The down-arrow next to the "C" (Constant) icon reveals binding mode options.</div>
 </div>
 
