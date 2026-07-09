@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 26: Widgets Overview</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
   <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel →</a>
@@ -125,12 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L26: Widgets Overview</h1>
 <p class="source">Module 6 — Widgets | Pages 379-382</p>
-
 <p>Section 1 – Introduction</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 1 – Introduction</p>
 <p>Overview</p>
 <p>Widgets are “mini apps” that you can use in your visualization applications. They are reusable</p>
@@ -184,6 +178,8 @@
 <p>If True, the carousel will pause when it detects a mouse-enter or a touch-</p>
 <p>down event, and resume cycling of graphics on mouse-leave or touch-up.</p>
 <p>If False, the carousel will not pause. The default is True.</p>
+<p>Module 6 – Widgets</p>
+<p>AVEVA™ Training</p>
 <p></p>
 <p>QRCode_Scanner widget connects to a camera to scan a QR code and returns the result</p>
 <p>as a string. The default value of the string is an empty string.</p>
@@ -231,6 +227,7 @@
 <p>the policy of the web site blocks cross-domain access, then this widget will</p>
 <p>not work.</p>
 <p>Section 1 – Introduction</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Layout Considerations</p>
 <p>It will be tempting to lay out your widgets according to the dimensions of the placement grid of a</p>
 <p>particular device that you own and develop with. This can be a useful initial approximation as you</p>
@@ -261,46 +258,18 @@
 <p>embedded in a symbol or assigned to a layout pane.</p>
 <p>Widgets can also be imported and exported from a Galaxy as objects. In this case, the widget(s)</p>
 <p>are imported or exported as aaPKG files.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
-</div>
-
+<p>Module 6 – Widgets</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← Previous: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
-  <a href="L27-Lab-13---Adding-a-Home-Carousel.html">Next: Lab 13 – Adding a Home Carousel →</a>
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
+  <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

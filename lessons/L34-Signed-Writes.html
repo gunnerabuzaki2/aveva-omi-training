@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 34: Signed Writes</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">← L33: Lab 16 – Implementing Security in a View</a> &nbsp;|&nbsp;
   <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L34: Signed Writes</h1>
 <p class="source">Module 8 — Security | Pages 477-480</p>
-
-<div class="screenshot">
-  <img src="../images/page_0477_0.png" alt="Page 477">
-  <div class="caption">Page 477</div>
-</div>
 <p>Section 3 – Signed Writes</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 3 – Signed Writes</p>
 <p>Introduction</p>
 <p>Operators interact with objects through the individual attributes of the objects. The attributes can</p>
@@ -169,9 +159,11 @@
 <p>This section describes security classifications for object attributes, including configuring Secured</p>
 <p>Writes and Verified Writes and using them at runtime.</p>
 <div class="screenshot">
-  <img src="../images/page_0478_0.png" alt="Page 478">
-  <div class="caption">Page 478</div>
+  <img src="../images/page_0477_0.png" alt="Page 477">
+  <div class="caption">Page 477</div>
 </div>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>Secured Writes and Verified Writes</p>
 <p>You can assign the SecuredWrite or VerifiedWrite security classification to a configurable attribute.</p>
 <p>These security classifications require authentication to perform runtime writes to the configured</p>
@@ -193,12 +185,22 @@
 <p></p>
 <p>The verifier must have the “Can Verify Writes” operational permission to confirm the</p>
 <p>VerifiedWrite.</p>
-<div class="key-concept">Note: SecuredWrite and VerifiedWrite features work when security is enabled for the Galaxy. They do not work if Galaxy security is set to None. SecuredWrite and VerifiedWrite Interfaces At runtime, Secured Write or Verified Write dialog boxes appear when an operator attempts to write to an attribute configured with the SecuredWrite or VerifiedWrite security classification. The dialog boxes enable configurable user input that can be used to provide information about the write operation. The Secured Write dialog box shows the name of the attribute for the write operation and the target value of the attribute. It also provides fields for entering operator credentials and comments for the operation.</div>
+<div class="key-concept">Note: SecuredWrite and VerifiedWrite features work when security is enabled for the Galaxy.</div>
+<p>They do not work if Galaxy security is set to None.</p>
+<p>SecuredWrite and VerifiedWrite Interfaces</p>
+<p>At runtime, Secured Write or Verified Write dialog boxes appear when an operator attempts to</p>
+<p>write to an attribute configured with the SecuredWrite or VerifiedWrite security classification. The</p>
+<p>dialog boxes enable configurable user input that can be used to provide information about the</p>
+<p>write operation.</p>
+<p>The Secured Write dialog box shows the name of the attribute for the write operation and the</p>
+<p>target value of the attribute. It also provides fields for entering operator credentials and comments</p>
+<p>for the operation.</p>
 <div class="screenshot">
-  <img src="../images/page_0479_0.png" alt="Page 479">
-  <div class="caption">Page 479</div>
+  <img src="../images/page_0478_0.png" alt="Page 478">
+  <div class="caption">Page 478</div>
 </div>
 <p>Section 3 – Signed Writes</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>The Verified Write dialog box shows the same information, but provides fields for entering operator</p>
 <p>credentials as well as verifier credentials.</p>
 <p>Signed Write Events</p>
@@ -216,47 +218,24 @@
 <p>Comment, if any entered by user for the operation</p>
 <p></p>
 <p>Reason description</p>
-<div class="key-concept">Note: Logged events can be viewed by using the AlarmApp.</div>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
+<div class="key-concept">Note:</div>
+<p>Logged events can be viewed by using the AlarmApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0479_0.png" alt="Page 479">
+  <div class="caption">Page 479</div>
 </div>
-
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">← Previous: Lab 16 – Implementing Security in a View</a> &nbsp;|&nbsp;
-  <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">Next: Lab 17 – Signing Writes from a ViewApp →</a>
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">← L33: Lab 16 – Implementing Security in a View</a> &nbsp;|&nbsp;
+  <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

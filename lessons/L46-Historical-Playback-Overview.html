@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 46: Historical Playback Overview</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Histor</a> &nbsp;|&nbsp;
   <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playbac →</a>
@@ -125,12 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L46: Historical Playback Overview</h1>
 <p class="source">Module 11 — Historical Playback | Pages 639-642</p>
-
 <p>Section 1 – Historical Playback</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 1 – Historical Playback</p>
 <p>Introduction</p>
 <p>Operations Management Interface provides the ability to play back data historized with Historian.</p>
@@ -143,7 +137,30 @@
 <p>Before using the playback feature in a running ViewApp, you must create and deploy an instance</p>
 <p>of the playback service from the System Platform IDE. Additionally, Historian must be started and</p>
 <p>historized data points must be available.</p>
-<div class="key-concept">Note: The historical playback feature is designed to replay historized data through graphics, not to replay action commands. Historical Playback Service To use the historical playback feature, you must create and deploy an instance of the playback service from the Configure Services dialog box in the System Platform IDE. Note the following:  The name of the playback service is ASB.HistoricalDataReplayService.1.0.  Once the instance is created, you must name it to the name of the computer hosting Historian Server for the Galaxy. Historical Playback-Related System Attributes Playback-related system attributes operate in the MyViewApp.Playback namespace. The names of the playback attributes are specified with the prefix MyViewApp.Playback. For example, you might use MyViewApp.Playback.attribute_name. The playback-related attributes described below are predefined and available only for Operations Management Interface ViewApps. Playback attributes are not supported in an InTouch application. The following historical playback-related system attributes are provided as Read and Write, so that they can be referenced by graphic elements with animations or scripts. You can create a symbol using these attributes to provide the playback functionality for a ViewApp, such as enabling or This section describes how to configure and start the historical playback service, and how to implement historical playback in a ViewApp.</div>
+<div class="key-concept">Note: The historical playback feature is designed to replay historized data through graphics, not</div>
+<p>to replay action commands.</p>
+<p>Historical Playback Service</p>
+<p>To use the historical playback feature, you must create and deploy an instance of the playback</p>
+<p>service from the Configure Services dialog box in the System Platform IDE.</p>
+<p>Note the following:</p>
+<p></p>
+<p>The name of the playback service is ASB.HistoricalDataReplayService.1.0.</p>
+<p></p>
+<p>Once the instance is created, you must name it to the name of the computer hosting</p>
+<p>Historian Server for the Galaxy.</p>
+<p>Historical Playback-Related System Attributes</p>
+<p>Playback-related system attributes operate in the MyViewApp.Playback namespace. The names</p>
+<p>of the playback attributes are specified with the prefix MyViewApp.Playback. For example, you</p>
+<p>might use MyViewApp.Playback.attribute_name.</p>
+<p>The playback-related attributes described below are predefined and available only for Operations</p>
+<p>Management Interface ViewApps. Playback attributes are not supported in an InTouch application.</p>
+<p>The following historical playback-related system attributes are provided as Read and Write, so that</p>
+<p>they can be referenced by graphic elements with animations or scripts. You can create a symbol</p>
+<p>using these attributes to provide the playback functionality for a ViewApp, such as enabling or</p>
+<p>This section describes how to configure and start the historical playback service, and how to</p>
+<p>implement historical playback in a ViewApp.</p>
+<p>Module 11 – Historical Playback</p>
+<p>AVEVA™ Training</p>
 <p>disabling playback mode to switch between real time or historical data through the graphics,</p>
 <p>playing or pausing the playback, and changing the playback speed.</p>
 <p>Attribute</p>
@@ -209,11 +226,8 @@
 <p>and CurrentTime attributes are set to the current</p>
 <p>system time, then the client will receive a data update</p>
 <p>based on that time.</p>
-<div class="screenshot">
-  <img src="../images/page_0641_0.png" alt="Historical Playback Widget: Play button for Outlet_001 with data log icon">
-  <div class="caption">Historical Playback Widget: Play button for Outlet_001 with data log icon</div>
-</div>
 <p>Section 1 – Historical Playback</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Live Data Override Indicator</p>
 <p>Starting with System Platform 2023, a Live Value Playback icon is built into Situational Awareness</p>
 <p>Library symbols. During historical playback, the icon will appear on graphics that contain</p>
@@ -221,46 +235,22 @@
 <p>display, because not all references used in the graphic can be resolved from historized sources.</p>
 <p>The following example shows the Live Value Playback icon displayed on an outlet pump symbol</p>
 <p>during historical playback.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
+<div class="screenshot">
+  <img src="../images/page_0641_0.png" alt="Page 641">
+  <div class="caption">Page 641</div>
 </div>
-
+<p>Module 11 – Historical Playback</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← Previous: Lab 22 – Using the InSightApp for Histor</a> &nbsp;|&nbsp;
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">Next: Lab 23 – Implementing Historical Playbac →</a>
+  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Histor</a> &nbsp;|&nbsp;
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playbac →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

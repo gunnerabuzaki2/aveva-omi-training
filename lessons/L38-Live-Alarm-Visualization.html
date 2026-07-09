@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 38: Live Alarm Visualization</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
   <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display →</a>
@@ -125,12 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L38: Live Alarm Visualization</h1>
 <p class="source">Module 9 — Alarms and Events | Pages 531-542</p>
-
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 2 – Live Alarm Visualization</p>
 <p>Introduction</p>
 <p>Application Server handles the real-time reporting of alarms, and provides clients for viewing</p>
@@ -171,6 +165,8 @@
 <p>This section describes how to use the AlarmApp to display and manage alarms and events in a</p>
 <p>ViewApp. It also describes how to customize the appearance and runtime behavior of the</p>
 <p>AlarmApp.</p>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p></p>
 <p>Run-Time Behavior properties provide configurations for AlarmApp runtime behaviors,</p>
 <p>such as how the AlarmApp works within the context of the current area, whether column</p>
@@ -231,11 +227,8 @@
 <p>Client Mode: Read/Write integer value (1-5) that determines the type of alarm data</p>
 <p>shown in the AlarmApp. This property can dynamically bind to a namespace reference</p>
 <p>or to an attribute.</p>
-<div class="screenshot">
-  <img src="../images/page_0533_0.jpeg" alt="Page 533">
-  <div class="caption">Page 533</div>
-</div>
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p></p>
 <p>Area Hierarchy properties determine if the area hierarchy tree is shown or hidden in the</p>
 <p>AlarmApp at runtime. Also included are properties for configuring font settings for the</p>
@@ -262,9 +255,11 @@
 <p>For more information about Alarm Client Control properties and methods, refer to the AVEVA</p>
 <p>Alarm Client Control User Guide that is delivered with System Platform 2023.</p>
 <div class="screenshot">
-  <img src="../images/page_0534_0.png" alt="Page 534">
-  <div class="caption">Page 534</div>
+  <img src="../images/page_0533_0.jpeg" alt="Page 533">
+  <div class="caption">Page 533</div>
 </div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p>Binding AlarmApp Run-Time Properties</p>
 <p>The AlarmApp includes runtime properties that are exposed as configurable properties, which</p>
 <p>determine the visual aspects or functional behaviors of the AlarmApp during runtime. Configuring</p>
@@ -281,14 +276,11 @@
 <p>ShowCommands is a public custom property defined in a symbol named AlarmAppConfig, which</p>
 <p>is assigned to the same layout with the AlarmControl.</p>
 <div class="screenshot">
-  <img src="../images/page_0535_0.jpeg" alt="Page 535">
-  <div class="caption">Page 535</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0535_1.png" alt="Page 535">
-  <div class="caption">Page 535</div>
+  <img src="../images/page_0534_0.png" alt="Page 534">
+  <div class="caption">Page 534</div>
 </div>
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Event Handlers</p>
 <p>The Event Handlers category on the Properties tab lists all available events for the control, and</p>
 <p>you can create an event handler script by selecting an event from the list.</p>
@@ -301,9 +293,15 @@
 <p>provided in Module 13.</p>
 <p>In the example below, the AlarmClientControl.NewAlarm event handler script is created.</p>
 <div class="screenshot">
-  <img src="../images/page_0536_0.png" alt="Page 536">
-  <div class="caption">Page 536</div>
+  <img src="../images/page_0535_0.jpeg" alt="Page 535">
+  <div class="caption">Page 535</div>
 </div>
+<div class="screenshot">
+  <img src="../images/page_0535_1.png" alt="Page 535">
+  <div class="caption">Page 535</div>
+</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p>AlarmApp Configuration Editor</p>
 <p>The AlarmApp configuration editor allows you to configure alarm mode, color, column detail,</p>
 <p>queries and filters, time, and runtime behavior settings.</p>
@@ -340,10 +338,11 @@
 <p>Optionally, you check the Use Default Ack Comment option and enter text for the default</p>
 <p>acknowledgment comment.</p>
 <div class="screenshot">
-  <img src="../images/page_0537_0.png" alt="Page 537">
-  <div class="caption">Page 537</div>
+  <img src="../images/page_0536_0.png" alt="Page 536">
+  <div class="caption">Page 536</div>
 </div>
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Alarm Queries</p>
 <p>The AlarmApp supports standard Galaxy alarm query formats. Some example formats are:</p>
 <p></p>
@@ -366,9 +365,11 @@
 <p>Line1 and Line2 areas:</p>
 <p>Queries and filters can be exported to an XML file, and you can load queries and filters from a file.</p>
 <div class="screenshot">
-  <img src="../images/page_0538_0.png" alt="Page 538">
-  <div class="caption">Page 538</div>
+  <img src="../images/page_0537_0.png" alt="Page 537">
+  <div class="caption">Page 537</div>
 </div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p>Runtime Behavior Page</p>
 <p>You use the Runtime Behavior page to configure the appearance and behavior of the AlarmApp at</p>
 <p>runtime.</p>
@@ -397,7 +398,12 @@
 <p>be logged with the alarm acknowledgment record.</p>
 <p>When security is enabled in the Galaxy, alarms can be acknowledged only by operators with</p>
 <p>proper authorization.</p>
+<div class="screenshot">
+  <img src="../images/page_0538_0.png" alt="Page 538">
+  <div class="caption">Page 538</div>
+</div>
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Shelve and Unshelve Alarms</p>
 <p>Shelving alarms allows operators to temporarily suppress them for a fixed period. Shelving alarms</p>
 <p>will temporarily filter them from showing through the alarm grid. The shelved alarms can only be</p>
@@ -443,14 +449,8 @@
 <p>When the AlarmControl is configured to require an acknowledgment signature for alarms with an</p>
 <p>alarm priority range, you must provide your signature in the Ack Alarm dialog box to acknowledge</p>
 <p>alarms at runtime. If one or more of the selected alarms falls within the configured priority range,</p>
-<div class="screenshot">
-  <img src="../images/page_0540_0.png" alt="Page 540">
-  <div class="caption">Page 540</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0540_1.png" alt="Page 540">
-  <div class="caption">Page 540</div>
-</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p>the comment is prefixed in the alarm record with "Signed ACK -" indicating that it is a signed</p>
 <p>acknowledgment. Otherwise, it is prefixed with "Std ACK -" indicating that it is a standard</p>
 <p>acknowledgment.</p>
@@ -466,7 +466,16 @@
 <p>clicks OK on the error message, the Shelve Comment dialog appears again with the entered user</p>
 <p>name, comment, and duration. The Password (or PIN) field is blank. The operator can attempt to</p>
 <p>authenticate again or cancel.</p>
+<div class="screenshot">
+  <img src="../images/page_0540_0.png" alt="Page 540">
+  <div class="caption">Page 540</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0540_1.png" alt="Page 540">
+  <div class="caption">Page 540</div>
+</div>
 <p>Section 2 – Live Alarm Visualization</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Freeze and Unfreeze the AlarmApp Grid</p>
 <p>You can freeze the alarm grid to prevent the grid from being updated with changes. For example, if</p>
 <p>new alarms occur while the alarm grid is frozen, the new alarms are only shown after you unfreeze</p>
@@ -483,46 +492,18 @@
 <p>Query Filter</p>
 <p>After you unfreeze the alarm grid, it updates with the new alarm records and any other updates</p>
 <p>that occurred while the grid was frozen.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
-</div>
-
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← Previous: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
-  <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">Next: Lab 19 – Creating a Live Alarm Display →</a>
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
+  <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

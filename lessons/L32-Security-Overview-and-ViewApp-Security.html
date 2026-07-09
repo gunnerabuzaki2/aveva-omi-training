@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 32: Security Overview and ViewApp Security</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← L31: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
   <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a View →</a>
@@ -125,12 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L32: Security Overview and ViewApp Security</h1>
 <p class="source">Module 8 — Security | Pages 435-444</p>
-
 <p>Section 1 – Security Overview</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 1 – Security Overview</p>
 <p>Introduction</p>
 <p>The security system in Application Server is a global function that applies to every object in the</p>
@@ -173,10 +167,8 @@
 <p>open security setting and both are associated with default roles.</p>
 <p>This section provides an overview of security in Application Server, including authentication</p>
 <p>modes, permissions, roles, and users.</p>
-<div class="screenshot">
-  <img src="../images/page_0436_0.png" alt="Page 436">
-  <div class="caption">Page 436</div>
-</div>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>Security Roles</p>
 <p>You can create and manage user roles that apply to your organization’s processes and work-</p>
 <p>based authorities. Two roles are defined by default: Administrator and Default.</p>
@@ -194,10 +186,11 @@
 <p>all permissions from the Default role.</p>
 <div class="key-concept">Note: You cannot modify the General permissions for the role of Administrator.</div>
 <div class="screenshot">
-  <img src="../images/page_0437_0.png" alt="Page 437">
-  <div class="caption">Page 437</div>
+  <img src="../images/page_0436_0.png" alt="Page 436">
+  <div class="caption">Page 436</div>
 </div>
 <p>Section 1 – Security Overview</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>General Permissions for Industrial Graphics Management</p>
 <p>The list of General permissions includes the permission “Graphic Management Permissions,”</p>
 <p>which is specific to industrial graphics.</p>
@@ -206,7 +199,14 @@
 <p>application, successful and failed attempts to write to an attribute, and others. Event messages are</p>
 <p>logged to history blocks or the Alarms and Events database through Historian Server and can be</p>
 <p>retrieved for future analysis and reporting.</p>
+<div class="screenshot">
+  <img src="../images/page_0437_0.png" alt="Page 437">
+  <div class="caption">Page 437</div>
+</div>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>Section 2 – ViewApp Security</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 2 – ViewApp Security</p>
 <p>Introduction</p>
 <p>A ViewApp has built-in security that is integrated with Galaxy security. Industrial graphics can be</p>
@@ -243,10 +243,8 @@
 <p>determines whether the navigation item and its referenced hierarchy are accessible in</p>
 <p>runtime.</p>
 <p>This section describes how to implement security in a ViewApp.</p>
-<div class="screenshot">
-  <img src="../images/page_0440_0.png" alt="Page 440">
-  <div class="caption">Page 440</div>
-</div>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>Navigation Item Security Properties</p>
 <p>Security properties can be configured to implement various types of navigation item security. The</p>
 <p>Access Level property specifies the access levels associated with a navigation item. The User</p>
@@ -298,14 +296,11 @@
 <p>Logged in user must be a member of at</p>
 <p>least one of the specified user roles.</p>
 <div class="screenshot">
-  <img src="../images/page_0441_0.png" alt="Page 441">
-  <div class="caption">Page 441</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0441_1.png" alt="Page 441">
-  <div class="caption">Page 441</div>
+  <img src="../images/page_0440_0.png" alt="Page 440">
+  <div class="caption">Page 440</div>
 </div>
 <p>Section 2 – ViewApp Security</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>To configure the Access Level property, click the down-arrow to the right of the Access Level</p>
 <p>property and select an access level from the drop-down list. The list includes access levels</p>
 <p>assigned to security roles in the Galaxy. Selecting an access level from the list automatically</p>
@@ -314,9 +309,15 @@
 <p>Or, you can click the Access Level field, enter a numerical value, and press Enter. The following</p>
 <p>example shows an Access Level value entered as 5000.</p>
 <div class="screenshot">
-  <img src="../images/page_0442_0.png" alt="Page 442">
-  <div class="caption">Page 442</div>
+  <img src="../images/page_0441_0.png" alt="Page 441">
+  <div class="caption">Page 441</div>
 </div>
+<div class="screenshot">
+  <img src="../images/page_0441_1.png" alt="Page 441">
+  <div class="caption">Page 441</div>
+</div>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>To configure the User Roles property, click the down-arrow to the right of the User Roles property,</p>
 <p>and select one or more user roles. The following example shows two user roles selected:</p>
 <p>Cloud\Application Administators and Cloud\Plant Operators 1.</p>
@@ -337,12 +338,88 @@
 <p>Shows a login dialog box with fields to enter a user name and password.</p>
 <p>LogOff()</p>
 <p>Logs a user off of a ViewApp.</p>
+<div class="screenshot">
+  <img src="../images/page_0442_0.png" alt="Page 442">
+  <div class="caption">Page 442</div>
+</div>
 <p>Section 2 – ViewApp Security</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Security Namespace and Security-Related System Attributes</p>
 <p>Security-related system attributes operate in the MyViewApp.Security namespace. The names of</p>
 <p>the security attributes are specified with the prefix MyViewApp.Security. For example, you might</p>
 <p>use MyViewApp.Security.attribute_name.</p>
-<div class="key-concept">Note: The security-related attributes described below are predefined and available only for Operations Management Interface ViewApps. They cannot be included in an InTouch application. The following security-related attributes can be used in Value Display animations to display information about the user logged in to a running ViewApp: Single Sign-On Security for the ViewApp If security is enabled in the Galaxy with an authentication mode of OS User Based or OS Group Based, the current Windows user will log on automatically to the ViewApp when the ViewApp starts.  If the current Windows user is a valid user of the Galaxy, it will log on the ViewApp successfully.  If the current Windows user is not a valid user of the Galaxy, it will fail to log on the ViewApp, which will leave the ViewApp running without a logged in user. Other users can log on manually. Attribute Data Type Type Description AutoLogOff Boolean Read/Write Returns True or False to indicate if a user will be logged off after a period of inactivity. When set to True, the user is logged off from the ViewApp when the inactivity period is exceeded. The default value is False. AutoLogOffRemainingTime Integer Read Only Returns the remaining length of a user’s inactivity period in seconds. AutoLogOffTimeSpan Integer Read/Write Specifies the length of the inactivity period in seconds a logged in user is allowed. The default value is 600 seconds. AutoLogOnCurrentUser Boolean Read/Write Returns True or False to indicate if users can log on automatically to a ViewApp with their Windows credentials. The default value is True. LoggedInAccessLevel Integer Read Only Access level of the security role assigned to the user logged in to ViewApp. LastSuccessfulLogin Date Time Read Only UTC time stamp of the most recent successful log. LoggedIn Boolean Read Only Returns True or False, indicating if a user is currently logged into a ViewApp or not. LoggedInUserName String Read Only User name specified by the user logged in to a ViewApp. LoggedInUserRoles String Read Only User roles assigned to the logged-in user, in CSV format.</div>
+<div class="key-concept">Note: The security-related attributes described below are predefined and available only for</div>
+<p>Operations Management Interface ViewApps. They cannot be included in an InTouch application.</p>
+<p>The following security-related attributes can be used in Value Display animations to display</p>
+<p>information about the user logged in to a running ViewApp:</p>
+<p>Single Sign-On Security for the ViewApp</p>
+<p>If security is enabled in the Galaxy with an authentication mode of OS User Based or OS Group</p>
+<p>Based, the current Windows user will log on automatically to the ViewApp when the ViewApp</p>
+<p>starts.</p>
+<p></p>
+<p>If the current Windows user is a valid user of the Galaxy, it will log on the ViewApp</p>
+<p>successfully.</p>
+<p></p>
+<p>If the current Windows user is not a valid user of the Galaxy, it will fail to log on the</p>
+<p>ViewApp, which will leave the ViewApp running without a logged in user. Other users can</p>
+<p>log on manually.</p>
+<p>Attribute</p>
+<p>Data Type</p>
+<p>Type</p>
+<p>Description</p>
+<p>AutoLogOff</p>
+<p>Boolean</p>
+<p>Read/Write</p>
+<p>Returns True or False to indicate if a user</p>
+<p>will be logged off after a period of inactivity.</p>
+<p>When set to True, the user is logged off from</p>
+<p>the ViewApp when the inactivity period is</p>
+<p>exceeded. The default value is False.</p>
+<p>AutoLogOffRemainingTime</p>
+<p>Integer</p>
+<p>Read Only</p>
+<p>Returns the remaining length of a user’s</p>
+<p>inactivity period in seconds.</p>
+<p>AutoLogOffTimeSpan</p>
+<p>Integer</p>
+<p>Read/Write</p>
+<p>Specifies the length of the inactivity period in</p>
+<p>seconds a logged in user is allowed. The</p>
+<p>default value is 600 seconds.</p>
+<p>AutoLogOnCurrentUser</p>
+<p>Boolean</p>
+<p>Read/Write</p>
+<p>Returns True or False to indicate if users can</p>
+<p>log on automatically to a ViewApp with their</p>
+<p>Windows credentials. The default value is</p>
+<p>True.</p>
+<p>LoggedInAccessLevel</p>
+<p>Integer</p>
+<p>Read Only</p>
+<p>Access level of the security role assigned to</p>
+<p>the user logged in to ViewApp.</p>
+<p>LastSuccessfulLogin</p>
+<p>Date Time</p>
+<p>Read Only</p>
+<p>UTC time stamp of the most recent</p>
+<p>successful log.</p>
+<p>LoggedIn</p>
+<p>Boolean</p>
+<p>Read Only</p>
+<p>Returns True or False, indicating if a user is</p>
+<p>currently logged into a ViewApp or not.</p>
+<p>LoggedInUserName</p>
+<p>String</p>
+<p>Read Only</p>
+<p>User name specified by the user logged in to</p>
+<p>a ViewApp.</p>
+<p>LoggedInUserRoles</p>
+<p>String</p>
+<p>Read Only</p>
+<p>User roles assigned to the logged-in user, in</p>
+<p>CSV format.</p>
+<p>Module 8 – Security</p>
+<p>AVEVA™ Training</p>
 <p>Note that the first time the Preview session is launched from the ViewApp Editor, the current</p>
 <p>Windows user will automatically attempt to log on the Preview session.</p>
 <p>The Single Sign-On feature can be enabled or disabled by setting the AutoLogonCurrentUser</p>
@@ -359,46 +436,16 @@
 <p>credentials, Active Directory, or OpenID Connect. You can add these credentials on the</p>
 <p>Credentials tab in the Configure Security dialog box.</p>
 <p>Refer to the documentation that came with your product for details about managing credentials.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
-</div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← Previous: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
-  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">Next: Lab 16 – Implementing Security in a View →</a>
+  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← L31: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a View →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

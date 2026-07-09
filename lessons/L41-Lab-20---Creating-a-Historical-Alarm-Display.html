@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 41: Lab 20 – Creating a Historical Alarm Display</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L40-Logged-Alarms-and-Events-Visualization.html">← L40: Logged Alarms and Events Visualization</a> &nbsp;|&nbsp;
   <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>🔬 L41: Lab 20 – Creating a Historical Alarm Display</h1>
 <p class="source">Module 9 — Alarms and Events | Pages 573-600</p>
-
-<div class="screenshot">
-  <img src="../images/page_0573_0.png" alt="Page 573">
-  <div class="caption">Page 573</div>
-</div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
 <p>Introduction</p>
 <p>In this lab, you will use the AlarmApp to create a display for historical alarms and events. You will</p>
@@ -152,13 +142,11 @@
 <p></p>
 <p>Customize the AlarmApp at runtime using Runtime Behavior properties</p>
 <div class="screenshot">
-  <img src="../images/page_0574_0.png" alt="Page 574">
-  <div class="caption">Page 574</div>
+  <img src="../images/page_0573_0.png" alt="Page 573">
+  <div class="caption">Page 573</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0574_1.jpeg" alt="Page 574">
-  <div class="caption">Page 574</div>
-</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p>Configure Layouts for Historical Alarms and Events</p>
 <p>In the following steps, you will create and configure a new layout for historical alarms and events.</p>
 <p>1.</p>
@@ -169,13 +157,35 @@
 <p>3.</p>
 <p>On the Toolbox tab, enter a search string to find the AlarmControl and drag it to Pane1.</p>
 <div class="screenshot">
-  <img src="../images/page_0575_0.jpeg" alt="Page 575">
-  <div class="caption">Page 575</div>
+  <img src="../images/page_0574_0.png" alt="Page 574">
+  <div class="caption">Page 574</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0574_1.jpeg" alt="Page 574">
+  <div class="caption">Page 574</div>
 </div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>4.</p>
 <p>On the Properties tab, to the right of the Configuration property, click the ellipsis button.</p>
 <p>The Configuration dialog box appears.</p>
+<div class="screenshot">
+  <img src="../images/page_0575_0.jpeg" alt="Page 575">
+  <div class="caption">Page 575</div>
+</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p>5.</p>
+<p>On the Alarm Mode tab, change Client Mode to Historical Alarms.</p>
+<p>6.</p>
+<p>For Database Connectivity \ Server Name, enter the node where Historian is set up.</p>
+<div class="key-concept">Note:</div>
+<p>Your instructor will provide the Historian node name.</p>
+<p>In the following example, S00ENG is used as the Database Connectivity \ Server Name.</p>
+<p>7.</p>
+<p>For Database Connectivity \ Database Name, select History Blocks from the drop-down</p>
+<p>list.</p>
+<p>The following Configuration Warning appears.</p>
 <div class="screenshot">
   <img src="../images/page_0576_0.png" alt="Page 576">
   <div class="caption">Page 576</div>
@@ -184,11 +194,14 @@
   <img src="../images/page_0576_1.png" alt="Page 576">
   <div class="caption">Page 576</div>
 </div>
-<p>5.</p>
-<p>On the Alarm Mode tab, change Client Mode to Historical Alarms.</p>
-<p>6.</p>
-<p>For Database Connectivity \ Server Name, enter the node where Historian is set up.</p>
-<div class="key-concept">Note: Your instructor will provide the Historian node name. In the following example, S00ENG is used as the Database Connectivity \ Server Name. 7. For Database Connectivity \ Database Name, select History Blocks from the drop-down list. The following Configuration Warning appears.</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p>8.</p>
+<p>Click Yes to continue.</p>
+<p>9.</p>
+<p>Click Test Connection.</p>
+<p>When the connection test is successful, the following Info message appears:</p>
+<p><strong>10.</strong> Click OK to dismiss the message.</p>
 <div class="screenshot">
   <img src="../images/page_0577_0.png" alt="Page 577">
   <div class="caption">Page 577</div>
@@ -197,28 +210,48 @@
   <img src="../images/page_0577_1.png" alt="Page 577">
   <div class="caption">Page 577</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p>8.</p>
-<p>Click Yes to continue.</p>
-<p>9.</p>
-<p>Click Test Connection.</p>
-<p>When the connection test is successful, the following Info message appears:</p>
-<p><strong>10.</strong> Click OK to dismiss the message.</p>
-<div class="screenshot">
-  <img src="../images/page_0578_0.png" alt="Page 578">
-  <div class="caption">Page 578</div>
-</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p><strong>11.</strong> In the Other Settings area, Time Range duration field, click the drop-down arrow and select</p>
 <p>15 minutes.</p>
 <p>The duration determines the total number of records returned.</p>
 <p><strong>12.</strong> On the Column Details tab, uncheck the following columns, which are repeated or</p>
 <p>unnecessary for the historical alarms and events display.</p>
-<div class="key-concept">Note: Most of the columns for the current alarm mode will not apply to the historical alarm mode, and they will take too much space in the alarm display.  User1  State  Node  Group  Name  AlarmComment  Type  TimeLCT  Limit  CurrentValue  AlarmDuration  Operator  UnAckDuration</div>
+<div class="key-concept">Note:</div>
+<p>Most of the columns for the current alarm mode will not apply to the historical alarm</p>
+<p>mode, and they will take too much space in the alarm display.</p>
+<p></p>
+<p>User1</p>
+<p></p>
+<p>State</p>
+<p></p>
+<p>Node</p>
+<p></p>
+<p>Group</p>
+<p></p>
+<p>Name</p>
+<p></p>
+<p>AlarmComment</p>
+<p></p>
+<p>Type</p>
+<p></p>
+<p>TimeLCT</p>
+<p></p>
+<p>Limit</p>
+<p></p>
+<p>CurrentValue</p>
+<p></p>
+<p>AlarmDuration</p>
+<p></p>
+<p>Operator</p>
+<p></p>
+<p>UnAckDuration</p>
 <div class="screenshot">
-  <img src="../images/page_0579_0.png" alt="Page 579">
-  <div class="caption">Page 579</div>
+  <img src="../images/page_0578_0.png" alt="Page 578">
+  <div class="caption">Page 578</div>
 </div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p><strong>13.</strong> On the Column Details tab, check the following columns, which will be useful for the historical</p>
 <p>alarms display:</p>
 <p></p>
@@ -257,6 +290,20 @@
 <p>EventTime</p>
 <p>The following shows only some of the checked column names in the Column Details list.</p>
 <div class="screenshot">
+  <img src="../images/page_0579_0.png" alt="Page 579">
+  <div class="caption">Page 579</div>
+</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p><strong>14.</strong> With EventTime checked, to the right of the Column Details list, click the up-arrow multiple</p>
+<p>times until EventTime is moved above Comment and below Severity in the list.</p>
+<div class="key-concept">Note:</div>
+<p>Alternatively, you can rearrange columns in the preview area at the bottom of the tab</p>
+<p>using drag and drop.</p>
+<p><strong>15.</strong> In the Sorting area, change the First Sort Criteria to EventTime and Descending.</p>
+<p>In the preview area, notice the EventTime column has a down-arrow indicating descending</p>
+<p>sort order.</p>
+<div class="screenshot">
   <img src="../images/page_0580_0.png" alt="Page 580">
   <div class="caption">Page 580</div>
 </div>
@@ -264,9 +311,16 @@
   <img src="../images/page_0580_1.png" alt="Page 580">
   <div class="caption">Page 580</div>
 </div>
-<p><strong>14.</strong> With EventTime checked, to the right of the Column Details list, click the up-arrow multiple</p>
-<p>times until EventTime is moved above Comment and below Severity in the list.</p>
-<div class="key-concept">Note: Alternatively, you can rearrange columns in the preview area at the bottom of the tab using drag and drop. 15. In the Sorting area, change the First Sort Criteria to EventTime and Descending. In the preview area, notice the EventTime column has a down-arrow indicating descending sort order.</div>
+<p>sec, Disable File Browsing</p>
+<p>• <strong>Highlighted Action</strong>: Red rectangle around "Save User Queries and Filters" (unchecked)</p>
+<p>• <strong>Sub-settings</strong>: File path field (greyed out), "Overwrite Design Time Queries and Filters" (unchecked)</p>
+<p>• <strong>Right Pane - Show Context Menu</strong>: Commands: Ack Selected, Ack Others, Shelve Selected, Unshelve Selected, Hide Selected, Sort, Queries and Filters, Freeze, Requery</p>
+<p>• <strong>Context</strong>: Configuring column width and runtime behavior for historical alarm display]</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>16.</strong> In the Column Details list, in the Comment row, select the Width field.</p>
+<p><strong>17.</strong> Click the Width field, change the value to 300, and then press Enter to confirm.</p>
+<p><strong>18.</strong> On the Run-Time Behavior tab, uncheck Save User Queries and Filters.</p>
 <div class="screenshot">
   <img src="../images/page_0581_0.png" alt="Page 581">
   <div class="caption">Page 581</div>
@@ -275,18 +329,8 @@
   <img src="../images/page_0581_1.png" alt="Page 581">
   <div class="caption">Page 581</div>
 </div>
-<p>• <strong>Highlighted Action</strong>: Red rectangle around "Save User Queries and Filters" (unchecked)</p>
-<p>• <strong>Sub-settings</strong>: File path field (greyed out), "Overwrite Design Time Queries and Filters" (unchecked)</p>
-<p>• <strong>Right Pane - Show Context Menu</strong>: Commands: Ack Selected, Ack Others, Shelve Selected, Unshelve Selected, Hide Selected, Sort, Queries and Filters, Freeze, Requery</p>
-<p>• <strong>Context</strong>: Configuring column width and runtime behavior for historical alarm display]</p>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p><strong>16.</strong> In the Column Details list, in the Comment row, select the Width field.</p>
-<p><strong>17.</strong> Click the Width field, change the value to 300, and then press Enter to confirm.</p>
-<p><strong>18.</strong> On the Run-Time Behavior tab, uncheck Save User Queries and Filters.</p>
-<div class="screenshot">
-  <img src="../images/page_0582_0.jpeg" alt="Page 582">
-  <div class="caption">Page 582</div>
-</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p><strong>19.</strong> Click OK to close the Configuration dialog box.</p>
 <p><strong>20.</strong> On the Properties tab, configure the Command Bar properties as follows:</p>
 <p><strong>21.</strong> Save and close the HistoricalAlarmsEvents layout, and check it in.</p>
@@ -303,10 +347,11 @@
 <p>Show Disconnect:</p>
 <p>checked</p>
 <div class="screenshot">
-  <img src="../images/page_0583_0.png" alt="Page 583">
-  <div class="caption">Page 583</div>
+  <img src="../images/page_0582_0.jpeg" alt="Page 582">
+  <div class="caption">Page 582</div>
 </div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Create a Symbol for Additional Settings</p>
 <p>In the next steps, you will create a symbol and configure custom properties for it.</p>
 <p><strong>22.</strong> On the Graphics tab, in the Training \ Symbols toolset, create a new symbol and name it</p>
@@ -315,9 +360,11 @@
 <p><strong>24.</strong> Right-click the drawing canvas and select Custom Properties.</p>
 <p>The Edit Custom Properties dialog box appears.</p>
 <div class="screenshot">
-  <img src="../images/page_0584_0.png" alt="Page 584">
-  <div class="caption">Page 584</div>
+  <img src="../images/page_0583_0.png" alt="Page 583">
+  <div class="caption">Page 583</div>
 </div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p><strong>25.</strong> In the Edit Custom Properties dialog box, create the following custom properties:</p>
 <p><strong>26.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
 <p>Name</p>
@@ -341,6 +388,24 @@
 <p>When True, display the</p>
 <p>command bar</p>
 <div class="screenshot">
+  <img src="../images/page_0584_0.png" alt="Page 584">
+  <div class="caption">Page 584</div>
+</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>27.</strong> In the Tools pane, select the Text tool, add a text element to the canvas, and then enter Client</p>
+<p>Mode: for the string.</p>
+<p>The name of the text element is Text1.</p>
+<p><strong>28.</strong> With Text1 selected, change its Appearance / Element Style property to Title.</p>
+<p>Text1 should look similar to the following on the drawing canvas:</p>
+<p><strong>29.</strong> In the Tools pane, select the Combo Box tool and add a combo box element to the drawing</p>
+<p>canvas.</p>
+<p>The name of the combo box element is ComboBox1.</p>
+<p><strong>30.</strong> Place ComboBox1 to the right of the Text1 element.</p>
+<div class="key-concept">Note:</div>
+<p>You can consider increasing the width of ComboBox1 to fit all captions at runtime.</p>
+<p>An example width is 220 pixels.</p>
+<div class="screenshot">
   <img src="../images/page_0585_0.png" alt="Page 585">
   <div class="caption">Page 585</div>
 </div>
@@ -356,25 +421,8 @@
   <img src="../images/page_0585_3.png" alt="Page 585">
   <div class="caption">Page 585</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p><strong>27.</strong> In the Tools pane, select the Text tool, add a text element to the canvas, and then enter Client</p>
-<p>Mode: for the string.</p>
-<p>The name of the text element is Text1.</p>
-<p><strong>28.</strong> With Text1 selected, change its Appearance / Element Style property to Title.</p>
-<p>Text1 should look similar to the following on the drawing canvas:</p>
-<p><strong>29.</strong> In the Tools pane, select the Combo Box tool and add a combo box element to the drawing</p>
-<p>canvas.</p>
-<p>The name of the combo box element is ComboBox1.</p>
-<p><strong>30.</strong> Place ComboBox1 to the right of the Text1 element.</p>
-<div class="key-concept">Note: You can consider increasing the width of ComboBox1 to fit all captions at runtime. An example width is 220 pixels.</div>
-<div class="screenshot">
-  <img src="../images/page_0586_0.png" alt="Page 586">
-  <div class="caption">Page 586</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0586_1.png" alt="Page 586">
-  <div class="caption">Page 586</div>
-</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p><strong>31.</strong> Double-click the ComboBox1 element to open the Edit Animations dialog box.</p>
 <p><strong>32.</strong> For States, ensure Static is selected and configure the Selected Item Value (Reference) as</p>
 <p>ClientMode.</p>
@@ -390,14 +438,15 @@
 <p>Historical Alarms & Events</p>
 <p>5</p>
 <div class="screenshot">
-  <img src="../images/page_0587_0.png" alt="Page 587">
-  <div class="caption">Page 587</div>
+  <img src="../images/page_0586_0.png" alt="Page 586">
+  <div class="caption">Page 586</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0587_1.png" alt="Page 587">
-  <div class="caption">Page 587</div>
+  <img src="../images/page_0586_1.png" alt="Page 586">
+  <div class="caption">Page 586</div>
 </div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p><strong>36.</strong> On the drawing canvas, add a check box element to the right of the ComboBox1 element.</p>
 <p>The name of the check box element is CheckBox1.</p>
 <p><strong>37.</strong> On the Properties tab, configure the following properties for CheckBox1:</p>
@@ -410,6 +459,23 @@
 <p>Text Style / Caption:</p>
 <p>Group by Header</p>
 <div class="screenshot">
+  <img src="../images/page_0587_0.png" alt="Page 587">
+  <div class="caption">Page 587</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0587_1.png" alt="Page 587">
+  <div class="caption">Page 587</div>
+</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p><strong>42.</strong> Duplicate CheckBox1 to create a CheckBox2 element, and place CheckBox2 to the right of</p>
+<p>CheckBox1.</p>
+<p><strong>43.</strong> For CheckBox2, configure the Text Style \ Caption property to Show / Hide Command Bar.</p>
+<p><strong>44.</strong> Resize the width of the CheckBox2 element to display all of the characters in one line.</p>
+<p><strong>45.</strong> Double-click CheckBox2 to open the Edit Animations dialog box.</p>
+<p><strong>46.</strong> Configure the Checked value (Boolean) reference as ShowCommandBar.</p>
+<p><strong>47.</strong> Leave the other settings as default, and click OK to close the Edit Animations dialog box.</p>
+<div class="screenshot">
   <img src="../images/page_0588_0.png" alt="Page 588">
   <div class="caption">Page 588</div>
 </div>
@@ -421,22 +487,8 @@
   <img src="../images/page_0588_2.png" alt="Page 588">
   <div class="caption">Page 588</div>
 </div>
-<p><strong>42.</strong> Duplicate CheckBox1 to create a CheckBox2 element, and place CheckBox2 to the right of</p>
-<p>CheckBox1.</p>
-<p><strong>43.</strong> For CheckBox2, configure the Text Style \ Caption property to Show / Hide Command Bar.</p>
-<p><strong>44.</strong> Resize the width of the CheckBox2 element to display all of the characters in one line.</p>
-<p><strong>45.</strong> Double-click CheckBox2 to open the Edit Animations dialog box.</p>
-<p><strong>46.</strong> Configure the Checked value (Boolean) reference as ShowCommandBar.</p>
-<p><strong>47.</strong> Leave the other settings as default, and click OK to close the Edit Animations dialog box.</p>
-<div class="screenshot">
-  <img src="../images/page_0589_0.png" alt="Page 589">
-  <div class="caption">Page 589</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0589_1.jpeg" alt="Page 589">
-  <div class="caption">Page 589</div>
-</div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p><strong>48.</strong> With all elements selected, click Align Middle to align the elements to the middle.</p>
 <p><strong>49.</strong> Save and close the Hist_AlarmAppConfigurations symbol, and check it in.</p>
 <p>Update the HistoricalAlarmsEvents Layout</p>
@@ -447,13 +499,15 @@
 <p><strong>51.</strong> With Pane1 selected, add a new pane on top of Pane1.</p>
 <p>The name of the new pane is Pane2.</p>
 <div class="screenshot">
-  <img src="../images/page_0590_0.png" alt="Page 590">
-  <div class="caption">Page 590</div>
+  <img src="../images/page_0589_0.png" alt="Page 589">
+  <div class="caption">Page 589</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0590_1.jpeg" alt="Page 590">
-  <div class="caption">Page 590</div>
+  <img src="../images/page_0589_1.jpeg" alt="Page 589">
+  <div class="caption">Page 589</div>
 </div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
 <p><strong>52.</strong> Select Pane2 and configure the following properties:</p>
 <p><strong>53.</strong> On the Toolbox tab, enter a search string to find Hist_AlarmAppConfigurations and drag it</p>
 <p>to Pane2.</p>
@@ -464,18 +518,15 @@
 <p>Appearance \ Content Alignment:</p>
 <p>Left</p>
 <div class="screenshot">
-  <img src="../images/page_0591_0.png" alt="Page 591">
-  <div class="caption">Page 591</div>
+  <img src="../images/page_0590_0.png" alt="Page 590">
+  <div class="caption">Page 590</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0591_1.png" alt="Page 591">
-  <div class="caption">Page 591</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0591_2.png" alt="Page 591">
-  <div class="caption">Page 591</div>
+  <img src="../images/page_0590_1.jpeg" alt="Page 590">
+  <div class="caption">Page 590</div>
 </div>
 <p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p><strong>54.</strong> Ensure that Pane1 is selected.</p>
 <p><strong>55.</strong> On the Properties tab, for the Run-Time Behavior \ Group by Header property, click the</p>
 <p>down-arrow to the left of the check box and select In from the drop-down list.</p>
@@ -499,6 +550,28 @@
 <p>In</p>
 <p>MyContent.Hist_AlarmAppConfigurations1.ClientMode</p>
 <div class="screenshot">
+  <img src="../images/page_0591_0.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0591_1.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0591_2.png" alt="Page 591">
+  <div class="caption">Page 591</div>
+</div>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p>Associate HistoricalAlarmsEvents with a Navigation Item</p>
+<p>In the following steps, you will create a new navigation item in the ViewApp Editor and configure it</p>
+<p>to display historical alarms and events.</p>
+<p><strong>59.</strong> In the ViewApp Editor, in the Navigation list, select Home, and then click Add to add a new</p>
+<p>child navigation item under Home.</p>
+<p><strong>60.</strong> Rename the new navigation item to HistoricalAlarmsEvents.</p>
+<p><strong>61.</strong> On the Properties tab, change the Navigation \ Title property to</p>
+<p>Historical Alarms and/or Events.</p>
+<div class="screenshot">
   <img src="../images/page_0592_0.png" alt="Page 592">
   <div class="caption">Page 592</div>
 </div>
@@ -510,14 +583,15 @@
   <img src="../images/page_0592_2.png" alt="Page 592">
   <div class="caption">Page 592</div>
 </div>
-<p>Associate HistoricalAlarmsEvents with a Navigation Item</p>
-<p>In the following steps, you will create a new navigation item in the ViewApp Editor and configure it</p>
-<p>to display historical alarms and events.</p>
-<p><strong>59.</strong> In the ViewApp Editor, in the Navigation list, select Home, and then click Add to add a new</p>
-<p>child navigation item under Home.</p>
-<p><strong>60.</strong> Rename the new navigation item to HistoricalAlarmsEvents.</p>
-<p><strong>61.</strong> On the Properties tab, change the Navigation \ Title property to</p>
-<p>Historical Alarms and/or Events.</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>62.</strong> With the new navigation item selected, on the Toolbox tab, enter a search string to find</p>
+<p>HistoricalAlarmsEvents and drag it to Pane1.</p>
+<p>You can confirm the assignment in the Actions list.</p>
+<p>Test the ViewApp in a Preview Session</p>
+<p>Now you will test your changes in the preview session.</p>
+<p><strong>63.</strong> Click Update to update the preview session.</p>
+<p>The preview session opens with HistoricalAlarms and/or Events displayed.</p>
 <div class="screenshot">
   <img src="../images/page_0593_0.jpeg" alt="Page 593">
   <div class="caption">Page 593</div>
@@ -526,14 +600,13 @@
   <img src="../images/page_0593_1.png" alt="Page 593">
   <div class="caption">Page 593</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p><strong>62.</strong> With the new navigation item selected, on the Toolbox tab, enter a search string to find</p>
-<p>HistoricalAlarmsEvents and drag it to Pane1.</p>
-<p>You can confirm the assignment in the Actions list.</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the preview session.</p>
-<p><strong>63.</strong> Click Update to update the preview session.</p>
-<p>The preview session opens with HistoricalAlarms and/or Events displayed.</p>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p>Notice the column headings that you configured for the control, and filter icons appear in the</p>
+<p>column headings.</p>
+<p>Also notice that a Requery button appears at the bottom of the display to the right of the status</p>
+<p>bar.</p>
+<p><strong>64.</strong> On the Severity column heading, click the filter icon, and select 1 from the Severity list.</p>
 <div class="screenshot">
   <img src="../images/page_0594_0.png" alt="Page 594">
   <div class="caption">Page 594</div>
@@ -546,11 +619,13 @@
   <img src="../images/page_0594_2.png" alt="Page 594">
   <div class="caption">Page 594</div>
 </div>
-<p>Notice the column headings that you configured for the control, and filter icons appear in the</p>
-<p>column headings.</p>
-<p>Also notice that a Requery button appears at the bottom of the display to the right of the status</p>
-<p>bar.</p>
-<p><strong>64.</strong> On the Severity column heading, click the filter icon, and select 1 from the Severity list.</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p>The display filters all Severity 1 alarms.</p>
+<p><strong>65.</strong> Click Requery to update records for the last 15 minutes.</p>
+<p>Notice the severity filter is reset after clicking Requery. You can also reset the filter by</p>
+<p>selecting (All) from the filter selector of the Severity column.</p>
+<p>On the status bar, the number of records may change every time records get updated.</p>
 <div class="screenshot">
   <img src="../images/page_0595_0.png" alt="Page 595">
   <div class="caption">Page 595</div>
@@ -559,12 +634,13 @@
   <img src="../images/page_0595_1.png" alt="Page 595">
   <div class="caption">Page 595</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p>The display filters all Severity 1 alarms.</p>
-<p><strong>65.</strong> Click Requery to update records for the last 15 minutes.</p>
-<p>Notice the severity filter is reset after clicking Requery. You can also reset the filter by</p>
-<p>selecting (All) from the filter selector of the Severity column.</p>
-<p>On the status bar, the number of records may change every time records get updated.</p>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p><strong>66.</strong> At the top of the HistoricalAlarms and/or Events display, check Group by Header.</p>
+<p>Notice that a group-by field appears, with the tip Drag a column header here to group by</p>
+<p>that column.</p>
+<p><strong>67.</strong> Drag the EventTime column to the group-by field.</p>
+<p>Notice that alarm records are grouped by different event times.</p>
 <div class="screenshot">
   <img src="../images/page_0596_0.png" alt="Page 596">
   <div class="caption">Page 596</div>
@@ -573,11 +649,12 @@
   <img src="../images/page_0596_1.png" alt="Page 596">
   <div class="caption">Page 596</div>
 </div>
-<p><strong>66.</strong> At the top of the HistoricalAlarms and/or Events display, check Group by Header.</p>
-<p>Notice that a group-by field appears, with the tip Drag a column header here to group by</p>
-<p>that column.</p>
-<p><strong>67.</strong> Drag the EventTime column to the group-by field.</p>
-<p>Notice that alarm records are grouped by different event times.</p>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>68.</strong> On the HistoricalAlarms and/or Events display, check Show / Hide Command Bar.</p>
+<p>Notice that the command bar appears, with buttons to Navigate, Requery, Connect, and</p>
+<p>Disconnect.</p>
+<p><strong>69.</strong> From the command bar, click Requery.</p>
 <div class="screenshot">
   <img src="../images/page_0597_0.jpeg" alt="Page 597">
   <div class="caption">Page 597</div>
@@ -586,66 +663,58 @@
   <img src="../images/page_0597_1.png" alt="Page 597">
   <div class="caption">Page 597</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p><strong>68.</strong> On the HistoricalAlarms and/or Events display, check Show / Hide Command Bar.</p>
-<p>Notice that the command bar appears, with buttons to Navigate, Requery, Connect, and</p>
-<p>Disconnect.</p>
-<p><strong>69.</strong> From the command bar, click Requery.</p>
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<p>Notice the group-by field is reset, because Requery resets the grouping.</p>
+<div class="key-concept">Note:</div>
+<p>You can also test Navigate, Disconnect, and Connect from the command bar.</p>
+<p>However, if you test disconnecting, ensure you enable the connection to continue later steps.</p>
+<p><strong>70.</strong> From the Client Mode combo box, click the drop-down list and select Historical Events.</p>
+<p>You may not have any events for the last 15 minutes, so in the next step, you will generate some</p>
+<p>events.</p>
+<p><strong>71.</strong> Ensure <domain>\jamess is logged in and perform actions to generate events.</p>
+<p>For example, you can navigate to Mixer100 in the ViewApp display and perform the following:</p>
+<p></p>
+<p>Open and close valves</p>
+<p></p>
+<p>Start and stop the agitator</p>
+<p></p>
+<p>Change the speed setpoint for the agitator</p>
+<p>Important: To ensure automatic operation of the simulator, ensure the valves are in the same</p>
+<p>state as their associated pumps, so that the level in the tank begins moving again. For</p>
+<p>example, if Pump 1 is started, then Inlet 1 must be open.</p>
+<p><strong>72.</strong> After performing actions to generate new events, navigate back to Historical Alarms and/or</p>
+<p>Events.</p>
 <div class="screenshot">
   <img src="../images/page_0598_0.png" alt="Page 598">
   <div class="caption">Page 598</div>
 </div>
-<p>Notice the group-by field is reset, because Requery resets the grouping.</p>
-<div class="key-concept">Note: You can also test Navigate, Disconnect, and Connect from the command bar. However, if you test disconnecting, ensure you enable the connection to continue later steps. 70. From the Client Mode combo box, click the drop-down list and select Historical Events. You may not have any events for the last 15 minutes, so in the next step, you will generate some events. 71. Ensure &lt;domain&gt;\jamess is logged in and perform actions to generate events. For example, you can navigate to Mixer100 in the ViewApp display and perform the following:  Open and close valves  Start and stop the agitator  Change the speed setpoint for the agitator Important: To ensure automatic operation of the simulator, ensure the valves are in the same state as their associated pumps, so that the level in the tank begins moving again. For example, if Pump 1 is started, then Inlet 1 must be open. 72. After performing actions to generate new events, navigate back to Historical Alarms and/or Events.</div>
+<p>Lab 20 – Creating a Historical Alarm Display</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>73.</strong> For Client Mode, select Historical Events.</p>
+<p>Notice the recent operational events are listed in the event display, and they are sorted by</p>
+<p>Event Time in descending order.</p>
+<div class="key-concept">Note:</div>
+<p>For verified write events, you can scroll to the right of the event display to view</p>
+<p>operator and verifier information.</p>
+<p><strong>74.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
+<p><End of Lab></p>
 <div class="screenshot">
   <img src="../images/page_0599_0.png" alt="Page 599">
   <div class="caption">Page 599</div>
 </div>
-<p>Lab 20 – Creating a Historical Alarm Display</p>
-<p><strong>73.</strong> For Client Mode, select Historical Events.</p>
-<p>Notice the recent operational events are listed in the event display, and they are sorted by</p>
-<p>Event Time in descending order.</p>
-<div class="key-concept">Note: For verified write events, you can scroll to the right of the event display to view operator and verifier information. 74. When you are finished testing, minimize the preview session and the ViewApp Editor. &lt;End of Lab&gt;</div>
-
-
-<div class="quiz">
-  <h3>Lab Review</h3>
-  <details>
-    <summary>Q1: What are the key steps you performed in this lab?</summary>
-    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
-  </details>
-  <details>
-    <summary>Q2: What would happen if you skipped a configuration step?</summary>
-    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
-  </details>
-</div>
-
+<p>Module 9 – Alarms and Events Visualization</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L40-Logged-Alarms-and-Events-Visualization.html">← Previous: Logged Alarms and Events Visualization</a> &nbsp;|&nbsp;
-  <a href="L42-Historization-and-Real-Time-Trending.html">Next: Historization and Real-Time Trending →</a>
+  <a href="L40-Logged-Alarms-and-Events-Visualization.html">← L40: Logged Alarms and Events Visualization</a> &nbsp;|&nbsp;
+  <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

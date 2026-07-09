@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 30: Custom ViewApp Namespaces and Attributes</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespac</a> &nbsp;|&nbsp;
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L30: Custom ViewApp Namespaces and Attributes</h1>
 <p class="source">Module 7 — ViewApp Namespaces | Pages 409-412</p>
-
-<div class="screenshot">
-  <img src="../images/page_0409_0.png" alt="Page 409">
-  <div class="caption">Page 409</div>
-</div>
 <p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
 <p>Introduction</p>
 <p>You can create a ViewApp namespace from the Graphics tab in the System Platform IDE. The</p>
@@ -167,13 +157,11 @@
 <p>This section describes how to manage and configure ViewApp namespace attributes using the</p>
 <p>ViewApp Namespace Editor.</p>
 <div class="screenshot">
-  <img src="../images/page_0410_0.jpeg" alt="Page 410">
-  <div class="caption">Page 410</div>
+  <img src="../images/page_0409_0.png" alt="Page 409">
+  <div class="caption">Page 409</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0410_1.png" alt="Page 410">
-  <div class="caption">Page 410</div>
-</div>
+<p>Module 7 – ViewApp Namespaces</p>
+<p>AVEVA™ Training</p>
 <p>more. You can click on a column name to sort the list by that column. For example, you</p>
 <p>can click Name to sort the list of attributes by name.</p>
 <p>Add Attributes</p>
@@ -192,20 +180,29 @@
 <p>For Boolean attributes, a check box is provided in the Initial Value field. Checking the</p>
 <p>check box sets the initial value for the Boolean attribute to true. The default initial value for</p>
 <p>a Boolean attribute is false (the check box is unchecked).</p>
-<div class="key-concept">Note: The Initial Value field does not support expressions.  Readonly: When checked, designates the attribute as a read-only attribute. The default value is false (not read-only, but read/write).  Retentive: When checked, designates the attribute as a retentive attribute. This means that the value of the attribute will be maintained if the ViewApp is shut down, and restored to that value when the ViewApp is restarted. However, the value of the attribute will not be retained when a ViewApp is undeployed. Note: An attribute cannot be designated as both read-only and retentive. The default value is false (non-retentive).  Description: Text that describes the attribute.</div>
+<div class="key-concept">Note: The Initial Value field does not support expressions.</div>
+<p></p>
+<p>Readonly: When checked, designates the attribute as a read-only attribute. The default</p>
+<p>value is false (not read-only, but read/write).</p>
+<p></p>
+<p>Retentive: When checked, designates the attribute as a retentive attribute. This means</p>
+<p>that the value of the attribute will be maintained if the ViewApp is shut down, and restored</p>
+<p>to that value when the ViewApp is restarted. However, the value of the attribute will not be</p>
+<p>retained when a ViewApp is undeployed.</p>
+<div class="key-concept">Note: An attribute cannot be designated as both read-only and retentive. The default</div>
+<p>value is false (non-retentive).</p>
+<p></p>
+<p>Description: Text that describes the attribute.</p>
 <div class="screenshot">
-  <img src="../images/page_0411_0.png" alt="Page 411">
-  <div class="caption">Page 411</div>
+  <img src="../images/page_0410_0.jpeg" alt="Page 410">
+  <div class="caption">Page 410</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0411_1.png" alt="Page 411">
-  <div class="caption">Page 411</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0411_2.jpeg" alt="Page 411">
-  <div class="caption">Page 411</div>
+  <img src="../images/page_0410_1.png" alt="Page 410">
+  <div class="caption">Page 410</div>
 </div>
 <p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Duplicate Attributes</p>
 <p>You can use the Duplicate command to duplicate an attribute in the list of attributes. Just select an</p>
 <p>attribute in the list and click Duplicate.</p>
@@ -222,52 +219,36 @@
 <p>You can enter a search string to filter the list of attributes to only attributes that contain the search</p>
 <p>string in their name. This might be useful if there are many attributes defined for the namespace.</p>
 <p>If the “Modified Only” check box is checked, only attributes with unsaved modifications are shown.</p>
+<div class="screenshot">
+  <img src="../images/page_0411_0.png" alt="Page 411">
+  <div class="caption">Page 411</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0411_1.png" alt="Page 411">
+  <div class="caption">Page 411</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0411_2.jpeg" alt="Page 411">
+  <div class="caption">Page 411</div>
+</div>
+<p>Module 7 – ViewApp Namespaces</p>
+<p>AVEVA™ Training</p>
 <p>Import and Export ViewApp Namespaces</p>
 <p>ViewApp namespaces can be exported as standalone, reusable objects for use in other Galaxies.</p>
 <p>For example, you might create a ViewApp namespace that is broadly applicable across a variety</p>
 <p>of Galaxies for multiple locations, and export it as an .aaPKG file. Once you import that ViewApp</p>
 <p>namespace into another Galaxy, you can customize it in that Galaxy as needed.</p>
 <p>When exporting a ViewApp, all ViewApp namespaces in the Galaxy are exported with it.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
-</div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← Previous: Lab 14 – Using Built-in ViewApp Namespac</a> &nbsp;|&nbsp;
-  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">Next: Lab 15 – Creating Custom Namespaces →</a>
+  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespac</a> &nbsp;|&nbsp;
+  <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

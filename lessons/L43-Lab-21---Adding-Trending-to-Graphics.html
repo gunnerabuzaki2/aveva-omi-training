@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 43: Lab 21 – Adding Trending to Graphics</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L42-Historization-and-Real-Time-Trending.html">← L42: Historization and Real-Time Trending</a> &nbsp;|&nbsp;
   <a href="L44-Historical-Trending.html">L44: Historical Trending →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>🔬 L43: Lab 21 – Adding Trending to Graphics</h1>
 <p class="source">Module 10 — Trends | Pages 607-616</p>
-
-<div class="screenshot">
-  <img src="../images/page_0607_0.jpeg" alt="Page 607">
-  <div class="caption">Page 607</div>
-</div>
 <p>Lab 21 – Adding Trending to Graphics</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Lab 21 – Adding Trending to Graphics</p>
 <p>Introduction</p>
 <p>In this lab, you will use the SA_Trend_MultiPen symbol from the Situational Awareness Library to</p>
@@ -146,9 +136,11 @@
 <p></p>
 <p>Use the SA_Trend symbols for real-time trending</p>
 <div class="screenshot">
-  <img src="../images/page_0608_0.png" alt="Page 608">
-  <div class="caption">Page 608</div>
+  <img src="../images/page_0607_0.jpeg" alt="Page 607">
+  <div class="caption">Page 607</div>
 </div>
+<p>Module 10 – Trends</p>
+<p>AVEVA™ Training</p>
 <p>Create Symbol</p>
 <p>First, you will create and configure a symbol within the $Mixer template.</p>
 <p>1.</p>
@@ -162,10 +154,11 @@
 <p>On the Toolbox tab, enter a search string to find the SA_Trend_MultiPen symbol and drag it</p>
 <p>to the drawing canvas.</p>
 <div class="screenshot">
-  <img src="../images/page_0609_0.png" alt="Page 609">
-  <div class="caption">Page 609</div>
+  <img src="../images/page_0608_0.png" alt="Page 608">
+  <div class="caption">Page 608</div>
 </div>
 <p>Lab 21 – Adding Trending to Graphics</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>5.</p>
 <p>On the Properties tab, configure properties as follows:</p>
 <p>6.</p>
@@ -184,9 +177,11 @@
 <p>Wizard Options \ Floating Tooltip:</p>
 <p>True</p>
 <div class="screenshot">
-  <img src="../images/page_0610_0.png" alt="Page 610">
-  <div class="caption">Page 610</div>
+  <img src="../images/page_0609_0.png" alt="Page 609">
+  <div class="caption">Page 609</div>
 </div>
+<p>Module 10 – Trends</p>
+<p>AVEVA™ Training</p>
 <p>7.</p>
 <p>Configure custom properties as follows:</p>
 <p>8.</p>
@@ -215,6 +210,27 @@
 <p>PenC_Tagname: (switch to reference mode)</p>
 <p>Me.Agitator.Speed.PV.Description</p>
 <div class="screenshot">
+  <img src="../images/page_0610_0.png" alt="Page 610">
+  <div class="caption">Page 610</div>
+</div>
+<p>Lab 21 – Adding Trending to Graphics</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>10.</strong> In the New column, replace strings as shown below.</p>
+<p>For the purposes of this lab, the L stands for level, the T is for temperature, and the A is for</p>
+<p>agitator speed.</p>
+<div class="key-concept">Note:</div>
+<p>Replace only the A, B, and C strings. Do not perform a “replace all” operation.</p>
+<p><strong>11.</strong> Click OK to close the Substitute Strings dialog box.</p>
+<p>Notice the updated strings in the symbol.</p>
+<p>Old</p>
+<p>New</p>
+<p>A</p>
+<p>L</p>
+<p>B</p>
+<p>T</p>
+<p>C</p>
+<p>A</p>
+<div class="screenshot">
   <img src="../images/page_0611_0.png" alt="Page 611">
   <div class="caption">Page 611</div>
 </div>
@@ -222,19 +238,8 @@
   <img src="../images/page_0611_1.png" alt="Page 611">
   <div class="caption">Page 611</div>
 </div>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p><strong>10.</strong> In the New column, replace strings as shown below.</p>
-<p>For the purposes of this lab, the L stands for level, the T is for temperature, and the A is for</p>
-<p>agitator speed.</p>
-<div class="key-concept">Note: Replace only the A, B, and C strings. Do not perform a “replace all” operation. 11. Click OK to close the Substitute Strings dialog box. Notice the updated strings in the symbol. Old New A L B T C A</div>
-<div class="screenshot">
-  <img src="../images/page_0612_0.jpeg" alt="Page 612">
-  <div class="caption">Page 612</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0612_1.png" alt="Page 612">
-  <div class="caption">Page 612</div>
-</div>
+<p>Module 10 – Trends</p>
+<p>AVEVA™ Training</p>
 <p><strong>12.</strong> Click the drawing canvas, and on the Properties tab, change the Graphic \ Size property to</p>
 <p>Fixed.</p>
 <p><strong>13.</strong> Resize the canvas to fit the graphic.</p>
@@ -247,14 +252,15 @@
 <p><strong>16.</strong> Save and close the RealTimeTrend symbol.</p>
 <p><strong>17.</strong> Save and close the $Mixer template, and check it in.</p>
 <div class="screenshot">
-  <img src="../images/page_0613_0.png" alt="Page 613">
-  <div class="caption">Page 613</div>
+  <img src="../images/page_0612_0.jpeg" alt="Page 612">
+  <div class="caption">Page 612</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0613_1.jpeg" alt="Page 613">
-  <div class="caption">Page 613</div>
+  <img src="../images/page_0612_1.png" alt="Page 612">
+  <div class="caption">Page 612</div>
 </div>
 <p>Lab 21 – Adding Trending to Graphics</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Update the Asset Layout</p>
 <p><strong>18.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Asset_Layout to open it</p>
 <p>in the Layout Editor.</p>
@@ -268,13 +274,15 @@
 <p>Size \ Width:</p>
 <p>300</p>
 <div class="screenshot">
-  <img src="../images/page_0614_0.jpeg" alt="Page 614">
-  <div class="caption">Page 614</div>
+  <img src="../images/page_0613_0.png" alt="Page 613">
+  <div class="caption">Page 613</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0614_1.jpeg" alt="Page 614">
-  <div class="caption">Page 614</div>
+  <img src="../images/page_0613_1.jpeg" alt="Page 613">
+  <div class="caption">Page 613</div>
 </div>
+<p>Module 10 – Trends</p>
+<p>AVEVA™ Training</p>
 <p>Test the ViewApp in a Preview Session</p>
 <p>Now you will test your changes in the ViewApp preview session.</p>
 <p><strong>23.</strong> Switch to the ViewApp preview session.</p>
@@ -282,57 +290,42 @@
 <p><strong>24.</strong> Navigate to Mixer100.</p>
 <p>Notice that the RealTimeTrend graphic displays in the top-right pane.</p>
 <p><strong>25.</strong> Above the trend, in the legend, click L to select the pen for level.</p>
-<div class="key-concept">Note: You must select a pen to view floating tooltip. Moving your mouse over the trend will display a floating tooltip, which includes PV, Max, Min, Avg, and EU information for the currently selected trend pen. The formula for the Avg value is (Max + Min) / 2, and not a moving average.</div>
+<div class="key-concept">Note:</div>
+<p>You must select a pen to view floating tooltip.</p>
+<p>Moving your mouse over the trend will display a floating tooltip, which includes PV, Max, Min,</p>
+<p>Avg, and EU information for the currently selected trend pen.</p>
+<p>The formula for the Avg value is (Max + Min) / 2, and not a moving average.</p>
 <div class="screenshot">
-  <img src="../images/page_0615_0.jpeg" alt="Page 615">
-  <div class="caption">Page 615</div>
+  <img src="../images/page_0614_0.jpeg" alt="Page 614">
+  <div class="caption">Page 614</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0614_1.jpeg" alt="Page 614">
+  <div class="caption">Page 614</div>
 </div>
 <p>Lab 21 – Adding Trending to Graphics</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>You can also click the arrow at the top of the trend chart to select a different duration for the</p>
 <p>trend.</p>
 <p>The following example indicates the current duration for the trend is 5m (5 minutes).</p>
 <p><strong>26.</strong> When you are finished testing, minimize the preview session.</p>
 <p><End of Lab></p>
-
-
-<div class="quiz">
-  <h3>Lab Review</h3>
-  <details>
-    <summary>Q1: What are the key steps you performed in this lab?</summary>
-    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
-  </details>
-  <details>
-    <summary>Q2: What would happen if you skipped a configuration step?</summary>
-    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
-  </details>
+<div class="screenshot">
+  <img src="../images/page_0615_0.jpeg" alt="Page 615">
+  <div class="caption">Page 615</div>
 </div>
-
+<p>Module 10 – Trends</p>
+<p>AVEVA™ Training</p>
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L42-Historization-and-Real-Time-Trending.html">← Previous: Historization and Real-Time Trending</a> &nbsp;|&nbsp;
-  <a href="L44-Historical-Trending.html">Next: Historical Trending →</a>
+  <a href="L42-Historization-and-Real-Time-Trending.html">← L42: Historization and Real-Time Trending</a> &nbsp;|&nbsp;
+  <a href="L44-Historical-Trending.html">L44: Historical Trending →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

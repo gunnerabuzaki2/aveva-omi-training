@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 48: .NET Controls Overview</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playbac</a> &nbsp;|&nbsp;
   <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls →</a>
@@ -125,15 +121,9 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L48: .NET Controls Overview</h1>
 <p class="source">Module 12 — .NET Controls | Pages 669-672</p>
-
-<div class="screenshot">
-  <img src="../images/page_0669_0.png" alt="Page 669">
-  <div class="caption">Page 669</div>
-</div>
+<p>(/tmp/aveva_pages/page_0669.png)</p>
 <p><strong>Section 1 – Introduction, page 12-3</strong>.</p>
 <p>• <strong>Introduction text</strong>: Explains importing external controls as OMI Apps, WinForms/WPF .NET controls, FrameworkElement Class</p>
 <p>• <strong>Importing External Controls subsection</strong>:</p>
@@ -150,6 +140,7 @@
 <p>• <strong>Note</strong>: Refer to InTouch OMI SDK Help for more information</p>
 <p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
 <p>Section 1 – Introduction</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 1 – Introduction</p>
 <p>Overview</p>
 <p>Windows Forms (WinForms) and Windows Presentation Foundation (WPF) .NET controls can be</p>
@@ -161,11 +152,20 @@
 <p>contain locale files. Everything in the folder will be imported as part of the new OMI App.</p>
 <p>Once the controls are imported, they can be assigned to layout panes and configured with their</p>
 <p>public properties and events.</p>
-<div class="key-concept">Note: Refer to the InTouch OMI SDK Help for more information about creating your own OMI Apps. The InTouch OMI SDK Help is installed automatically when you install the System Platform IDE. Importing External Controls To import an external control, assemble the control and all required dependency and related files into a folder that is accessible to the node hosting the System Platform IDE. Then, from the Galaxy menu, select Import | Visualization | OMI App. This section describes importing external controls as OMI Apps for use in ViewApps and exposing certain controls by including a manifest file.</div>
+<div class="key-concept">Note: Refer to the InTouch OMI SDK Help for more information about creating your own OMI</div>
+<p>Apps. The InTouch OMI SDK Help is installed automatically when you install the</p>
+<p>System Platform IDE.</p>
+<p>Importing External Controls</p>
+<p>To import an external control, assemble the control and all required dependency and related files</p>
+<p>into a folder that is accessible to the node hosting the System Platform IDE. Then, from the Galaxy</p>
+<p>menu, select Import | Visualization | OMI App.</p>
+<p>This section describes importing external controls as OMI Apps for use in ViewApps and</p>
+<p>exposing certain controls by including a manifest file.</p>
 <div class="screenshot">
-  <img src="../images/page_0670_0.png" alt="Page 670">
-  <div class="caption">Page 670</div>
+  <img src="../images/page_0669_0.png" alt="Page 669">
+  <div class="caption">Page 669</div>
 </div>
+<p>(/tmp/aveva_pages/page_0670.png)</p>
 <p><strong>Page 12-4, Module 12 – .NET Controls Usage</strong>.</p>
 <p>• <strong>Screenshot - File Explorer Dialog "Import OMI App"</strong>:</p>
 <p>• Navigation: This PC > Local Disk (C:) > Training</p>
@@ -176,6 +176,8 @@
 <p>• <strong>Default naming</strong>: Source folder name + 3-digit suffix (e.g., WinformsControls001)</p>
 <p>• <strong>Manifest File (AppManifest.xml)</strong>: XML structure for selecting specific controls from assembly</p>
 <p>• Contains <code><Filters></code> tag with <code><Control></code> elements specifying AssemblyName and ControlFullName]</p>
+<p>Module 12 – .NET Controls Usage</p>
+<p>AVEVA™ Training</p>
 <p>The Import OMI App dialog box appears, and you can navigate to the folder that contains the OMI</p>
 <p>App files to import and select it.</p>
 <p>The control with other supporting files in the source folder are imported as an OMI App.</p>
@@ -201,9 +203,10 @@
 <p></Filters></p>
 <p></AppManifest></p>
 <div class="screenshot">
-  <img src="../images/page_0671_0.png" alt="Page 671">
-  <div class="caption">Page 671</div>
+  <img src="../images/page_0670_0.png" alt="Page 670">
+  <div class="caption">Page 670</div>
 </div>
+<p>(/tmp/aveva_pages/page_0671.png)</p>
 <p><strong>Page 12-5, Section 1 – Introduction</strong>.</p>
 <p>• <strong>XML Code Block</strong>: AppManifest.xml example exposing TextBox, RichTextBox, CheckBox, RadioButton</p>
 <p>• Assembly: PresentationFramework, System.Windows.Forms</p>
@@ -216,6 +219,7 @@
 <p>• Bottom: Four control icons: CheckBox, RadioButton, RichTextBox, TextBox</p>
 <p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
 <p>Section 1 – Introduction</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Multiple assemblies and controls can be listed within the Filters tag. For example, to expose only</p>
 <p>the TextBox and the RichTextBox controls from the PresentationFramework assembly, and the</p>
 <p>CheckBox and RadioButton controls from the System.Windows.Forms assembly, use the following</p>
@@ -240,9 +244,10 @@
 <p>When the imported App is selected in the Toolbox tab of a layout, only the exposed controls in the</p>
 <p>manifest file are available to be used.</p>
 <div class="screenshot">
-  <img src="../images/page_0672_0.png" alt="Page 672">
-  <div class="caption">Page 672</div>
+  <img src="../images/page_0671_0.png" alt="Page 671">
+  <div class="caption">Page 671</div>
 </div>
+<p>(/tmp/aveva_pages/page_0672.png)</p>
 <p><strong>Page 12-6, Module 12 – .NET Controls Usage</strong>.</p>
 <p>• <strong>Section Title</strong>: "Using the Imported App"</p>
 <p>• <strong>Text</strong>: After importing .NET controls as OMI Apps, they appear on Graphics tab. Controls referenced via MyContent namespace</p>
@@ -251,6 +256,8 @@
 <p>• Code line: <code>1 MyContent.AssetInfo_Faceplate1.</code></p>
 <p>• <strong>Autocomplete Dropdown</strong>: OwningObject, GetCPQuality, GetCPTimestamp, SetCustomPropertyValue</p>
 <p>• <strong>Footer</strong>: AVEVA™ Training]</p>
+<p>Module 12 – .NET Controls Usage</p>
+<p>AVEVA™ Training</p>
 <p>Using the Imported App</p>
 <p>After controls are imported successfully as OMI Apps, the Apps will be available on the Graphics</p>
 <p>tab. To use the imported controls, they must be associated with a layout pane in the Layout Editor</p>
@@ -259,46 +266,20 @@
 <p>In the layout where the controls are assigned, the controls can also be referenced using the</p>
 <p>MyContent namepace. For example, the properties and methods of the RichTextBox control can</p>
 <p>be used in the layout script as follows:</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
+<div class="screenshot">
+  <img src="../images/page_0672_0.png" alt="Page 672">
+  <div class="caption">Page 672</div>
 </div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← Previous: Lab 23 – Implementing Historical Playbac</a> &nbsp;|&nbsp;
-  <a href="L49-Lab-24---Working-with-NET-Controls.html">Next: Lab 24 – Working with .NET Controls →</a>
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playbac</a> &nbsp;|&nbsp;
+  <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

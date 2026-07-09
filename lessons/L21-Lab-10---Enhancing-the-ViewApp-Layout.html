@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 21: Lab 10 – Enhancing the ViewApp Layout</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L20-Layout-and-Pane-Customizations.html">← L20: Layout and Pane Customizations</a> &nbsp;|&nbsp;
   <a href="L22-Custom-Navigation.html">L22: Custom Navigation →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>🔬 L21: Lab 10 – Enhancing the ViewApp Layout</h1>
 <p class="source">Module 4 — ViewApp Customizations | Pages 309-326</p>
-
-<div class="screenshot">
-  <img src="../images/page_0309_0.png" alt="Page 309">
-  <div class="caption">Page 309</div>
-</div>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
 <p>Introduction</p>
 <p>In this lab, you will enhance the layout of the ViewApp in a number of ways.</p>
@@ -160,17 +150,16 @@
 <p></p>
 <p>Use the HamburgerApp</p>
 <div class="screenshot">
-  <img src="../images/page_0310_0.jpeg" alt="Page 310">
-  <div class="caption">Page 310</div>
+  <img src="../images/page_0309_0.png" alt="Page 309">
+  <div class="caption">Page 309</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0310_1.png" alt="Page 310">
-  <div class="caption">Page 310</div>
-</div>
+<p>` add button at top-right)</p>
 <p>• New pane <code>Pane5</code> positioned to the left of <code>Pane2</code></p>
 <p>• <code>Pane2</code> with breadcrumb navigation (adjacent to Pane5)</p>
 <p>• <code>Pane1 (default)</code> (bottom)</p>
 <p>• Left pane list now includes <code>Pane5</code>]</p>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
 <p>Add Panes for HamburgerApp</p>
 <p>In the following steps, you will edit the Main layout in the Layout Editor. You will add a pane for the</p>
 <p>HamburgerButton at the top of the layout. You will configure it so that its height will not change if</p>
@@ -184,6 +173,27 @@
 <p>Right-click Pane2 and select Add Pane | Left.</p>
 <p>A new pane named Pane5 is added to the left of Pane2.</p>
 <div class="screenshot">
+  <img src="../images/page_0310_0.jpeg" alt="Page 310">
+  <div class="caption">Page 310</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0310_1.png" alt="Page 310">
+  <div class="caption">Page 310</div>
+</div>
+<p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p>4.</p>
+<p>Select Pane5, and on the Properties tab, configure properties as follows:</p>
+<div class="key-concept">Note:</div>
+<p>The Size \ Height Sizing property for Pane5 is already set to Fixed because this</p>
+<p>pane was added based on Pane2.</p>
+<p>Pane5 is resized.</p>
+<p>The following shows Pane5 selected with a width of 50 px.</p>
+<p>Size \ Width:</p>
+<p>50</p>
+<p>Size \ Width Sizing:</p>
+<p>Fixed</p>
+<div class="screenshot">
   <img src="../images/page_0311_0.png" alt="Page 311">
   <div class="caption">Page 311</div>
 </div>
@@ -191,10 +201,17 @@
   <img src="../images/page_0311_1.png" alt="Page 311">
   <div class="caption">Page 311</div>
 </div>
-<p>Lab 10 – Enhancing the ViewApp Layout</p>
-<p>4.</p>
-<p>Select Pane5, and on the Properties tab, configure properties as follows:</p>
-<div class="key-concept">Note: The Size \ Height Sizing property for Pane5 is already set to Fixed because this pane was added based on Pane2. Pane5 is resized. The following shows Pane5 selected with a width of 50 px. Size \ Width: 50 Size \ Width Sizing: Fixed</div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
+<p>5.</p>
+<p>On the Toolbox tab, enter a search string to find the HamburgerButton and select it.</p>
+<p>6.</p>
+<p>Drag the HamburgerButton to Pane5.</p>
+<p>Because Pane5 is very small, you may want to zoom the layout preview display to make it</p>
+<p>easier to assign content to the pane.</p>
+<div class="key-concept">Note:</div>
+<p>You will leave the default configuration for the HamburgerButton, which will open the</p>
+<p>left slide-in pane when the button is clicked at runtime.</p>
 <div class="screenshot">
   <img src="../images/page_0312_0.png" alt="Page 312">
   <div class="caption">Page 312</div>
@@ -203,21 +220,7 @@
   <img src="../images/page_0312_1.png" alt="Page 312">
   <div class="caption">Page 312</div>
 </div>
-<p>5.</p>
-<p>On the Toolbox tab, enter a search string to find the HamburgerButton and select it.</p>
-<p>6.</p>
-<p>Drag the HamburgerButton to Pane5.</p>
-<p>Because Pane5 is very small, you may want to zoom the layout preview display to make it</p>
-<p>easier to assign content to the pane.</p>
-<div class="key-concept">Note: You will leave the default configuration for the HamburgerButton, which will open the left slide-in pane when the button is clicked at runtime.</div>
-<div class="screenshot">
-  <img src="../images/page_0313_0.png" alt="Page 313">
-  <div class="caption">Page 313</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0313_1.png" alt="Page 313">
-  <div class="caption">Page 313</div>
-</div>
+<p>` buttons at top-center and right/bottom edges</p>
 <p>• Modified left pane structure:</p>
 <p>• <em>Top-left</em>: New pane labeled "Pane6"</p>
 <p>• <em>Bottom-left</em>: Original pane "Pane3" (blue-outlined, selected)</p>
@@ -225,6 +228,7 @@
 <p>• <em>Right pane</em>: "Pane1 (default)" (unchanged)</p>
 <p>• <code>[+]</code> buttons remain consistent]</p>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>If you zoomed the layout preview display to make it easier to assign content to Pane5, you</p>
 <p>may want to reset the display. For example, you can use the Zoom to Fit option to show the</p>
 <p>whole layout in the preview display.</p>
@@ -237,13 +241,15 @@
 <p>Select Pane3 and add a new pane above it.</p>
 <p>A new pane named Pane6 is added above Pane3.</p>
 <div class="screenshot">
-  <img src="../images/page_0314_0.png" alt="Page 314">
-  <div class="caption">Page 314</div>
+  <img src="../images/page_0313_0.png" alt="Page 313">
+  <div class="caption">Page 313</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0314_1.jpeg" alt="Page 314">
-  <div class="caption">Page 314</div>
+  <img src="../images/page_0313_1.png" alt="Page 313">
+  <div class="caption">Page 313</div>
 </div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
 <p>8.</p>
 <p>Select Pane6, and on the Properties tab, configure properties as follows:</p>
 <p>Pane6 resizes in the preview area.</p>
@@ -256,15 +262,33 @@
 <p>Size \ Hide Row When Empty:</p>
 <p>unchecked</p>
 <div class="screenshot">
-  <img src="../images/page_0315_0.jpeg" alt="Page 315">
-  <div class="caption">Page 315</div>
+  <img src="../images/page_0314_0.png" alt="Page 314">
+  <div class="caption">Page 314</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0314_1.jpeg" alt="Page 314">
+  <div class="caption">Page 314</div>
 </div>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>9.</p>
 <p>With Pane6 selected, on the Properties tab, click the down-arrow next to the Appearance \</p>
 <p>Background property to display the color picker.</p>
 <p>Notice that the color picker shows RGBA color code values, where R is red, G is green, B is</p>
 <p>blue, and A is alpha. Alpha controls the transparency or opacity of the other three colors.</p>
+<div class="screenshot">
+  <img src="../images/page_0315_0.jpeg" alt="Page 315">
+  <div class="caption">Page 315</div>
+</div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
+<p><strong>10.</strong> Change the Alpha field on the right to a value of 0.</p>
+<p>This will make the pane background transparent.</p>
+<div class="key-concept">Note:</div>
+<p>You can also change the first two digits of the color code to 0 (zero) to set the</p>
+<p>background to transparent.</p>
+<p>You may need to click off the color picker to close it.</p>
+<p>The Appearance \ Background property for Pane6 is listed as #00E4E4E4.</p>
 <div class="screenshot">
   <img src="../images/page_0316_0.jpeg" alt="Page 316">
   <div class="caption">Page 316</div>
@@ -273,14 +297,8 @@
   <img src="../images/page_0316_1.png" alt="Page 316">
   <div class="caption">Page 316</div>
 </div>
-<p><strong>10.</strong> Change the Alpha field on the right to a value of 0.</p>
-<p>This will make the pane background transparent.</p>
-<div class="key-concept">Note: You can also change the first two digits of the color code to 0 (zero) to set the background to transparent. You may need to click off the color picker to close it. The Appearance \ Background property for Pane6 is listed as #00E4E4E4.</div>
-<div class="screenshot">
-  <img src="../images/page_0317_0.jpeg" alt="Page 317">
-  <div class="caption">Page 317</div>
-</div>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Add Padding to a Pane</p>
 <p>Now you will configure padding for a pane, which will add a small number of blank-space pixels</p>
 <p>between the pane border and content within the pane.</p>
@@ -288,9 +306,11 @@
 <p><strong>12.</strong> On the Properties tab, change the Appearance \ Padding property to 5,5,5,5.</p>
 <p><strong>13.</strong> Save and close the Main layout, and check it in.</p>
 <div class="screenshot">
-  <img src="../images/page_0318_0.jpeg" alt="Page 318">
-  <div class="caption">Page 318</div>
+  <img src="../images/page_0317_0.jpeg" alt="Page 317">
+  <div class="caption">Page 317</div>
 </div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
 <p>Change Other Pane Properties</p>
 <p>Next, you will customize panes in Asset_Layout. You will enable the pan and zoom controls and</p>
 <p>configure the divider between panes to be movable at runtime.</p>
@@ -299,6 +319,18 @@
 <p><strong>15.</strong> Ensure Pane1 is selected, and configure its Appearance \ Interaction Mode property to</p>
 <p>PanAndZoom.</p>
 <div class="screenshot">
+  <img src="../images/page_0318_0.jpeg" alt="Page 318">
+  <div class="caption">Page 318</div>
+</div>
+<p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p><strong>16.</strong> Click the pane divider between Pane1 and Pane2, but do not move the divider.</p>
+<div class="key-concept">Note:</div>
+<p>Do not change the position of the divider.</p>
+<p>Divider properties appear on the Properties tab.</p>
+<p><strong>17.</strong> On the Properties tab, check the General \ Is Interactive property.</p>
+<p><strong>18.</strong> Save and close Asset_Layout, and check it in.</p>
+<div class="screenshot">
   <img src="../images/page_0319_0.jpeg" alt="Page 319">
   <div class="caption">Page 319</div>
 </div>
@@ -306,17 +338,8 @@
   <img src="../images/page_0319_1.png" alt="Page 319">
   <div class="caption">Page 319</div>
 </div>
-<p>Lab 10 – Enhancing the ViewApp Layout</p>
-<p><strong>16.</strong> Click the pane divider between Pane1 and Pane2, but do not move the divider.</p>
-<div class="key-concept">Note: Do not change the position of the divider. Divider properties appear on the Properties tab. 17. On the Properties tab, check the General \ Is Interactive property. 18. Save and close Asset_Layout, and check it in.</div>
-<div class="screenshot">
-  <img src="../images/page_0320_0.png" alt="Page 320">
-  <div class="caption">Page 320</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0320_1.jpeg" alt="Page 320">
-  <div class="caption">Page 320</div>
-</div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
 <p>Test the ViewApp in a Preview Session</p>
 <p>Now you will test your ViewApp in the preview session.</p>
 <p><strong>19.</strong> Switch to the ViewApp preview session and ensure you are navigated to Mixer100.</p>
@@ -328,14 +351,29 @@
 <p>hamburger button when opened.</p>
 <p><strong>21.</strong> Click the hamburger button to close the left slide-in pane.</p>
 <div class="screenshot">
-  <img src="../images/page_0321_0.jpeg" alt="Page 321">
-  <div class="caption">Page 321</div>
+  <img src="../images/page_0320_0.png" alt="Page 320">
+  <div class="caption">Page 320</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0320_1.jpeg" alt="Page 320">
+  <div class="caption">Page 320</div>
 </div>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p><strong>22.</strong> In the display, notice the padding around the content.</p>
 <p>The padding appears because Pane1 in the Main layout is configured with 5 pixels of padding</p>
 <p>at the top, bottom, left, and right.</p>
 <p>For example, notice the padding to the right of the faceplate graphic.</p>
+<div class="screenshot">
+  <img src="../images/page_0321_0.jpeg" alt="Page 321">
+  <div class="caption">Page 321</div>
+</div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
+<p><strong>23.</strong> In the pane on the left with the mixer graphic, notice the pan and zoom controls at the bottom</p>
+<p>of the pane.</p>
+<p>These appear because the pane is configured with pan and zoom enabled.</p>
+<p><strong>24.</strong> Click the zoom percentage drop-down list and choose 200%.</p>
 <div class="screenshot">
   <img src="../images/page_0322_0.jpeg" alt="Page 322">
   <div class="caption">Page 322</div>
@@ -344,19 +382,8 @@
   <img src="../images/page_0322_1.png" alt="Page 322">
   <div class="caption">Page 322</div>
 </div>
-<p><strong>23.</strong> In the pane on the left with the mixer graphic, notice the pan and zoom controls at the bottom</p>
-<p>of the pane.</p>
-<p>These appear because the pane is configured with pan and zoom enabled.</p>
-<p><strong>24.</strong> Click the zoom percentage drop-down list and choose 200%.</p>
-<div class="screenshot">
-  <img src="../images/page_0323_0.png" alt="Page 323">
-  <div class="caption">Page 323</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0323_1.png" alt="Page 323">
-  <div class="caption">Page 323</div>
-</div>
 <p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>The display zooms in and scroll bars appear on the bottom and right sides of the pane.</p>
 <p>Also notice that the Pan Mode control appears with the zoom controls.</p>
 <p><strong>25.</strong> Click Pan Mode to enable the pane with pan interaction mode.</p>
@@ -365,13 +392,15 @@
 <p><strong>27.</strong> Click Pan Mode again to exit pan interaction mode.</p>
 <p><strong>28.</strong> Click Zoom To 100% to reset the pane display.</p>
 <div class="screenshot">
-  <img src="../images/page_0324_0.jpeg" alt="Page 324">
-  <div class="caption">Page 324</div>
+  <img src="../images/page_0323_0.png" alt="Page 323">
+  <div class="caption">Page 323</div>
 </div>
 <div class="screenshot">
-  <img src="../images/page_0324_1.png" alt="Page 324">
-  <div class="caption">Page 324</div>
+  <img src="../images/page_0323_1.png" alt="Page 323">
+  <div class="caption">Page 323</div>
 </div>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
 <p><strong>29.</strong> Move the divider between the pane with the mixer graphic and the pane with the faceplate</p>
 <p>graphic to the right and left.</p>
 <p>The divider moves because it is configured with interaction mode enabled.</p>
@@ -388,6 +417,22 @@
 <p><strong>34.</strong> On the Properties tab, for the Appearance \ Background Image property, click the ellipsis</p>
 <p>button to browse for an image file.</p>
 <div class="screenshot">
+  <img src="../images/page_0324_0.jpeg" alt="Page 324">
+  <div class="caption">Page 324</div>
+</div>
+<div class="screenshot">
+  <img src="../images/page_0324_1.png" alt="Page 324">
+  <div class="caption">Page 324</div>
+</div>
+<p>Lab 10 – Enhancing the ViewApp Layout</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
+<p>The Open dialog box appears.</p>
+<p>Several example images are provided in the C:\Training\Other Files folder.</p>
+<p><strong>35.</strong> Navigate to the C:\Training\Other Files folder, select OMITraining_800x800.png, and then</p>
+<p>click Open.</p>
+<p>This file contains a small image, which can be used as a watermark for the training application.</p>
+<p>The image appears in the preview area.</p>
+<div class="screenshot">
   <img src="../images/page_0325_0.png" alt="Page 325">
   <div class="caption">Page 325</div>
 </div>
@@ -395,13 +440,17 @@
   <img src="../images/page_0325_1.png" alt="Page 325">
   <div class="caption">Page 325</div>
 </div>
-<p>Lab 10 – Enhancing the ViewApp Layout</p>
-<p>The Open dialog box appears.</p>
-<p>Several example images are provided in the C:\Training\Other Files folder.</p>
-<p><strong>35.</strong> Navigate to the C:\Training\Other Files folder, select OMITraining_800x800.png, and then</p>
-<p>click Open.</p>
-<p>This file contains a small image, which can be used as a watermark for the training application.</p>
-<p>The image appears in the preview area.</p>
+<p>Module 4 – ViewApp Application Customizations</p>
+<p>AVEVA™ Training</p>
+<p><strong>36.</strong> On the Properties tab, configure the Appearance \ Sizing property as Tile.</p>
+<div class="key-concept">Note:</div>
+<p>The Tile effect is not reflected in the Layout Editor preview area. You will use the</p>
+<p>ViewApp preview session to verify the result.</p>
+<p><strong>37.</strong> Save and close the Main layout, and check it in.</p>
+<p><strong>38.</strong> Switch to the ViewApp preview session and navigate to Line1.</p>
+<p>Notice that the layout background is filled with the tiled image.</p>
+<p><strong>39.</strong> When you are finished testing, minimize the preview session.</p>
+<p><End of Lab></p>
 <div class="screenshot">
   <img src="../images/page_0326_0.png" alt="Page 326">
   <div class="caption">Page 326</div>
@@ -410,48 +459,16 @@
   <img src="../images/page_0326_1.jpeg" alt="Page 326">
   <div class="caption">Page 326</div>
 </div>
-<p><strong>36.</strong> On the Properties tab, configure the Appearance \ Sizing property as Tile.</p>
-<div class="key-concept">Note: The Tile effect is not reflected in the Layout Editor preview area. You will use the ViewApp preview session to verify the result. 37. Save and close the Main layout, and check it in. 38. Switch to the ViewApp preview session and navigate to Line1. Notice that the layout background is filled with the tiled image. 39. When you are finished testing, minimize the preview session. &lt;End of Lab&gt;</div>
-
-
-<div class="quiz">
-  <h3>Lab Review</h3>
-  <details>
-    <summary>Q1: What are the key steps you performed in this lab?</summary>
-    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
-  </details>
-  <details>
-    <summary>Q2: What would happen if you skipped a configuration step?</summary>
-    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
-  </details>
-</div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L20-Layout-and-Pane-Customizations.html">← Previous: Layout and Pane Customizations</a> &nbsp;|&nbsp;
-  <a href="L22-Custom-Navigation.html">Next: Custom Navigation →</a>
+  <a href="L20-Layout-and-Pane-Customizations.html">← L20: Layout and Pane Customizations</a> &nbsp;|&nbsp;
+  <a href="L22-Custom-Navigation.html">L22: Custom Navigation →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 14: Custom Properties</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">← L13: Lab 6 – Creating Symbols for Containment</a> &nbsp;|&nbsp;
   <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol →</a>
@@ -125,16 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L14: Custom Properties</h1>
 <p class="source">Module 3 — Industrial Graphics | Pages 235-236</p>
-
-<div class="screenshot">
-  <img src="../images/page_0235_0.png" alt="Page 235">
-  <div class="caption">Page 235</div>
-</div>
 <p>Section 5 – Custom Properties</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 5 – Custom Properties</p>
 <p>Introduction</p>
 <p>You can use custom properties to customize embedded symbols to extend the functionality of the</p>
@@ -164,6 +154,12 @@
 <p>The following example shows three custom properties already configured for the CommandPanel</p>
 <p>symbol.</p>
 <p>This section provides an overview of custom properties for symbols.</p>
+<div class="screenshot">
+  <img src="../images/page_0235_0.png" alt="Page 235">
+  <div class="caption">Page 235</div>
+</div>
+<p>Module 3 – Industrial Graphics</p>
+<p>AVEVA™ Training</p>
 <p></p>
 <p>Data Type: Select a data type from the drop-down list. These include Boolean, Double,</p>
 <p>ElapsedTime, Float, Integer, String, Time, and HistorySummary.</p>
@@ -199,46 +195,16 @@
 <p>symbols from a built-in library, the description contains helpful tips on how to use the</p>
 <p>custom property. For user-created custom properties, it is useful to provide helpful tips or</p>
 <p>hints on how to properly use the custom property as intended.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
-</div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">← Previous: Lab 6 – Creating Symbols for Containment</a> &nbsp;|&nbsp;
-  <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">Next: Lab 7 – Creating a Custom Symbol →</a>
+  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">← L13: Lab 6 – Creating Symbols for Containment</a> &nbsp;|&nbsp;
+  <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

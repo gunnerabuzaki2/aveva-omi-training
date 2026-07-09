@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 03: Visualization, Encrypted Comms and Requirements</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">← L02: Lab 1 – Creating and Deploying a Galaxy</a> &nbsp;|&nbsp;
   <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts →</a>
@@ -125,12 +121,10 @@
 </div>
 </nav>
 
-
-
 <h1>📖 L03: Visualization, Encrypted Comms and Requirements</h1>
 <p class="source">Module 1 — Introduction | Pages 33-42</p>
-
 <p>Section 3 – Visualization Overview</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 3 – Visualization Overview</p>
 <p>Introduction</p>
 <p>Application Server provides tools for developing interactive and animated graphical displays. The</p>
@@ -171,6 +165,8 @@
 <p>Industrial graphics are also referred to as symbols in Application Server.</p>
 <p>This section introduces visualization concepts and describes AVEVA Operations Management</p>
 <p>Interface as one of the visualization clients of AVEVA Application Server.</p>
+<p>Module 1 – Introduction</p>
+<p>AVEVA™ Training</p>
 <p>Client Controls</p>
 <p>Client controls provide functionality contained in .NET controls that you can use in symbols.</p>
 <p>External .NET controls can be imported into a Galaxy and used in symbols by embedding them.</p>
@@ -214,6 +210,7 @@
 <p>For more information, refer to the topic “Using AVEVA Connect” in the System Platform 2023</p>
 <p>online Help.</p>
 <p>Section 4 – Encrypted Communication</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 4 – Encrypted Communication</p>
 <p>The end-to-end communication between software applications (server and client) can be</p>
 <p>encrypted and secured to prevent eavesdropping and malicious tampering (also known as Man-in-</p>
@@ -241,10 +238,8 @@
 <p>HCAL</p>
 <p>This section describes the encrypted communication for end-to-end communication between</p>
 <p>server and client software applications.</p>
-<div class="screenshot">
-  <img src="../images/page_0036_0.jpeg" alt="Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: A">
-  <div class="caption">Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: Application Server 2017 Update 3+, InTouch OMI 2017 Update 3+, InTouch for System Platform 2017 Update 3+, OI Server (...</div>
-</div>
+<p>Module 1 – Introduction</p>
+<p>AVEVA™ Training</p>
 <p>Software that Supports Secured Communication</p>
 <p>The following software supports secured communication:</p>
 <p></p>
@@ -264,10 +259,11 @@
 <p>*Communications from the specific OI Server to any other products listed above can be encrypted.</p>
 <p>This is generic and applies to all OI Server versions.</p>
 <div class="screenshot">
-  <img src="../images/page_0037_0.jpeg" alt="Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scen">
-  <div class="caption">Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scenarios: one node has software before 2017 Update 3, one node points to SMS but other doesn&#x27;t, no SMS configured. If no...</div>
+  <img src="../images/page_0036_0.jpeg" alt="Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: A">
+  <div class="caption">Secured Communication Diagram  &quot;Software that Supports Secured Communication&quot;: Application Server 2017 Update 3+, InTouch OMI 2017 Update 3+, InTouch for System Platform 2017 Update 3+, OI Server (all versions), InTouch Web Client 2017 Update 3+, Historian 2017 Update 3+, Sentinel System Monitor 1.1 for System Platform 2017 Update 3+. **Architecture Diagram — Secured Communication Flow**: Network diagram showing: - Historian &quot;tier 2&quot; connected to Historian &quot;tier 1&quot; via Replication HCAL (secured, blue lock) - Historian &quot;tier 1&quot; connected to Application Server AOS1 via HCAL (secured) - Operations Management Interface connected to AOS1 via MX (secured) - AOS1 connected to InTouch HMI via SuiteLink (secured) - AOS1 connected to InTouch For System Platform via SuiteLink (secured) - InTouch HMI connected to InTouch Web Server via iData (secured) - InTouch For System Platform connected to its Web Server via iData (secured) - Application Server AOS2 connected to Communication Driver via MX (secured) - System Monitor Agent connected to System Monitor Manager via HTTPS (secured) All secured paths marked with blue lock icons.</div>
 </div>
 <p>Section 4 – Encrypted Communication</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Node-to-Node Communication</p>
 <p>Node-to-node communication is unsecured under certain scenarios, including the following:</p>
 <p></p>
@@ -280,18 +276,207 @@
 <p>There is no System Management Server configured for both nodes</p>
 <p>Please note that if one node points to one System Management Server and the other node points</p>
 <p>to another System Management Server, there will be NO network connection between the nodes.</p>
+<div class="screenshot">
+  <img src="../images/page_0037_0.jpeg" alt="Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scen">
+  <div class="caption">Node-to-Node Communication  &quot;Node-to-Node Communication&quot; section. Unsecured scenarios: one node has software before 2017 Update 3, one node points to SMS but other doesn&#x27;t, no SMS configured. If nodes point to different SMSs, NO connection. **Diagram — Three network configurations**: 1. **Community 1 Secured Mode**: All nodes point to SMS1, green shield icons, green connection lines 2. **Community 2 Secured Mode**: All nodes point to SMS2, green shield icons, green connection lines 3. **Legacy Unsecured Mode**: No SMS or old software, yellow exclamation icons, yellow connection lines Between Community 1 and 2: red &quot;X&quot; icon = &quot;No connection&quot;. Between Community 2 and Legacy: yellow exclamation = &quot;Unsecured connection&quot;. **Legend**: Red X = No connection, Green shield = Secured connection, Yellow &quot;!&quot; = Unsecured connection. &quot;DO NOT&quot; watermark. Footer: &quot;AVEVA™ Operations Management Interface 2023&quot;.</div>
+</div>
+<p>Module 1 – Introduction</p>
+<p>AVEVA™ Training</p>
 <p>Section 5 – System Requirements and Licensing</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>Section 5 – System Requirements and Licensing</p>
 <p>Software and Hardware Requirements</p>
 <p>The following topics describe software and hardware requirements for System Platform.</p>
-<div class="key-concept">Note: Please refer to the readme file that came with your software for more details about hardware and software requirements, compatibility information, key product notes, and additional resources. Or, visit the Knowledge &amp; Support Center at https://softwaresupport.aveva.com. Software Requirements The following table lists supported and preferred software requirements for various nodes in your system: Note: System Platform 2020 (and above) supports 64-bit operating systems only. Hardware Requirements The following tables list minimum and recommended hardware requirements.  For server nodes, such as Historian Server, the GR node, AppEngine host (Application Objects Server), and the System Platform IDE (development environment):  For client nodes, such as nodes that run WindowViewer, an Operations Management Interface application, Historian Client, and remote System Platform IDE: This section describes system requirements for System Platform software and introduces the licensing model. Development (System Platform IDE) Galaxy Repository Automation Object Server Supervisory Client Windows Server Preferred Preferred Preferred Supported Windows Workstation Supported Supported Supported Preferred SQL Server Not required Required Not required Not required .NET Framework Required Required Required Required Level Logical Processors RAM Free Disk Space Network Speed Small Minimum 4 2 GB 100 GB 100 Mbps 1-25K I/O per node Recommended 8 4 GB 200 GB 1 Gbps Medium Minimum 8 8 GB 200 GB 1 Gbps 25-50K I/O per node Recommended 16 12 GB 500 GB 1 Gbps Large Minimum 16 16 GB 500 GB 1 Gbps &gt; 50K I/O per node Recommended 32 24 GB 1 TB Dual 1 Gbps Level Logical Processors RAM Free Disk Space Network Speed Minimum 4 1 GB 100 GB 100 Mbps Recommended 8 4 GB 200 GB 1 Gbps</div>
+<div class="key-concept">Note: Please refer to the readme file that came with your software for more details about</div>
+<p>hardware and software requirements, compatibility information, key product notes, and additional</p>
+<p>resources. Or, visit the Knowledge & Support Center at https://softwaresupport.aveva.com.</p>
+<p>Software Requirements</p>
+<p>The following table lists supported and preferred software requirements for various nodes in your</p>
+<p>system:</p>
+<div class="key-concept">Note: System Platform 2020 (and above) supports 64-bit operating systems only.</div>
+<p>Hardware Requirements</p>
+<p>The following tables list minimum and recommended hardware requirements.</p>
+<p></p>
+<p>For server nodes, such as Historian Server, the GR node, AppEngine host (Application</p>
+<p>Objects Server), and the System Platform IDE (development environment):</p>
+<p></p>
+<p>For client nodes, such as nodes that run WindowViewer, an Operations Management</p>
+<p>Interface application, Historian Client, and remote System Platform IDE:</p>
+<p>This section describes system requirements for System Platform software and introduces the</p>
+<p>licensing model.</p>
+<p>Development</p>
+<p>(System Platform IDE)</p>
+<p>Galaxy</p>
+<p>Repository</p>
+<p>Automation</p>
+<p>Object Server</p>
+<p>Supervisory</p>
+<p>Client</p>
+<p>Windows Server</p>
+<p>Preferred</p>
+<p>Preferred</p>
+<p>Preferred</p>
+<p>Supported</p>
+<p>Windows Workstation</p>
+<p>Supported</p>
+<p>Supported</p>
+<p>Supported</p>
+<p>Preferred</p>
+<p>SQL Server</p>
+<p>Not required</p>
+<p>Required</p>
+<p>Not required</p>
+<p>Not required</p>
+<p>.NET Framework</p>
+<p>Required</p>
+<p>Required</p>
+<p>Required</p>
+<p>Required</p>
+<p>Level</p>
+<p>Logical</p>
+<p>Processors</p>
+<p>RAM</p>
+<p>Free Disk</p>
+<p>Space</p>
+<p>Network</p>
+<p>Speed</p>
+<p>Small</p>
+<p>Minimum</p>
+<p>4</p>
+<p>2 GB</p>
+<p>100 GB</p>
+<p>100 Mbps</p>
+<p>1-25K I/O per node</p>
+<p>Recommended</p>
+<p>8</p>
+<p>4 GB</p>
+<p>200 GB</p>
+<p>1 Gbps</p>
+<p>Medium</p>
+<p>Minimum</p>
+<p>8</p>
+<p>8 GB</p>
+<p>200 GB</p>
+<p>1 Gbps</p>
+<p>25-50K I/O per node</p>
+<p>Recommended</p>
+<p>16</p>
+<p>12 GB</p>
+<p>500 GB</p>
+<p>1 Gbps</p>
+<p>Large</p>
+<p>Minimum</p>
+<p>16</p>
+<p>16 GB</p>
+<p>500 GB</p>
+<p>1 Gbps</p>
+<p>> 50K I/O per node</p>
+<p>Recommended</p>
+<p>32</p>
+<p>24 GB</p>
+<p>1 TB</p>
+<p>Dual 1 Gbps</p>
+<p>Level</p>
+<p>Logical</p>
+<p>Processors</p>
+<p>RAM</p>
+<p>Free Disk</p>
+<p>Space</p>
+<p>Network</p>
+<p>Speed</p>
+<p>Minimum</p>
+<p>4</p>
+<p>1 GB</p>
+<p>100 GB</p>
+<p>100 Mbps</p>
+<p>Recommended</p>
+<p>8</p>
+<p>4 GB</p>
+<p>200 GB</p>
+<p>1 Gbps</p>
+<p>Module 1 – Introduction</p>
+<p>AVEVA™ Training</p>
 <p></p>
 <p>For all-in-one nodes with all products on a single node. An all-in-one node includes</p>
 <p>Application Server, InTouch, Historian, Historian Client, and Licensing components.</p>
 <p>Licensing</p>
 <p>The following topics provide general information about System Platform licensing.</p>
-<div class="key-concept">Note: Please contact your local distributor for details about licensing and pricing. Licensing Models Two licensing models are available:  Perpetual licensing offers permanent licenses with no expiration date. A perpetual license applies to a specific purchased software version.  Flex licensing offers subscription-based licenses that are renewed for a specific term. The license is for credits redeemable to access a wide range of software based on needs at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex program. Note: Subscription-based licenses are also available for development consignments (for example, System Integrator consignments). Activated Licensing AVEVA software is license-enforced using an activated licensing framework with an activation code. Management and activation of licenses are performed with the following components, which are installed as part of the installation of your purchased products:  License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy and failover.  License Manager: Web-based user interface to access and maintain licenses. License activation can be performed online or offline. Activation requires Internet access in both cases. Consult your sales representative for availability of email and phone activation.  Online refers to Internet access on the License Server network.  Offline refers to activation off-site. Refer to the documentation provided with your software product for more information on using the License Server and License Manager. Level Logical Processors RAM Free Disk Space Network Speed Small Minimum 8 8 GB 200 GB 100 Mbps 1,000 IO Max Recommended 12 12 GB 500 GB 1 Gbps Medium Minimum 12 16 GB 500 GB 1 Gbps 20,000 IO Max Recommended 16 32 GB 1 TB 1 Gbps Large Minimum 20 32 GB 2 TB 1 Gbps 100,000 IO Max Recommended 24 64 GB 4 TB 1 Gbps</div>
+<div class="key-concept">Note: Please contact your local distributor for details about licensing and pricing.</div>
+<p>Licensing Models</p>
+<p>Two licensing models are available:</p>
+<p></p>
+<p>Perpetual licensing offers permanent licenses with no expiration date. A perpetual</p>
+<p>license applies to a specific purchased software version.</p>
+<p></p>
+<p>Flex licensing offers subscription-based licenses that are renewed for a specific term.</p>
+<p>The license is for credits redeemable to access a wide range of software based on needs</p>
+<p>at the time. Visit https://sw.aveva.com/flex-subscription for more information on the Flex</p>
+<p>program.</p>
+<div class="key-concept">Note: Subscription-based licenses are also available for development consignments (for</div>
+<p>example, System Integrator consignments).</p>
+<p>Activated Licensing</p>
+<p>AVEVA software is license-enforced using an activated licensing framework with an activation</p>
+<p>code. Management and activation of licenses are performed with the following components, which</p>
+<p>are installed as part of the installation of your purchased products:</p>
+<p></p>
+<p>License Server: Acquires, stores, maintains, and serves licenses. It supports redundancy</p>
+<p>and failover.</p>
+<p></p>
+<p>License Manager: Web-based user interface to access and maintain licenses.</p>
+<p>License activation can be performed online or offline. Activation requires Internet access in both</p>
+<p>cases. Consult your sales representative for availability of email and phone activation.</p>
+<p></p>
+<p>Online refers to Internet access on the License Server network.</p>
+<p></p>
+<p>Offline refers to activation off-site.</p>
+<p>Refer to the documentation provided with your software product for more information on using the</p>
+<p>License Server and License Manager.</p>
+<p>Level</p>
+<p>Logical</p>
+<p>Processors</p>
+<p>RAM</p>
+<p>Free Disk</p>
+<p>Space</p>
+<p>Network</p>
+<p>Speed</p>
+<p>Small</p>
+<p>Minimum</p>
+<p>8</p>
+<p>8 GB</p>
+<p>200 GB</p>
+<p>100 Mbps</p>
+<p>1,000 IO Max</p>
+<p>Recommended</p>
+<p>12</p>
+<p>12 GB</p>
+<p>500 GB</p>
+<p>1 Gbps</p>
+<p>Medium</p>
+<p>Minimum</p>
+<p>12</p>
+<p>16 GB</p>
+<p>500 GB</p>
+<p>1 Gbps</p>
+<p>20,000 IO Max</p>
+<p>Recommended</p>
+<p>16</p>
+<p>32 GB</p>
+<p>1 TB</p>
+<p>1 Gbps</p>
+<p>Large</p>
+<p>Minimum</p>
+<p>20</p>
+<p>32 GB</p>
+<p>2 TB</p>
+<p>1 Gbps</p>
+<p>100,000 IO Max</p>
+<p>Recommended</p>
+<p>24</p>
+<p>64 GB</p>
+<p>4 TB</p>
+<p>1 Gbps</p>
 <p>Section 5 – System Requirements and Licensing</p>
+<p>AVEVA™ Operations Management Interface 2023</p>
 <p>System Platform Perpetual Licenses</p>
 <p>System Platform perpetual licenses are available in different sizes. Each option is a combination of</p>
 <p>a certain number of I/O points, Historian tags, and Communication Driver licenses.</p>
@@ -329,10 +514,8 @@
 <p>development purposes, a Development Studio license is required. Otherwise, tools such</p>
 <p>as the System Platform IDE will not launch. Development Studio licenses are offered only</p>
 <p>with the subscription model.</p>
-<div class="screenshot">
-  <img src="../images/page_0042_0.png" alt="AVEVA Operations Control &amp; Azure AD  AVEVA Operations Control: Commercial su">
-  <div class="caption">AVEVA Operations Control &amp; Azure AD  AVEVA Operations Control: Commercial subscription offering for AVEVA operations control software portfolio. AVEVA Flex subscription required, named-user lic...</div>
-</div>
+<p>Module 1 – Introduction</p>
+<p>AVEVA™ Training</p>
 <p>AVEVA Operations Control</p>
 <p>AVEVA Operations Control is a commercial offering that includes access to the AVEVA portfolio of</p>
 <p>operations control software. It can only be licensed with an AVEVA Flex subscription using a</p>
@@ -352,46 +535,20 @@
 <p>Microsoft-managed identities to log into the System Platform IDE, Operations Control</p>
 <p>Management Console, Operations Management Interface ViewApps, and to perform secured and</p>
 <p>verified writes.</p>
-
-
-<div class="quiz">
-  <h3>Knowledge Check</h3>
-  <details>
-    <summary>Q1: What are the main concepts covered in this lesson?</summary>
-    <p class="answer">Review the key concepts section above for the core topics discussed.</p>
-  </details>
-  <details>
-    <summary>Q2: How does this topic relate to the overall OMI architecture?</summary>
-    <p class="answer">Consider how the concepts in this lesson fit into the broader System Platform and OMI framework.</p>
-  </details>
+<div class="screenshot">
+  <img src="../images/page_0042_0.png" alt="AVEVA Operations Control &amp; Azure AD  **AVEVA Operations Control**: Commercial su">
+  <div class="caption">AVEVA Operations Control &amp; Azure AD  **AVEVA Operations Control**: Commercial subscription offering for AVEVA operations control software portfolio. AVEVA Flex subscription required, named-user license model. Three tiers: - **Enterprise**: IT/OT convergence, cross-regional/global collaboration - **Supervisory**: Centralized distributed SCADA management - **Edge**: Local process monitoring/control, includes Historian with 7-day data retrieval **Component Diagram**: - Enterprise: System Platform Enterprise, Unified Operations Center Templates, Historian, Work Tasks - Supervisory: System Platform, Plant SCADA, Historian - Edge: InTouch HMI, Edge, Historian (7-day) - Common (+): Communication Drivers, Teamwork (cloud), Reports for Operations, Insight (cloud), Development Studio + Integration Studio (cloud), System Monitor **Azure Active Directory**: Starting with System Platform 2023, Azure AD (now Azure Entra ID) supported for authentication and SSO. Configure Galaxy security with Azure AD as external identity provider. Users log into System Platform IDE, Operations Control Management Console, OMI ViewApps with Microsoft-managed identities. Enables secured verified writes.</div>
 </div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">← Previous: Lab 1 – Creating and Deploying a Galaxy</a> &nbsp;|&nbsp;
-  <a href="L04-Screen-Profiles-and-Layouts.html">Next: Screen Profiles and Layouts →</a>
+  <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">← L02: Lab 1 – Creating and Deploying a Galaxy</a> &nbsp;|&nbsp;
+  <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>

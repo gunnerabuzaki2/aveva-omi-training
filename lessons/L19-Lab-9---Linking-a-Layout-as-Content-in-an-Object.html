@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 19: Lab 9 – Linking a Layout as Content in an Object</title>
-<style>
-  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -26,14 +25,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }
-</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
-
 <nav>
   <a href="L18-Linking-Layouts-as-Content.html">← L18: Linking Layouts as Content</a> &nbsp;|&nbsp;
   <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations →</a>
@@ -125,119 +121,19 @@
 </div>
 </nav>
 
-
-
 <h1>🔬 L19: Lab 9 – Linking a Layout as Content in an Object</h1>
 <p class="source">Module 4 — ViewApp Customizations | Pages 291-300</p>
 
-<div class="screenshot">
-  <img src="../images/page_0291_0.png" alt="Page 291">
-  <div class="caption">Page 291</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0292_0.png" alt="Page 292">
-  <div class="caption">Page 292</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0293_0.png" alt="Page 293">
-  <div class="caption">Page 293</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0294_0.png" alt="Page 294">
-  <div class="caption">Page 294</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0294_1.png" alt="Page 294">
-  <div class="caption">Page 294</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0295_0.png" alt="Page 295">
-  <div class="caption">Page 295</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0295_1.png" alt="Page 295">
-  <div class="caption">Page 295</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0296_0.png" alt="Page 296">
-  <div class="caption">Page 296</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0296_1.png" alt="Page 296">
-  <div class="caption">Page 296</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0297_0.png" alt="Page 297">
-  <div class="caption">Page 297</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0297_1.png" alt="Page 297">
-  <div class="caption">Page 297</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0298_0.png" alt="Page 298">
-  <div class="caption">Page 298</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0298_1.png" alt="Page 298">
-  <div class="caption">Page 298</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0299_0.jpeg" alt="Page 299">
-  <div class="caption">Page 299</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0299_1.jpeg" alt="Page 299">
-  <div class="caption">Page 299</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0300_0.png" alt="Page 300">
-  <div class="caption">Page 300</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0300_1.jpeg" alt="Page 300">
-  <div class="caption">Page 300</div>
-</div>
-
-
-<div class="quiz">
-  <h3>Lab Review</h3>
-  <details>
-    <summary>Q1: What are the key steps you performed in this lab?</summary>
-    <p class="answer">Review the lab steps above and list the main configuration actions you completed.</p>
-  </details>
-  <details>
-    <summary>Q2: What would happen if you skipped a configuration step?</summary>
-    <p class="answer">Consider the dependencies between steps and how skipping one might affect the outcome.</p>
-  </details>
-</div>
-
+<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L18-Linking-Layouts-as-Content.html">← Previous: Linking Layouts as Content</a> &nbsp;|&nbsp;
-  <a href="L20-Layout-and-Pane-Customizations.html">Next: Layout and Pane Customizations →</a>
+  <a href="L18-Linking-Layouts-as-Content.html">← L18: Linking Layouts as Content</a> &nbsp;|&nbsp;
+  <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations →</a>
 </nav>
-
-
 <script>
-function saveProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked ? '1' : '0');
-  });
-  updateProgressText();
-}
-function loadProgress() {
-  document.querySelectorAll('input[data-lesson]').forEach(cb => {
-    cb.checked = localStorage.getItem('omi_' + cb.dataset.lesson) === '1';
-  });
-  updateProgressText();
-}
-function updateProgressText() {
-  var total = document.querySelectorAll('input[data-lesson]').length;
-  var done = document.querySelectorAll('input[data-lesson]:checked').checked;
-  var el = document.getElementById('progress-text');
-  if (el) el.textContent = done + ' / ' + total + ' lessons completed';
-}
-window.addEventListener('load', loadProgress);
+function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
+function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
+function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
+window.addEventListener('load',loadProgress);
 </script>
 </body>
 </html>
