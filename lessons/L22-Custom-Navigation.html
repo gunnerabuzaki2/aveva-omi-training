@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -122,219 +123,186 @@
 </nav>
 
 <h1>📖 L22: Custom Navigation</h1>
-<p class="source">Module 4 — ViewApp Customizations | Pages 327-334</p>
-<p>Section 3 – Custom Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 3 – Custom Navigation</p>
-<p>Introduction</p>
-<p>A ViewApp provides built-in navigation, which can be customized to give users the ability to view</p>
-<p>specific types of content associated with each navigation item.</p>
-<p>In the ViewApp Editor, you can configure a custom navigation item to reference items in the Model</p>
-<p>view hierarchy (plant model) or the Visual ToolBox hierarchy (Graphics tab). The navigation item</p>
-<p>will replicate the hierarchy of the referenced items. During runtime, the ViewApp will display</p>
-<p>associated content from the custom navigation item and its referencing hierarchy according to</p>
-<p>auto-fill settings.</p>
-<p>You can also configure the custom navigation item to be associated with one or more specific</p>
-<p>content items, by assigning the content items to the associated layout panes.</p>
-<p>Or, you can assign a different layout to selected custom navigation items and then associate</p>
-<p>content to each pane of that layout. During runtime, when the custom navigation item is selected in</p>
-<p>the ViewApp, the associated layout displays associated content in each pane.</p>
-<p>Custom Navigation Commands</p>
-<p>The ViewApp Editor includes commands for customizing the Navigation model for a ViewApp.</p>
-<p></p>
-<p>Add: Adds a custom navigation item as a child of the selected item in the Navigation</p>
-<p>model.</p>
-<p></p>
-<p>Add Sibling: Adds a custom navigation item as a sibling of the selected item in the</p>
-<p>Navigation model. Sibling items are at the same level within a navigation hierarchy. In the</p>
-<p>default Navigation model, a sibling item cannot be added to the root (Home).</p>
-<p></p>
-<p>Remove: Removes the selected custom navigation item and all child items beneath it in</p>
-<p>the navigation hierarchy. In the default Navigation model, the root (Home) cannot be</p>
-<p>removed.</p>
-<p></p>
-<p>Rename: Makes the custom navigation item name editable in the Navigation model. In the</p>
-<p>default Navigation model, Home and Assets can also be renamed.</p>
-<p>This section describes how to customize the built-in navigation in a ViewApp.</p>
-<div class="screenshot">
-  <img src="../images/page_0327_0.jpeg" alt="Page 327">
-  <div class="caption">Page 327</div>
+<p class="source">AVEVA™ Operations Management Interface 2023</p>
+<p class="page-ref">Module 4 — ViewApp Customizations | Pages 327–334</p>
+
+<h2>Introduction</h2>
+
+<div class="key-concept">
+A ViewApp provides built-in navigation that can be customized to let users view specific types of content associated with each navigation item.
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Add Navigation Items</p>
-<p>Custom child navigation items can be added to the Navigation model by selecting a navigation</p>
-<p>item and clicking Add. The new item is added as a child item to the selected item.</p>
-<p>For example, to add a navigation item as a child of a navigation item named Plant, select Plant</p>
-<p>and click Add. An item is added to the Navigation model as a child of Plant. The name is editable,</p>
-<p>so you can click the name and enter a new name. The following example shows adding a child</p>
-<p>navigation under Plant and naming it Receiving.</p>
-<p>By default, the Add command is not available for navigation items that reference an asset from the</p>
-<p>Model hierarchy (plant model) or a toolset in the Visual ToolBox hierarchy (Graphics tab). For</p>
-<p>example, when the default built-in Assets navigation item is selected, the Add command is</p>
-<p>disabled. You cannot add child navigation items to Assets.</p>
-<p>Add Sibling Navigation Items</p>
-<p>Custom sibling navigation items can be added to the Navigation model by selecting a navigation</p>
-<p>item at the same level as the item you want to add and clicking Add Sibling. The new item is added</p>
-<p>at the same level as the selected item.</p>
-<p>Note that the Add Sibling command is not available when the root (Home) item is selected. You</p>
-<p>cannot add sibling navigation items to the root of the navigation hierarchy shown in the ViewApp</p>
-<p>Editor.</p>
-<p>Remove Navigation Items</p>
-<p>Custom navigation items can be removed from the Navigation model by selecting the item to</p>
-<p>remove and clicking Remove. The selected custom navigation item and any child items beneath it</p>
-<p>are removed.</p>
-<p>The Remove command is not available when a child navigation item is selected if its parent</p>
-<p>navigation item references an asset from the Model hierarchy (plant model) or a toolset in the</p>
-<p>Visual ToolBox hierarchy (Graphics tab). However, the parent navigation item can be removed,</p>
-<p>which will remove the parent item and all its child items.</p>
-<p>For example, consider the default built-in navigation item Assets, which references the Model view</p>
-<p>hierarchy. When a child navigation item beneath Assets is selected, the Remove command is not</p>
-<p>available. However, when Assets is selected, the Remove command is available. Clicking Remove</p>
-<p>removes the Assets item and all its child items. The Home item remains in the list. It is the root of</p>
-<p>the navigation hierarchy shown in the ViewApp Editor and cannot be removed.</p>
+
+<p>In the ViewApp Editor, you can configure a custom navigation item to reference items in the Model view hierarchy (the plant model) or the Visual ToolBox hierarchy (the Graphics tab). The navigation item will replicate the hierarchy of the referenced items. During runtime, the ViewApp displays associated content from the custom navigation item and its referencing hierarchy according to auto-fill settings.</p>
+
+<p>You can also configure the custom navigation item to be associated with one or more specific content items by assigning the content items to the associated layout panes. Alternatively, you can assign a different layout to selected custom navigation items and then associate content to each pane of that layout. During runtime, when the custom navigation item is selected in the ViewApp, the associated layout displays its content in each pane.</p>
+
+<h2>Custom Navigation Commands</h2>
+
+<p>The ViewApp Editor includes commands for customizing the Navigation model for a ViewApp. The toolbar provides four key operations:</p>
+
 <div class="screenshot">
-  <img src="../images/page_0328_0.png" alt="Page 328">
-  <div class="caption">Page 328</div>
+  <img src="../images/page_0327_0.jpeg" alt="ViewApp Editor Navigation panel showing the toolbar with Add, Add Sibling, Remove, and Rename buttons alongside the Navigation tree with Home as the root item">
+  <div class="caption">The ViewApp Editor Navigation panel with toolbar commands: Add, Add Sibling, Remove, and Rename, alongside the Navigation tree starting at Home</div>
 </div>
-<p>Section 3 – Custom Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Rearrange Navigation Items</p>
-<p>Custom navigation items can be rearranged in the Navigation list by dragging and dropping as</p>
-<p>needed.</p>
-<p>Navigation Item Properties</p>
-<p>Each navigation item in the Navigation model contains properties that define the item. With a</p>
-<p>navigation item selected, properties for that item appear on the right side of the ViewApp Editor.</p>
-<p>Properties include navigation-specific and security properties.</p>
-<p>Navigation Property</p>
-<p>Description</p>
-<p>Title</p>
-<p>Display name of the selected custom navigation item.</p>
-<p>If you are configuring the Title property and the Reference property, configure</p>
-<p>Reference first. If you configure Title before configuring Reference, the Title</p>
-<p>property will be overwritten by the selected reference name.</p>
-<p>Note that if a navigation item is replicated from the plant model and the</p>
-<p>referenced object has an alias assigned, the Title property uses the alias</p>
-<p>name of the referenced object.</p>
-<p>Reference</p>
-<p>Full path of the item in the Model (plant model) or Visual ToolBox (Graphics</p>
-<p>tab) hierarchy.</p>
-<p>Include Children</p>
-<p>This property becomes available if the item selected for Reference is an asset</p>
-<p>from the Model view that has its own hierarchy. It determines whether the</p>
-<p>referenced asset item will include its child items in the Navigation list.</p>
-<p>Checking this property will replicate that hierarchy beneath the navigation</p>
-<p>item being configured. Unchecking this property will not include the child</p>
-<p>items of the referenced asset. This property is checked by default.</p>
-<p>Auto-Fill Content</p>
-<p>Auto-Fill content mode of the selected navigation item to determine its</p>
-<p>navigation behaviors. It includes a drop-down list of Auto-Fill options, which</p>
-<p>are the same as the options for the Auto-Fill Content field in the Actions view.</p>
-<p>Refer to Module 2 for more information about Auto-Fill Content options.</p>
-<p>Security Property</p>
-<p>Description</p>
-<p>Access Level</p>
-<p>Security access level assigned to the selected navigation item. Can be a</p>
-<p>value between -1 and 9999. Refer to Module 8 for more information.</p>
-<p>User Roles</p>
-<p>User role(s) assigned to the selected navigation item. At runtime, if the</p>
-<p>logged-in user has been assigned one or more of the selected roles, the</p>
-<p>navigation item will be visible to that user. If set to “not configured,” the</p>
-<p>navigation item will be available to any user, even if they are not logged in to</p>
-<p>the running ViewApp.</p>
-<p>If both Access Level and User Roles are configured, then both conditions</p>
-<p>must be satisfied for the navigation item to be visible to the logged-in user at</p>
-<p>runtime.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Navigation Item References</p>
-<p>One of the properties for a Navigation item is Reference, which is the full path referenced by the</p>
-<p>item in the Navigation model hierarchy. To configure the Reference property, click the down-arrow</p>
-<p>to the right of the Reference field. You can configure a reference to an asset from the Model</p>
-<p>hierarchy (plant model) or to a specific toolset from the Graphics tab.</p>
-<p>To have the navigation item reference an asset in the Galaxy, click the down-arrow for the</p>
-<p>Reference field. The objects shown reflect the plant model and you can expand the hierarchy to</p>
-<p>make a selection. The following example shows Plant selected.</p>
+
+<ul>
+  <li><strong>Add:</strong> Adds a custom navigation item as a child of the selected item in the Navigation model.</li>
+  <li><strong>Add Sibling:</strong> Adds a custom navigation item as a sibling of the selected item in the Navigation model. Sibling items are at the same level within a navigation hierarchy. In the default Navigation model, a sibling item cannot be added to the root (Home).</li>
+  <li><strong>Remove:</strong> Removes the selected custom navigation item and all child items beneath it in the navigation hierarchy. In the default Navigation model, the root (Home) cannot be removed.</li>
+  <li><strong>Rename:</strong> Makes the custom navigation item name editable in the Navigation model. In the default Navigation model, Home and Assets can also be renamed.</li>
+</ul>
+
+<h2>Add Navigation Items</h2>
+
+<p>Custom child navigation items can be added to the Navigation model by selecting a navigation item and clicking <strong>Add</strong>. The new item is added as a child item to the selected item.</p>
+
+<p>For example, to add a navigation item as a child of a navigation item named Plant, select Plant and click Add. An item is added to the Navigation model as a child of Plant. The name is editable, so you can click the name and enter a new name. The following example shows adding a child navigation under Plant and naming it Receiving.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0330_0.png" alt="Page 330">
-  <div class="caption">Page 330</div>
+  <img src="../images/page_0328_0.png" alt="Three-panel sequence showing the process of adding a child navigation item under Plant: first selecting Plant, then the new editable NavigationItem1, and finally the renamed Receiving item">
+  <div class="caption">Adding a child navigation item under Plant — selecting Plant, creating a new item, and renaming it to Receiving</div>
 </div>
-<p>Section 3 – Custom Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The value of the Reference property changes to show the full path of the selected reference and</p>
-<p>the Title field changes accordingly. The Include Children property becomes available and is</p>
-<p>checked by default, if the reference selected for the Reference property has its own hierarchy in</p>
-<p>the Model view.</p>
-<p>If the selected reference for a navigation item has its own hierarchy in Model view, that hierarchy</p>
-<p>will be replicated beneath the navigation item being configured. The hierarchy will reflect the order</p>
-<p>of the instances as listed in the plant model.</p>
-<p>To have the navigation item reference an item in the Graphics tab, expand Visual ToolBox and</p>
-<p>select the item. The items shown reflect toolsets from the Graphics tab, such as the Industrial</p>
-<p>Graphic Library, the Situational Awareness Library, and custom toolsets.</p>
-<p>Updating Objects in Model View for ViewApp Navigation</p>
-<p>When a navigation item in the ViewApp is configured with a reference to an asset from the Model</p>
-<p>view hierarchy (plant model), and it has its own hierarchy, the child items are replicated in the</p>
-<p>navigation model and they are not editable within the ViewApp Editor.</p>
-<p>To update the referenced model hierarchy, you can perform the following operations in the Model</p>
-<p>view:</p>
-<p></p>
-<p>Rearranging Objects: In the Model view, by default, objects are organized in alphabetic</p>
-<p>order based on their names within the same level of the hierarchy. For navigation purpose,</p>
-<p>objects can be rearranged to more closely resemble the functional organization of different</p>
-<p>components in the production process. When the hierarchy is referenced by a navigation</p>
-<p>item in the ViewApp, the updated Model hierarchy is used for the navigation model.</p>
-<p>When you drag an object to move it up or down in the Model view, a green line indicator</p>
-<p>appears to show the new position where the object can be dropped. You need to make</p>
-<p>sure that the indicator displays in the desired position before dropping the object.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> By default, the Add command is not available for navigation items that reference an asset from the Model hierarchy (plant model) or a toolset in the Visual ToolBox hierarchy (Graphics tab). For example, when the default built-in Assets navigation item is selected, the Add command is disabled. You cannot add child navigation items to Assets.
+</div>
+
+<h3>Add Sibling Navigation Items</h3>
+
+<p>Custom sibling navigation items can be added to the Navigation model by selecting a navigation item at the same level as the item you want to add and clicking <strong>Add Sibling</strong>. The new item is added at the same level as the selected item.</p>
+
+<p>Note that the Add Sibling command is not available when the root (Home) item is selected. You cannot add sibling navigation items to the root of the navigation hierarchy shown in the ViewApp Editor.</p>
+
+<h3>Remove Navigation Items</h3>
+
+<p>Custom navigation items can be removed from the Navigation model by selecting the item to remove and clicking <strong>Remove</strong>. The selected custom navigation item and any child items beneath it are removed.</p>
+
+<p>The Remove command is not available when a child navigation item is selected if its parent navigation item references an asset from the Model hierarchy or a toolset in the Visual ToolBox hierarchy. However, the parent navigation item can be removed, which will remove the parent item and all its child items.</p>
+
+<p>For example, consider the default built-in navigation item Assets, which references the Model view hierarchy. When a child navigation item beneath Assets is selected, the Remove command is not available. However, when Assets is selected, the Remove command is available. Clicking Remove removes the Assets item and all its child items. The Home item remains in the list — it is the root of the navigation hierarchy and cannot be removed.</p>
+
+<h2>Navigation Item Properties</h2>
+
+<p>Each navigation item in the Navigation model contains properties that define the item. With a navigation item selected, properties for that item appear on the right side of the ViewApp Editor. Properties include navigation-specific and security properties.</p>
+
+<p>Custom navigation items can be rearranged in the Navigation list by dragging and dropping as needed.</p>
+
+<h3>Navigation Properties</h3>
+
+<table>
+  <thead>
+    <tr><th>Property</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Title</strong></td>
+      <td>Display name of the selected custom navigation item. If you are configuring the Title property and the Reference property, configure Reference first. If you configure Title before configuring Reference, the Title property will be overwritten by the selected reference name. Note that if a navigation item is replicated from the plant model and the referenced object has an alias assigned, the Title property uses the alias name of the referenced object.</td>
+    </tr>
+    <tr>
+      <td><strong>Reference</strong></td>
+      <td>Full path of the item in the Model (plant model) or Visual ToolBox (Graphics tab) hierarchy.</td>
+    </tr>
+    <tr>
+      <td><strong>Include Children</strong></td>
+      <td>Becomes available if the item selected for Reference is an asset from the Model view that has its own hierarchy. It determines whether the referenced asset item will include its child items in the Navigation list. Checking this property will replicate that hierarchy beneath the navigation item being configured. Unchecking this property will not include the child items of the referenced asset. This property is checked by default.</td>
+    </tr>
+    <tr>
+      <td><strong>Auto-Fill Content</strong></td>
+      <td>Auto-Fill content mode of the selected navigation item to determine its navigation behaviors. It includes a drop-down list of Auto-Fill options, which are the same as the options for the Auto-Fill Content field in the Actions view.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Security Properties</h3>
+
+<table>
+  <thead>
+    <tr><th>Property</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Access Level</strong></td>
+      <td>Security access level assigned to the selected navigation item. Can be a value between -1 and 9999.</td>
+    </tr>
+    <tr>
+      <td><strong>User Roles</strong></td>
+      <td>User role(s) assigned to the selected navigation item. At runtime, if the logged-in user has been assigned one or more of the selected roles, the navigation item will be visible to that user. If set to "not configured," the navigation item will be available to any user, even if they are not logged in. If both Access Level and User Roles are configured, then both conditions must be satisfied for the navigation item to be visible.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Navigation Item References</h2>
+
+<p>One of the properties for a Navigation item is Reference, which is the full path referenced by the item in the Navigation model hierarchy. To configure the Reference property, click the down-arrow to the right of the Reference field. You can configure a reference to an asset from the Model hierarchy (plant model) or to a specific toolset from the Graphics tab.</p>
+
+<p>To have the navigation item reference an asset in the Galaxy, click the down-arrow for the Reference field. The objects shown reflect the plant model and you can expand the hierarchy to make a selection. The following example shows Plant selected.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0331_0.png" alt="Page 331">
-  <div class="caption">Page 331</div>
+  <img src="../images/page_0330_0.png" alt="Navigation Item Properties panel showing the Reference dropdown expanded with the Model hierarchy, where Plant is selected alongside Packaging, Production, Receiving, and Shipping sub-assets">
+  <div class="caption">Setting the Reference property — browsing the Model hierarchy and selecting Plant</div>
 </div>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Otherwise, you may inadvertently assign the object being moved to another object. The</p>
-<p>following example shows moving the Receiving object to the first item listed under Plant.</p>
-<p></p>
-<p>Assigning Alias Names to Objects: Each object in the Model view can be assigned an</p>
-<p>alias name, which is a string. It will be used as the default Title of the navigation item that</p>
-<p>references the object in the ViewApp. It does not provide another way to address items in</p>
-<p>the navigation model of a ViewApp. The alias name cannot be used to reference an object</p>
-<p>or its attributes in scripts and animations. You must still reference an object based on its</p>
-<p>unique object name or hierarchical name.</p>
-<p>You can assign or update the alias name for an object in the Model view. For example,</p>
-<p>you can right-click an object and select Rename Alias. You can toggle the Model view to</p>
-<p>display the objects by their tag names or alias names.</p>
+
+<p>The value of the Reference property changes to show the full path of the selected reference and the Title field changes accordingly. The Include Children property becomes available and is checked by default, if the reference selected for the Reference property has its own hierarchy in the Model view.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0332_0.png" alt="Page 332">
-  <div class="caption">Page 332</div>
+  <img src="../images/page_0331_0.png" alt="Navigation Item Properties panel showing Plant configured with Reference set to Model backslash Plant, Include Children checked, and Auto-Fill Content set to Current up then down">
+  <div class="caption">Completed configuration — Reference set to Model\Plant with Include Children checked</div>
 </div>
+
+<p>If the selected reference for a navigation item has its own hierarchy in Model view, that hierarchy will be replicated beneath the navigation item being configured. The hierarchy will reflect the order of the instances as listed in the plant model.</p>
+
+<p>To have the navigation item reference an item in the Graphics tab, expand Visual ToolBox and select the item. The items shown reflect toolsets from the Graphics tab, such as the Industrial Graphic Library, the Situational Awareness Library, and custom toolsets.</p>
+
+<h2>Updating Objects in Model View for ViewApp Navigation</h2>
+
+<p>When a navigation item in the ViewApp is configured with a reference to an asset from the Model view hierarchy (plant model), and it has its own hierarchy, the child items are replicated in the navigation model and they are not editable within the ViewApp Editor.</p>
+
+<p>To update the referenced model hierarchy, you can perform the following operations in the Model view:</p>
+
+<h3>Rearranging Objects</h3>
+
+<p>In the Model view, by default, objects are organized in alphabetic order based on their names within the same level of the hierarchy. For navigation purposes, objects can be rearranged to more closely resemble the functional organization of different components in the production process. When the hierarchy is referenced by a navigation item in the ViewApp, the updated Model hierarchy is used for the navigation model.</p>
+
+<p>When you drag an object to move it up or down in the Model view, a green line indicator appears to show the new position where the object can be dropped. You need to make sure that the indicator displays in the desired position before dropping the object.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0332_1.png" alt="Page 332">
-  <div class="caption">Page 332</div>
+  <img src="../images/page_0332_0.png" alt="Two side-by-side screenshots of the Model - Tagname tree showing Receiving being dragged from below Packaging to the first position under Plant">
+  <div class="caption">Rearranging objects in Model view — moving Receiving above Packaging under Plant</div>
 </div>
-<p>Section 3 – Custom Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The AliasName attribute is available for objects. It is a read-only attribute that stores the</p>
-<p>alias name string specified for an object. Note that assigning an alias name starting with</p>
-<p>an underscore hides the object from the navigation model.</p>
-<p>To rearrange the objects in the model hierarchy or change the object alias name, the objects must</p>
-<p>be undeployed first. After updating the objects in the Model view, the referenced items will be</p>
-<p>updated accordingly in the ViewApp, and you can view and test before redeploying any objects.</p>
-<p>For more information about rearranging objects in the Model view and assigning alias name to an</p>
-<p>object, please refer to the Application Server User Guide.</p>
-<p>Associate Content to Custom Navigation Items</p>
-<p>A custom navigation item can be associated with one or more specific content items by manually</p>
-<p>assigning the content items to panes of the assigned layout. In the ViewApp Editor, you can select</p>
-<p>a specific content item from the Toolbox or Assets tabs and drag and drop the content on the</p>
-<p>pane.</p>
-<p>Or, the custom navigation item can be associated with a different layout, so that when that</p>
-<p>navigation item is selected at runtime, the associated layout and panes display all associated</p>
-<p>content of the navigation item, based on auto-fill settings and available panes in the layout. In the</p>
-<p>ViewApp Editor, with a custom navigation item selected, you can change the assigned layout to</p>
-<p>each screen of the associated screen profile by selecting available layouts.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="tip">
+<strong>Tip:</strong> When you drag an object to move it, watch for the green line indicator to appear at the correct position before dropping. Otherwise, you may inadvertently assign the object being moved to another object.
+</div>
+
+<h3>Assigning Alias Names to Objects</h3>
+
+<p>Each object in the Model view can be assigned an alias name, which is a string. It will be used as the default Title of the navigation item that references the object in the ViewApp. It does not provide another way to address items in the navigation model of a ViewApp. The alias name cannot be used to reference an object or its attributes in scripts and animations — you must still reference an object based on its unique object name or hierarchical name.</p>
+
+<p>You can assign or update the alias name for an object in the Model view. For example, you can right-click an object and select <strong>Rename Alias</strong>. You can toggle the Model view to display the objects by their tag names or alias names.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0332_1.png" alt="Model - Alias view showing the Plant hierarchy with a right-click context menu open on Rename Alias (Ctrl+Shift+F2) for an object within the Production subtree">
+  <div class="caption">Right-click context menu showing the Rename Alias option for an object in the Model hierarchy</div>
+</div>
+
+<div class="key-concept">
+The <strong>AliasName</strong> attribute is a read-only property that stores the alias name string specified for an object. Assigning an alias name starting with an underscore (<code>_</code>) hides the object from the navigation model.
+</div>
+
+<p>To rearrange the objects in the model hierarchy or change the object alias name, the objects must be undeployed first. After updating the objects in the Model view, the referenced items will be updated accordingly in the ViewApp, and you can view and test before redeploying any objects. For more information about rearranging objects in the Model view and assigning alias names to an object, please refer to the <em>Application Server User Guide</em>.</p>
+
+<h2>Associate Content to Custom Navigation Items</h2>
+
+<p>A custom navigation item can be associated with one or more specific content items by manually assigning the content items to panes of the assigned layout. In the ViewApp Editor, you can select a specific content item from the Toolbox or Assets tabs and drag and drop the content on the pane.</p>
+
+<p>Alternatively, the custom navigation item can be associated with a different layout, so that when that navigation item is selected at runtime, the associated layout and panes display all associated content of the navigation item, based on auto-fill settings and available panes in the layout. In the ViewApp Editor, with a custom navigation item selected, you can change the assigned layout to each screen of the associated screen profile by selecting available layouts.</p>
+
+<div class="quiz"><h3>Knowledge Check</h3>
+<details><summary>Q1: What are the four custom navigation commands available in the ViewApp Editor?</summary><p class="answer">Add (creates a child item), Add Sibling (creates a peer item at the same level), Remove (deletes the selected item and its children), and Rename (makes the item name editable).</p></details>
+<details><summary>Q2: Why is the Add command disabled for the built-in Assets navigation item?</summary><p class="answer">Because Assets references the Model view hierarchy (plant model), and items linked to the Model hierarchy or Visual ToolBox toolsets cannot have child items added to them in the Navigation model.</p></details>
+<details><summary>Q3: What happens when you assign an alias name starting with an underscore?</summary><p class="answer">The object is hidden from the navigation model.</p></details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">← L21: Lab 10 – Enhancing the ViewApp Layout</a> &nbsp;|&nbsp;
   <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model →</a>
