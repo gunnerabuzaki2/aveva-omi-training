@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 35: Lab 17 – Signing Writes from a ViewApp</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -38,356 +41,229 @@
 <nav style="margin-bottom:1.5em;">
 <summary style="cursor:pointer;font-weight:bold;font-size:1.1em;color:#2c5f2d;">📚 All Lessons</summary>
 <div style="margin-top:0.8em;line-height:2;">
-<strong>Module 1 — Introduction</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
-<br>
-<strong>Module 2 — Getting Started</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
-<br>
-<strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L13" onchange="saveProgress()"> <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L14" onchange="saveProgress()"> <a href="L14-Custom-Properties.html">L14: Custom Properties</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
-<br>
-<strong>Module 4 — ViewApp Customizations</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
-<br>
-<strong>Module 5 — External Content</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
-<br>
-<strong>Module 6 — Widgets</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
-<br>
-<strong>Module 7 — ViewApp Namespaces</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
-<br>
 <strong>Module 8 — Security</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html" style="font-weight:bold;color:#1a1a1a;">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
-<br>
-<strong>Module 9 — Alarms and Events</strong><br>
+<strong>Module 9 — Alarms</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
-<br>
-<strong>Module 10 — Trends</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
-<br>
-<strong>Module 11 — Historical Playback</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
-<br>
-<strong>Module 12 — .NET Controls</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
-<br>
-<strong>Module 13 — Scripting in Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Alarm Information</a></label><br>
 <br><span id="progress-text"></span>
 </div>
 </nav>
 
-<h1>🔬 L35: Lab 17 – Signing Writes from a ViewApp</h1>
-<p class="source">Module 8 — Security | Pages 481-494</p>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>Introduction</p>
-<p>In this lab, you will configure security classifications for attributes in the $Mixer.Agitator template.</p>
-<p>You will configure the Cmd attribute security classification to SecuredWrite and the Speed.SP</p>
-<p>attribute security classification to VerifiedWrite.</p>
-<p>During testing, you will attempt to write to attributes as users with different operational</p>
-<p>permissions. You will use the Secured Write and Verified Write dialog boxes to operate the agitator</p>
-<p>in a running ViewApp.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Configure security classifications for attributes in automation objects</p>
-<p></p>
-<p>Operate Secured Writes and Verified Writes as users with required permissions</p>
-<p></p>
-<p>Use the Secured Write and Verified Write dialog boxes in a running ViewApp</p>
-<p>$Mixer.Agitator Attribute</p>
-<p>Security Classification</p>
-<p>Cmd</p>
-<p>SecuredWrite</p>
-<p>Speed.SP</p>
-<p>VerifiedWrite</p>
-<p>) - selected</p>
-<p>• Status ([$Motor])</p>
-<p>• Speed,PV ([$Agitator])</p>
-<p>• Speed,SP ([$Agitator])</p>
-<p>• Bottom info: "4 of 265 displayed, 1 selected"</p>
-<p>• Name: Cmd</p>
-<p>• Description: Command</p>
-<p>• Data type: Boolean</p>
-<p>• False label: Stop</p>
-<p>• True label: Start</p>
-<p>• Writable: User writable</p>
-<p>• Initial value: Stop</p>
-<p>• <strong>Security Classification icon</strong> (shield with checkmark, red arrow)</p>
-<p>• <strong>Dropdown menu</strong> showing:</p>
-<p>• FreeAccess</p>
-<p>• Operate</p>
-<p>• <strong>SecuredWrite</strong> (selected)</p>
-<p>• VerifiedWrite</p>
-<p>• Configure</p>
-<p>• ViewOnly]</p>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Configure Attributes with Signed Write Security Classifications</p>
-<p>In the following steps, you will configure agitator objects with attributes with signed write security</p>
-<p>classifications.</p>
-<p>1.</p>
-<p>On the Templates tab, in the Training \ Project toolset, double-click $Mixer.Agitator to open</p>
-<p>it in the Object Editor.</p>
-<p>2.</p>
-<p>On the Attributes tab, in the Attributes list, select the Cmd attribute.</p>
-<p>3.</p>
-<p>In the right pane, to the right of the Initial value field, click the Security Classification icon,</p>
-<p>and then select SecuredWrite.</p>
-<div class="screenshot">
-  <img src="../images/page_0482_0.png" alt="Page 482">
-  <div class="caption">Page 482</div>
+<h1>🔧 L35: Lab 17 – Signing Writes from a ViewApp</h1>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 8: Security</p>
+<p class="page-ref">Pages 481–495 (Sections 8-49 through 8-63)</p>
+
+<div class="lab">
+<strong>Lab Introduction</strong><br>
+In this lab, you will configure security classifications for attributes in the $Mixer.Agitator template. You will set the <strong>Cmd</strong> attribute to SecuredWrite and the <strong>Speed.SP</strong> attribute to VerifiedWrite. During testing, you will attempt to write to attributes as users with different operational permissions, and observe the Secured Write and Verified Write dialog boxes in action.
 </div>
-<div class="screenshot">
-  <img src="../images/page_0482_1.jpeg" alt="Page 482">
-  <div class="caption">Page 482</div>
+
+<h2>Objectives</h2>
+<ul>
+<li>Configure security classifications for attributes in automation objects</li>
+<li>Operate Secured Writes and Verified Writes as users with required permissions</li>
+<li>Use the Secured Write and Verified Write dialog boxes in a running ViewApp</li>
+</ul>
+
+<h2>Attribute Configuration Summary</h2>
+
+<table>
+<tr><th>$Mixer.Agitator Attribute</th><th>Security Classification</th><th>Meaning</th></tr>
+<tr><td><code>Cmd</code></td><td>SecuredWrite</td><td>Requires operator authentication for each start/stop command</td></tr>
+<tr><td><code>Speed.SP</code></td><td>VerifiedWrite</td><td>Requires both operator and verifier authentication for speed changes</td></tr>
+</table>
+
+<h2>Part 1: Configure Attributes with Signed Write Classifications</h2>
+
+<div class="lab">
+<strong>Step 1.</strong> On the Templates tab, double-click <code>$Mixer.Agitator</code> to open it in the Object Editor.
 </div>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>4.</p>
-<p>Click the Lock icon to the right of the Initial value field to propagate the changes down to</p>
-<p>objects derived from this template.</p>
-<p>5.</p>
-<p>In the Attributes list, select the Speed.SP attribute.</p>
-<p>6.</p>
-<p>In the right pane, to the right of the Initial value field, click the Security Classification icon,</p>
-<p>and then select VerifiedWrite.</p>
-<div class="screenshot">
-  <img src="../images/page_0483_0.png" alt="Page 483">
-  <div class="caption">Page 483</div>
+
+<div class="lab">
+<strong>Step 2.</strong> On the Attributes tab, select the <strong>Cmd</strong> attribute.
 </div>
-<div class="screenshot">
-  <img src="../images/page_0483_1.jpeg" alt="Page 483">
-  <div class="caption">Page 483</div>
+
+<div class="lab">
+<strong>Step 3.</strong> In the right pane, click the Security Classification icon (shield) next to the Initial value field, and select <strong>SecuredWrite</strong>.
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>7.</p>
-<p>Click the Lock icon to the right of the Initial value field.</p>
-<p>8.</p>
-<p>Save and close the $Mixer.Agitator template, and check it in.</p>
-<p>9.</p>
-<p>Open $Mixer.Agitator again.</p>
-<p><strong>10.</strong> In the Attributes list, ensure that the Cmd attribute is selected.</p>
-<p><strong>11.</strong> In the right pane, to the right of the Initial value field, click the Lock icon to unlock it.</p>
-<p>This will allow the attribute values to be changed at runtime.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0484_0.png" alt="Page 484">
-  <div class="caption">Page 484</div>
+  <img src="../images/page_0482_0.png" alt="Cmd attribute selected with SecuredWrite chosen from security classification dropdown">
+  <div class="caption">Cmd attribute — Click the shield icon and select SecuredWrite from the dropdown. This requires authentication for every start/stop command.</div>
 </div>
+
+<div class="lab">
+<strong>Step 4.</strong> Click the Lock icon to propagate changes to derived objects.
+</div>
+
+<div class="lab">
+<strong>Step 5.</strong> Select the <strong>Speed.SP</strong> attribute and set its Security Classification to <strong>VerifiedWrite</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0484_1.png" alt="Page 484">
-  <div class="caption">Page 484</div>
+  <img src="../images/page_0483_1.jpeg" alt="Speed.SP attribute with VerifiedWrite selected from security classification dropdown">
+  <div class="caption">Speed.SP attribute — Select VerifiedWrite. This requires both an operator and a different verifier to authenticate.</div>
 </div>
-<p>Deploy Completed: 8/8 objects deployed**</p>
-<p>• <strong>Close</strong> button (blue)]</p>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>12.</strong> In the Attributes list, select Speed.SP.</p>
-<p><strong>13.</strong> In the right pane, to the right of the Initial value field, click the Lock icon to unlock it.</p>
-<p><strong>14.</strong> Save and close the $Mixer.Agitator template, and check it in.</p>
-<p>Redeploy the Agitator Objects</p>
-<p>Now you will redeploy the updated agitator instances.</p>
-<p><strong>15.</strong> In the Deployment view, right-click AppEngine1 and select Deploy to deploy the changed</p>
-<p>objects.</p>
-<p>Use the default deployment settings.</p>
-<p>Notice that eight Agitator objects are deployed.</p>
-<p><strong>16.</strong> Click Close to close the Deploy dialog box.</p>
+
+<div class="lab">
+<strong>Step 6.</strong> Click the Lock icon to propagate changes. Save, close, and check in the template.
+</div>
+
+<h2>Part 2: Unlock Attributes for Runtime Modification</h2>
+
+<div class="lab">
+<strong>Steps 7–11.</strong> Reopen <code>$Mixer.Agitator</code>. Select the <strong>Cmd</strong> attribute and click the Lock icon to unlock it. This allows the attribute value to be changed at runtime.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0485_0.png" alt="Page 485">
-  <div class="caption">Page 485</div>
+  <img src="../images/page_0484_0.png" alt="Lock icon being clicked to unlock Cmd attribute for runtime modification">
+  <div class="caption">Unlock the Cmd attribute — Click the padlock icon to allow runtime value changes. Locked attributes revert to their initial value at runtime.</div>
 </div>
+
+<div class="lab">
+<strong>Steps 12–14.</strong> Select <strong>Speed.SP</strong> and unlock it as well. Save, close, and check in the template.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0485_1.png" alt="Page 485">
-  <div class="caption">Page 485</div>
+  <img src="../images/page_0485_0.png" alt="Speed.SP attribute being unlocked for runtime modification">
+  <div class="caption">Unlock the Speed.SP attribute — Both Cmd and Speed.SP must be unlocked for the signed write tests to work.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>In the preview session, you will test writing to attributes of the agitator instances as different users.</p>
-<p><strong>17.</strong> Switch to the ViewApp preview session.</p>
-<p>Notice that the user that was logged in for the previous lab is still logged in, which for the</p>
-<p>examples below, is <domain>\jamess.</p>
-<p><strong>18.</strong> Navigate to Mixer100.</p>
-<p><strong>19.</strong> In the left pane, click Agitator_001.</p>
-<p>The command panel appears.</p>
-<p><strong>20.</strong> On the command panel, click Stop.</p>
-<p>The Secured Write dialog box appears.</p>
-<p>Notice that the current logged in user appears in the Domain and User name fields.</p>
+
+<h2>Part 3: Redeploy Objects</h2>
+
+<div class="lab">
+<strong>Step 15.</strong> In the Deployment view, right-click AppEngine1 and select <strong>Deploy</strong> with default settings.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0486_0.jpeg" alt="Page 486">
-  <div class="caption">Page 486</div>
+  <img src="../images/page_0485_1.png" alt="Deploy dialog showing 8 Agitator objects deployed successfully">
+  <div class="caption">Deployment complete — Eight Agitator objects are deployed with the updated security classifications.</div>
 </div>
+
+<h2>Part 4: Test Secured Writes in Preview Session</h2>
+
+<div class="lab">
+<strong>Step 17.</strong> Switch to the ViewApp preview session. Navigate to Mixer100 and select Agitator_001.
+</div>
+
+<div class="lab">
+<strong>Step 20.</strong> On the command panel, click <strong>Stop</strong>. The Secured Write dialog appears with the current user pre-filled.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0486_1.png" alt="Page 486">
-  <div class="caption">Page 486</div>
+  <img src="../images/page_0486_1.png" alt="Secured Write dialog appearing when Stop is clicked on Agitator_001">
+  <div class="caption">Secured Write dialog — Appears when attempting to stop the agitator. The current logged-in user is pre-filled in the Domain and User name fields.</div>
 </div>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>21.</strong> Enter <domain>\karent for the user with a password as required, and then enter a comment</p>
-<p>in the Comments field as Command agitator to stop.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide the domain, user, and password information.</p>
-<p>The following example shows cloud as the domain and karent as the user.</p>
-<p><strong>22.</strong> In the Secured Write dialog box, click Set.</p>
+
+<div class="lab">
+<strong>Step 21.</strong> Enter <code>&lt;domain&gt;\karent</code> as the user with a password, and add the comment "Command agitator to stop".
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0487_0.png" alt="Page 487">
-  <div class="caption">Page 487</div>
+  <img src="../images/page_0487_1.png" alt="Secured Write dialog with karent credentials and comment entered">
+  <div class="caption">Enter verifier credentials — Use karent (Plant Supervisors 1) for the Secured Write. Note: karent does NOT have the Can Modify "Operate" Attributes permission needed for the Cmd attribute.</div>
 </div>
+
+<div class="lab">
+<strong>Step 22.</strong> Click <strong>Set</strong>. Notice the command panel shows a security error because karent does not have the proper permissions.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0487_1.png" alt="Page 487">
-  <div class="caption">Page 487</div>
+  <img src="../images/page_0488_1.png" alt="Command panel showing security error (red shield icon) after failed Secured Write">
+  <div class="caption">Security error — The red shield icon indicates the Secured Write failed because karent lacks the required "Can Modify Operate Attributes" permission for the Cmd attribute.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Notice that the command panel shows a security error. This is because the user entered for</p>
-<p>setting the command does not have the proper permissions, so the operation failed.</p>
-<p><strong>23.</strong> On the command panel, click Stop again.</p>
-<p><strong>24.</strong> Enter <domain>\johnj for the user with a password as required, and then enter a comment in</p>
-<p>the Comments field as Command agitator to stop.</p>
+
+<div class="lab">
+<strong>Step 23.</strong> Click <strong>Stop</strong> again. Enter <code>&lt;domain&gt;\johnj</code> (Plant Operators 1) with a password and comment.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0488_0.png" alt="Page 488">
-  <div class="caption">Page 488</div>
+  <img src="../images/page_0488_0.png" alt="Secured Write dialog with johnj credentials entered for second attempt">
+  <div class="caption">Second attempt — Use johnj (Plant Operators 1) who has the required Can Modify "Operate" Attributes permission.</div>
 </div>
+
+<div class="lab">
+<strong>Step 25.</strong> Click <strong>Set</strong>. The agitator stops successfully with no security error.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0488_1.png" alt="Page 488">
-  <div class="caption">Page 488</div>
+  <img src="../images/page_0489_0.jpeg" alt="Agitator stopped successfully after proper authentication">
+  <div class="caption">Agitator stopped — The Secured Write succeeded because johnj has the correct permissions. Speed shows 0.00 (stopped).</div>
 </div>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>25.</strong> Click Set.</p>
-<p>Notice that the agitator stops and there is no security error. This is because the user entered to</p>
-<p>set the command had the proper permissions, so the operation succeeded.</p>
-<p><strong>26.</strong> On the command panel, click Start.</p>
-<p>The Secured Write dialog box appears.</p>
+
+<div class="lab">
+<strong>Step 26.</strong> Click <strong>Start</strong>. In the Secured Write dialog, enter <code>&lt;domain&gt;\lisay</code> with comment "Command agitator to start".
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0489_0.jpeg" alt="Page 489">
-  <div class="caption">Page 489</div>
+  <img src="../images/page_0490_0.png" alt="Secured Write dialog for starting agitator with lisay credentials">
+  <div class="caption">Start agitator — Use lisay (Plant Operators 1) to authenticate the start command.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0489_1.png" alt="Page 489">
-  <div class="caption">Page 489</div>
+  <img src="../images/page_0490_1.jpeg" alt="Agitator running after successful Secured Write start command">
+  <div class="caption">Agitator running — The start command succeeded. Level is at 31.67 and agitator speed is shown.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>27.</strong> Enter <domain>\lisay for the user and a password as required, and a comment as Command</p>
-<p>agitator to start.</p>
-<p><strong>28.</strong> Click Set.</p>
-<p>Notice that the agitator starts.</p>
+
+<h2>Part 5: Test Verified Writes</h2>
+
+<div class="lab">
+<strong>Step 29.</strong> In the command panel, enter a speed setpoint of <strong>70</strong> and press Enter. The Verified Write dialog appears.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0490_0.png" alt="Page 490">
-  <div class="caption">Page 490</div>
+  <img src="../images/page_0491_0.png" alt="Verified Write dialog with operator and verifier credential sections">
+  <div class="caption">Verified Write dialog — Requires both operator and verifier credentials. The verifier must be a different user than the operator.</div>
 </div>
+
+<div class="lab">
+<strong>Step 30.</strong> Enter <code>&lt;domain&gt;\johnj</code> for both the operator and verifier with passwords, and add the comment "Reset the setpoint as operators".
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0490_1.jpeg" alt="Page 490">
-  <div class="caption">Page 490</div>
+  <img src="../images/page_0491_1.png" alt="Verified Write dialog with johnj entered for both operator and verifier">
+  <div class="caption">Same user for both roles — This will fail because operator and verifier must be different users.</div>
 </div>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>29.</strong> In the command panel, enter a Setpoint speed as 70 and press Enter.</p>
-<p>The Verified Write dialog box appears.</p>
-<p><strong>30.</strong> Enter <domain>\johnj for both the operator and verifier with passwords as required, and a</p>
-<p>Comment as Reset the setpoint as operators.</p>
+
+<div class="lab">
+<strong>Step 31.</strong> Click <strong>Set</strong>. The dialog displays an error: "Operator and Verifier have to be two different users".
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0491_0.png" alt="Page 491">
-  <div class="caption">Page 491</div>
+  <img src="../images/page_0492_0.png" alt="Error message showing Operator and Verifier must be two different users">
+  <div class="caption">Validation error — The system enforces two-person authentication by requiring different users for operator and verifier roles.</div>
 </div>
+
+<div class="lab">
+<strong>Step 32.</strong> Change the verifier to <code>&lt;domain&gt;\lisay</code> and click <strong>Set</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0491_1.png" alt="Page 491">
-  <div class="caption">Page 491</div>
+  <img src="../images/page_0492_1.png" alt="Verified Write dialog with different users for operator and verifier">
+  <div class="caption">Correct configuration — johnj as operator and lisay as verifier. Both have appropriate permissions.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>31.</strong> Click Set.</p>
-<p>Notice that the Verified Write dialog box displays a message as Operator and Verifier have</p>
-<p>to be two different users.</p>
-<p><strong>32.</strong> Change the verifier to <domain>\lisay and click Set.</p>
-<div class="screenshot">
-  <img src="../images/page_0492_0.png" alt="Page 492">
-  <div class="caption">Page 492</div>
+
+<div class="key-concept">
+<strong>Key Takeaway:</strong> This lab demonstrated the two critical security features: SecuredWrite (single-user authentication) and VerifiedWrite (two-person authentication). The Cmd attribute uses SecuredWrite so any start/stop command requires re-authentication. The Speed.SP attribute uses VerifiedWrite so critical setpoint changes require two authorized individuals — preventing single-point-of-failure in process control.
 </div>
-<div class="screenshot">
-  <img src="../images/page_0492_1.png" alt="Page 492">
-  <div class="caption">Page 492</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+<details><summary>Q1: Why did the first Secured Write attempt fail when using karent?</summary><p class="answer">karent is in the Plant Supervisors 1 group, which has the "Can Verify Writes" permission but NOT the "Can Modify Operate Attributes" permission required to write to the Cmd attribute (which is an Operate-classified attribute).</p></details>
+<details><summary>Q2: Why can't the same user be both operator and verifier in a Verified Write?</summary><p class="answer">The system enforces two-person authentication — requiring different users for operator and verifier prevents a single person from making critical changes alone, adding a layer of safety and accountability.</p></details>
+<details><summary>Q3: What was the correct user for the Secured Write stop command?</summary><p class="answer">johnj (Plant Operators 1) — this group has the "Can Modify Operate Attributes" permission needed for the Cmd attribute's SecuredWrite classification.</p></details>
+<details><summary>Q4: What permissions are needed for a VerifiedWrite on Speed.SP?</summary><p class="answer">The operator needs "Can Modify Operate Attributes" and the verifier needs "Can Verify Writes". Both must be different users with appropriate Galaxy security permissions.</p></details>
 </div>
-<p>Lab 17 – Signing Writes from a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The Verified Write dialog box closes, and the command panel shows a security error to the</p>
-<p>left of the speed setpoint value.</p>
-<p><strong>33.</strong> In the command panel, enter the Speed setpoint as 70 again and press Enter.</p>
-<p>The Verified Write dialog box appears.</p>
-<p><strong>34.</strong> Enter <domain>\johnj for the operator and <domain>\karent for the verifier with passwords</p>
-<p>as required, and a Comment as Reset the setpoint approved by supervisor.</p>
-<div class="screenshot">
-  <img src="../images/page_0493_0.png" alt="Page 493">
-  <div class="caption">Page 493</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0493_1.png" alt="Page 493">
-  <div class="caption">Page 493</div>
-</div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>35.</strong> Click Set.</p>
-<p>Notice that the Speed setpoint for Agitator_001 is written as 70 this time.</p>
-<p><strong>36.</strong> Close the command panel.</p>
-<p><strong>37.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0494_0.png" alt="Page 494">
-  <div class="caption">Page 494</div>
-</div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L34-Signed-Writes.html">← L34: Signed Writes</a> &nbsp;|&nbsp;
   <a href="L36-Alarming-Overview.html">L36: Alarming Overview →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

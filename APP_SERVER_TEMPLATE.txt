@@ -1,0 +1,31 @@
+=== CSS ===
+(Same as App Server lessons - already in OMI files)
+
+=== LESSON STRUCTURE ===
+1. Nav (prev/next + dropdown with checkboxes)
+2. <h1>Lesson N: Title</h1>
+3. <p class="source">Source: ... Manual, Module X, Section Y (pages N-M)</p>
+4. <p class="page-ref">One-line summary of what this lesson covers.</p>
+5. Content with <h2>Section headers</h2>
+6. <div class="key-concept"> for important concepts
+7. <div class="lab"> for lab instructions
+8. <div class="tip"> for tips
+9. <div class="pitfall"> for warnings
+10. <table> for structured data
+11. <div class="screenshot"> with descriptive caption
+12. Quiz at bottom with <details>/<summary>
+13. Nav (prev/next)
+
+=== IMAGE CAPTION FORMAT ===
+BAD: "Page 155"
+GOOD: "System Platform IDE — Galaxies dialog showing server connection and template selection (Module 1, page 1-14)"
+
+=== KEY DIFFERENCES FROM CURRENT OMI LESSONS ===
+- Current: raw <p> for every line break
+- Should be: flowing prose paragraphs, not line-by-line
+- Current: "Page 155" captions
+- Should be: descriptive captions explaining what the screenshot shows
+- Current: no section headers
+- Should be: <h2> for each major section
+- Current: no key-concept boxes
+- Should be: key concepts wrapped in <div class="key-concept">

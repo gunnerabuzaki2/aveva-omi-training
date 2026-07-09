@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 39: Lab 19 – Creating a Live Alarm Display</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -121,506 +124,258 @@
 </div>
 </nav>
 
-<h1>🔬 L39: Lab 19 – Creating a Live Alarm Display</h1>
-<p class="source">Module 9 — Alarms and Events | Pages 543-570</p>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 19 – Creating a Live Alarm Display and</p>
-<p>Managing Alarms at Runtime</p>
-<p>Introduction</p>
-<p>In this lab, you will use the AlarmApp to create a display for current alarms.</p>
-<p>You will create a new layout named LiveAlarms and associate the AlarmApp to it. You will</p>
-<p>configure the AlarmApp from within the Layout Editor, to create alarm queries and filters and</p>
-<p>customize its appearance and behaviors.</p>
-<p>Then in the ViewApp Editor, you will add the LiveAlarms layout to a pane and associate the Plant</p>
-<p>navigation item to it.</p>
-<p>When testing in a preview session, you will use the AlarmApp to perform some alarm management</p>
-<p>tasks, such as viewing alarms from different areas in your plant and navigating to the asset for a</p>
-<p>selected alarm within your ViewApp. Additional tasks include acknowledging alarms, shelving and</p>
-<p>unshelving alarms, and hiding and unhiding alarms from the alarm display.</p>
-<p>Content workflow highlight: Configuring a pane’s presentation style to allow support of multiple</p>
-<p>content items</p>
-<p>Objectives</p>
+<h1>📖 L39: Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</h1>
+<p class="source">Module 9 — Alarms and Events Visualization, Section 2</p>
+<p class="page-ref">Pages 543–570</p>
+
+<div class="lab">
+<h3>Objectives</h3>
 <p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Configure the AlarmApp to display current alarms</p>
-<p></p>
-<p>Create default alarm queries for the AlarmApp</p>
-<p></p>
-<p>Create and manage additional queries and filters for the AlarmApp</p>
-<p></p>
-<p>Customize appearance and behavior configurations for the AlarmApp</p>
-<p></p>
-<p>Acknowledge alarms through the AlarmApp in runtime</p>
-<p></p>
-<p>Hide and unhide alarms in runtime</p>
-<p></p>
-<p>Shelve and unshelve alarms through the AlarmApp in runtime</p>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Create a Layout and Assign the AlarmApp</p>
-<p>In the following steps, you will create a layout named LiveAlarms with one pane. Then you will</p>
-<p>assign the AlarmApp to the pane.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
-<p>LiveAlarms.</p>
-<p>2.</p>
-<p>Double-click LiveAlarms to open it in the Layout Editor.</p>
-<p>3.</p>
-<p>On the Toolbox tab, enter a search string to find the AlarmControl and drag the control to</p>
-<p>Pane1.</p>
-<p>The control appears in Pane1.</p>
-<div class="screenshot">
-  <img src="../images/page_0544_0.png" alt="Page 544">
-  <div class="caption">Page 544</div>
+<ul>
+<li>Configure the AlarmApp to display current alarms</li>
+<li>Create default alarm queries for the AlarmApp</li>
+<li>Create and manage additional queries and filters</li>
+<li>Customize appearance and behavior configurations</li>
+<li>Acknowledge, shelve, and unshelve alarms at runtime</li>
+<li>Hide and unhide alarms at runtime</li>
+</ul>
+<p><strong>Content workflow highlight:</strong> Configuring a pane's presentation style to allow support of multiple content items.</p>
 </div>
+
+<h2>Create a Layout and Assign the AlarmApp</h2>
+
+<p>In this first section, you create a new layout named <code>LiveAlarms</code> and assign the AlarmControl to it. On the Graphics tab, in the Training &gt; Layouts toolset, create a new layout and name it <strong>LiveAlarms</strong>. Double-click LiveAlarms to open it in the Layout Editor. On the Toolbox tab, search for the AlarmControl and drag it to Pane1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0544_1.jpeg" alt="Page 544">
-  <div class="caption">Page 544</div>
+  <img src="../images/page_0544_1.jpeg" alt="LiveAlarms layout with AlarmControl placed in Pane1">
+  <div class="caption">The LiveAlarms layout in the Layout Editor with the AlarmControl widget placed in Pane1 via drag-and-drop from the Toolbox tab</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Configure the AlarmApp</p>
-<p>In the next steps, you will configure the AlarmApp with a default alarm query, columns, and sorting.</p>
-<p>4.</p>
-<p>On the Properties tab, to the right of the Configuration property, click the ellipsis button.</p>
-<p>The Configuration dialog box appears.</p>
+
+<h2>Configure the AlarmApp</h2>
+
+<p>On the Properties tab, click the ellipsis button to the right of the Configuration property to open the Configuration dialog box.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0545_0.jpeg" alt="Page 545">
-  <div class="caption">Page 545</div>
+  <img src="../images/page_0545_0.jpeg" alt="Properties panel with Configuration ellipsis button highlighted">
+  <div class="caption">Properties tab showing General section (AlarmControl1, AlarmApp.AlarmControl, Pane1), Run-Time Behavior checkboxes, and the Configuration ellipsis button (red arrow)</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>5.</p>
-<p>On the Alarm Mode tab, in the Alarm Query field, change the default Alarm Query to the</p>
-<p>following:</p>
-<p>\\<ProductionNodeName>\Galaxy!Plant</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide production node name information.</p>
-<p>The following example uses S00PROD as the production node name.</p>
+
+<h3>Set the Alarm Query</h3>
+
+<p>On the Alarm Mode tab, change the default Alarm Query to point to your production node's Galaxy Plant area. The format is <code>\\&lt;ProductionNodeName&gt;\Galaxy!Plant</code>. Your instructor will provide the production node name — for example, <code>\\S00PROD\Galaxy!Plant</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0546_0.png" alt="Page 546">
-  <div class="caption">Page 546</div>
+  <img src="../images/page_0546_0.png" alt="Alarm Mode tab with query field configured for Plant">
+  <div class="caption">Configuration Dialog — Alarm Mode tab with Client Mode set to "Current Alarms" and the Alarm Query field populated with the production node query path</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>6.</p>
-<p>Select the Column Details tab and change the Display Name for User1 and Group as</p>
-<p>follows:</p>
-<p></p>
-<p>Change User1 to Severity</p>
-<p></p>
-<p>Change Group to Area</p>
-<p>7.</p>
-<p>Check the check box to the left of Provider.</p>
-<p>The list of Display Names should be as follows:</p>
+
+<h3>Configure Column Details</h3>
+
+<p>Select the Column Details tab and rename User1 to <strong>Severity</strong>, and Group to <strong>Area</strong>. Check the Provider checkbox. The preview at the bottom of the tab updates to reflect the display name changes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0547_0.png" alt="Page 547">
-  <div class="caption">Page 547</div>
+  <img src="../images/page_0547_0.png" alt="Column Details tab with renamed display names">
+  <div class="caption">Column Details tab showing the list of alarm fields with their display names, widths, and original names — Severity, Area, and Provider are highlighted with red arrows</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Notice that the preview column headings at the bottom of the Column Details tab change to</p>
-<p>reflect the display name changes.</p>
-<p>The example below shows Severity and Area in the preview column headings. You can scroll</p>
-<p>to the right to see the Provider column.</p>
-<p>8.</p>
-<p>In the Sorting area, configure First Sort Criteria as TimeLCT and Descending.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0548_0.png" alt="Page 548">
-  <div class="caption">Page 548</div>
+  <img src="../images/page_0548_0.png" alt="Column Details preview and sorting configuration">
+  <div class="caption">Column Details tab with preview pane showing renamed headers; Sorting configured with TimeLCT Descending as the first sort criteria</div>
 </div>
+
+<h3>Import Queries and Filters</h3>
+
+<p>Select the Queries and Filters tab. Note that the Default query does not yet reflect the query from the Alarm Mode tab — switch to Alarm Mode and back to sync it. Then click Import to load a prebuilt XML file with alarm queries and filters from <code>C:\Training</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0548_1.png" alt="Page 548">
-  <div class="caption">Page 548</div>
+  <img src="../images/page_0549_0.png" alt="Queries and Filters tab before and after sync">
+  <div class="caption">Queries and Filters tab showing the Default query before and after synchronization with the Alarm Mode tab; the Import button is highlighted for loading external query files</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Import Queries and Filters</p>
-<p>Now you will import a query and several filters from an external xml file. The query and the filters</p>
-<p>will allow you to view shelved alarms, as well as filter alarms based on severity level.</p>
-<p>9.</p>
-<p>Select the Queries and Filters tab.</p>
-<p>Notice that the Default query does not yet reflect the query you entered on the Alarm Mode</p>
-<p>tab. It will not change on this tab until you switch to another tab and switch back again.</p>
-<p><strong>10.</strong> Select the Alarm Mode tab, and then select the Queries and Filters tab again.</p>
-<p>Notice that the Default query now reflects the query you entered on the Alarm Mode tab.</p>
-<p><strong>11.</strong> On the Queries and Filters tab, click Import query and filters file.</p>
-<p>The Open dialog box appears.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> When importing, click <strong>No</strong> on the overwrite prompt to avoid replacing the existing Default query. After import, verify that the "Shelved Alarms" query and "Critical", "High", "Medium", and "Low" filters appear in the list.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0549_0.png" alt="Page 549">
-  <div class="caption">Page 549</div>
+  <img src="../images/page_0550_0.png" alt="Import XML file dialog">
+  <div class="caption">Open dialog navigating to the Lab 19 prebuilt XML file, followed by the Import Query and Filter overwrite prompt and success confirmation</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0549_1.png" alt="Page 549">
-  <div class="caption">Page 549</div>
+  <img src="../images/page_0551_0.png" alt="Imported queries and filters list">
+  <div class="caption">Queries and Filters tab after import — showing Default, Shelved Alarms queries, and Critical/High/Medium/Low severity filters</div>
 </div>
+
+<h2>Enable Area Hierarchy and Disable Command Bar</h2>
+
+<p>On the Properties tab, uncheck <strong>Show Command Bar</strong> and check <strong>Show Area Hierarchy</strong>. Save and close the LiveAlarms layout, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0549_2.png" alt="Page 549">
-  <div class="caption">Page 549</div>
+  <img src="../images/page_0552_0.jpeg" alt="Command Bar and Area Hierarchy property settings">
+  <div class="caption">Property panel with Command Bar section (Show Command Bar unchecked, red arrow) and Area Hierarchy section (Show Area Hierarchy checked, red arrow)</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>12.</strong> Navigate to C:\Training, select the Lab 19 - Alarm Queries and Filters_Prebuilt.xml file,</p>
-<p>and click Open.</p>
-<p>The Import Query and Filter dialog box appears.</p>
-<p><strong>13.</strong> Click No to avoid overwriting the existing Default query.</p>
-<p>A message indicates queries and filter favorites are imported successfully.</p>
+
+<h2>Update the Main Layout with a Tabbed Pane</h2>
+
+<p>Open the Main layout in the Layout Editor. Select Pane7 at the bottom and add a new pane (Pane8) to the left. Resize Pane7's width to 300 pixels. Then select Pane8 and change its Presentation Style to <strong>Tabbed</strong> using the Change Presentation Style button.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0550_0.png" alt="Page 550">
-  <div class="caption">Page 550</div>
+  <img src="../images/page_0553_0.jpeg" alt="Layout editor with Pane8 added and Pane7 resized">
+  <div class="caption">Layout Editor showing the new Pane8 added to the left of Pane7; Pane7 properties show Content Type: Alarm Summary and Width: 300</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0550_1.png" alt="Page 550">
-  <div class="caption">Page 550</div>
+  <img src="../images/page_0554_0.jpeg" alt="Tabbed presentation style selection">
+  <div class="caption">The Change Presentation Style dropdown showing Single, Multiple, and Tabbed options — select Tabbed for Pane8</div>
 </div>
+
+<p>Notice the icon at the top of Pane8 changes to indicate it is a tabbed pane. Save and close the Main layout.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0550_2.png" alt="Page 550">
-  <div class="caption">Page 550</div>
+  <img src="../images/page_0555_0.png" alt="Pane8 with tabbed icon in layout preview">
+  <div class="caption">Pane8 with the tabbed pane icon visible at the top, ready for content assignment in the ViewApp Editor</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>14.</strong> Click OK to close the message.</p>
-<p>Notice that a new query named Shelved Alarms and four filters named Critical, High,</p>
-<p>Medium, and Low have been imported.</p>
-<p><strong>15.</strong> Click OK to close the Configuration dialog box.</p>
+
+<h2>Associate LiveAlarms with a ViewApp Navigation Item</h2>
+
+<p>Switch to the ViewApp Editor. In the Navigation list, select Plant. On the Toolbox tab, search for the LiveAlarms layout and drag it to Pane8. Because the content is assigned to a tabbed pane, it does not display in the preview area — verify the assignment in the Actions list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0551_0.png" alt="Page 551">
-  <div class="caption">Page 551</div>
+  <img src="../images/page_0556_0.jpeg" alt="Actions list confirming LiveAlarms assigned to Pane8">
+  <div class="caption">Navigation panel with Plant selected, and Actions panel showing "Show: LiveAlarms From: Plant On: Pane8" (highlighted in blue)</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Enable Area Hierarchy Panel and Disable Command Bar</p>
-<p>Now you will configure AlarmControl properties to enable the area hierarchy panel and disable the</p>
-<p>command bar, which is designed mainly for touch screen users.</p>
-<p><strong>16.</strong> On the Properties tab, configure the following properties:</p>
-<p><strong>17.</strong> Save and close the LiveAlarms layout, and check it in.</p>
-<p>Command Bar \ Show Command Bar:</p>
-<p>unchecked</p>
-<p>Area Hierarchy \ Show Area Hierarchy:</p>
-<p>checked</p>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
+<p>Click Update to update the preview session. Navigate to Plant. The LiveAlarms tab should appear with alarms listed in the alarm pane, and Plant.AlarmSummary in the adjacent pane.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0552_0.jpeg" alt="Page 552">
-  <div class="caption">Page 552</div>
+  <img src="../images/page_0557_0.png" alt="Live preview showing LiveAlarms grid and AlarmSummary">
+  <div class="caption">AVEVA OMI Training Application preview — Simulated Factory Layout with Receiving, Production, Packaging, Shipping areas; LiveAlarms grid showing Severity, State, Node, Area, Name, AlarmComment columns; Alarm Summary showing Critical:2, High:25, Medium:12</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Update the Main Layout with a Tabbed Pane</p>
-<p>In the following steps, you will add a tabbed pane to the Main layout.</p>
-<p><strong>18.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
-<p>Layout Editor.</p>
-<p><strong>19.</strong> Select Pane7 at the bottom of the layout.</p>
-<p><strong>20.</strong> Add a new pane to the left of Pane7.</p>
-<p>The name of the new pane is Pane8.</p>
-<p><strong>21.</strong> With Pane7 selected, on the Properties tab, update its Size \ Width property to 300.</p>
+
+<h3>Context-Sensitive Alarm Display</h3>
+
+<p>Navigate to Production Lines — the AlarmApp is configured to follow the context, so all alarms from the production area (including subareas Line1 and Line2) are displayed. Navigate to Line1 — only Line1 alarms appear.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0553_0.jpeg" alt="Page 553">
-  <div class="caption">Page 553</div>
+  <img src="../images/page_0558_0.jpeg" alt="Context-sensitive alarm display based on navigation">
+  <div class="caption">Navigating to Production Lines shows all subarea alarms; navigating to Line1 filters to only Line1 alarms — demonstrating the Follow Current Context behavior</div>
 </div>
+
+<h3>Area Hierarchy Independent Navigation</h3>
+
+<p>Navigate to Packaging in the ViewApp. Then use the Area Hierarchy in the AlarmApp to navigate to Line1. The Area Hierarchy sets the alarm query independently — it does not affect the current navigation in the ViewApp, so the ViewApp still shows Packaging.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0553_1.jpeg" alt="Page 553">
-  <div class="caption">Page 553</div>
+  <img src="../images/page_0559_0.png" alt="Area Hierarchy navigation independent of ViewApp">
+  <div class="caption">AlarmApp's Area Hierarchy independently navigated to Line1 while the ViewApp remains on Packaging — demonstrating independent alarm query control</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Pane7 is resized in the preview area.</p>
-<p><strong>22.</strong> Select Pane8, and click the Change Presentation Style button at the top of the pane.</p>
-<p>A drop-down list of presentation styles appears.</p>
-<p><strong>23.</strong> Select the Tabbed presentation style.</p>
+
+<h3>Query and Filter at Runtime</h3>
+
+<p>Right-click the alarm grid and select Queries and Filters. Enable the <strong>Critical</strong> filter and click OK. Only critical alarms (Severity 1) appear. Double-click a mixer alarm to navigate to that equipment in the ViewApp.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0554_0.jpeg" alt="Page 554">
-  <div class="caption">Page 554</div>
+  <img src="../images/page_0560_0.png" alt="Query and Filter Favorites dialog">
+  <div class="caption">Query and Filter Favorites dialog with the Default query and Critical/High/Medium/Low filters — Critical is checked to filter by critical severity</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0554_1.png" alt="Page 554">
-  <div class="caption">Page 554</div>
+  <img src="../images/page_0561_0.png" alt="Filtered alarms and navigation to equipment">
+  <div class="caption">LiveAlarms with Critical filter applied showing 13 alarms; double-clicking a mixer alarm navigates the ViewApp to Mixer300 — note the Area Hierarchy does not follow the double-click navigation</div>
 </div>
+
+<h3>Acknowledge Alarms</h3>
+
+<p>Switch to the Medium filter. Select an alarm with state UNACK, right-click and choose Ack Selected. Enter a comment such as "Ticket has been issued" and click OK. The alarm state updates to ACK with your comment visible in the AlarmComment column.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0554_2.png" alt="Page 554">
-  <div class="caption">Page 554</div>
+  <img src="../images/page_0563_0.png" alt="Acknowledge alarm with comment dialog">
+  <div class="caption">Right-click context menu with Ack Selected; Ack Comment dialog with comment text; updated grid showing ACK state with "Std ACK - Ticket has been issued" comment</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Notice the icon at the top of Pane8 changes to indicate it is a tabbed pane.</p>
-<p><strong>24.</strong> Save and close the Main layout, and check it in.</p>
-<p>Associate the LiveAlarms Layout with a ViewApp Navigation Item</p>
-<p>In the following steps, you will associate the LiveAlarms layout with the Plant navigation item by</p>
-<p>assigning it to the tabbed pane of the Main layout from within the ViewApp Editor.</p>
-<p><strong>25.</strong> Switch to the ViewApp Editor.</p>
-<p><strong>26.</strong> In the Navigation list, select Plant.</p>
+
+<p>Then right-click without selecting a row and choose Ack Others | Ack All. Enter "Ack all alarms" as the comment. All active alarms display with ACK state.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0555_0.png" alt="Page 555">
-  <div class="caption">Page 555</div>
+  <img src="../images/page_0564_0.png" alt="Ack All and Shelve All operations">
+  <div class="caption">Ack All operation (left) — Ack Comment dialog with "Ack all alarms"; Shelve All operation (right) — Shelve Comment dialog with 1-hour duration and reason text</div>
 </div>
+
+<h3>Shelve and Unshelve Alarms</h3>
+
+<p>Shelve all alarms by right-clicking and selecting Shelve Others | Shelve All. Enter a reason and duration. All alarms disappear. To view shelved alarms, open Queries and Filters and enable the <strong>Shelved Alarms</strong> query. Shelved alarms reappear with SHELVE_UNAC state. Then select Unshelve Others | Unshelve All to restore them.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0555_1.png" alt="Page 555">
-  <div class="caption">Page 555</div>
+  <img src="../images/page_0565_0.png" alt="Shelved alarms query and display">
+  <div class="caption">Query and Filter Favorites with Shelved Alarms query checked; shelved alarms displayed in the grid showing SHELVE_UNAC state</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>27.</strong> On the Toolbox tab, enter a search string to find the LiveAlarms layout and drag it to Pane8.</p>
-<p>Because the content is assigned to a tabbed pane, it does not display in the pane in the</p>
-<p>preview area. You can review the Actions list to confirm that LiveAlarms is assigned to</p>
-<p>Pane8.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0556_0.jpeg" alt="Page 556">
-  <div class="caption">Page 556</div>
+  <img src="../images/page_0566_0.png" alt="Unshelve All and reset query">
+  <div class="caption">Unshelve All operation restoring alarms to the display; query reset to Default with Medium filter active</div>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test the ViewApp in a preview session. You will perform tests that show the runtime</p>
-<p>behavior of the AlarmApp based on your configurations. You will acknowledge alarms, apply</p>
-<p>queries and filters for alarms, shelve and unshelve alarms, hide and unhide alarms, and more.</p>
-<p><strong>28.</strong> Click Update to update the preview session.</p>
-<p>The preview session opens.</p>
-<p>Notice that cloud\jamess is still logged in and the preview is navigated to Plant.</p>
-<p>At the bottom, alarms appear in the pane on the left and Plant.AlarmSummary is shown in</p>
-<p>the pane on the right.</p>
+
+<h3>Freeze, Hide, and Unhide</h3>
+
+<p>Clear all filters, then right-click and select Freeze to pause alarm updates. A freeze icon appears on the status bar. Select Freeze again to unfreeze. To hide alarms, right-click and select Hide Others | Hide All — all alarms disappear and a hidden count appears in the status bar tooltip. Open the Hidden Alarms dialog, select all alarms, and click Unhide to restore them.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0557_0.png" alt="Page 557">
-  <div class="caption">Page 557</div>
+  <img src="../images/page_0567_0.png" alt="Freeze and unfreeze alarm display">
+  <div class="caption">Frozen alarm grid (26 alarms displayed, freeze icon on status bar); unfreezing restores live updates</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>29.</strong> In the ViewApp, navigate to Production Lines.</p>
-<p>Notice that alarms are listed in the alarms pane and the LiveAlarms tab is displayed. The</p>
-<p>AlarmApp is configured to follow the context, so all alarms from the production area, including</p>
-<p>subareas for Line1 and Line 2, are displayed in the AlarmApp.</p>
-<p><strong>30.</strong> In the ViewApp, navigate to Line1.</p>
-<p>In the alarms pane, notice that all alarms from the Line1 area are displayed.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0558_0.jpeg" alt="Page 558">
-  <div class="caption">Page 558</div>
+  <img src="../images/page_0568_0.png" alt="Hidden alarms dialog">
+  <div class="caption">Empty alarm grid after Hide All (Hidden Alarms=26 tooltip); Hidden Alarms dialog showing the table of hidden alarms with Item, Node, Provider, Group, Priority, Name, Class columns</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0558_1.png" alt="Page 558">
-  <div class="caption">Page 558</div>
+  <img src="../images/page_0569_0.png" alt="All alarms restored after unhiding">
+  <div class="caption">All 26 alarms restored to the alarm display after unhide, with Area Hierarchy tree visible (Plant → Production Lines → Line1 → Line2)</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0558_2.png" alt="Page 558">
-  <div class="caption">Page 558</div>
+
+<h2>Key Takeaways</h2>
+
+<div class="key-concept">
+<ul>
+<li>The AlarmApp integrates seamlessly with navigation context via the <strong>Follow Current Context</strong> property</li>
+<li>The <strong>Area Hierarchy</strong> provides independent navigation within the alarm display, separate from ViewApp navigation</li>
+<li><strong>Queries and Filters</strong> can be configured at design time and managed at runtime</li>
+<li>Runtime alarm management includes <strong>acknowledge</strong>, <strong>shelve/unshelve</strong>, and <strong>hide/unhide</strong> operations</li>
+<li>The <strong>Tabbed</strong> presentation style allows multiple content items in a single pane</li>
+</ul>
 </div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>31.</strong> In the ViewApp, navigate to Packaging.</p>
-<p>In the alarms pane, notice that all alarms from the Packaging area are displayed.</p>
-<p><strong>32.</strong> In the AlarmApp, use the Area Hierarchy on the left to navigate to Line1.</p>
-<p>In the alarms pane, notice that alarms from the Line1 area are displayed.</p>
-<p>The selected item from the Area Hierarchy sets the query of the AlarmApp to the selected</p>
-<p>item. It does not impact the current navigation in the ViewApp, so the ViewApp is still</p>
-<p>navigated to Packaging.</p>
-<div class="screenshot">
-  <img src="../images/page_0559_0.png" alt="Page 559">
-  <div class="caption">Page 559</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What layout presentation style allows multiple content items in a pane?</summary>
+<p class="answer">The Tabbed presentation style. Change it using the Change Presentation Style button at the top of the pane in the Layout Editor.</p>
+</details>
+
+<details>
+<summary>Q2: What happens when you use the Area Hierarchy in the AlarmApp to navigate to a different area?</summary>
+<p class="answer">The Area Hierarchy sets the alarm query independently. It does not change the current navigation in the ViewApp — the ViewApp remains on its current page while alarms for the newly selected area are displayed.</p>
+</details>
+
+<details>
+<summary>Q3: How do you view shelved alarms?</summary>
+<p class="answer">Open the Query and Filter Favorites dialog (right-click the alarm grid) and enable the "Shelved Alarms" query. Shelved alarms then appear in the grid with SHELVE_UNAC state.</p>
+</details>
+
+<details>
+<summary>Q4: What is the difference between hiding and shelving alarms?</summary>
+<p class="answer">Hiding alarms removes them from the grid display but does not affect the actual alarm generation — records are still logged to history. Shelving alarms temporarily suppresses them for a configurable duration with a mandatory comment and reason.</p>
+</details>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0559_1.png" alt="Page 559">
-  <div class="caption">Page 559</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0559_2.png" alt="Page 559">
-  <div class="caption">Page 559</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>33.</strong> Right-click the alarm grid and select Queries and Filters.</p>
-<p>The Query and Filter Favorites dialog box appears.</p>
-<p>Notice that the Default query is listed and is selected.</p>
-<p><strong>34.</strong> Check the Critical filter to enable it, and then click OK to close the Query and Filter</p>
-<p>Favorites dialog box.</p>
-<div class="screenshot">
-  <img src="../images/page_0560_0.png" alt="Page 560">
-  <div class="caption">Page 560</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0560_1.png" alt="Page 560">
-  <div class="caption">Page 560</div>
-</div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Notice that only the critical alarms, displayed as Severity 1, appear in the alarm grid.</p>
-<p><strong>35.</strong> In the alarm grid, double-click a row for one of the mixers.</p>
-<p>In the following example, a row for Mixer300.Alarm.Condition was double-clicked. Notice</p>
-<p>that the ViewApp is navigated to Mixer300.</p>
-<p>Notice the Area Hierarchy in the AlarmApp does not navigate to Mixer300.</p>
-<div class="screenshot">
-  <img src="../images/page_0561_0.png" alt="Page 561">
-  <div class="caption">Page 561</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0561_1.png" alt="Page 561">
-  <div class="caption">Page 561</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>36.</strong> Right-click the alarm grid and select Queries and Filters.</p>
-<p>The Query and Filter Favorites dialog box appears.</p>
-<p><strong>37.</strong> Uncheck Critical to remove the filter, check the Medium filter to enable it.</p>
-<p>This is to filter all medium alarms to continue with further tests.</p>
-<p><strong>38.</strong> Click OK to close the Query and Filter Favorites dialog box.</p>
-<p>Notice that only the medium alarms, displayed as Severity 3, appear in the alarm grid.</p>
-<p><strong>39.</strong> In the alarm grid, select a row with the State as UNACK.</p>
-<p>In the following example, Agitator_003.Speed.PV.Lo is selected.</p>
-<div class="screenshot">
-  <img src="../images/page_0562_0.png" alt="Page 562">
-  <div class="caption">Page 562</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0562_1.png" alt="Page 562">
-  <div class="caption">Page 562</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0562_2.png" alt="Page 562">
-  <div class="caption">Page 562</div>
-</div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>40.</strong> Right-click the row and select Ack Selected.</p>
-<p>The Ack Comment dialog box appears.</p>
-<p><strong>41.</strong> For Comment, enter Ticket has been issued, and click OK.</p>
-<p>If the alarm is still active, you will notice that a new row displays the same alarm with state</p>
-<p>updated as ACK. The AlarmComment column displays the acknowledge comment that you</p>
-<p>have just entered. If the alarm is not active, it will disappear from the alarm grid.</p>
-<div class="screenshot">
-  <img src="../images/page_0563_0.png" alt="Page 563">
-  <div class="caption">Page 563</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0563_1.png" alt="Page 563">
-  <div class="caption">Page 563</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0563_2.png" alt="Page 563">
-  <div class="caption">Page 563</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>42.</strong> Right-click the alarm grid without selecting any row and select Ack Others | Ack All.</p>
-<p>The Ack Comment dialog box appears.</p>
-<p><strong>43.</strong> For Comment, enter Ack all alarms and click OK.</p>
-<p>In the alarm grid, notice that the active alarms display with a state of ACK.</p>
-<p>In the example below, three alarms were acknowledged.</p>
-<p><strong>44.</strong> Right-click the alarm grid and select Shelve Others | Shelve All.</p>
-<p>The Shelve Comment dialog box appears.</p>
-<p><strong>45.</strong> For Reason, enter Shelve all for 1 hour and click OK.</p>
-<div class="screenshot">
-  <img src="../images/page_0564_0.png" alt="Page 564">
-  <div class="caption">Page 564</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0564_1.png" alt="Page 564">
-  <div class="caption">Page 564</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0564_2.png" alt="Page 564">
-  <div class="caption">Page 564</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0564_3.png" alt="Page 564">
-  <div class="caption">Page 564</div>
-</div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>In the alarms pane, notice that all Severity 3 alarms disappear from the display.</p>
-<div class="key-concept">Note:</div>
-<p>To unshelve alarms manually before the shelving time expires you must be able to see</p>
-<p>the shelved alarm records in the AlarmApp.</p>
-<p><strong>46.</strong> Right-click in the alarms pane and select Queries and Filters.</p>
-<p>The Query and Filter Favorites dialog box appears.</p>
-<p><strong>47.</strong> Check the check box for the Shelved Alarms query and click OK.</p>
-<p>Shelved alarms are listed in the alarm display.</p>
-<p>By default, alarms are shelved for one hour. If more than an hour has passed since you</p>
-<p>shelved alarms, the shelved alarms will be unshelved automatically and you will not see any</p>
-<p>records after selecting this query.</p>
-<p>In the next step you will manually unshelve these alarms before the shelved duration ends.</p>
-<div class="screenshot">
-  <img src="../images/page_0565_0.png" alt="Page 565">
-  <div class="caption">Page 565</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0565_1.png" alt="Page 565">
-  <div class="caption">Page 565</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>48.</strong> Right-click in the alarms pane and select Unshelve Others | Unshelve All.</p>
-<p>The Unshelve Comment dialog box appears.</p>
-<p><strong>49.</strong> For Reason, enter Unshelve All and click OK.</p>
-<p>Notice all alarms disappear from the alarms pane.</p>
-<p><strong>50.</strong> Open the Query and Filter Favorites dialog box, reset the query to the Default query, and</p>
-<p>click OK.</p>
-<p>In the alarms pane, notice that Severity 3 alarms are listed.</p>
-<div class="screenshot">
-  <img src="../images/page_0566_0.png" alt="Page 566">
-  <div class="caption">Page 566</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0566_1.png" alt="Page 566">
-  <div class="caption">Page 566</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0566_2.png" alt="Page 566">
-  <div class="caption">Page 566</div>
-</div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>51.</strong> Right-click the alarms pane and select Queries and Filters.</p>
-<p><strong>52.</strong> Uncheck the Medium filter to clear it so that all alarms in this area will be listed, and click OK.</p>
-<p><strong>53.</strong> Right click the alarms pane and select Freeze.</p>
-<p>In the alarms pane, notice that the alarms stop updating and there is an icon on the status bar</p>
-<p>indicating the current display is frozen.</p>
-<p><strong>54.</strong> Right-click in the alarms pane and select Freeze again to unfreeze the display.</p>
-<div class="screenshot">
-  <img src="../images/page_0567_0.png" alt="Page 567">
-  <div class="caption">Page 567</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0567_1.png" alt="Page 567">
-  <div class="caption">Page 567</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p><strong>55.</strong> Right-click in the alarms pane and select Hide Others | Hide All.</p>
-<p>Notice that all alarms disappear from the display and there is an icon on the status bar</p>
-<p>indicating that alarms are hidden.</p>
-<p>If you move your cursor over the icon, a tool tip shows the number of alarms that are hidden.</p>
-<p><strong>56.</strong> Right-click in the alarms pane and select Hidden.</p>
-<p>The Hidden Alarms dialog box appears.</p>
-<div class="screenshot">
-  <img src="../images/page_0568_0.png" alt="Page 568">
-  <div class="caption">Page 568</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0568_1.png" alt="Page 568">
-  <div class="caption">Page 568</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0568_2.png" alt="Page 568">
-  <div class="caption">Page 568</div>
-</div>
-<p>Lab 19 – Creating a Live Alarm Display and Managing Alarms at Runtime</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>57.</strong> Select all alarms in the list and click Unhide.</p>
-<div class="key-concept">Note:</div>
-<p>To select all alarms, you can press and hold the SHIFT key, select the first hidden</p>
-<p>alarm in the list, and then select the last hidden alarm.</p>
-<p>Notice the hidden alarms are cleared from the dialog box.</p>
-<p><strong>58.</strong> Click Close to close the Hidden Alarms dialog box.</p>
-<p>Notice that all alarms appear in the alarm display again.</p>
-<p><strong>59.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0569_0.png" alt="Page 569">
-  <div class="caption">Page 569</div>
-</div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L38-Live-Alarm-Visualization.html">← L38: Live Alarm Visualization</a> &nbsp;|&nbsp;
   <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

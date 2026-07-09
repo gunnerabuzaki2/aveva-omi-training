@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -32,7 +33,7 @@
 <body>
 <nav>
   <a href="L06-ViewApps-Overview.html">← L06: ViewApps Overview</a> &nbsp;|&nbsp;
-  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and  →</a>
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -105,7 +106,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -121,544 +122,389 @@
 </div>
 </nav>
 
-<h1>🔬 L07: Lab 3 – Creating and Running a ViewApp</h1>
-<p class="source">Module 2 — Getting Started | Pages 107-138</p>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>Introduction</p>
-<p>In this lab, you will perform steps necessary to create a ViewApp. You will:</p>
-<p></p>
-<p>Derive a template from the base $ViewApp template</p>
-<p></p>
-<p>Initialize the derived template with the screen profile and layout you created in the</p>
-<p>previous lab</p>
-<p></p>
-<p>Review the derived template in the ViewApp Editor and configure it</p>
-<p></p>
-<p>Test the ViewApp with a preview session from the ViewApp Editor</p>
-<p></p>
-<p>Edit and save the configuration</p>
-<p>You will create an instance from the derived ViewApp template and deploy the instance to runtime</p>
-<p>on the production node. Once the instance is deployed, you will switch to the production node and</p>
-<p>launch the ViewApp to see its behavior in runtime.</p>
-<p>Then you will switch back to the engineering node, make changes to the Main layout, and redeploy</p>
-<p>the ViewApp. On the production node, you will view the changes in runtime by opening the</p>
-<p>updated ViewApp.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a ViewApp template for building an Operations Management Interface application</p>
-<p></p>
-<p>Initialize a ViewApp application with a screen profile and layout</p>
-<p></p>
-<p>Use preview mode from the ViewApp Editor</p>
-<p></p>
-<p>Use the navigation Apps to review and navigate the default navigation items</p>
-<p></p>
-<p>Use the TitleBarApp at runtime</p>
-<p></p>
-<p>Create a ViewApp instance</p>
-<p></p>
-<p>Deploy a ViewApp instance to the runtime environment</p>
-<p></p>
-<p>Launch a ViewApp application in the runtime environment</p>
-<p></p>
-<p>Deploy changes to a running ViewApp</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Create a ViewApp</p>
-<p>In the following steps, you will create a new template toolset on the Templates tab for organizing</p>
-<p>ViewApps created in this course. Then, you will create a derived ViewApp template, initialize it with</p>
-<p>a screen profile and the layout you created in the previous lab, and open it in the ViewApp Editor.</p>
-<p>1.</p>
-<p>On the Templates tab, expand TrainingGalaxy.</p>
-<p>2.</p>
-<p>Right-click the Training toolset and select New Template Toolset.</p>
-<p>A new toolset with the default name is created under the Training toolset.</p>
-<div class="screenshot">
-  <img src="../images/page_0108_0.png" alt="Page 108">
-  <div class="caption">Page 108</div>
+<h1>📖 L07: Lab 3 – Creating and Running a ViewApp</h1>
+<p class="source">Module 2 — Getting Started | Lab 3</p>
+<p class="page-ref">Pages 107–138 | AVEVA™ Operations Management Interface 2023</p>
+
+<h2>Introduction</h2>
+<p>In this lab you will perform the steps necessary to create a ViewApp. You will derive a template from the base <code>$ViewApp</code> template, initialize it with the screen profile and layout you created in the previous lab, review the derived template in the ViewApp Editor, and test it with a preview session. You will then create an instance from the derived template, deploy it to the production node, and launch the ViewApp in runtime.</p>
+
+<p>After the initial deployment, you will switch back to the engineering node, modify the Main layout by adding a title bar, and redeploy the ViewApp. On the production node you will observe the live-update behavior when the running ViewApp receives new configuration.</p>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong> Upon completion you will be able to create a ViewApp template, initialize it with a screen profile and layout, use preview mode, deploy a ViewApp instance to runtime, and deploy changes to a running ViewApp.
 </div>
+
+<h2>Creating a ViewApp Template</h2>
+<p>On the <strong>Templates</strong> tab, expand <code>TrainingGalaxy</code>, right-click the <code>Training</code> toolset, and select <strong>New Template Toolset</strong>. A new toolset with the default name is created under Training.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0108_1.png" alt="Page 108">
-  <div class="caption">Page 108</div>
+  <img src="../images/page_0108_0.png" alt="Creating a new template toolset under Training">
+  <div class="caption">Right-clicking the Training toolset to create a new template toolset for organizing ViewApps</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>3.</p>
-<p>Rename the new toolset to ViewApps.</p>
-<p>4.</p>
-<p>On the Templates tab, expand the TrainingGalaxy \ System toolset.</p>
+
+<p>Rename the new toolset to <strong>ViewApps</strong>. Then expand the <code>TrainingGalaxy \ System</code> toolset to reveal the base system objects, including <code>$ViewApp</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0109_0.png" alt="Page 109">
-  <div class="caption">Page 109</div>
+  <img src="../images/page_0109_0.png" alt="ViewApps toolset renamed and System folder expanded">
+  <div class="caption">The renamed ViewApps toolset and expanded System folder showing base templates including $ViewApp, $ViewEngine, and $WinPlatform</div>
 </div>
+
+<p>Right-click the <code>$ViewApp</code> object and select <strong>New &gt; Derived Template</strong> to create a new derived ViewApp template.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0109_1.png" alt="Page 109">
-  <div class="caption">Page 109</div>
+  <img src="../images/page_0110_0.png" alt="Creating a derived template from $ViewApp">
+  <div class="caption">Right-click context menu on $ViewApp showing the New &gt; Derived Template option highlighted</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>5.</p>
-<p>Right-click the $ViewApp object and select New | Derived Template.</p>
+
+<div class="tip">
+<strong>Tip:</strong> A derived template is created with a default name in the System toolset. You can then rename it and move it to your custom toolset.
+</div>
+
+<p>A derived template appears with the default name <code>$ViewApp_001</code> in the System toolset. Rename it to <code>$ViewApp_Training</code> and move it to the Training &gt; ViewApps toolset. Notice the error icon — it indicates the template has not yet been configured.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0110_0.png" alt="Page 110">
-  <div class="caption">Page 110</div>
+  <img src="../images/page_0111_0.png" alt="Renamed ViewApp template with error icon">
+  <div class="caption">$ViewApp_Training renamed and moved to the ViewApps toolset, with an error icon indicating it still needs configuration</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>A derived template is created with the default name in the System toolset.</p>
-<p>6.</p>
-<p>Rename the derived template to $ViewApp_Training and move it to the Training \ ViewApps</p>
-<p>toolset.</p>
-<p>Notice the error icon for $ViewApp_Training. The icon indicates that the ViewApp template</p>
-<p>has not yet been configured.</p>
+
+<h2>Initializing the ViewApp</h2>
+<p>Double-click <code>$ViewApp_Training</code> to open it in the ViewApp Editor. The <strong>ViewApp Initialization</strong> wizard appears. The first step is to select a screen profile — both the <code>DualScreen</code> and <code>SingleScreen</code> profiles you created previously are listed.</p>
+
+<p>Select the <strong>SingleScreen</strong> screen profile and click <strong>Next</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0111_0.png" alt="Page 111">
-  <div class="caption">Page 111</div>
+  <img src="../images/page_0112_0.png" alt="ViewApp Initialization dialog — Select Screen Profile">
+  <div class="caption">The ViewApp Initialization wizard step for selecting a screen profile, showing both DualScreen and SingleScreen options</div>
 </div>
+
+<p>The next step, <strong>Associate Layout</strong>, appears. The Main layout you created in the previous lab is listed and already selected for the Primary screen. A preview of the screen with the layout appears on the left. Click <strong>Finish</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0111_1.png" alt="Page 111">
-  <div class="caption">Page 111</div>
+  <img src="../images/page_0113_0.png" alt="ViewApp Initialization — Associate Layout step">
+  <div class="caption">The Associate Layout step of ViewApp Initialization, with the Main layout pre-selected for the Primary screen</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>7.</p>
-<p>Double-click $ViewApp_Training to open it in the ViewApp Editor.</p>
-<p>The ViewApp Initialization dialog box appears.</p>
-<p>The first step of ViewApp initialization is Select Screen Profile. This allows you to select the</p>
-<p>screen profile that will be used by the ViewApp. Notice that both the DualScreen and</p>
-<p>SingleScreen screen profiles you created in the previous lab are listed and the first one in the</p>
-<p>list is selected.</p>
-<p>8.</p>
-<p>Select the SingleScreen screen profile and click Next.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0112_0.png" alt="Page 112">
-  <div class="caption">Page 112</div>
+  <img src="../images/page_0113_1.jpeg" alt="ViewApp Editor after initialization">
+  <div class="caption">The ViewApp Editor opens after initialization, showing the navigation tree, actions list, screen profile, and layout preview</div>
 </div>
+
+<h2>Preview and Test Navigation</h2>
+<p>The ViewApp Editor now reflects your selections: the SingleScreen profile is active, the Main layout is displayed, and the Actions panel shows auto-fill content assigned to the layout panes. You can verify the navigation hierarchy and pane content assignments before testing.</p>
+
+<p>In the top-right corner of the ViewApp Editor, click <strong>Preview</strong> to open a preview session.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0112_1.png" alt="Page 112">
-  <div class="caption">Page 112</div>
+  <img src="../images/page_0114_0.png" alt="Preview button in ViewApp Editor">
+  <div class="caption">The ViewApp Editor toolbar with the Preview button highlighted — used to test the ViewApp without deploying</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The next step, Associate Layout, appears.</p>
-<p>Notice that the Main layout you created in the previous lab is listed and already selected for</p>
-<p>the Primary screen in the profile. A preview of the screen with the layout appears on the left.</p>
-<p>9.</p>
-<p>Click Finish.</p>
-<p>The ViewApp Editor opens.</p>
-<p>You may want to maximize the editor to get a better view.</p>
+
+<p>A message appears indicating that preview mode is for testing only and not intended for production use. Check <strong>Do not show this message again</strong> and click <strong>OK</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0113_0.png" alt="Page 113">
-  <div class="caption">Page 113</div>
+  <img src="../images/page_0115_0.png" alt="Preview mode warning dialog">
+  <div class="caption">The Preview Mode warning dialog explaining this mode is for iterative development, not production use</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0113_1.jpeg" alt="Page 113">
-  <div class="caption">Page 113</div>
+  <img src="../images/page_0115_1.png" alt="Preview session taskbar icon">
+  <div class="caption">After closing the warning, the ViewApp preview session opens and appears as an icon in the Windows taskbar</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Notice that the selections you made during ViewApp Initialization are reflected in the preview</p>
-<p>area. The SingleScreen screen profile is selected and the Main layout is displayed. The Main</p>
-<p>layout shows the content you assigned to Pane2 and Pane3 in the previous lab.</p>
-<p>Open a Preview Session and Test Navigation</p>
-<p>In the next steps, you will open a ViewApp preview session from the ViewApp Editor and use the</p>
-<p>session to test the ViewApp navigation.</p>
-<p><strong>10.</strong> In the top-right corner of the ViewApp Editor, click Preview.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0114_0.png" alt="Page 114">
-  <div class="caption">Page 114</div>
+  <img src="../images/page_0115_2.jpeg" alt="Preview session with checkbox checked">
+  <div class="caption">The Preview Mode warning with "Do not show this message again" checkbox selected</div>
 </div>
+
+<p>When the preview session opens, Pane2 at the top takes up the entire display area and Pane1 does not show. This is because panes configured for AutoFill are set to <strong>Hide When Empty</strong> by default, and there is no content to fill Pane1 automatically based on the current navigation. Pane2 is configured with <strong>Height Sizing</strong> set to <strong>Variable</strong> by default, so it expands to fill the available space.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0114_1.png" alt="Page 114">
-  <div class="caption">Page 114</div>
+  <img src="../images/page_0116_0.png" alt="Preview session showing Pane2 filling entire display">
+  <div class="caption">The preview session opens with Pane2 filling the entire display — Pane1 is hidden because it has no content to auto-fill</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>A message appears indicating that preview mode is for testing only, and not intended for</p>
-<p>production use.</p>
-<p><strong>11.</strong> Review the message, and then check Do not show this message again.</p>
-<p><strong>12.</strong> Click OK to close the message.</p>
-<p>A ViewApp preview session opens and an icon is available in the task bar.</p>
-<p>This may take a few moments.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0115_0.png" alt="Page 115">
-  <div class="caption">Page 115</div>
+  <img src="../images/page_0116_1.jpeg" alt="Display Slide-In Pane button">
+  <div class="caption">The Display Slide-In Pane button on the left side of the layout, which reveals the NavTreeControl in Pane3</div>
 </div>
+
+<p>Click the <strong>Display Slide-In Pane</strong> button on the left side to view Pane3, which contains the NavTreeControl. A search field at the top of the navigation tree allows you to quickly find navigation items. Enter a search string such as <code>mix</code> to find matching items.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0115_1.png" alt="Page 115">
-  <div class="caption">Page 115</div>
+  <img src="../images/page_0117_0.png" alt="Search field in navigation tree">
+  <div class="caption">The Search field at the top of the navigation tree, used to quickly find navigation items by name</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0115_2.jpeg" alt="Page 115">
-  <div class="caption">Page 115</div>
+  <img src="../images/page_0117_1.jpeg" alt="Search results for 'mix'">
+  <div class="caption">Search results showing 8 navigation items matching "mix", with Mixer400 highlighted in the results list</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>13.</strong> From the task bar, select the preview session to open it.</p>
-<p>Notice that when the ViewApp preview session opens, Pane2 at the top takes up the entire</p>
-<p>display area and Pane1 does not show. This is because:</p>
-<p></p>
-<p>Panes configured for AutoFill are set to Hide When Empty by default, and there is no</p>
-<p>content to fill Pane1 automatically based on the current navigation.</p>
-<p></p>
-<p>Pane2 is configured with its Height Sizing set to Variable by default.</p>
-<p><strong>14.</strong> Click the Display Slide-In Pane button on the left side of the layout to view Pane3, which</p>
-<p>contains the NavTreeControl.</p>
+
+<p>Select a navigation item from the results list. In this example, Mixer100 is selected. The asset tree shows the full hierarchy from Assets through Plant &gt; Production &gt; Line1 &gt; Mixer100, with status indicators at each level.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0116_0.jpeg" alt="Page 116">
-  <div class="caption">Page 116</div>
+  <img src="../images/page_0118_0.jpeg" alt="Mixer100 selected in navigation">
+  <div class="caption">Mixer100 selected in the navigation tree, showing the full asset hierarchy with alarm status indicators at each level</div>
 </div>
+
+<p>Click off the slide-in pane or press <strong>ESC</strong> to close it. The NavBreadcrumbControl now shows the path: Assets &gt; Plant &gt; Production &gt; Line1 &gt; Mixer100. Each level has a dropdown arrow and status indicators.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0116_1.jpeg" alt="Page 116">
-  <div class="caption">Page 116</div>
+  <img src="../images/page_0119_0.png" alt="NavBreadcrumbControl showing Mixer100 path">
+  <div class="caption">The NavBreadcrumbControl at the top of the preview showing the navigation path to Mixer100 with status indicators</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The slide-in pane opens.</p>
-<p>Notice that there is a Search entry field at the top of the navigation tree.</p>
-<p><strong>15.</strong> In the Search entry field, enter a search string, such as mix, to quickly find navigation items</p>
-<p>that match the search string.</p>
-<p>This example shows navigation items that match the search string mix.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0117_0.png" alt="Page 117">
-  <div class="caption">Page 117</div>
+  <img src="../images/page_0119_1.png" alt="Minimize button on preview session">
+  <div class="caption">The Minimize button at the top-right of the preview session, used to switch back to the ViewApp Editor</div>
 </div>
+
+<h2>Editing the Layout from ViewApp Editor</h2>
+<p>From the ViewApp Editor, you can open the Main layout for editing in the Layout Editor. Click the vertical ellipsis on the right side of the Layout field, which shows the assigned layout is Main, and select <strong>Edit Layout</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0117_1.jpeg" alt="Page 117">
-  <div class="caption">Page 117</div>
+  <img src="../images/page_0120_0.jpeg" alt="Edit Layout option in ViewApp Editor">
+  <div class="caption">The vertical ellipsis button next to the Layout field, with the Edit Layout option selected to open the Main layout in the Layout Editor</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>16.</strong> Select a navigation item from the results list.</p>
-<p>This example shows Mixer100 selected in the results list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0118_0.jpeg" alt="Page 118">
-  <div class="caption">Page 118</div>
+  <img src="../images/page_0120_1.png" alt="Layout Editor opened from ViewApp Editor">
+  <div class="caption">The Main layout opens in the Layout Editor, ready for modification of pane properties</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>17.</strong> Click off the slide-in pane or press the ESC key to close the slide-in pane.</p>
-<p>This example shows the NavBreadcrumbControl navigated to Mixer100.</p>
-<p><strong>18.</strong> At the top-right of the preview, click Minimize to minimize the preview session.</p>
+
+<p>In the Layout Editor, select Pane2, right-click it, and select <strong>Pane Properties</strong>. On the Properties tab, change the <strong>Size &gt; Height Sizing</strong> property to <strong>Fixed</strong>. This prevents Pane2 from expanding to fill the entire display at runtime.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0119_0.png" alt="Page 119">
-  <div class="caption">Page 119</div>
+  <img src="../images/page_0121_0.png" alt="Right-click context menu on Pane2">
+  <div class="caption">Right-click context menu on Pane2 showing the Pane Properties option for editing sizing behavior</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0119_1.png" alt="Page 119">
-  <div class="caption">Page 119</div>
+  <img src="../images/page_0121_1.jpeg" alt="Height Sizing property set to Fixed">
+  <div class="caption">The Properties tab showing Pane2's Size section with Height Sizing changed to Fixed and Height set to 100</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Edit Layout from the ViewApp Editor</p>
-<p>In the following steps, you will open the Main layout for editing in the Layout Editor from within the</p>
-<p>ViewApp Editor. After saving changes made to the Main layout, you will see your changes in the</p>
-<p>ViewApp preview session.</p>
-<p><strong>19.</strong> In the ViewApp Editor, click the vertical ellipsis on the right side of the Layout field, which</p>
-<p>shows the assigned layout is Main.</p>
-<p><strong>20.</strong> From the drop-down list, select Edit Layout.</p>
-<p>The Main layout opens in the Layout Editor.</p>
+
+<p>Save and close the Main layout, and check it in. Switch back to the preview session — the changes are reflected immediately. Pane2 with the NavBreadcrumbControl no longer takes up the whole screen.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0120_0.jpeg" alt="Page 120">
-  <div class="caption">Page 120</div>
+  <img src="../images/page_0122_0.png" alt="Preview showing layout changes">
+  <div class="caption">After saving the layout change, the preview session shows Pane2 with fixed height — it no longer fills the entire screen</div>
 </div>
+
+<div class="tip">
+<strong>Tip:</strong> Changes made in the Layout Editor are automatically reflected in the preview session when Auto-Update is enabled, allowing rapid iterative development.
+</div>
+
+<p>In the top-right of the preview, click <strong>Close</strong> to close the preview session.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0120_1.png" alt="Page 120">
-  <div class="caption">Page 120</div>
+  <img src="../images/page_0122_1.png" alt="Close button on preview session">
+  <div class="caption">The Close button at the top-right of the preview session to exit the preview</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>21.</strong> In the preview area for the layout, ensure Pane2 is selected.</p>
-<p><strong>22.</strong> Right-click Pane2 and select Pane Properties.</p>
-<p><strong>23.</strong> On the Properties tab, change the Size \ Height Sizing property to Fixed.</p>
-<p><strong>24.</strong> Save and close the Main layout, and check it in.</p>
+
+<h2>Creating a ViewApp Instance</h2>
+<p>Close the ViewApp Editor and check in the <code>$ViewApp_Training</code> template. Now you will create a ViewApp instance from the derived template. On the Templates tab, right-click <code>$ViewApp_Training</code> and select <strong>New &gt; Instance</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0121_0.png" alt="Page 121">
-  <div class="caption">Page 121</div>
+  <img src="../images/page_0123_0.jpeg" alt="Close editor and create instance">
+  <div class="caption">Closing the Layout Editor, then right-clicking $ViewApp_Training to create a new instance via New &gt; Instance</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0121_1.png" alt="Page 121">
-  <div class="caption">Page 121</div>
+  <img src="../images/page_0123_1.png" alt="New Instance option highlighted">
+  <div class="caption">The context menu on $ViewApp_Training showing the Instance option under the New submenu</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>25.</strong> Switch to the ViewApp preview session.</p>
-<p>Notice that the configuration changes made in the Layout Editor are reflected in preview.</p>
-<p>Pane2 with the NavBreadcrumbControl at the top no longer takes up the whole screen, but</p>
-<p>Pane1 set for AutoFill is still hidden.This is because:</p>
-<p></p>
-<p>Panes configured for AutoFill are set to Hide When Empty by default, and there is still no</p>
-<p>content to fill Pane1 automatically based on the current navigation.</p>
-<p></p>
-<p>Pane2 is now configured with its Height Sizing property set to Fixed.</p>
-<p>The following example shows the view when navigated to Mixer100.</p>
-<p><strong>26.</strong> In the top-right of the preview, click Close to close the preview session.</p>
+
+<p>In the Deployment view, a new instance with the default name <code>ViewApp_Training_001</code> is created under <strong>UnAssigned Host</strong>. Leave the default name for now.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0122_0.png" alt="Page 122">
-  <div class="caption">Page 122</div>
+  <img src="../images/page_0124_0.png" alt="New instance in Deployment view">
+  <div class="caption">The Deployment view showing the newly created ViewApp_Training_001 instance under UnAssigned Host</div>
 </div>
-<p>(expanded: Mixer100-400)</p>
-<p>• Line2, Packaging, Plant, ProdPLC1</p>
-<p>• <strong>Right-Click Context Menu</strong> on $ViewApp_Training:</p>
-<p>• Open (Ctrl+O), Open Read-Only</p>
-<p>• Check Out, Check In (greyed), Undo Check Out (greyed)</p>
-<p>• Override Check Out (greyed), Validate</p>
-<p>• <strong>New</strong> submenu:</p>
-<p>• <strong>Instance (Ctrl+N)</strong> (highlighted/selected)</p>
-<p>• Derived Template (Ctrl+Shift+N)</p>
-<p>• Delete (Del), Rename (F2)</p>
-<p>• Assign To..., Unassign (greyed)</p>
-<p>• Import/Export (submenu arrows)</p>
-<p>• Object Help... (Ctrl+F1)</p>
-<p>• Synchronize Views (Ctrl+Shift+Z)</p>
-<p>• Properties... (Alt+Enter)</p>
-<p>• Application Information (Ctrl+I)]</p>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>27.</strong> Close the ViewApp Editor and check in the $ViewApp_Training template.</p>
-<p>Create a ViewApp Instance</p>
-<p>Now you will create a ViewApp instance from the derived ViewApp template.</p>
-<p><strong>28.</strong> On the Templates tab, in the Training \ ViewApps toolset, right-click $ViewApp_Training</p>
-<p>and select New | Instance.</p>
+
+<h2>Creating a ViewEngine</h2>
+<p>To deploy the ViewApp instance to the runtime environment, it must be hosted by a ViewEngine. Create a derived template from <code>$ViewEngine</code>, rename it to <code>$gViewEngine</code>, and move it to the Training &gt; Global toolset.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0123_0.jpeg" alt="Page 123">
-  <div class="caption">Page 123</div>
+  <img src="../images/page_0125_0.png" alt="Creating derived ViewEngine template">
+  <div class="caption">Creating $gViewEngine by deriving from the base $ViewEngine template and moving it to the Training &gt; Global toolset</div>
 </div>
+
+<p>Create a new instance from <code>$gViewEngine</code> and rename the instance to <strong>ViewEngine1</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0123_1.png" alt="Page 123">
-  <div class="caption">Page 123</div>
+  <img src="../images/page_0126_0.png" alt="ViewEngine1 instance created">
+  <div class="caption">ViewEngine1 instance created and displayed in the Deployment view under UnAssigned Host</div>
 </div>
-<p>(expanded):</p>
-<p>• Mixer100, Mixer200, Mixer300, Mixer400 (blue sphere icons)</p>
-<p>• Line2 [Line2]</p>
-<p>• Packaging [Packaging]</p>
-<p>• Plant</p>
-<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>In the Deployment view, notice that the new instance with the default name of</p>
-<p>ViewApp_Training_001 is created in UnAssigned Host.</p>
-<p>Leave the default name for the instance.</p>
+
+<h2>Deploying the ViewApp</h2>
+<p>In the Deployment view, assign <strong>ViewEngine1</strong> to <code>PROD_Platform1</code> — the production visualization client node. Then assign <code>ViewApp_Training_001</code> to ViewEngine1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0124_0.png" alt="Page 124">
-  <div class="caption">Page 124</div>
+  <img src="../images/page_0127_0.png" alt="Assigning ViewEngine and ViewApp to platform">
+  <div class="caption">Deployment tree after assigning ViewEngine1 and ViewApp_Training_001 to PROD_Platform1</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Create a ViewEngine to Host the ViewApp Instance</p>
-<p>To deploy the ViewApp instance to the runtime environment, the instance must be hosted by a</p>
-<p>ViewEngine. In the following steps, you will create a ViewEngine instance and assign the ViewApp</p>
-<p>instance to it.</p>
-<p><strong>29.</strong> On the Templates tab, in the System toolset, right-click the $ViewEngine template and</p>
-<p>select New | Derived Template.</p>
-<p><strong>30.</strong> Rename the derived template to $gViewEngine and move it to the Training \ Global toolset.</p>
+
+<p>In the Model view, assign both ViewEngine1 and ViewApp_Training_001 to the <strong>Sys</strong> area.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0125_0.png" alt="Page 125">
-  <div class="caption">Page 125</div>
+  <img src="../images/page_0128_0.png" alt="Assigning to Sys area in Model view">
+  <div class="caption">The Model view showing ViewApp_Training_001 and ViewEngine1 assigned to the Sys area alongside AppEngine1 and GRPlatform</div>
 </div>
-<p>(expanded): Mixer100-400</p>
-<p>• Line2, Packaging, Plant, ProdPLC1</p>
-<p>• Production, Receiving, Shipping, Sys</p>
-<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>31.</strong> Create a new instance from $gViewEngine and rename the instance to ViewEngine1.</p>
+
+<p>Right-click <strong>ViewEngine1</strong> and select <strong>Deploy</strong>. Leave the default deployment options and click <strong>Deploy</strong>. Notice the orange synchronization icon on the ViewApp instance while files are being transferred — once complete, the icon changes to the standard ViewApp icon.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0126_0.png" alt="Page 126">
-  <div class="caption">Page 126</div>
+  <img src="../images/page_0129_0.png" alt="Deployment in progress and complete">
+  <div class="caption">Left: ViewApp_Training_001 showing the orange sync icon during file transfer. Right: The icon changes to the standard ViewApp icon when deployment completes</div>
 </div>
-<p>(expanded): Mixer100-400</p>
-<p>• Line2, Packaging, Plant, ProdPLC1</p>
-<p>• Production, Receiving, Shipping, Sys</p>
-<p>• <strong>ViewEngine1</strong> (red circle highlight)</p>
-<p>• <strong>ViewApp_Training_001</strong> (red circle highlight)</p>
-<p>• <strong>Bottom Tabs</strong>: Model - Tagname, <strong>Deployment</strong> (selected), Derivation]</p>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>32.</strong> In the Deployment view, assign ViewEngine1 to PROD_Platform1.</p>
-<div class="key-concept">Note:</div>
-<p>For the purposes of this lab, PROD_Platform1 will be used as the production</p>
-<p>visualization client node.</p>
-<p><strong>33.</strong> Assign ViewApp_Training_001 to ViewEngine1.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> The orange synchronization icon indicates files are still being transferred to the target node. Wait for the icon to change before attempting to launch the ViewApp.
+</div>
+
+<h2>Launching the ViewApp in Runtime</h2>
+<p>Switch to the production node and open the <strong>AVEVA OMI Application Manager</strong>. <code>VIEWAPP_TRAINING_001</code> appears in the list of deployed ViewApps. Click <strong>LAUNCH</strong> to launch it.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0127_0.png" alt="Page 127">
-  <div class="caption">Page 127</div>
+  <img src="../images/page_0130_0.png" alt="AVEVA OMI Application Manager">
+  <div class="caption">The AVEVA OMI Application Manager on the production node showing VIEWAPP_TRAINING_001 with the LAUNCH button ready to start the ViewApp</div>
 </div>
-<p>• Production [Production]</p>
-<p>• Receiving [Receiving]</p>
-<p>• Shipping [Shipping]</p>
-<p>• <strong>Sys [Sys]</strong> (expanded, red box highlight):</p>
-<p>• AppEngine1</p>
-<p>• GRPlatform</p>
-<p>• PROD_Platform1</p>
-<p>• ProdPLC1</p>
-<p>• <strong>ViewApp_Training_001</strong> (blue selection bar)</p>
-<p>• <strong>ViewEngine1</strong></p>
-<p>• <strong>Bottom Tabs</strong>: Model - Tagname (active), Deployment, Derivation]</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>34.</strong> In the Model view, assign ViewEngine1 and ViewApp_Training_001 to the Sys area.</p>
+
+<p>The ViewApp opens maximized to full screen. You can use the NavBreadcrumbControl at the top or the NavTreeControl in the left slide-in pane to navigate through the application.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0128_0.png" alt="Page 128">
-  <div class="caption">Page 128</div>
+  <img src="../images/page_0131_0.png" alt="Running ViewApp navigated to Mixer100">
+  <div class="caption">The running ViewApp navigated to Mixer100, with the NavBreadcrumbControl showing Assets &gt; Plant &gt; Production &gt; Line1 &gt; Mixer100</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Deploy the ViewApp</p>
-<p>Now you will deploy the ViewEngine and ViewApp instances to the runtime environment.</p>
-<p><strong>35.</strong> In the Deployment view, right-click ViewEngine1 and select Deploy.</p>
-<p><strong>36.</strong> Leave the default deployment options and click Deploy.</p>
-<p>ViewEngine1 and ViewApp_Training_001 are deployed.</p>
-<p>Notice that at first, the icon for the ViewApp instance is an orange synchronization icon. The</p>
-<p>orange icon indicates that the ViewApp files are in the process of being transferred to the</p>
-<p>target node. Once the file transfer is complete, the icon changes to the ViewApp icon.</p>
-<p><strong>37.</strong> In the Deploy dialog box, click Close when the deployment completes.</p>
+
+<h2>Editing the Main Layout and Deploying Changes</h2>
+<p>Leave the ViewApp running on the production node and switch back to the engineering node. On the Graphics tab, open the Main layout in the Layout Editor. Select Pane2, right-click it, and select <strong>Add Pane &gt; Above</strong> to add a new pane named Pane4.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0129_0.png" alt="Page 129">
-  <div class="caption">Page 129</div>
+  <img src="../images/page_0132_0.png" alt="Right-click menu on Pane2">
+  <div class="caption">Right-click context menu on Pane2 with Add Pane &gt; Above option to insert a new pane above Pane2</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Launch the ViewApp in Runtime</p>
-<p>Now, you will launch the ViewApp in runtime. Recall that the ViewApp was deployed to the</p>
-<p>production node, so you will switch to that node to launch the ViewApp.</p>
-<p><strong>38.</strong> Switch to the production node.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide instructions for switching to the production node.</p>
-<p><strong>39.</strong> On the production node, open the AVEVA OMI Application Manager.</p>
-<p>A shortcut to the AVEVA OMI Application Manager is located on the desktop of the</p>
-<p>production node. You can also find it in the list of applications on the node.</p>
-<p>VIEWAPP_TRAINING_001 appears in the list of ViewApps deployed to the node.</p>
-<p><strong>40.</strong> Click LAUNCH to launch VIEWAPP_TRAINING_001.</p>
-<p>The ViewApp opens maximized to the full screen by default.</p>
-<p>This may take a few moments.</p>
-<div class="key-concept">Note:</div>
-<p>You may need to manually minimize the AVEVA OMI Application Manager.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0130_0.png" alt="Page 130">
-  <div class="caption">Page 130</div>
+  <img src="../images/page_0132_1.jpeg" alt="Pane4 added above Pane2">
+  <div class="caption">A new Pane4 added above Pane2 in the layout hierarchy, with Pane3 visible on the left and Pane1 at the bottom</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Once the ViewApp opens, you can use the NavBreadcrumbControl at the top or the</p>
-<p>NavTreeControl in the left slide-in pane to navigate through the ViewApp.</p>
-<p>The following example shows the ViewApp navigated to Mixer100.</p>
-<p><strong>41.</strong> Leave the ViewApp running on the production node.</p>
-<p><strong>42.</strong> Switch back to the engineering node.</p>
-<p>Edit the Main Layout and Deploy the Changes</p>
-<p>In the following steps, you will open the Main layout in the Layout Editor on the engineering node.</p>
-<p>You will add a pane to the top of the layout, configure the size of the pane, and add the</p>
-<p>TitleBarControl to it. Then you will deploy the changes to the ViewApp running on the production</p>
-<p>node.</p>
-<p><strong>43.</strong> Ensure you are working on the engineering node.</p>
-<p><strong>44.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
-<p>Layout Editor.</p>
-<p><strong>45.</strong> In the layout preview area, select Pane2.</p>
+
+<p>Pane4 inherits the <strong>Fixed</strong> Height Sizing from Pane2. On the Properties tab, change the Size &gt; Height property to <strong>80</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0131_0.png" alt="Page 131">
-  <div class="caption">Page 131</div>
+  <img src="../images/page_0133_0.jpeg" alt="Pane4 properties with inherited Height Sizing">
+  <div class="caption">Pane4's Properties tab showing inherited Fixed Height Sizing with Height initially at 49</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>46.</strong> With Pane2 selected, right-click the pane and select Add Pane | Above.</p>
-<p>A new pane named Pane4 is added above Pane2.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0132_0.png" alt="Page 132">
-  <div class="caption">Page 132</div>
+  <img src="../images/page_0133_1.jpeg" alt="Pane4 height changed to 80">
+  <div class="caption">After changing Pane4's Height to 80, with Aspect Ratio automatically updated to 24:1</div>
 </div>
+
+<p>On the Toolbox tab, search for <strong>TitleBarControl</strong> and drag it to Pane4.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0132_1.jpeg" alt="Page 132">
-  <div class="caption">Page 132</div>
+  <img src="../images/page_0134_0.png" alt="Searching for TitleBarControl">
+  <div class="caption">The Toolbox tab with "title" entered in the search field, locating the TitleBarControl for use in Pane4</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>47.</strong> Select Pane4, and on the Properties tab, notice that the Size \ Height Sizing property of</p>
-<p>Pane4 is Fixed.</p>
-<p>This is because Pane4 was created based on the properties of Pane2, and the Size \ Height</p>
-<p>Sizing property for Pane2 is Fixed.</p>
-<p><strong>48.</strong> Modify the Size \ Height property for Pane4 to 80.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0133_0.jpeg" alt="Page 133">
-  <div class="caption">Page 133</div>
+  <img src="../images/page_0134_1.png" alt="Dragging TitleBarControl to Pane4">
+  <div class="caption">Dragging the TitleBarControl from the Toolbox to Pane4, which is highlighted as the drop target</div>
 </div>
+
+<h2>Configuring the TitleBarControl</h2>
+<p>With Pane4 selected, change the <strong>Content and Display Area &gt; Title</strong> property to <strong>AVEVA OMI Training Application</strong>. Then click outside the panes to select the layout and display layout properties on the Properties tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0133_1.jpeg" alt="Page 133">
-  <div class="caption">Page 133</div>
+  <img src="../images/page_0135_0.jpeg" alt="TitleBarControl properties">
+  <div class="caption">The TitleBarControl Properties tab showing the Title set to "AVEVA OMI Training Application" with font and color settings</div>
 </div>
-<p>add/drop indicator in top-right of Pane4]</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>49.</strong> On the Toolbox tab, enter a search string to find the TitleBarControl and select it.</p>
-<p><strong>50.</strong> Drag the TitleBarControl to Pane4.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0134_0.png" alt="Page 134">
-  <div class="caption">Page 134</div>
+  <img src="../images/page_0135_1.png" alt="Layout properties panel">
+  <div class="caption">The Layout properties panel accessible by clicking outside the panes, showing title mode and target settings</div>
 </div>
+
+<p>On the Properties tab, uncheck the <strong>Behavior &gt; Has Title Bar</strong> property. This removes the default window title bar and replaces it with the TitleBarControl you just configured.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0134_1.png" alt="Page 134">
-  <div class="caption">Page 134</div>
+  <img src="../images/page_0136_0.png" alt="Has Title Bar unchecked">
+  <div class="caption">The Layout properties showing Behavior section with Has Title Bar unchecked — this replaces the default title bar with the custom TitleBarControl</div>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>51.</strong> With Pane4 selected, on the Properties tab, change the Content and Display Area \ Title</p>
-<p>property to AVEVA OMI Training Application.</p>
-<p><strong>52.</strong> In the Layout Editor, click outside of the panes to select the layout and display layout</p>
-<p>properties on the Properties tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0135_0.jpeg" alt="Page 135">
-  <div class="caption">Page 135</div>
+  <img src="../images/page_0136_1.png" alt="Open Updated ViewApp dialog">
+  <div class="caption">After deploying the changes, switching to the production node triggers an "Open Updated ViewApp?" dialog</div>
 </div>
+
+<p>Save and close the Main layout, check it in, and deploy the changes. Switch to the production node — an <strong>Open Updated ViewApp</strong> message appears. Click <strong>OPEN NOW</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0135_1.png" alt="Page 135">
-  <div class="caption">Page 135</div>
+  <img src="../images/page_0137_0.png" alt="Updated ViewApp with TitleBarControl">
+  <div class="caption">The updated ViewApp showing the custom TitleBarControl with "AVEVA OMI Training Application" title, replacing the default window title bar</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>53.</strong> On the Properties tab, uncheck the Behavior \ Has Title Bar property.</p>
-<p><strong>54.</strong> Save and close the Main layout, and check it in.</p>
-<p><strong>55.</strong> In the Deployment view, right-click ViewApp_Training_001 and select Deploy.</p>
-<p><strong>56.</strong> Leave the default deployment options and click Deploy.</p>
-<p><strong>57.</strong> Click Close when the deployment process completes.</p>
-<p><strong>58.</strong> Switch to the production node.</p>
-<p>An Open Updated ViewApp message appears.</p>
-<div class="screenshot">
-  <img src="../images/page_0136_0.png" alt="Page 136">
-  <div class="caption">Page 136</div>
+
+<div class="key-concept">
+<strong>Key Takeaway:</strong> The ViewApp supports hot-deployment — changes to layouts and configuration can be pushed to a running ViewApp without restarting. The TitleBarControl provides a customizable title bar that can be styled and configured independently of the window frame.
 </div>
-<div class="screenshot">
-  <img src="../images/page_0136_1.png" alt="Page 136">
-  <div class="caption">Page 136</div>
+
+<h2>Quiz</h2>
+<div class="quiz">
+<h3>Test Your Knowledge</h3>
+
+<details>
+<summary>1. What is the purpose of the ViewApp Initialization wizard?</summary>
+<p class="answer">The Initialization wizard appears the first time a derived ViewApp template is opened. It allows you to select a screen profile and associate layouts with the screens in that profile. After clicking Finish, the ViewApp Editor opens with the selected configuration.</p>
+</details>
+
+<details>
+<summary>2. Why does Pane1 remain hidden in the preview session when first opened?</summary>
+<p class="answer">Panes configured for AutoFill are set to Hide When Empty by default, and there is no content assigned to automatically fill Pane1 based on the current navigation. Pane2 expands to fill the available space because its Height Sizing is set to Variable by default.</p>
+</details>
+
+<details>
+<summary>3. What does the orange synchronization icon on the ViewApp instance indicate?</summary>
+<p class="answer">The orange synchronization icon indicates that the ViewApp files are in the process of being transferred to the target node. Once the file transfer is complete, the icon changes to the standard ViewApp icon, indicating deployment is complete.</p>
+</details>
+
+<details>
+<summary>4. What is the role of the ViewEngine in deploying a ViewApp?</summary>
+<p class="answer">The ViewEngine is required to host a ViewApp instance in the runtime environment. The ViewApp instance must be assigned to a ViewEngine, which in turn must be assigned to a platform (such as PROD_Platform1) that serves as the production visualization client node.</p>
+</details>
+
+<details>
+<summary>5. How do you replace the default window title bar with a custom TitleBarControl?</summary>
+<p class="answer">Add a new pane above the existing panes, set its Height Sizing to Fixed with a Height of 80, drag the TitleBarControl from the Toolbox to this pane, configure the Title property, and uncheck the Behavior &gt; Has Title Bar property on the layout. This removes the default title bar and displays the custom TitleBarControl instead.</p>
+</details>
 </div>
-<p>Lab 3 – Creating and Running a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>59.</strong> Click OPEN NOW.</p>
-<p>The updated ViewApp opens.</p>
-<p>Notice that its appearance is different.</p>
-<p>Instead of the default title bar, the TitleBarControl displays at the top and the title that you</p>
-<p>configured is shown.</p>
-<div class="key-concept">Note:</div>
-<p>You can leave the ViewApp running on the production node.</p>
-<p><strong>60.</strong> Switch back to the engineering node.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0137_0.png" alt="Page 137">
-  <div class="caption">Page 137</div>
-</div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L06-ViewApps-Overview.html">← L06: ViewApps Overview</a> &nbsp;|&nbsp;
-  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and  →</a>
-</nav>
+
 <script>
-function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
-function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
-function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
-window.addEventListener('load',loadProgress);
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('input[data-lesson]');
+  const progress = {};
+  checkboxes.forEach(cb => { progress[cb.dataset.lesson] = cb.checked; });
+  localStorage.setItem('omi-progress', JSON.stringify(progress));
+  updateProgressText();
+}
+function loadProgress() {
+  const data = localStorage.getItem('omi-progress');
+  if (!data) return;
+  const progress = JSON.parse(data);
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    if (progress[cb.dataset.lesson]) cb.checked = true;
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  const total = document.querySelectorAll('input[data-lesson]').length;
+  const done = document.querySelectorAll('input[data-lesson]:checked').length;
+  document.getElementById('progress-text').textContent = done === total ? '🎉 All lessons complete!' : `${done}/${total} lessons completed`;
+}
+loadProgress();
 </script>
 </body>
 </html>

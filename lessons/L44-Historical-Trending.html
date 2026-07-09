@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 44: Historical Trending</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #777; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
   <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">← L43: Lab 21 – Adding Trending to Graphics</a> &nbsp;|&nbsp;
-  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Histor →</a>
+  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -122,223 +125,200 @@
 </nav>
 
 <h1>📖 L44: Historical Trending</h1>
-<p class="source">Module 10 — Trends | Pages 617-624</p>
-<p>Minutes</p>
-<p><strong>5.</strong> Include Tags Containing: PV,SP,CV (keyword filter)</p>
-<p>• AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 3 – Historical Trending</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 3 – Historical Trending</p>
-<p>Introduction</p>
-<p>Historian and Historian Client provide client applications that can access the Historian database.</p>
-<p>These clients are the Historian Client Web and Historian Client Trend applications.</p>
-<p>Historian Client Web helps to retrieve historical data through the web browser and present data in</p>
-<p>different formats, such as trends, tables, and more. On a remote client node, you can access the</p>
-<p>Historian database through the web client using a web browser. With Historian Client Web, you</p>
-<p>can present your data in a chart, work with data using dashboards, save and share content, and</p>
-<p>view and reuse content. You can search for specific saved content, tags, or keywords and view the</p>
-<p>results in a chart. You can choose the chart type, add or remove tags from the chart, and fine-tune</p>
-<p>how content is displayed. You can save, download, and share the content. You can also embed</p>
-<p>the content in a web page or other HTML-based document.</p>
-<p>Historian Client Trend also helps to retrieve historical data and present data in trend format. You</p>
-<p>can access the Historian database on a remote client node using the Trend client application. With</p>
-<p>Historian Client Trend, you can query tags from a Historian database and plot them on different</p>
-<p>types of charts and manipulate the charts in different ways, including panning, zooming, and</p>
-<p>scaling. You can also customize the trend by configuring available options.</p>
-<p>InSightApp</p>
-<p>InSightApp is an out-of-the-box OMI App for running an active Insight browser session within a</p>
-<p>pane of a running ViewApp. The InSightApp provides a visualization of operational data by</p>
-<p>retrieving information from the Historian. The InSightApp includes a search engine for retrieving</p>
-<p>relevant information from tags that include defined keywords.</p>
-<p>InSightApp Global Settings</p>
-<p>InSightApp global settings are configured in the InSightApp Global Editor. You can open the</p>
-<p>InSightApp Global Editor by double-clicking the InSightApp from the Graphics tab. From the editor,</p>
-<p>you can configure the Historian InSight server URL, the start date and time, the end date and time,</p>
-<p>the chart duration, and keywords defined for searching tags. You can also use the Test</p>
-<p>Connection button to verify connection to the specified InSight server.</p>
-<p>This section describes using the InSightApp and the HistoricalTrendApp for historical trending in</p>
-<p>a ViewApp.</p>
-<div class="screenshot">
-  <img src="../images/page_0617_0.png" alt="Page 617">
-  <div class="caption">Page 617</div>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 10: Trends</p>
+<p class="page-ref">Pages 617–624 (Section 3 – Historical Trending)</p>
+
+<h2>Introduction</h2>
+
+<p>Historian and Historian Client provide client applications that can access the Historian database. These clients are the <strong>Historian Client Web</strong> and <strong>Historian Client Trend</strong> applications, each designed for different use cases when working with historical data.</p>
+
+<p>Historian Client Web helps to retrieve historical data through the web browser and present data in different formats, such as trends, tables, and more. On a remote client node, you can access the Historian database through the web client using a web browser. With Historian Client Web, you can present your data in a chart, work with data using dashboards, save and share content, and view and reuse content. You can search for specific saved content, tags, or keywords and view the results in a chart. You can choose the chart type, add or remove tags from the chart, and fine-tune how content is displayed. You can save, download, and share the content. You can also embed the content in a web page or other HTML-based document.</p>
+
+<p>Historian Client Trend also helps to retrieve historical data and present data in trend format. You can access the Historian database on a remote client node using the Trend client application. With Historian Client Trend, you can query tags from a Historian database and plot them on different types of charts and manipulate the charts in different ways, including panning, zooming, and scaling. You can also customize the trend by configuring available options.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> The two primary historical trending tools are <strong>Historian Client Web</strong> (browser-based, rich charting and dashboards) and <strong>Historian Client Trend</strong> (trend-focused, panning/zooming/scaling). Both access data from the Historian database.
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>InSightApp Properties</p>
-<p>To use the InSightApp in a ViewApp, it must be assigned to a layout pane in the Layout Editor or</p>
-<p>ViewApp Editor. Once the InSightApp is assigned to a pane, you can customize the properties that</p>
-<p>include Historian InSight server URL, query start time, query end time, chart duration, and</p>
-<p>keywords defined for searching tags. You can also create an event handler script by selecting an</p>
-<p>event in the available events list of the control.</p>
-<p>Chart configuration properties set by the Global Editor and properties set from the Layout or</p>
-<p>ViewApp editors may not be the same. InSightApp properties are evaluated in a running ViewApp</p>
-<p>only when the default values are changed and have a higher precedence over chart configuration</p>
-<p>properties set with the InSightApp Global Editor.</p>
-<p>InSightApp Security Requirements</p>
-<p>A logged in user must be an authorized Historian user to view a chart displayed by the InSightApp</p>
-<p>in a running ViewApp. InSightApp uses the single sign-on service of the ViewApp. To use the</p>
-<p>InSightApp, the security authentication mode for the Galaxy must be configured as OS Group or</p>
-<p>OS User based. The Galaxy security authentication mode is not supported.</p>
-<p>InSightApp runs in the context of the logged on ViewApp user. A valid InSightApp user must be a</p>
-<p>member of one of the following groups:</p>
-<p></p>
-<p>aaAdministrators</p>
-<p></p>
-<p>aaPowerUsers</p>
-<p></p>
-<p>aaUsers</p>
-<p>At runtime, if security is not enabled for the Galaxy, a user is not logged on to the ViewApp, or the</p>
-<p>user logged on to the ViewApp is not a valid InSightApp user, a message appears within the</p>
-<p>InSightApp.</p>
-<div class="screenshot">
-  <img src="../images/page_0618_0.jpeg" alt="Page 618">
-  <div class="caption">Page 618</div>
+
+<h2>InSightApp</h2>
+
+<p>InSightApp is an out-of-the-box OMI App for running an active Insight browser session within a pane of a running ViewApp. The InSightApp provides a visualization of operational data by retrieving information from the Historian. The InSightApp includes a search engine for retrieving relevant information from tags that include defined keywords.</p>
+
+<h3>InSightApp Global Settings</h3>
+
+<p>InSightApp global settings are configured in the InSightApp Global Editor. You can open the InSightApp Global Editor by double-clicking the InSightApp from the Graphics tab. From the editor, you can configure the Historian InSight server URL, the start date and time, the end date and time, the chart duration, and keywords defined for searching tags. You can also use the <strong>Test Connection</strong> button to verify connection to the specified InSight server.</p>
+
+<table>
+<thead>
+<tr><th>Setting</th><th>Description</th><th>Example Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Historian InSight Server URL</td><td>URL of the InSight server</td><td><code>http://S00ENG:32569</code></td></tr>
+<tr><td>Start Date/Time</td><td>Beginning of the query range</td><td>12/20/2022 8:30 AM</td></tr>
+<tr><td>End Date/Time</td><td>End of the query range</td><td>12/20/2022 11:30 AM</td></tr>
+<tr><td>Chart Duration</td><td>Time window in minutes</td><td>180</td></tr>
+<tr><td>Include Tags Containing</td><td>Keyword filter for tag search</td><td>PV, SP, CV</td></tr>
+</tbody>
+</table>
+
+<h2>InSightApp Properties</h2>
+
+<p>To use the InSightApp in a ViewApp, it must be assigned to a layout pane in the Layout Editor or ViewApp Editor. Once the InSightApp is assigned to a pane, you can customize the properties that include Historian InSight server URL, query start time, query end time, chart duration, and keywords defined for searching tags. You can also create an event handler script by selecting an event in the available events list of the control.</p>
+
+<div class="tip">
+<strong>Precedence Rule:</strong> Chart configuration properties set by the Global Editor and properties set from the Layout or ViewApp editors may not be the same. InSightApp properties are evaluated in a running ViewApp only when the default values are changed and have a <em>higher precedence</em> over chart configuration properties set with the InSightApp Global Editor.
 </div>
-<p>></p>
-<p>• <strong>Text</strong>: "You can hover your mouse over the x-axis in the chart to show a floating toolbar, which provides time- and zoom-related tools."</p>
-<p>• AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 3 – Historical Trending</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>InSightApp at Runtime</p>
-<p>In a running ViewApp, the InSightApp searches for keywords defined in the InSightApp properties,</p>
-<p>based on the asset of the current navigation. If the current asset has attributes that contain the</p>
-<p>search keywords, the InSightApp will retrieve historical data for the asset. The historical data will</p>
-<p>be presented as a trend chart.</p>
-<p>The trend chart may have one or more pens, based on the number of attributes in the asset that</p>
-<p>contain the search keywords. In runtime, the trend chart includes the current asset name, trend</p>
-<p>pens, and an interactive legend. When you hover your mouse over the chart, a cursor appears</p>
-<p>with values for all tags. You can move the cursor along the x-axis to see values for specific points</p>
-<p>in time.</p>
-<p>You can click the ellipsis button in the legend at the bottom to display a menu of units of measure.</p>
-<p>Selecting a different unit of measure converts the data in the display to the new unit of measure.</p>
-<p>You can hover your mouse over the x-axis in the chart to show a floating toolbar, which provides</p>
-<p>time- and zoom-related tools.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0619_0.jpeg" alt="Page 619">
-  <div class="caption">Page 619</div>
+  <img src="../images/page_0618_0.jpeg" alt="InSightApp Properties showing Chart Configuration with Historian InSight Server URL, Chart Duration, Query Start/End Time, and Tag Filters">
+  <div class="caption">InSightApp Properties pane showing Chart Configuration settings including the Historian server URL, chart duration, query time range, and tag keyword filters</div>
 </div>
+
+<h2>InSightApp Security Requirements</h2>
+
+<p>A logged in user must be an authorized Historian user to view a chart displayed by the InSightApp in a running ViewApp. InSightApp uses the single sign-on service of the ViewApp. To use the InSightApp, the security authentication mode for the Galaxy must be configured as <strong>OS Group</strong> or <strong>OS User</strong> based. The Galaxy security authentication mode is not supported.</p>
+
+<p>InSightApp runs in the context of the logged on ViewApp user. A valid InSightApp user must be a member of one of the following groups:</p>
+
+<ul>
+<li><code>aaAdministrators</code></li>
+<li><code>aaPowerUsers</code></li>
+<li><code>aaUsers</code></li>
+</ul>
+
+<div class="pitfall">
+<strong>Security Warning:</strong> At runtime, if security is not enabled for the Galaxy, a user is not logged on to the ViewApp, or the user logged on to the ViewApp is not a valid InSightApp user, a message appears within the InSightApp control.
+</div>
+
+<h2>InSightApp at Runtime</h2>
+
+<p>In a running ViewApp, the InSightApp searches for keywords defined in the InSightApp properties, based on the asset of the current navigation. If the current asset has attributes that contain the search keywords, the InSightApp will retrieve historical data for the asset. The historical data will be presented as a trend chart.</p>
+
+<p>The trend chart may have one or more pens, based on the number of attributes in the asset that contain the search keywords. In runtime, the trend chart includes the current asset name, trend pens, and an interactive legend. When you hover your mouse over the chart, a cursor appears with values for all tags. You can move the cursor along the x-axis to see values for specific points in time.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0619_1.jpeg" alt="Page 619">
-  <div class="caption">Page 619</div>
+  <img src="../images/page_0619_0.jpeg" alt="InSightApp runtime trend chart showing Level_001 with interactive legend and hover tooltip">
+  <div class="caption">InSightApp runtime display showing a trend chart for Level_001 with the hover tooltip displaying timestamp and value data</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0619_2.png" alt="Page 619">
-  <div class="caption">Page 619</div>
+  <img src="../images/page_0619_1.jpeg" alt="Unit of measure selection popup showing available units for a trend pen">
+  <div class="caption">Clicking the ellipsis button in the legend reveals a popup menu for selecting different units of measure (hl, m³, l)</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>You can also click the y-axis to adjust scaling settings for the chart.</p>
-<p>When the associated tags in the InSightApp have alarms and events, the trend displays with</p>
-<p>additional indicators:</p>
-<p></p>
-<p>For alarms, the trend lines display with highlights. For example, the yellow highlights</p>
-<p>indicate Severity 2 alarms for the attribute and the red highlights indicate Severity 1</p>
-<p>alarms. You can click on the highlighted area on the trend line to see additional</p>
-<p>information about that alarm.</p>
+
+<p>You can click the ellipsis button in the legend at the bottom to display a menu of units of measure. Selecting a different unit of measure converts the data in the display to the new unit of measure. You can hover your mouse over the x-axis in the chart to show a floating toolbar, which provides time- and zoom-related tools.</p>
+
+<h3>Alarm and Event Indicators</h3>
+
+<p>When the associated tags in the InSightApp have alarms and events, the trend displays with additional indicators:</p>
+
+<ul>
+<li><strong>Alarm highlights:</strong> Yellow highlights indicate Severity 2 alarms for the attribute, and red highlights indicate Severity 1 alarms. You can click on the highlighted area on the trend line to see additional information about that alarm.</li>
+<li><strong>Event icons:</strong> For events, trend lines display with event icons. You can click on an icon to see additional information related to that event.</li>
+</ul>
+
 <div class="screenshot">
-  <img src="../images/page_0620_0.jpeg" alt="Page 620">
-  <div class="caption">Page 620</div>
+  <img src="../images/page_0620_0.jpeg" alt="Scaling menu with Single Axis, Multi Axes, Stacked Axes options and Auto Scale checkbox">
+  <div class="caption">Clicking the y-axis opens a scaling menu with options for Single Axis, Multi Axes, Stacked Axes, and Auto Scale</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0620_1.jpeg" alt="Page 620">
-  <div class="caption">Page 620</div>
+  <img src="../images/page_0620_1.jpeg" alt="Trend chart with alarm highlights showing Severity 1 (red) and Severity 2 (yellow) alarm regions">
+  <div class="caption">Trend chart displaying alarm-colored highlights: red for Severity 1 alarms and yellow for Severity 2 alarms, with a clickable alarm details popup</div>
 </div>
-<p>Section 3 – Historical Trending</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p></p>
-<p>For events, trend lines display with event icons. You can click on an icon to see additional</p>
-<p>information related to that event.</p>
-<p>HistoricalTrendApp</p>
-<p>Another out-of-the-box OMI App is the HistoricalTrendApp, which is based on the Historian Client</p>
-<p>Trend application. To use the HistoricalTrendApp, you must assign it to a layout pane in the Layout</p>
-<p>Editor or ViewApp Editor.</p>
-<p>At runtime, you can configure the server connections, add tags from a Historian database, and plot</p>
-<p>them on a trend chart. You can also manipulate the display for panning, zooming, and scaling.</p>
-<p>Other configurations are available for customizing the trend chart and a selected pen.</p>
-<p>You can use the HistoricalTrendApp to display different types of charts, which are a regular trend</p>
-<p>curve and an XY scatter plot.</p>
-<p>HistoricalTrendApp Properties</p>
-<p>The HistoricalTrendApp provides a set of design-time properties that enable or disable visual and</p>
-<p>functional components of the HistoricalTrendControl during runtime. Once added to a layout pane,</p>
-<p>the HistoricalTrendControl properties show on the Properties tab in the Layout Editor. You can use</p>
-<p>the search feature on the Properties tab to search for a property by name.</p>
-<p></p>
-<p>General properties show the name of the control, the control as content, and the name of</p>
-<p>the pane in which the HistoricalTrendApp control is placed.</p>
-<p></p>
-<p>Run-Time Behavior properties are the native properties of the HistoricalTrendApp. For</p>
-<p>example, the Follow Current Context property determines if the control shows trend for the</p>
-<p>tags belonging to the current context. If checked, the Max Context Tags to Show property</p>
-<p>determines the maximum number of tags that can be shown on the trend.</p>
-<p>The Pens property lets you add specific tags, in addition to tags displayed for the current</p>
-<p>context. The value for Pens can be one or more fully qualified tag names or a reference to</p>
-<p>an attribute that contains the fully qualified tag names. Separate multiple tag names with a</p>
-<p>comma.</p>
-<p></p>
-<p>.NET Trend Control properties are from the underlying .NET trend control that are</p>
-<p>exposed and can be assigned values from the Layout Editor or included in scripts.</p>
-<p>.NET property groups are identified by the TrendControl prefix in their titles that appear on</p>
-<p>the Properties tab. For example, the TrendControl.Accessibility title appears immediately</p>
-<p>beneath the Run-Time Behavior group of properties.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0621_0.jpeg" alt="Page 621">
-  <div class="caption">Page 621</div>
+  <img src="../images/page_0621_0.jpeg" alt="Event indicator on trend line showing Verified Write event details popup">
+  <div class="caption">Event icons on the trend line display event details when clicked, showing event type, user, and description</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>For more information about .NET properties, please refer to Microsoft resources, such as:</p>
-<p>https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms</p>
-<p>For more information about TrendControl.Misc properties, please refer to AVEVA Historian</p>
-<p>Client User Guide.</p>
-<p>Binding HistoricalTrendApp Run-Time Properties</p>
-<p>The HistoricalTrendApp includes runtime properties that are exposed as configurable properties,</p>
-<p>which determine the visual aspects or functional behaviors of the HistoricalTrendApp during</p>
-<p>runtime.</p>
-<p>Most of the properties include a list of binding options to configure a static or dynamic value based</p>
-<p>on the type of binding between the property and its associated reference. You can select a binding</p>
-<p>option from the list and then configure the values by specifying a reference, such as a reference to</p>
-<p>an attribute defined in a custom ViewApp namespace or a public custom property of a symbol</p>
-<p>assigned in the same layout. With a dynamic binding option, these properties can be changed</p>
-<p>dynamically based on the reference values at runtime.</p>
-<p>In the example below, the Pens property is binding to the reference:</p>
-<p>MyContent.TrendControlConfig1.AddMorePens</p>
+
+<h2>HistoricalTrendApp</h2>
+
+<p>Another out-of-the-box OMI App is the <strong>HistoricalTrendApp</strong>, which is based on the Historian Client Trend application. To use the HistoricalTrendApp, you must assign it to a layout pane in the Layout Editor or ViewApp Editor. At runtime, you can configure the server connections, add tags from a Historian database, and plot them on a trend chart. You can also manipulate the display for panning, zooming, and scaling. Other configurations are available for customizing the trend chart and a selected pen.</p>
+
+<p>You can use the HistoricalTrendApp to display different types of charts, which are a <strong>regular trend curve</strong> and an <strong>XY scatter plot</strong>.</p>
+
+<h3>HistoricalTrendApp Properties</h3>
+
+<p>The HistoricalTrendApp provides a set of design-time properties that enable or disable visual and functional components of the HistoricalTrendControl during runtime. Once added to a layout pane, the HistoricalTrendControl properties show on the Properties tab in the Layout Editor. You can use the search feature on the Properties tab to search for a property by name.</p>
+
+<table>
+<thead>
+<tr><th>Property Category</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>General</strong></td><td>Name of the control, the control as content, and the pane in which it is placed</td></tr>
+<tr><td><strong>Run-Time Behavior</strong></td><td>Follow Current Context (show trend for current asset tags), Max Context Tags to Show, Pens property (add specific tags)</td></tr>
+<tr><td><strong>.NET Trend Control</strong></td><td>Properties from the underlying .NET trend control, identified by the <code>TrendControl</code> prefix (e.g., TrendControl.Accessibility, TrendControl.Appearance)</td></tr>
+</tbody>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0622_0.jpeg" alt="Page 622">
-  <div class="caption">Page 622</div>
+  <img src="../images/page_0622_0.jpeg" alt="HistoricalTrendApp Properties pane showing General, Run-Time Behavior, and TrendControl property groups">
+  <div class="caption">HistoricalTrendApp Properties tab showing General settings, Run-Time Behavior properties (Follow Current Context, Max Context Tags, Pens), and collapsed .NET Trend Control property groups</div>
 </div>
-<p>Section 3 – Historical Trending</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>AddMorePens is a public custom property defined in a symbol named TrendControlConfig, which</p>
-<p>is assigned to the same layout with the HistoricalTrendControl.</p>
-<p>Event Handlers</p>
-<p>The Event Handlers category on the Properties tab lists all available events for the control, and</p>
-<p>you can create an event handler script by selecting an event from the list. The underlying control of</p>
-<p>the HistoricalTrendApp includes a set of public events that can be used for creating event handler</p>
-<p>scripts. These events are identified by the TrendControl prefix in their names that appear in the list</p>
-<p>of the available events. You can select a public event of the control from the list to add an event</p>
-<p>handler script.</p>
-<p>The following example shows only a portion of the available events.</p>
+
+<h3>Binding HistoricalTrendApp Run-Time Properties</h3>
+
+<p>The HistoricalTrendApp includes runtime properties that are exposed as configurable properties, which determine the visual aspects or functional behaviors of the HistoricalTrendApp during runtime. Most of the properties include a list of binding options to configure a static or dynamic value based on the type of binding between the property and its associated reference.</p>
+
+<p>You can select a binding option from the list and then configure the values by specifying a reference, such as a reference to an attribute defined in a custom ViewApp namespace or a public custom property of a symbol assigned in the same layout. With a dynamic binding option, these properties can be changed dynamically based on the reference values at runtime.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0623_0.jpeg" alt="Page 623">
-  <div class="caption">Page 623</div>
+  <img src="../images/page_0623_0.jpeg" alt="Pens property dropdown showing binding options: Constant, In, Out, InOut, Reset">
+  <div class="caption">The Pens property dropdown showing available binding options: Constant (static value), In, Out, InOut, and Reset (dynamic references)</div>
 </div>
+
+<h3>Event Handlers</h3>
+
+<p>The Event Handlers category on the Properties tab lists all available events for the control, and you can create an event handler script by selecting an event from the list. The underlying control of the HistoricalTrendApp includes a set of public events that can be used for creating event handler scripts. These events are identified by the <code>TrendControl</code> prefix in their names that appear in the list of the available events.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0623_1.jpeg" alt="Page 623">
-  <div class="caption">Page 623</div>
+  <img src="../images/page_0623_1.jpeg" alt="Event Handlers section showing TrendControl events available for scripting">
+  <div class="caption">The Event Handlers section showing available TrendControl events (AutoSizeChanged, AutoValidateChanged, BackColorChanged, etc.) that can be used to create event handler scripts</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>Then, you can navigate to the Script page to edit the script by selecting the ellipsis to the right of</p>
-<p>the added script. More information about layout scripts is provided in Module 13.</p>
+
+<p>You can select a public event of the control from the list to add an event handler script. Then, you can navigate to the Script page to edit the script by selecting the ellipsis to the right of the added script. More information about layout scripts is provided in Module 13.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0624_0.jpeg" alt="Page 624">
-  <div class="caption">Page 624</div>
+  <img src="../images/page_0624_0.jpeg" alt="Event handler with TrendControl.Click event showing script navigation via ellipsis button">
+  <div class="caption">A TrendControl.Click event handler has been added; clicking the ellipsis button navigates to the Script page for editing</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What are the two primary tools for historical data retrieval in Historian Client?</summary>
+<p class="answer">Historian Client Web (browser-based, for charts/dashboards) and Historian Client Trend (trend-focused, for panning/zooming/scaling).</p>
+</details>
+
+<details>
+<summary>Q2: What is the InSightApp and how does it work at runtime?</summary>
+<p class="answer">The InSightApp is an out-of-the-box OMI App that runs an active Insight browser session within a ViewApp pane. At runtime, it searches for keywords defined in its properties based on the current navigation asset, retrieves matching historical data from Historian, and displays it as a trend chart with interactive pens and legends.</p>
+</details>
+
+<details>
+<summary>Q3: What security groups must a user belong to in order to use the InSightApp?</summary>
+<p class="answer">A valid InSightApp user must be a member of one of: aaAdministrators, aaPowerUsers, or aaUsers. The Galaxy must use OS Group or OS User based authentication.</p>
+</details>
+
+<details>
+<summary>Q4: What property category determines if the HistoricalTrendApp shows trend data for the current navigation context?</summary>
+<p class="answer">The Run-Time Behavior category contains the Follow Current Context property, which determines if the control shows trend data for tags belonging to the current navigation context.</p>
+</details>
+
+<details>
+<summary>Q5: How do alarm highlights appear on the InSightApp trend chart?</summary>
+<p class="answer">Yellow highlights indicate Severity 2 alarms and red highlights indicate Severity 1 alarms. Clicking on a highlighted area displays additional alarm information.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">← L43: Lab 21 – Adding Trending to Graphics</a> &nbsp;|&nbsp;
-  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Histor →</a>
+  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

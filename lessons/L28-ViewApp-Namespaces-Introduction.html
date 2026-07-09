@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 28: ViewApp Namespaces Introduction</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -24,15 +25,16 @@
   .answer { color: #2c5f2d; font-weight: bold; }
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
-  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .source, .page-ref { font-size: 0.85em; color: #777; font-style: italic; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
   <a href="L27-Lab-13---Adding-a-Home-Carousel.html">← L27: Lab 13 – Adding a Home Carousel</a> &nbsp;|&nbsp;
-  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespac →</a>
+  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -122,63 +124,79 @@
 </nav>
 
 <h1>📖 L28: ViewApp Namespaces Introduction</h1>
-<p class="source">Module 7 — ViewApp Namespaces | Pages 395-396</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction</p>
-<p>Overview</p>
-<p>A ViewApp namespace is a repository for ViewApp attributes. You can create references to these</p>
-<p>attributes in scripts, symbol animations, and OMI Apps to allow attribute values to be shared</p>
-<p>across different layouts and panes of a running ViewApp.</p>
-<p>You can reuse ViewApp namespaces across multiple ViewApps. However, while configuration</p>
-<p>data is shared across all ViewApps in the Galaxy, runtime values can only be shared within a</p>
-<p>single ViewApp. This is because each ViewApp has its own copy of the ViewApp namespace data.</p>
-<p>Predefined Namespaces and Attributes</p>
-<p>Predefined namespaces and attributes are provided according to their functionality. For more</p>
-<p>details about predefined namespaces and attributes, please refer to the product documentation.</p>
-<p>Some predefined namespaces are listed below:</p>
-<p></p>
-<p>Language namespace: To access and set the current language information</p>
-<p></p>
-<p>System namespace: To access date and time information</p>
-<p></p>
-<p>Navigation namespace: To access and interact with the built-in navigation</p>
-<p></p>
-<p>Security namespace: To access security-related information</p>
-<p></p>
-<p>Playback namespace: To enable and access the historical playback function</p>
-<p></p>
-<p>Settings namespace: To use with industrial graphics as global properties</p>
-<p></p>
-<p>Alarms namespace: To determine the display of alarm adorners</p>
-<p></p>
-<p>Graphic namespace: To determine the display of the animation halo</p>
-<p></p>
-<p>ViewApp namespace: To access the read/write status of a running ViewApp and set the</p>
-<p>display of an on-screen keyboard for use in a running ViewApp.</p>
-<p></p>
-<p>Style namespace: To access Galaxy style information</p>
-<p>Reference ViewApp Namespace Attributes</p>
-<p>References to ViewApp namespace attributes must be prefixed with the reserved system name</p>
-<p>“MyViewApp” and be in the following form:</p>
-<p>MyViewApp.ViewAppNamespace.AttributeName</p>
-<p>where ViewAppNamespace is the name of a ViewApp namespace available to the Galaxy and</p>
-<p>AttributeName is the name of a custom ViewApp namespace attribute defined for the namespace.</p>
-<p>For example, a reference to Attribute001 in ViewAppNameSpace_001 would be:</p>
-<p>MyViewApp.ViewAppNameSpace_001.Attribute001</p>
-<p>You can create references to ViewApp namespace attributes in attribute scripts, symbol scripts,</p>
-<p>and symbol animations. The references can also be used to configure OMI App properties that</p>
-<p>support reference or expression mode.</p>
-<p>This section introduces ViewApp namespaces, describes predefined namespaces and attributes</p>
-<p>available for a ViewApp, and describes using MyViewApp as a reserved keyword to reference</p>
-<p>namespaces and attributes.</p>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+<p class="source">Module 7 — ViewApp Namespaces | Section 1 – Introduction</p>
+<p class="page-ref">Pages 395–396</p>
+
+<h2>Overview</h2>
+
+<p>A ViewApp namespace is a repository for ViewApp attributes. You can create references to these attributes in scripts, symbol animations, and OMI Apps to allow attribute values to be shared across different layouts and panes of a running ViewApp. ViewApp namespaces provide a centralized mechanism for storing and distributing data that multiple components within a single ViewApp instance need to access.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> You can reuse ViewApp namespaces across multiple ViewApps. However, while <em>configuration data</em> is shared across all ViewApps in the Galaxy, <em>runtime values</em> can only be shared within a single ViewApp. This is because each ViewApp has its own copy of the ViewApp namespace data.
+</div>
+
+<h2>Predefined Namespaces and Attributes</h2>
+
+<p>AVEVA OMI provides a set of predefined namespaces and attributes organized by functionality. These built-in namespaces give you access to common system capabilities without needing to create custom namespaces from scratch. For complete details about all predefined namespaces and their attributes, refer to the product documentation.</p>
+
+<table>
+<tr><th>Namespace</th><th>Purpose</th></tr>
+<tr><td><strong>Language</strong></td><td>Access and set the current language information</td></tr>
+<tr><td><strong>System</strong></td><td>Access date and time information</td></tr>
+<tr><td><strong>Navigation</strong></td><td>Access and interact with the built-in navigation</td></tr>
+<tr><td><strong>Security</strong></td><td>Access security-related information</td></tr>
+<tr><td><strong>Playback</strong></td><td>Enable and access the historical playback function</td></tr>
+<tr><td><strong>Settings</strong></td><td>Use with industrial graphics as global properties</td></tr>
+<tr><td><strong>Alarms</strong></td><td>Determine the display of alarm adorners</td></tr>
+<tr><td><strong>Graphic</strong></td><td>Determine the display of the animation halo</td></tr>
+<tr><td><strong>ViewApp</strong></td><td>Access read/write status of a running ViewApp; set on-screen keyboard display</td></tr>
+<tr><td><strong>Style</strong></td><td>Access Galaxy style information</td></tr>
+</table>
+
+<h2>Referencing ViewApp Namespace Attributes</h2>
+
+<p>References to ViewApp namespace attributes must be prefixed with the reserved system name <code>MyViewApp</code> and follow a specific naming convention. The format for a reference is:</p>
+
+<p style="text-align:center; font-size:1.1em;"><code>MyViewApp.ViewAppNamespace.AttributeName</code></p>
+
+<p>Here, <code>ViewAppNamespace</code> is the name of a ViewApp namespace available to the Galaxy, and <code>AttributeName</code> is the name of a custom ViewApp namespace attribute defined for that namespace.</p>
+
+<div class="tip">
+<strong>Example:</strong> A reference to <code>Attribute001</code> in <code>ViewAppNameSpace_001</code> would be written as:<br>
+<code>MyViewApp.ViewAppNameSpace_001.Attribute001</code>
+</div>
+
+<p>You can create references to ViewApp namespace attributes in attribute scripts, symbol scripts, and symbol animations. The references can also be used to configure OMI App properties that support reference or expression mode. This flexibility makes ViewApp namespaces a powerful tool for building dynamic, data-driven operator interfaces.</p>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What is a ViewApp namespace?</summary>
+<p class="answer">A ViewApp namespace is a repository for ViewApp attributes. It stores data that can be referenced in scripts, symbol animations, and OMI Apps to share attribute values across different layouts and panes of a running ViewApp.</p>
+</details>
+
+<details>
+<summary>Q2: Are runtime values shared across multiple ViewApps?</summary>
+<p class="answer">No. While configuration data in a ViewApp namespace is shared across all ViewApps in the Galaxy, runtime values are only shared within a single ViewApp. Each ViewApp has its own copy of the namespace data at runtime.</p>
+</details>
+
+<details>
+<summary>Q3: What is the correct format for referencing a ViewApp namespace attribute?</summary>
+<p class="answer">The format is <code>MyViewApp.ViewAppNamespace.AttributeName</code>, where <code>MyViewApp</code> is a reserved system name prefix.</p>
+</details>
+
+<details>
+<summary>Q4: Which namespace is used to control alarm adorner display?</summary>
+<p class="answer">The <strong>Alarms</strong> namespace is used to determine the display of alarm adorners.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L27-Lab-13---Adding-a-Home-Carousel.html">← L27: Lab 13 – Adding a Home Carousel</a> &nbsp;|&nbsp;
-  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespac →</a>
+  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 02: Lab 1 – Creating and Deploying a Galaxy</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,14 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .checkbox-label { cursor: pointer; }
-  .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  .page-ref { font-size: 0.8em; color: #999; font-style: italic; margin-top: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L01-Course-Introduction-System-Platform-Overview.html">← L01: Course Introduction + System Platform Ov</a> &nbsp;|&nbsp;
-  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requi →</a>
+  <a href="L01-Course-Introduction-System-Platform-Overview.html">← L01: Course Introduction + System Platform Overview</a> &nbsp;|&nbsp;
+  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -122,254 +123,344 @@
 </nav>
 
 <h1>🔬 L02: Lab 1 – Creating and Deploying a Galaxy</h1>
-<p class="source">Module 1 — Introduction | Pages 17-32</p>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>Introduction</p>
-<p>In this lab, you will create a Galaxy based on the Blank Galaxy template and connect to it using the</p>
-<p>System Platform IDE. Then you will import some prebuilt automation objects into the Galaxy and</p>
-<p>configure some of them. For example, you will configure a WinPlatform to work in a multi-node</p>
-<p>environment and an AppEngine to historize data to Historian.</p>
-<p>Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that</p>
-<p>attributes are receiving data in runtime.</p>
-<p>The Galaxy you create in this lab will be used for the other labs in this course.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a Galaxy</p>
-<p></p>
-<p>Import objects into a Galaxy</p>
-<p></p>
-<p>Deploy objects</p>
-<p></p>
-<p>Verify data using Object Viewer</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Create a Galaxy</p>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 1: Introduction</p>
+<p class="page-ref">Pages 17–32</p>
+
+<div class="lab">
+<strong>Lab Introduction</strong>
+<p>In this lab, you will create a Galaxy based on the Blank Galaxy template and connect to it using the System Platform IDE. Then you will import some prebuilt automation objects into the Galaxy and configure some of them — for example, you will configure a WinPlatform to work in a multi-node environment and an AppEngine to historize data to Historian. Once the Galaxy is created and configured, you will deploy it and use Object Viewer to verify that attributes are receiving data in runtime.</p>
+<p><em>The Galaxy you create in this lab will be used for the other labs in this course.</em></p>
+</div>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong> Upon completion, you will be able to:
+<ul>
+<li>Create a Galaxy</li>
+<li>Import objects into a Galaxy</li>
+<li>Deploy objects</li>
+<li>Verify data using Object Viewer</li>
+</ul>
+</div>
+
+<!-- ==================== PART 1: CREATE GALAXY ==================== -->
+<h2>Part 1 — Create a Galaxy</h2>
+
 <p>First, you will create a Galaxy based on the Blank Galaxy template and connect to it.</p>
-<p>1.</p>
-<p>Open the System Platform IDE.</p>
-<p>The Galaxies dialog box appears.</p>
-<div class="screenshot">
-  <img src="../images/page_0018_0.jpeg" alt="System Platform IDE: Galaxies Dialog  **Screenshot: AVEVA System Platform IDE &quot;G">
-  <div class="caption">System Platform IDE: Galaxies Dialog  **Screenshot: AVEVA System Platform IDE &quot;Galaxies&quot; dialog box** — the startup dialog: - **Left Navigation Sidebar**: Home (active, blue highlight), New (plus icon), Open (folder icon), License (bottom) - **Main Content Area (Home Tab)**: - Server Connection: Input field &quot;Type the server name&quot; pre-filled with &quot;SDENG&quot;, &quot;Connect to server&quot; button, dropdown for recent servers - New Galaxy Templates: 4 options — Default Galaxy (selected, light blue), Blank Galaxy, InTouch Base, Reactor Demo. &quot;More templates →&quot; link - Existing Galaxy tabs: Recent (active), Pinned, On server. Empty list with Name/Server columns &quot;Do Not&quot; watermark (cut off). Footer: &quot;AVEVA™ Training&quot;.</div>
+
+<div class="lab">
+<strong>Step 1:</strong> Open the System Platform IDE. The Galaxies dialog box appears.
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>2.</p>
-<p>In the New area, select the Blank Galaxy template.</p>
-<div class="key-concept">Note:</div>
-<p>Be sure to select the Blank Galaxy template. This will create a Galaxy that contains</p>
-<p>only base template objects. In a later step, you will import some prebuilt objects into your</p>
-<p>Galaxy.</p>
-<p>The Create Galaxy dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0019_0.png" alt="Create Galaxy Dialog  **Screenshot: &quot;Create Galaxy&quot; dialog box** overlaid on the">
-  <div class="caption">Create Galaxy Dialog  **Screenshot: &quot;Create Galaxy&quot; dialog box** overlaid on the Galaxies window: - Galaxy name field: empty text input (blue underline, active), placeholder &quot;Galaxy name&quot; — no text entered yet - Template name: read-only field showing &quot;Default_EMPTY.cab&quot; (Blank Galaxy template) - &quot;Connect to this Galaxy&quot; checkbox: checked (blue checkmark) - Buttons: &quot;Cancel&quot; (enabled), &quot;Create&quot; (grayed out/disabled — requires Galaxy name) Background shows Galaxies window with server &quot;S00ENG&quot; connected, Default Galaxy and &quot;ctor Demo&quot; templates visible. &quot;Do&quot; watermark fragment.</div>
+  <img src="../images/page_0018_0.jpeg" alt="System Platform IDE Galaxies Dialog">
+  <div class="caption">The System Platform IDE startup Galaxies dialog. The left sidebar shows navigation tabs (Home, New, Open, License). The main area displays server connection options and new galaxy templates — including Default Galaxy, Blank Galaxy, InTouch Base, and Reactor Demo.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>3.</p>
-<p>In the Galaxy name field, enter TrainingGalaxy.</p>
-<p>Notice that the Connect to this Galaxy option is enabled by default.</p>
-<p>4.</p>
-<p>Click Create.</p>
-<p>The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as</p>
-<p>informational message details. This will take a few moments.</p>
-<p>It is important to review the messages shown in the Create Galaxy dialog box to make sure no</p>
-<p>errors occurred.</p>
+
+<div class="lab">
+<strong>Step 2:</strong> In the New area, select the <strong>Blank Galaxy</strong> template. The Create Galaxy dialog box appears.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> Be sure to select the <em>Blank Galaxy</em> template. This creates a Galaxy containing only base template objects. You will import prebuilt objects into it in a later step.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0020_0.png" alt="Page 20">
-  <div class="caption">Page 20</div>
+  <img src="../images/page_0019_0.png" alt="Create Galaxy Dialog">
+  <div class="caption">The Create Galaxy dialog box. The Galaxy name field is empty with a blue underline, the template is set to "Default_EMPTY.cab" (Blank Galaxy), and the "Connect to this Galaxy" checkbox is checked by default. The Create button is grayed out until a name is entered.</div>
 </div>
+
+<div class="lab">
+<strong>Step 3:</strong> In the Galaxy name field, enter <code>TrainingGalaxy</code>. Notice that the <em>Connect to this Galaxy</em> option is enabled by default.
+</div>
+
+<div class="lab">
+<strong>Step 4:</strong> Click <strong>Create</strong>. The Create Galaxy dialog box shows the progress of the Galaxy creation process, as well as informational message details. This will take a few moments.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0020_1.png" alt="Page 20">
-  <div class="caption">Page 20</div>
+  <img src="../images/page_0020_0.png" alt="Create Galaxy Dialog with Name Entered">
+  <div class="caption">Step 3: The Create Galaxy dialog with "TrainingGalaxy" entered in the name field. The template shows "Default_EMPTY.cab" and the "Connect to this Galaxy" checkbox is checked.</div>
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>When the Galaxy creation progress indicates Successfully created TrainingGalaxy, the</p>
-<p>Close button becomes enabled.</p>
-<p>5.</p>
-<p>Click Close.</p>
-<p>After a few moments, the Galaxy opens in the System Platform IDE.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0021_0.png" alt="Page 21">
-  <div class="caption">Page 21</div>
+  <img src="../images/page_0020_1.png" alt="Galaxy Creation Progress">
+  <div class="caption">Step 4: The Galaxy creation progress dialog showing "Creating galaxy TrainingGalaxy on S00ENG..." with a progress bar at approximately 35%. The details section shows the creation steps being executed.</div>
 </div>
+
+<div class="pitfall">
+<strong>Important:</strong> Review the messages shown in the Create Galaxy dialog box to make sure no errors occurred during creation.
+</div>
+
+<div class="lab">
+<strong>Step 5:</strong> When the Galaxy creation progress indicates <em>Successfully created TrainingGalaxy</em>, the Close button becomes enabled. Click <strong>Close</strong>. After a few moments, the Galaxy opens in the System Platform IDE.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0021_1.jpeg" alt="Page 21">
-  <div class="caption">Page 21</div>
+  <img src="../images/page_0021_0.png" alt="Galaxy Creation Complete">
+  <div class="caption">The completion dialog confirming "Successfully created TrainingGalaxy on S00ENG." The details list shows steps including restore file repository, restore global data, distribute Galaxy data, and successfully deployed ASB services.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Import Objects</p>
+
+<div class="screenshot">
+  <img src="../images/page_0021_1.jpeg" alt="System Platform IDE with TrainingGalaxy">
+  <div class="caption">The System Platform IDE after Galaxy creation. The window title reads "TrainingGalaxy on S00ENG – AVEVA System Platform IDE." The ribbon toolbar shows file operations, creation tools (Symbol, Template, Instance, Screen), and action buttons (Deploy, Check-in, Runtime). The left pane shows the Templates tree.</div>
+</div>
+
+<!-- ==================== PART 2: IMPORT OBJECTS ==================== -->
+<h2>Part 2 — Import Objects</h2>
+
 <p>Next, you will import some prebuilt objects into the Galaxy.</p>
-<p>6.</p>
-<p>On the ribbon, select the Galaxy menu, and then select Import | Objects | From package.</p>
-<div class="key-concept">Note:</div>
-<p>Selecting the Galaxy menu opens the System Platform IDE backstage.</p>
-<p>The Import Objects from package dialog box appears.</p>
-<div class="screenshot">
-  <img src="../images/page_0022_0.png" alt="Page 22">
-  <div class="caption">Page 22</div>
+
+<div class="lab">
+<strong>Step 6:</strong> On the ribbon, select the <strong>Galaxy</strong> menu, and then select <strong>Import &gt; Objects &gt; From package</strong>. The Import Objects from package dialog box appears.
 </div>
-<div class="screenshot">
-  <img src="../images/page_0022_1.png" alt="Page 22">
-  <div class="caption">Page 22</div>
+
+<div class="tip">
+<strong>Note:</strong> Selecting the Galaxy menu opens the System Platform IDE backstage view.
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>7.</p>
-<p>Navigate to C:\Training, select the Lab 1 - Galaxy_Prebuilt.aaPKG file, and then click Open.</p>
-<p>The Import preferences dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0023_0.png" alt="Page 23">
-  <div class="caption">Page 23</div>
+  <img src="../images/page_0022_0.png" alt="IDE Backstage Import Menu">
+  <div class="caption">The System Platform IDE backstage view with the Import section highlighted. The left sidebar shows Home, New, Open, User, AVEVA Connect, Import, Export, Configure, and Close options.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0023_1.png" alt="Page 23">
-  <div class="caption">Page 23</div>
+  <img src="../images/page_0022_1.png" alt="Import Objects File Picker">
+  <div class="caption">The Import Objects from package file picker dialog. Navigate to the training files directory to locate the package file.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>8.</p>
-<p>Leave the default import preferences and click Import.</p>
-<p>The Import Objects from package dialog box shows the progress of the import process, as</p>
-<p>well as informational message details.</p>
-<p>It is important to review the messages shown in the Import Objects from package dialog box</p>
-<p>to make sure no errors occurred.</p>
-<p>9.</p>
-<p>When the import progress indicates Import completed, click Close.</p>
-<p><strong>10.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
+
+<div class="lab">
+<strong>Step 7:</strong> Navigate to <code>C:\Training</code>, select the <strong>Lab 1 - Galaxy_Prebuilt.aaPKG</strong> file, and then click <strong>Open</strong>. The Import preferences dialog box appears.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0024_0.png" alt="Page 24">
-  <div class="caption">Page 24</div>
+  <img src="../images/page_0023_0.png" alt="Selecting Package File">
+  <div class="caption">The file picker in C:\Training showing the Lab 1 - Galaxy_Prebuilt.aaPKG package file selected (19,355 KB), alongside other lab package files.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0024_1.png" alt="Page 24">
-  <div class="caption">Page 24</div>
+  <img src="../images/page_0023_1.png" alt="Import Preferences Dialog">
+  <div class="caption">The Import preferences dialog with conflict resolution settings: overwrite objects with higher imported version, migrate base templates with different revisions, skip objects with different codebases, and never overwrite unprotected objects with protected ones.</div>
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Configure the Platform</p>
-<p>In the following steps, you will configure the network address of a WinPlatform object, which is</p>
-<p>named PROD_Platform1.</p>
-<p><strong>11.</strong> In the Deployment view, expand TrainingGalaxy \ PROD_Platform1 \ AppEngine1 \ Line1</p>
-<p>to see the objects.</p>
-<p><strong>12.</strong> Double-click PROD_Platform1 to open it in the Object Editor.</p>
-<p><strong>13.</strong> On the General tab, in the Network address field, enter the name of the computer to deploy</p>
-<p>this platform.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide the node name for this computer.</p>
-<p>In the example below, S00PROD is shown as the name of the computer.</p>
+
+<div class="lab">
+<strong>Step 8:</strong> Leave the default import preferences and click <strong>Import</strong>. The Import Objects from package dialog box shows the progress of the import process.
+</div>
+
+<div class="pitfall">
+<strong>Important:</strong> Review the messages shown in the Import Objects from package dialog box to make sure no errors occurred.
+</div>
+
+<div class="lab">
+<strong>Step 9:</strong> When the import progress indicates <em>Import completed</em>, click <strong>Close</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 10:</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main page of the System Platform IDE.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0025_0.png" alt="Page 25">
-  <div class="caption">Page 25</div>
+  <img src="../images/page_0024_0.png" alt="Import Completed">
+  <div class="caption">The import completion dialog showing "Import completed" with details of imported objects including TT4_004 and Layout1.aaPDF. The Close button is highlighted.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0025_1.png" alt="Page 25">
-  <div class="caption">Page 25</div>
+  <img src="../images/page_0024_1.png" alt="Back to IDE Main View">
+  <div class="caption">Returning to the main IDE view via the back arrow in the backstage Import menu.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p><strong>14.</strong> Save and close the PROD_Platform1 editor.</p>
-<p>The Check-in dialog box appears.</p>
-<p><strong>15.</strong> Enter a comment and click Check-in.</p>
-<div class="key-concept">Note:</div>
-<p>Entering a comment in the Check-in dialog box is optional, but recommended.</p>
+
+<!-- ==================== PART 3: CONFIGURE PLATFORM ==================== -->
+<h2>Part 3 — Configure the Platform</h2>
+
+<p>In the following steps, you will configure the network address of a WinPlatform object named PROD_Platform1.</p>
+
+<div class="lab">
+<strong>Step 11:</strong> In the Deployment view, expand <code>TrainingGalaxy &gt; PROD_Platform1 &gt; AppEngine1 &gt; Line1</code> to see the objects.
+</div>
+
+<div class="lab">
+<strong>Step 12:</strong> Double-click <strong>PROD_Platform1</strong> to open it in the Object Editor.
+</div>
+
+<div class="lab">
+<strong>Step 13:</strong> On the General tab, in the <strong>Network address</strong> field, enter the name of the computer to deploy this platform.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> Your instructor will provide the node name for this computer. In the example below, <code>S00PROD</code> is shown as the computer name.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0026_0.png" alt="Check-in Dialog  **Step 14**: Save and close PROD_Platform1 editor. Check-in dia">
-  <div class="caption">Check-in Dialog  **Step 14**: Save and close PROD_Platform1 editor. Check-in dialog appears. **Step 15**: Enter comment and click Check-in. **Screenshot: &quot;Check-in&quot; dialog**: Comment text box with &quot;Configured network address for Prod_Platform1&quot;. Checkbox: &quot;Do not prompt for check-in comments in the future&quot; (unchecked). Note about turning prompt back on from User information menu. Buttons: Cancel, Check-in (blue). &quot;Do Not Copy&quot; watermark. Footer: &quot;AVEVA™ Training&quot;.</div>
+  <img src="../images/page_0025_0.png" alt="Deployment View with Object Tree">
+  <div class="caption">The Deployment view showing the Galaxy tree structure: TrainingGalaxy expanded to reveal PROD_Platform1, AppEngine1, Line1, and child objects including Mixer100-400, Line2, Packaging, Plant, ProdPLC1, and Production.</div>
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Configure the Engine for Historian</p>
-<p>In the following steps, you will configure the Historian connection for an AppEngine object, which is</p>
-<p>named AppEngine1.</p>
-<p><strong>16.</strong> In the Deployment view, double-click AppEngine1 to open it in the Object Editor.</p>
-<p><strong>17.</strong> On the General tab, in the Historian field, enter the node name where Historian is installed.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide the node name for this computer.</p>
-<p>In the example below, S00ENG is shown as the Historian node name.</p>
-<p><strong>18.</strong> Save and close the AppEngine1 editor, and check in the object.</p>
-<p>Deploy the Galaxy</p>
+
+<div class="screenshot">
+  <img src="../images/page_0025_1.png" alt="PROD_Platform1 Object Editor">
+  <div class="caption">The Object Editor for PROD_Platform1 with the General tab active. The Network address field shows "S00PROD" as the deployment target. Other fields include History store forward directory, Minimum RAM (1024 MB), and Statistics average period (10000 ms).</div>
+</div>
+
+<div class="lab">
+<strong>Step 14:</strong> Save and close the PROD_Platform1 editor. The Check-in dialog box appears.
+</div>
+
+<div class="lab">
+<strong>Step 15:</strong> Enter a comment and click <strong>Check-in</strong>.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> Entering a comment in the Check-in dialog box is optional, but recommended for tracking changes.
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0026_0.png" alt="Check-in Dialog">
+  <div class="caption">The Check-in dialog box with the comment "Configured network address for Prod_Platform1" entered. The "Do not prompt for check-in comments in the future" checkbox is unchecked.</div>
+</div>
+
+<!-- ==================== PART 4: CONFIGURE ENGINE ==================== -->
+<h2>Part 4 — Configure the Engine for Historian</h2>
+
+<p>In the following steps, you will configure the Historian connection for an AppEngine object named AppEngine1.</p>
+
+<div class="lab">
+<strong>Step 16:</strong> In the Deployment view, double-click <strong>AppEngine1</strong> to open it in the Object Editor.
+</div>
+
+<div class="lab">
+<strong>Step 17:</strong> On the General tab, in the <strong>Historian</strong> field, enter the node name where Historian is installed.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> Your instructor will provide the node name. In the example, <code>S00ENG</code> is shown as the Historian node name.
+</div>
+
+<div class="lab">
+<strong>Step 18:</strong> Save and close the AppEngine1 editor, and check in the object.
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0027_0.png" alt="AppEngine1 Object Editor">
+  <div class="caption">The Object Editor for AppEngine1 with the General tab active. Key settings include Engine startup type (Auto), Scan period (500 ms), and the Historian section with "Enable storage to historian" and "Enable Tag Hierarchy" both checked. The Historian node is set to "S00ENG".</div>
+</div>
+
+<!-- ==================== PART 5: DEPLOY ==================== -->
+<h2>Part 5 — Deploy the Galaxy</h2>
+
 <p>Now you will deploy the Galaxy to runtime.</p>
-<p><strong>19.</strong> In the Deployment view, right-click TrainingGalaxy and select Deploy.</p>
-<div class="screenshot">
-  <img src="../images/page_0027_0.png" alt="Page 27">
-  <div class="caption">Page 27</div>
+
+<div class="lab">
+<strong>Step 19:</strong> In the Deployment view, right-click <strong>TrainingGalaxy</strong> and select <strong>Deploy</strong>. The Deploy dialog box appears.
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0027_1.png" alt="Page 27">
-  <div class="caption">Page 27</div>
+  <img src="../images/page_0027_1.png" alt="Deploy Context Menu">
+  <div class="caption">Right-click context menu on TrainingGalaxy in the Deployment view showing options including Validate, Deploy (highlighted), Undeploy, Upload Changes, Synchronize Views, and Properties.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>The Deploy dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0028_0.png" alt="Deploy Dialog  **Screenshot: &quot;Deploy 104 objects&quot; dialog** — Two tabs: General (">
-  <div class="caption">Deploy Dialog  **Screenshot: &quot;Deploy 104 objects&quot; dialog** — Two tabs: General (active), InTouchViewApp. Sections: 1. Deployment defaults: Cascade deploy (checked), Include redundant partner (unchecked) 2. Deployed objects: Skip (selected radio), Deploy changes, Redeploy. Force off scan (checked), Preserve runtime changes (checked) 3. Undeployed objects: Deploy new objects (checked) 4. Initial scan state: On scan (selected radio), Off scan 5. Deploy status mismatch: Mark as deployed (unchecked) Note: &quot;Deploying a host object will force a redeploy of all hosted objects.&quot; Buttons: Cancel, Deploy (blue). &quot;Do Not Copy&quot; watermark.</div>
+  <img src="../images/page_0028_0.png" alt="Deploy Dialog">
+  <div class="caption">The "Deploy 104 objects" dialog box showing deployment defaults (Cascade deploy checked), deployed objects settings (Skip selected, Force off scan checked), undeployed objects (Deploy new objects checked), and initial scan state (On scan selected).</div>
 </div>
-<p>Deploy Completed: 103 objects out of 103 selected. Close button (blue). "Do Not Copy" watermark.]</p>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>20.</strong> Leave the default deployment settings and click Deploy.</p>
-<p>The Deploying Objects dialog box shows the progress of the deployment process, as well as</p>
-<p>informational message details. This will take a few moments.</p>
-<p>It is important to review the messages shown in the Deploying Objects dialog box to make</p>
-<p>sure no errors occurred.</p>
-<p><strong>21.</strong> When the deployment progress shows Deploy complete, click Close.</p>
+
+<div class="lab">
+<strong>Step 20:</strong> Leave the default deployment settings and click <strong>Deploy</strong>. The Deploying Objects dialog box shows the progress of the deployment process. This will take a few moments.
+</div>
+
+<div class="pitfall">
+<strong>Important:</strong> Review the messages shown in the Deploying Objects dialog box to make sure no errors occurred during deployment.
+</div>
+
+<div class="lab">
+<strong>Step 21:</strong> When the deployment progress shows <em>Deploy complete</em>, click <strong>Close</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0029_0.png" alt="Deploy Complete  **Step 20**: Click Deploy with default settings. **Step 21**: C">
-  <div class="caption">Deploy Complete  **Step 20**: Click Deploy with default settings. **Step 21**: Click Close when &quot;Deploy complete&quot;. **Screenshot: &quot;Deploying Objects&quot; dialog**: Status: &quot;Deploy complete. Please review the details below.&quot; Details log: Deploying 1 OINetwork Object(s) starting with ProdPLC1 hosted by AppEngine1; Deploying 8 Area(s) starting with Line1; Deploying 92 Automation Object(s) starting with Agitator_001; Placing 101 automation Objects OnScan; [SUCCESS</div>
+  <img src="../images/page_0029_0.png" alt="Deployment Complete">
+  <div class="caption">The Deploying Objects dialog showing "Deploy complete" status. The details log shows deploying 1 OINetwork object (ProdPLC1), 8 Areas, 92 Automation Objects (starting with Agitator_001), placing 101 objects on scan, and confirming "Deploy Completed: 103 objects out of 103 selected."</div>
 </div>
-<p>with Agitator, Inlet, Level, Mixer100-400, Outlet objects. Right pane: attribute table with columns Attribute Name, Value, Timestamp, Quality, Status, Security, Cached, Type, Incr, Internal Name. Values show ContainName, SecurityGroup, AlarmActive, Mixer100_Level attributes. Bottom tabs: Watch List 1 (active), RIE: Live Definition, Mode: Use.</p>
-<p><strong>Screenshot 2: Watch List 1 context menu</strong> — Open... (highlighted), Modify..., View Detailed Info, Remove from Watch, Activate, Suspend, Add Attribute Reference..., Add Watch Window, Remove Watch Window, Rename Tab..., Save, Save As...]</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>View Runtime Data</p>
-<p>Now that your Galaxy is deployed, you will use Object Viewer to monitor runtime data and verify</p>
-<p>that attributes are receiving data. A saved watch list is provided.</p>
-<p><strong>22.</strong> In the Deployment view, right-click Mixer100 and select View in Object Viewer.</p>
-<div class="key-concept">Note:</div>
-<p>You can right-click any object in the Deployment view to open Object Viewer.</p>
-<p>The Object Viewer window appears, showing the list of attributes for Mixer100.</p>
-<p><strong>23.</strong> Right-click in the Watch List 1 window and select Open.</p>
-<p>The Open dialog box appears.</p>
+
+<!-- ==================== PART 6: VERIFY ==================== -->
+<h2>Part 6 — View Runtime Data</h2>
+
+<p>Now that your Galaxy is deployed, you will use Object Viewer to monitor runtime data and verify that attributes are receiving data. A saved watch list is provided.</p>
+
+<div class="lab">
+<strong>Step 22:</strong> In the Deployment view, right-click <strong>Mixer100</strong> and select <strong>View in Object Viewer</strong>. The Object Viewer window appears, showing the list of attributes for Mixer100.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> You can right-click any object in the Deployment view to open Object Viewer.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0030_0.png" alt="Page 30">
-  <div class="caption">Page 30</div>
+  <img src="../images/page_0030_0.png" alt="Object Viewer Initial View">
+  <div class="caption">The Object Viewer window showing the attribute tree for Mixer100 in the Live1 [Pare.Production.Line1] namespace. The right pane displays attribute columns including Attribute Name, Value, Timestamp, Quality, Status, Security, Cached, Type, and Internal Name.</div>
 </div>
+
+<div class="lab">
+<strong>Step 23:</strong> Right-click in the Watch List 1 window and select <strong>Open</strong>. The Open dialog box appears.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0030_1.png" alt="Page 30">
-  <div class="caption">Page 30</div>
+  <img src="../images/page_0030_1.png" alt="Watch List Context Menu">
+  <div class="caption">The Watch List 1 context menu with the "Open" option highlighted, along with other options like Modify, View Detailed Info, Remove from Watch, and Save.</div>
 </div>
-<p>Lab 1 – Creating and Deploying a Galaxy</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>24.</strong> Navigate to C:\Training, select Lab 1 - Watchlist_Prebuilt.xml, and then click Open.</p>
-<p>The Mixer100 watch window appears in Object Viewer, with some attributes already added.</p>
-<p>You can resize the watch window if needed to view the whole list of attributes.</p>
-<p><strong>25.</strong> In the Mixer100 watch window, verify that all attributes are receiving data.</p>
-<p>The received data values are simulated values provided by a simulation application, to which</p>
-<p>the OI.MBTCP connects.</p>
-<div class="key-concept">Note:</div>
-<p>Notify your instructor if any attributes are not receiving Good quality data.</p>
-<p><strong>26.</strong> When you are finished reviewing attribute data, close Object Viewer.</p>
-<p><End of Lab></p>
+
+<div class="lab">
+<strong>Step 24:</strong> Navigate to <code>C:\Training</code>, select <strong>Lab 1 - Watchlist_Prebuilt.xml</strong>, and then click <strong>Open</strong>. The Mixer100 watch window appears in Object Viewer, with some attributes already added.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0031_0.png" alt="Object Viewer with Watch Window  **Step 24**: Open Lab 1 - Watchlist_Prebuilt.xm">
-  <div class="caption">Object Viewer with Watch Window  **Step 24**: Open Lab 1 - Watchlist_Prebuilt.xml from C:\Training. Opens Mixer100 watch window. **Screenshot: Object Viewer** — Full application window with menu bar (File, Edit, View, Options, Help). Left pane: attribute tree for simulated plant tags (Mixer100-400, Agitator, Inlet, Level, Outlet). Top-right pane: selected Mixer100 attributes with metadata (Tagname, Description, ScanStateCmd, SecurityGroup, Area, Container, Host, AlarmMode, ConfigVersion). Bottom pane: live watch table with real-time values — Mixer100.Level.PV (99.85348), Pump1_001.Cmd (true), Agitator_001.PV.Msg (Running). All CO:Good quality. Status bar shows file path C:\Training\Lab 1 - Watchlist_Prebuilt.xml, user CLOUD\Student, navigation tabs for Mixer100, HeatExchanger100, ProdPLC1, AppEngine. Footer: &quot;AVEVA™ Operations Management Interface 2023&quot;.</div>
+  <img src="../images/page_0031_0.png" alt="Object Viewer with Watch Window Loaded">
+  <div class="caption">The Object Viewer with the Mixer100 watch window loaded from the prebuilt watchlist. The bottom pane shows live attribute values including Mixer100.Level.PV (99.85), Pump1_001.Cmd (true), and Agitator_001.PV.Msg (Running), all with "CO:Good" quality status. Navigation tabs for Mixer100, HeatExchanger100, ProdPLC1, and AppEngine are visible.</div>
 </div>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="lab">
+<strong>Step 25:</strong> In the Mixer100 watch window, verify that all attributes are receiving data. The received data values are simulated values provided by a simulation application, to which the OI.MBTCP connects.
+</div>
+
+<div class="pitfall">
+<strong>Note:</strong> Notify your instructor if any attributes are not receiving Good quality data.
+</div>
+
+<div class="lab">
+<strong>Step 26:</strong> When you are finished reviewing attribute data, close Object Viewer.
+</div>
+
+<div class="key-concept">
+<strong>End of Lab 1.</strong> You have successfully created a Galaxy from the Blank Galaxy template, imported prebuilt automation objects, configured the platform and engine for Historian, deployed to runtime, and verified data flow using Object Viewer. This Galaxy will be used for all subsequent labs in this course.
+</div>
+
+<!-- ==================== QUIZ ==================== -->
+<div class="quiz">
+<h3>🧠 Knowledge Check</h3>
+
+<details>
+<summary>Q1: Why do we use the Blank Galaxy template instead of the Default Galaxy?</summary>
+<p class="answer">The Blank Galaxy template creates a Galaxy containing only base template objects, which gives us a clean starting point. We then import specific prebuilt objects for the course labs, ensuring a controlled and known configuration.</p>
+</details>
+
+<details>
+<summary>Q2: What must be configured before deploying the Galaxy?</summary>
+<p class="answer">Two key configurations are needed: (1) the WinPlatform (PROD_Platform1) must have its Network address set to the target deployment computer, and (2) the AppEngine (AppEngine1) must have its Historian field configured with the Historian node name.</p>
+</details>
+
+<details>
+<summary>Q3: How do you verify that a deployed Galaxy is receiving data at runtime?</summary>
+<p class="answer">Use Object Viewer — right-click any object in the Deployment view and select "View in Object Viewer." Then open a watch list (XML file) to see live attribute values with their quality status. Good quality data confirms the deployment is working correctly.</p>
+</details>
+
+<details>
+<summary>Q4: What is the purpose of the Check-in dialog after saving an object?</summary>
+<p class="answer">The Check-in dialog allows you to enter a descriptive comment about the changes made to the object. While optional, it is recommended for tracking version history and maintaining an audit trail of development operations.</p>
+</details>
+
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L01-Course-Introduction-System-Platform-Overview.html">← L01: Course Introduction + System Platform Ov</a> &nbsp;|&nbsp;
-  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requi →</a>
+  <a href="L01-Course-Introduction-System-Platform-Overview.html">← L01: Course Introduction + System Platform Overview</a> &nbsp;|&nbsp;
+  <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

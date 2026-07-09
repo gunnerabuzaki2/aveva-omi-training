@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson 31: Lab 15 – Creating Custom Namespaces</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<title>Lesson 31: Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</title>
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -24,10 +25,11 @@
   .answer { color: #2c5f2d; font-weight: bold; }
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
-  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .source, .page-ref { font-size: 0.85em; color: #777; font-style: italic; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -121,378 +123,399 @@
 </div>
 </nav>
 
-<h1>🔬 L31: Lab 15 – Creating Custom Namespaces</h1>
-<p class="source">Module 7 — ViewApp Namespaces | Pages 413-432</p>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 15 – Creating and Using Custom</p>
-<p>ViewApp Namespaces and</p>
-<p>Attributes</p>
-<p>Introduction</p>
-<p>In this lab, you will create a sub-toolset under Training on the Graphics tab for storing ViewApp</p>
-<p>namespaces. You will create a custom ViewApp namespace named Sources and configure it in</p>
-<p>the ViewApp Namespace Editor.</p>
-<p>In the editor, you will add three ViewApp attributes, including one named URL1 for providing the</p>
-<p>URL for the WebBrowser App.</p>
-<p>Then you will create a symbol with two buttons and a text box. The buttons will be configured to</p>
-<p>display a homepage and a local HTML file in a running ViewApp. The text box can be used to</p>
-<p>navigate to other locations, such as other web sites.</p>
-<p>You will also create a new layout with the symbol in one pane and the WebBrowser App in another.</p>
-<p>In the ViewApp Editor, you will assign this new layout to a pane and configure a navigation item</p>
-<p>named WebBrowser to display it.</p>
-<p>The following shows the running ViewApp navigated to WebBrowser with the symbol shown at the</p>
-<p>top.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create custom ViewApp namespaces and attributes</p>
-<p></p>
-<p>Use custom ViewApp namespaces and attributes in symbols and Apps</p>
-<p></p>
-<p>Use the WebBrowser App in a ViewApp</p>
-<p></p>
-<p>Override App properties using references</p>
+<h1>🧪 L31: Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</h1>
+<p class="source">Module 7 — ViewApp Namespaces | Lab 15</p>
+<p class="page-ref">Pages 413–432</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will create a sub-toolset under Training on the Graphics tab for storing ViewApp namespaces. You will create a custom ViewApp namespace named <code>Sources</code> and configure it in the ViewApp Namespace Editor. In the editor, you will add three ViewApp attributes, including one named <code>URL1</code> for providing the URL for the WebBrowser App.</p>
+
+<p>You will then create a symbol with two buttons and a text box. The buttons will be configured to display a homepage and a local HTML file in a running ViewApp. The text box can be used to navigate to other locations, such as other web sites. You will also create a new layout with the symbol in one pane and the WebBrowser App in another.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0413_0.png" alt="Page 413">
-  <div class="caption">Page 413</div>
+  <img src="../images/page_0413_0.png" alt="Lab 15 Running ViewApp Preview">
+  <div class="caption">The running ViewApp navigated to WebBrowser, showing the BrowserURLEntry symbol at the top (Homepage and HTML buttons with a URL text box containing "www.aveva.com") and the WebBrowser App below displaying the AVEVA website.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>Create a New Graphic Toolset and a ViewApp Namespace</p>
-<p>In the following steps, you will create a graphic toolset under Training on the Graphics tab to</p>
-<p>organize ViewApp namespaces. Then you will create a new ViewApp namespace named Sources</p>
-<p>and configure it in the ViewApp Namespace Editor.</p>
-<p>1.</p>
-<p>On the Graphics tab, create a new graphic toolset under the Training toolset and name it</p>
-<p>ViewApp Namespaces.</p>
+
+<div class="lab">
+<strong>Objectives:</strong>
+<ul>
+<li>Create custom ViewApp namespaces and attributes</li>
+<li>Use custom ViewApp namespaces and attributes in symbols and Apps</li>
+<li>Use the WebBrowser App in a ViewApp</li>
+<li>Override App properties using references</li>
+</ul>
+</div>
+
+<h2>Create a New Graphic Toolset and a ViewApp Namespace</h2>
+
+<p><strong>Step 1:</strong> On the Graphics tab, create a new graphic toolset under the Training toolset and name it <code>ViewApp Namespaces</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0414_0.png" alt="Page 414">
-  <div class="caption">Page 414</div>
+  <img src="../images/page_0414_0.png" alt="New ViewApp Namespaces Toolset">
+  <div class="caption">The Graphics tab showing the newly created "Viewapp Namespaces" folder under the Training toolset, alongside existing symbols and the Widgets folder.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>2.</p>
-<p>Right-click the Training \ ViewApp Namespaces toolset and select New | ViewApp</p>
-<p>Namespace.</p>
-<p>A new ViewApp namespace with the default name is created in the Training \ ViewApp</p>
-<p>Namespaces toolset.</p>
-<p>3.</p>
-<p>Rename the new ViewApp namespace to Sources.</p>
+
+<p><strong>Step 2:</strong> Right-click the Training \ ViewApp Namespaces toolset and select <em>New | ViewApp Namespace</em>. A new ViewApp namespace with the default name is created.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0415_0.png" alt="Page 415">
-  <div class="caption">Page 415</div>
+  <img src="../images/page_0415_0.png" alt="Creating New ViewApp Namespace">
+  <div class="caption">The right-click context menu on the Viewapp Namespaces toolset showing the New submenu with "ViewApp Namespace (Ctrl+Shift+V)" highlighted for selection.</div>
 </div>
+
+<p><strong>Step 3:</strong> Rename the new ViewApp namespace to <code>Sources</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0415_1.png" alt="Page 415">
-  <div class="caption">Page 415</div>
+  <img src="../images/page_0415_1.png" alt="Renamed Sources Namespace">
+  <div class="caption">The Graphics tab with the Viewapp Namespaces folder expanded, showing the renamed "Sources" namespace with the green AVEVA icon.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>4.</p>
-<p>Double-click Sources to open it in the ViewApp Namespace Editor.</p>
-<p>5.</p>
-<p>At the top of the editor, click Add to add a new ViewApp attribute.</p>
-<p>A new attribute with the default name is added to the list, and the name is editable.</p>
-<p>6.</p>
-<p>Rename the custom attribute to URL1.</p>
+
+<h2>Configure the Sources Namespace Attributes</h2>
+
+<p><strong>Step 4:</strong> Double-click <code>Sources</code> to open it in the ViewApp Namespace Editor.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0416_0.jpeg" alt="Page 416">
-  <div class="caption">Page 416</div>
+  <img src="../images/page_0416_0.jpeg" alt="Empty Sources Namespace Editor">
+  <div class="caption">The Sources ViewApp Namespace Editor in its empty state — no attributes defined yet. The Add (+), Duplicate, and Remove buttons are visible in the toolbar.</div>
 </div>
+
+<p><strong>Step 5:</strong> Click Add to add a new ViewApp attribute. A new attribute with the default name is added to the list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0416_1.jpeg" alt="Page 416">
-  <div class="caption">Page 416</div>
+  <img src="../images/page_0416_1.jpeg" alt="Add Attribute Button">
+  <div class="caption">The Add button highlighted with a red arrow and tooltip "Add ViewApp Attribute" — clicking this creates a new attribute row in the editor.</div>
 </div>
+
+<p><strong>Step 6:</strong> Rename the custom attribute to <code>URL1</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0416_2.png" alt="Page 416">
-  <div class="caption">Page 416</div>
+  <img src="../images/page_0416_2.png" alt="New Attribute Added">
+  <div class="caption">After clicking Add: a new row appears with the default name Attribute001 (Boolean type). The name is immediately editable for renaming.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>7.</p>
-<p>Configure URL1 as follows:</p>
-<p>8.</p>
-<p>Click Add to add another ViewApp attribute and name it HomeAddress.</p>
-<p>9.</p>
-<p>Configure HomeAddress as follows:</p>
-<p>Type:</p>
-<p>String</p>
-<p>Initial Value:</p>
-<p>www.aveva.com</p>
-<p>Readonly:</p>
-<p>unchecked (default)</p>
-<p>Retentive:</p>
-<p>checked</p>
-<p>Description:</p>
-<p>Provides the URL for the WebBrowser App</p>
-<p>Type:</p>
-<p>String</p>
-<p>Initial Value:</p>
-<p>https://www.aveva.com</p>
-<p>Readonly:</p>
-<p>checked</p>
-<p>Retentive:</p>
-<p>unchecked (default)</p>
-<p>Description:</p>
-<p>Stores the home address</p>
+
+<p><strong>Step 7:</strong> Configure <code>URL1</code> as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Type</td><td>String</td></tr>
+<tr><td>Initial Value</td><td>www.aveva.com</td></tr>
+<tr><td>Readonly</td><td>unchecked (default)</td></tr>
+<tr><td>Retentive</td><td>checked</td></tr>
+<tr><td>Description</td><td>Provides the URL for the WebBrowser App</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0417_0.png" alt="Page 417">
-  <div class="caption">Page 417</div>
+  <img src="../images/page_0417_0.png" alt="URL1 Attribute Configured">
+  <div class="caption">The Sources namespace with URL1 configured: String type, initial value "www.aveva.com", Readonly unchecked, Retentive checked (blue box), and description populated.</div>
 </div>
+
+<p><strong>Step 8:</strong> Click Add to add another ViewApp attribute and name it <code>HomeAddress</code>.</p>
+
+<p><strong>Step 9:</strong> Configure <code>HomeAddress</code> as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Type</td><td>String</td></tr>
+<tr><td>Initial Value</td><td>https://www.aveva.com</td></tr>
+<tr><td>Readonly</td><td>checked</td></tr>
+<tr><td>Retentive</td><td>unchecked (default)</td></tr>
+<tr><td>Description</td><td>Stores the home address</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0417_1.png" alt="Page 417">
-  <div class="caption">Page 417</div>
+  <img src="../images/page_0417_1.png" alt="Two Attributes Configured">
+  <div class="caption">The Sources namespace with two attributes: URL1 (String, www.aveva.com, Retentive) and HomeAddress (String, https://www.aveva.com, Readonly, selected/highlighted).</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>10.</strong> With HomeAddress selected, click Duplicate.</p>
-<p>A new ViewApp attribute that is a duplicate of HomeAddress is added.</p>
-<p><strong>11.</strong> Name the duplicate ViewApp attribute File_HTML, and update its Initial Value and</p>
-<p>Description as follows:</p>
-<p><strong>12.</strong> Save and close the Sources ViewApp namespace, and check it in.</p>
-<p>Initial Value:</p>
-<p>C:\Training\Other Files\ViewApp_Namespaces.html</p>
-<p>Description:</p>
-<p>Stores the HTML file source</p>
+
+<p><strong>Step 10:</strong> With <code>HomeAddress</code> selected, click Duplicate to create a copy.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0418_0.png" alt="Page 418">
-  <div class="caption">Page 418</div>
+  <img src="../images/page_0418_0.png" alt="Duplicate Attribute">
+  <div class="caption">The Duplicate button highlighted with a red arrow. After clicking, a new attribute identical to HomeAddress is added to the list.</div>
 </div>
+
+<p><strong>Step 11:</strong> Name the duplicate <code>File_HTML</code>, and update its Initial Value and Description:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Initial Value</td><td><code>C:\Training\Other Files\ViewApp_Namespaces.html</code></td></tr>
+<tr><td>Description</td><td>Stores the HTML file source</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0418_1.jpeg" alt="Page 418">
-  <div class="caption">Page 418</div>
+  <img src="../images/page_0418_1.jpeg" alt="Three Attributes in Sources Namespace">
+  <div class="caption">The Sources namespace with all three attributes: URL1 (String, www.aveva.com, Retentive), HomeAddress (String, https://www.aveva.com, Readonly), and File_HTML (String, file path, Readonly).</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Create a Symbol with the User Input Animation</p>
-<p>In the next steps, you will create a symbol named BrowserURLEntry, with buttons and a text box.</p>
-<p><strong>13.</strong> On the Graphics tab, in the Training \ Symbols toolset, create a new symbol and name it</p>
-<p>BrowserURLEntry.</p>
-<p><strong>14.</strong> Double-click BrowserURLEntry to open it in the Graphic Editor.</p>
-<p><strong>15.</strong> Draw a button on the drawing canvas, and enter Homepage as the text.</p>
-<p>The name of the button is Button1.</p>
-<p>The button on the canvas should look similar to the following.</p>
-<p>In this example, the width of the button is 90 pixels and the height is 40 pixels.</p>
-<p><strong>16.</strong> Double-click Button1 to open the Edit Animations dialog box and add a Pushbutton</p>
-<p>animation.</p>
+
+<p><strong>Step 12:</strong> Save and close the Sources ViewApp namespace, and check it in.</p>
+
+<h2>Create a Symbol with the User Input Animation</h2>
+
+<p><strong>Step 13:</strong> On the Graphics tab, in the Training \ Symbols toolset, create a new symbol and name it <code>BrowserURLEntry</code>.</p>
+
+<p><strong>Step 14:</strong> Double-click <code>BrowserURLEntry</code> to open it in the Graphic Editor.</p>
+
+<p><strong>Step 15:</strong> Draw a button on the drawing canvas and enter <em>Homepage</em> for the text. The button is auto-named <code>Button1</code>. In this example, the width is 90 pixels and the height is 40 pixels.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0419_0.png" alt="Page 419">
-  <div class="caption">Page 419</div>
+  <img src="../images/page_0419_0.png" alt="Homepage Button on Canvas">
+  <div class="caption">The Graphic Editor showing the Homepage button (Button1) on the gridded canvas with blue selection handles, sized 90×40 pixels.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>17.</strong> Configure the Pushbutton animation as follows:</p>
-<p><strong>18.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>19.</strong> Duplicate Button1 and move the duplicate to the right of Button1.</p>
-<p>The name of the new button is Button2.</p>
-<p><strong>20.</strong> Change the text on Button2 to HTML.</p>
-<p>The buttons should look similar to the following:</p>
-<p>States:</p>
-<p>String</p>
-<p>Reference (String):</p>
-<p>MyViewApp.Sources.URL1</p>
-<p>Action:</p>
-<p>Set</p>
-<p>Value1:</p>
-<p>(Switch to Expression or Reference mode)</p>
-<p>MyViewApp.Sources.HomeAddress</p>
-<p>Send Value:</p>
-<p>On button release checked</p>
+
+<p><strong>Step 16:</strong> Double-click Button1 to open the Edit Animations dialog box and add a Pushbutton animation.</p>
+
+<p><strong>Step 17:</strong> Configure the Pushbutton animation as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>States</td><td>String</td></tr>
+<tr><td>Reference (String)</td><td><code>MyViewApp.Sources.URL1</code></td></tr>
+<tr><td>Action</td><td>Set</td></tr>
+<tr><td>Values \ Value1</td><td><code>MyViewApp.Sources.HomeAddress</code> (use Expression or Reference mode)</td></tr>
+<tr><td>Send Value</td><td>On button release (checked)</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0420_0.png" alt="Page 420">
-  <div class="caption">Page 420</div>
+  <img src="../images/page_0420_0.png" alt="Homepage Button Pushbutton Configuration">
+  <div class="caption">The Edit Animations dialog for Button1 (Homepage) showing the Pushbutton animation with String state, reference to MyViewApp.Sources.URL1, Set action, and Value1 set to MyViewApp.Sources.HomeAddress.</div>
 </div>
+
+<p><strong>Step 18:</strong> Click OK to close the Edit Animations dialog box.</p>
+
+<p><strong>Step 19:</strong> Duplicate Button1 and move the duplicate to the right of Button1. The name of the new button is <code>Button2</code>.</p>
+
+<p><strong>Step 20:</strong> Change the text on Button2 to <em>HTML</em>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0420_1.png" alt="Page 420">
-  <div class="caption">Page 420</div>
+  <img src="../images/page_0420_1.png" alt="Two Buttons Side by Side">
+  <div class="caption">The Graphic Editor showing two grid-aligned buttons: "Homepage" (Button1, left) and "HTML" (Button2, right, selected with blue resize handles).</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>21.</strong> Double-click Button2 to open the Edit Animations dialog box.</p>
-<p><strong>22.</strong> Change Value1 to MyViewApp.Sources.File_HTML.</p>
-<p><strong>23.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>24.</strong> In the Tools pane, select the Text Box tool.</p>
-<p><strong>25.</strong> Draw a text box as a rectangle on the drawing canvas to the right of the HTML button, with the</p>
-<p>top of the text box aligned with the tops of the buttons.</p>
-<p>The name of the text box element is TextBox1.</p>
-<p>The text box should look similar to the following.</p>
-<p>In this example, the width of the text box is 1200 pixels and the height is 40 pixels.</p>
+
+<h2>Configure Button2 and Add TextBox</h2>
+
+<p><strong>Step 21:</strong> Double-click Button2 to open the Edit Animations dialog box.</p>
+
+<p><strong>Step 22:</strong> Change Value1 to <code>MyViewApp.Sources.File_HTML</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0421_0.png" alt="Page 421">
-  <div class="caption">Page 421</div>
+  <img src="../images/page_0421_0.png" alt="Button2 Animation Configuration">
+  <div class="caption">The Edit Animations dialog for Button2 (HTML) showing the Pushbutton animation with Value1 set to MyViewApp.Sources.File_HTML, which points to the local HTML file path.</div>
 </div>
+
+<p><strong>Step 23:</strong> Click OK to close the Edit Animations dialog box.</p>
+
+<p><strong>Step 24:</strong> In the Tools pane, select the Text Box tool.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0421_1.png" alt="Page 421">
-  <div class="caption">Page 421</div>
+  <img src="../images/page_0421_1.png" alt="Text Box Tool Selection">
+  <div class="caption">The Tools pane showing various drawing tools (Arrow, Line, Rectangle, Ellipse, etc.) with the Text Box tool highlighted — a rectangle with "T" inside.</div>
 </div>
+
+<p><strong>Step 25:</strong> Draw a text box to the right of the HTML button, with the top aligned with the tops of the buttons. The text box is named <code>TextBox1</code> (width: 1200 pixels, height: 40 pixels).</p>
+
 <div class="screenshot">
-  <img src="../images/page_0421_2.png" alt="Page 421">
-  <div class="caption">Page 421</div>
+  <img src="../images/page_0421_2.png" alt="TextBox1 on Canvas">
+  <div class="caption">The canvas with Homepage button (left), HTML button (middle), and TextBox1 (right) — all top-aligned. TextBox1 properties: Width 1200, Height 40, Visible True, Enabled True.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>26.</strong> With TextBox1 selected, on the Properties tab, configure properties as follows:</p>
-<p>The alignment of the text box now looks as follows:</p>
-<p>Appearance / Text:</p>
-<p>URL</p>
-<p>TextStyle / Alignment:</p>
-<p>MiddleLeft</p>
+
+<p><strong>Step 26:</strong> With TextBox1 selected, on the Properties tab, configure properties:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Appearance / Text</td><td>URL</td></tr>
+<tr><td>TextStyle / Alignment</td><td>MiddleLeft</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0422_0.png" alt="Page 422">
-  <div class="caption">Page 422</div>
+  <img src="../images/page_0422_0.png" alt="TextBox Properties Configuration">
+  <div class="caption">The Properties tab for TextBox1 showing Appearance Text set to "URL" and Text Style Alignment set to "MiddleLeft" — the text now aligns to the left-center of the text box.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0422_1.png" alt="Page 422">
-  <div class="caption">Page 422</div>
+  <img src="../images/page_0422_1.png" alt="TextBox Visual Preview">
+  <div class="caption">The canvas showing the Homepage button, HTML button, and the URL text box with "URL" text aligned MiddleLeft — ready for the User Input animation.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>27.</strong> Double-click the text box element and add a User Input animation.</p>
-<p><strong>28.</strong> Configure the animation as follows:</p>
-<p><strong>29.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>30.</strong> Save and close the BrowserURLEntry symbol, and check it in.</p>
-<p>Create a New Layout</p>
-<p>In the following steps, you will create a new layout with two panes. You will assign the</p>
-<p>BrowserURLEntry symbol to one pane and the WebBrowser App to the other.</p>
-<p><strong>31.</strong> On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
-<p>WebBrowser_withURL.</p>
-<p><strong>32.</strong> Double-click WebBrowser_withURL to open it in the Layout Editor.</p>
-<p>States:</p>
-<p>String</p>
-<p>Reference (String):</p>
-<p>MyViewApp.Sources.URL1</p>
-<p>Message to User:</p>
-<p>Enter a valid URL to browse</p>
+
+<h2>Add User Input Animation and Create Layout</h2>
+
+<p><strong>Step 27:</strong> Double-click TextBox1 and add a User Input animation.</p>
+
+<p><strong>Step 28:</strong> Configure the animation:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>States</td><td>String</td></tr>
+<tr><td>Reference (String)</td><td><code>MyViewApp.Sources.URL1</code></td></tr>
+<tr><td>Message to User</td><td>Enter a valid URL to browse</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0423_0.png" alt="Page 423">
-  <div class="caption">Page 423</div>
+  <img src="../images/page_0423_0.png" alt="User Input Animation Configuration">
+  <div class="caption">The Edit Animations dialog for TextBox1 showing the User Input animation configured with String state, reference to MyViewApp.Sources.URL1, and the message "Enter a valid URL to browse".</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>33.</strong> Select Pane1 and click the Add new pane up-arrow to add a new pane at the top.</p>
-<p>A new pane named Pane2 is added above Pane1.</p>
+
+<p><strong>Step 29:</strong> Click OK to close the Edit Animations dialog box.</p>
+
+<p><strong>Step 30:</strong> Save and close the <code>BrowserURLEntry</code> symbol, and check it in.</p>
+
+<h2>Create a New Layout</h2>
+
+<p><strong>Step 31:</strong> On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it <code>WebBrowser_withURL</code>.</p>
+
+<p><strong>Step 32:</strong> Double-click <code>WebBrowser_withURL</code> to open it in the Layout Editor.</p>
+
+<p><strong>Step 33:</strong> Select Pane1 and click the Add new pane up-arrow to add a new pane at the top. A new pane named <code>Pane2</code> is added above Pane1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0424_0.png" alt="Page 424">
-  <div class="caption">Page 424</div>
+  <img src="../images/page_0424_0.png" alt="Layout Editor with New Pane2">
+  <div class="caption">The Layout Editor showing Pane2 (top, empty) added above Pane1 (default, selected with blue border). The + buttons for adding panes are visible around the edges.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>34.</strong> Select Pane2, and on the Properties tab, configure it as follows:</p>
-<p>Size \ Height:</p>
-<p>40</p>
-<p>Size \ Height Sizing:</p>
-<p>Fixed</p>
-<p>Appearance \ Content Alignment:</p>
-<p>Left</p>
+
+<p><strong>Step 34:</strong> Select Pane2 and on the Properties tab, configure it as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Size \ Height</td><td>40</td></tr>
+<tr><td>Size \ Height Sizing</td><td>Fixed</td></tr>
+<tr><td>Appearance \ Content Alignment</td><td>Left</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0425_0.png" alt="Page 425">
-  <div class="caption">Page 425</div>
+  <img src="../images/page_0425_0.png" alt="Pane2 Properties Configuration">
+  <div class="caption">The Properties tab for Pane2 showing Height: 40 (Fixed sizing) and Content Alignment: Left, creating a narrow top bar for the URL entry controls.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>35.</strong> On the Toolbox tab, enter a search string to find BrowserURLEntry.</p>
-<p><strong>36.</strong> Drag BrowserURLEntry to Pane2.</p>
-<p>Because Pane2 is small, you may want to zoom the preview display to make it easier to</p>
-<p>assign content to it.</p>
-<p><strong>37.</strong> On the Toolbox tab, enter a search string to find WebBrowser and select it.</p>
-<p><strong>38.</strong> Drag WebBrowser to Pane1.</p>
-<p>The following shows the layout selected, with BrowserURLEntry in Pane2 at the top and</p>
-<p>WebBrowser in Pane1.</p>
+
+<p><strong>Step 35:</strong> On the Toolbox tab, enter a search string to find <code>BrowserURLEntry</code>.</p>
+
+<p><strong>Step 36:</strong> Drag BrowserURLEntry to Pane2. Because Pane2 is small, you may want to zoom the preview display to make it easier to assign content to it.</p>
+
+<p><strong>Step 37:</strong> On the Toolbox tab, enter a search string to find <code>WebBrowser</code> and select it.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0426_0.png" alt="Page 426">
-  <div class="caption">Page 426</div>
+  <img src="../images/page_0426_0.png" alt="Toolbox WebBrowser Search">
+  <div class="caption">The Toolbox tab with search string "webbrowser" showing 2 matching content items — the WebBrowser control in multi-pane and single-pane variants, with the first selected.</div>
 </div>
+
+<p><strong>Step 38:</strong> Drag WebBrowser to Pane1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0426_1.png" alt="Page 426">
-  <div class="caption">Page 426</div>
+  <img src="../images/page_0426_1.png" alt="Layout with BrowserURLEntry and WebBrowser">
+  <div class="caption">The completed layout: BrowserURLEntry symbol in Pane2 (top bar) with Homepage, HTML buttons and URL text box, and the WebBrowser App in Pane1 (main area below).</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>39.</strong> With Pane1 selected, on the Properties tab for the Browser \ Address property, click the</p>
-<p>down-arrow to the left of the field.</p>
-<p>A drop-down list appears.</p>
+
+<h2>Configure WebBrowser Address Property Binding</h2>
+
+<p><strong>Step 39:</strong> With Pane1 selected, on the Properties tab for the Browser \ Address property, click the down-arrow to the left of the field. A drop-down list appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0427_0.jpeg" alt="Page 427">
-  <div class="caption">Page 427</div>
+  <img src="../images/page_0427_0.jpeg" alt="Browser Address Property">
+  <div class="caption">The Properties tab for the WebBrowser control showing the Browser section with the Address field highlighted. The down-arrow next to the "C" (Constant) icon reveals binding mode options.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0427_1.jpeg" alt="Page 427">
-  <div class="caption">Page 427</div>
+  <img src="../images/page_0427_1.jpeg" alt="Binding Mode Dropdown">
+  <div class="caption">The binding mode dropdown showing options: Constant, In, Out, InOut, and Reset. Selecting "In" changes the binding mode to Dynamic.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>40.</strong> From the drop-down list, select In.</p>
-<p>Selecting In changes the binding mode to Dynamic. Notice that after the change, the binding</p>
-<p>mode icon for the Browser \ Address field has an arrow that points to the left, which indicates</p>
-<p>the binding mode is In only and the property will be overridden by the specified expression or</p>
-<p>reference in the value field.</p>
-<p><strong>41.</strong> Enter the following for the Browser \ Address property reference:</p>
-<p>MyViewApp.Sources.URL1</p>
-<p><strong>42.</strong> Save and close the WebBrowser_withURL layout, and check it in.</p>
+
+<p><strong>Step 40:</strong> From the drop-down list, select <strong>In</strong>. This changes the binding mode to Dynamic. The binding mode icon changes to a left-pointing arrow, indicating In-only binding — the property will be overridden by the specified expression or reference.</p>
+
+<p><strong>Step 41:</strong> Enter the following for the Browser \ Address property reference: <code>MyViewApp.Sources.URL1</code></p>
+
 <div class="screenshot">
-  <img src="../images/page_0428_0.jpeg" alt="Page 428">
-  <div class="caption">Page 428</div>
+  <img src="../images/page_0428_0.jpeg" alt="Address Binding Configured">
+  <div class="caption">The Browser Address field now shows the In-binding icon (left-pointing arrow) with the value "MyViewApp.Sources.URL1" — the WebBrowser will read its URL from the custom namespace attribute.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0428_1.png" alt="Page 428">
-  <div class="caption">Page 428</div>
+  <img src="../images/page_0428_1.png" alt="Full Properties Panel">
+  <div class="caption">The complete Properties panel for WebBrowser1 showing General (Name, Content, Pane), Browser (Address bound to MyViewApp.Sources.URL1 with In-binding), and Event Handlers sections.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Edit Navigation Items</p>
-<p>In the following steps, you will add a new navigation item to the ViewApp and assign the</p>
-<p>WebBrowser_withURL symbol to Pane1.</p>
-<p><strong>43.</strong> Switch to the ViewApp Editor.</p>
-<p><strong>44.</strong> With Home selected in the Navigation list, add a new navigation item and name it</p>
-<p>WebBrowser.</p>
-<p><strong>45.</strong> With the WebBrowser navigation item selected, on the Toolbox tab, enter a search string to</p>
-<p>find WebBrowser_withURL and select it.</p>
-<p><strong>46.</strong> Drag WebBrowser_withURL to Pane1.</p>
-<p>WebBrowser_withURL is assigned to Pane1.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> The binding mode must be set to <strong>In</strong> (not Constant) for the WebBrowser to dynamically read the URL from the ViewApp namespace attribute. If left as Constant, the address will be static and will not update when buttons are clicked.
+</div>
+
+<p><strong>Step 42:</strong> Save and close the <code>WebBrowser_withURL</code> layout, and check it in.</p>
+
+<h2>Edit Navigation Items</h2>
+
+<p><strong>Step 43:</strong> Switch to the ViewApp Editor.</p>
+
+<p><strong>Step 44:</strong> With Home selected in the Navigation list, add a new navigation item and name it <code>WebBrowser</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0429_0.png" alt="Page 429">
-  <div class="caption">Page 429</div>
+  <img src="../images/page_0429_0.png" alt="ViewApp Editor Navigation">
+  <div class="caption">The ViewApp Editor showing the Navigation list with the newly added "WebBrowser" item under Home, alongside the existing Plant item. The Add, Add Sibling, and Remove buttons are visible in the toolbar.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>In the following steps, you will update the preview session for the changes you made in the</p>
-<p>ViewApp Editor. Then you will test the changes you made in this lab.</p>
-<p><strong>47.</strong> Click Update to save the changes to the ViewApp and update the preview session.</p>
-<p>The preview session opens, navigated to WebBrowser.</p>
-<div class="key-concept">Note:</div>
-<p>If you want to navigate to a different web site, click the text box and enter a URL.</p>
+
+<p><strong>Step 45:</strong> With the WebBrowser navigation item selected, on the Toolbox tab, enter a search string to find <code>WebBrowser_withURL</code> and select it.</p>
+
+<p><strong>Step 46:</strong> Drag <code>WebBrowser_withURL</code> to Pane1. The layout is now assigned to the WebBrowser navigation item.</p>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
+<p><strong>Step 47:</strong> Click Update to save the changes to the ViewApp and update the preview session.</p>
+
+<p>The preview session opens, navigated to WebBrowser. The BrowserURLEntry symbol is shown at the top with the Homepage and HTML buttons and a URL text box. Below it, the WebBrowser App displays the AVEVA website loaded from the URL attribute.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0430_0.jpeg" alt="Page 430">
-  <div class="caption">Page 430</div>
+  <img src="../images/page_0430_0.jpeg" alt="Running ViewApp with WebBrowser">
+  <div class="caption">The running ViewApp at the WebBrowser navigation item. The top shows Homepage and HTML buttons with a URL text box containing "www.aveva.com". Below, the embedded WebBrowser displays the AVEVA website with its full navigation, hero section, and content.</div>
 </div>
-<p>Lab 15 – Creating and Using Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>48.</strong> Click the following buttons and notice the behavior.</p>
-<p></p>
-<p>Homepage</p>
-<p></p>
-<p>HTML</p>
-<p>The following example shows the result of clicking the HTML button:</p>
-<p><strong>49.</strong> Enter a valid URL into the text box and notice the behavior.</p>
-<p><strong>50.</strong> When you are finished testing, close the preview session.</p>
-<p><strong>51.</strong> From the ViewApp Editor, close the ViewApp and check it in.</p>
-<div class="key-concept">Note:</div>
-<p>Be sure to close the preview session and close and check in the ViewApp when you</p>
-<p>are done testing in this lab. All objects must be closed and checked in for the next lab, which</p>
-<p>will guide you through setting up ViewApp security.</p>
-<p><End of Lab></p>
+
+<div class="tip">
+<strong>Note:</strong> If you want to navigate to a different web site, click the text box and enter a URL.
+</div>
+
+<p><strong>Step 48:</strong> Click the Homepage and HTML buttons and notice the behavior.</p>
+
+<p><strong>Step 49:</strong> Enter a valid URL into the text box and notice the behavior.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0431_0.jpeg" alt="Page 431">
-  <div class="caption">Page 431</div>
+  <img src="../images/page_0431_0.jpeg" alt="HTML Button Result">
+  <div class="caption">The result of clicking the HTML button — the WebBrowser now displays the local HTML file (C:\Training\Other Files\ViewApp_Namespaces.html) showing a diagram about ViewApp Namespaces, demonstrating that the URL1 attribute was updated by the button's Pushbutton animation.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<p><strong>Step 50:</strong> When you are finished testing, close the preview session.</p>
+
+<p><strong>Step 51:</strong> From the ViewApp Editor, close the ViewApp and check it in.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> Be sure to close the preview session and close and check in the ViewApp when you are done testing in this lab. All objects must be closed and checked in for the next lab, which will guide you through setting up ViewApp security.
+</div>
+
+<p class="lab"><strong>&lt;End of Lab&gt;</strong></p>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: Why is the WebBrowser's Address binding mode changed from Constant to In?</summary>
+<p class="answer">Changing the binding to "In" (Dynamic) allows the WebBrowser to read the URL from the ViewApp namespace attribute at runtime. This means when buttons or the text box update the URL1 attribute, the WebBrowser automatically navigates to the new URL.</p>
+</details>
+
+<details>
+<summary>Q2: What are the three custom attributes created in the Sources namespace?</summary>
+<p class="answer">URL1 (String, initial value "www.aveva.com", Retentive) — the current URL displayed by the browser; HomeAddress (String, "https://www.aveva.com", Readonly) — the homepage address; File_HTML (String, file path, Readonly) — the local HTML file source.</p>
+</details>
+
+<details>
+<summary>Q3: What is the purpose of the User Input animation on TextBox1?</summary>
+<p class="answer">The User Input animation allows the operator to type a URL into the text box at runtime. It writes the entered value to MyViewApp.Sources.URL1, which the WebBrowser App reads via its In-binding, enabling dynamic web navigation.</p>
+</details>
+
+<details>
+<summary>Q4: Why must all objects be closed and checked in before the next lab?</summary>
+<p class="answer">The next lab (Lab 16) covers ViewApp security configuration. All objects must be closed and checked in so that the Galaxy is in a clean, committed state before security settings are applied.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">← L30: Custom ViewApp Namespaces and Attributes</a> &nbsp;|&nbsp;
   <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

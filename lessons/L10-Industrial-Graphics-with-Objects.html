@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 10: Industrial Graphics with Objects</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">← L09: Lab 4 – Using Situational Awareness Dash</a> &nbsp;|&nbsp;
-  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation  →</a>
+  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">← L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a> &nbsp;|&nbsp;
+  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -50,8 +53,8 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
 <br>
 <strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Editor</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html" style="font-weight:bold;color:#1a1a1a;">L10: Industrial Graphics with Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
@@ -105,7 +108,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -122,105 +125,175 @@
 </nav>
 
 <h1>📖 L10: Industrial Graphics with Objects</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 183-186</p>
-<p>Section 3 – Industrial Graphics with Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 3 – Industrial Graphics with Objects</p>
-<p>Introduction</p>
-<p>When adding symbols into an automation object, you can create symbols within the object and</p>
-<p>then embed symbols from the Graphics tab into those symbols. Alternatively, you can use the</p>
-<p>linked symbols feature, whereby you directly link external symbols from the Graphics tab to the</p>
-<p>automation object.</p>
-<p>When adding a symbol or linking an external symbol in a template object, the symbol in the</p>
-<p>template will be propagated to all derived objects. The symbols inherited from the template object</p>
-<p>cannot be removed.</p>
-<p>Linked Symbols vs. Added Symbols</p>
-<p>Linking an external symbol to an automation object creates an association between the object and</p>
-<p>a symbol in the Graphics tab. The symbol in the Graphics tab can be linked with other automation</p>
-<p>objects, which are not necessarily part of the derivation hierarchy. Changes to the symbol from the</p>
-<p>Graphics tab will apply to all automation objects to which this symbol is linked.</p>
-<p>On the other hand, adding a symbol to an automation object is to create a symbol that is natively</p>
-<p>hosted by the object. You can edit the symbol within the object, such as when you embed a symbol</p>
-<p>from the Graphics tab and then customize it as needed for the object. When the symbol in a</p>
-<p>template object changes, the changes will propagate to its child objects and wherever they are</p>
-<p>referenced.</p>
-<p>Additionally, deleting automation objects with added symbols will delete those symbols, since the</p>
-<p>symbols only exist within the automation objects. However, deleting automation objects with linked</p>
-<p>symbols will not delete the symbols, because the symbols still exist in the Graphics tab.</p>
-<p>Note the following about linked symbols:</p>
-<p></p>
-<p>Symbols on the Graphics tab can be linked to automation objects.</p>
-<p></p>
-<p>Linked symbols in automation objects can be embedded into other symbols.</p>
-<p></p>
-<p>Changes made to a linked or embedded symbol are propagated to automation objects to</p>
-<p>which the symbol is linked and to the graphics in which the symbol is embedded.</p>
-<p></p>
-<p>Relative references used in a linked symbol will be resolved through the object to which it</p>
-<p>is linked.</p>
-<p>Some limitations of using linked symbols are:</p>
-<p></p>
-<p>Custom properties in a linked symbol cannot be customized directly.</p>
-<p></p>
-<p>Only symbols from the Graphics tab can be linked to an object.</p>
-<p>This section describes using and managing symbols with automation objects.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Manage Symbols from the Object Editor</p>
-<p>When editing an object in the Object Editor, you can link external symbols or add symbols to the</p>
-<p>object from the Content pane on the Attributes tab.</p>
-<p></p>
-<p>Add: Clicking the Add button adds an empty symbol to the object, which can be edited in</p>
-<p>the Graphic Editor.</p>
-<p></p>
-<p>Link Content: Clicking the Link Content button opens the Galaxy Browser, allowing you to</p>
-<p>browse for and select the symbol from the Graphics tab to link.</p>
-<p>From within the Object Editor, you can change the names of symbols, add or edit the descriptions</p>
-<p>for the symbols, duplicate the symbols, and delete the symbols. To edit a symbol, you can double-</p>
-<p>click the symbol listed in the Object Editor or click the Edit button to open the Graphic Editor.</p>
-<p>For linked symbols, you can open them from the Graphics tab for editing, instead of opening them</p>
-<p>from the Object Editor.</p>
-<div class="screenshot">
-  <img src="../images/page_0184_0.png" alt="Page 184">
-  <div class="caption">Page 184</div>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 3, Section 3</p>
+<p class="page-ref">Pages 183–186 (Section 3-45 to 3-48)</p>
+
+<!-- ============================================================ -->
+<h2>Introduction</h2>
+
+<p>When working with automation objects in AVEVA OMI, you need a way to associate visual symbols with the objects that represent real-world equipment. There are two distinct approaches to accomplish this: you can create symbols directly within an automation object, or you can link to external symbols that already exist on the Graphics tab. Understanding when and how to use each method is fundamental to building effective industrial graphics.</p>
+
+<p>When you add a symbol or link an external symbol in a template object, that symbol is automatically propagated to all derived objects. The symbols inherited from a template object cannot be removed by downstream users — they are part of the template's definition. This inheritance model ensures consistency across your entire object hierarchy.</p>
+
+<!-- ============================================================ -->
+<h2>Linked Symbols vs. Added Symbols</h2>
+<p class="page-ref">Reference: Section 3-45 (Page 183)</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Two Ways to Associate Symbols with Objects</strong><br>
+  You can attach visual symbols to automation objects using either <strong>linked symbols</strong> (creating a reference to an existing symbol on the Graphics tab) or <strong>added symbols</strong> (creating a new symbol natively hosted by the object). Each approach has different implications for how changes propagate, how symbols are managed, and what happens when objects are deleted.
 </div>
-<p>Section 3 – Industrial Graphics with Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Relative References</p>
-<p>References that go up the object hierarchy to parent objects are called relative references.</p>
-<p>Relative references, such as “Me” and “MyArea” are valid reference strings. The following relative</p>
-<p>references refer to the current object:</p>
-<p></p>
-<p>Me</p>
-<p></p>
-<p>MyArea</p>
-<p></p>
-<p>MyContainer</p>
-<p></p>
-<p>MyEngine</p>
-<p></p>
-<p>MyHost</p>
-<p></p>
-<p>MyPlatform</p>
-<p>Relative references can be used to configure symbols, and when the symbols are used in objects,</p>
-<p>those relative references are resolved by the objects.</p>
-<p>Containment Relationships</p>
-<p>Application objects can be included in a containment relationship. When working in a containment</p>
-<p>relationship, symbols in each object can be embedded in other objects within the same</p>
-<p>containment by using relative references. In this way, the relative references within the embedded</p>
-<p>symbols will be resolved without further configuration.</p>
-<p>For example, if a contained object includes a symbol that is configured using relative references</p>
-<p>(such as Me.PV), the symbol can be embedded in a symbol of the container object.</p>
-<p>At the template level of containment, if the container template needs to include symbols from its</p>
-<p>contained templates, then you must add a symbol in the container template and embed the</p>
-<p>symbols from the contained templates through relative referencing.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<table>
+  <tr><th>Aspect</th><th>Linked Symbols</th><th>Added Symbols</th></tr>
+  <tr>
+    <td><strong>How it works</strong></td>
+    <td>Creates an association between the automation object and a symbol that lives on the Graphics tab</td>
+    <td>Creates a new symbol that is natively hosted inside the automation object</td>
+  </tr>
+  <tr>
+    <td><strong>Sharing</strong></td>
+    <td>The same Graphics tab symbol can be linked to multiple automation objects, even across different derivation hierarchies</td>
+    <td>Each object hosts its own copy of the symbol; no sharing across objects</td>
+  </tr>
+  <tr>
+    <td><strong>Editing</strong></td>
+    <td>Edit the symbol from the Graphics tab — changes apply to all linked objects simultaneously</td>
+    <td>Edit the symbol within the object (you can embed a Graphics tab symbol and customize it)</td>
+  </tr>
+  <tr>
+    <td><strong>Change propagation</strong></td>
+    <td>Changes to the Graphics tab symbol propagate to all linked automation objects</td>
+    <td>Changes to a template's symbol propagate to child objects wherever referenced</td>
+  </tr>
+  <tr>
+    <td><strong>Deletion behavior</strong></td>
+    <td>Deleting the automation object does <em>not</em> delete the symbol — it still exists on the Graphics tab</td>
+    <td>Deleting the automation object <em>also deletes</em> the symbols, since they only exist within the object</td>
+  </tr>
+  <tr>
+    <td><strong>Customization</strong></td>
+    <td>Custom properties in a linked symbol cannot be customized directly</td>
+    <td>Fully customizable — edit properties as needed for the specific object</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>Tip — Which approach to choose?</strong> Use <strong>linked symbols</strong> when you want a single symbol definition shared across many objects (e.g., a standard valve symbol used by every valve in your plant). Use <strong>added symbols</strong> when you need per-object customization that goes beyond what a shared symbol can provide.
+</div>
+
+<p>Additional notes about linked symbols:</p>
+<ul>
+  <li>Symbols on the Graphics tab can be linked to automation objects</li>
+  <li>Linked symbols in automation objects can themselves be embedded into other symbols</li>
+  <li>Changes made to a linked or embedded symbol propagate to all automation objects to which the symbol is linked and to all graphics in which the symbol is embedded</li>
+  <li>Relative references used in a linked symbol will be resolved through the object to which it is linked</li>
+</ul>
+
+<div class="pitfall">
+  <strong>Limitations of Linked Symbols:</strong> Custom properties in a linked symbol cannot be customized directly. Additionally, only symbols from the Graphics tab can be linked to an object — you cannot link symbols from other automation objects' Content panes.
+</div>
+
+<!-- ============================================================ -->
+<h2>Managing Symbols from the Object Editor</h2>
+<p class="page-ref">Reference: Section 3-46 (Page 184)</p>
+
+<p>When you edit an automation object in the Object Editor, you manage its symbols through the Content pane on the Attributes tab. This pane provides two primary actions for adding visual content to your object.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0184_0.png" alt="Content pane in Object Editor showing Add and Link Content buttons">
+  <div class="caption">The Content pane in the Object Editor — the "Add" button (left "+" icon) creates an empty symbol attached to the object, while the "Link Content" button (right "+" icon) opens the Galaxy Browser to link an existing symbol from the Graphics tab. (Section 3-46)</div>
+</div>
+
+<table>
+  <tr><th>Button</th><th>What It Does</th><th>Result</th></tr>
+  <tr>
+    <td><strong>Add</strong></td>
+    <td>Creates an empty symbol attached to the automation object</td>
+    <td>The new symbol appears in the Content pane and can be edited in the Graphic Editor</td>
+  </tr>
+  <tr>
+    <td><strong>Link Content</strong></td>
+    <td>Opens the Galaxy Browser to browse and select a symbol from the Graphics tab</td>
+    <td>A reference to the selected symbol appears in the Content pane; the symbol itself stays on the Graphics tab</td>
+  </tr>
+</table>
+
+<p>From within the Object Editor, you can also rename symbols, add or edit descriptions, duplicate symbols, and delete symbols. To edit a symbol, double-click it in the Content pane or click the Edit button to open the Graphic Editor. For linked symbols, you can alternatively open and edit them directly from the Graphics tab.</p>
+
+<!-- ============================================================ -->
+<h2>Relative References</h2>
+<p class="page-ref">Reference: Section 3-47 (Page 185)</p>
+
+<p>Relative references are a powerful mechanism for navigating the object hierarchy. Instead of using absolute paths to reference attributes, you use short reference strings that automatically resolve based on where the symbol is being used. This makes symbols portable and reusable across different objects in your hierarchy.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Valid Relative References</strong><br>
+  The following reference strings all resolve to the <em>current object</em> when used in a symbol:<br><br>
+  <code>Me</code>, <code>MyArea</code>, <code>MyContainer</code>, <code>MyEngine</code>, <code>MyHost</code>, <code>MyPlatform</code><br><br>
+  These references can be used to configure symbols, and when the symbols are placed in objects at runtime, those relative references are resolved by the objects automatically.
+</div>
+
+<p>Relative references are especially important when working with containment relationships. In a containment hierarchy, objects are organized with parent containers holding child objects. Symbols in each object can be embedded in other objects within the same containment using relative references, and the references within the embedded symbols resolve automatically without further configuration.</p>
+
+<p>For example, if a contained object includes a symbol configured with relative references such as <code>Me.PV</code>, that symbol can be embedded in a symbol of the container object. At the template level, if a container template needs to include symbols from its contained templates, you add a symbol to the container template and then embed the contained templates' symbols through relative referencing.</p>
+
+<!-- ============================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz">
+  <h3>Question 1</h3>
+  <p>What is the key difference between a linked symbol and an added symbol in terms of deletion behavior?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">When you delete an automation object that has <strong>linked symbols</strong>, the symbols are <em>not</em> deleted — they still exist on the Graphics tab. When you delete an object with <strong>added symbols</strong>, those symbols are also deleted because they only exist within that object.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 2</h3>
+  <p>What are six valid relative reference strings that resolve to the current object?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">The six valid relative references are: <code>Me</code>, <code>MyArea</code>, <code>MyContainer</code>, <code>MyEngine</code>, <code>MyHost</code>, and <code>MyPlatform</code>.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 3</h3>
+  <p>What happens to symbols inherited from a template object when you try to remove them from a derived object?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">Symbols inherited from a template object <strong>cannot be removed</strong> from derived objects. They are part of the template's definition and are automatically propagated to all derived objects.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 4</h3>
+  <p>Why can't you customize custom properties in a linked symbol directly?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">A linked symbol is a reference to a shared symbol on the Graphics tab. Since the same symbol is shared across multiple automation objects, customizing its properties for one object would affect all other objects linked to that symbol. This is a fundamental limitation of the linked symbol approach — for per-object customization, you must use added symbols instead.</p>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2>Key Takeaways</h2>
+<ol>
+  <li><strong>Linked symbols</strong> reference a shared symbol on the Graphics tab; <strong>added symbols</strong> are hosted natively within the automation object.</li>
+  <li>Linked symbols allow <strong>one symbol to serve many objects</strong>; added symbols allow <strong>per-object customization</strong>.</li>
+  <li>Deleting an object with linked symbols preserves the symbol; deleting an object with added symbols destroys the symbol.</li>
+  <li><strong>Relative references</strong> (<code>Me</code>, <code>MyArea</code>, etc.) allow symbols to be portable across objects in a hierarchy.</li>
+  <li>Symbols inherited from a template object <strong>cannot be removed</strong> from derived objects.</li>
+</ol>
+
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 Training Manual, Module 3, Section 3 (pages 3-45 to 3-48)</p>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">← L09: Lab 4 – Using Situational Awareness Dash</a> &nbsp;|&nbsp;
-  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation  →</a>
+  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">← L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a> &nbsp;|&nbsp;
+  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

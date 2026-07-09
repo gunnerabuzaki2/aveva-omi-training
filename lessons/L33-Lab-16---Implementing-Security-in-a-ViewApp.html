@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 33: Lab 16 – Implementing Security in a ViewApp</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -42,16 +45,14 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
-<br>
 <strong>Module 2 — Getting Started</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
-<br>
 <strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Editor</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using SA Dashboard Symbols</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
@@ -60,561 +61,471 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
-<br>
 <strong>Module 4 — ViewApp Customizations</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L20" onchange="saveProgress()"> <a href="L20-Layout-and-Pane-Customizations.html">L20: Layout and Pane Customizations</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
-<br>
 <strong>Module 5 — External Content</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
-<br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content</a></label><br>
 <strong>Module 6 — Widgets</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
-<br>
 <strong>Module 7 — ViewApp Namespaces</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in Namespaces</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom Namespaces and Attributes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
-<br>
 <strong>Module 8 — Security</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html" style="font-weight:bold;color:#1a1a1a;">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
-<br>
 <strong>Module 9 — Alarms and Events</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
-<br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Historical Alarm Display</a></label><br>
 <strong>Module 10 — Trends</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Trending</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
-<br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – InSightApp Trend</a></label><br>
 <strong>Module 11 — Historical Playback</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
-<br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Historical Playback</a></label><br>
 <strong>Module 12 — .NET Controls</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
-<br>
-<strong>Module 13 — Scripting in Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – .NET Controls</a></label><br>
+<strong>Module 13 — Scripting</strong><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Back Button</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – ShowContent()</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – ShowGraphic()</a></label><br>
 <br><span id="progress-text"></span>
 </div>
 </nav>
 
-<h1>🔬 L33: Lab 16 – Implementing Security in a ViewApp</h1>
-<p class="source">Module 8 — Security | Pages 445-476</p>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>Introduction</p>
-<p>Until now, your Galaxy has had security disabled and you have been able to perform configuration</p>
-<p>and runtime actions without having to log into the System Platform IDE or the ViewApp.</p>
-<p>In this lab, you will enable security in the Galaxy to use operating system user groups (OS Groups)</p>
-<p>as the authentication mode. You will configure permissions for a default role, as well as for roles</p>
-<p>added from domain user groups. As part of the configuration for the roles, you will assign access</p>
-<p>levels to the roles and configure operational permissions.</p>
-<p>In your ViewApp configuration, you will apply access levels and user roles for navigation items.</p>
-<p>When testing your ViewApp, you will log into it as different users and see the impact on the</p>
-<p>navigation items.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Configure the Access Level property for navigation items</p>
-<p></p>
-<p>Configure the User Roles property for navigation items</p>
-<p></p>
-<p>Use TitleBarApp to login and logout</p>
-<p></p>
-<p>Verify runtime security in a ViewApp</p>
-<p>User Group Name</p>
-<p>Access Level</p>
-<p>Operational Permissions</p>
-<p>User Name</p>
-<p>Full Name</p>
-<p>Application</p>
-<p>Administrators</p>
-<p>9999</p>
-<p>All operational permissions</p>
-<p>Student</p>
-<p>Training Student</p>
-<p>Jamess</p>
-<p>James Smith</p>
-<p>Maryl</p>
-<p>Mary Lee</p>
-<p>Plant Supervisors 1</p>
-<p>5000</p>
-<p>Can Verify Writes</p>
-<p>Michaelj</p>
-<p>Michael Jones</p>
-<p>Karent</p>
-<p>Karen Turner</p>
-<p>Plant Operators 1</p>
-<p>2000</p>
-<p>Can Modify “Operate” attributes</p>
-<p>Johnj</p>
-<p>John Johnson</p>
-<p>Lisay</p>
-<p>Lisa Young</p>
-<p>Plant Operators 2</p>
-<p>2000</p>
-<p>Can Modify “Operate” attributes</p>
-<p>Robertw</p>
-<p>Robert William</p>
-<p>Nancyk</p>
-<p>Nancy King</p>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Enable and Configure Galaxy Security</p>
-<p>First, you will enable Galaxy security with the OS Group based authentication mode. You will</p>
-<p>configure permissions for the Default role, and add and configure additional roles from domain</p>
-<p>user groups.</p>
-<p>1.</p>
-<p>On both the Templates tab and the Graphics tab, ensure that all objects and symbols are</p>
-<p>checked in.</p>
-<div class="key-concept">Note:</div>
-<p>You cannot configure security if any objects or symbols are checked out.</p>
-<p>2.</p>
-<p>On the Galaxy menu, select Configure | Security.</p>
-<p>The Security area appears.</p>
-<div class="screenshot">
-  <img src="../images/page_0446_0.png" alt="Page 446">
-  <div class="caption">Page 446</div>
+<h1>🔧 L33: Lab 16 – Implementing Security in a ViewApp</h1>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 8: Security</p>
+<p class="page-ref">Pages 445–476 (Sections 8-13 through 8-44)</p>
+
+<div class="lab">
+<strong>Lab Introduction</strong><br>
+Until now, your Galaxy has had security disabled, allowing you to perform configuration and runtime actions without logging in. In this lab, you will enable Galaxy security using OS Groups as the authentication mode, configure permissions for roles, and test the ViewApp by logging in as different users to observe the impact on navigation items.
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>3.</p>
-<p>On the Authentication Mode tab, select OS Group based, and configure the Login time as</p>
-<p>5000 ms.</p>
-<div class="key-concept">Note:</div>
-<p>Do NOT click Save until you get to a step that explicitly instructs you to do so. Clicking</p>
-<p>Save will restart the System Platform IDE. If you accidentally click Save, log back in as</p>
-<p>Administrator with no password.</p>
-<div class="screenshot">
-  <img src="../images/page_0447_0.jpeg" alt="Page 447">
-  <div class="caption">Page 447</div>
+
+<h2>Objectives</h2>
+<ul>
+<li>Configure the Access Level property for navigation items</li>
+<li>Configure the User Roles property for navigation items</li>
+<li>Use TitleBarApp to login and logout</li>
+<li>Verify runtime security in a ViewApp</li>
+</ul>
+
+<h2>User Group Configuration</h2>
+
+<p>The following table defines the user groups, access levels, and permissions used throughout this lab:</p>
+
+<table>
+<tr><th>User Group</th><th>Access Level</th><th>Operational Permissions</th><th>Users</th></tr>
+<tr><td>Application Administrators</td><td>9999</td><td>All operational permissions</td><td>Student (Training Student), Jamess (James Smith)</td></tr>
+<tr><td>Plant Supervisors 1</td><td>5000</td><td>Can Verify Writes</td><td>Maryl (Mary Lee), Michaelj (Michael Jones), Karent (Karen Turner)</td></tr>
+<tr><td>Plant Operators 1</td><td>2000</td><td>Can Modify "Operate" attributes</td><td>Johnj (John Johnson), Lisay (Lisa Young)</td></tr>
+<tr><td>Plant Operators 2</td><td>2000</td><td>Can Modify "Operate" attributes</td><td>Robertw (Robert William), Nancyk (Nancy King)</td></tr>
+</table>
+
+<h2>Part 1: Enable and Configure Galaxy Security</h2>
+
+<div class="lab">
+<strong>Step 1.</strong> On both the Templates tab and the Graphics tab, ensure that all objects and symbols are checked in.
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>4.</p>
-<p>On the Roles tab, in the Define security roles list, select the Default role.</p>
-<p>5.</p>
-<p>In General permissions, uncheck all of the IDE Permissions and SMC Permissions.</p>
-<p>You will need to scroll in the General permissions list to see all of the permissions.</p>
-<div class="screenshot">
-  <img src="../images/page_0448_0.png" alt="Page 448">
-  <div class="caption">Page 448</div>
+
+<div class="pitfall">
+<strong>Warning:</strong> You cannot configure security if any objects or symbols are checked out. Ensure everything is checked in before proceeding.
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>6.</p>
-<p>In Operational permissions, expand Default and keep Alarms and the permissions beneath</p>
-<p>it checked, but uncheck all others.</p>
-<p>You will need to scroll in the Operational permissions list to see all of the permissions.</p>
-<p>7.</p>
-<p>Click Add new Role to add a role from the domain user groups.</p>
-<div class="screenshot">
-  <img src="../images/page_0449_0.png" alt="Page 449">
-  <div class="caption">Page 449</div>
+
+<div class="lab">
+<strong>Step 2.</strong> On the Galaxy menu, select <strong>Configure → Security</strong>.
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0449_1.png" alt="Page 449">
-  <div class="caption">Page 449</div>
+  <img src="../images/page_0446_0.png" alt="Galaxy Configure menu with Security option highlighted">
+  <div class="caption">Galaxy menu — Select Configure → Security to open the Security configuration area.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>The Select groups dialog box appears.</p>
+
+<div class="lab">
+<strong>Step 3.</strong> On the Authentication Mode tab, select <strong>OS Group based</strong>, and configure the Login time as <strong>5000</strong> ms.
+</div>
+
+<div class="pitfall">
+<strong>Warning:</strong> Do NOT click Save until you get to a step that explicitly instructs you to do so. Clicking Save will restart the System Platform IDE. If you accidentally click Save, log back in as Administrator with no password.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0450_0.png" alt="Page 450">
-  <div class="caption">Page 450</div>
+  <img src="../images/page_0447_0.jpeg" alt="Authentication Mode tab with OS Group based selected and Login time set to 5000">
+  <div class="caption">Authentication Mode — Select OS Group based and set Login time to 5000 ms. Do not click Save yet.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>8.</p>
-<p>On the right side of the Select from the list field, click the drop-down arrow and select a</p>
-<p>domain.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide the domain information.</p>
-<p>The following example shows selecting CLOUD as the domain.</p>
+
+<h2>Part 2: Configure Security Roles</h2>
+
+<div class="lab">
+<strong>Step 4.</strong> On the Roles tab, in the Define security roles list, select the <strong>Default</strong> role.
+</div>
+
+<div class="lab">
+<strong>Step 5.</strong> In General permissions, uncheck all IDE Permissions and SMC Permissions. You will need to scroll to see all permissions.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0451_0.png" alt="Page 451">
-  <div class="caption">Page 451</div>
+  <img src="../images/page_0448_0.png" alt="Roles tab showing Default role selected with permission checkboxes">
+  <div class="caption">Roles tab — Default role selected. Uncheck all IDE Permissions and SMC Permissions in the General permissions section.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>9.</p>
-<p>In Available OS groups, press and hold the Ctrl key, and select the following groups:</p>
-<p></p>
-<p><domain>\Application Administrators</p>
-<p></p>
-<p><domain>\Plant Operators 1</p>
-<p></p>
-<p><domain>\Plant Operators 2</p>
-<p></p>
-<p><domain>\Plant Supervisors 1</p>
+
+<div class="lab">
+<strong>Step 6.</strong> In Operational permissions, expand Default and keep Alarms and the permissions beneath it checked, but uncheck all others.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0452_0.png" alt="Page 452">
-  <div class="caption">Page 452</div>
+  <img src="../images/page_0449_0.png" alt="Operational permissions with Alarms checked and other permissions unchecked">
+  <div class="caption">Operational permissions for Default role — Keep alarm-related permissions (Can Acknowledge, Can Shelve, Can Modify Alarm Modes, Can Modify Plant States) checked. Uncheck all others.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>10.</strong> Click Add selected OS Group.</p>
-<p>The selected groups appear in the Selected groups area.</p>
+
+<div class="lab">
+<strong>Step 7.</strong> Click the <strong>+ (Add new Role)</strong> button to add roles from the domain user groups.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0453_0.png" alt="Page 453">
-  <div class="caption">Page 453</div>
+  <img src="../images/page_0449_1.png" alt="Add new Role button highlighted">
+  <div class="caption">Click the + button to add a new role from domain user groups.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>11.</strong> Click OK to close the Select groups dialog box.</p>
-<p>In the Security area, the new roles are added to the Define security roles list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0454_0.png" alt="Page 454">
-  <div class="caption">Page 454</div>
+  <img src="../images/page_0450_0.png" alt="Select groups dialog box showing Available OS groups">
+  <div class="caption">Select Groups dialog — Available OS groups are listed from the selected domain.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>12.</strong> In the Define security roles list, select <domain>\Application Administrators, and</p>
-<p>configure its Access level as 9999.</p>
-<p><strong>13.</strong> Ensure <domain>\Application Administrators is selected, and in General permissions,</p>
-<p>check IDE Permissions and SMC Permissions.</p>
-<p>This will grant all General permissions to the <domain>\Application Administrators role.</p>
-<p><strong>14.</strong> With <domain>\Application Administrators still selected, in Operational permissions,</p>
-<p>check Default.</p>
-<p>This will grant all Operational permissions to the <domain>\Application Administrators</p>
-<p>role.</p>
-<p>You can expand Default and Alarms to verify.</p>
+
+<div class="lab">
+<strong>Step 8.</strong> On the right side of the Select from the list field, click the drop-down arrow and select a domain.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0455_0.png" alt="Page 455">
-  <div class="caption">Page 455</div>
+  <img src="../images/page_0451_0.png" alt="Domain dropdown showing CLOUD selected">
+  <div class="caption">Select a domain from the dropdown (e.g., CLOUD). Your instructor will provide the domain information.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>15.</strong> In the Define security roles list, select <domain>\Plant Operators 1, and configure its</p>
-<p>Access level as 2000.</p>
-<p><strong>16.</strong> With <domain>\Plant Operators 1 still selected, in Operational permissions, expand</p>
-<p>Default and check Can Modify “Operate” Attributes.</p>
-<p>This will grant the permission to modify attributes with the Operate security classification.</p>
+
+<div class="lab">
+<strong>Step 9.</strong> In Available OS groups, press and hold Ctrl, and select: <code>&lt;domain&gt;\Application Administrators</code>, <code>&lt;domain&gt;\Plant Operators 1</code>, <code>&lt;domain&gt;\Plant Operators 2</code>, <code>&lt;domain&gt;\Plant Supervisors 1</code>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0456_0.png" alt="Page 456">
-  <div class="caption">Page 456</div>
+  <img src="../images/page_0452_0.png" alt="Four OS groups selected in Available OS groups list">
+  <div class="caption">Select four groups using Ctrl+Click — Application Administrators, Plant Operators 1, Plant Operators 2, and Plant Supervisors 1.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>17.</strong> Repeat Steps 15 - 16 to configure the <domain>\Plant Operators 2 role.</p>
+
+<div class="lab">
+<strong>Step 10.</strong> Click <strong>Add selected OS Group</strong>. The selected groups appear in the Selected groups area.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0457_0.png" alt="Page 457">
-  <div class="caption">Page 457</div>
+  <img src="../images/page_0453_0.png" alt="Selected groups showing the four added domain groups">
+  <div class="caption">Selected groups — All four domain groups are now listed in the Selected groups area.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>18.</strong> In the Define security roles list, select <domain>\Plant Supervisors 1, and configure its</p>
-<p>Access Level as 5000.</p>
-<p><strong>19.</strong> In Operational permissions, expand Default and check Can Verify Writes.</p>
-<p>This will grant the permission to provide an authentication signature for attributes with the</p>
-<p>VerifiedWrite security classification.</p>
+
+<div class="lab">
+<strong>Step 11.</strong> Click <strong>OK</strong> to close the Select Groups dialog box. New roles appear in the Define security roles list.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0458_0.png" alt="Page 458">
-  <div class="caption">Page 458</div>
+  <img src="../images/page_0454_0.png" alt="Roles tab with newly added domain groups">
+  <div class="caption">New roles added — Four domain groups now appear in the Define security roles list alongside Administrator and Default.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>20.</strong> Click Save to commit the configuration changes to security.</p>
-<p>The Sign in to TrainingGalaxy dialog box appears.</p>
-<p><strong>21.</strong> In the Sign in to TrainingGalaxy dialog box, enter the User name as administrator, and</p>
-<p>then click Next.</p>
-<p><strong>22.</strong> In the Sign in to TrainingGalaxy dialog box, leave the Password field blank, and click Sign</p>
-<p>in.</p>
-<div class="key-concept">Note:</div>
-<p>For the purposes of this course, this lab uses the default administrator as a</p>
-<p>development user.</p>
-<p>The System Platform IDE restarts.</p>
+
+<h2>Part 3: Configure Role Permissions</h2>
+
+<div class="lab">
+<strong>Step 12.</strong> Select <code>&lt;domain&gt;\Application Administrators</code> and set Access level to <strong>9999</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 13.</strong> Check IDE Permissions and SMC Permissions under General permissions.
+</div>
+
+<div class="lab">
+<strong>Step 14.</strong> Check Default under Operational permissions.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0459_0.png" alt="Page 459">
-  <div class="caption">Page 459</div>
+  <img src="../images/page_0455_0.png" alt="Application Administrators role with Access Level 9999 and all permissions checked">
+  <div class="caption">Application Administrators — Access Level 9999 with all General and Operational permissions granted.</div>
 </div>
+
+<div class="lab">
+<strong>Step 15.</strong> Select <code>&lt;domain&gt;\Plant Operators 1</code> and set Access level to <strong>2000</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 16.</strong> Expand Default in Operational permissions and check <strong>Can Modify "Operate" Attributes</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0459_1.png" alt="Page 459">
-  <div class="caption">Page 459</div>
+  <img src="../images/page_0456_0.png" alt="Plant Operators 1 with Access Level 2000 and Can Modify Operate Attributes checked">
+  <div class="caption">Plant Operators 1 — Access Level 2000 with "Can Modify Operate Attributes" permission granted.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>In the following steps, you will verify that you are logged in to the System Platform IDE as</p>
-<p>administrator.</p>
-<p><strong>23.</strong> In the System Platform IDE, click the profile icon to verify that the logged-in user is</p>
-<p>administrator.</p>
-<p>Notice that administrator is shown as the logged-in user.</p>
-<p><strong>24.</strong> Click the profile icon to close the logged-in user window.</p>
-<div class="key-concept">Note:</div>
-<p>Alternatively, you can verify the logged-in user from the backstage view. Select</p>
-<p>Galaxy menu | User | Galaxy User, and in the Galaxy User area, notice that administrator</p>
-<p>is shown as the logged-in user.</p>
-<p>Configure Security for Navigation Items</p>
-<p>Now that security is enabled and roles are configured for the Galaxy, you will assign access levels</p>
-<p>and user roles to navigation items in the ViewApp Editor.</p>
-<p><strong>25.</strong> On the Templates tab, in the Training \ ViewApps toolset, double-click $ViewApp_Training</p>
-<p>to open it in the ViewApp Editor.</p>
-<p>You can maximize the editor to optimize the view.</p>
-<p><strong>26.</strong> In the Navigation list, select Plant.</p>
+
+<div class="lab">
+<strong>Step 17.</strong> Repeat Steps 15–16 to configure the <code>&lt;domain&gt;\Plant Operators 2</code> role with Access Level 2000 and Can Modify "Operate" Attributes.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0460_0.jpeg" alt="Page 460">
-  <div class="caption">Page 460</div>
+  <img src="../images/page_0457_0.png" alt="Plant Operators 2 configured similarly to Plant Operators 1">
+  <div class="caption">Plant Operators 2 — Same configuration as Plant Operators 1: Access Level 2000, Can Modify "Operate" Attributes.</div>
 </div>
+
+<div class="lab">
+<strong>Step 18.</strong> Select <code>&lt;domain&gt;\Plant Supervisors 1</code> and set Access Level to <strong>5000</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 19.</strong> In Operational permissions, expand Default and check <strong>Can Verify Writes</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0460_1.png" alt="Page 460">
-  <div class="caption">Page 460</div>
+  <img src="../images/page_0458_0.png" alt="Plant Supervisors 1 with Access Level 5000 and Can Verify Writes checked">
+  <div class="caption">Plant Supervisors 1 — Access Level 5000 with "Can Verify Writes" permission granted.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>27.</strong> On the Properties tab, from the Security \ Access Level drop-down list, check 0 (Default).</p>
-<p>Notice that when you check 0 (Default), the other access levels in the list automatically</p>
-<p>become checked.</p>
-<p>Selecting all the access levels for this navigation item ensures that Plant and its navigation</p>
-<p>hierarchy will be available only when a configured user is logged into the ViewApp.</p>
-<p>You may need to click off the drop-down list to close it.</p>
-<p>The Security \ Access Level property shows the selection as follows:</p>
+
+<h2>Part 4: Save Security Configuration</h2>
+
+<div class="lab">
+<strong>Step 20.</strong> Click <strong>Save</strong> to commit the configuration changes.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0461_0.jpeg" alt="Page 461">
-  <div class="caption">Page 461</div>
+  <img src="../images/page_0459_0.png" alt="Save button in Security configuration">
+  <div class="caption">Click Save to commit security configuration changes.</div>
 </div>
+
+<div class="lab">
+<strong>Step 21.</strong> Enter User name as <strong>administrator</strong> and click Next.
+</div>
+
+<div class="lab">
+<strong>Step 22.</strong> Leave the Password field blank and click <strong>Sign in</strong>.
+</div>
+
+<div class="tip">
+<strong>Note:</strong> For this course, the default administrator is used as the development user with no password.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0461_1.png" alt="Page 461">
-  <div class="caption">Page 461</div>
+  <img src="../images/page_0459_1.png" alt="Sign in to TrainingGalaxy dialog with administrator username">
+  <div class="caption">Sign in to TrainingGalaxy — Enter "administrator" as the username with no password.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>28.</strong> In the Navigation list, expand Plant \ Production, and select Line1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0462_0.jpeg" alt="Page 462">
-  <div class="caption">Page 462</div>
+  <img src="../images/page_0460_0.jpeg" alt="IDE profile showing administrator is logged in">
+  <div class="caption">Verify login — The profile icon shows "administrator" as the logged-in user.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>29.</strong> On the Properties tab, from the Security \ User Roles drop-down list, check the following</p>
-<p>roles:</p>
-<p></p>
-<p><domain>\Application Administrators</p>
-<p></p>
-<p><domain>\Plant Operators 1</p>
-<p>You may need to click off the drop-down list to close it.</p>
+
+<h2>Part 5: Configure Navigation Item Security</h2>
+
+<div class="lab">
+<strong>Step 25.</strong> Open <code>$ViewApp_Training</code> in the ViewApp Editor.
+</div>
+
+<div class="lab">
+<strong>Step 26.</strong> In the Navigation list, select <strong>Plant</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 27.</strong> On the Properties tab, from Security → Access Level dropdown, check <strong>0 (Default)</strong>. All access levels automatically become checked.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0463_0.png" alt="Page 463">
-  <div class="caption">Page 463</div>
+  <img src="../images/page_0461_0.jpeg" alt="Security section showing Access Level set to 0 (Default) with all levels checked">
+  <div class="caption">Plant navigation item — Access Level set to 0 (Default), which automatically selects all access levels. This ensures Plant is visible to any logged-in user.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>30.</strong> In the Navigation list, select Line2.</p>
+
+<div class="lab">
+<strong>Step 28.</strong> Expand Plant → Production and select <strong>Line1</strong>.
+</div>
+
+<div class="lab">
+<strong>Step 29.</strong> On the Properties tab, from Security → User Roles dropdown, check: <code>&lt;domain&gt;\Application Administrators</code> and <code>&lt;domain&gt;\Plant Operators 1</code>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0464_0.jpeg" alt="Page 464">
-  <div class="caption">Page 464</div>
+  <img src="../images/page_0462_0.jpeg" alt="Navigation tree with Line1 selected under Production">
+  <div class="caption">Navigation tree — Expand Plant → Production and select Line1.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>31.</strong> On the Properties tab, from the Security \ User Roles drop-down list, check the following</p>
-<p>roles:</p>
-<p></p>
-<p><domain>\Application Administrators</p>
-<p></p>
-<p><domain>\Plant Operators 2</p>
+
 <div class="screenshot">
-  <img src="../images/page_0465_0.png" alt="Page 465">
-  <div class="caption">Page 465</div>
+  <img src="../images/page_0463_0.png" alt="User Roles dropdown with Application Administrators and Plant Operators 1 checked">
+  <div class="caption">Line1 User Roles — Select Application Administrators and Plant Operators 1.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>32.</strong> In the Navigation list, select Sys.</p>
+
+<div class="lab">
+<strong>Step 30.</strong> Select <strong>Line2</strong> in the Navigation list.
+</div>
+
+<div class="lab">
+<strong>Step 31.</strong> From Security → User Roles dropdown, check: <code>&lt;domain&gt;\Application Administrators</code> and <code>&lt;domain&gt;\Plant Operators 2</code>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0466_0.jpeg" alt="Page 466">
-  <div class="caption">Page 466</div>
+  <img src="../images/page_0465_0.png" alt="User Roles for Line2 with Application Administrators and Plant Operators 2 checked">
+  <div class="caption">Line2 User Roles — Select Application Administrators and Plant Operators 2.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>33.</strong> On the Properties tab, from the Security \ User Roles drop-down list, check</p>
-<p><domain>\Application Administrators.</p>
-<p><strong>34.</strong> Click Save to save the ViewApp template without closing the ViewApp Editor.</p>
+
+<div class="lab">
+<strong>Step 32.</strong> Select <strong>Sys</strong> in the Navigation list.
+</div>
+
+<div class="lab">
+<strong>Step 33.</strong> From Security → User Roles dropdown, check <code>&lt;domain&gt;\Application Administrators</code> only.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0467_0.jpeg" alt="Page 467">
-  <div class="caption">Page 467</div>
+  <img src="../images/page_0467_0.jpeg" alt="System navigation item with only Application Administrators role selected">
+  <div class="caption">System navigation item — Only Application Administrators have access to the System section.</div>
 </div>
+
+<div class="lab">
+<strong>Step 34.</strong> Click <strong>Save</strong> to save the ViewApp template.
+</div>
+
+<h2>Part 6: Test Security in Preview Session</h2>
+
+<div class="lab">
+<strong>Step 35.</strong> In the ViewApp Editor, click <strong>Preview</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0467_1.jpeg" alt="Page 467">
-  <div class="caption">Page 467</div>
+  <img src="../images/page_0468_0.png" alt="Preview mode dialog with Do not show this message again checkbox">
+  <div class="caption">Preview mode dialog — Check "Do not show this message again" and click OK.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Test ViewApp Security in a Preview Session</p>
-<p>Now you will test the security configured for the navigation items in the ViewApp. You will log into</p>
-<p>the ViewApp as different users to see the impact on the navigation items.</p>
-<p><strong>35.</strong> In the ViewApp Editor, click Preview.</p>
-<p>Notice that the message for preview mode appears again, because you are logged in as a</p>
-<p>different user (administrator).</p>
-<p><strong>36.</strong> Check Do not show this message again, and then click OK to dismiss the message.</p>
-<p>The ViewApp preview session opens, navigated to Home.</p>
-<div class="key-concept">Note:</div>
-<p>You may need to open the preview by clicking the icon on the task bar.</p>
-<p>Notice that the current Windows user is automatically logged into the ViewApp, if the current</p>
-<p>Windows user is a member of any of the User Groups added as roles in the Galaxy.</p>
-<p>In this example, the current user is Cloud\Student, which is a member of the Application</p>
-<p>Administrators group.</p>
-<div class="key-concept">Note:</div>
-<p>Notify your instructor if the current Windows user does not log in to the ViewApp.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0468_0.png" alt="Page 468">
-  <div class="caption">Page 468</div>
+  <img src="../images/page_0468_1.png" alt="Preview session showing Cloud\Student logged in with full navigation">
+  <div class="caption">Admin view — Cloud\Student (Application Administrators) sees the full navigation tree including Line1, Line2, and System.</div>
 </div>
+
+<div class="lab">
+<strong>Step 37.</strong> Open the left slide-in pane and expand Plant and Production Lines. The current logged-in user (Application Administrators) has access to all navigation items.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0468_1.png" alt="Page 468">
-  <div class="caption">Page 468</div>
+  <img src="../images/page_0469_0.png" alt="Full navigation tree visible for admin user with all items expanded">
+  <div class="caption">Full navigation tree for admin user — All items visible including Line1, Line2, and System with alarm counts.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>37.</strong> Open the left slide-in pane and expand Plant and Production Lines.</p>
-<p>The current logged in user belongs to the Application Administrators group, which grants</p>
-<p>access to all navigation items, including Line1, Line2, and System.</p>
-<p><strong>38.</strong> Click the hamburger button to close the left slide-in pane.</p>
-<p><strong>39.</strong> On the title bar, click the name of the logged in user and select Logout.</p>
-<p>In this example, Cloud\Student is the name of the logged in user.</p>
-<p>The logged in user is logged out of the ViewApp and no user is logged in.</p>
+
+<div class="lab">
+<strong>Step 39.</strong> Click the logged-in user name and select <strong>Logout</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0469_0.png" alt="Page 469">
-  <div class="caption">Page 469</div>
+  <img src="../images/page_0469_2.png" alt="Logout option in user menu and title bar showing Login after logout">
+  <div class="caption">Logout — After logging out, the title bar shows "Login" and no user is logged in.</div>
 </div>
+
+<div class="lab">
+<strong>Step 40.</strong> Open the slide-in pane. With no user logged in, the entire Plant hierarchy is missing. Only WebBrowser (which has no security) is visible.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0469_1.png" alt="Page 469">
-  <div class="caption">Page 469</div>
+  <img src="../images/page_0470_0.png" alt="Navigation pane showing only WebBrowser - Plant hierarchy hidden when not logged in">
+  <div class="caption">No user logged in — Only WebBrowser is visible. The Plant hierarchy is hidden because security requires login.</div>
 </div>
+
+<div class="lab">
+<strong>Step 42.</strong> On the title bar, click <strong>Login</strong>. Log in as <code>&lt;domain&gt;\johnj</code> with password.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0469_2.png" alt="Page 469">
-  <div class="caption">Page 469</div>
+  <img src="../images/page_0471_0.png" alt="Login dialog with johnj credentials entered">
+  <div class="caption">Log in as Plant Operators 1 user (johnj).</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>40.</strong> Click the hamburger button to open the left slide-in pane and review the navigation tree.</p>
-<p>Notice that with no user logged into the ViewApp, the entire Plant hierarchy is missing from</p>
-<p>the list and cannot be accessed.</p>
-<p>WebBrowser is available even when no user is logged in, because you did not apply security</p>
-<p>settings to the WebBrowser node in the navigation.</p>
-<p><strong>41.</strong> Click the hamburger button to close the left slide-in pane.</p>
+
+<div class="lab">
+<strong>Step 44.</strong> Open the slide-in pane. Notice Line1 is visible but Line2 and System are hidden — the Plant Operators 1 group only has access to Line1.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0470_0.png" alt="Page 470">
-  <div class="caption">Page 470</div>
+  <img src="../images/page_0472_0.png" alt="Restricted navigation showing Line1 visible but Line2 and System hidden">
+  <div class="caption">Plant Operators 1 view — Line1 is visible, but Line2 and System are hidden.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>42.</strong> On the title bar, click Login.</p>
-<p>The Log In dialog box appears.</p>
-<p><strong>43.</strong> Log in as <domain>\johnj and a password to log in.</p>
-<p>The following example uses cloud for the domain.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide log in information.</p>
+
+<div class="lab">
+<strong>Step 46.</strong> Click the user name and select <strong>Switch User</strong>. Log in as <code>&lt;domain&gt;\karent</code> (Plant Supervisors 1).
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0471_0.png" alt="Page 471">
-  <div class="caption">Page 471</div>
+  <img src="../images/page_0472_1.png" alt="Switch User option in dropdown menu">
+  <div class="caption">Switch User — Select this option to log in as a different user without fully logging out.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>44.</strong> Open the left slide-in pane, expand Plant and Production Lines, and review the navigation</p>
-<p>tree.</p>
-<p>Notice that Line1 is listed under Production Lines, but Line2 is not. Also notice that System</p>
-<p>is missing from the navigation list. This is because the current logged in user is with the Plant</p>
-<p>Operators 1 user group, which does not have the access to Line2 or System.</p>
-<p><strong>45.</strong> Click the hamburger button to close the left slide-in pane.</p>
-<p><strong>46.</strong> On the title bar, click the logged-in user name, and then select Switch User.</p>
+
+<div class="lab">
+<strong>Step 47.</strong> Open the slide-in pane. Line1 and Line2 are not available — Plant Supervisors 1 does not have access to child items under Production Lines.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0472_0.png" alt="Page 472">
-  <div class="caption">Page 472</div>
+  <img src="../images/page_0473_1.png" alt="Restricted navigation for Plant Supervisors 1 - no Line items visible">
+  <div class="caption">Plant Supervisors 1 view — Line1 and Line2 are not visible under Production Lines.</div>
 </div>
+
+<div class="lab">
+<strong>Step 50.</strong> Switch User to <code>&lt;domain&gt;\nancyk</code> (Plant Operators 2).
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0472_1.png" alt="Page 472">
-  <div class="caption">Page 472</div>
+  <img src="../images/page_0474_0.png" alt="Navigation showing Line2 visible but Line1 hidden for Plant Operators 2">
+  <div class="caption">Plant Operators 2 view — Line2 is visible but Line1 is hidden.</div>
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>47.</strong> In the Log In dialog box, enter <domain>\karent and a password to log in.</p>
-<div class="key-concept">Note:</div>
-<p>Your instructor will provide log in information.</p>
-<p><strong>48.</strong> Open the left slide-in pane and expand Plant.</p>
-<p>Notice that Line1 and Line2 are not available under Production Lines. This is because the</p>
-<p>current logged in user is with the Plant Supervisors 1 user group, which does not have access</p>
-<p>to the child navigation items for Production Lines or System.</p>
-<p><strong>49.</strong> Click the hamburger button to close the left slide-in pane.</p>
+
+<div class="lab">
+<strong>Step 53.</strong> Switch back to <code>&lt;domain&gt;\jamess</code> (Application Administrators) and verify full access to all navigation items is restored.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0473_0.png" alt="Page 473">
-  <div class="caption">Page 473</div>
+  <img src="../images/page_0475_0.jpeg" alt="Full navigation restored for admin user">
+  <div class="caption">Application Administrators view — Full navigation restored with Line1, Line2, and System all visible.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0473_1.png" alt="Page 473">
-  <div class="caption">Page 473</div>
+  <img src="../images/page_0475_1.png" alt="Admin user with full access to all navigation items">
+  <div class="caption">Complete navigation tree for Application Administrators.</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p><strong>50.</strong> On the title bar, click the logged-in user name, and then select Switch User.</p>
-<p><strong>51.</strong> Login as <domain>\nancyk.</p>
-<p><strong>52.</strong> Open the left slide-in pane and expand Plant and Production Lines.</p>
-<p>The current logged in user is with the Plant Operators 2 user group, which has access to</p>
-<p>Line 2. This user does have access to Line 1 or System.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0474_0.png" alt="Page 474">
-  <div class="caption">Page 474</div>
+  <img src="../images/page_0476_0.png" alt="Final verification of security configuration">
+  <div class="caption">Final verification — Security is properly configured and tested with different user roles.</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0474_1.png" alt="Page 474">
-  <div class="caption">Page 474</div>
+
+<div class="key-concept">
+<strong>Key Takeaway:</strong> This lab demonstrated how Galaxy security with OS Group Based authentication controls navigation item visibility in a ViewApp. Each user role sees only the navigation items they are authorized to access, with parent items hiding all children when security blocks access.
 </div>
-<p>Lab 16 – Implementing Security in a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>53.</strong> In the slide-in pane, select Line2.</p>
-<p>The current logged in user has access to the content associated with this navigation node.</p>
-<p><strong>54.</strong> Click the hamburger button to close the left slide-in pane.</p>
-<p><strong>55.</strong> Switch users and log in as <domain>\jamess.</p>
-<div class="screenshot">
-  <img src="../images/page_0475_0.jpeg" alt="Page 475">
-  <div class="caption">Page 475</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+<details><summary>Q1: Why must all objects and symbols be checked in before configuring security?</summary><p class="answer">Security configuration cannot be performed while any objects or symbols are checked out. The system requires exclusive access to modify security settings.</p></details>
+<details><summary>Q2: What happens to child navigation items when a parent item is hidden due to security?</summary><p class="answer">All child navigation items are automatically hidden regardless of their own security configurations. This is a cascading effect.</p></details>
+<details><summary>Q3: Which user group had access to Line2 but not Line1?</summary><p class="answer">Plant Operators 2 — they were assigned to Line2's User Roles but not Line1's.</p></details>
+<details><summary>Q4: What happens when a user is not logged in to the ViewApp?</summary><p class="answer">All navigation items with security configured are hidden. Only items without security settings (like WebBrowser in this lab) remain visible.</p></details>
+<details><summary>Q5: What is the benefit of using Switch User instead of Logout then Login?</summary><p class="answer">Switch User allows changing the logged-in user without fully logging out and back in, providing a quicker way to test different user roles and permissions.</p></details>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0475_1.png" alt="Page 475">
-  <div class="caption">Page 475</div>
-</div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Notice that the ViewApp remains navigated to Line2.</p>
-<p><strong>56.</strong> Open the left slide-in pane again.</p>
-<p>Notice that Line1 and Line2 are both listed under Production Lines, as well as System. This</p>
-<p>is because the current logged in user is with the Application Administrators group, which has</p>
-<p>full access to the navigation in this ViewApp.</p>
-<p><strong>57.</strong> Click the hamburger button to close the left slide-in pane.</p>
-<p><strong>58.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<div class="key-concept">Note:</div>
-<p>You will test security classifications for attributes in the next lab.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0476_0.png" alt="Page 476">
-  <div class="caption">Page 476</div>
-</div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L32-Security-Overview-and-ViewApp-Security.html">← L32: Security Overview and ViewApp Security</a> &nbsp;|&nbsp;
   <a href="L34-Signed-Writes.html">L34: Signed Writes →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

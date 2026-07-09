@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 01: Course Introduction + System Platform Overview</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,9 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
-  .checkbox-label { cursor: pointer; }
-  .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  .page-ref { font-size: 0.8em; color: #999; font-style: italic; margin-top: 0.3em; }
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -122,358 +123,192 @@
 </nav>
 
 <h1>📖 L01: Course Introduction + System Platform Overview</h1>
-<p class="source">Module 1 — Introduction | Pages 7-12</p>
-<p>Section 1 – Course Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Course Introduction</p>
-<p>Course Description</p>
-<p>The AVEVA™ Operations Management Interface 2023 course is a 5-day, instructor-led class</p>
-<p>designed to provide an overview of the features and functionalities released with the AVEVA</p>
-<p>Operations Management Interface software. It covers the components and capabilities of the</p>
-<p>software, as well as topics to help you build and deploy an AVEVA Operations Management</p>
-<p>Interface visualization application for System Platform. It also introduces tools for creating</p>
-<p>graphics, visualizing alarms and events, visualizing trends and history, and implementing security</p>
-<p>in an AVEVA Operations Management Interface application. Hands-on labs are provided to</p>
-<p>reinforce the knowledge necessary to use the AVEVA Operations Management Interface software.</p>
-<p>Objectives</p>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 1: Introduction</p>
+<p class="page-ref">Pages 7–16</p>
+
+<!-- ==================== SECTION 1 ==================== -->
+<h2>Section 1 — Course Introduction</h2>
+
+<p>The AVEVA™ Operations Management Interface 2023 course is a five-day, instructor-led class that provides a comprehensive overview of the features and functionalities released with AVEVA Operations Management Interface software. It covers the components and capabilities of the software, as well as topics to help you build and deploy an AVEVA Operations Management Interface visualization application for System Platform. The course also introduces tools for creating graphics, visualizing alarms and events, visualizing trends and history, and implementing security in an OMI application. Hands-on labs are provided throughout to reinforce the knowledge necessary to use the software effectively.</p>
+
+<h3>Course Objectives</h3>
+
+<div class="key-concept">
 <p>Upon completion of this course, you will be able to:</p>
-<p></p>
-<p>Describe AVEVA Operations Management Interface visualization components</p>
-<p></p>
-<p>Create display layouts for visualization applications</p>
-<p></p>
-<p>Create and run visualization applications</p>
-<p></p>
-<p>Describe situational awareness concepts</p>
-<p></p>
-<p>Create and use graphics</p>
-<p></p>
-<p>Create and use namespaces and attributes</p>
-<p></p>
-<p>Implement navigation for visualization applications</p>
-<p></p>
-<p>Implement visualization application security</p>
-<p></p>
-<p>Implement alarm visualization</p>
-<p></p>
-<p>Implement trend visualization</p>
-<p></p>
-<p>Implement historical playback visualization</p>
-<p>Audience</p>
-<p>Individuals who need to configure or modify AVEVA Operations Management Interface</p>
-<p>applications</p>
-<p>This section describes the objectives, prerequisites, intended audience, and agenda for the</p>
-<p>course.</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Prerequisites</p>
-<p>Knowledge of the following tools, features, and technologies is required:</p>
-<p></p>
-<p>Industrial automation software concepts</p>
-<p></p>
-<p>From the AVEVA™ Application Server software product:</p>
-<p></p>
-<p>System Platform IDE</p>
-<p></p>
-<p>Automation objects</p>
-<p></p>
-<p>Alarms of attributes</p>
-<p></p>
-<p>Historization of attributes</p>
-<p></p>
-<p>Security</p>
-<p></p>
-<p>Deployment model</p>
-<p></p>
-<p>Plant model</p>
-<p></p>
-<p>QuickScript .NET scripting language</p>
-<p>Section 1 – Course Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Course Outline</p>
-<p>Module 1 – Introduction</p>
-<p>Section 1 – Course Introduction</p>
-<p>This section describes the objectives, prerequisites, intended audience, and agenda for the</p>
-<p>course.</p>
-<p>Section 2 – System Platform Overview</p>
-<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA</p>
-<p>System Platform Enterprise. It also introduces ArchestrA technology.</p>
-<p>Section 3 – Visualization Overview</p>
-<p>This section introduces visualization concepts and describes AVEVA Operations Management</p>
-<p>Interface as one of the visualization clients of AVEVA Application Server.</p>
-<p>Section 4 – Encrypted Communication</p>
-<p>This section describes the encrypted communication for end-to-end communication between</p>
-<p>server and client software applications.</p>
-<p>Section 5 – System Requirements and Licensing</p>
-<p>This section describes system requirements for System Platform software and introduces the</p>
-<p>licensing model.</p>
-<p>Module 2 – Getting Started</p>
-<p>Section 1 – Introduction</p>
-<p>This section introduces features and components of AVEVA Operations Management</p>
-<p>Interface, including screen profiles, layouts, and panes, and describes how they work as part</p>
-<p>of the framework for a ViewApp.</p>
-<p>Section 2 – Screen Profiles</p>
-<p>This section describes how to create and configure screen profiles and screens using the</p>
-<p>Screen Profile Editor.</p>
-<p>Section 3 – Layouts and Panes</p>
-<p>This section describes how to create and configure layouts and panes using the Layout Editor.</p>
-<p>Section 4 – ViewApps</p>
-<p>This section introduces the ViewApp object, including its editor, capabilities, and components.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>Section 1 – Introduction to Industrial Graphics</p>
-<p>This section introduces industrial graphics, including managing them in the System Platform</p>
-<p>IDE and the out-of-the-box symbol libraries provided with Application Server. It also provides</p>
-<p>an overview of Situational Awareness concepts.</p>
-<p>Section 2 – Graphic Editor</p>
-<p>This section describes the Graphic Editor, including an overview of its interface and</p>
-<p>configuration of embedded symbols.</p>
-<p>Section 3 – Industrial Graphics with Objects</p>
-<p>This section describes using and managing symbols with automation objects.</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Section 4 – Tools and Animations</p>
-<p>This section describes element tools and menus available in the Graphic Editor, symbol and</p>
-<p>graphic element properties, and visualization and interaction animations.</p>
-<p>Section 5 – Custom Properties</p>
-<p>This section provides an overview of custom properties for symbols.</p>
-<p>Section 6 – Galaxy Styles</p>
-<p>This section explains how to work with Galaxy Styles.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>Section 1 – Link a Layout as Content in an Object</p>
-<p>This section describes how to link a layout to an asset or template as content. It explains how</p>
-<p>autofill works within the scope of the object and the ViewApp.</p>
-<p>Section 2 – Layout and Pane Customizations</p>
-<p>This section describes options for customizing the appearance, navigation, and runtime</p>
-<p>behaviors for layouts and panes.</p>
-<p>Section 3 – Custom Navigation</p>
-<p>This section describes how to customize the built-in navigation in a ViewApp.</p>
-<p>Module 5 – External Content</p>
-<p>Section 1 – Introduction to External Content</p>
-<p>This section introduces using external content in ViewApps, including how to create,</p>
-<p>configure, and manage external content items.</p>
-<p>Module 6 – Widgets</p>
-<p>Section 1 – Introduction</p>
-<p>This section introduces using widgets in your ViewApps. It describes the widgets provided out-</p>
-<p>of-the-box with Application Server, as well as how to import other widgets into a Galaxy.</p>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>Section 1 – Introduction</p>
-<p>This section introduces ViewApp namespaces, describes predefined namespaces and</p>
-<p>attributes available for a ViewApp, and describes using MyViewApp as a reserved keyword to</p>
-<p>reference namespaces and attributes.</p>
-<p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
-<p>This section describes how to manage and configure ViewApp namespace attributes using the</p>
-<p>ViewApp Namespace Editor.</p>
-<p>Module 8 – Security</p>
-<p>Section 1 – Security Overview</p>
-<p>This section provides an overview of security in Application Server, including authentication</p>
-<p>modes, permissions, roles, and users.</p>
-<p>Section 2 – ViewApp Security</p>
-<p>This section describes how to implement security in a ViewApp.</p>
-<p>Section 1 – Course Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 3 – Signed Writes</p>
-<p>This section describes security classifications for object attributes, including configuring</p>
-<p>Secured Writes and Verified Writes and using them at runtime.</p>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>Section 1 – Alarming Overview</p>
-<p>This section provides an overview of alarms and events.</p>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>This section describes how to use the AlarmApp to display and manage alarms and events in</p>
-<p>a ViewApp. It also describes how to customize the appearance and runtime behavior of the</p>
-<p>AlarmApp.</p>
-<p>Section 3 – Logged Alarms and Events Visualization</p>
-<p>This section introduces alarm and event logging, and describes how to configure the</p>
-<p>AlarmApp to display logged alarms and events.</p>
-<p>Module 10 – Trends</p>
-<p>Section 1 – Historization Overview</p>
-<p>This section provides an overview of historization and introduces viewing trend data in a</p>
-<p>ViewApp.</p>
-<p>Section 2 – Real-Time Trending</p>
-<p>This section describes the Trend Pen element for symbols and introduces trend pen symbols</p>
-<p>from the Situational Awareness Library.</p>
-<p>Section 3 – Historical Trending</p>
-<p>This section describes using the InSightApp and the HistoricalTrendApp for historical trending</p>
-<p>in a ViewApp.</p>
-<p>Module 11 – Historical Playback</p>
-<p>Section 1 – Historical Playback</p>
-<p>This section describes how to configure and start the historical playback service, and how to</p>
-<p>implement historical playback in a ViewApp.</p>
-<p>Module 12 – .NET Controls Usage</p>
-<p>Section 1 – Introduction</p>
-<p>This section describes importing external controls as OMI Apps for use in ViewApps and</p>
-<p>exposing certain controls by including a manifest file.</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>Section 1 – Introduction</p>
-<p>This section provides an overview of the scripting environment and introduces symbol scripts</p>
-<p>and layout scripts.</p>
-<p>Section 2 – Symbol Scripts</p>
-<p>This section describes predefined and named symbol scripts, explains script triggers, and</p>
-<p>describes the Action Scripts animation.</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Section 3 – Layout Scripts</p>
-<p>This section describes predefined and named layout scripts, including script triggers and the</p>
-<p>Event Handler.</p>
-<p>Section 4 – Graphic Client Functions</p>
-<p>This section explains the ShowContent(), Hide Content(), ShowGraphic(), HideGraphic(), and</p>
-<p>HideSelf() script functions.</p>
-<p>Section 2 – System Platform Overview</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – System Platform Overview</p>
-<p>AVEVA™ System Platform Overview</p>
-<p>AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform</p>
-<p>built on ArchestrA technology. It contains an integrated set of services and an extensible data</p>
-<p>model to manage plant control and information management systems. System Platform supports</p>
-<p>both the supervisory control layer and the manufacturing execution system layer, presenting them</p>
-<p>as a single information source.</p>
-<p>System Platform and its clients provide the framework and tools for developing, executing,</p>
-<p>monitoring, and visualizing your applications. Services such as data acquisition, historization, and</p>
-<p>alarming are provided by System Platform components. Services such as visualization and</p>
-<p>trending are provided by System Platform clients.</p>
-<p>The System Platform software is based on industry standards and Microsoft technologies, such as</p>
-<p>Windows, .NET, SQL Server, IIS, and others. ArchestrA provides the fundamental technology and</p>
-<p>services for the multi-user, object-oriented platform.</p>
-<p>System Platform Components and Clients</p>
-<p>System Platform components access and process external data from controllers, software</p>
-<p>applications, and other data sources. System Platform clients access information from System</p>
-<p>Platform.</p>
-<p>System Platform components are as follows:</p>
-<p></p>
-<p>AVEVA™ Application Server is the heart of System Platform. It provides an object-</p>
-<p>oriented framework with tools for developing and deploying applications.</p>
-<p></p>
-<p>AVEVA™ Historian provides process data historization and alarm and event logging for</p>
-<p>Application Server. Data is exposed through SQL Server and/or an Open Data Protocol</p>
-<p>(oData) interface.</p>
-<p></p>
-<p>AVEVA™ Communication Drivers provide the platform for communication with</p>
-<p>controllers and other data sources. Besides controller-specific protocols, they support</p>
-<p>open communication connectivity protocols such as MQTT, OPC DA, and OPC UA.</p>
-<p>This section describes fundamental concepts about AVEVA System Platform and AVEVA System</p>
-<p>Platform Enterprise. It also introduces ArchestrA technology.</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<p>Formerly called OI Servers, they also include legacy DA Servers and I/O Servers. System</p>
-<p>Platform also communicates directly with third-party drivers, such as third-party OPC</p>
-<p>Server.</p>
-<p>System Platform clients include:</p>
-<p></p>
-<p>Supervisory clients run the operator interface and provide real-time access to</p>
-<p>Application Server data, alarms, and events. There are two supervisory client products,</p>
-<p>based on different technologies. Both can coexist in the same System Platform solution.</p>
-<p></p>
-<p>AVEVA™ Operations Management Interface has a rapid-design visualization</p>
-<p>framework with tools, and provides out-of-the-box navigation to display content based</p>
-<p>on the application’s data model.</p>
-<p></p>
-<p>AVEVA™ InTouch for System Platform is based on traditional development tools to</p>
-<p>create displays and the corresponding navigation framework from scratch. It is not</p>
-<p>included with AVEVA System Platform Enterprise.</p>
-<p>Supervisory client applications can be accessed remotely through a web browser with the</p>
-<p>use of AVEVA™ InTouch Access Anywhere. With InTouch Access Anywhere, you simply</p>
-<p>enter a URL in a web browser running on a desktop computer or mobile device and log on,</p>
-<p>without the necessity of having any separate client application installed on the portable</p>
-<p>device or desktop computer.</p>
-<p></p>
-<p>AVEVA™ Historian Client is a collection of tools for accessing and reporting on data</p>
-<p>historized with Historian. This client includes a Trend application for plotting data on a</p>
-<p>graphical display, a Query application for constructing SQL queries through a point-and-</p>
-<p>click interface, and add-ins to Microsoft Excel and Word for generating reports.</p>
-<p></p>
-<p>AVEVA™ Historian Client Web is a browser-based tool for quick data query, trending,</p>
-<p>and analysis of data historized with Historian. It provides an intuitive interface for easy</p>
-<p>access and use.</p>
-<p>Together, System Platform and its clients provide the core services needed to develop, implement,</p>
-<p>and deploy industrial automation applications. Some of these services include:</p>
-<p></p>
-<p>Real-time data acquisition from field devices</p>
-<p></p>
-<p>Scaling, statistics, and manipulation of data</p>
-<p></p>
-<p>Process control</p>
-<p></p>
-<p>Alarm triggering, logging, acknowledgment, and management</p>
-<p></p>
-<p>Historization, trending, and analysis of process data</p>
-<p></p>
-<p>Visualization of real-time process data</p>
-<p></p>
-<p>Reporting</p>
-<p>Applications built on System Platform are extensible through the use of scripting within the product</p>
-<p>itself or through several available toolkits. For example, an application can access a third-party</p>
-<p>web service by means of a script.</p>
-<p>ArchestrA Technology</p>
-<p>ArchestrA is a distributed architecture developed for supervisory control and manufacturing</p>
-<p>information systems. It is an open and extensible technology based on a distributed, object-</p>
-<p>oriented design. It leverages the Microsoft .NET Framework for the industrial automation world.</p>
+<ul>
+<li>Describe AVEVA Operations Management Interface visualization components</li>
+<li>Create display layouts for visualization applications</li>
+<li>Create and run visualization applications</li>
+<li>Describe situational awareness concepts</li>
+<li>Create and use graphics</li>
+<li>Create and use namespaces and attributes</li>
+<li>Implement navigation for visualization applications</li>
+<li>Implement visualization application security</li>
+<li>Implement alarm visualization</li>
+<li>Implement trend visualization</li>
+<li>Implement historical playback visualization</li>
+</ul>
+</div>
+
+<h3>Target Audience</h3>
+
+<p>This course is designed for individuals who need to configure or modify AVEVA Operations Management Interface applications. Prior knowledge of industrial automation software concepts is expected, along with familiarity with key AVEVA Application Server components.</p>
+
+<h3>Prerequisites</h3>
+
+<p>Knowledge of the following tools, features, and technologies is required before taking this course:</p>
+
+<table>
+<tr><th>Prerequisite Category</th><th>Details</th></tr>
+<tr><td>General</td><td>Industrial automation software concepts</td></tr>
+<tr><td>Application Server</td><td>System Platform IDE, Automation objects</td></tr>
+<tr><td>Application Server</td><td>Alarms of attributes, Historization of attributes</td></tr>
+<tr><td>Application Server</td><td>Security, Deployment model, Plant model</td></tr>
+<tr><td>Application Server</td><td>QuickScript .NET scripting language</td></tr>
+</table>
+
+<h3>Course Outline</h3>
+
+<p>The course is organized into thirteen modules, each building on the previous one:</p>
+
+<table>
+<tr><th>Module</th><th>Topic</th><th>Description</th></tr>
+<tr><td>1</td><td>Introduction</td><td>Course overview, System Platform overview, Visualization overview, Encrypted communication, System requirements and licensing</td></tr>
+<tr><td>2</td><td>Getting Started</td><td>Screen profiles, Layouts and panes, ViewApps</td></tr>
+<tr><td>3</td><td>Industrial Graphics</td><td>Introduction to industrial graphics, Graphic editor, Graphics with objects, Tools and animations, Custom properties, Galaxy styles</td></tr>
+<tr><td>4</td><td>ViewApp Customizations</td><td>Linking layouts as content, Layout and pane customizations, Custom navigation</td></tr>
+<tr><td>5</td><td>External Content</td><td>Introduction to external content in ViewApps</td></tr>
+<tr><td>6</td><td>Widgets</td><td>Introduction to widgets and importing additional widgets</td></tr>
+<tr><td>7</td><td>ViewApp Namespaces</td><td>Predefined namespaces, Custom ViewApp namespaces and attributes</td></tr>
+<tr><td>8</td><td>Security</td><td>Security overview, ViewApp security, Signed writes</td></tr>
+<tr><td>9</td><td>Alarms and Events</td><td>Alarming overview, Live alarm visualization, Logged alarms and events</td></tr>
+<tr><td>10</td><td>Trends</td><td>Historization overview, Real-time trending, Historical trending</td></tr>
+<tr><td>11</td><td>Historical Playback</td><td>Configuring and implementing historical playback</td></tr>
+<tr><td>12</td><td>.NET Controls</td><td>Importing external controls as OMI Apps</td></tr>
+<tr><td>13</td><td>Scripting in Graphics</td><td>Symbol scripts, Layout scripts, Graphic client functions</td></tr>
+</table>
+
+<!-- ==================== SECTION 2 ==================== -->
+<h2>Section 2 — System Platform Overview</h2>
+
+<p>AVEVA System Platform, formerly Wonderware System Platform, is an industrial software platform built on ArchestrA technology. It contains an integrated set of services and an extensible data model to manage plant control and information management systems. System Platform supports both the supervisory control layer and the manufacturing execution system layer, presenting them as a single information source.</p>
+
+<p>System Platform and its clients provide the framework and tools for developing, executing, monitoring, and visualizing your applications. Services such as data acquisition, historization, and alarming are provided by System Platform components. Services such as visualization and trending are provided by System Platform clients. The software is based on industry standards and Microsoft technologies, such as Windows, .NET, SQL Server, IIS, and others.</p>
+
+<div class="key-concept">
+<strong>ArchestrA Technology</strong> is the foundational distributed architecture developed for supervisory control and manufacturing information systems. It is an open and extensible technology based on a distributed, object-oriented design that leverages the Microsoft .NET Framework for the industrial automation world.
+</div>
+
+<h3>System Platform Components</h3>
+
+<p>System Platform components access and process external data from controllers, software applications, and other data sources. There are three primary components:</p>
+
+<table>
+<tr><th>Component</th><th>Role</th></tr>
+<tr><td><strong>AVEVA™ Application Server</strong></td><td>The heart of System Platform. Provides an object-oriented framework with tools for developing and deploying applications.</td></tr>
+<tr><td><strong>AVEVA™ Historian</strong></td><td>Provides process data historization and alarm and event logging for Application Server. Data is exposed through SQL Server and/or an Open Data Protocol (OData) interface.</td></tr>
+<tr><td><strong>AVEVA™ Communication Drivers</strong></td><td>Provide the platform for communication with controllers and other data sources. Support open connectivity protocols such as MQTT, OPC DA, and OPC UA. Formerly called OI Servers, they also include legacy DA Servers and I/O Servers.</td></tr>
+</table>
+
+<h3>System Platform Clients</h3>
+
+<p>System Platform clients access information from System Platform and provide the operator interface. There are two supervisory client products — both can coexist in the same System Platform solution:</p>
+
+<div class="key-concept">
+<p><strong>AVEVA™ Operations Management Interface (OMI)</strong> provides a rapid-design visualization framework with tools and out-of-the-box navigation to display content based on the application's data model. It leverages both HMI and SCADA systems to deliver a convergence platform for OT and IT.</p>
+</div>
+
+<p><strong>AVEVA™ InTouch for System Platform</strong> is based on traditional development tools to create displays and the corresponding navigation framework from scratch. It is not included with AVEVA System Platform Enterprise.</p>
+
+<p>Both supervisory clients can be accessed remotely through a web browser with <strong>AVEVA™ InTouch Access Anywhere</strong>. You simply enter a URL in a web browser on a desktop computer or mobile device and log on — no separate client application is required.</p>
+
+<p>Additional client tools include <strong>AVEVA™ Historian Client</strong> (a collection of tools for accessing and reporting on historized data, including a Trend application, Query application, and Excel/Word add-ins) and <strong>AVEVA™ Historian Client Web</strong> (a browser-based tool for quick data query, trending, and analysis).</p>
+
+<div class="screenshot">
+  <img src="../images/page_0013_0.jpeg" alt="System Platform Architecture Diagram">
+  <div class="caption">System Platform architectural diagram showing the layered architecture: data inputs (controllers, software, data sources) at the bottom, the core AVEVA System Platform components (Application Server, Historian, Communication Drivers) in the middle, and the client layer (OMI, InTouch for System Platform, Historian Client) at the top — all built on Microsoft Technologies and Industry Standards.</div>
+</div>
+
+<h3>Core Services</h3>
+
+<p>Together, System Platform and its clients provide the core services needed to develop, implement, and deploy industrial automation applications:</p>
+
+<ul>
+<li>Real-time data acquisition from field devices</li>
+<li>Scaling, statistics, and manipulation of data</li>
+<li>Process control</li>
+<li>Alarm triggering, logging, acknowledgment, and management</li>
+<li>Historization, trending, and analysis of process data</li>
+<li>Visualization of real-time process data</li>
+<li>Reporting</li>
+</ul>
+
+<p>Applications built on System Platform are extensible through scripting within the product itself or through several available toolkits. For example, an application can access a third-party web service by means of a script.</p>
+
+<h3>ArchestrA System Services</h3>
+
 <p>ArchestrA provides the following system services:</p>
-<p></p>
-<p>Object management for creating object-oriented applications</p>
-<p></p>
-<p>A component object framework for application modeling of plants, factories,</p>
-<p>and equipment</p>
-<p>Section 2 – System Platform Overview</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p></p>
-<p>A common, global name space for all application types, from single-node to distributed</p>
-<p>networked applications</p>
-<p></p>
-<p>Inter-process advanced communications with system maintenance and diagnostic</p>
-<p>information</p>
-<p></p>
-<p>Centralized security services with support for multi-user environments for development</p>
-<p>and runtime</p>
-<p></p>
-<p>Version management for every object in the application, including logging of</p>
-<p>development operations</p>
+
+<ul>
+<li>Object management for creating object-oriented applications</li>
+<li>A component object framework for application modeling of plants, factories, and equipment</li>
+<li>A common, global name space for all application types, from single-node to distributed networked applications</li>
+<li>Inter-process advanced communications with system maintenance and diagnostic information</li>
+<li>Centralized security services with support for multi-user environments for development and runtime</li>
+<li>Version management for every object in the application, including logging of development operations</li>
+</ul>
+
 <p>Most of these services are exposed, configured, and managed by Application Server.</p>
-<p>AVEVA™ System Platform Enterprise Overview</p>
-<p>AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to</p>
-<p>bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise</p>
-<p>users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the</p>
-<p>AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in</p>
-<p>a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription</p>
-<p>activated product. Although not the focus of this course, contact your distributor for more</p>
-<p>information about AVEVA System Platform Enterprise.</p>
-<p>System Platform Enterprise Features</p>
-<p>Exclusive features of System Platform Enterprise include:</p>
-<p></p>
-<p>A web client for Operations Management Interface (OMI)</p>
-<p></p>
-<p>Additional web widgets</p>
-<p></p>
-<p>ScatterChart widget</p>
-<p></p>
-<p>Breadcrumb widget</p>
-<p></p>
-<p>NavigationTree widget</p>
-<p></p>
-<p>Hamburger widget</p>
-<p></p>
-<p>TitleBar widget</p>
-<p></p>
-<p>Graphic Repeater widget</p>
-<p></p>
-<p>MapApp widget</p>
-<p></p>
-<p>Additional OMI Apps</p>
-<p></p>
-<p>Power BI OMI app</p>
-<p></p>
-<p>PI Vision app</p>
-<p></p>
-<p>Sankey app</p>
-<p></p>
-<p>UOC documentation</p>
-<p>System Platform Enterprise does not include InTouch HMI (WindowMaker and WindowViewer),</p>
-<p>InTouch Web client, and InTouch Workspaces.</p>
-<p>Module 1 – Introduction</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h3>AVEVA™ System Platform Enterprise</h3>
+
+<p>AVEVA System Platform Enterprise builds upon the core technology of AVEVA System Platform to bring enhanced user accessibility and exclusive visualization extensions, specifically for enterprise users in assembling an AVEVA Unified Operations Center (UOC) solution. This includes the AVEVA Operations Management Interface (OMI) Web Client, allowing applications to be viewed in a standard web browser. AVEVA System Platform Enterprise is an AVEVA Flex subscription-activated product.</p>
+
+<div class="key-concept">
+<strong>Exclusive features of System Platform Enterprise include:</strong>
+<ul>
+<li>A web client for Operations Management Interface (OMI)</li>
+<li>Additional web widgets: ScatterChart, Breadcrumb, NavigationTree, Hamburger, TitleBar, Graphic Repeater, MapApp</li>
+<li>Additional OMI Apps: Power BI OMI app, PI Vision app, Sankey app</li>
+<li>UOC documentation</li>
+</ul>
+</div>
+
+<div class="pitfall">
+<strong>Note:</strong> System Platform Enterprise does <em>not</em> include InTouch HMI (WindowMaker and WindowViewer), InTouch Web Client, or InTouch Workspaces.
+</div>
+
+<!-- ==================== QUIZ ==================== -->
+<div class="quiz">
+<h3>🧠 Knowledge Check</h3>
+
+<details>
+<summary>Q1: What are the three main components of AVEVA System Platform?</summary>
+<p class="answer">Application Server (the heart of the platform), Historian (data historization and alarm logging), and Communication Drivers (connectivity to controllers and data sources via MQTT, OPC DA, OPC UA).</p>
+</details>
+
+<details>
+<summary>Q2: What is ArchestrA technology?</summary>
+<p class="answer">ArchestrA is a distributed architecture for supervisory control and manufacturing information systems. It is an open, extensible, object-oriented technology based on the Microsoft .NET Framework.</p>
+</details>
+
+<details>
+<summary>Q3: What is the difference between AVEVA OMI and InTouch for System Platform?</summary>
+<p class="answer">OMI provides a rapid-design visualization framework with out-of-the-box navigation for OT/IT convergence, while InTouch for System Platform uses traditional development tools to create displays and navigation from scratch.</p>
+</details>
+
+<details>
+<summary>Q4: What is AVEVA System Platform Enterprise, and what does it add?</summary>
+<p class="answer">System Platform Enterprise builds on core System Platform and adds an OMI Web Client for browser-based access, additional web widgets (ScatterChart, Breadcrumb, NavigationTree, etc.), additional OMI Apps (Power BI, PI Vision, Sankey), and UOC documentation. It is an AVEVA Flex subscription-activated product.</p>
+</details>
+
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="../index.html">← Home</a> &nbsp;|&nbsp;
   <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

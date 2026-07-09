@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 50: Scripting Introduction and Symbol Scripts</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -16,6 +17,8 @@
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  pre { background: #f4f4f4; padding: 1em; border-radius: 4px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; }
+  pre code { background: none; padding: 0; }
   .screenshot { text-align: center; margin: 1.5em 0; }
   .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
@@ -25,14 +28,17 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
+
 <nav>
   <a href="L49-Lab-24---Working-with-NET-Controls.html">← L49: Lab 24 – Working with .NET Controls</a> &nbsp;|&nbsp;
-  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navi →</a>
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -122,237 +128,170 @@
 </nav>
 
 <h1>📖 L50: Scripting Introduction and Symbol Scripts</h1>
-<p class="source">Module 13 — Scripting in Graphics | Pages 687-692</p>
-<p>(/tmp/aveva_pages/page_0687.png)</p>
-<p><strong>Page 13-3, Section 1 – Introduction</strong>.</p>
-<p>• <strong>Gray Intro Box</strong>: Overview of scripting environment, symbol scripts, and layout scripts</p>
-<p>• <strong>Introduction Subsection</strong>:</p>
-<p>• Scripts attached to symbols or layouts using QuickScript .NET</p>
-<p>• Supports assignments, math functions, conditional branching/looping</p>
-<p>• References to object properties, element/symbol attributes, ViewApp settings, local variables</p>
-<p>• Runtime methods like ShowLoginDialog()</p>
-<p>• <strong>Execution Order of Symbol and Layout Scripts</strong>:</p>
-<p>• Symbol scripts execute <strong>before</strong> layout scripts</p>
-<p>• Exception: On Hide layout scripts run before symbol scripts</p>
-<p>• Data Change triggered scripts run first time reference is subscribed to</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction</p>
-<p>Introduction</p>
-<p>You can add scripts to symbols or their elements to animate the symbols or modify their elements</p>
-<p>while a ViewApp is running. You can also add scripts to layouts to customize the runtime behavior</p>
-<p>of the layouts and layout content. You use the QuickScript .NET scripting language to write the</p>
-<p>scripts.</p>
-<p>Scripts can include assignments, comparisons, simple math functions, and similar actions. They</p>
-<p>can also include logical operations using conditional branching, code looping, and more. The</p>
-<p>references that can be used in scripts include attributes of automation objects, properties of</p>
-<p>elements and embedded symbols, custom properties, and attributes of the ViewApp. Local</p>
-<p>variables can also be defined within the scripts.</p>
-<p>Additionally, supported methods can be used in the scripts to perform various functions at runtime.</p>
-<p>For example, you can use ShowLoginDialog() method in a script, so that when the script is</p>
-<p>executed at runtime, it will prompt with the login dialog box if security in the Galaxy is enabled.</p>
-<p>Execution Order of Symbol and Layout Scripts</p>
-<p>In general, symbol scripts run before layout scripts run in a running ViewApp. This is to ensure that</p>
-<p>any references within the layout script will exist when a layout script calls the reference. The</p>
-<p>exception to this rule is a layout On Hide script, which, when triggered by the layout closing, will</p>
-<p>run before any symbol scripts that are still waiting to execute.</p>
-<p>Note the following:</p>
-<p></p>
-<p>The On Hide layout script has precedence over symbol scripts.</p>
-<p></p>
-<p>Symbol scripts have precedence over the On Show layout script.</p>
-<p></p>
-<p>Named layout scripts can run in any order (not necessarily in the listed order), and may be</p>
-<p>interspersed with symbol scripts.</p>
-<p></p>
-<p>Any named script that is triggered by the Data Change trigger type runs the first time when</p>
-<p>the reference is subscribed to. This behavior is different than the Data Change trigger</p>
-<p>behavior of Application Server scripts and can take considerable time in intermittent</p>
-<p>networks.</p>
-<p>This section provides an overview of the scripting environment and introduces symbol scripts and</p>
-<p>layout scripts.</p>
-<p>(/tmp/aveva_pages/page_0688.png)</p>
-<p><strong>Page 13-4, Section Title Page</strong>.</p>
-<p>• Blank page with only header and footer</p>
-<p>• <strong>Header</strong>: 13-4, Module 13 – Scripting in Graphics</p>
-<p>• <strong>Watermark</strong>: "Do Not Copy"</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>(/tmp/aveva_pages/page_0689.png)</p>
-<p><strong>Page 13-5, Section 2 – Symbol Scripts</strong>.</p>
-<p>• <strong>Gray Text Box</strong>: "This section describes predefined and named symbol scripts, explains script triggers, and describes the Action Scripts animation."</p>
-<p>• <strong>Introduction</strong>: Scripts added to symbols via Edit Scripts dialog (right-click canvas > Scripts)</p>
-<p>• <strong>Screenshot - Edit Scripts Dialog</strong>:</p>
-<p>• <strong>Left Pane</strong>: Symbol Scripts tree with Predefined Scripts (expanded), + button to add</p>
-<p>• <strong>Right Pane</strong>: Predefined Scripts configuration:</p>
-<p>• Trigger section: type dropdown (On Show), Data Timeout: 1000 ms, scripts used: 0</p>
-<p>• Script editor area (empty), Line: 1 Col: 1</p>
-<p>• Toolbar icons: Test (green play), Check (yellow triangle), Confirm (blue check)</p>
-<p>• Bottom: OK, Cancel buttons</p>
-<p>• <strong>Bullet List - Symbol Script Capabilities</strong>:</p>
-<p>• Configure predefined scripts</p>
-<p>• Add named scripts</p>
-<p>• Edit/rename/remove named scripts</p>
-<p>• Substitute references</p>
-<p>• Use element methods</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 2 – Symbol Scripts</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – Symbol Scripts</p>
-<p>Introduction</p>
-<p>You can add scripts to symbols to animate the symbols or modify their elements while a view</p>
-<p>application is running. You can add a script to a symbol with the Edit Scripts dialog box. From the</p>
-<p>Graphic Editor, right-click the drawing canvas and select Scripts to display the dialog box.</p>
-<p>With symbol scripts, you can:</p>
-<p></p>
-<p>Configure the predefined scripts for a symbol</p>
-<p></p>
-<p>Add named scripts to a symbol</p>
-<p></p>
-<p>Edit existing named or predefined scripts in a symbol</p>
-<p></p>
-<p>Rename named scripts in a symbol</p>
-<p></p>
-<p>Remove named scripts from a symbol</p>
-<p></p>
-<p>Substitute references in predefined or named scripts</p>
-<p></p>
-<p>Use element methods in named or predefined scripts</p>
-<p>This section describes predefined and named symbol scripts, explains script triggers, and</p>
-<p>describes the Action Scripts animation.</p>
-<div class="screenshot">
-  <img src="../images/page_0689_0.png" alt="Page 689">
-  <div class="caption">Page 689</div>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics, Sections 1–2</p>
+<p class="page-ref">Covers the scripting environment for OMI graphics, symbol scripts (predefined and named), script triggers, and the Action Scripts animation. (pages 687–692)</p>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2>50.1 Introduction to Scripting in Graphics</h2>
+<p class="page-ref">Reference: Module 13, Section 1 — Introduction (page 687)</p>
+
+<p>Operations Management Interface allows you to add scripts to symbols or their elements to animate the symbols or modify their elements while a ViewApp is running. You can also add scripts to layouts to customize the runtime behavior of the layouts and layout content. The scripting language used is <strong>QuickScript .NET</strong>.</p>
+
+<div class="key-concept">
+<strong>What Scripts Can Do in OMI Graphics:</strong>
+<ul>
+  <li>Perform <strong>assignments</strong>, comparisons, simple math functions, and similar actions</li>
+  <li>Include logical operations using <strong>conditional branching</strong> and code looping</li>
+  <li>Reference attributes of <strong>automation objects</strong>, properties of elements and embedded symbols</li>
+  <li>Reference <strong>custom properties</strong> and attributes of the ViewApp</li>
+  <li>Define and use <strong>local variables</strong> within scripts</li>
+  <li>Call runtime methods such as <code>ShowLoginDialog()</code></li>
+</ul>
 </div>
-<p>(/tmp/aveva_pages/page_0690.png)</p>
-<p><strong>Page 13-6, Types of Symbol Scripts and Triggers</strong>.</p>
-<p>• <strong>Predefined Symbol Scripts</strong>:</p>
-<p>• On Show: Runs once when symbol opens/becomes visible</p>
-<p>• While Showing: Runs periodically while symbol visible</p>
-<p>• On Hide: Runs once when symbol closes/becomes hidden</p>
-<p>• <strong>Screenshot 1 - Predefined Scripts Trigger Dropdown</strong>:</p>
-<p>• Left: Symbol Scripts with +, -, sort buttons, Predefined Scripts selected</p>
-<p>• Right: Trigger type dropdown showing <strong>On Show</strong>, While Showing, On Hide</p>
-<p>• <strong>Named Symbol Scripts</strong>:</p>
-<p>• WhileTrue: Runs while expression is True</p>
-<p>• WhileFalse: Runs while expression is False</p>
-<p>• OnTrue: Runs on False→True transition</p>
-<p>• OnFalse: Runs on True→False transition</p>
-<p>• DataChange: Runs when value/quality changes</p>
-<p>• <strong>Screenshot 2 - Named Scripts Configuration</strong>:</p>
-<p>• Left: Named Scripts with <strong>TestScript</strong> selected, red arrow on + Add button</p>
-<p>• Right: Expression field, Trigger dropdown (WhileTrue selected), Deadband field</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Types of Symbol Scripts and Triggers</p>
-<p>You can use predefined and named scripts for symbols. The following sections describe the types</p>
-<p>of symbol scripts and applicable triggers.</p>
-<p>Predefined Symbol Scripts</p>
-<p>Predefined symbol scripts run based on the display of the symbol in the running view application.</p>
-<p>The predefined script triggers are On Show, While Showing, and On Hide. Based on how the</p>
-<p>trigger is configured, predefined symbol scripts can run:</p>
-<p></p>
-<p>Once after the symbol opens or is shown (On Show)</p>
-<p></p>
-<p>Periodically while the symbol appears in a running view application (While Showing)</p>
-<p></p>
-<p>Once after the symbol closes or is hidden (On Hide)</p>
-<p>Named Symbol Scripts</p>
-<p>You can add a named script by clicking the Add Script button. Named scripts run when an</p>
-<p>expression or references associated with the script change state. The expression in the</p>
-<p>Expression field acts as a data source for the script trigger.</p>
-<p>Predefined triggers are WhileTrue, WhileFalse, OnTrue, OnFalse, and DataChange. Based on</p>
-<p>how the trigger is configured, named symbol scripts can run:</p>
-<p></p>
-<p>While the trigger expression is true (WhileTrue)</p>
-<p></p>
-<p>While the trigger expression is false (WhileFalse)</p>
-<p></p>
-<p>When the trigger expression transitions from false to true (OnTrue)</p>
-<p></p>
-<p>When the trigger expression transitions from true to false (OnFalse)</p>
-<p></p>
-<p>When data associated with the trigger expression changes value or its quality state</p>
-<p>changes value. (DataChange)</p>
-<div class="screenshot">
-  <img src="../images/page_0690_0.jpeg" alt="Page 690">
-  <div class="caption">Page 690</div>
+
+<p>For example, you can use the <code>ShowLoginDialog()</code> method in a script so that when the script is executed at runtime, it will prompt with the login dialog box if security in the Galaxy is enabled. This demonstrates how scripts can interact with runtime features beyond simple data manipulation.</p>
+
+<!-- ============================================================ -->
+<h2>50.2 Execution Order of Symbol and Layout Scripts</h2>
+<p class="page-ref">Reference: Module 13, Section 1 — Execution Order (page 687)</p>
+
+<p>When a ViewApp is running, symbol scripts and layout scripts execute in a specific order designed to ensure that all references exist when a layout script calls them. In general, <strong>symbol scripts run before layout scripts</strong>. However, there are important exceptions to understand.</p>
+
+<div class="key-concept">
+<strong>Execution Priority Rules:</strong>
+<ol>
+  <li>The <strong>On Hide layout script</strong> has precedence over symbol scripts — it runs first when the layout closes</li>
+  <li><strong>Symbol scripts</strong> have precedence over the <strong>On Show layout script</strong></li>
+  <li><strong>Named layout scripts</strong> can run in any order and may be interspersed with symbol scripts</li>
+  <li>Any named script triggered by the <strong>Data Change trigger type</strong> runs the first time the reference is subscribed to</li>
+</ol>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0690_1.jpeg" alt="Page 690">
-  <div class="caption">Page 690</div>
+
+<div class="pitfall">
+<strong>Important Difference from Application Server:</strong> The Data Change trigger behavior in OMI graphics scripts is different than in Application Server scripts. In OMI, a Data Change triggered script runs the first time when the reference is subscribed to, which can take considerable time in intermittent networks. This is a key distinction to keep in mind when writing scripts.
 </div>
-<p>(/tmp/aveva_pages/page_0691.png)</p>
-<p><strong>Page 13-7, Action Scripts Animation</strong>.</p>
-<p>• <strong>Text</strong>: Add Action Scripts via Edit Animations dialog (double-click element > Add Animation > Action Scripts)</p>
-<p>• <strong>Triggers</strong>: On Left Click, While Left, On Left Double-Click, etc.</p>
-<p>• <strong>Symbol Script Development Environment</strong>: Script Function Browser, Graphic Browser, autocomplete, Clear Value icon, Validate Value icon</p>
-<p>• <strong>Screenshot - Edit Animations Dialog</strong>:</p>
-<p>• <strong>Left Pane</strong>: Animations list - Visualization, Its: Value Display, Interaction > <strong>Action Scripts</strong> (highlighted blue, Enabled)</p>
-<p>• Red arrow annotation: "Add Animation" pointing to + button</p>
-<p>• <strong>Right Pane - Action Scripts Details</strong>:</p>
-<p>• Preview: Button1 label</p>
-<p>• Key Equivalent: Ctrl, Shift checkboxes, Key dropdown (None)</p>
-<p>• Trigger Type dropdown (expanded): On Left Click/Key/Touch Down, While Left/Key/Touch Down, On Left/Key/Touch Up, On Left Double Click/Double Tap, On Right Click/Long Press, While Right Down, On Right Up, On Right Double Click</p>
-<p>• Every: ms field (empty)</p>
-<p>• <strong>Script Editor</strong>: Code with Dim graphicInfo, graphicInfo.Is, ShowGraphic(...)</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 2 – Symbol Scripts</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Action Scripts Animation</p>
-<p>You can add an Action Scripts animation to a graphic element with the Edit Animations dialog box.</p>
-<p>From the Graphic Editor, double-click an element on the drawing canvas. The Edit Animations</p>
-<p>dialog box appears. Click the Add Animation button and then select the Action Scripts animation.</p>
-<p>Triggers to use for an Action Scripts animation include On Left Click, While Left, On Left Double-</p>
-<p>Click, and so on, as shown below. One or more action scripts can be added to a graphic element.</p>
-<p>Additionally, Action Scripts animations can be added for an embedded symbol, but the embedded</p>
-<p>symbol must be configured with the TreatAsIcon property set to True.</p>
-<p>At runtime, action scripts execute one time or periodically when an operator performs a mouse</p>
-<p>action. Mouse actions include mouse clicks, double-clicks, hovering, and so on.</p>
-<p>Symbol Script Development Environment</p>
-<p>When writing the code for a script, you can use the Script Function Browser, Graphic Browser,</p>
-<p>Automation Object Browser, and the Attribute Browser to select external data. The script editor</p>
-<p>supports autocomplete.</p>
-<p>The Clear Value icon on the top right of the script editor can be used to clear all code written for the</p>
-<p>script. The Validate Value icon can be used to validate all code for the script, and if there are any</p>
-<p>warnings or errors, they will be indicated in the script editor. If the validation succeeds, no</p>
-<p>message is provided.</p>
+
+<!-- ============================================================ -->
+<h2>50.3 Symbol Scripts — Overview</h2>
+<p class="page-ref">Reference: Module 13, Section 2 — Symbol Scripts Introduction (page 689)</p>
+
+<p>You can add scripts to symbols to animate the symbols or modify their elements while a view application is running. Scripts are added to a symbol using the <strong>Edit Scripts</strong> dialog box, which you access from the Graphic Editor by right-clicking the drawing canvas and selecting <em>Scripts</em>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0691_0.jpeg" alt="Page 691">
-  <div class="caption">Page 691</div>
+  <img src="../images/page_0689_0.png" alt="Edit Scripts dialog box showing Symbol Scripts panel with Predefined Scripts tree">
+  <div class="caption">The Edit Scripts dialog box for a symbol. The left pane shows the Symbol Scripts tree with Predefined Scripts and a + button to add new scripts. The right pane shows the Predefined Scripts configuration with trigger settings and an empty script editor area.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0692.png)</p>
-<p><strong>Page 13-8, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Text</strong>: Additional configurations for different trigger types (e.g., On Show allows Data Timeout configuration)</p>
-<p>• <strong>Screenshot - Predefined Scripts Window</strong>:</p>
-<p>• Title: Predefined Scripts with script icon</p>
-<p>• Window controls: Minimize, Close (red X), Checkmark (save)</p>
-<p>• Script navigation: 1 of 1 with arrows</p>
-<p>• <strong>Trigger Section</strong>:</p>
-<p>• type: <strong>On Show</strong> (selected)</p>
-<p>• Data Timeout: <strong>1000</strong> ms</p>
-<p>• scripts used: 1</p>
-<p>• <strong>Script Editor</strong> (yellow-highlighted):</p>
-<p>• Line 1: <code>Button1.Text = "Turn On";</code></p>
-<p>• Toolbar: Save, Undo, Redo, Run/Execute icons</p>
-<p>• Cursor: Line: 1 Col: 1</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Additional configurations are available for different types of scripts. For example, if the trigger type</p>
-<p>is On Show, you can configure the Data Timeout in milliseconds.</p>
-<div class="screenshot">
-  <img src="../images/page_0692_0.jpeg" alt="Page 692">
-  <div class="caption">Page 692</div>
+
+<p>With symbol scripts, you can configure the predefined scripts for a symbol, add named scripts, edit or rename existing scripts, remove named scripts, substitute references in scripts, and use element methods. This flexibility makes symbol scripts a powerful tool for creating dynamic, interactive graphics.</p>
+
+<!-- ============================================================ -->
+<h2>50.4 Predefined Symbol Scripts</h2>
+<p class="page-ref">Reference: Module 13, Section 2 — Predefined Symbol Scripts (page 690)</p>
+
+<p>Predefined symbol scripts run based on the <strong>display state</strong> of the symbol in the running view application. There are three predefined script triggers, each tied to a specific moment in the symbol's visibility lifecycle.</p>
+
+<table>
+  <tr><th>Trigger</th><th>When It Runs</th><th>Description</th></tr>
+  <tr><td><code>On Show</code></td><td>Once when symbol opens or becomes visible</td><td>Fires once after the symbol is shown in the running ViewApp. Can configure a Data Timeout in milliseconds.</td></tr>
+  <tr><td><code>While Showing</code></td><td>Periodically while symbol is visible</td><td>Runs at a specified interval while the symbol appears in the running ViewApp.</td></tr>
+  <tr><td><code>On Hide</code></td><td>Once when symbol closes or becomes hidden</td><td>Fires once after the symbol is closed or hidden. No configurable trigger parameters.</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>50.5 Named Symbol Scripts</h2>
+<p class="page-ref">Reference: Module 13, Section 2 — Named Symbol Scripts (page 690)</p>
+
+<p>Named scripts are custom scripts that you create by clicking the <strong>Add Script</strong> button. Unlike predefined scripts, named scripts run based on an <strong>expression or reference</strong> that you define. The expression in the Expression field acts as a data source for the script trigger.</p>
+
+<table>
+  <tr><th>Trigger</th><th>When It Runs</th></tr>
+  <tr><td><code>WhileTrue</code></td><td>Runs periodically while the expression is true</td></tr>
+  <tr><td><code>WhileFalse</code></td><td>Runs periodically while the expression is false</td></tr>
+  <tr><td><code>OnTrue</code></td><td>Runs once on a false-to-true transition</td></tr>
+  <tr><td><code>OnFalse</code></td><td>Runs once on a true-to-false transition</td></tr>
+  <tr><td><code>DataChange</code></td><td>Runs when the data value or quality state changes</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>50.6 Action Scripts Animation</h2>
+<p class="page-ref">Reference: Module 13, Section 2 — Action Scripts Animation (page 691)</h2>
+
+<p>Action Scripts are a special type of animation that you can add to a graphic element using the <strong>Edit Animations</strong> dialog box. From the Graphic Editor, double-click an element on the drawing canvas, click the Add Animation button, and then select Action Scripts. This allows you to attach script execution directly to user interactions with specific elements.</p>
+
+<p>At runtime, action scripts execute one time or periodically when an operator performs a <strong>mouse action</strong>. Available triggers include On Left Click, While Left, On Left Double-Click, and many others. One or more action scripts can be added to a single graphic element. Additionally, action scripts can be added for an embedded symbol, but the embedded symbol must have its <code>TreatAsIcon</code> property set to <code>True</code>.</p>
+
+<div class="tip">
+<strong>Script Development Tools:</strong> When writing script code, you can use the Script Function Browser, Graphic Browser, Automation Object Browser, and Attribute Browser to select external data. The script editor supports <strong>autocomplete</strong> to help you find the right attributes and methods. The <strong>Clear Value</strong> icon removes all code, and the <strong>Validate Value</strong> icon checks for warnings or errors.
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
+
+<!-- ============================================================ -->
+<h2>50.7 Predefined Script Configuration</h2>
+<p class="page-ref">Reference: Module 13, Section 2 — Predefined Scripts Configuration (page 692)</p>
+
+<p>Each predefined script type has additional configuration options. For example, when the trigger type is <code>On Show</code>, you can configure the <strong>Data Timeout</strong> in milliseconds. This timeout determines how long the script will wait for a referenced attribute to become available before stopping execution. This is particularly useful in environments where data sources may not be immediately available when a symbol first appears.</p>
+
+<p>The predefined scripts window shows the trigger type, data timeout setting, the number of scripts used, and provides a script editor area where you can write the actual code. The editor toolbar includes icons for saving, undoing, redoing, and executing scripts.</p>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2>Lesson Summary</h2>
+
+<div class="key-concept">
+<strong>Key Concepts Covered:</strong>
+<ul>
+  <li><strong>QuickScript .NET</strong> is the scripting language used for OMI graphics scripts</li>
+  <li>Scripts can be added to <strong>symbols</strong> (via Edit Scripts) or <strong>layouts</strong> (via the Layout Editor Script tab)</li>
+  <li><strong>Predefined symbol scripts</strong> run based on display state: On Show, While Showing, On Hide</li>
+  <li><strong>Named symbol scripts</strong> run based on expressions: WhileTrue, WhileFalse, OnTrue, OnFalse, DataChange</li>
+  <li><strong>Action Scripts</strong> execute when operators interact with elements (clicks, double-clicks, etc.)</li>
+  <li><strong>Execution order:</strong> Symbol scripts run before layout scripts, except On Hide which runs first</li>
+  <li>The <strong>Data Change trigger</strong> in OMI runs the first time a reference is subscribed to — different from Application Server behavior</li>
+</ul>
+</div>
+
+<hr>
+
+<!-- Quiz -->
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+<details>
+<summary>Q1: What scripting language is used for OMI graphics scripts?</summary>
+<p class="answer">QuickScript .NET. It supports assignments, comparisons, math functions, conditional branching, and code looping.</p>
+</details>
+
+<details>
+<summary>Q2: What are the three predefined symbol script triggers?</summary>
+<p class="answer">On Show (runs once when symbol becomes visible), While Showing (runs periodically while visible), and On Hide (runs once when symbol is hidden).</p>
+</details>
+
+<details>
+<summary>Q3: What is the general execution order of symbol scripts versus layout scripts?</summary>
+<p class="answer">Symbol scripts run before layout scripts. The exception is the On Hide layout script, which has precedence over symbol scripts and runs first when the layout closes.</p>
+</details>
+
+<details>
+<summary>Q4: What type of trigger does a named symbol script use?</summary>
+<p class="answer">Named scripts use expression-based triggers: WhileTrue, WhileFalse, OnTrue, OnFalse, or DataChange. The expression in the Expression field acts as the data source for the trigger.</p>
+</details>
+
+<details>
+<summary>Q5: How is the Data Change trigger behavior in OMI different from Application Server?</summary>
+<p class="answer">In OMI, a Data Change triggered script runs the first time the reference is subscribed to. This behavior differs from Application Server and can take considerable time in intermittent networks.</p>
+</details>
+</div>
+
+<hr>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics, Sections 1–2</p>
+<p class="page-ref">Pages 687–692</p>
+
+<nav>
   <a href="L49-Lab-24---Working-with-NET-Controls.html">← L49: Lab 24 – Working with .NET Controls</a> &nbsp;|&nbsp;
-  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navi →</a>
+  <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

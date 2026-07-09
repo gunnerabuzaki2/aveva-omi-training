@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 14: Custom Properties</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -122,80 +125,114 @@
 </nav>
 
 <h1>📖 L14: Custom Properties</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 235-236</p>
-<p>Section 5 – Custom Properties</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 5 – Custom Properties</p>
-<p>Introduction</p>
-<p>You can use custom properties to customize embedded symbols to extend the functionality of the</p>
-<p>symbol. A custom property can contain:</p>
-<p></p>
-<p>A value</p>
-<p></p>
-<p>A valid expression</p>
-<p></p>
-<p>An attribute from the automation object</p>
-<p></p>
-<p>A property of an element or an embedded symbol</p>
-<p></p>
-<p>A custom property of an embedded symbol</p>
-<p></p>
-<p>A script function</p>
-<p>If public custom properties exist for an embedded symbol, they display on the Properties tab in the</p>
-<p>Custom Properties category when the embedded symbol is selected.</p>
-<p>Create and Edit Custom Properties</p>
-<p>You create and edit custom properties with the Edit Custom Properties dialog box. To manage</p>
-<p>custom properties for the symbol you are creating, click the drawing canvas to ensure no element</p>
-<p>or embedded symbol is selected. Then, right-click the canvas and select Custom Properties. The</p>
-<p>Edit Custom Properties dialog box appears. To add a new custom property, click the Add custom</p>
-<p>property button. To remove a custom property, select a custom property from the list and click</p>
-<p>Remove custom property. To rename a custom property, select a custom property from the list and</p>
-<p>click the name of the custom property to make it editable.</p>
-<p>The following example shows three custom properties already configured for the CommandPanel</p>
-<p>symbol.</p>
-<p>This section provides an overview of custom properties for symbols.</p>
-<div class="screenshot">
-  <img src="../images/page_0235_0.png" alt="Page 235">
-  <div class="caption">Page 235</div>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 3: Industrial Graphics, Section 5</p>
+<p class="page-ref">Pages 235–236 (Book pages 3-97 to 3-98)</p>
+
+<h2>Introduction</h2>
+
+<p>Custom properties allow you to extend the functionality of embedded symbols by creating user-defined data fields. Rather than relying solely on built-in properties, custom properties give you the flexibility to bind additional values, expressions, automation object attributes, element properties, or even script functions to a symbol. This mechanism is essential for building reusable, configurable symbols that adapt to different contexts at runtime.</p>
+
+<div class="key-concept">
+<strong>What a Custom Property Can Contain:</strong>
+<ul style="margin:0.5em 0;">
+<li>A literal value</li>
+<li>A valid expression</li>
+<li>An attribute from the automation object</li>
+<li>A property of an element or an embedded symbol</li>
+<li>A custom property of an embedded symbol</li>
+<li>A script function</li>
+</ul>
+<p style="margin:0.5em 0 0 0;">When public custom properties exist for an embedded symbol, they appear on the <strong>Properties</strong> tab under the <strong>Custom Properties</strong> category when that symbol is selected in the Graphic Editor.</p>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p></p>
-<p>Data Type: Select a data type from the drop-down list. These include Boolean, Double,</p>
-<p>ElapsedTime, Float, Integer, String, Time, and HistorySummary.</p>
-<p></p>
-<p>Default Value: The initial default value for the custom property. It can be a literal value,</p>
-<p>reference, or expression. You can click the ellipsis button to browse for a reference</p>
-<p>through the Galaxy Browser.</p>
-<p>If the selected Data Type is String, Time, or ElapsedTime, click the button to the left of the</p>
-<p>Default Value field to indicate whether the default value is a static value or a reference to a</p>
-<p>value.</p>
-<p></p>
-<p>Static Text (</p>
-<p>): This icon indicates the default value is a static value. This mode</p>
-<p>treats the Default Value field as text.</p>
-<p></p>
-<p>Expression or Reference (</p>
-<p>): This icon indicates that the default value is an</p>
-<p>expression or a reference. This mode treats the Default Value field as a lookup list or</p>
-<p>evaluation of a mathematical expression or logical expression.</p>
-<p></p>
-<p>Visibility: Determines whether the custom property is visible to be configured when the</p>
-<p>symbol is used in other symbols or layouts. Any property marked as Private is</p>
-<p>inaccessible when the symbol is embedded in another symbol. This can be used to hide</p>
-<p>configurations that you do not want designers to modify.</p>
-<p></p>
-<p>A Public property is visible when the symbol is embedded in other symbols or</p>
-<p>assigned to layout panes.</p>
-<p></p>
-<p>A Private property is hidden when the symbol is embedded in other symbols or</p>
-<p>assigned to layout panes.</p>
-<p></p>
-<p>Description: A description can provide a brief note about what the symbol can do. For</p>
-<p>symbols from a built-in library, the description contains helpful tips on how to use the</p>
-<p>custom property. For user-created custom properties, it is useful to provide helpful tips or</p>
-<p>hints on how to properly use the custom property as intended.</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h2>Create and Edit Custom Properties</h2>
+
+<p>You manage custom properties through the <strong>Edit Custom Properties</strong> dialog box. To open it, click the drawing canvas to ensure no element or embedded symbol is selected, then right-click the canvas and choose <strong>Custom Properties</strong>. From within this dialog you can add new properties with the <strong>Add custom property</strong> button (+), remove properties with the <strong>Remove custom property</strong> button (−), or rename a property by clicking its name in the list to make it editable.</p>
+
+<p>The following example shows three custom properties already configured for the <code>CommandPanel</code> symbol: <code>Cmd</code>, <code>CmdOffMsg</code>, and <code>CmdOnMsg</code>. Each property is bound to a reference expression that resolves at runtime within the context of the automation object.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0235_0.png" alt="Edit Custom Properties dialog showing Cmd, CmdOffMsg, and CmdOnMsg properties configured for the CommandPanel symbol">
+  <div class="caption">Edit Custom Properties dialog — three custom properties configured for the CommandPanel symbol. The CmdOffMsg property is selected, showing its String data type, expression reference <code>Me.Cmd.OffMsg</code>, Public visibility, and descriptive text.</div>
+</div>
+
+<h2>Custom Property Settings</h2>
+
+<p>Each custom property has four key configuration areas: <strong>Data Type</strong>, <strong>Default Value</strong>, <strong>Visibility</strong>, and <strong>Description</strong>. Understanding these settings is critical for building functional symbols.</p>
+
+<table>
+<thead>
+<tr><th>Setting</th><th>Description</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data Type</strong></td>
+<td>Select from the drop-down list: Boolean, Double, ElapsedTime, Float, Integer, String, Time, or HistorySummary.</td>
+<td>Determines what kind of data the property will process.</td>
+</tr>
+<tr>
+<td><strong>Default Value</strong></td>
+<td>The initial value for the property. Can be a literal value, a reference, or an expression. Click the ellipsis (<code>...</code>) button to browse through the Galaxy Browser.</td>
+<td>For String, Time, or ElapsedTime types, a toggle button switches between Static Text and Expression/Reference modes.</td>
+</tr>
+<tr>
+<td><strong>Visibility</strong></td>
+<td>Controls whether the property is exposed when the symbol is embedded in other symbols or layouts.</td>
+<td><strong>Public</strong>: visible and configurable. <strong>Private</strong>: hidden/inaccessible.</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>A brief note about the property's purpose or usage tips.</td>
+<td>Built-in symbols include helpful guidance; for user-created properties, document the intended use.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="key-concept">
+<strong>Static Text vs. Expression/Reference Mode:</strong> When the Data Type is String, Time, or ElapsedTime, a toggle button to the left of the Default Value field switches between two modes. The <em>Static Text</em> mode (T icon) treats the field as plain text. The <em>Expression or Reference</em> mode (pointing hand icon) treats the field as a lookup list or evaluates it as a mathematical or logical expression.
+</div>
+
+<h2>Visibility: Public vs. Private</h2>
+
+<p>The <strong>Visibility</strong> setting determines how a custom property behaves when the symbol is embedded in other symbols or assigned to layout panes. A <strong>Public</strong> property is visible and can be configured by designers when the symbol is used elsewhere. A <strong>Private</strong> property is hidden and inaccessible in embedded contexts. This distinction is useful for hiding internal configurations that you do not want other designers to modify.</p>
+
+<div class="tip">
+<strong>Tip:</strong> Use Private visibility for internal wiring properties that should not be exposed to designers embedding your symbol. Use Public visibility for properties that need to be configured per-instance, such as tag references or display labels.
+</div>
+
+<h2>Description Field</h2>
+
+<p>The Description field provides a brief note about what the property does. For symbols from a built-in library, the description typically contains helpful tips on how to use the custom property. For user-created properties, it is best practice to document the intended use clearly, as this text serves as inline documentation for other designers who may work with the symbol later.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0240_0.png" alt="Edit Custom Properties dialog showing CmdOnMsg property with empty Default Value and the mode toggle button for switching to Expression or Reference mode">
+  <div class="caption">Edit Custom Properties dialog — the CmdOnMsg property being configured with String data type. The toggle button to the left of the Default Value field allows switching between Static Text mode and Expression/Reference mode.</div>
+</div>
+
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+
+<details>
+<summary>Q1: What types of data can a custom property contain?</summary>
+<p class="answer">A custom property can contain a literal value, a valid expression, an automation object attribute, a property of an element or embedded symbol, a custom property of an embedded symbol, or a script function.</p>
+</details>
+
+<details>
+<summary>Q2: How do you open the Edit Custom Properties dialog box?</summary>
+<p class="answer">Click the drawing canvas to ensure nothing is selected, then right-click the canvas and select Custom Properties.</p>
+</details>
+
+<details>
+<summary>Q3: What is the difference between Public and Private visibility?</summary>
+<p class="answer">A Public property is visible and configurable when the symbol is embedded in other symbols or layouts. A Private property is hidden and inaccessible in embedded contexts, which is useful for protecting internal configurations.</p>
+</details>
+
+<details>
+<summary>Q4: When would you use Expression or Reference mode instead of Static Text mode?</summary>
+<p class="answer">Expression or Reference mode is used when the Default Value should be evaluated as a dynamic expression or resolved as a reference to another attribute at runtime, rather than being treated as a fixed text string. This is necessary for binding properties to automation object data.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">← L13: Lab 6 – Creating Symbols for Containment</a> &nbsp;|&nbsp;
   <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol →</a>

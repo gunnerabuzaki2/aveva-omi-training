@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 48: .NET Controls Overview</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -16,6 +17,7 @@
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  pre { background: #f4f4f4; padding: 1em; overflow-x: auto; font-size: 0.9em; }
   .screenshot { text-align: center; margin: 1.5em 0; }
   .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
@@ -25,13 +27,15 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #777; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playbac</a> &nbsp;|&nbsp;
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playback in a Vie</a> &nbsp;|&nbsp;
   <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls →</a>
 </nav>
 
@@ -122,159 +126,122 @@
 </nav>
 
 <h1>📖 L48: .NET Controls Overview</h1>
-<p class="source">Module 12 — .NET Controls | Pages 669-672</p>
-<p>(/tmp/aveva_pages/page_0669.png)</p>
-<p><strong>Section 1 – Introduction, page 12-3</strong>.</p>
-<p>• <strong>Introduction text</strong>: Explains importing external controls as OMI Apps, WinForms/WPF .NET controls, FrameworkElement Class</p>
-<p>• <strong>Importing External Controls subsection</strong>:</p>
-<p><strong>1.</strong> Assemble control + dependencies in a folder</p>
-<p><strong>2.</strong> From Galaxy menu, select Import | Visualization | OMI App</p>
-<p>• <strong>Screenshot - System Platform IDE Import Menu</strong>:</p>
-<p>• Left sidebar: Home, New, Open, User, AVEVA Connect, <strong>Import</strong> (highlighted), Export, Configure, Close</p>
-<p>• Right pane: Import menu with:</p>
-<p>• Objects (collapsed)</p>
-<p>• <strong>Visualization</strong> (expanded): Client controls, <strong>OMI App</strong>, Web Widgets</p>
-<p>• Style Libraries</p>
-<p>• Script Library</p>
-<p>• Localization (collapsed)</p>
-<p>• <strong>Note</strong>: Refer to InTouch OMI SDK Help for more information</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction</p>
-<p>Overview</p>
-<p>Windows Forms (WinForms) and Windows Presentation Foundation (WPF) .NET controls can be</p>
-<p>imported as OMI Apps into a Galaxy through the System Platform IDE. To qualify for import as an</p>
-<p>OMI App, the App should contain at least one WPF FrameworkElement Class control</p>
-<p>(System.Windows.FrameworkElement).</p>
-<p>Before importing .NET control(s), the assembly file (.dll) and all other dependency files should be</p>
-<p>organized in a single folder, which can optionally include subfolders. The subfolders typically</p>
-<p>contain locale files. Everything in the folder will be imported as part of the new OMI App.</p>
-<p>Once the controls are imported, they can be assigned to layout panes and configured with their</p>
-<p>public properties and events.</p>
-<div class="key-concept">Note: Refer to the InTouch OMI SDK Help for more information about creating your own OMI</div>
-<p>Apps. The InTouch OMI SDK Help is installed automatically when you install the</p>
-<p>System Platform IDE.</p>
-<p>Importing External Controls</p>
-<p>To import an external control, assemble the control and all required dependency and related files</p>
-<p>into a folder that is accessible to the node hosting the System Platform IDE. Then, from the Galaxy</p>
-<p>menu, select Import | Visualization | OMI App.</p>
-<p>This section describes importing external controls as OMI Apps for use in ViewApps and</p>
-<p>exposing certain controls by including a manifest file.</p>
-<div class="screenshot">
-  <img src="../images/page_0669_0.png" alt="Page 669">
-  <div class="caption">Page 669</div>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 12: .NET Controls</p>
+<p class="page-ref">Pages 669–672 (Section 1 – Introduction)</p>
+
+<h2>Overview</h2>
+
+<p>Windows Forms (WinForms) and Windows Presentation Foundation (WPF) .NET controls can be imported as OMI Apps into a Galaxy through the System Platform IDE. To qualify for import as an OMI App, the App should contain at least one WPF <strong>FrameworkElement Class</strong> control (<code>System.Windows.FrameworkElement</code>).</p>
+
+<p>Before importing .NET control(s), the assembly file (.dll) and all other dependency files should be organized in a single folder, which can optionally include subfolders. The subfolders typically contain locale files. Everything in the folder will be imported as part of the new OMI App. Once the controls are imported, they can be assigned to layout panes and configured with their public properties and events.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> Both WinForms and WPF .NET controls can be imported as OMI Apps. The control assembly (.dll) and all dependencies must be organized in a single folder before import. The imported App then appears on the Graphics tab and can be assigned to layout panes.
 </div>
-<p>(/tmp/aveva_pages/page_0670.png)</p>
-<p><strong>Page 12-4, Module 12 – .NET Controls Usage</strong>.</p>
-<p>• <strong>Screenshot - File Explorer Dialog "Import OMI App"</strong>:</p>
-<p>• Navigation: This PC > Local Disk (C:) > Training</p>
-<p>• Left pane: Quick Access, This PC folders</p>
-<p>• Right pane: Folders listed: Modbus Simulation, Other Files, <strong>SQLDataGridApp</strong> (selected), Styles</p>
-<p>• Bottom: Folder: SQLDataGridApp, <strong>Select Folder</strong> button (active), Cancel button</p>
-<p>• <strong>Import Outcome</strong>: Control + files converted to OMI App, appears on Graphics tab</p>
-<p>• <strong>Default naming</strong>: Source folder name + 3-digit suffix (e.g., WinformsControls001)</p>
-<p>• <strong>Manifest File (AppManifest.xml)</strong>: XML structure for selecting specific controls from assembly</p>
-<p>• Contains <code><Filters></code> tag with <code><Control></code> elements specifying AssemblyName and ControlFullName]</p>
-<p>Module 12 – .NET Controls Usage</p>
-<p>AVEVA™ Training</p>
-<p>The Import OMI App dialog box appears, and you can navigate to the folder that contains the OMI</p>
-<p>App files to import and select it.</p>
-<p>The control with other supporting files in the source folder are imported as an OMI App.</p>
-<p>After the import process completes successfully, a new object appears on the Graphics tab. By</p>
-<p>default, the name of the imported object is the source folder name followed by a three digit suffix</p>
-<p>(for example, WinformsControls001). The new object can be renamed, deleted, or exported as an</p>
-<p>.aaPKG file for use in another Galaxy.</p>
-<p>Manifest File</p>
-<p>A single assembly file (.dll) may include one or multiple controls, and by default all controls will be</p>
-<p>imported as part of the imported OMI App. You can indicate which controls in an assembly file to</p>
-<p>expose through the OMI App by including a manifest file in the source folder prior to importing the</p>
-<p>controls. This applies to both WinForms and WPF .NET controls.</p>
-<p>The manifest file must be named AppManifest.xml and include the following content:</p>
-<p><?xml version="1.0"?></p>
-<p><AppManifest AppVersion="6.0.0"></p>
-<p><Filters></p>
-<p><!--List all the Controls that need to be exposed to the System</p>
-<p>Platform IDE user to utilize them in a View Application. Only the</p>
-<p>controls listed here will be available for the IDE users to place them</p>
-<p>on panes within a Layout or a ViewApp.--></p>
-<p><Control AssemblyName="name of the assembly" ControlFullName="fully</p>
-<p>qualified name of the control"></Control></p>
-<p></Filters></p>
-<p></AppManifest></p>
-<div class="screenshot">
-  <img src="../images/page_0670_0.png" alt="Page 670">
-  <div class="caption">Page 670</div>
+
+<div class="tip">
+<strong>Reference:</strong> For more information about creating your own OMI Apps, refer to the InTouch OMI SDK Help. The SDK Help is installed automatically when you install the System Platform IDE.
 </div>
-<p>(/tmp/aveva_pages/page_0671.png)</p>
-<p><strong>Page 12-5, Section 1 – Introduction</strong>.</p>
-<p>• <strong>XML Code Block</strong>: AppManifest.xml example exposing TextBox, RichTextBox, CheckBox, RadioButton</p>
-<p>• Assembly: PresentationFramework, System.Windows.Forms</p>
-<p>• ControlFullName: System.Windows.Controls.TextBox, etc.</p>
-<p>• <strong>Screenshot - IDE Toolbox Tab</strong>:</p>
-<p>• Tabs: Properties, <strong>Toolbox</strong> (selected), Assets</p>
-<p>• Search bar visible</p>
-<p>• Hierarchy tree: Apps > ExternalControls001 highlighted</p>
-<p>• Other apps listed: AlarmApp, ContentPresenterApp, DocViewerApp, HamburgerApp, HistoricalTrendApp, ImageViewerApp</p>
-<p>• Bottom: Four control icons: CheckBox, RadioButton, RichTextBox, TextBox</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Multiple assemblies and controls can be listed within the Filters tag. For example, to expose only</p>
-<p>the TextBox and the RichTextBox controls from the PresentationFramework assembly, and the</p>
-<p>CheckBox and RadioButton controls from the System.Windows.Forms assembly, use the following</p>
-<p>in the AppManifest.xml file:</p>
-<p><?xml version="1.0"?></p>
-<p><AppManifest AppVersion="6.0.0"></p>
-<p><Filters></p>
-<p><!--List all the Controls that need to be exposed to the System</p>
-<p>Platform IDE user to utilize them in a View Application. Only the</p>
-<p>controls listed here will be available for the IDE users to place them</p>
-<p>on panes within a Layout or a ViewApp.--></p>
-<p><Control AssemblyName="PresentationFramework"</p>
-<p>ControlFullName="System.Windows.Controls.TextBox"></Control></p>
-<p><Control AssemblyName="PresentationFramework"</p>
-<p>ControlFullName="System.Windows.Controls.RichTextBox"></Control></p>
-<p><Control AssemblyName="System.Windows.Forms"</p>
-<p>ControlFullName="System.Windows.Forms.CheckBox"></Control></p>
-<p><Control AssemblyName="System.Windows.Forms"</p>
-<p>ControlFullName="System.Windows.Forms.RadioButton"></Control></p>
-<p></Filters></p>
-<p></AppManifest></p>
-<p>When the imported App is selected in the Toolbox tab of a layout, only the exposed controls in the</p>
-<p>manifest file are available to be used.</p>
+
+<h2>Importing External Controls</h2>
+
+<p>To import an external control, assemble the control and all required dependency and related files into a folder that is accessible to the node hosting the System Platform IDE. Then, from the Galaxy menu, select <strong>Import | Visualization | OMI App</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0671_0.png" alt="Page 671">
-  <div class="caption">Page 671</div>
+  <img src="../images/page_0669_0.png" alt="System Platform IDE backstage showing Import > Visualization > OMI App option">
+  <div class="caption">From the Galaxy menu backstage, navigate to Import &gt; Visualization &gt; OMI App to begin importing .NET controls</div>
 </div>
-<p>(/tmp/aveva_pages/page_0672.png)</p>
-<p><strong>Page 12-6, Module 12 – .NET Controls Usage</strong>.</p>
-<p>• <strong>Section Title</strong>: "Using the Imported App"</p>
-<p>• <strong>Text</strong>: After importing .NET controls as OMI Apps, they appear on Graphics tab. Controls referenced via MyContent namespace</p>
-<p>• <strong>Screenshot - Code/Layout Script Editor</strong>:</p>
-<p>• Toolbar: undo, redo, cut, copy, paste, search, dropdown, refresh icons</p>
-<p>• Code line: <code>1 MyContent.AssetInfo_Faceplate1.</code></p>
-<p>• <strong>Autocomplete Dropdown</strong>: OwningObject, GetCPQuality, GetCPTimestamp, SetCustomPropertyValue</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 12 – .NET Controls Usage</p>
-<p>AVEVA™ Training</p>
-<p>Using the Imported App</p>
-<p>After controls are imported successfully as OMI Apps, the Apps will be available on the Graphics</p>
-<p>tab. To use the imported controls, they must be associated with a layout pane in the Layout Editor</p>
-<p>or ViewApp Editor. You can configure the available properties and event handlers for the controls</p>
-<p>assigned to layout panes.</p>
-<p>In the layout where the controls are assigned, the controls can also be referenced using the</p>
-<p>MyContent namepace. For example, the properties and methods of the RichTextBox control can</p>
-<p>be used in the layout script as follows:</p>
+
+<p>The Import OMI App dialog box appears, and you can navigate to the folder that contains the OMI App files to import and select it. The control with other supporting files in the source folder are imported as an OMI App.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0672_0.png" alt="Page 672">
-  <div class="caption">Page 672</div>
+  <img src="../images/page_0670_0.png" alt="Import OMI App dialog showing SQLDataGridApp folder selected in C:\Training">
+  <div class="caption">The Import OMI App dialog box — navigate to the folder containing your control files (e.g., SQLDataGridApp) and click Select Folder</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<p>After the import process completes successfully, a new object appears on the Graphics tab. By default, the name of the imported object is the source folder name followed by a three-digit suffix (for example, <code>WinformsControls001</code>). The new object can be renamed, deleted, or exported as an .aaPKG file for use in another Galaxy.</p>
+
+<h2>Manifest File (AppManifest.xml)</h2>
+
+<p>A single assembly file (.dll) may include one or multiple controls, and by default all controls will be imported as part of the imported OMI App. You can indicate which controls in an assembly file to expose through the OMI App by including a <strong>manifest file</strong> in the source folder prior to importing the controls. This applies to both WinForms and WPF .NET controls.</p>
+
+<p>The manifest file must be named <code>AppManifest.xml</code> and include the following structure:</p>
+
+<pre>&lt;?xml version="1.0"?&gt;
+&lt;AppManifest AppVersion="6.0.0"&gt;
+  &lt;Filters&gt;
+    &lt;!-- Expose specific controls from assemblies --&gt;
+    &lt;Control AssemblyName="name of the assembly"
+             ControlFullName="fully qualified name of the control"&gt;
+    &lt;/Control&gt;
+  &lt;/Filters&gt;
+&lt;/AppManifest&gt;</pre>
+
+<p>Multiple assemblies and controls can be listed within the Filters tag. For example, to expose only the TextBox and RichTextBox from PresentationFramework, and the CheckBox and RadioButton from System.Windows.Forms:</p>
+
+<pre>&lt;?xml version="1.0"?&gt;
+&lt;AppManifest AppVersion="6.0.0"&gt;
+  &lt;Filters&gt;
+    &lt;Control AssemblyName="PresentationFramework"
+             ControlFullName="System.Windows.Controls.TextBox"&gt;&lt;/Control&gt;
+    &lt;Control AssemblyName="PresentationFramework"
+             ControlFullName="System.Windows.Controls.RichTextBox"&gt;&lt;/Control&gt;
+    &lt;Control AssemblyName="System.Windows.Forms"
+             ControlFullName="System.Windows.Forms.CheckBox"&gt;&lt;/Control&gt;
+    &lt;Control AssemblyName="System.Windows.Forms"
+             ControlFullName="System.Windows.Forms.RadioButton"&gt;&lt;/Control&gt;
+  &lt;/Filters&gt;
+&lt;/AppManifest&gt;</pre>
+
+<p>When the imported App is selected in the Toolbox tab of a layout, only the exposed controls in the manifest file are available to be used.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0671_0.png" alt="Toolbox tab showing ExternalControls001 App with exposed CheckBox, RadioButton, RichTextBox, and TextBox controls">
+  <div class="caption">The Toolbox tab showing only the controls listed in AppManifest.xml (CheckBox, RadioButton, RichTextBox, TextBox) available from the ExternalControls001 App</div>
+</div>
+
+<h2>Using the Imported App</h2>
+
+<p>After controls are imported successfully as OMI Apps, the Apps will be available on the Graphics tab. To use the imported controls, they must be associated with a layout pane in the Layout Editor or ViewApp Editor. You can configure the available properties and event handlers for the controls assigned to layout panes.</p>
+
+<p>In the layout where the controls are assigned, the controls can also be referenced using the <code>MyContent</code> namespace. For example, the properties and methods of the RichTextBox control can be used in the layout script as follows:</p>
+
+<pre>MyContent.AssetInfo_Faceplate1.</pre>
+
+<div class="screenshot">
+  <img src="../images/page_0672_0.png" alt="Layout Script Editor showing MyContent namespace autocomplete for AssetInfo_Faceplate1">
+  <div class="caption">The Layout Script Editor with autocomplete showing MyContent namespace methods (OwningObject, GetCPQuality, GetCPTimestamp, etc.) for the imported control</div>
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What types of .NET controls can be imported as OMI Apps?</summary>
+<p class="answer">Both Windows Forms (WinForms) and Windows Presentation Foundation (WPF) .NET controls can be imported. The App should contain at least one WPF FrameworkElement Class control.</p>
+</details>
+
+<details>
+<summary>Q2: What is the purpose of the AppManifest.xml file?</summary>
+<p class="answer">The AppManifest.xml file allows you to selectively expose specific controls from a multi-control assembly. Without it, all controls in the assembly are imported by default. The manifest uses &lt;Control&gt; elements with AssemblyName and ControlFullName attributes to specify which controls to expose.</p>
+</details>
+
+<details>
+<summary>Q3: How are imported controls referenced in layout scripts?</summary>
+<p class="answer">Imported controls are referenced using the MyContent namespace (e.g., MyContent.ControlName1). This gives access to the control's properties, methods, and events from layout scripts.</p>
+</details>
+
+<details>
+<summary>Q4: What is the default naming convention for imported OMI Apps?</summary>
+<p class="answer">The default name is the source folder name followed by a three-digit suffix (e.g., WinformsControls001). The object can be renamed after import.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playbac</a> &nbsp;|&nbsp;
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">← L47: Lab 23 – Implementing Historical Playback in a Vie</a> &nbsp;|&nbsp;
   <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

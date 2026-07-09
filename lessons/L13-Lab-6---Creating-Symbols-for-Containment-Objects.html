@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 13: Lab 6 – Creating Symbols for Containment Objects</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -50,8 +53,8 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
 <br>
 <strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Editor</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
@@ -105,7 +108,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -122,465 +125,443 @@
 </nav>
 
 <h1>🔬 L13: Lab 6 – Creating Symbols for Containment Objects</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 213-234</p>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 6 – Creating Symbols for Containment</p>
-<p>Objects</p>
-<p>Introduction</p>
-<p>In this lab, you will create a symbol within the $Mixer template, which is a container template for a</p>
-<p>number of other templates. Within the symbol created in $Mixer, you will embed symbols from the</p>
-<p>contained objects through relative references.</p>
-<p>Additionally, you will add and configure text elements to display object-related information, such as</p>
-<p>object name. You will also add Connector elements to the symbol to represent connections</p>
-<p>between the equipment.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Embed symbols from relative references</p>
-<p></p>
-<p>Configure and embed symbols within a containment relationship</p>
-<p></p>
-<p>Add Text elements and configure Value Display animations</p>
-<p></p>
-<p>Apply element styles to elements</p>
-<p></p>
-<p>Use connectors and connection points</p>
-<p></p>
-<p>Change element display orders</p>
-<p></p>
-<p>Configure the drawing canvas with a fixed size</p>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 3, Lab 6</p>
+<p class="page-ref">Pages 213–234 (Section 3-75 to 3-96)</p>
+
+<!-- ============================================================ -->
+<h2>Lab Introduction</h2>
+
+<p>In this lab, you will create a comprehensive symbol within the <code>$Mixer</code> template — a container template that holds multiple child objects such as pumps, valves, agitators, level meters, and temperature sensors. The symbol you build will embed symbols from all contained objects using relative references, add text labels, draw connectors between equipment, and apply element styles for visual consistency.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0213_0.jpeg" alt="Page 213">
-  <div class="caption">Page 213</div>
+  <img src="../images/page_0213_0.jpeg" alt="Lab 6 overview showing the complete mixer process diagram">
+  <div class="caption">Lab 6 overview — the target result is a complete mixer process diagram showing two pumps feeding into a mixer through inlet valves, with an agitator, level meter, and temperature sensor inside the mixer tank, and an outlet valve on the discharge side. (Section 3-75)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Create a Symbol in $Mixer</p>
-<p>In the following steps, you will create a symbol within the $Mixer template and open it in the</p>
-<p>Graphic Editor.</p>
-<p>1.</p>
-<p>On the Templates tab, in the Training \ Project toolset, double-click $Mixer to open it in the</p>
-<p>Object Editor.</p>
-<p>2.</p>
-<p>On the Attributes tab, in the Content pane, click Add.</p>
-<p>A symbol is added with the default name of S1.</p>
-<p>3.</p>
-<p>In the Name field, rename the new symbol to MixingProcess_Detailed.</p>
-<p>4.</p>
-<p>For Description, enter Includes symbols from all contained objects.</p>
+
+<div class="key-concept">
+  <strong>Lab Objectives</strong><br>
+  Upon completion of this lab, you will be able to:<br>
+  <ul>
+    <li>Embed symbols from contained objects using relative references</li>
+    <li>Configure and embed symbols within a containment relationship</li>
+    <li>Add Text elements and configure Value Display animations</li>
+    <li>Apply element styles to elements for visual consistency</li>
+    <li>Use Connection Points and Connectors to draw process flow lines</li>
+    <li>Change element display orders using the Elements list</li>
+    <li>Configure the drawing canvas with a fixed size</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>Part 1: Creating a Symbol in $Mixer</h2>
+<p class="page-ref">Reference: Pages 214–215 (Section 3-76 to 3-77)</p>
+
+<div class="lab">
+  <strong>Steps 1–4: Create and Name the Symbol</strong><br>
+  On the Templates tab, navigate to <code>Training \ Project</code> and double-click <code>$Mixer</code> to open it in the Object Editor. On the Attributes tab, in the Content pane, click <strong>Add</strong> to create a new symbol. Rename it to <code>MixingProcess_Detailed</code> and add the description "Includes symbols from all contained objects."
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0214_0.png" alt="Page 214">
-  <div class="caption">Page 214</div>
+  <img src="../images/page_0214_0.png" alt="Content pane before adding a symbol">
+  <div class="caption">Content pane before adding a symbol — the pane is empty with instructions to "Press one of the '+' buttons above to create or link content." The Add button (left "+" icon) creates a new symbol. (Section 3-76)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0214_1.png" alt="Page 214">
-  <div class="caption">Page 214</div>
+  <img src="../images/page_0214_1.png" alt="Content pane after adding symbol S1">
+  <div class="caption">Content pane after clicking Add — a new symbol named S1 appears in the list. The asterisk on the tab indicates unsaved changes. (Section 3-76)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0214_2.jpeg" alt="Page 214">
-  <div class="caption">Page 214</div>
+  <img src="../images/page_0214_2.jpeg" alt="Content pane with renamed MixingProcess_Detailed symbol">
+  <div class="caption">Content pane after renaming — the symbol is now named MixingProcess_Detailed with the description "Includes symbols from all contained objects." (Section 3-76)</div>
 </div>
-<p>", Size: Auto, FixedWidth: 500, FixedHeight: 500</p>
-<p>• <strong>Appearance</strong>: AnchorFixedTo: Relative, Locked: False, AbsoluteAnchor: 0,0, RelativeAnchor: 0,0, Smoothing: True</p>
-<p>• <strong>Runtime Behavior</strong> (red arrow points here):</p>
-<p>• <strong>ContentType</strong>: Dropdown set to <strong>Detailed</strong> ✓</p>
-<p>• FaceplateMode: False, MultiplePopups: True, Scripts: (Collection), ZoomPercent: 100, ZoomCenterX: 0, ZoomCenterY: 0</p>
-<p>• <strong>Custom Properties</strong>: 0 Properties]</p>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>5.</p>
-<p>With MixingProcess_Detailed selected in the Content pane, click Edit Content to open the</p>
-<p>symbol in the Graphic Editor.</p>
-<div class="key-concept">Note:</div>
-<p>Alternatively, you can double-click the symbol to open it in the Graphic Editor.</p>
-<p>The Graphic Editor appears.</p>
-<p>6.</p>
-<p>On the Properties tab, for the Runtime Behavior \ ContentType property, change the</p>
-<p>content type to Detailed.</p>
+
+<div class="lab">
+  <strong>Steps 5–6: Open and Configure the Symbol</strong><br>
+  With MixingProcess_Detailed selected, click <strong>Edit Content</strong> to open it in the Graphic Editor. On the Properties tab, set the <strong>Runtime Behavior \ ContentType</strong> property to <strong>Detailed</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0215_0.png" alt="Page 215">
-  <div class="caption">Page 215</div>
+  <img src="../images/page_0215_0.png" alt="Content pane showing Edit Content button highlighted">
+  <div class="caption">Content pane with the Edit Content button (pen icon) highlighted — clicking this opens the selected symbol in the Graphic Editor. Alternatively, you can double-click the symbol. (Section 3-77)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0215_1.png" alt="Page 215">
-  <div class="caption">Page 215</div>
+  <img src="../images/page_0215_1.png" alt="Properties tab showing ContentType set to Detailed">
+  <div class="caption">Properties tab in the Graphic Editor — ContentType is set to "Detailed" under Runtime Behavior. This ensures the symbol is displayed when users navigate to the Mixer equipment level. (Section 3-77)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Embed Symbols from Contained Objects with Relative</p>
-<p>References</p>
-<p>In the following steps, you will embed symbols from the contained objects using relative references</p>
-<p>from the Galaxy Browser.</p>
-<p>7.</p>
-<p>In the Graphic Editor, from the toolbar, click Embed Industrial Graphic.</p>
-<p>The Galaxy Browser appears. It supports the ability to embed symbols from relative</p>
-<p>references.</p>
-<p>8.</p>
-<p>In the Galaxy Browser, click Relative References.</p>
-<p>9.</p>
-<p>In the left pane, select Me.Agitator.</p>
-<p><strong>10.</strong> In the right pane, select Agitator_Detailed and click OK.</p>
+
+<!-- ============================================================ -->
+<h2>Part 2: Embedding Symbols via Relative References</h2>
+<p class="page-ref">Reference: Pages 216–217 (Section 3-78 to 3-79)</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Embedding via Relative References</strong><br>
+  The Galaxy Browser supports embedding symbols from relative references. When you click "Embed Industrial Graphic" in the toolbar, the Galaxy Browser opens with a <strong>Relative References</strong> tab. This tab lists all objects that are children of the current object (e.g., Me.Agitator, Me.Inlet1, Me.Level, etc.). You select a relative reference, then choose which symbol from that object to embed. This creates a live link — the embedded symbol will display data from the corresponding contained object at runtime.
+</div>
+
+<div class="lab">
+  <strong>Steps 7–10: Embed the Agitator Symbol</strong><br>
+  In the Graphic Editor toolbar, click <strong>Embed Industrial Graphic</strong>. In the Galaxy Browser, click the <strong>Relative References</strong> tab. Select <code>Me.Agitator</code> in the left pane, then select <code>Agitator_Detailed</code> in the right pane and click OK.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0216_0.png" alt="Page 216">
-  <div class="caption">Page 216</div>
+  <img src="../images/page_0216_0.png" alt="Graphic Editor toolbar showing Embed Industrial Graphic button">
+  <div class="caption">Graphic Editor toolbar — the "Embed Industrial Graphic" button (highlighted with red arrow) opens the Galaxy Browser to embed symbols from relative references or the Graphics tab. (Section 3-78)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0216_1.png" alt="Page 216">
-  <div class="caption">Page 216</div>
+  <img src="../images/page_0216_1.png" alt="Galaxy Browser showing Relative References tab">
+  <div class="caption">Galaxy Browser with the Relative References tab active — this tab lists all objects relative to the current $Mixer template: Me, Me.Agitator, Me.Inlet1, Me.Inlet2, Me.Level, Me.Outlet, Me.Pump1, Me.Pump2, and Me.Temperature. (Section 3-78)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0216_2.png" alt="Page 216">
-  <div class="caption">Page 216</div>
+  <img src="../images/page_0216_2.png" alt="Galaxy Browser showing Me.Agitator selected with Agitator_Detailed preview">
+  <div class="caption">Galaxy Browser with Me.Agitator selected — the right pane shows the Agitator_Detailed symbol preview. Click OK to embed this symbol into the MixingProcess_Detailed canvas. (Section 3-78)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>11.</strong> Click the drawing canvas to place the graphic.</p>
-<p>The me_Agitator_Agitator_Detailed1 symbol is placed on the drawing canvas.</p>
-<p><strong>12.</strong> Repeat Steps 7 - 11 to embed the following symbols on the drawing canvas:</p>
-<div class="key-concept">Note:</div>
-<p>In the Galaxy Browser, be sure that Relative References is selected when you</p>
-<p>embed symbols through relative references.</p>
-<p></p>
-<p>Me.Inlet1.Valve_Detailed</p>
-<p></p>
-<p>Me.Inlet2.Valve_Detailed</p>
-<p></p>
-<p>Me.Level.Level_Detailed</p>
-<p></p>
-<p>Me.Outlet.Valve_Detailed</p>
-<p></p>
-<p>Me.Pump1. Pump_Detailed</p>
-<p></p>
-<p>Me.Pump2.Pump_Detailed</p>
-<p></p>
-<p>Me.Temperature.Temperature_Detailed</p>
-<p><strong>13.</strong> Arrange the symbols on the drawing canvas as follows:</p>
-<div class="key-concept">Note:</div>
-<p>You can use alignment tools from the toolbar to align the graphics.</p>
+
+<div class="lab">
+  <strong>Steps 11–13: Place and Embed All Contained Symbols</strong><br>
+  Click the drawing canvas to place the agitator graphic. Then repeat Steps 7–11 to embed all remaining symbols. Arrange them on the canvas as shown in the layout diagram.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0217_0.png" alt="Page 217">
-  <div class="caption">Page 217</div>
+  <img src="../images/page_0217_0.png" alt="Agitator symbol placed on the drawing canvas">
+  <div class="caption">The agitator symbol (me_Agitator_Agitator_Detailed1) placed on the drawing canvas — an industrial agitator with motor, vertical shaft, and impeller, selected with blue handles. (Section 3-79)</div>
 </div>
+
+<table>
+  <tr><th>Relative Reference</th><th>Symbol to Embed</th></tr>
+  <tr><td><code>Me.Agitator</code></td><td>Agitator_Detailed</td></tr>
+  <tr><td><code>Me.Inlet1</code></td><td>Valve_Detailed</td></tr>
+  <tr><td><code>Me.Inlet2</code></td><td>Valve_Detailed</td></tr>
+  <tr><td><code>Me.Level</code></td><td>Level_Detailed</td></tr>
+  <tr><td><code>Me.Outlet</code></td><td>Valve_Detailed</td></tr>
+  <tr><td><code>Me.Pump1</code></td><td>Pump_Detailed</td></tr>
+  <tr><td><code>Me.Pump2</code></td><td>Pump_Detailed</td></tr>
+  <tr><td><code>Me.Temperature</code></td><td>Temperature_Detailed</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0217_1.png" alt="Page 217">
-  <div class="caption">Page 217</div>
+  <img src="../images/page_0217_1.png" alt="Final canvas layout with all embedded symbols arranged">
+  <div class="caption">Complete canvas layout with all embedded symbols arranged — Pump1 and Pump2 (left column), Inlet1 and Inlet2 (middle-left), Agitator (top-right), Level and Temperature (middle), and Outlet (bottom-right). (Section 3-79)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>14.</strong> On the Toolbox tab, enter a search string to find SA_Tank_Vessel, and then drag the symbol</p>
-<p>to the drawing canvas.</p>
-<p><strong>15.</strong> Position SA_Tank_Vessel1 on the drawing canvas to cover the Agitator, Level, and</p>
-<p>Temperature symbols, and resize it as shown.</p>
-<p><strong>16.</strong> In the Elements list, select SA_Tank_Vessel1.</p>
-<p><strong>17.</strong> Right-click and select Order | Send To Back.</p>
-<p>In the Elements list, SA_Tank_Vessel1 moves to the bottom of the list.</p>
+
+<!-- ============================================================ -->
+<h2>Part 3: Adding the Tank Vessel and Managing Element Order</h2>
+<p class="page-ref">Reference: Pages 218–219 (Section 3-80 to 3-81)</p>
+
+<div class="lab">
+  <strong>Steps 14–17: Add Tank Vessel and Send to Back</strong><br>
+  On the Toolbox tab, search for "SA_Tank_Vessel" and drag it to the canvas. Position and resize it to cover the Agitator, Level, and Temperature symbols. In the Elements list, select SA_Tank_Vessel1, right-click, and select <strong>Order | Send To Back</strong> to move it behind the other symbols.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0218_0.png" alt="Page 218">
-  <div class="caption">Page 218</div>
+  <img src="../images/page_0218_0.png" alt="Canvas with SA_Tank_Vessel placed over agitator, level, and temperature">
+  <div class="caption">SA_Tank_Vessel1 positioned on the canvas — the tank vessel graphic is placed over the agitator, level, and temperature symbols. It will be sent to the back so the contained symbols appear in front. (Section 3-80)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0218_1.png" alt="Page 218">
-  <div class="caption">Page 218</div>
+  <img src="../images/page_0218_1.png" alt="Elements list with Order submenu showing Send To Back option">
+  <div class="caption">Elements list with the context menu open — selecting "Order | Send To Back" (F9) moves SA_Tank_Vessel1 to the bottom of the z-order, placing it behind all other symbols on the canvas. (Section 3-80)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>18.</strong> With SA_Tank_Vessel1 selected, right-click and select Substitute | Substitute Strings.</p>
-<p>The Substitute Strings dialog box appears.</p>
-<p><strong>19.</strong> In the New column, replace Label with Mixer.</p>
-<p><strong>20.</strong> Click OK to close the Substitute Strings dialog box.</p>
-<p>Add Connection Points and Draw Connectors Between Graphics</p>
-<p>In the following steps, you will add connection points to the Tank, and then draw connectors</p>
-<p>between the graphics. You will use the Connection Point element and the Connector element from</p>
-<p>the Tools pane.</p>
-<p><strong>21.</strong> In the Tools pane, double-click Connection Point.</p>
-<p>Double-clicking an element tool in the Tools pane is helpful if you need to draw multiple</p>
-<p>elements of the same type on the canvas one after the other. After you draw the first element,</p>
-<p>the tool remains selected so you can draw additional elements without having to reselect the</p>
-<p>tool. Clicking another element tool in the Tools pane or pressing the ESC key cancels the</p>
-<p>operation.</p>
+
+<div class="lab">
+  <strong>Steps 18–20: Substitute Strings</strong><br>
+  With SA_Tank_Vessel1 selected, right-click and select <strong>Substitute | Substitute Strings</strong>. In the dialog, replace "Label" with "Mixer" in the New column, then click OK.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0219_0.png" alt="Page 219">
-  <div class="caption">Page 219</div>
+  <img src="../images/page_0219_0.png" alt="Substitute Strings dialog replacing Label with Mixer">
+  <div class="caption">Substitute Strings dialog — "Label" in the Old column is being replaced with "Mixer" in the New column. This renames the tank vessel's label text from the default "Label" to "Mixer". (Section 3-81)</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>Part 4: Adding Connection Points and Connectors</h2>
+<p class="page-ref">Reference: Pages 219–225 (Section 3-81 to 3-87)</p>
+
+<p>Connection Points and Connectors are essential for creating process flow diagrams. Connection Points define where connectors attach to elements, while Connectors draw the lines between them.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Connection Points and Connectors</strong><br>
+  <strong>Connection Points</strong> are snap points placed on element borders where connectors can attach. When you hover over an element border with a Connection Point tool active, the border turns green to indicate a valid placement location. <strong>Connectors</strong> are lines drawn between connection points — click and drag from one connection point to another to create the connector. The connector automatically snaps to the connection points.
+</div>
+
+<div class="lab">
+  <strong>Steps 21–25: Place Connection Points on the Tank</strong><br>
+  In the Tools pane, double-click <strong>Connection Point</strong>. Place three connection points on the tank border: two on the left side (aligned with Inlet1 and Inlet2) and one on the right side (aligned with Outlet). The tank border turns green when the cursor hovers over it.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0219_1.png" alt="Page 219">
-  <div class="caption">Page 219</div>
+  <img src="../images/page_0219_1.png" alt="Tools pane showing Connection Point tool">
+  <div class="caption">Tools pane with the Connection Point tool highlighted (circle with 4 outward lines) — double-click this tool to keep it active for placing multiple connection points. (Section 3-81)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Notice that when the Connection Point element is selected, the cursor changes to a cross</p>
-<p>hair cursor.</p>
-<p>Now, you will place three Connection Point elements on the border of the tank.</p>
-<p><strong>22.</strong> Move the cross hair cursor to the left-side border of the tank graphic, and align the cursor with</p>
-<p>the built-in connection point on the right side of the Inlet1 graphic.</p>
-<p>Notice that the tank border turns green when the cursor hovers over it.</p>
-<p><strong>23.</strong> Click to place the Connection Point element on the border of the tank.</p>
-<p>A connection point is added to the left-side border of the tank where you clicked.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0220_0.png" alt="Page 220">
-  <div class="caption">Page 220</div>
+  <img src="../images/page_0220_0.png" alt="Alignment diagram showing connection point placement on tank border">
+  <div class="caption">Aligning the first connection point — the crosshair cursor is positioned on the tank border, aligned with the built-in connection point on the right side of Inlet1. The tank border turns green when the cursor hovers over it. (Section 3-82)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0220_1.png" alt="Page 220">
-  <div class="caption">Page 220</div>
+  <img src="../images/page_0220_1.png" alt="Result showing connection point placed on tank border">
+  <div class="caption">Connection point placed on the tank border — a green square appears where the connection point was placed, ready for a connector to be drawn to it. (Section 3-82)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>24.</strong> Add a second Connection Point element to the left-side border of the tank, aligned with the</p>
-<p>built-in connection point on the right side of the Inlet2 graphic.</p>
-<p>The second connection point is added to the left-side border of the tank.</p>
-<p><strong>25.</strong> Add one more Connection Point element to the tank on its right-side border, aligned with the</p>
-<p>built-in connection point on the left side of the Outlet graphic.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0221_0.png" alt="Page 221">
-  <div class="caption">Page 221</div>
+  <img src="../images/page_0221_0.png" alt="Alignment for second connection point aligned with Inlet2">
+  <div class="caption">Aligning the second connection point — positioned on the left tank border, aligned with the right-side connection point of Inlet2. (Section 3-83)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0221_1.png" alt="Page 221">
-  <div class="caption">Page 221</div>
+  <img src="../images/page_0221_1.png" alt="Result showing second connection point on tank border">
+  <div class="caption">Second connection point added to the left tank border — two green squares now mark where Inlet1 and Inlet2 connectors will attach. (Section 3-83)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0221_2.png" alt="Page 221">
-  <div class="caption">Page 221</div>
+  <img src="../images/page_0221_2.png" alt="Alignment for third connection point aligned with Outlet">
+  <div class="caption">Aligning the third connection point — positioned on the right tank border, aligned with the left-side connection point of the Outlet valve. (Section 3-83)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>A connection point is added to the right-side tank border as shown below.</p>
-<p>Now, you will add connectors between the graphics.</p>
-<p><strong>26.</strong> In the Tools pane, double-click Connector.</p>
-<p><strong>27.</strong> Press and hold your left mouse button on the built-in connection point on the top-right of the</p>
-<p>Pump1 graphic, drag the mouse to the built-in connection point on the left side of the Inlet1</p>
-<p>graphic, and then release your mouse button to draw the Connector.</p>
-<p>The Connector is added between the Pump1 and Inlet1 graphics as shown below.</p>
+
+<div class="lab">
+  <strong>Steps 26–31: Draw Connectors Between Equipment</strong><br>
+  In the Tools pane, double-click <strong>Connector</strong>. Draw connectors by clicking and dragging from one connection point to another:
+</div>
+
+<table>
+  <tr><th>Connector</th><th>From</th><th>To</th></tr>
+  <tr><td>1</td><td>Pump1 (top-right)</td><td>Inlet1 (left side)</td></tr>
+  <tr><td>2</td><td>Pump2 (top-right)</td><td>Inlet2 (left side)</td></tr>
+  <tr><td>3</td><td>Inlet1 (right side)</td><td>Tank border (1st connection point)</td></tr>
+  <tr><td>4</td><td>Inlet2 (right side)</td><td>Tank border (2nd connection point)</td></tr>
+  <tr><td>5</td><td>Tank border (3rd connection point)</td><td>Outlet (left side)</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0222_0.png" alt="Page 222">
-  <div class="caption">Page 222</div>
+  <img src="../images/page_0222_0.png" alt="Tank with connection point on right border and Outlet on right">
+  <div class="caption">Tank vessel (SA_Meters) with a green connection point on its right border, positioned next to the SA_Valve_And_Damper outlet valve. The green square marks where the outlet connector will attach. (Section 3-84)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0222_1.png" alt="Page 222">
-  <div class="caption">Page 222</div>
+  <img src="../images/page_0222_1.png" alt="Tools pane showing Connector tool">
+  <div class="caption">Tools pane with the Connector tool highlighted — double-click to keep it active for drawing multiple connectors between equipment elements. (Section 3-84)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0222_2.png" alt="Page 222">
-  <div class="caption">Page 222</div>
+  <img src="../images/page_0222_2.png" alt="Connector drawn between Pump1 and Inlet1">
+  <div class="caption">First connector drawn between Pump1 (SA_Pump_Blower_RotaryValve) and Inlet1 (SA_Valve_And_Damper) — a solid black line connects the right-side green connection port of Pump1 to the left-side connection port of Inlet1. (Section 3-84)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>28.</strong> Press and hold your left mouse button on the built-in connection point on the top-right of the</p>
-<p>Pump2 graphic, drag your mouse to the built-in connection point on the left side of the Inlet2</p>
-<p>graphic, and then release your mouse button to draw the Connector.</p>
-<p>The Connector is added between the Pump2 and Inlet2 graphics as shown below.</p>
-<p><strong>29.</strong> Press and hold your left mouse button on the built-in connection point on the right side of the</p>
-<p>Inlet1 graphic, drag your mouse to the first connection point you added to the tank border, and</p>
-<p>then release your mouse button to draw the Connector.</p>
-<p>The Connector is added between the Inlet1 graphic and the tank border as shown below.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0223_0.png" alt="Page 223">
-  <div class="caption">Page 223</div>
+  <img src="../images/page_0223_0.png" alt="Connector drawn between Pump2 and Inlet2">
+  <div class="caption">Second connector drawn between Pump2 and Inlet2 — a horizontal line connects the two components on the lower-left side of the diagram. (Section 3-85)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0223_1.png" alt="Page 223">
-  <div class="caption">Page 223</div>
+  <img src="../images/page_0223_1.png" alt="Connector drawn between Inlet1 and tank border">
+  <div class="caption">Third connector drawn from Inlet1's right connection point to the first tank border connection point — connecting the inlet valve to the mixer tank. (Section 3-85)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>30.</strong> Draw a Connector between the Inlet2 graphic and the second connection point that you added</p>
-<p>to the tank border.</p>
-<p><strong>31.</strong> Draw one more Connector between the third connection point that you added to the tank</p>
-<p>border and the Outlet graphic.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0224_0.jpeg" alt="Page 224">
-  <div class="caption">Page 224</div>
+  <img src="../images/page_0224_0.jpeg" alt="Connector between Inlet2 and second tank connection point">
+  <div class="caption">Fourth connector drawn from Inlet2's right connection point to the second tank border connection point — connecting the second inlet valve to the mixer tank. (Section 3-86)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0224_1.png" alt="Page 224">
-  <div class="caption">Page 224</div>
+  <img src="../images/page_0224_1.png" alt="Connector between third tank connection point and Outlet">
+  <div class="caption">Fifth connector drawn from the third tank border connection point to the Outlet valve — completing the process flow from tank to discharge. (Section 3-86)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The elements on the canvas should look similar to the following:</p>
-<p><strong>32.</strong> In the Tools pane, click the Pointer tool to release the Connector selection.</p>
-<p><strong>33.</strong> In the Elements list, hold the CTRL key and select the following elements:</p>
-<p></p>
-<p>Connector3</p>
-<p></p>
-<p>Connector4</p>
-<p></p>
-<p>Connector5</p>
-<p><strong>34.</strong> On the Properties tab, change the Appearance \ ConnectionType property to Straight.</p>
-<p>This is to avoid the bend at the end of the valve graphics.</p>
+
+<div class="lab">
+  <strong>Steps 32–34: Straighten Connectors</strong><br>
+  Click the Pointer tool to exit Connector mode. In the Elements list, hold CTRL and select Connector3, Connector4, and Connector5. On the Properties tab, change the <strong>Appearance \ ConnectionType</strong> property to <strong>Straight</strong> to remove the bend at the valve components.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0225_0.png" alt="Page 225">
-  <div class="caption">Page 225</div>
+  <img src="../images/page_0225_0.png" alt="Complete process diagram with all components connected">
+  <div class="caption">Complete process diagram with all connectors drawn — two pumps feed through inlet valves into the mixer tank, with the agitator, level meter, and temperature sensor inside. An outlet valve connects on the discharge side. (Section 3-87)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0225_1.png" alt="Page 225">
-  <div class="caption">Page 225</div>
+  <img src="../images/page_0225_1.png" alt="Elements list showing multi-select of connectors">
+  <div class="caption">Multi-selecting Connector3, Connector4, and Connector5 in the Elements list — holding CTRL while clicking allows multiple selection for batch property changes. (Section 3-87)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0225_2.png" alt="Page 225">
-  <div class="caption">Page 225</div>
+  <img src="../images/page_0225_2.png" alt="Properties panel showing ConnectionType set to Straight">
+  <div class="caption">Properties panel for Connector5 — the Appearance \ ConnectionType is set to "Straight" to remove bends at the valve connection points, creating clean straight lines. (Section 3-87)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>The lines on the canvas should look similar to the following:</p>
-<p>Add More Labels to the Symbol</p>
-<p>In the following steps, you will add more labels to the MixingProcess_Detailed symbol.</p>
-<p><strong>35.</strong> In the Tools pane, select the Text tool.</p>
+
+<!-- ============================================================ -->
+<h2>Part 5: Adding Text Labels with Value Display Animations</h2>
+<p class="page-ref">Reference: Pages 226–231 (Section 3-88 to 3-93)</p>
+
+<div class="lab">
+  <strong>Steps 35–42: Create and Style Text Elements</strong><br>
+  In the Tools pane, select the <strong>Text</strong> tool. Click the top-left of the canvas and type "Object Name" then press Enter and type "Area Name" to create two text elements. Rename Text1 to <code>ObjectName</code> with ElementStyle <strong>Title</strong>, and Text2 to <code>AreaName</code> with ElementStyle <strong>Heading</strong>.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0226_0.png" alt="Page 226">
-  <div class="caption">Page 226</div>
+  <img src="../images/page_0226_0.png" alt="Complete process diagram with straight connectors">
+  <div class="caption">Process diagram with straightened connectors — all five connectors now display as straight lines without bends at the valve connection points. (Section 3-88)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0226_1.png" alt="Page 226">
-  <div class="caption">Page 226</div>
+  <img src="../images/page_0226_1.png" alt="Tools pane showing Text tool">
+  <div class="caption">Tools pane with the Text tool (T icon) highlighted — select this tool to add text labels to the drawing canvas. (Section 3-88)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>36.</strong> Click the drawing canvas at the top-left of the canvas.</p>
-<p><strong>37.</strong> Type Object Name and press Enter, and then type Area Name.</p>
-<p>Object Name is added as the Text1 text element.</p>
-<p>Area Name is added on the second line as the Text2 text element.</p>
-<p><strong>38.</strong> Click the drawing canvas to cancel creating more text elements.</p>
-<p>The text elements should look similar to the following:</p>
-<p><strong>39.</strong> Select Text1, and on the Properties tab, configure the Graphic \ Name property as</p>
-<p>ObjectName.</p>
-<p><strong>40.</strong> For the Appearance \ ElementStyle property, click the drop-down arrow.</p>
-<p>Notice the Search field is available.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0227_0.png" alt="Page 227">
-  <div class="caption">Page 227</div>
+  <img src="../images/page_0227_0.png" alt="Canvas showing Object Name and Area Name text elements">
+  <div class="caption">Text elements placed on the canvas — "Object Name" (Text1) and "Area Name" (Text2) appear at the top-left of the drawing area, ready for styling and animation configuration. (Section 3-89)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0227_1.png" alt="Page 227">
-  <div class="caption">Page 227</div>
+  <img src="../images/page_0227_1.png" alt="Properties panel showing ElementStyle dropdown with Title style">
+  <div class="caption">Properties panel for Text1 — the ElementStyle property is being set to "Title" using the searchable dropdown. The Graphic \ Name is set to "ObjectName". (Section 3-89)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>41.</strong> Use the Search field to search for the Title element style and select it.</p>
-<p>The following example shows title as the search string.</p>
-<p>Alternatively, you can scroll down the list to find and select the Title element style.</p>
-<p>The Appearance \ ElementStyle property shows the selected element style.</p>
-<p><strong>42.</strong> Select Text2, and on the Properties tab, configure the element as follows:</p>
-<p>Graphic \ Name:</p>
-<p>AreaName</p>
-<p>Appearance \ ElementStyle:</p>
-<p>Heading</p>
+
 <div class="screenshot">
-  <img src="../images/page_0228_0.png" alt="Page 228">
-  <div class="caption">Page 228</div>
+  <img src="../images/page_0228_0.png" alt="Properties panel showing ElementStyle set to Title for ObjectName">
+  <div class="caption">Properties panel after applying the Title style — ElementStyle shows "Title" and the element is positioned at X=70, Y=29 on the canvas. (Section 3-90)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0228_1.png" alt="Page 228">
-  <div class="caption">Page 228</div>
+  <img src="../images/page_0228_1.png" alt="Properties panel for Text2 with AreaName and Heading style">
+  <div class="caption">Properties panel for Text2 — the Graphic \ Name is set to "AreaName" and the ElementStyle is set to "Heading" for a secondary text style. (Section 3-90)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0228_2.png" alt="Page 228">
-  <div class="caption">Page 228</div>
+  <img src="../images/page_0228_2.png" alt="Canvas showing positioned text elements">
+  <div class="caption">Text elements repositioned — "Object Name" with Title style and "Area Name" with Heading style are positioned at the top-left of the canvas with appropriate spacing. (Section 3-90)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>43.</strong> On the drawing canvas, select AreaName and move it a little lower on the canvas,</p>
-<p>about 20 pixels.</p>
-<p><strong>44.</strong> Double-click the ObjectName element.</p>
-<p>The Edit Animations dialog box appears.</p>
+
+<div class="lab">
+  <strong>Steps 43–47: Configure Value Display for ObjectName</strong><br>
+  Double-click the ObjectName element to open the Edit Animations dialog. Click <strong>Add Animation</strong> and select <strong>Value Display</strong>. Configure the animation with <strong>States: Name</strong> and <strong>Name to be displayed: Tag Name (default)</strong>. Click OK.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0229_0.png" alt="Page 229">
-  <div class="caption">Page 229</div>
+  <img src="../images/page_0229_0.png" alt="Edit Animations dialog with Value Display highlighted">
+  <div class="caption">Edit Animations dialog — clicking "+" and selecting "Value Display" from the Visualization column adds a value display animation to the ObjectName element. (Section 3-91)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0229_1.png" alt="Page 229">
-  <div class="caption">Page 229</div>
+  <img src="../images/page_0229_1.png" alt="Value Display configuration showing Name state and Tag Name option">
+  <div class="caption">Value Display configuration — the "Name" state tab is selected, and "Tag Name" is chosen as the name to display. This will show the object's tag name at runtime. (Section 3-92)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>45.</strong> In the Edit Animations dialog box, click Add Animation and select Value Display.</p>
-<p><strong>46.</strong> Configure the Value Display animation as follows:</p>
-<p><strong>47.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p>States:</p>
-<p>Name</p>
-<p>Name to be displayed:</p>
-<p>Tag Name (default)</p>
+
+<div class="lab">
+  <strong>Steps 48–52: Configure Value Display for AreaName and Set Fixed Canvas Size</strong><br>
+  Double-click AreaName, add a Value Display animation with <strong>States: String</strong> and <strong>Expression Or Reference: Me.Area</strong>. Then click the canvas, and on the Properties tab, change <strong>Graphic \ Size</strong> to <strong>Fixed</strong> (default 500 × 500 pixels).
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0230_0.png" alt="Page 230">
-  <div class="caption">Page 230</div>
+  <img src="../images/page_0230_0.png" alt="Edit Animations dialog for AreaName showing String state and Me.Area reference">
+  <div class="caption">Edit Animations for AreaName — the String state tab is selected with "Me.Area" as the expression, which will display the area name at runtime. (Section 3-92)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0230_1.png" alt="Page 230">
-  <div class="caption">Page 230</div>
+  <img src="../images/page_0230_1.png" alt="Properties panel showing Graphic Size set to Fixed">
+  <div class="caption">Symbol properties — Graphic \ Size is set to "Fixed" with FixedWidth and FixedHeight both at 500 pixels. This creates a fixed-size drawing canvas. (Section 3-93)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>48.</strong> Double-click the AreaName element, click Add Animation, and add a Value Display</p>
-<p>animation.</p>
-<p><strong>49.</strong> Configure the animation as follows:</p>
-<p><strong>50.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>51.</strong> Click the drawing canvas to configure the symbol properties.</p>
-<p><strong>52.</strong> On the Properties tab, change the Graphic \ Size property to Fixed.</p>
-<p>By default, the drawing canvas will be resized to 500 x 500 pixels from the top-left corner of</p>
-<p>the canvas area.</p>
-<p>States:</p>
-<p>String</p>
-<p>Expression Or Reference (String):</p>
-<p>Me.Area</p>
+
+<!-- ============================================================ -->
+<h2>Part 6: Finalizing the Canvas</h2>
+<p class="page-ref">Reference: Pages 232–234 (Section 3-94 to 3-96)</p>
+
+<div class="lab">
+  <strong>Steps 53–58: Reposition and Resize</strong><br>
+  Right-click the canvas and select <strong>Select All</strong>. Drag all elements toward the top-left corner of the canvas. Click to deselect, then resize the canvas by dragging the bottom-right corner to ensure all elements fit within the canvas area. Save and close MixingProcess_Detailed, then save and close the $Mixer object and check it in.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0231_0.png" alt="Page 231">
-  <div class="caption">Page 231</div>
+  <img src="../images/page_0232_0.png" alt="All elements selected and being repositioned to top-left">
+  <div class="caption">All elements selected (blue bounding boxes) and being dragged toward the top-left corner of the canvas — not all elements fit initially, requiring the canvas to be resized. (Section 3-94)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0231_1.png" alt="Page 231">
-  <div class="caption">Page 231</div>
+  <img src="../images/page_0232_1.png" alt="Final canvas with all elements arranged within expanded area">
+  <div class="caption">Final canvas layout — all elements are neatly arranged within the expanded canvas area, with the complete mixing process diagram showing pumps, inlets, mixer tank with agitator/level/temperature, connectors, labels, and outlet. (Section 3-94)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>53.</strong> Right-click the canvas and select Select All to select all of the graphic elements.</p>
-<p><strong>54.</strong> Drag the selected elements to move them toward the top-left corner of the canvas.</p>
-<p>Not all of the selected elements will fit on the canvas, as shown in the following example:</p>
-<p><strong>55.</strong> Click the canvas to release the selection of the graphic elements.</p>
-<p><strong>56.</strong> Resize the canvas to be larger by dragging the bottom-right point of the canvas, making sure</p>
-<p>all graphic elements are within the canvas area.</p>
-<p>The graphic should look similar to the following:</p>
-<p><strong>57.</strong> Save and close the MixingProcess_Detailed symbol.</p>
-<p><strong>58.</strong> Save and close the $Mixer object, and check it in.</p>
+
+<div class="lab">
+  <strong>Steps 59–62: Test in Preview Session</strong><br>
+  Switch to the preview session and navigate to <code>Assets \ Plant \ Production \ Line1 \ Mixer100</code> to view the custom graphic. The system automatically searches the current navigation first for auto-fill content. Then navigate to Mixer400 and Mixer500 to verify the symbols display correctly for other mixer instances.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0232_0.png" alt="Page 232">
-  <div class="caption">Page 232</div>
+  <img src="../images/page_0233_0.jpeg" alt="AVEVA OMI showing Mixer100 with complete process diagram">
+  <div class="caption">AVEVA OMI Training Application — Mixer100 display showing the complete mixing process diagram. The breadcrumb shows Assets > Plant > Production > Line1 > Mixer100. The diagram includes pumps, inlet valves, the mixer tank with agitator (0.00 rpm), level (97.00), temperature (116.97 °C), and outlet valve. (Section 3-95)</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0232_1.png" alt="Page 232">
-  <div class="caption">Page 232</div>
+  <img src="../images/page_0234_0.jpeg" alt="AVEVA OMI showing Mixer500 with process diagram">
+  <div class="caption">Mixer500 display — the same MixingProcess_Detailed symbol is reused for a different mixer instance, now showing Mixer500's data: Agitator_005 (0.00 rpm), Level_005 (28.06), Temperature_005 (123.20 °C). This demonstrates the power of template-based symbols with relative references. (Section 3-96)</div>
 </div>
-<p>Lab 6 – Creating Symbols for Containment Objects</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will review the ViewApp changes in the preview session.</p>
-<p><strong>59.</strong> Switch to the preview session.</p>
-<p><strong>60.</strong> Navigate to Assets \ Plant \ Production \ Line1 \ Mixer100 to view the Mixer100 graphic.</p>
-<p>The current navigation will always be searched first for auto fill.</p>
-<div class="screenshot">
-  <img src="../images/page_0233_0.jpeg" alt="Page 233">
-  <div class="caption">Page 233</div>
+
+<div class="tip">
+  <strong>Tip — Template Power:</strong> The MixingProcess_Detailed symbol was created once in the $Mixer template and linked to all contained objects via relative references. Because relative references resolve automatically based on the current object context, the same symbol works correctly for Mixer100, Mixer400, Mixer500, and any other mixer instance — without any additional configuration.
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>61.</strong> Navigate to the following and view the updated display:</p>
-<p></p>
-<p>Mixer400</p>
-<p></p>
-<p>Mixer500</p>
-<p>The following shows the display when navigated to Mixer500.</p>
-<p><strong>62.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0234_0.jpeg" alt="Page 234">
-  <div class="caption">Page 234</div>
+
+<!-- ============================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz">
+  <h3>Question 1</h3>
+  <p>Why do you use the Relative References tab in the Galaxy Browser instead of browsing the Graphics tab when embedding contained symbols?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">The Relative References tab provides direct access to the child objects of the current container (e.g., Me.Agitator, Me.Inlet1, Me.Level). This ensures the embedded symbol is linked to the correct contained object through a relative reference that will resolve automatically at runtime. Browsing the Graphics tab would link to a static symbol rather than a dynamically-resolved reference to the contained object's data.</p>
+  </details>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="quiz">
+  <h3>Question 2</h3>
+  <p>What is the purpose of the "Send To Back" command when working with the SA_Tank_Vessel element?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">The SA_Tank_Vessel is placed on the canvas <em>after</em> the embedded equipment symbols, so it initially appears in front of them (covering the agitator, level, and temperature symbols). "Send To Back" moves it to the bottom of the z-order, placing it behind all other elements so the contained equipment symbols are visible on top of the tank.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 3</h3>
+  <p>Why is it important to align Connection Points with the built-in connection points on adjacent elements?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">Connection Points must align with the built-in connection points on adjacent elements so that Connectors can snap to both points cleanly. If they are misaligned, the connector line may appear at an angle or not connect properly. The green border highlight when hovering confirms correct alignment.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 4</h3>
+  <p>What does the Value Display animation with the "Name" state and "Tag Name" option display at runtime?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">It displays the object's tag name (the short name used in the Galaxy hierarchy) as text within the element. For example, when viewing Agitator_001, the ObjectName element would display "Agitator_001". When viewing Mixer100, it would display "Mixer100". This makes the symbol dynamic — it automatically shows the correct name for whatever object is currently being displayed.</p>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2>Key Takeaways</h2>
+<ol>
+  <li><strong>Embedding via Relative References</strong> creates live links to contained objects that resolve automatically at runtime.</li>
+  <li>The <strong>Elements list z-order</strong> controls which elements appear in front — use "Send To Back" to layer background elements behind foreground content.</li>
+  <li><strong>Connection Points</strong> define snap locations on element borders; <strong>Connectors</strong> draw process flow lines between them.</li>
+  <li><strong>Value Display animations</strong> make text elements dynamic — they show object names, areas, or data values at runtime.</li>
+  <li><strong>ElementStyles</strong> (Title, Heading, etc.) ensure visual consistency across all labels in your Galaxy.</li>
+  <li><strong>Substitute Strings</strong> allows bulk text replacement in element properties.</li>
+  <li><strong>Fixed canvas size</strong> ensures consistent symbol dimensions across all instances.</li>
+  <li>A single template symbol with relative references works for <strong>all derived objects</strong> without additional configuration.</li>
+</ol>
+
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 Training Manual, Module 3, Lab 6 (pages 3-75 to 3-96)</p>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L12-Tools-and-Animations.html">← L12: Tools and Animations</a> &nbsp;|&nbsp;
   <a href="L14-Custom-Properties.html">L14: Custom Properties →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

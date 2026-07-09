@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 42: Historization and Real-Time Trending</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,13 +26,15 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">← L41: Lab 20 – Creating a Historical Alarm Dis</a> &nbsp;|&nbsp;
+  <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">← L41: Lab 20 – Creating a Historical Alarm Display</a> &nbsp;|&nbsp;
   <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics →</a>
 </nav>
 
@@ -122,121 +125,141 @@
 </nav>
 
 <h1>📖 L42: Historization and Real-Time Trending</h1>
-<p class="source">Module 10 — Trends | Pages 603-606</p>
-<p>Section 1 – Historization Overview</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Historization Overview</p>
-<p>Introduction</p>
-<p>You can historize process data and alarm and event data from the Galaxy with Historian.</p>
-<p>In automation objects, you can enable the History feature for attributes that you want to historize.</p>
-<p>You can also enable historization for automation objects that have specific history configuration</p>
-<p>settings.</p>
-<p>To historize process data from automation objects, you must enable the host AppEngine with</p>
-<p>storage to historian and specify a Historian server. To historize data from a Platform object, you</p>
-<p>must enable the storage to historian on its Engine configuration and specify a Historian server.</p>
-<p>Application Server supports the store-and-forward capability for historization.</p>
-<p>Historical data can be retrieved and viewed using Historian Client applications, ViewApp</p>
-<p>applications with symbols and OMI Apps, Microsoft SQL Server tools, and others.</p>
-<p>Historian Client applications provide several client tools to retrieve data and present data in</p>
-<p>different formats. The client software includes:</p>
-<p></p>
-<p>Historian Client Trend</p>
-<p></p>
-<p>Historian Client Query</p>
-<p></p>
-<p>Historian Client Workbook (Add-in to Microsoft Excel)</p>
-<p></p>
-<p>Historian Client Report (Add-in to Microsoft Word)</p>
-<p>Historian also provides Historian Client Web, which is a web-based client for data query, trending,</p>
-<p>and analysis. With Historian Client Web, you can access historical data stored with Historian</p>
-<p>through any supported browser and present the data in different formats.</p>
-<p>This section provides an overview of historization and introduces viewing trend data in a</p>
-<p>ViewApp.</p>
-<div class="screenshot">
-  <img src="../images/page_0603_0.png" alt="Page 603">
-  <div class="caption">Page 603</div>
+<p class="source">Module 10 — Trends, Sections 1 &amp; 2</p>
+<p class="page-ref">Pages 603–606</p>
+
+<h2>Historization Overview</h2>
+
+<p>You can historize process data and alarm and event data from the Galaxy using <strong>Historian</strong>. In automation objects, you enable the History feature for attributes that you want to historize. To historize process data, you must enable the host AppEngine with storage to Historian and specify a Historian server. For Platform objects, enable storage to Historian on the Engine configuration and specify a Historian server. Application Server supports the <strong>store-and-forward</strong> capability for historization.</p>
+
+<div class="key-concept">
+<strong>Historian</strong> is the data storage and management tool used to historize data from the Galaxy. Historical data can be retrieved and viewed using Historian Client applications, ViewApp applications with symbols and OMI Apps, and Microsoft SQL Server tools.
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>Trending Data in a ViewApp</p>
-<p>Trending real-time data in a ViewApp allows operators to view data within a specified time duration</p>
-<p>in a trend format. Current process data is used to update the trend in real time. The real-time trend</p>
-<p>can be backfilled with historical data from a historical source.</p>
-<p>In a symbol, a Trend Pen element can be added and configured to display a real-time trend.</p>
-<p>Historical trends allow operators to view historical data in a ViewApp. Historical data is used to fill</p>
-<p>the trend with data from a time period specified as start time, end time, and duration.</p>
-<p>For a ViewApp, two OMI Apps are available: the HistoricalTrendApp and the InSightApp.</p>
-<p>Security Tracking</p>
-<p>Beginning with System Platform 2023, Historian can record OMI user authentications, logons and</p>
-<p>logoffs, as well as application starts and stops. To use this feature, Historian must be enabled in</p>
-<p>the WinPlatform that hosts the ViewApp.</p>
-<p>Section 2 – Real-Time Trending</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – Real-Time Trending</p>
-<p>Introduction</p>
-<p>Real-time trending helps operators monitor process value changes through an updated trend chart</p>
-<p>within the visualization client.</p>
-<p>A graphic element named Trend Pen can be used to create symbols to display process values as</p>
-<p>a trend line that consists of current and historical data updated for a specified interval. The trend</p>
-<p>line gives operators a quick visual snapshot of a process value over a period of time.</p>
-<p>Additionally, two trend pen symbols are included in the Situational Awareness Library, which are</p>
-<p>built using the Trend Pen element.</p>
-<p>Trend Pen</p>
-<p>The Trend Pen element can be added to a symbol to display trending for the configured reference.</p>
-<p>After adding the Trend Pen to the drawing canvas, the Edit Animations dialog box appears, and a</p>
-<p>specific animation Trend Pen is listed. Through the animation, you can configure an analog data</p>
-<p>source, Historian source, period type, Y axis range, and plot type.</p>
-<p>In a running ViewApp, when displaying a symbol with a Trend Pen element configured with a</p>
-<p>reference, Historian source, and other settings, a Historian query retrieves data for the entire</p>
-<p>Trend Pen over the specified trend period. Before the historical data gets retrieved, the real-time</p>
-<p>data is plotted on the trend line. After the historical data is successfully retrieved, it is added to the</p>
-<p>trend line to back fill the entire trending period with the real-time data.</p>
-<p>This section describes the Trend Pen element for symbols and introduces trend pen symbols</p>
-<p>from the Situational Awareness Library.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0605_0.jpeg" alt="Page 605">
-  <div class="caption">Page 605</div>
+  <img src="../images/page_0603_0.png" alt="Historization architecture diagram">
+  <div class="caption">Historization architecture showing data flow from AppEngine and WinPlatform to Historian; available retrieval methods include Historian Client applications (Trend, Query, Workbook, Report), ViewApp, and SQL Server tools</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>Situational Awareness Library Trend Pen Symbols</p>
-<p>In the Situational Awareness library, the Trends toolset includes two symbols: the</p>
-<p>SA_Trend_SinglePen and the SA_Trend_MultiPen symbols.</p>
-<p>SA_Trend_SinglePen</p>
-<p>SA_Trend_SinglePen can be used to configure a single pen to display real-time and historical data</p>
-<p>for a specified reference. There are wizard options available to configure the method to specify the</p>
-<p>Historian source, period type, plot type, and more.</p>
-<p>For example, the SA_Trend_SinglePen symbol can be configured as either:</p>
-<p></p>
-<p>Tail Trend: Simple floating pen with basic configurations</p>
-<p></p>
-<p>Simple Trend: One-pen trend with an optional grid, timescale, and the ability to display a</p>
-<p>meter symbol attached with the trend pen</p>
-<p>Custom properties are available to configure the pen data source, trend period in minutes, and</p>
-<p>others.</p>
-<p>The pen elements in the symbol are configured using the predefined element style Trend_Pen.</p>
-<p>SA_Trend_MultiPen</p>
-<p>SA_Trend_MultiPen can be used to configure multiple pens to display historical data for multiple</p>
-<p>references. There are wizard options available to configure the number of pens in the trend, the</p>
-<p>methods to specify the Historian source, period type, plot type, the display of a floating tooltip, and</p>
-<p>more.</p>
-<p>Custom properties are available to configure the data source, line weight, tagname, and visibility</p>
-<p>for each pen, selected pen, trend period in minutes, and others.</p>
-<p>This symbol supports a maximum of four pens, and their lines are configured using predefined</p>
-<p>element styles, which are Trend_PenA, Trend_PenB, Trend_PenC, and Trend_PenD.</p>
+
+<h3>Historian Client Applications</h3>
+
+<table>
+<tr><th>Application</th><th>Purpose</th></tr>
+<tr><td><strong>Historian Client Trend</strong></td><td>Display and analyze trend data from Historian</td></tr>
+<tr><td><strong>Historian Client Query</strong></td><td>Query historical data stored in Historian</td></tr>
+<tr><td><strong>Historian Client Workbook</strong></td><td>Excel add-in for working with Historian data in spreadsheets</td></tr>
+<tr><td><strong>Historian Client Report</strong></td><td>Word add-in for including Historian data in reports</td></tr>
+<tr><td><strong>Historian Client Web</strong></td><td>Web-based client for querying, trending, and analyzing data in any supported browser</td></tr>
+</table>
+
+<h2>Trending Data in a ViewApp</h2>
+
+<p>Trending real-time data in a ViewApp allows operators to view data within a specified time duration in a trend format. Current process data updates the trend in real time, and the trend can be backfilled with historical data from a historical source. In a symbol, a <strong>Trend Pen</strong> element can be added and configured to display a real-time trend.</p>
+
+<p>Historical trends allow operators to view historical data in a ViewApp. Historical data fills the trend with data from a time period specified as start time, end time, and duration. For a ViewApp, two OMI Apps are available: the <strong>HistoricalTrendApp</strong> and the <strong>InSightApp</strong>.</p>
+
+<div class="key-concept">
+<strong>Security Tracking:</strong> Beginning with System Platform 2023, Historian can record OMI user authentications (logons/logoffs) and application starts/stops. Historian must be enabled in the WinPlatform that hosts the ViewApp.
+</div>
+
+<h2>Real-Time Trending with Trend Pen</h2>
+
+<p>The <strong>Trend Pen</strong> is a graphic element that can be added to a symbol to display process values as a trend line consisting of current and historical data updated for a specified interval. The trend line gives operators a quick visual snapshot of a process value over time.</p>
+
+<p>After adding the Trend Pen to the drawing canvas, the Edit Animations dialog appears with a Trend Pen animation. Through this animation, you can configure an analog data source, Historian source, period type, Y axis range, and plot type.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0606_0.jpeg" alt="Page 606">
-  <div class="caption">Page 606</div>
+  <img src="../images/page_0605_0.jpeg" alt="Trend Pen animation configuration dialog">
+  <div class="caption">Edit Animations dialog for Trend Pen — configured with a reference to an analog data source, Historian source set to Auto-Detect, Moving time period with 5-minute duration, and Step Line plot type</div>
 </div>
+
+<p>In a running ViewApp, when displaying a symbol with a configured Trend Pen element, a Historian query retrieves data for the entire Trend Pen over the specified period. Before the historical data is retrieved, real-time data is plotted on the trend line. After the historical data is successfully retrieved, it is added to the trend line to backfill the entire trending period.</p>
+
+<h3>Trend Pen Configuration Settings</h3>
+
+<table>
+<tr><th>Setting</th><th>Description</th></tr>
+<tr><td><strong>Reference</strong></td><td>The analog data source to trend (e.g., <code>HeatExchanger100_TT1_PV</code>)</td></tr>
+<tr><td><strong>Historian Source</strong></td><td>Historian (default) or InTouch Log History &amp; GH</td></tr>
+<tr><td><strong>Historian</strong></td><td>Auto-Detect (valid for AppServer references only) or Expression</td></tr>
+<tr><td><strong>Server Name</strong></td><td>Historian server name (browse available)</td></tr>
+<tr><td><strong>Time Period</strong></td><td>Moving (continuous) or Fixed</td></tr>
+<tr><td><strong>Duration (Minutes)</strong></td><td>Duration of the trend display window</td></tr>
+<tr><td><strong>Y Axis Range</strong></td><td>Auto-Range or Clip out of range values</td></tr>
+<tr><td><strong>Min/Max Range</strong></td><td>Can use element style references like <code>FWRangedFullScaleMin/Max</code></td></tr>
+<tr><td><strong>Plot Type</strong></td><td>Step Line (default) or Line</td></tr>
+</table>
+
+<h2>Situational Awareness Library Trend Pen Symbols</h2>
+
+<p>The Situational Awareness library provides two pre-built trend pen symbols in the Trends toolset:</p>
+
+<h3>SA_Trend_SinglePen</h3>
+
+<p>Configures a single pen to display real-time and historical data for one reference. Wizard options are available for Historian source, period type, plot type, and more. This symbol can be configured as either:</p>
+
+<ul>
+<li><strong>Tail Trend:</strong> Simple floating pen with basic configurations</li>
+<li><strong>Simple Trend:</strong> One-pen trend with optional grid, timescale, and ability to display a meter symbol attached with the trend pen</li>
+</ul>
+
+<p>Custom properties are available for the pen data source, trend period in minutes, and others. The pen elements use the predefined element style <code>Trend_Pen</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0606_1.jpeg" alt="Page 606">
-  <div class="caption">Page 606</div>
+  <img src="../images/page_0606_0.jpeg" alt="SA_Trend_SinglePen symbol">
+  <div class="caption">SA_Trend_SinglePen — single-pen trend showing PV, Max, Min, Avg statistics with a stepped trend line and time scale from 1m to 7D</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h3>SA_Trend_MultiPen</h3>
+
+<p>Configures multiple pens (up to four) to display historical data for multiple references. Wizard options include number of pens, Historian source, period type, plot type, and floating tooltips. Custom properties are available for per-pen data source, line weight, tagname, and visibility. The four pens use predefined element styles: <code>Trend_PenA</code>, <code>Trend_PenB</code>, <code>Trend_PenC</code>, and <code>Trend_PenD</code>.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0606_1.jpeg" alt="SA_Trend_MultiPen symbol with four pens">
+  <div class="caption">SA_Trend_MultiPen — multi-pen trend with four distinct lines (A, B, C, D), pen selector buttons, time range selectors (1m to 7D), and statistics panel with PV, Max, Min, Avg values</div>
+</div>
+
+<h2>Key Takeaways</h2>
+
+<div class="key-concept">
+<ul>
+<li><strong>Historian</strong> stores process, alarm, and event data with store-and-forward capability</li>
+<li>The <strong>Trend Pen</strong> element creates real-time trends that backfill with historical data</li>
+<li><strong>SA_Trend_SinglePen</strong> provides single-pen trending with configurable options</li>
+<li><strong>SA_Trend_MultiPen</strong> supports up to four pens with independent data sources</li>
+<li>Two OMI Apps for historical trending: <strong>HistoricalTrendApp</strong> and <strong>InSightApp</strong></li>
+</ul>
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What must be configured to historize process data from automation objects?</summary>
+<p class="answer">The host AppEngine must be enabled with storage to Historian, and a Historian server must be specified. For Platform objects, storage to Historian is enabled on the Engine configuration.</p>
+</details>
+
+<details>
+<summary>Q2: What is the backfill behavior of a Trend Pen in a running ViewApp?</summary>
+<p class="answer">Real-time data is plotted first, then once the Historian query completes successfully, historical data is added to backfill the entire trending period, giving a complete view of the configured duration.</p>
+</details>
+
+<details>
+<summary>Q3: What is the maximum number of pens supported by SA_Trend_MultiPen?</summary>
+<p class="answer">Four pens, each configured with independent data sources and using predefined element styles Trend_PenA through Trend_PenD.</p>
+</details>
+
+<details>
+<summary>Q4: What are the two modes for SA_Trend_SinglePen?</summary>
+<p class="answer">Tail Trend (simple floating pen with basic settings) and Simple Trend (one-pen trend with optional grid, timescale, and meter symbol attachment).</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">← L41: Lab 20 – Creating a Historical Alarm Dis</a> &nbsp;|&nbsp;
+  <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">← L41: Lab 20 – Creating a Historical Alarm Display</a> &nbsp;|&nbsp;
   <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

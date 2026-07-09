@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 32: Security Overview and ViewApp Security</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← L31: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
-  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a View →</a>
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -50,8 +53,8 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
 <br>
 <strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Editor</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html">L12: Tools and Animations</a></label><br>
@@ -105,7 +108,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -121,326 +124,169 @@
 </div>
 </nav>
 
-<h1>📖 L32: Security Overview and ViewApp Security</h1>
-<p class="source">Module 8 — Security | Pages 435-444</p>
-<p>Section 1 – Security Overview</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Security Overview</p>
-<p>Introduction</p>
-<p>The security system in Application Server is a global function that applies to every object in the</p>
-<p>Galaxy database. It is a relationship-based security system between users and the objects and</p>
-<p>functions of the Galaxy.</p>
-<p>The security system allows system administrators to easily define users and assign the operations</p>
-<p>they can perform. Security permissions are defined in terms of the operations users can perform</p>
-<p>using automation objects. It also supports multi-user environments, in both development and</p>
-<p>runtime.</p>
-<p>Authentication Modes</p>
-<p>Security for the Galaxy is enabled in the System Platform IDE. When enabling Galaxy security, the</p>
-<p>following authentication modes are available:</p>
-<p></p>
-<p>Galaxy: Uses local Galaxy configuration to authenticate users. All security for the Galaxy</p>
-<p>is specified and contained at the Galaxy level. When the user logs on, security credentials</p>
-<p>are checked, and access to areas and activities is granted at the Galaxy level.</p>
-<p></p>
-<p>OS User based: Uses the user authentication system of the operating system on an</p>
-<p>individual user level. All security for the Galaxy is specified and contained in the operating</p>
-<p>system on a user-level basis. When the user logs on, security credentials are checked,</p>
-<p>and access to areas and activities is decided at the OS-user level.</p>
-<p></p>
-<p>OS Group based: Uses the user authentication system of the operating system on a</p>
-<p>group basis. All security for the Galaxy is specified and contained in the user-to-roles</p>
-<p>mapping created in the operating system to assign security. When a user logs on, security</p>
-<p>credentials are checked and verified at the OS group level. OS groups are mapped to</p>
-<p>security roles in the Galaxy to allow access to areas and activities in the Galaxy.</p>
-<p></p>
-<p>Authentication providers: Uses the AVEVA Identity Manager (AIM) to create a unified</p>
-<p>security management infrastructure across your local System Platform nodes and Azure</p>
-<p>VMs by leveraging operating system security and Azure Active Directory (AD). Refer to</p>
-<p>your System Platform documentation for more information about the AVEVA Identity</p>
-<p>Manager and configuring Azure AD as an identity provider.</p>
-<p>Security Users</p>
-<p>With OS User Based and OS Group Based authentication modes, operating system users with</p>
-<p>local accounts are added as authorized users for the Galaxy. If OS Group Based is selected, the</p>
-<p>local account must exist on each node in the Galaxy for successful authentication of users on any</p>
-<p>computer in the Galaxy.</p>
-<p>Two users are defined by default: Administrator and DefaultUser. These cannot be deleted in an</p>
-<p>open security setting and both are associated with default roles.</p>
-<p>This section provides an overview of security in Application Server, including authentication</p>
-<p>modes, permissions, roles, and users.</p>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Security Roles</p>
-<p>You can create and manage user roles that apply to your organization’s processes and work-</p>
-<p>based authorities. Two roles are defined by default: Administrator and Default.</p>
-<p>Roles are listed with an assigned Access level, which is an integer from 0 to 9999. Access level</p>
-<p>can be used in graphic animations for security purposes, and to configure navigation item security</p>
-<p>in a ViewApp.</p>
-<p>General and Operational Permissions</p>
-<p>You can specify General and Operational permissions for each role:</p>
-<p></p>
-<p>General permissions relate to application configuration and administrative tasks.</p>
-<p></p>
-<p>Operational permissions relate to security groups listed on the Security Groups page.</p>
-<p>By default, the Administrator and Default roles have all permissions. All users belong to the Default</p>
-<p>role and this relationship cannot be changed. Therefore, it is highly recommended that you remove</p>
-<p>all permissions from the Default role.</p>
-<div class="key-concept">Note: You cannot modify the General permissions for the role of Administrator.</div>
-<div class="screenshot">
-  <img src="../images/page_0436_0.png" alt="Page 436">
-  <div class="caption">Page 436</div>
+<h1>🔒 L32: Security Overview and ViewApp Security</h1>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 8: Security</p>
+<p class="page-ref">Pages 435–444 (Sections 8-3 through 8-12)</p>
+
+<h2>Introduction to Security in Application Server</h2>
+
+<p>The security system in Application Server is a global function that applies to every object in the Galaxy database. It operates as a relationship-based security model connecting users, objects, and the functions of the Galaxy. System administrators can define users and assign the operations they are permitted to perform, with security permissions specified in terms of operations users can carry out using automation objects. The system supports multi-user environments in both development and runtime contexts.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> Application Server security is a relationship-based system that ties users to Galaxy objects and functions. Security is a global setting — once enabled, it applies to all objects in the Galaxy database.
 </div>
-<p>Section 1 – Security Overview</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>General Permissions for Industrial Graphics Management</p>
-<p>The list of General permissions includes the permission “Graphic Management Permissions,”</p>
-<p>which is specific to industrial graphics.</p>
-<p>Security Audit Trail</p>
-<p>The Galaxy generates events for user actions, such as users logging in or logging off an</p>
-<p>application, successful and failed attempts to write to an attribute, and others. Event messages are</p>
-<p>logged to history blocks or the Alarms and Events database through Historian Server and can be</p>
-<p>retrieved for future analysis and reporting.</p>
-<div class="screenshot">
-  <img src="../images/page_0437_0.png" alt="Page 437">
-  <div class="caption">Page 437</div>
+
+<h2>Authentication Modes</h2>
+
+<p>When Galaxy security is enabled in the System Platform IDE, four authentication modes are available. Each mode determines how user credentials are verified and how access to Galaxy areas and activities is granted.</p>
+
+<table>
+<tr><th>Mode</th><th>Description</th><th>How It Works</th></tr>
+<tr><td><strong>Galaxy</strong></td><td>Uses local Galaxy configuration to authenticate users</td><td>Security credentials checked and access granted at the Galaxy level</td></tr>
+<tr><td><strong>OS User Based</strong></td><td>Leverages the operating system's user authentication</td><td>Security specified at the individual OS user level</td></tr>
+<tr><td><strong>OS Group Based</strong></td><td>Uses OS group-based authentication with user-to-role mapping</td><td>OS groups mapped to Galaxy security roles; credentials verified at the OS group level</td></tr>
+<tr><td><strong>Authentication Providers</strong></td><td>Uses AVEVA Identity Manager (AIM) for unified security</td><td>Integrates OS security and Azure Active Directory across nodes and Azure VMs</td></tr>
+</table>
+
+<div class="tip">
+<strong>Tip:</strong> OS User and OS Group-based modes add local OS accounts as authorized Galaxy users. With OS Group Based, the local account must exist on each node in the Galaxy for successful authentication across all computers.
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Section 2 – ViewApp Security</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – ViewApp Security</p>
-<p>Introduction</p>
-<p>A ViewApp has built-in security that is integrated with Galaxy security. Industrial graphics can be</p>
-<p>shown or hidden during runtime in the ViewApp, based on current logged in user information. For</p>
-<p>example, you can use the current logged in user information as a condition to configure the</p>
-<p>visibility animation for a specific graphic element. If the condition is true, the graphic will display at</p>
-<p>runtime.</p>
-<p>During runtime, ViewApp navigation items can be shown or hidden based on the access level</p>
-<p>assigned to, and/or user roles selected for, the navigation items. The navigation item will be visible</p>
-<p>only to logged in users who satisfy each of these conditions, if configured. Using access levels and</p>
-<p>user roles to control the display of content in a ViewApp is an effective way of preventing access to</p>
-<p>a ViewApp's sensitive controls from unauthorized users.</p>
-<p>Before you implement security in a ViewApp, the following must be completed:</p>
-<p></p>
-<p>Security must be enabled for the Galaxy with an authentication mode of Galaxy, OS User</p>
-<p>Based, or OS Group Based. Additionally, roles and users must be created and configured</p>
-<p>with the proper Operational permissions.</p>
-<p></p>
-<p>Based on the authentication mode you select, ViewApp users must be added to the</p>
-<p>security system with a user name and password. The user should be associated with a</p>
-<p>role in the security authentication system with a defined Access Level.</p>
-<p>Major tasks for implementing security for ViewApps include the following:</p>
-<p></p>
-<p>Implement login security within the ViewApp by using the security-related method</p>
-<p>ShowLoginDialog(), for example, in an action script of a button. Additionally, the</p>
-<p>TitleBarApp has an optional Login button, which the user can use to login, switch users,</p>
-<p>and logout of the running ViewApp.</p>
-<p></p>
-<p>Implement visibility or disable animations using security-related attributes within the</p>
-<p>symbols that are going to be used as content of the ViewApp. For example,</p>
-<p>MyViewApp.Security.LoggedInAccessLevel can be used.</p>
-<p></p>
-<p>Configure the Access Level property for a navigation item in the ViewApp, which</p>
-<p>determines whether the navigation item and its referenced hierarchy are accessible in</p>
-<p>runtime.</p>
-<p>This section describes how to implement security in a ViewApp.</p>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Navigation Item Security Properties</p>
-<p>Security properties can be configured to implement various types of navigation item security. The</p>
-<p>Access Level property specifies the access levels associated with a navigation item. The User</p>
-<p>Roles property specifies one or more user roles associated with the navigation item. If both the</p>
-<p>Access Level and User Roles properties are configured, both conditions must be satisfied for the</p>
-<p>navigation item to be visible to the logged-in user at runtime.</p>
-<p>When a navigation item is selected in the ViewApp Editor, the Access Level and User Roles</p>
-<p>properties are available in the Security category on the Properties tab. They are set to “Not</p>
-<p>Configured” by default.</p>
-<p>Security</p>
-<p>Security Item Property</p>
-<p>Configurations</p>
-<p>Security Item Visibility Requirements</p>
-<p>No security</p>
-<p>Access Level = Not Configured</p>
-<p>User Roles = Not Configured</p>
-<p>Navigation item always visible</p>
-<p>Access Level Only</p>
-<p>security</p>
-<p>Access Level = Integer <N></p>
-<p>in the range 0-9999</p>
-<p>User Roles = Not Configured</p>
-<p>Security must be configured in the Galaxy.</p>
-<p>User must log in to the ViewApp.</p>
-<p>Logged-in user must have an access level</p>
-<p>equal to or higher than the specified value</p>
-<p><N> of the Access Level property.</p>
-<p>The logged-in user can belong to any role.</p>
-<p>User Roles Only</p>
-<p>security</p>
-<p>Access Level = Not Configured</p>
-<p>User Roles = Role1,Role2,Role3</p>
-<p>Security must be configured in the Galaxy.</p>
-<p>User must log in to the ViewApp.</p>
-<p>Logged-in user can be assigned any access</p>
-<p>level.</p>
-<p>Logged in user must be a member of at</p>
-<p>least one of the specified user roles.</p>
-<p>Access Level and</p>
-<p>User Role security</p>
-<p>Access Level = Integer <N></p>
-<p>in the range 0-9999</p>
-<p>User Roles = Role1,Role2,Role3</p>
-<p>Security must be configured in the Galaxy.</p>
-<p>User must log in to the ViewApp.</p>
-<p>Logged-in user must have an access level</p>
-<p>equal to or higher than the specified value</p>
-<p><N> of the Access Level property.</p>
-<p>Logged in user must be a member of at</p>
-<p>least one of the specified user roles.</p>
+
+<p>Two users are defined by default: <strong>Administrator</strong> and <strong>DefaultUser</strong>. These cannot be deleted in an open security setting, and both are associated with default roles.</p>
+
+<h2>Security Roles and Permissions</h2>
+
+<p>You can create and manage user roles that align with your organization's processes and work-based authorities. Two roles are defined by default: Administrator and Default. Roles are listed with an assigned <strong>Access Level</strong> — an integer from 0 to 9999 that can be used in graphic animations for security purposes and to configure navigation item security in a ViewApp.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0440_0.png" alt="Page 440">
-  <div class="caption">Page 440</div>
+  <img src="../images/page_0436_0.png" alt="Security Roles tab showing Administrator (9999) and Default (0) roles with General and Operational permissions">
+  <div class="caption">Security Roles configuration — The Administrator role (Access Level 9999) with full permissions, and the Default role (Access Level 0). General permissions include IDE and SMC permissions; Operational permissions are based on Security Groups.</div>
 </div>
-<p>Section 2 – ViewApp Security</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>To configure the Access Level property, click the down-arrow to the right of the Access Level</p>
-<p>property and select an access level from the drop-down list. The list includes access levels</p>
-<p>assigned to security roles in the Galaxy. Selecting an access level from the list automatically</p>
-<p>selects access levels greater than or equal to the one selected. The following example shows the</p>
-<p>result of selecting the 0 (Default) access level.</p>
-<p>Or, you can click the Access Level field, enter a numerical value, and press Enter. The following</p>
-<p>example shows an Access Level value entered as 5000.</p>
+
+<h3>General and Operational Permissions</h3>
+
+<p>You can specify two categories of permissions for each role. <strong>General permissions</strong> relate to application configuration and administrative tasks such as IDE access, importing/exporting, system configuration, deployment, and graphic management. <strong>Operational permissions</strong> relate to security groups listed on the Security Groups page and control what operations users can perform on objects at runtime — such as acknowledging alarms, modifying attributes, or verifying writes.</p>
+
+<p>By default, both the Administrator and Default roles have all permissions. All users belong to the Default role, and this relationship cannot be changed. Therefore, it is highly recommended that you remove all permissions from the Default role to prevent unintended access.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> You cannot modify the General permissions for the role of Administrator. The Administrator role always retains full General permissions.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0441_0.png" alt="Page 441">
-  <div class="caption">Page 441</div>
+  <img src="../images/page_0437_0.png" alt="General Permissions showing Graphic Management Permissions highlighted">
+  <div class="caption">General Permissions for Industrial Graphics Management — The "Graphic Management Permissions" checkbox is a specific permission unique to industrial graphics within the software.</div>
 </div>
+
+<h3>Security Audit Trail</h3>
+
+<p>The Galaxy generates events for user actions such as logging in or logging off, successful and failed attempts to write to attributes, and other activities. Event messages are logged to history blocks or the Alarms and Events database through Historian Server and can be retrieved for analysis and reporting.</p>
+
+<h2>ViewApp Security</h2>
+
+<p>A ViewApp has built-in security that is integrated with Galaxy security. Industrial graphics can be shown or hidden during runtime based on the currently logged-in user's information. For example, you can use the current logged-in user information as a condition to configure the visibility animation for a specific graphic element — if the condition is true, the graphic displays at runtime. During runtime, ViewApp navigation items can be shown or hidden based on the access level assigned to, and/or user roles selected for, each navigation item.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> ViewApp security operates through three mechanisms: (1) Login security via ShowLoginDialog() or TitleBarApp's Login button, (2) Visibility animations using security-related attributes like <code>MyViewApp.Security.LoggedInAccessLevel</code>, and (3) Access Level and User Roles properties on navigation items.
+</div>
+
+<p>Before implementing security in a ViewApp, security must be enabled for the Galaxy with an authentication mode, and roles and users must be created with proper Operational permissions. ViewApp users must be added to the security system with a username and password, associated with a role and a defined Access Level.</p>
+
+<h2>Navigation Item Security Properties</h2>
+
+<p>When a navigation item is selected in the ViewApp Editor, two security properties are available in the Security category on the Properties tab: <strong>Access Level</strong> (integer 0–9999) and <strong>User Roles</strong> (one or more user roles). If both properties are configured, both conditions must be satisfied for the navigation item to be visible at runtime.</p>
+
+<table>
+<tr><th>Security Scenario</th><th>Configuration</th><th>Visibility Requirement</th></tr>
+<tr><td>No security</td><td>Access Level = Not Configured; User Roles = Not Configured</td><td>Always visible</td></tr>
+<tr><td>Access Level only</td><td>Access Level = Integer &lt;N&gt;; User Roles = Not Configured</td><td>User's access level ≥ &lt;N&gt;; any role</td></tr>
+<tr><td>User Roles only</td><td>Access Level = Not Configured; User Roles = Role1, Role2</td><td>User must belong to at least one specified role</td></tr>
+<tr><td>Access Level + User Roles</td><td>Access Level = Integer &lt;N&gt;; User Roles = Role1, Role2</td><td>Access level ≥ &lt;N&gt; AND at least one specified role</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0441_1.png" alt="Page 441">
-  <div class="caption">Page 441</div>
+  <img src="../images/page_0440_0.png" alt="Navigation Item Security Properties showing Access Level and User Roles in Properties tab">
+  <div class="caption">Navigation Item Security Properties — The Security section in the Properties tab shows Access Level and User Roles, both defaulting to "Not Configured".</div>
 </div>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>To configure the User Roles property, click the down-arrow to the right of the User Roles property,</p>
-<p>and select one or more user roles. The following example shows two user roles selected:</p>
-<p>Cloud\Application Administators and Cloud\Plant Operators 1.</p>
-<p>Note that if a parent navigation item is not visible during runtime because the logged in user does</p>
-<p>not meet the requirement based on the security settings for this navigation item, then all child</p>
-<p>navigation items are also hidden from this user, regardless how the security configurations of the</p>
-<p>child items are configured.</p>
-<p>Security-Related Functions</p>
-<p>A typical login interface includes a login button and a logout button. The login button displays an</p>
-<p>interface to allow a user to enter their user name and password to gain access to the ViewApp.</p>
-<p>The logout button logs the user off the ViewApp. Additionally, information about the logged-in user</p>
-<p>can be displayed in the ViewApp at runtime.</p>
-<p>The following Action Script functions can be used to show a login dialog box and to log a user out</p>
-<p>of the ViewApp:</p>
-<p>Function</p>
-<p>Description</p>
-<p>ShowLoginDialog()</p>
-<p>Shows a login dialog box with fields to enter a user name and password.</p>
-<p>LogOff()</p>
-<p>Logs a user off of a ViewApp.</p>
+
+<h3>Configuring Access Level</h3>
+
+<p>To configure the Access Level property, click the down-arrow to the right of the Access Level property and select an access level from the drop-down list. The list includes access levels assigned to security roles in the Galaxy. Selecting an access level automatically selects all access levels greater than or equal to the one selected. Alternatively, you can click the Access Level field, enter a numerical value, and press Enter.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0442_0.png" alt="Page 442">
-  <div class="caption">Page 442</div>
+  <img src="../images/page_0441_0.png" alt="Access Level dropdown showing available security roles with checkboxes">
+  <div class="caption">Access Level dropdown — When "0 (Default)" is selected, all roles with access level ≥ 0 are automatically checked.</div>
 </div>
-<p>Section 2 – ViewApp Security</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Security Namespace and Security-Related System Attributes</p>
-<p>Security-related system attributes operate in the MyViewApp.Security namespace. The names of</p>
-<p>the security attributes are specified with the prefix MyViewApp.Security. For example, you might</p>
-<p>use MyViewApp.Security.attribute_name.</p>
-<div class="key-concept">Note: The security-related attributes described below are predefined and available only for</div>
-<p>Operations Management Interface ViewApps. They cannot be included in an InTouch application.</p>
-<p>The following security-related attributes can be used in Value Display animations to display</p>
-<p>information about the user logged in to a running ViewApp:</p>
-<p>Single Sign-On Security for the ViewApp</p>
-<p>If security is enabled in the Galaxy with an authentication mode of OS User Based or OS Group</p>
-<p>Based, the current Windows user will log on automatically to the ViewApp when the ViewApp</p>
-<p>starts.</p>
-<p></p>
-<p>If the current Windows user is a valid user of the Galaxy, it will log on the ViewApp</p>
-<p>successfully.</p>
-<p></p>
-<p>If the current Windows user is not a valid user of the Galaxy, it will fail to log on the</p>
-<p>ViewApp, which will leave the ViewApp running without a logged in user. Other users can</p>
-<p>log on manually.</p>
-<p>Attribute</p>
-<p>Data Type</p>
-<p>Type</p>
-<p>Description</p>
-<p>AutoLogOff</p>
-<p>Boolean</p>
-<p>Read/Write</p>
-<p>Returns True or False to indicate if a user</p>
-<p>will be logged off after a period of inactivity.</p>
-<p>When set to True, the user is logged off from</p>
-<p>the ViewApp when the inactivity period is</p>
-<p>exceeded. The default value is False.</p>
-<p>AutoLogOffRemainingTime</p>
-<p>Integer</p>
-<p>Read Only</p>
-<p>Returns the remaining length of a user’s</p>
-<p>inactivity period in seconds.</p>
-<p>AutoLogOffTimeSpan</p>
-<p>Integer</p>
-<p>Read/Write</p>
-<p>Specifies the length of the inactivity period in</p>
-<p>seconds a logged in user is allowed. The</p>
-<p>default value is 600 seconds.</p>
-<p>AutoLogOnCurrentUser</p>
-<p>Boolean</p>
-<p>Read/Write</p>
-<p>Returns True or False to indicate if users can</p>
-<p>log on automatically to a ViewApp with their</p>
-<p>Windows credentials. The default value is</p>
-<p>True.</p>
-<p>LoggedInAccessLevel</p>
-<p>Integer</p>
-<p>Read Only</p>
-<p>Access level of the security role assigned to</p>
-<p>the user logged in to ViewApp.</p>
-<p>LastSuccessfulLogin</p>
-<p>Date Time</p>
-<p>Read Only</p>
-<p>UTC time stamp of the most recent</p>
-<p>successful log.</p>
-<p>LoggedIn</p>
-<p>Boolean</p>
-<p>Read Only</p>
-<p>Returns True or False, indicating if a user is</p>
-<p>currently logged into a ViewApp or not.</p>
-<p>LoggedInUserName</p>
-<p>String</p>
-<p>Read Only</p>
-<p>User name specified by the user logged in to</p>
-<p>a ViewApp.</p>
-<p>LoggedInUserRoles</p>
-<p>String</p>
-<p>Read Only</p>
-<p>User roles assigned to the logged-in user, in</p>
-<p>CSV format.</p>
-<p>Module 8 – Security</p>
-<p>AVEVA™ Training</p>
-<p>Note that the first time the Preview session is launched from the ViewApp Editor, the current</p>
-<p>Windows user will automatically attempt to log on the Preview session.</p>
-<p>The Single Sign-On feature can be enabled or disabled by setting the AutoLogonCurrentUser</p>
-<p>attribute of the Security namespace to True or False.</p>
-<p>Single Sign-On Security for OMI Apps</p>
-<p>OMI Apps that use the Single Sign-On feature (SSO) will run in the context of the logged on</p>
-<p>ViewApp user. Messages will appear if the current logged on ViewApp user is not a valid user for</p>
-<p>the OMI Apps, or does not have enough permissions to access the functions of the OMI Apps.</p>
-<p>For example, the InSightApp is an OMI App that uses the single sign-on service of the ViewApp.</p>
-<p>More information about the InSightApp is provided in Module 10.</p>
-<p>Credential Management for ViewApps</p>
-<p>Additional security credentials may be needed for some ViewApps to gain access to third-party</p>
-<p>data and applications that do not support standard authentication methods, such as Windows OS</p>
-<p>credentials, Active Directory, or OpenID Connect. You can add these credentials on the</p>
-<p>Credentials tab in the Configure Security dialog box.</p>
-<p>Refer to the documentation that came with your product for details about managing credentials.</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="screenshot">
+  <img src="../images/page_0441_1.png" alt="Access Level set to 5000 showing only roles with access level 5000 or higher selected">
+  <div class="caption">Access Level set to 5000 — Only roles with access level ≥ 5000 (Administrator and Plant Supervisors) remain selected.</div>
+</div>
+
+<h3>Configuring User Roles</h3>
+
+<p>To configure User Roles, click the down-arrow next to the User Roles property and select one or more user roles. If a parent navigation item is hidden for a logged-in user, all child navigation items are automatically hidden regardless of their own security configurations.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0442_0.png" alt="User Roles dropdown with two roles selected: Application Administrators and Plant Operators 1">
+  <div class="caption">User Roles configuration — Two user roles selected: Cloud\Application Administrators and Cloud\Plant Operators 1.</div>
+</div>
+
+<h2>Security-Related Functions</h2>
+
+<p>A typical login interface includes a login button and a logout button. The login button displays an interface for users to enter their username and password. The logout button logs the user off the ViewApp. The following Action Script functions are available:</p>
+
+<table>
+<tr><th>Function</th><th>Description</th></tr>
+<tr><td><code>ShowLoginDialog()</code></td><td>Shows a login dialog box with fields for username and password</td></tr>
+<tr><td><code>LogOff()</code></td><td>Logs a user off of a ViewApp</td></tr>
+</table>
+
+<h2>Security Namespace Attributes</h2>
+
+<p>Security-related system attributes operate in the <code>MyViewApp.Security</code> namespace. These attributes can be used in Value Display animations to show information about the logged-in user at runtime.</p>
+
+<table>
+<tr><th>Attribute</th><th>Data Type</th><th>Type</th><th>Description</th></tr>
+<tr><td><code>AutoLogOff</code></td><td>Boolean</td><td>Read/Write</td><td>When True, user is logged off after inactivity period. Default: False</td></tr>
+<tr><td><code>AutoLogOffRemainingTime</code></td><td>Integer</td><td>Read Only</td><td>Remaining inactivity time (seconds) before auto-logoff</td></tr>
+<tr><td><code>AutoLogOffTimeSpan</code></td><td>Integer</td><td>Read/Write</td><td>Inactivity timeout in seconds. Default: 600</td></tr>
+<tr><td><code>AutoLogOnCurrentUser</code></td><td>Boolean</td><td>Read/Write</td><td>Auto-login with Windows credentials. Default: True</td></tr>
+<tr><td><code>LoggedInAccessLevel</code></td><td>Integer</td><td>Read Only</td><td>Security role access level of the logged-in user</td></tr>
+<tr><td><code>LastSuccessfulLogin</code></td><td>Date Time</td><td>Read Only</td><td>UTC timestamp of the most recent successful login</td></tr>
+<tr><td><code>LoggedIn</code></td><td>Boolean</td><td>Read Only</td><td>Whether a user is currently logged in</td></tr>
+<tr><td><code>LoggedInUserName</code></td><td>String</td><td>Read Only</td><td>Username of the logged-in user</td></tr>
+<tr><td><code>LoggedInUserRoles</code></td><td>String</td><td>Read Only</td><td>Roles assigned to the logged-in user (CSV format)</td></tr>
+</table>
+
+<div class="tip">
+<strong>Note:</strong> These security-related attributes are predefined and available only for Operations Management Interface ViewApps. They cannot be used in InTouch applications.
+</div>
+
+<h2>Single Sign-On (SSO) for ViewApps</h2>
+
+<p>If security is enabled with OS User Based or OS Group Based authentication, the current Windows user will automatically log on to the ViewApp when it starts. If the current Windows user is a valid Galaxy user, auto-login succeeds. If the current Windows user is not valid for the Galaxy, auto-login fails and the ViewApp runs without a logged-in user, allowing other users to log on manually.</p>
+
+<p>OMI Apps that use the Single Sign-On feature run in the context of the logged-on ViewApp user. Messages will appear if the current user is not valid for the OMI Apps or does not have sufficient permissions. The SSO feature can be enabled or disabled by setting the <code>AutoLogonCurrentUser</code> attribute to True or False.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> Single Sign-On automatically logs the Windows user into the ViewApp at startup. Additional credentials may be needed for third-party applications that don't support standard enterprise authentication — these are managed via the Credentials tab in the Configure Security dialog box.
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+<details><summary>Q1: What are the four authentication modes available when Galaxy security is enabled?</summary><p class="answer">The four modes are: Galaxy (local Galaxy configuration), OS User Based (individual OS user), OS Group Based (OS group mapping), and Authentication Providers (AVEVA Identity Manager with Azure AD integration).</p></details>
+<details><summary>Q2: Why should you remove all permissions from the Default role?</summary><p class="answer">All users belong to the Default role by default, and this relationship cannot be changed. If the Default role retains all permissions, every user would have full access. Removing permissions from Default ensures users only get the permissions assigned through their specific roles.</p></details>
+<details><summary>Q3: What happens if both Access Level and User Roles are configured for a navigation item?</summary><p class="answer">Both conditions must be satisfied — the logged-in user must have an access level equal to or greater than the specified value AND must belong to at least one of the specified user roles.</p></details>
+<details><summary>Q4: Can you modify the General permissions for the Administrator role?</summary><p class="answer">No. The General permissions for the Administrator role cannot be modified — the Administrator always retains full General permissions.</p></details>
+<details><summary>Q5: What are the two Action Script functions for login/logout in ViewApps?</summary><p class="answer">ShowLoginDialog() displays a login dialog box with username and password fields. LogOff() logs the active user off of the ViewApp.</p></details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">← L31: Lab 15 – Creating Custom Namespaces</a> &nbsp;|&nbsp;
-  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a View →</a>
+  <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

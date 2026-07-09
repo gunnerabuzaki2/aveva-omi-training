@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 15: Lab 7 – Creating a Custom Symbol</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -121,442 +124,260 @@
 </div>
 </nav>
 
-<h1>🔬 L15: Lab 7 – Creating a Custom Symbol</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 237-258</p>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>Introduction</p>
-<p>In this lab, you will create a custom symbol to be used as a common command panel for opening</p>
-<p>and closing valves and starting and stopping pumps and agitators, as well as changing the speed</p>
-<p>setpoint for an agitator.</p>
-<p>You will create and configure custom properties, as well as add button elements to the symbol.</p>
-<p>You will configure the button elements with Pushbutton, Element Style, and Value Display</p>
-<p>animations using custom properties.</p>
-<p>You will also add Show Symbol animations for the Agitator, Pump, and Valve symbols to be able to</p>
-<p>show their command panels when they are clicked in runtime.</p>
-<p>When testing your ViewApp, you will use the command panels to perform operations on the</p>
-<p>equipment.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create and configure custom properties in a symbol</p>
-<p></p>
-<p>Add Button elements and configure Pushbutton animations</p>
-<p></p>
-<p>Use Element Style Animations</p>
-<p></p>
-<p>Use Show Symbol animations</p>
-<p></p>
-<p>Configure the FaceplateMode property for a symbol</p>
-<p></p>
-<p>Configure the TreatAsIcon property for embedded symbols</p>
-<div class="screenshot">
-  <img src="../images/page_0237_0.png" alt="Page 237">
-  <div class="caption">Page 237</div>
+<h1>📖 L15: Lab 7 – Creating a Custom Symbol</h1>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 3: Industrial Graphics</p>
+<p class="page-ref">Pages 237–258 (Book pages 3-99 to 3-120)</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will create a custom <code>CommandPanel</code> symbol to serve as a common command panel for opening and closing valves, starting and stopping pumps and agitators, and changing the speed setpoint for an agitator. The lab walks you through creating and configuring custom properties, adding button elements with Pushbutton, Element Style, and Value Display animations, embedding a speed setpoint entry symbol, and configuring Show Symbol animations so that clicking equipment symbols in runtime opens the appropriate command panel.</p>
+
+<div class="lab">
+<strong>Objectives</strong> — Upon completion of this lab, you will be able to:
+<ul style="margin:0.5em 0;">
+<li>Create and configure custom properties in a symbol</li>
+<li>Add Button elements and configure Pushbutton animations</li>
+<li>Use Element Style Animations</li>
+<li>Use Show Symbol animations</li>
+<li>Configure the FaceplateMode property for a symbol</li>
+<li>Configure the TreatAsIcon property for embedded symbols</li>
+</ul>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Create a Command Panel Symbol</p>
-<p>In the following steps, you will create a CommandPanel symbol and create and configure custom</p>
-<p>properties for it. You will also add and configure buttons for the symbol.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, create a symbol and rename it to</p>
-<p>CommandPanel.</p>
-<p>2.</p>
-<p>Double-click CommandPanel to open it in the Graphic Editor.</p>
-<p>3.</p>
-<p>Right-click the drawing canvas and select Custom Properties.</p>
-<p>The Edit Custom Properties dialog box appears.</p>
-<p>4.</p>
-<p>Click Add custom property to add a new custom property.</p>
+
+<h2>Example Command Panels</h2>
+
+<p>The finished <code>CommandPanel</code> symbol adapts its display based on the type of equipment it controls. For a valve, it shows Open and Close buttons. For a pump, it shows Start and Stop buttons. For an agitator, it additionally shows a speed setpoint entry field. The title bar always displays the name of the device being controlled.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0238_0.png" alt="Page 238">
-  <div class="caption">Page 238</div>
+  <img src="../images/page_0255_0.jpeg" alt="Runtime preview showing the Inlet1_001 valve command panel with Open and Close buttons overlaid on the Mixer100 process diagram">
+  <div class="caption">Valve command panel at runtime — clicking Inlet1_001 opens a pop-up panel titled "Inlet1_001" with Open and Close buttons. The panel appears at the mouse click position with its top-left corner aligned to where you clicked.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0238_1.png" alt="Page 238">
-  <div class="caption">Page 238</div>
+  <img src="../images/page_0256_0.jpeg" alt="Runtime preview showing the Agitator_001 command panel with Start/Stop buttons and speed setpoint entry">
+  <div class="caption">Agitator command panel at runtime — the Agitator_001 panel includes Start and Stop buttons plus a Speed setpoint entry field (unique to agitator objects that have the speed setpoint attribute).</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>5.</p>
-<p>Name the new custom property Cmd and press Enter.</p>
-<p>6.</p>
-<p>For Data Type, leave the data type as Boolean.</p>
-<p>7.</p>
-<p>In Default Value, delete False and enter Me.Cmd.</p>
-<div class="key-concept">Note:</div>
-<p>The relative reference used for the Default Value will be resolved within context later</p>
-<p>in runtime.</p>
-<p>8.</p>
-<p>In Description, enter the following:</p>
-<p>A Boolean value that sends a command to the device.</p>
+
+<h2>Create the CommandPanel Symbol</h2>
+
+<p>Begin by creating a new symbol in the Training toolset and opening it in the Graphic Editor. You will then right-click the canvas to access the Custom Properties dialog, where you will define the properties that drive the panel's behavior.</p>
+
+<p><strong>Steps 1–4:</strong> On the Graphics tab, in the Training → Symbols toolset, create a symbol and rename it to <code>CommandPanel</code>. Double-click it to open in the Graphic Editor. Right-click the drawing canvas and select <strong>Custom Properties</strong> to open the Edit Custom Properties dialog. Click the <strong>Add custom property</strong> button (+) to begin creating the first property.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0239_0.png" alt="Page 239">
-  <div class="caption">Page 239</div>
+  <img src="../images/page_0238_0.png" alt="Edit Custom Properties dialog in empty state with message prompting to click + to add properties">
+  <div class="caption">Edit Custom Properties dialog — initial empty state. The left pane shows "No Custom Properties are configured. Click '+' to add." Click the + button in the top-right to create the first custom property.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>9.</p>
-<p>Add another new custom property and name it CmdOnMsg.</p>
-<p><strong>10.</strong> For Data Type, select String.</p>
-<p><strong>11.</strong> Click the icon to the left of the Default Value field, to switch to Expression or Reference</p>
-<p>mode.</p>
-<p>The icon changes as shown below and the Default Value field appears with a red outline.</p>
-<p><strong>12.</strong> In Default Value, enter the following:</p>
-<p>Me.Cmd.OnMsg</p>
-<p><strong>13.</strong> In Description, enter the following:</p>
-<p>A String value that can be used to display the actual True command message,</p>
-<p>such as Start, Open.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0240_0.png" alt="Page 240">
-  <div class="caption">Page 240</div>
+  <img src="../images/page_0238_1.png" alt="Zoomed view showing the Add custom property button with red arrow pointing to the + icon">
+  <div class="caption">Close-up of the Add custom property button — the + icon in the top-right of the Custom Properties pane is used to add new properties.</div>
 </div>
+
+<h2>Configure the Cmd Property</h2>
+
+<p>The <code>Cmd</code> property is a Boolean that sends a command to the device. Name the new property <code>Cmd</code>, set the Data Type to <strong>Boolean</strong>, delete the default value <code>False</code> and enter <code>Me.Cmd</code>, and add a description. The relative reference <code>Me.Cmd</code> will be resolved within context at runtime.</p>
+
+<p><strong>Steps 5–8:</strong> Name the property <code>Cmd</code>. Keep Data Type as Boolean. In Default Value, enter <code>Me.Cmd</code>. In Description, enter: "A Boolean value that sends a command to the device."</p>
+
 <div class="screenshot">
-  <img src="../images/page_0240_1.png" alt="Page 240">
-  <div class="caption">Page 240</div>
+  <img src="../images/page_0239_0.png" alt="Edit Custom Properties dialog showing the Cmd property configured with Boolean type and Me.Cmd default value">
+  <div class="caption">Cmd property configuration — Boolean data type with default value <code>Me.Cmd</code>, Public visibility, and description explaining it sends a command to the device.</div>
 </div>
+
+<h2>Configure CmdOnMsg Property</h2>
+
+<p>The <code>CmdOnMsg</code> property is a String that holds the text displayed on the "on" button (e.g., "Start", "Open"). After adding the property and setting its Data Type to <strong>String</strong>, you must switch to Expression or Reference mode by clicking the toggle button to the left of the Default Value field. The icon changes to indicate expression mode is active, and the field gets a red outline. Then enter <code>Me.Cmd.OnMsg</code>.</p>
+
+<p><strong>Steps 9–13:</strong> Add property <code>CmdOnMsg</code>. Set Data Type to String. Click the mode toggle icon. Enter <code>Me.Cmd.OnMsg</code> as the Default Value. Add description: "A String value that can be used to display the actual True command message, such as Start, Open."</p>
+
 <div class="screenshot">
-  <img src="../images/page_0240_2.png" alt="Page 240">
-  <div class="caption">Page 240</div>
+  <img src="../images/page_0240_1.png" alt="Edit Custom Properties dialog showing the CmdOnMsg property with the mode toggle button highlighted">
+  <div class="caption">Switching to Expression/Reference mode — the toggle button to the left of the Default Value field changes the input mode from static text to expression evaluation.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>14.</strong> Add another custom property and name it CmdOffMsg.</p>
-<p><strong>15.</strong> For Data Type, select String.</p>
-<p><strong>16.</strong> Click the icon to the left of the Default Value field to switch to Expression or Reference</p>
-<p>mode.</p>
-<p><strong>17.</strong> In Default Value, enter the following:</p>
-<p>Me.Cmd.OffMsg</p>
-<p><strong>18.</strong> In Description, enter the following:</p>
-<p>A String value that can be used to display the actual False command message,</p>
-<p>such as Stop, Close.</p>
-<p><strong>19.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
-<p><strong>20.</strong> In the Tools pane, select the Button tool.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0241_0.png" alt="Page 241">
-  <div class="caption">Page 241</div>
+  <img src="../images/page_0240_2.png" alt="Edit Custom Properties dialog with CmdOnMsg fully configured with Me.Cmd.OnMsg reference">
+  <div class="caption">CmdOnMsg property fully configured — String data type, expression reference <code>Me.Cmd.OnMsg</code>, Public visibility, with description text filled in.</div>
 </div>
+
+<h2>Configure CmdOffMsg Property</h2>
+
+<p>The <code>CmdOffMsg</code> property follows the same pattern as CmdOnMsg but references the "off" message (e.g., "Stop", "Close").</p>
+
+<p><strong>Steps 14–19:</strong> Add property <code>CmdOffMsg</code>. Set Data Type to String. Switch to Expression/Reference mode. Enter <code>Me.Cmd.OffMsg</code>. Add description: "A String value that can be used to display the actual False command message, such as Stop, Close." Click OK to close the dialog.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0241_1.png" alt="Page 241">
-  <div class="caption">Page 241</div>
+  <img src="../images/page_0241_0.png" alt="Edit Custom Properties dialog showing all three properties: Cmd, CmdOffMsg, and CmdOnMsg configured">
+  <div class="caption">All three custom properties configured — Cmd (Boolean), CmdOffMsg (String), and CmdOnMsg (String) are listed in the left pane with their respective default values.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>21.</strong> Draw a button on the drawing canvas, and enter Open for the text.</p>
-<p>The name assigned to the button is Button1. It should look similar to the following.</p>
-<p>In this example, the Appearance \ Width property for Button1 is 100 pixels and the</p>
-<p>Appearance \ Height property is 40 pixels.</p>
-<p><strong>22.</strong> On the drawing canvas, double-click Button1 to add animations.</p>
-<p>The Edit Animations dialog box appears.</p>
-<p><strong>23.</strong> Click Add Animation to add a new animation to Button1.</p>
-<p><strong>24.</strong> In the list of animations, select Pushbutton.</p>
-<p>The Pushbutton animation is added.</p>
+
+<h2>Add Button Elements</h2>
+
+<p>With the custom properties in place, you now add visual elements to the symbol. Select the <strong>Button</strong> tool from the Tools pane and draw a button on the canvas labeled "Open". This creates Button1, which you will configure with three animations: Pushbutton, Element Style, and Value Display.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0242_1.png" alt="Page 242">
-  <div class="caption">Page 242</div>
+  <img src="../images/page_0241_1.png" alt="Tools pane showing the Button tool highlighted with a red arrow">
+  <div class="caption">Tools pane — select the Button tool (highlighted) from the Tools section to draw a pushbutton on the canvas.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>25.</strong> Configure the Pushbutton animation as follows:</p>
-<p><strong>26.</strong> Add another animation and select Element Style.</p>
-<p>States:</p>
-<p>Boolean</p>
-<p>Reference (Boolean):</p>
-<p>Cmd</p>
-<p>Action:</p>
-<p>Set</p>
-<p>Send Value:</p>
-<p>On button release checked</p>
+
+<h2>Configure Pushbutton Animation</h2>
+
+<p>Double-click Button1 to open the Edit Animations dialog. Add a <strong>Pushbutton</strong> animation from the Interaction column. Configure it with Boolean states, reference <code>Cmd</code>, Action set to <strong>Set</strong>, and <strong>On button release</strong> checked. This makes the button send a True command to the Cmd property when clicked.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0243_0.jpeg" alt="Page 243">
-  <div class="caption">Page 243</div>
+  <img src="../images/page_0243_0.jpeg" alt="Edit Animations dialog showing the Pushbutton animation configuration with Boolean states and Set action">
+  <div class="caption">Pushbutton animation configuration — Boolean states, Reference set to <code>Cmd</code>, Action set to "Set", and "On button release" checked. The preview shows the button behavior.</div>
 </div>
+
+<h2>Configure Element Style Animation</h2>
+
+<p>Add an <strong>Element Style</strong> animation from the Visualization column. This animation changes the button's visual appearance based on the Cmd value. When Cmd is True (button active), the element style is set to <strong>Active</strong>. When Cmd is False (inactive), it uses the <strong>Passive</strong> style. This provides visual feedback about the current state of the controlled device.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0243_1.jpeg" alt="Page 243">
-  <div class="caption">Page 243</div>
+  <img src="../images/page_0244_0.png" alt="Edit Animations dialog showing Element Style animation with Active and Passive styles mapped to Boolean True/False states">
+  <div class="caption">Element Style animation — True/On maps to Active style, False/Off maps to Passive style. This causes the button to visually change color based on device state.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>27.</strong> Configure the Element Style animation as follows:</p>
-<p>States:</p>
-<p>Boolean</p>
-<p>Expression Or Reference (Boolean):</p>
-<p>Cmd</p>
-<p>Values \ True, 1, On:</p>
-<p>Element Style checked (default)</p>
-<p>Active selected</p>
-<p>Values \ False, 0, Off:</p>
-<p>Element Style checked (default)</p>
-<p>Passive selected</p>
+
+<h2>Configure Value Display Animation</h2>
+
+<p>Add a <strong>Value Display</strong> animation with String states and reference <code>CmdOnMsg</code>. This makes the button display the appropriate command text (e.g., "Open" or "Start") from the custom property. Click OK to close the dialog.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0244_0.png" alt="Page 244">
-  <div class="caption">Page 244</div>
+  <img src="../images/page_0245_0.png" alt="Edit Animations dialog showing Value Display animation with String state and CmdOnMsg reference">
+  <div class="caption">Value Display animation — String state with reference <code>CmdOnMsg</code>. The button text dynamically displays the command message from the custom property.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>28.</strong> Add another animation and select Value Display.</p>
-<p><strong>29.</strong> Configure the Value Display animation as follows:</p>
-<p><strong>30.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>31.</strong> On the drawing canvas, right-click Button1 and select Duplicate.</p>
-<p>The Button1 symbol is duplicated. The name of the duplicate symbol is Button2.</p>
-<p><strong>32.</strong> Ensure Button2 is selected and move it to the right side of Button1.</p>
-<p>The buttons should look similar to the following.</p>
-<p>States:</p>
-<p>String</p>
-<p>Expression or Reference (String):</p>
-<p>CmdOnMsg</p>
+
+<h2>Duplicate and Configure Button2</h2>
+
+<p>Right-click Button1 and select <strong>Duplicate</strong> to create Button2. Move it to the right of Button1, change its text to "Close", then edit its animations: change the Value Display reference to <code>CmdOffMsg</code>, change the Element Style expression to <code>not Cmd</code> (inverting the visual), and change the Pushbutton action to <strong>Reset</strong> (sending False instead of True).</p>
+
 <div class="screenshot">
-  <img src="../images/page_0245_0.png" alt="Page 245">
-  <div class="caption">Page 245</div>
+  <img src="../images/page_0245_1.png" alt="Drawing canvas showing two buttons side by side: Open (left) and Close (right) with selection handles">
+  <div class="caption">Two buttons on the drawing canvas — Button1 (Open) on the left and Button2 (Close) on the right. Button2 is selected with blue resize handles visible.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0245_1.png" alt="Page 245">
-  <div class="caption">Page 245</div>
+  <img src="../images/page_0246_1.png" alt="Edit Animations dialog for Button2 showing Value Display with CmdOffMsg reference">
+  <div class="caption">Button2 Value Display — the Expression/Reference field is changed to <code>CmdOffMsg</code> so the Close button displays the off-state command message.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>33.</strong> On the Properties tab for Button2, modify the Appearance \ Text property to Close.</p>
-<p>The text on Button2 changes as follows:</p>
-<p><strong>34.</strong> Double-click Button2 to edit the animations.</p>
-<p>The Edit Animations dialog box appears.</p>
-<p><strong>35.</strong> For the Value Display animation, change Expression Or Reference (String) to CmdOffMsg.</p>
+
+<h2>Add Speed Setpoint Display</h2>
+
+<p>To support agitator speed control, add an <code>SA_NumericalEntry</code> embedded symbol below the buttons. Configure its Wizard Options to use CustomPropertyLabel for both LabelType and EngUnitsType, and set Outline to False. Then use Substitute References to replace all <code>Me.PV</code> references with <code>Me.Speed.SP</code>. Finally, configure the Label custom property to reference <code>Me.Speed.SP.Description</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0246_0.png" alt="Page 246">
-  <div class="caption">Page 246</div>
+  <img src="../images/page_0248_0.png" alt="Drawing canvas with SA_NumericalEntry component placed below the Open and Close buttons">
+  <div class="caption">SA_NumericalEntry embedded below the buttons — this component provides the speed setpoint entry field for agitator control.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0246_1.png" alt="Page 246">
-  <div class="caption">Page 246</div>
+  <img src="../images/page_0249_0.png" alt="Substitute Reference dialog showing Find What Me.PV and Replace with Me.Speed.SP">
+  <div class="caption">Substitute Reference dialog — replace all occurrences of <code>Me.PV</code> with <code>Me.Speed.SP</code> to bind the numerical entry to the speed setpoint attribute.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>36.</strong> For the Element Style animation, change Expression Or Reference (Boolean) to not Cmd.</p>
-<p><strong>37.</strong> For the Pushbutton animation, change Action to Reset.</p>
-<p><strong>38.</strong> Click OK to close the Edit Animations dialog box.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0247_0.png" alt="Page 247">
-  <div class="caption">Page 247</div>
+  <img src="../images/page_0250_0.png" alt="Edit Custom Properties dialog for SA_NumericalEntry showing Label property configured with Me.Speed.SP.Description">
+  <div class="caption">Label custom property for SA_NumericalEntry — set to <code>Me.Speed.SP.Description</code> in Expression/Reference mode so the label dynamically shows the speed setpoint description.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0247_1.jpeg" alt="Page 247">
-  <div class="caption">Page 247</div>
+  <img src="../images/page_0250_1.png" alt="Drawing canvas with fixed 320x230 pixel size and Properties panel showing FixedWidth and FixedHeight settings">
+  <div class="caption">Final canvas with fixed dimensions — set Graphic → Size to Fixed with FixedWidth = 320 pixels and FixedHeight = 230 pixels to contain all elements.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Add Display for Speed Setpoint</p>
-<p>Now you will add a numerical symbol to the CommandPanel symbol, for displaying and changing</p>
-<p>the speed setpoint.</p>
-<p><strong>39.</strong> On the Toolbox tab, enter a search string to find SA_NumericalEntry.</p>
-<p><strong>40.</strong> From the Toolbox tab preview area, drag SA_NumericalEntry to the drawing canvas and</p>
-<p>place it below the buttons.</p>
-<p>The elements on the canvas should look similar to the following:</p>
-<p><strong>41.</strong> With SA_NumericalEntry1 selected, on the Properties tab, configure properties as follows:</p>
-<p>Wizard Options \ LabelType:</p>
-<p>CustomPropertyLabel</p>
-<p>Wizard Options \ EngUnitsType:</p>
-<p>CustomPropertyLabel</p>
-<p>Wizard Options \ Outline:</p>
-<p>False</p>
+
+<h2>Configure FaceplateMode and TreatAsIcon</h2>
+
+<p>Set the <code>FaceplateMode</code> property to <strong>True</strong> on the CommandPanel symbol. This hides the embedded SA_NumericalEntry symbol at runtime when the CommandPanel is used for objects that do not have setpoint attributes (such as valves and pumps). Then open the detailed symbols for Agitator, Pump, and Valve, set their embedded symbols' <code>TreatAsIcon</code> property to <strong>True</strong>, and add Show Symbol animations pointing to the CommandPanel symbol.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0248_0.png" alt="Page 248">
-  <div class="caption">Page 248</div>
+  <img src="../images/page_0251_0.png" alt="Properties panel showing FaceplateMode set to True in the Runtime Behavior section">
+  <div class="caption">FaceplateMode set to True — this property hides the speed setpoint entry when the CommandPanel is used for equipment without setpoint attributes.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0248_1.png" alt="Page 248">
-  <div class="caption">Page 248</div>
+  <img src="../images/page_0251_1.png" alt="Properties panel showing TreatAsIcon set to True for the embedded agitator symbol">
+  <div class="caption">TreatAsIcon property — set to True on the embedded symbol within Agitator_Detailed so it behaves as a clickable icon that triggers the Show Symbol animation.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>42.</strong> Right-click SA_NumericalEntry1 and select Substitute | Substitute References.</p>
-<p><strong>43.</strong> Use Find & Replace to replace all occurrences of the following:</p>
-<p>Important: Be sure to click Replace All to replace all of the references.When you are</p>
-<p>finished, ensure that the references in the New column are as shown below.</p>
-<p><strong>44.</strong> Click OK to close the Substitute Reference dialog box.</p>
-<p>Find What?:</p>
-<p>Me.PV</p>
-<p>Replace with:</p>
-<p>Me.Speed.SP</p>
+
+<h2>Configure Show Symbol Animation</h2>
+
+<p>For each detailed symbol (Agitator_Detailed, Pump_Detailed, Valve_Detailed), configure a Show Symbol animation that opens the CommandPanel when the embedded symbol is clicked. Use the Galaxy Browser to browse to Graphic Toolbox → Training → Symbols and select CommandPanel. Set the Title to <code>Me.Tagname</code>, Position to <strong>Top Left Corner → Mouse</strong>, and Type to <strong>Modal</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0249_0.png" alt="Page 249">
-  <div class="caption">Page 249</div>
+  <img src="../images/page_0252_0.png" alt="Galaxy Browser showing CommandPanel symbol selected in the Training Symbols folder">
+  <div class="caption">Galaxy Browser — browse to Graphic Toolbox → Training → Symbols and select the CommandPanel symbol as the Show Symbol reference.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>45.</strong> Right-click SA_NumericalEntry1 and select Custom Properties.</p>
-<p><strong>46.</strong> Select Label from the Custom Properties list.</p>
-<p><strong>47.</strong> For Default Value, switch to Expression or Reference mode and enter</p>
-<p>Me.Speed.SP.Description.</p>
-<p><strong>48.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
-<p><strong>49.</strong> Click the drawing canvas.</p>
-<p><strong>50.</strong> On the Properties tab, change the Graphic \ Size property to Fixed.</p>
-<p><strong>51.</strong> Resize the canvas to smaller, but make sure all visual elements are included on the canvas.</p>
-<p>Your canvas should look similar to the following:</p>
-<p>In this example, the Graphic \ FixedWidth property for the symbol is 320 pixels and the</p>
-<p>Graphic \ FixedHeight property is 230 pixels.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0250_0.png" alt="Page 250">
-  <div class="caption">Page 250</div>
+  <img src="../images/page_0252_1.jpeg" alt="Edit Animations dialog showing Show Symbol configuration with CommandPanel reference, title, position, and size settings">
+  <div class="caption">Show Symbol animation configuration — reference set to CommandPanel, title set to <code>Me.Tagname</code>, position at Top Left Corner → Mouse, type Modal with close button.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0250_1.png" alt="Page 250">
-  <div class="caption">Page 250</div>
+  <img src="../images/page_0253_0.png" alt="Context menu showing Animations submenu with Copy option highlighted">
+  <div class="caption">Copy animations — right-click the configured symbol and select Animations → Copy to reuse the Show Symbol configuration on Pump_Detailed and Valve_Detailed.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>52.</strong> On the Properties tab, set the Runtime Behavior \ FaceplateMode property to True.</p>
-<p>This will hide the embedded SA_NumericalEntry symbol at runtime when the</p>
-<p>CommandPanel symbol is used for objects that do not have setpoint attributes.</p>
-<p><strong>53.</strong> Save and close the CommandPanel symbol, and check it in.</p>
-<p>Configure Show Symbol Animations</p>
-<p>In the following steps, you will configure Show Symbol animations for the Pump_Detailed,</p>
-<p>Agitator_Detailed, and Valve_Detailed symbols. You will configure the animation for one symbol,</p>
-<p>and then copy the animation configuration to the other two symbols.</p>
-<p><strong>54.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Agitator_Detailed to</p>
-<p>open it in the Graphic Editor.</p>
-<p><strong>55.</strong> Select the SA_Agitator_Settler1 symbol on the drawing canvas, and on the Properties tab,</p>
-<p>change the Runtime Behavior \ TreatAsIcon property to True.</p>
-<p><strong>56.</strong> Double-click the symbol and add a Show Symbol animation.</p>
+
+<h2>Test in Preview Session</h2>
+
+<p>Switch to the ViewApp preview session and navigate to the Mixer100 process view. Click each equipment symbol to verify that the command panel opens with the correct title, button labels, and visual behavior. Test valve operation (Open/Close), pump operation (Start/Stop), and agitator operation including speed setpoint changes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0251_0.png" alt="Page 251">
-  <div class="caption">Page 251</div>
+  <img src="../images/page_0254_0.jpeg" alt="AVEVA OMI ViewApp showing the Mixer100 process diagram with pumps, valves, agitator, and level/temperature indicators">
+  <div class="caption">Mixer100 process view — the main process diagram shows Pump1_001, Inlet1_001, Pump2_001, Inlet2_001, Agitator_001, Level_001, Temperature_001, and Outlet_001. Click any equipment symbol to open its command panel.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0251_1.png" alt="Page 251">
-  <div class="caption">Page 251</div>
+  <img src="../images/page_0256_1.jpeg" alt="Agitator command panel showing Start/Stop buttons and Speed setpoint entry with value 50.81 rpm">
+  <div class="caption">Agitator command panel with speed setpoint — the agitator panel uniquely displays the speed setpoint entry field. The setpoint can be changed by clicking the field and entering a new value.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>57.</strong> For Reference, use the Galaxy Browser to browse Graphic Toolbox \ Training \ Symbols</p>
-<p>and select CommandPanel.</p>
-<p><strong>58.</strong> Click OK to close the Galaxy Browser.</p>
-<p><strong>59.</strong> For Title, uncheck Use Symbol Name for Window Title.</p>
-<p><strong>60.</strong> For Title, switch to Expression or Reference mode, and enter Me.Tagname.</p>
-<p><strong>61.</strong> For Position, select Top Left Corner, and then select Mouse.</p>
-<p><strong>62.</strong> Click OK to close the Edit Animations dialog box.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0252_0.png" alt="Page 252">
-  <div class="caption">Page 252</div>
+  <img src="../images/page_0257_0.png" alt="Agitator command panel with editable speed setpoint field highlighted in blue">
+  <div class="caption">Editing the speed setpoint — click the speed setpoint field to make it editable, then enter a new value and press Enter to apply.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0252_1.jpeg" alt="Page 252">
-  <div class="caption">Page 252</div>
+  <img src="../images/page_0257_1.jpeg" alt="Process diagram showing updated agitator speed of 25.03 rpm after setpoint change">
+  <div class="caption">Speed setpoint updated — after entering 25 rpm, the agitator speed updates both on the command panel and on the Agitator_001 symbol in the main process diagram.</div>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>63.</strong> Right-click the SA_Agitator_Settler1 symbol on the drawing canvas, and select</p>
-<p>Animations | Copy.</p>
-<p><strong>64.</strong> Save and close the Agitator_Detailed symbol, and check it in.</p>
-<p><strong>65.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Pump_Detailed to</p>
-<p>open it in the Graphic Editor.</p>
-<p><strong>66.</strong> Select the SA_Pump_Blower_RotaryValve1 symbol on the drawing canvas, and on the</p>
-<p>Properties tab, change the Runtime Behavior \ TreatAsIcon property to True.</p>
-<p><strong>67.</strong> Right-click the symbol, and select Animations | Paste.</p>
-<p><strong>68.</strong> Save and close the Pump_Detailed symbol, and check it in.</p>
-<p><strong>69.</strong> On the Graphics tab, in the Training \ Symbols toolset, double-click Valve_Detailed to</p>
-<p>open it in the Graphic Editor.</p>
-<p><strong>70.</strong> Select the SA_Valve_And_Damper1 symbol on the drawing canvas, and on the Properties</p>
-<p>tab, change the Runtime Behavior \ TreatAsIcon property to True.</p>
-<p><strong>71.</strong> Right-click the symbol, and select Animations | Paste.</p>
-<p><strong>72.</strong> Save and close the Valve_Detailed symbol, and check it in.</p>
-<div class="screenshot">
-  <img src="../images/page_0253_0.png" alt="Page 253">
-  <div class="caption">Page 253</div>
+
+<h2>Review Questions</h2>
+
+<div class="key-concept">
+<strong>Think about the factors that affected the display of the command panel at runtime:</strong>
+<ul style="margin:0.5em 0;">
+<li>Which configurations determined the text on the buttons? (Answer: the Value Display animation referencing CmdOnMsg and CmdOffMsg custom properties)</li>
+<li>Why did the visual characteristics of the buttons change in runtime? (Answer: the Element Style animation applies Active/Passive styles based on the Cmd Boolean value)</li>
+<li>Why did the speed setpoint graphic appear on the agitator panel but not on the pump or inlet? (Answer: the FaceplateMode property hides the SA_NumericalEntry when the object lacks speed setpoint attributes)</li>
+</ul>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will review the ViewApp changes in the preview session. You will click on symbols in the</p>
-<p>ViewApp display to show the command panels for the symbols. The title and buttons on the</p>
-<p>command panels will be different depending on which symbol was clicked. The colors of the</p>
-<p>buttons will change based on the Element Style animation configuration, and the speed setpoint</p>
-<p>will only appear on the command panel for the agitator.</p>
-<p><strong>73.</strong> Switch to the ViewApp preview session.</p>
-<p><strong>74.</strong> Navigate to Mixer100.</p>
-<p><strong>75.</strong> On the ViewApp display, click the Inlet1_001 symbol to view its command panel.</p>
-<div class="screenshot">
-  <img src="../images/page_0254_0.jpeg" alt="Page 254">
-  <div class="caption">Page 254</div>
+
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+
+<details>
+<summary>Q1: What is the purpose of the FaceplateMode property?</summary>
+<p class="answer">FaceplateMode set to True hides embedded symbol elements (like the SA_NumericalEntry speed setpoint) at runtime when the CommandPanel is used for objects that do not have the corresponding attributes (such as valves and pumps).</p>
+</details>
+
+<details>
+<summary>Q2: Why do you switch to Expression/Reference mode before entering Me.Cmd.OnMsg?</summary>
+<p class="answer">The Default Value field defaults to Static Text mode, which treats input as plain text. Switching to Expression/Reference mode tells the system to evaluate the input as a dynamic reference that resolves to the actual attribute value at runtime.</p>
+</details>
+
+<details>
+<summary>Q3: What does the Element Style animation do for the buttons?</summary>
+<p class="answer">It changes the button's visual appearance (Active or Passive style) based on the Boolean Cmd value, providing visual feedback about whether the device is in its on or off state.</p>
+</details>
+
+<details>
+<summary>Q4: How do you reuse the Show Symbol animation configuration across multiple symbols?</summary>
+<p class="answer">Right-click the configured symbol, select Animations → Copy, then open the target symbol, select its embedded element, and choose Animations → Paste to apply the same configuration.</p>
+</details>
 </div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Notice that the command panel appears with its top-left corner at the position where you</p>
-<p>clicked your mouse. The title for the panel is Inlet_001 and the text on the buttons is Open</p>
-<p>and Close.</p>
-<p>The setpoint graphic is not available because valve objects do not have the speed setpoint</p>
-<p>attribute. The FaceplateMode property for the CommandPanel symbol is set to True, so</p>
-<p>graphic elements for the setpoint entry symbol are hidden.</p>
-<p>Also notice that the Element Style animation applied to the buttons causes their visual</p>
-<p>characteristics to change, based on whether the valve is open or closed. The following</p>
-<p>example shows the buttons when the valve is closed.</p>
-<p><strong>76.</strong> On the command panel, click Open and then click Close to operate the valve.</p>
-<p><strong>77.</strong> Click the X at the top of the command panel for Inlet1_001 to close it.</p>
-<div class="screenshot">
-  <img src="../images/page_0255_0.jpeg" alt="Page 255">
-  <div class="caption">Page 255</div>
-</div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>78.</strong> On the ViewApp display, click the Pump1_001 symbol to view its command panel.</p>
-<p>The command panel appears with its top-left corner at the position where you clicked your</p>
-<p>mouse. The title for the panel is Pump1_001 and the text on the buttons is Start and Stop.</p>
-<p>There are no speed setpoint graphics, and the visual characteristics of the buttons change</p>
-<p>based on whether the pump is started or stopped.</p>
-<p><strong>79.</strong> Close the command panel for Pump1_001.</p>
-<p>Important: To ensure automatic operation of the simulator, click Start or Stop to ensure the</p>
-<p>pumps are in the same state as their associated valves, so that the level in the tank begins</p>
-<p>moving again. For example, if Inlet 1 is active, then Pump 1 must also be active (started).</p>
-<p><strong>80.</strong> On the ViewApp display, click the Agitator_001 symbol to view its command panel.</p>
-<p>The command panel appears with its top-left corner at the position where you clicked your</p>
-<p>mouse. The title on the command panel displays as Agitator_001 and the text on the buttons</p>
-<p>is Start and Stop. The Speed setpoint entry symbol displays, and the buttons change based</p>
-<p>on whether the agitator is started or stopped.</p>
-<div class="screenshot">
-  <img src="../images/page_0256_0.jpeg" alt="Page 256">
-  <div class="caption">Page 256</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0256_1.jpeg" alt="Page 256">
-  <div class="caption">Page 256</div>
-</div>
-<p>Lab 7 – Creating a Custom Symbol</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>In the following steps, you will change the Speed setpoint to a different value. The setpoint will</p>
-<p>apply when the Agitator is running.</p>
-<p><strong>81.</strong> On the Agitator_001 command panel, click Speed setpoint.</p>
-<p>The field becomes editable.</p>
-<p><strong>82.</strong> Enter 25 as the speed setpoint value and press ENTER.</p>
-<p>The speed setpoint is now set to 25. The setpoint value may include a fractional part due to IO</p>
-<p>scaling settings.</p>
-<p>Notice that the speed setpoint changes on the command panel, and also on the Agitator_001</p>
-<p>symbol.</p>
-<p><strong>83.</strong> Close the command panel for Agitator_001.</p>
-<div class="screenshot">
-  <img src="../images/page_0257_0.png" alt="Page 257">
-  <div class="caption">Page 257</div>
-</div>
-<div class="screenshot">
-  <img src="../images/page_0257_1.jpeg" alt="Page 257">
-  <div class="caption">Page 257</div>
-</div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>84.</strong> Review the results of your testing in the preview session and think about the factors that</p>
-<p>affected the display of the command panel at runtime:</p>
-<p></p>
-<p>Which configurations determined the text on the buttons?</p>
-<p>___________________________________________________________________</p>
-<p></p>
-<p>Why did the visual characteristics of the buttons change in runtime?</p>
-<p>___________________________________________________________________</p>
-<p></p>
-<p>Why did the speed setpoint graphic appear on the command panel for the agitator, but</p>
-<p>not for the pump or the inlet?</p>
-<p>___________________________________________________________________</p>
-<p><strong>85.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L14-Custom-Properties.html">← L14: Custom Properties</a> &nbsp;|&nbsp;
   <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles →</a>

@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 17: Lab 8 – Working with Galaxy Styles</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -68,412 +71,296 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
-<br>
-<strong>Module 5 — External Content</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
-<br>
-<strong>Module 6 — Widgets</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
-<br>
-<strong>Module 7 — ViewApp Namespaces</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
-<br>
-<strong>Module 8 — Security</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
-<br>
-<strong>Module 9 — Alarms and Events</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L38" onchange="saveProgress()"> <a href="L38-Live-Alarm-Visualization.html">L38: Live Alarm Visualization</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
-<br>
-<strong>Module 10 — Trends</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
-<br>
-<strong>Module 11 — Historical Playback</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
-<br>
-<strong>Module 12 — .NET Controls</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
-<br>
-<strong>Module 13 — Scripting in Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L52" onchange="saveProgress()"> <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L53" onchange="saveProgress()"> <a href="L53-Lab-26---Using-the-ShowContent-Function.html">L53: Lab 26 – Using the ShowContent() Function</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L54" onchange="saveProgress()"> <a href="L54-Lab-27---Using-the-ShowGraphic-Function.html">L54: Lab 27 – Using the ShowGraphic() Function</a></label><br>
 <br><span id="progress-text"></span>
 </div>
 </nav>
 
-<h1>🔬 L17: Lab 8 – Working with Galaxy Styles</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 265-286</p>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>Introduction</p>
-<p>In this lab, you will add a Status element to the CommandPanel symbol for displaying quality and</p>
-<p>status information at runtime. You will see how it displays Pending status in a running ViewApp.</p>
-<p>Then you will use Styles to configure overrides for the quality and status display. You will set a font</p>
-<p>color override to the Pending status style and see the changes in a running ViewApp.</p>
-<p>After that, you will perform some Style management tasks, including importing additional styles</p>
-<p>into your Galaxy, renaming styles, and then exporting them with the new names.</p>
-<p>Finally, you will configure the TitleBarApp to display a drop-down list of the styles available in the</p>
-<p>Galaxy. At runtime, you will make selections from the list to dynamically change the active style for</p>
-<p>the running ViewApp.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use the Status element</p>
-<p></p>
-<p>Override styles using Configure Galaxy Styles</p>
-<p></p>
-<p>Export Galaxy Styles</p>
-<p></p>
-<p>Import Galaxy Styles</p>
-<p></p>
-<p>Use the TitleBarApp to change the active style in a ViewApp at runtime</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Add a Status Element to a Symbol</p>
-<p>In the following steps, you will add a Status element to the CommandPanel symbol to display</p>
-<p>quality and status information at runtime. You will view the status information in the preview</p>
-<p>session.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, double-click CommandPanel to</p>
-<p>open it in the Graphic Editor.</p>
-<p>2.</p>
-<p>In the Tools pane, click Status.</p>
-<p>3.</p>
-<p>Click and drag a small square above the two buttons on the drawing canvas.</p>
-<div class="screenshot">
-  <img src="../images/page_0266_0.png" alt="Page 266">
-  <div class="caption">Page 266</div>
+<h1>📖 L17: Lab 8 – Working with Galaxy Styles</h1>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 3: Industrial Graphics</p>
+<p class="page-ref">Pages 265–286 (Book pages 3-127 to 3-148)</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will add a Status element to the CommandPanel symbol for displaying quality and status information at runtime. You will observe how the Pending status indicator appears when commands are sent, then configure a font color override for the Pending status style using Galaxy Styles. You will also import additional style libraries, rename them, export them, and finally configure the TitleBarApp to display a style selector dropdown for dynamic style switching at runtime.</p>
+
+<div class="lab">
+<strong>Objectives</strong> — Upon completion of this lab, you will be able to:
+<ul style="margin:0.5em 0;">
+<li>Use the Status element</li>
+<li>Override styles using Configure Galaxy Styles</li>
+<li>Export Galaxy Styles</li>
+<li>Import Galaxy Styles</li>
+<li>Use the TitleBarApp to change the active style in a ViewApp at runtime</li>
+</ul>
 </div>
+
+<h2>Add a Status Element to the CommandPanel Symbol</h2>
+
+<p>Open the CommandPanel symbol in the Graphic Editor and add a Status element from the Tools pane. Click and drag a small square above the two buttons on the drawing canvas. When you release the mouse, the Edit Animations dialog box appears automatically with the DataStatus animation ready for configuration.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0266_1.png" alt="Page 266">
-  <div class="caption">Page 266</div>
+  <img src="../images/page_0266_0.png" alt="Tools pane showing the Status element tool highlighted">
+  <div class="caption">Tools pane — select the Status element tool (target icon with yellow status indicator) to add quality and status display functionality to the symbol.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>When you release the mouse, the Edit Animations dialog box appears.</p>
-<p>4.</p>
-<p>In the right pane, on the Graphics tab, in the Available Graphic Elements list, select</p>
-<p>Button1, and then click >> to move it to the Selected Graphic Elements list.</p>
-<p>Button1 moves to the Selected Graphic Elements list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0267_0.jpeg" alt="Page 267">
-  <div class="caption">Page 267</div>
+  <img src="../images/page_0266_1.png" alt="Drawing canvas with status element being placed above the Open and Close buttons">
+  <div class="caption">Placing the Status element — click and drag a small square above the buttons on the canvas. The status element appears with a yellow status icon inside.</div>
 </div>
+
+<h2>Configure the DataStatus Animation</h2>
+
+<p>In the Edit Animations dialog, the DataStatus animation requires you to select which graphic elements should be affected by the status display. On the Graphics tab, move both Button1 and Button2 from the Available Graphic Elements list to the Selected Graphic Elements list using the <code>&gt;&gt;</code> button. This tells the Status element to monitor and display status information for both buttons.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0267_1.jpeg" alt="Page 267">
-  <div class="caption">Page 267</div>
+  <img src="../images/page_0267_0.jpeg" alt="Edit Animations dialog showing DataStatus with Available and Selected Graphic Elements lists">
+  <div class="caption">DataStatus animation initial state — the Graphics tab shows Button1 and Button2 in the Available Graphic Elements list. Select each and click &gt;&gt; to move them to the Selected list.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0267_2.jpeg" alt="Page 267">
-  <div class="caption">Page 267</div>
+  <img src="../images/page_0267_1.jpeg" alt="Edit Animations dialog with Button1 highlighted and red arrow pointing to the move button">
+  <div class="caption">Moving Button1 — select Button1 in the Available list and click the &gt;&gt; button to move it to the Selected Graphic Elements list.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>5.</p>
-<p>Select Button2 and click >> to move it to the Selected Graphic Elements list.</p>
-<p>6.</p>
-<p>Click OK to close the Edit Animations dialog box.</p>
-<p>The elements on the drawing canvas should look similar to the following:</p>
-<p>7.</p>
-<p>Save and close the CommandPanel symbol, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0268_0.jpeg" alt="Page 268">
-  <div class="caption">Page 268</div>
+  <img src="../images/page_0267_2.jpeg" alt="Edit Animations dialog showing Button1 now in the Selected Graphic Elements list">
+  <div class="caption">Button1 moved — it now appears in the Selected Graphic Elements list. Repeat the process for Button2.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0268_1.png" alt="Page 268">
-  <div class="caption">Page 268</div>
+  <img src="../images/page_0268_0.jpeg" alt="Edit Animations dialog showing both Button1 and Button2 in the Selected list">
+  <div class="caption">Both buttons selected — Button1 and Button2 are now in the Selected Graphic Elements list. Click OK to close the dialog.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>8.</p>
-<p>Switch to the ViewApp preview session.</p>
-<p>9.</p>
-<p>Ensure the ViewApp is navigated to Mixer100.</p>
-<p><strong>10.</strong> Click the Inlet1_001 symbol to show its command panel.</p>
-<p><strong>11.</strong> Click the buttons.</p>
-<p>Notice that the pending status indicator appears briefly when you change commands.</p>
-<p><strong>12.</strong> Close the command panel.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0269_0.jpeg" alt="Page 269">
-  <div class="caption">Page 269</div>
+  <img src="../images/page_0268_1.png" alt="Drawing canvas showing the final state with status element above the buttons">
+  <div class="caption">Final canvas state — the status element is positioned above the Open and Close buttons. Save and check in the CommandPanel symbol.</div>
 </div>
+
+<h2>Test Status Display in Preview</h2>
+
+<p>Switch to the ViewApp preview session, navigate to Mixer100, and click the Inlet1_001 symbol to open its command panel. Click the buttons and observe the pending status indicator — a yellow hourglass icon appears briefly when you change commands, providing visual feedback that the command is being processed.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0269_1.png" alt="Page 269">
-  <div class="caption">Page 269</div>
+  <img src="../images/page_0269_0.jpeg" alt="Mixer100 process view with Inlet1_001 command panel showing Open and Close buttons">
+  <div class="caption">Command panel at runtime — clicking Inlet1_001 opens the command panel with Open and Close buttons. The status element is visible above the buttons.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Configure Quality and Status Display</p>
-<p>In the following steps, you will configure a font color override for the Pending status style, and then</p>
-<p>see how it behaves in runtime.</p>
-<p><strong>13.</strong> In the System Platform IDE, on the Galaxy menu, select Configure | Galaxy | Styles.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0270_0.png" alt="Page 270">
-  <div class="caption">Page 270</div>
+  <img src="../images/page_0269_1.png" alt="Command panel showing the pending status indicator (yellow hourglass) highlighted with a red arrow">
+  <div class="caption">Pending status indicator — after clicking a button, a yellow hourglass icon appears briefly at the top of the command panel, indicating the command is being processed.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The Styles area appears.</p>
-<p>By default, the Standard_Style (Default) card is selected, and its style details appear.</p>
-<p><strong>14.</strong> On the Quality & Status tab, double-click Pending.</p>
-<div class="key-concept">Note:</div>
-<p>Alternatively, you can click the pencil icon for the Pending style.</p>
+
+<h2>Configure Quality and Status Display Override</h2>
+
+<p>Open the Galaxy Styles configuration by selecting <strong>Configure → Galaxy → Styles</strong> from the Galaxy menu. By default, the Standard_Style card is selected. On the Quality &amp; Status tab, double-click the <strong>Pending</strong> status category (or click its pencil icon) to open the Status style overrides dialog.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0271_0.png" alt="Page 271">
-  <div class="caption">Page 271</div>
+  <img src="../images/page_0270_0.png" alt="Galaxy menu showing Configure submenu with Galaxy and Styles options">
+  <div class="caption">Opening Galaxy Styles — navigate to Galaxy menu → Configure → Galaxy → Styles to access the style configuration area.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0271_1.png" alt="Page 271">
-  <div class="caption">Page 271</div>
+  <img src="../images/page_0271_0.png" alt="Galaxy Styles configuration showing Standard_Style selected with Pending card highlighted">
+  <div class="caption">Standard_Style (Default) — the Quality &amp; Status tab shows all 13 status categories. Double-click Pending to edit its visual override.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>The Status style overrides dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0272_0.png" alt="Page 272">
-  <div class="caption">Page 272</div>
+  <img src="../images/page_0271_1.png" alt="Zoomed view of the Pending status card highlighted in the grid">
+  <div class="caption">Pending status card — highlighted in the status grid. Double-click it or click the pencil icon to open the style overrides dialog.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>15.</strong> On the Text tab, check Font color override, and then click the color selector.</p>
+
+<h2>Override Font Color for Pending Status</h2>
+
+<p>The Status style overrides dialog opens with the Text tab active. Check the <strong>Font color override</strong> checkbox and click the color selector to open the Select Font Color dialog. On the Solid Color tab, select light yellow from the Standard Palette. Click OK to confirm, then click Apply to close the overrides dialog.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0273_0.png" alt="Page 273">
-  <div class="caption">Page 273</div>
+  <img src="../images/page_0272_0.png" alt="Status style overrides dialog for Pending with Text tab active">
+  <div class="caption">Status style overrides — Pending status. The Text tab shows Font override, Font color override, and Blink settings. Check Font color override to enable color customization.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>The Select Font Color dialog box appears.</p>
-<p><strong>16.</strong> On the Solid Color tab, in the Standard Palette area, click light yellow.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0274_0.jpeg" alt="Page 274">
-  <div class="caption">Page 274</div>
+  <img src="../images/page_0273_0.png" alt="Status style overrides with Font color override checked and color selector highlighted">
+  <div class="caption">Font color override enabled — check the checkbox, then click the color selector square to open the color picker dialog.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0274_1.png" alt="Page 274">
-  <div class="caption">Page 274</div>
+  <img src="../images/page_0274_0.jpeg" alt="Select Font Color dialog with color wheel and standard palette">
+  <div class="caption">Select Font Color dialog — the Solid Color tab displays a Standard Palette grid of preset colors. Select light yellow for the Pending status text.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Light yellow is selected.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0275_0.jpeg" alt="Page 275">
-  <div class="caption">Page 275</div>
+  <img src="../images/page_0274_1.png" alt="Select Font Color dialog with light yellow selected showing RGB values 255, 255, 191">
+  <div class="caption">Light yellow selected — RGB values 255, 255, 191. The New preview area shows the selected color. Click OK to confirm.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>17.</strong> Click OK to close the Select Font Color dialog box.</p>
-<p>The Status style overrides dialog box shows the changes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0276_0.png" alt="Page 276">
-  <div class="caption">Page 276</div>
+  <img src="../images/page_0275_0.jpeg" alt="Select Font Color dialog with light yellow confirmed in the preview area">
+  <div class="caption">Color confirmed — light yellow is shown in the New preview area. The Current color remains black for comparison.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>18.</strong> Click Apply to close the Status style overrides dialog box.</p>
-<p>A changes pending icon appears for the Pending style and the Save button becomes</p>
-<p>enabled.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0277_0.png" alt="Page 277">
-  <div class="caption">Page 277</div>
+  <img src="../images/page_0276_0.png" alt="Status style overrides showing yellow color swatch for Font color override">
+  <div class="caption">Font color override updated — the Pending status now shows a yellow color swatch. Click Apply to save the override.</div>
 </div>
+
+<h2>Save Style Changes</h2>
+
+<p>After clicking Apply, a changes pending icon appears on the Pending style card, and the Save button becomes enabled. Click <strong>Save</strong> to commit the style override. The pending icon disappears, confirming the changes are saved.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0277_1.png" alt="Page 277">
-  <div class="caption">Page 277</div>
+  <img src="../images/page_0277_0.png" alt="Style editor showing changes pending icon on Pending card and Save button enabled">
+  <div class="caption">Changes pending — after clicking Apply, the Pending card shows a changes pending icon and the Save button becomes active. Click Save to commit.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>19.</strong> Click Save.</p>
-<p>The Save button becomes disabled and the changes pending icon for the Pending style</p>
-<p>disappears. This confirms that your style override is committed.</p>
-<p><strong>20.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
-<p><strong>21.</strong> Switch to the ViewApp preview session.</p>
-<p><strong>22.</strong> Click the Inlet1_001 symbol to show the command panel.</p>
-<p><strong>23.</strong> Click the buttons.</p>
-<p>Notice that the pending status indicator appears briefly when you change commands. The text</p>
-<p>on the buttons changes to light yellow while the quality is confirmed, and then changes back to</p>
-<p>the original text color once the quality is confirmed and the pending status is removed.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0278_0.png" alt="Page 278">
-  <div class="caption">Page 278</div>
+  <img src="../images/page_0277_1.png" alt="Style editor showing status grid after saving">
+  <div class="caption">Style saved — the changes pending icon disappears and the Save button becomes disabled, confirming the override is committed.</div>
 </div>
+
+<h2>Verify Style Override in Runtime</h2>
+
+<p>Return to the ViewApp preview session and click the Inlet1_001 symbol. Click the buttons and observe that the pending status indicator now appears with light yellow text, matching the style override you configured. The text on the buttons changes to light yellow while the quality is confirmed, then reverts once the pending status is removed.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0278_1.png" alt="Page 278">
-  <div class="caption">Page 278</div>
+  <img src="../images/page_0278_0.png" alt="Style editor showing all status cards after saving">
+  <div class="caption">Saved styles grid — all status cards are displayed without pending icons, confirming changes are saved.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>24.</strong> Close the command panel for Inlet_001.</p>
-<p>You can also change the Agitator speed setpoint, which will also reflect the font color change.</p>
-<p>Manage Galaxy Style Libraries</p>
-<p>In the following steps, you will import some styles into your Galaxy and rename them. Then you</p>
-<p>will export all the styles from your Galaxy.</p>
-<p><strong>25.</strong> In the System Platform IDE, on the Galaxy menu, select Configure | Galaxy | Styles.</p>
-<p>The Styles area appears.</p>
-<p><strong>26.</strong> In the top-right of the Styles area, click the ellipsis button and select Import.</p>
-<p>The Import Style Libraries dialog box appears.</p>
-<p><strong>27.</strong> Navigate to C:\Program Files (x86)\ArchestrA\Framework\Bin\AdditionalElementStyles.</p>
-<p>A number of predefined Galaxy styles are listed.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0279_0.png" alt="Page 279">
-  <div class="caption">Page 279</div>
+  <img src="../images/page_0278_1.png" alt="Command panel showing yellow-tinted pending status and button text">
+  <div class="caption">Pending status with color override — the command panel shows the yellow hourglass icon and button text changes to light yellow during the pending state.</div>
 </div>
+
+<h2>Manage Galaxy Style Libraries</h2>
+
+<p>Now import additional style libraries, rename them, and export all styles. Open Galaxy Styles, click the ellipsis button, and select <strong>Import</strong>. Navigate to <code>C:\Program Files (x86)\ArchestrA\Framework\Bin\AdditionalElementStyles</code> and select all the XML style files.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0279_1.png" alt="Page 279">
-  <div class="caption">Page 279</div>
+  <img src="../images/page_0279_0.png" alt="Styles panel with ellipsis menu showing Import and Export All options">
+  <div class="caption">Import styles — click the ellipsis button and select Import to open the file browser.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>28.</strong> Select all of the files in this path and click Open.</p>
-<p>Eleven styles are imported into the Galaxy and a success message appears.</p>
-<p><strong>29.</strong> Click OK to dismiss the success message.</p>
-<p>The imported styles appear in the Styles area.</p>
-<p>Notice that the new style cards are marked with a blue dot indicating pending changes to be</p>
-<p>saved. You can scroll to the right to see additional style cards.</p>
-<p>Notice that the names of the style libraries that you imported start with ElementStyle_. You can</p>
-<p>rename these imported libraries. In the next steps, you will rename these styles.</p>
-<p><strong>30.</strong> In the ElementStyle_APG card, click on the ElementStyle_APG name to make it editable.</p>
-<div class="key-concept">Note:</div>
-<p>Alternatively, you can click the ellipsis button on the style card and select Rename</p>
-<p>from the menu.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0280_0.png" alt="Page 280">
-  <div class="caption">Page 280</div>
+  <img src="../images/page_0279_1.png" alt="Windows file browser showing AdditionalElementStyles folder with XML files">
+  <div class="caption">Import Style Libraries — navigate to the AdditionalElementStyles folder containing predefined style XML files.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0280_1.png" alt="Page 280">
-  <div class="caption">Page 280</div>
+  <img src="../images/page_0280_0.png" alt="Success message showing 11 styles imported">
+  <div class="caption">Import successful — 11 styles imported. New cards appear with blue dots indicating pending changes.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0280_2.png" alt="Page 280">
-  <div class="caption">Page 280</div>
+  <img src="../images/page_0280_1.png" alt="Styles panel showing imported cards with ElementStyle_ prefix">
+  <div class="caption">Imported style cards — the new cards appear with the ElementStyle_ prefix. Blue dots indicate unsaved changes.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>31.</strong> Remove ElementStyle_ from the name.</p>
-<p>The name becomes APG.</p>
-<p><strong>32.</strong> Remove ElementStyle_ from the names on the remaining style cards that you imported.</p>
-<p>You may have to scroll to see all the style cards.</p>
-<div class="key-concept">Note:</div>
-<p>Do not rename Standard_Style (Default).</p>
-<p>The following example shows the end of the list of cards.</p>
-<p><strong>33.</strong> Click Save.</p>
-<p><strong>34.</strong> In the top-right of the Styles area, click the ellipsis button and select Export All.</p>
-<p>The Export All Style Libraries dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0281_0.png" alt="Page 281">
-  <div class="caption">Page 281</div>
+  <img src="../images/page_0280_2.png" alt="ElementStyle_APG card with name in edit mode">
+  <div class="caption">Renaming a style card — click on the ElementStyle_APG name to make it editable. Remove the prefix to rename it to "APG".</div>
 </div>
+
+<h2>Rename and Export Styles</h2>
+
+<p>Remove the <code>ElementStyle_</code> prefix from each imported card name. Rename <code>ElementStyle_APG</code> to <code>APG</code>, <code>ElementStyle_Aqua</code> to <code>Aqua</code>, and so on. Do not rename Standard_Style. After renaming all cards, click Save, then use the ellipsis menu to select <strong>Export All</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0281_1.png" alt="Page 281">
-  <div class="caption">Page 281</div>
+  <img src="../images/page_0281_0.png" alt="First style card renamed to APG with blue pending dot">
+  <div class="caption">Renamed to APG — the ElementStyle_ prefix has been removed. Repeat for all imported cards.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0281_2.png" alt="Page 281">
-  <div class="caption">Page 281</div>
+  <img src="../images/page_0281_1.png" alt="End of style card list showing renamed cards">
+  <div class="caption">All styles renamed — HPHMI, Metal, Olive, Sand, and Standard_Style (Default) are visible at the end of the list.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>35.</strong> Navigate to C:\Training.</p>
-<p><strong>36.</strong> Create a new folder and name it Styles.</p>
-<p><strong>37.</strong> With the new folder selected, click Select Folder.</p>
-<p>All of the styles are exported and a success message appears.</p>
-<p><strong>38.</strong> Click OK to dismiss the success message.</p>
-<div class="key-concept">Note:</div>
-<p>You can navigate to the C:\Training\Styles folder to verify that the style libraries were</p>
-<p>exported.</p>
-<p><strong>39.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0282_0.png" alt="Page 282">
-  <div class="caption">Page 282</div>
+  <img src="../images/page_0281_2.png" alt="Styles panel with Export All selected from ellipsis menu">
+  <div class="caption">Export All — click the ellipsis and select Export All to export all style cards to XML format.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0282_1.png" alt="Page 282">
-  <div class="caption">Page 282</div>
+  <img src="../images/page_0282_0.png" alt="Windows file browser showing C:\Training\Styles folder selected">
+  <div class="caption">Export destination — navigate to C:\Training, create a Styles folder, and click Select Folder to export.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Update Element Styles at Runtime</p>
-<p>In the following steps, you will enable the TitleBarApp in the Main layout to include a style libraries</p>
-<p>button. Then, you will use the button at runtime to switch to a different style and see the impact on</p>
-<p>the running ViewApp.</p>
-<p><strong>40.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
-<p>Layout Editor.</p>
-<p><strong>41.</strong> Select the TitleBarApp in the top pane, which is Pane4.</p>
-<p><strong>42.</strong> On the Properties tab, change the Content and Display Area \ Style Libraries property to</p>
-<p>SecondaryRight.</p>
-<p><strong>43.</strong> Save and close the Main layout, and check it in.</p>
-<p><strong>44.</strong> Close the preview session.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0283_0.png" alt="Page 283">
-  <div class="caption">Page 283</div>
+  <img src="../images/page_0282_1.png" alt="Success message showing 12 styles exported">
+  <div class="caption">Export successful — 12 styles exported to C:\Training\Styles.</div>
 </div>
+
+<h2>Update Element Styles at Runtime</h2>
+
+<p>Enable dynamic style switching by opening the Main layout in the Layout Editor, selecting the TitleBarApp (Pane4), and changing the <strong>Content and Display Area → Style Libraries</strong> property to <code>SecondaryRight</code>. Save, close, and check in the layout.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0283_1.jpeg" alt="Page 283">
-  <div class="caption">Page 283</div>
+  <img src="../images/page_0283_0.png" alt="Layout Editor showing TitleBarApp selected in the hierarchy">
+  <div class="caption">Layout Editor — Pane4 (TitleBarApp) selected in the layout hierarchy. This element will display the style selector button.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>45.</strong> Start the preview session and ensure you are navigated to Mixer100.</p>
-<p>On the TitleBarApp, on the right side of the second row, notice the style selection button. It</p>
-<p>displays as Standard_Style, which is the name of the active style.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0284_0.jpeg" alt="Page 284">
-  <div class="caption">Page 284</div>
+  <img src="../images/page_0283_1.jpeg" alt="Properties panel showing Style Libraries set to SecondaryRight">
+  <div class="caption">Style Libraries property — set to SecondaryRight to place the style selector on the right side of the second title bar row.</div>
 </div>
+
+<h2>Test Dynamic Style Switching</h2>
+
+<p>Start the preview session and navigate to Mixer100. Notice the style selection button on the title bar displaying "Standard_Style". Click it to reveal a dropdown of all available styles, then select a different style (e.g., Aqua) to see the entire ViewApp change its visual theme dynamically.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0284_1.png" alt="Page 284">
-  <div class="caption">Page 284</div>
+  <img src="../images/page_0284_0.jpeg" alt="Runtime ViewApp showing Mixer100 with Standard_Style button on title bar">
+  <div class="caption">Style selector on title bar — the Standard_Style button appears on the right side of the second title bar row.</div>
 </div>
-<p>Lab 8 – Working with Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>46.</strong> Click Standard_Style.</p>
-<p>The styles you imported into your Galaxy are listed in a drop-down list.</p>
-<p><strong>47.</strong> Select Aqua.</p>
-<p>Notice the colors of the graphics in the ViewApp display change.</p>
-<p>Also notice that the name of the styles selector changes to Aqua, which is the name of the</p>
-<p>style that is now active.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0285_0.png" alt="Page 285">
-  <div class="caption">Page 285</div>
+  <img src="../images/page_0284_1.png" alt="ViewApp showing the Standard_Style button highlighted with a red arrow">
+  <div class="caption">Style button location — click it to open the style selection dropdown.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0285_1.jpeg" alt="Page 285">
-  <div class="caption">Page 285</div>
+  <img src="../images/page_0285_0.png" alt="Style dropdown showing all imported styles with Aqua highlighted">
+  <div class="caption">Style selection dropdown — all imported styles appear. Select Aqua to change the active style. The ViewApp colors update immediately.</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>48.</strong> Click the style selector again and try other styles.</p>
-<p><strong>49.</strong> When you are finished testing, minimize the preview session.</p>
-<div class="key-concept">Note:</div>
-<p>You can leave your favorite style selected for the preview session or switch back to</p>
-<p>the Standard_Style. The screen shots in the rest of the lab exercises for this course reflect</p>
-<p>the Standard_Style.</p>
-<p><End of Lab></p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="screenshot">
+  <img src="../images/page_0285_1.jpeg" alt="ViewApp with Aqua style applied showing blue/teal color scheme">
+  <div class="caption">Aqua style applied — the entire ViewApp changes to a blue/teal color scheme. The selector now shows "Aqua" as active.</div>
+</div>
+
+<div class="tip">
+<strong>Tip:</strong> You can leave your favorite style selected or switch back to Standard_Style. The screenshots in the rest of the course reflect Standard_Style.
+</div>
+
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+
+<details>
+<summary>Q1: What does the Status element do in a symbol?</summary>
+<p class="answer">The Status element displays quality and status information at runtime. It monitors selected graphic elements and shows status indicators (like the Pending hourglass) when commands are being processed.</p>
+</details>
+
+<details>
+<summary>Q2: How do you override the font color for a specific status style?</summary>
+<p class="answer">Open Configure → Galaxy → Styles, double-click the desired status category on the Quality &amp; Status tab, check Font color override on the Text tab, choose a color, then Apply and Save.</p>
+</details>
+
+<details>
+<summary>Q3: Where are additional predefined style libraries located?</summary>
+<p class="answer">At C:\Program Files (x86)\ArchestrA\Framework\Bin\AdditionalElementStyles — containing XML files for styles like APG, Aqua, BlueSteel, Brick, Denim, Flora, Grey, HPHMI, Metal, Olive, and Sand.</p>
+</details>
+
+<details>
+<summary>Q4: How do you enable the style selector on the ViewApp title bar?</summary>
+<p class="answer">Set the TitleBarApp's Content and Display Area → Style Libraries property to a title bar position (e.g., SecondaryRight). This adds a clickable style name button that opens a dropdown of available styles.</p>
+</details>
+
+<details>
+<summary>Q5: What happens to the button text when the Pending status is active after the style override?</summary>
+<p class="answer">The button text changes to light yellow while the quality is being confirmed (pending state), then reverts to the original text color once the pending status is removed and quality is confirmed.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L16-Galaxy-Styles.html">← L16: Galaxy Styles</a> &nbsp;|&nbsp;
   <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content →</a>

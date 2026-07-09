@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 51: Lab 25 – Creating a Back Button for Navigation</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -16,6 +17,8 @@
   th, td { border: 1px solid #ddd; padding: 0.5em; text-align: left; }
   th { background: #f5f5f5; }
   code { background: #f4f4f4; padding: 0.1em 0.4em; font-size: 0.95em; }
+  pre { background: #f4f4f4; padding: 1em; border-radius: 4px; overflow-x: auto; font-size: 0.9em; line-height: 1.5; }
+  pre code { background: none; padding: 0; }
   .screenshot { text-align: center; margin: 1.5em 0; }
   .screenshot img { max-width: 100%; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
   .screenshot .caption { font-size: 0.85em; color: #666; font-style: italic; margin-top: 0.5em; }
@@ -25,14 +28,17 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
+
 <nav>
-  <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">← L50: Scripting Introduction and Symbol Script</a> &nbsp;|&nbsp;
-  <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functi →</a>
+  <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">← L50: Scripting Introduction and Symbol Scripts</a> &nbsp;|&nbsp;
+  <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -42,13 +48,11 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L01" onchange="saveProgress()"> <a href="L01-Course-Introduction-System-Platform-Overview.html">L01: Course Introduction + System Platform Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L02" onchange="saveProgress()"> <a href="L02-Lab-1---Creating-and-Deploying-a-Galaxy.html">L02: Lab 1 – Creating and Deploying a Galaxy</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L03" onchange="saveProgress()"> <a href="L03-Visualization-Encrypted-Comms-and-Requirements.html">L03: Visualization, Encrypted Comms and Requirements</a></label><br>
-<br>
 <strong>Module 2 — Getting Started</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L04" onchange="saveProgress()"> <a href="L04-Screen-Profiles-and-Layouts.html">L04: Screen Profiles and Layouts</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L05" onchange="saveProgress()"> <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">L05: Lab 2 – Creating a Screen Profile and Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L06" onchange="saveProgress()"> <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
-<br>
 <strong>Module 3 — Industrial Graphics</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
@@ -60,7 +64,6 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L15" onchange="saveProgress()"> <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">L15: Lab 7 – Creating a Custom Symbol</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L16" onchange="saveProgress()"> <a href="L16-Galaxy-Styles.html">L16: Galaxy Styles</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L17" onchange="saveProgress()"> <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles</a></label><br>
-<br>
 <strong>Module 4 — ViewApp Customizations</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L18" onchange="saveProgress()"> <a href="L18-Linking-Layouts-as-Content.html">L18: Linking Layouts as Content</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L19" onchange="saveProgress()"> <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">L19: Lab 9 – Linking a Layout as Content in an Object</a></label><br>
@@ -68,27 +71,22 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L21" onchange="saveProgress()"> <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L22" onchange="saveProgress()"> <a href="L22-Custom-Navigation.html">L22: Custom Navigation</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L23" onchange="saveProgress()"> <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">L23: Lab 11 – Rebuilding the Navigation Model</a></label><br>
-<br>
 <strong>Module 5 — External Content</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L24" onchange="saveProgress()"> <a href="L24-External-Content-Overview.html">L24: External Content Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L25" onchange="saveProgress()"> <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a ViewApp</a></label><br>
-<br>
 <strong>Module 6 — Widgets</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L26" onchange="saveProgress()"> <a href="L26-Widgets-Overview.html">L26: Widgets Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L27" onchange="saveProgress()"> <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel</a></label><br>
-<br>
 <strong>Module 7 — ViewApp Namespaces</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L28" onchange="saveProgress()"> <a href="L28-ViewApp-Namespaces-Introduction.html">L28: ViewApp Namespaces Introduction</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L29" onchange="saveProgress()"> <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">L29: Lab 14 – Using Built-in ViewApp Namespaces</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L30" onchange="saveProgress()"> <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L31" onchange="saveProgress()"> <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces</a></label><br>
-<br>
 <strong>Module 8 — Security</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L32" onchange="saveProgress()"> <a href="L32-Security-Overview-and-ViewApp-Security.html">L32: Security Overview and ViewApp Security</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L33" onchange="saveProgress()"> <a href="L33-Lab-16---Implementing-Security-in-a-ViewApp.html">L33: Lab 16 – Implementing Security in a ViewApp</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L34" onchange="saveProgress()"> <a href="L34-Signed-Writes.html">L34: Signed Writes</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L35" onchange="saveProgress()"> <a href="L35-Lab-17---Signing-Writes-from-a-ViewApp.html">L35: Lab 17 – Signing Writes from a ViewApp</a></label><br>
-<br>
 <strong>Module 9 — Alarms and Events</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L36" onchange="saveProgress()"> <a href="L36-Alarming-Overview.html">L36: Alarming Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L37" onchange="saveProgress()"> <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">L37: Lab 18 – Adding Alarm Information to Graphics</a></label><br>
@@ -96,21 +94,17 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L39" onchange="saveProgress()"> <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L40" onchange="saveProgress()"> <a href="L40-Logged-Alarms-and-Events-Visualization.html">L40: Logged Alarms and Events Visualization</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L41" onchange="saveProgress()"> <a href="L41-Lab-20---Creating-a-Historical-Alarm-Display.html">L41: Lab 20 – Creating a Historical Alarm Display</a></label><br>
-<br>
 <strong>Module 10 — Trends</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L42" onchange="saveProgress()"> <a href="L42-Historization-and-Real-Time-Trending.html">L42: Historization and Real-Time Trending</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L43" onchange="saveProgress()"> <a href="L43-Lab-21---Adding-Trending-to-Graphics.html">L43: Lab 21 – Adding Trending to Graphics</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L44" onchange="saveProgress()"> <a href="L44-Historical-Trending.html">L44: Historical Trending</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L45" onchange="saveProgress()"> <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">L45: Lab 22 – Using the InSightApp for Historical Trend</a></label><br>
-<br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
-<br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L49" onchange="saveProgress()"> <a href="L49-Lab-24---Working-with-NET-Controls.html">L49: Lab 24 – Working with .NET Controls</a></label><br>
-<br>
 <strong>Module 13 — Scripting in Graphics</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L50" onchange="saveProgress()"> <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">L50: Scripting Introduction and Symbol Scripts</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L51" onchange="saveProgress()"> <a href="L51-Lab-25---Creating-a-Back-Button-for-Navigation.html" style="font-weight:bold;color:#1a1a1a;">L51: Lab 25 – Creating a Back Button for Navigation</a></label><br>
@@ -122,464 +116,259 @@
 </nav>
 
 <h1>🔬 L51: Lab 25 – Creating a Back Button for Navigation</h1>
-<p class="source">Module 13 — Scripting in Graphics | Pages 693-704</p>
-<p>(/tmp/aveva_pages/page_0693.png)</p>
-<p><strong>Page 13-9, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Introduction</strong>: Create button symbol with custom properties to track current/previous navigation item, use in scripts/animations, add to Main layout, test in preview</p>
-<p>• <strong>UI Screenshot (grayscale)</strong>:</p>
-<p>• Top bar: Cloud\Student, minimize/maximize/close</p>
-<p>• Middle bar: Standard_Style, timestamp 11/3/2022 3:11 PM</p>
-<p>• Bottom bar: <strong>"Nav Back"</strong> button (to be created), Real-time Mode button</p>
-<p>• <strong>Objectives</strong>:</p>
-<p>• Create a named script in a symbol</p>
-<p>• Use the Action Scripts animation</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 25 – Creating a Back Button for</p>
-<p>Navigation</p>
-<p>Introduction</p>
-<p>In this lab, you will create a symbol for a button and configure it with custom properties to track the</p>
-<p>current navigation item and the previous navigation item of a ViewApp in runtime. When</p>
-<p>configuring the button symbol, you will use the custom properties in scripts and animations for the</p>
-<p>symbol.</p>
-<p>You will add the symbol to a new pane in the Main layout, to the right of Pane2, which is the pane</p>
-<p>with the NavBreadcrumbControl.</p>
-<p>Then you will test the behavior of the button in a preview session, to see how it navigates back to</p>
-<p>the previous navigation item.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a named script in a symbol</p>
-<p></p>
-<p>Use the Action Scripts animation</p>
-<div class="screenshot">
-  <img src="../images/page_0693_0.png" alt="Page 693">
-  <div class="caption">Page 693</div>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics</p>
+<p class="page-ref">Covers creating a symbol with named scripts and Action Scripts animation to navigate back through the ViewApp navigation history. (pages 693–704)</p>
+
+<hr>
+
+<div class="lab">
+<strong>Lab Introduction:</strong>
+<p>In this lab, you will create a symbol for a button and configure it with custom properties to track the current navigation item and the previous navigation item of a ViewApp at runtime. You will use custom properties in scripts and animations, add the symbol to a new pane in the Main layout, and test the behavior in a preview session.</p>
 </div>
-<p>(/tmp/aveva_pages/page_0694.png)</p>
-<p><strong>Page 13-10, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Section Title</strong>: "Create and Configure a Button Symbol"</p>
-<p>• <strong>Steps 1-4</strong>: Create BackButton symbol in Training\Symbols, open in Graphic Editor, right-click > Custom Properties</p>
-<p>• <strong>Custom Properties Table</strong>:</p>
-<p>• CurrentItem: String, (blank), Private</p>
-<p>• PreviousItem: String, (blank), Private</p>
-<p>• <strong>Step 5</strong>: Click OK to close</p>
-<p>• <strong>Screenshot - Edit Custom Properties Dialog</strong>:</p>
-<p>• Title: Edit Custom Properties - English (United States)</p>
-<p>• <strong>Left Panel</strong>: Properties list - CurrentItem, PreviousItem (both with checkmarks)</p>
-<p>• <strong>Right Panel</strong>:</p>
-<p>• Header: PreviousItem (selected), BackButton dropdown, 1 of 2 navigation</p>
-<p>• Data Type: <strong>String</strong> (dropdown)</p>
-<p>• Default Value: (empty text field)</p>
-<p>• Visibility: <strong>Private</strong> (radio button selected)</p>
-<p>• Description: (empty)</p>
-<p>• Status: "The property has a constant String value of ''."</p>
-<p>• Bottom: <strong>OK</strong> (blue), Cancel (gray)</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Create and Configure a Button Symbol</p>
-<p>In the following steps, you will create a button symbol and configure it with custom properties,</p>
-<p>scripts, and animations.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, create a symbol and name it</p>
-<p>BackButton.</p>
-<p>2.</p>
-<p>Double-click BackButton to open it in the Graphic Editor.</p>
-<p>3.</p>
-<p>Right-click the drawing canvas and select Custom Properties.</p>
-<p>The Custom Properties dialog box appears.</p>
-<p>4.</p>
-<p>Create the following custom properties:</p>
-<p>5.</p>
-<p>Click OK to close the Edit Custom Properties dialog box.</p>
-<p>Name</p>
-<p>Data Type</p>
-<p>Default Value</p>
-<p>Visibility</p>
-<p>CurrentItem</p>
-<p>String</p>
-<p>(Leave blank)</p>
-<p>Private</p>
-<p>PreviousItem</p>
-<p>String</p>
-<p>(Leave blank)</p>
-<p>Private</p>
-<div class="screenshot">
-  <img src="../images/page_0694_0.png" alt="Page 694">
-  <div class="caption">Page 694</div>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong>
+<ul>
+  <li>Create a named script in a symbol</li>
+  <li>Use the Action Scripts animation</li>
+</ul>
 </div>
-<p>(/tmp/aveva_pages/page_0695.png)</p>
-<p><strong>Page 13-11, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Step 6</strong>: Right-click canvas > Scripts, Edit Scripts dialog appears</p>
-<p>• <strong>Screenshot 1 - Edit Scripts (initial)</strong>:</p>
-<p>• Left: Symbol Scripts tree - Predefined Scripts (expanded)</p>
-<p>• Right: Predefined Scripts config - Trigger: On Show, Data Timeout: 1000 ms, scripts used: 0</p>
-<p>• Bottom: OK, Cancel buttons, Line: 1 Col: 1</p>
-<p>• <strong>Step 7</strong>: Click Add button, name script NavigationChanged</p>
-<p>• <strong>Screenshot 2 - Edit Scripts (after adding)</strong>:</p>
-<p>• Red arrow highlighting <strong>+ Add</strong> button</p>
-<p>• Left: Predefined Scripts + <strong>Named Scripts</strong> > NavigationChanged</p>
-<p>• Right: NavigationChanged configuration fields: Expression, Trigger, Deadband</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>6.</p>
-<p>Right-click the canvas and select Scripts.</p>
-<p>The Edit Scripts dialog box appears.</p>
-<p>7.</p>
-<p>Click the Add button to add a named script, and name it NavigationChanged.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0695_0.png" alt="Page 695">
-  <div class="caption">Page 695</div>
+  <img src="../images/page_0693_0.png" alt="Lab 25 introduction page showing the Nav Back button and objectives">
+  <div class="caption">Lab 25 overview: the target ViewApp layout showing a "Nav Back" button in the top bar, next to the Real-time Mode button. The lab will build this navigation feature step by step.</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>51.1 Create and Configure a Button Symbol</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Create and Configure a Button Symbol (pages 694–695)</p>
+
+<p>First, you will create a button symbol and configure it with custom properties, scripts, and animations. On the Graphics tab, in the Training \ Symbols toolset, create a symbol named <strong>BackButton</strong> and open it in the Graphic Editor. Right-click the drawing canvas and select Custom Properties to define the tracking properties.</p>
+
+<p>Create two custom properties: <code>CurrentItem</code> (String, blank default, Private) and <code>PreviousItem</code> (String, blank default, Private). Both properties are set to Private visibility so they remain hidden when the symbol is embedded.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0695_1.png" alt="Page 695">
-  <div class="caption">Page 695</div>
+  <img src="../images/page_0694_0.png" alt="Edit Custom Properties dialog showing CurrentItem and PreviousItem properties for the BackButton symbol">
+  <div class="caption">The Edit Custom Properties dialog for the BackButton symbol. The left panel shows the two custom properties (CurrentItem and PreviousItem), while the right panel displays the details for PreviousItem — a private String property with no default value.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0696.png)</p>
-<p><strong>Page 13-12, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Step 8</strong>: Enter <code>MyViewApp.Navigation.Current</code> in Expression field</p>
-<p>• <strong>Step 9</strong>: Set Trigger to DataChange</p>
-<p>• <strong>Step 10</strong>: Enter script code (pre-made text file available at C:\Training)</p>
-<p>• <strong>Script Code</strong>:</p>
-<p><code>`</code>vbscript</p>
-<p>'Script body begins...</p>
-<p>'Record the previous item.</p>
-<p>PreviousItem = CurrentItem;</p>
-<p>'Get the latest current navigation item.</p>
-<p>CurrentItem = MyViewApp.Navigation.Current;</p>
-<p>'Script body ends.</p>
-<p><code>`</code></p>
-<p>• <strong>Screenshot - Edit Scripts Dialog</strong>:</p>
-<p>• Left: Symbol Scripts - Predefined Scripts, Named Scripts > <strong>NavigationChanged</strong> (2 of 2)</p>
-<p>• <strong>Expression</strong>: MyViewApp.Navigation.Current</p>
-<p>• <strong>Trigger</strong>: DataChange, Quality changes checkbox unchecked, Period: 1000ms (inactive)</p>
-<p>• <strong>Deadband</strong>: 0</p>
-<p>• <strong>Script Editor</strong>: Code with line numbers 1-7, syntax highlighting (green comments, blue variables)</p>
-<p>• Status bar: Line: 7 Col: 1</p>
-<p>• Editor toolbar: font size, find/replace, indentation, help icons</p>
-<p>• Bottom: OK, Cancel</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p>8.</p>
-<p>In the Expression field, enter the following:</p>
-<p>MyViewApp.Navigation.Current</p>
-<p>9.</p>
-<p>For Trigger, select DataChange.</p>
-<p><strong>10.</strong> For the script body, enter the following script:</p>
-<div class="key-concept">Note:</div>
-<p>For convenience, a text file is available in the C:\Training folder that includes the</p>
-<p>scripts you will use in this lab. The name of the file is</p>
-<p>Lab 25 - Creating a Back Button for Navigation.txt. The file contains three scripts. Be sure</p>
-<p>to copy the appropriate script.</p>
-<p>'Script body begins...</p>
-<p>'Record the previous item.</p>
-<p>PreviousItem = CurrentItem;</p>
-<p>'Get the latest current navigation item.</p>
-<p>CurrentItem = MyViewApp.Navigation.Current;</p>
-<p>'Script body ends.</p>
+
+<!-- ============================================================ -->
+<h2>51.2 Create the NavigationChanged Script</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — NavigationChanged Script (pages 695–696)</p>
+
+<p>Right-click the canvas and select Scripts to open the Edit Scripts dialog. Click the Add button to create a named script called <strong>NavigationChanged</strong>. In the Expression field, enter <code>MyViewApp.Navigation.Current</code> and set the Trigger to <strong>DataChange</strong>. This script will fire whenever the current navigation item changes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0696_0.png" alt="Page 696">
-  <div class="caption">Page 696</div>
+  <img src="../images/page_0695_0.png" alt="Edit Scripts dialog with Predefined Scripts tree on the left">
+  <div class="caption">The Edit Scripts dialog showing the Symbol Scripts tree with Predefined Scripts expanded. The + button (Add) is highlighted, which you click to create the NavigationChanged named script.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0697.png)</p>
-<p><strong>Page 13-13, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Steps 11-17</strong>: Creating ResetNavBackButton script, adding button to canvas</p>
-<p>• <strong>Step 11</strong>: Create named script ResetNavBackButton</p>
-<p>• <strong>Step 12</strong>: Expression: <code>MyViewApp.Navigation.Current == PreviousItem</code></p>
-<p>• <strong>Step 13</strong>: Trigger: OnTrue</p>
-<p>• <strong>Step 14</strong>: Script:</p>
-<p><code>`</code>vbscript</p>
-<p>PreviousItem = "";</p>
-<p><code>`</code></p>
-<p>• <strong>Step 15</strong>: Click OK</p>
-<p>• <strong>Step 16</strong>: Add Button tool, text "Nav Back"</p>
-<p>• <strong>Step 17</strong>: Set Element Style to Navigation</p>
-<p>• <strong>Screenshot 1 - Edit Scripts Dialog</strong>:</p>
-<p>• Left: Predefined Scripts, Named Scripts > NavigationChanged, <strong>ResetNavBackButton</strong> (3 of 3)</p>
-<p>• Right: Expression=<code>MyViewApp.Navigation.Current == PreviousItem</code>, Trigger=OnTrue, Deadband=0</p>
-<p>• Script editor with code</p>
-<p>• <strong>Screenshot 2 - Canvas & Properties</strong>:</p>
-<p>• Canvas with "Nav Back" button selected</p>
-<p>• Properties: Name=Button1, Element Style=Navigation, X=1280, Y=160, Width=110, Height=30</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>11.</strong> Click the Add button to add a named script, and name it ResetNavBackButton.</p>
-<p><strong>12.</strong> In the Expression field, enter the following:</p>
-<p>MyViewApp.Navigation.Current == PreviousItem</p>
-<p><strong>13.</strong> For Trigger, select OnTrue.</p>
-<p><strong>14.</strong> For the script body, enter the following script:</p>
-<div class="key-concept">Note:</div>
-<p>You can find the script in the same text file Lab 25 - Creating a Back Button for</p>
-<p>Navigation.txt.</p>
-<p>'Script body begins...</p>
-<p>'Reset Previous Item</p>
-<p>PreviousItem = "";</p>
-<p>'Script body ends.</p>
-<p><strong>15.</strong> Click OK to close the Edit Scripts dialog box.</p>
-<p><strong>16.</strong> In the Tools pane, select the Button tool, add a button to the canvas, and enter Nav Back as</p>
-<p>the text.</p>
-<p>The name of the button element is Button1.</p>
-<p><strong>17.</strong> On the Properties tab, change the Appearance / Element Style property to Navigation.</p>
+
+<p>Enter the following script body, which records the previous navigation item and updates the current one:</p>
+
+<pre><code>'Script body begins...
+'Record the previous item.
+PreviousItem = CurrentItem;
+'Get the latest current navigation item.
+CurrentItem = MyViewApp.Navigation.Current;
+'Script body ends.</code></pre>
+
 <div class="screenshot">
-  <img src="../images/page_0697_0.png" alt="Page 697">
-  <div class="caption">Page 697</div>
+  <img src="../images/page_0696_0.png" alt="Edit Scripts dialog with NavigationChanged script configured with DataChange trigger">
+  <div class="caption">The NavigationChanged script fully configured: Expression set to MyViewApp.Navigation.Current, Trigger set to DataChange, with the script code visible in the editor. The script tracks navigation changes by recording the previous item and updating the current one.</div>
 </div>
+
+<div class="tip">
+<strong>Tip:</strong> For convenience, a text file is available in the C:\Training folder named <em>Lab 25 - Creating a Back Button for Navigation.txt</em> that contains all three scripts used in this lab. Be sure to copy the appropriate script for each step.
+</div>
+
+<!-- ============================================================ -->
+<h2>51.3 Create the ResetNavBackButton Script</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — ResetNavBackButton Script (page 697)</p>
+
+<p>Click the Add button again to create a second named script called <strong>ResetNavBackButton</strong>. Set the Expression to <code>MyViewApp.Navigation.Current == PreviousItem</code> and the Trigger to <strong>OnTrue</strong>. This script fires when the user navigates back to the previous item.</p>
+
+<p>Enter the following script body:</p>
+
+<pre><code>'Script body begins...
+'Reset Previous Item
+PreviousItem = "";
+'Script body ends.</code></pre>
+
 <div class="screenshot">
-  <img src="../images/page_0697_1.png" alt="Page 697">
-  <div class="caption">Page 697</div>
+  <img src="../images/page_0697_0.png" alt="Edit Scripts dialog showing both NavigationChanged and ResetNavBackButton scripts">
+  <div class="caption">The Edit Scripts dialog with all three scripts visible: Predefined Scripts, NavigationChanged (DataChange trigger), and ResetNavBackButton (OnTrue trigger). The ResetNavBackButton expression checks if the current navigation equals the previous item.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0698.png)</p>
-<p><strong>Page 13-14, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Steps 18-21</strong>: Configure button's Action Script</p>
-<p>• <strong>Step 18</strong>: Double-click Button1 to open Edit Animations</p>
-<p>• <strong>Step 19</strong>: Click Add > Action Scripts</p>
-<p>• <strong>Step 20</strong>: Trigger: On Left/Key/Touch Up</p>
-<p>• <strong>Step 21</strong>: Script:</p>
-<p><code>`</code>vbscript</p>
-<p>'Script body begins...</p>
-<p>MyViewApp.Navigation.Current = PreviousItem;</p>
-<p>'Script body ends.</p>
-<p><code>`</code></p>
-<p>• <strong>Screenshot - Edit Animations Dialog</strong>:</p>
-<p>• Left: Action Scripts (enabled, green checkmark), Interaction > Action Scripts Enabled</p>
-<p>• Right: Key Equivalent (Ctrl, Shift checkboxes, Key=None), Trigger=<strong>On Left/Key/Touch Up</strong></p>
-<p>• Scripts used: 0</p>
-<p>• Script editor: <code>MyViewApp.Navigation.Current = PreviousItem;</code></p>
-<p>• Line: 4 Col: 19</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>18.</strong> Double-click Button1 to open the Edit Animations dialog box.</p>
-<p><strong>19.</strong> Click Add and add an Action Scripts animation.</p>
-<p><strong>20.</strong> For Trigger type, ensure On Left/Key/Touch Up is selected.</p>
-<p><strong>21.</strong> For the script body, enter the following script:</p>
-<div class="key-concept">Note:</div>
-<p>You can find the script in the same text file Lab 25 - Creating a Back Button for</p>
-<p>Navigation.txt.</p>
-<p>'Script body begins...</p>
-<p>'Set the Previous navigation item as the current navigation item of</p>
-<p>the application.</p>
-<p>MyViewApp.Navigation.Current = PreviousItem;</p>
-<p>'Script body ends.</p>
+
+<!-- ============================================================ -->
+<h2>51.4 Add the Button to the Canvas</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Adding the Button (page 697)</p>
+
+<p>Click OK to close the Edit Scripts dialog. In the Tools pane, select the Button tool and add a button to the canvas with the text <strong>"Nav Back"</strong>. The button element is named Button1. On the Properties tab, change the Appearance / Element Style property to <strong>Navigation</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0698_0.png" alt="Page 698">
-  <div class="caption">Page 698</div>
+  <img src="../images/page_0697_1.png" alt="Canvas showing the Nav Back button with Navigation element style">
+  <div class="caption">The BackButton symbol canvas with the "Nav Back" button placed and its properties set — Name: Button1, Element Style: Navigation, positioned at coordinates X=1280, Y=160.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0699.png)</p>
-<p><strong>Page 13-15, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Steps 22-23</strong>: Configure Disable animation for button</p>
-<p>• <strong>Step 22</strong>: Click Add > Disable animation</p>
-<p>• <strong>Step 23</strong>: Expression: <code>PreviousItem == ""</code></p>
-<p>• <strong>Screenshot - Edit Animations Dialog (Disable)</strong>:</p>
-<p>• Left: Interaction > <strong>Disable</strong> (enabled), Action Scripts (enabled)</p>
-<p>• Right: <strong>Boolean</strong> tab selected</p>
-<p>• Expression Or Reference: <code>PreviousItem == ""</code></p>
-<p>• Disabled When Expression Is: <strong>True, 1, On</strong> (selected)</p>
-<p>• Target: Button1, 1 of 2</p>
-<p>• Bottom: OK, Cancel</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>22.</strong> Click Add and add a Disable animation.</p>
-<p><strong>23.</strong> For the Boolean Expression or Reference, enter the following expression:</p>
-<p>PreviousItem == ""</p>
+
+<!-- ============================================================ -->
+<h2>51.5 Configure the Action Script</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Action Scripts Animation (page 698)</p>
+
+<p>Double-click Button1 to open the Edit Animations dialog. Click Add and select Action Scripts. Set the Trigger type to <strong>On Left/Key/Touch Up</strong>. Enter the following script body, which sets the current navigation to the previously recorded item:</p>
+
+<pre><code>'Script body begins...
+'Set the Previous navigation item as the current navigation item
+'of the application.
+MyViewApp.Navigation.Current = PreviousItem;
+'Script body ends.</code></pre>
+
 <div class="screenshot">
-  <img src="../images/page_0699_0.png" alt="Page 699">
-  <div class="caption">Page 699</div>
+  <img src="../images/page_0698_0.png" alt="Edit Animations dialog with Action Scripts configured for the Nav Back button">
+  <div class="caption">The Edit Animations dialog for Button1 showing the Action Scripts configuration. The trigger is set to On Left/Key/Touch Up, and the script assigns the PreviousItem value to MyViewApp.Navigation.Current when clicked.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0700.png)</p>
-<p><strong>Page 13-16, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Steps 24-26</strong>: Configure Element Style animation</p>
-<p>• <strong>Step 24</strong>: Element Style animation</p>
-<p>• Boolean expression: <code>PreviousItem <> ""</code></p>
-<p>• True/1/On: Element Style = <strong>Navigation</strong></p>
-<p>• False/0/Off: Element Style = <strong>Intensity2</strong></p>
-<p>• <strong>Step 25</strong>: Click OK</p>
-<p>• <strong>Step 26</strong>: Save, close, check in BackButton symbol</p>
-<p>• <strong>Screenshot - Edit Animations Dialog (Element Style)</strong>:</p>
-<p>• Left: Visualization > <strong>Element Style</strong> (enabled), Interaction > Disable, Action Scripts (enabled)</p>
-<p>• Right: <strong>Boolean</strong> tab, 1 of 3</p>
-<p>• Expression: <code>PreviousItem <> ""</code></p>
-<p>• True/1/On: Element Style checked, dropdown=<strong>Navigation</strong></p>
-<p>• False/0/Off: Element Style checked, dropdown=<strong>Intensity2</strong></p>
-<p>• Right preview: Shows Navigation style</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>24.</strong> Add an Element Style animation and configure it as follows:</p>
-<p><strong>25.</strong> Click OK to close the Edit Animations dialog box.</p>
-<p><strong>26.</strong> Save and close the BackButton symbol, and check it in.</p>
-<p>States:</p>
-<p>Boolean</p>
-<p>Expression Or Reference (Boolean):</p>
-<p>PreviousItem <> ""</p>
-<p>Values \ True, 1, On:</p>
-<p>Element Style checked (default)</p>
-<p>Navigation selected</p>
-<p>Values \ False, 0, Off:</p>
-<p>Element Style checked (default)</p>
-<p>Intensity2 selected</p>
+
+<!-- ============================================================ -->
+<h2>51.6 Configure Disable and Element Style Animations</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Disable and Element Style Animations (pages 699–700)</p>
+
+<p>Add a <strong>Disable</strong> animation with the Boolean expression <code>PreviousItem == ""</code>. This disables the button when there is no previous navigation item to go back to — for example, when the user first opens the ViewApp and hasn't navigated anywhere yet.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0700_0.png" alt="Page 700">
-  <div class="caption">Page 700</div>
+  <img src="../images/page_0699_0.png" alt="Edit Animations dialog showing the Disable animation with the PreviousItem check">
+  <div class="caption">The Disable animation configuration. The Boolean expression PreviousItem == "" evaluates to True (disabled) when the previous item is empty, preventing the user from clicking Nav Back when there's nowhere to go back to.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0701.png)</p>
-<p><strong>Page 13-17, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Steps 27-29</strong>: Modify Main layout</p>
-<p>• <strong>Step 27</strong>: Open Main layout in Layout Editor</p>
-<p>• <strong>Step 28</strong>: Select Pane2 (contains NavBreadcrumbControl)</p>
-<p>• <strong>Step 29</strong>: Right-click Pane2 > Add Pane > Right</p>
-<p>• <strong>Screenshot 1 - Layout Editor</strong>:</p>
-<p>• Top bar: AVEVA OMI Training Application</p>
-<p>• Pane hierarchy:</p>
-<p>• Pane4 (top header)</p>
-<p>• <strong>Pane2</strong> (selected, blue): Breadcrumb navigation with Enterprise, Site, Plant, Plant Area dropdowns</p>
-<p>• Pane1 (default): Main content area</p>
-<p>• <strong>Screenshot 2 - Context Menu</strong>:</p>
-<p>• Add Pane submenu: Left, <strong>Right</strong>, Above, Below</p>
-<p>• Extend Pane, Rename Pane, Set as Default Pane, Delete Pane, Remove Content, Pane Properties</p>
-<p>• <strong>Screenshot 3 - Result</strong>:</p>
-<p>• Pane2 (left), <strong>Pane11</strong> (new, right), Pane1 (bottom)</p>
-<p>• Red arrow pointing to Pane11</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Add the Button Symbol to the Main Layout</p>
-<p>Now, you will add a pane to the Main layout and assign the BackButton symbol to it.</p>
-<p><strong>27.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Main to open it in the</p>
-<p>Layout Editor.</p>
-<p><strong>28.</strong> Select Pane2, which has the NavBreadcrumbControl assigned.</p>
-<p><strong>29.</strong> Right-click Pane2 and select Add Pane | Right.</p>
-<p>A new pane named Pane11 is added to the right of Pane2.</p>
+
+<p>Next, add an <strong>Element Style</strong> animation to provide visual feedback. The Boolean expression is <code>PreviousItem &lt;&gt; ""</code>. When True (a previous item exists), the Element Style is set to <strong>Navigation</strong>. When False (no previous item), the Element Style changes to <strong>Intensity2</strong>, giving the button a visually distinct inactive appearance.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0701_0.png" alt="Page 701">
-  <div class="caption">Page 701</div>
+  <img src="../images/page_0700_0.png" alt="Edit Animations dialog showing Element Style animation with Navigation and Intensity2 states">
+  <div class="caption">The Element Style animation configuration. When PreviousItem is not empty (True), the button uses the Navigation style. When empty (False), it switches to Intensity2, providing clear visual feedback about the button's availability.</div>
 </div>
+
+<p>Click OK to close the Edit Animations dialog. Save and close the BackButton symbol, and check it in.</p>
+
+<!-- ============================================================ -->
+<h2>51.7 Add the Button Symbol to the Main Layout</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Main Layout Modification (pages 701–702)</p>
+
+<p>Open the Main layout in the Layout Editor from the Graphics tab. Select Pane2 (which contains the NavBreadcrumbControl), right-click it, and select <strong>Add Pane → Right</strong>. A new pane named Pane11 is created to the right of Pane2.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0701_1.jpeg" alt="Page 701">
-  <div class="caption">Page 701</div>
+  <img src="../images/page_0701_0.png" alt="Layout Editor showing the pane hierarchy with Pane2 selected">
+  <div class="caption">The Layout Editor with Pane2 selected (highlighted in blue) — this is the pane containing the NavBreadcrumbControl. A new pane will be added to its right.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0701_2.png" alt="Page 701">
-  <div class="caption">Page 701</div>
+  <img src="../images/page_0701_2.png" alt="Layout Editor showing the new Pane11 created to the right of Pane2">
+  <div class="caption">After adding the pane: Pane11 appears to the right of Pane2. The red arrow indicates the new pane where the BackButton symbol will be placed.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0702.png)</p>
-<p><strong>Page 13-18, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Step 30</strong>: Search BackButton in Toolbox, drag to Pane11</p>
-<p>• <strong>Note</strong>: Can zoom preview for better view</p>
-<p>• <strong>Screenshot 1 - Pane11 Preview</strong>:</p>
-<p>• Dark window bar with controls</p>
-<p>• Pane11: Nav Back dropdown, Page 10 button, circular arrow icon</p>
-<p>• <strong>Step 31</strong>: Slide divider between Pane2 and Pane11 to resize Pane11</p>
-<p>• <strong>Screenshot 2 - Resize Preview</strong>:</p>
-<p>• Pane2: 1332 px (69%), Pane11: 365 px (19%), divider with resize cursor</p>
-<p>• <strong>Screenshot 3 - Resized Pane11</strong>:</p>
-<p>• Pane11 narrowed with Pane11 Back button, Page 10 button</p>
-<p>• <strong>Step 32</strong>: Save and close Main layout, check it in</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>30.</strong> On the Toolbox tab, enter a search string to find the BackButton symbol and drag it to</p>
-<p>Pane11.</p>
-<p>Pane11 should look similar to the following.</p>
-<div class="key-concept">Note:</div>
-<p>You can zoom the preview to get a better view.</p>
-<p><strong>31.</strong> Select the divider between Pane2 and Pane11, and then slide it to the right to reduce the</p>
-<p>width of Pane11 to the width of the BackButton symbol.</p>
-<p>Pane11 should look similar to the following:</p>
-<p><strong>32.</strong> Save and close the Main layout, and check it in.</p>
+
+<p>On the Toolbox tab, search for the BackButton symbol and drag it to Pane11. Then select the divider between Pane2 and Pane11 and slide it to reduce the width of Pane11 to fit the BackButton symbol. Save and close the Main layout, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0702_0.png" alt="Page 702">
-  <div class="caption">Page 702</div>
+  <img src="../images/page_0702_0.png" alt="Pane11 preview showing the Nav Back button placed in the layout">
+  <div class="caption">Pane11 with the BackButton symbol placed inside it, showing the "Nav Back" button alongside the breadcrumb navigation.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0702_1.png" alt="Page 702">
-  <div class="caption">Page 702</div>
+  <img src="../images/page_0702_1.png" alt="Layout Editor showing Pane11 resized to fit the button">
+  <div class="caption">Pane11 after resizing — the divider has been slid to the right to reduce Pane11's width so it fits the BackButton symbol tightly.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0702_2.png" alt="Page 702">
-  <div class="caption">Page 702</div>
+  <img src="../images/page_0702_2.png" alt="Final resized Pane11 with BackButton symbol">
+  <div class="caption">The final layout with Pane11 narrowed to just the width of the BackButton symbol, providing a compact navigation back control next to the breadcrumb.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0703.png)</p>
-<p><strong>Page 13-19, Lab 25 – Creating a Back Button for Navigation</strong>.</p>
-<p>• <strong>Section Title</strong>: "Test the ViewApp in a Preview Session"</p>
-<p>• <strong>Step 33</strong>: Switch to preview session</p>
-<p>• <strong>Note</strong>: Nav Back button is grayed out (not yet navigated)</p>
-<p>• <strong>Screenshot 1 - Disabled Nav Back Button</strong>:</p>
-<p>• Title bar: Cloud\Student, Standard_Style, timestamp 11/3/2022 2:06 PM</p>
-<p>• <strong>Nav Back button: grayed/disabled</strong> (not clickable)</p>
-<p>• Real-time Mode button</p>
-<p>• <strong>Steps 34-35</strong>: Navigate to Plant > Packaging</p>
-<p>• <strong>Screenshot 2 - Navigation View</strong>:</p>
-<p>• Breadcrumb: Plant (green 32, yellow 24, red 10) > Packaging (green 8, yellow 8, red 8)</p>
-<p>• <strong>Note</strong>: Nav Back button now enabled (different location navigated)</p>
-<p>• <strong>Screenshot 3 - Enabled Nav Back Button</strong>:</p>
-<p>• Timestamp 11/3/2022 3:11 PM</p>
-<p>• <strong>Nav Back button: enabled/clickable</strong> (dark gray, not grayed)</p>
-<p>• <strong>Footer</strong>: AVEVA™ Operations Management Interface 2023]</p>
-<p>Lab 25 – Creating a Back Button for Navigation</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the preview session.</p>
-<p><strong>33.</strong> Switch to the ViewApp preview session.</p>
-<p>Notice that the Nav Back button is displayed at the top of the ViewApp, to the right of the pane</p>
-<p>with the NavBreadcrumbControl. The Nav Back button is grayed, because you have not yet</p>
-<p>navigated within the updated ViewApp.</p>
-<p>In the next steps, you will navigate to a different location and see the behavior of the Nav Back</p>
-<p>button.</p>
-<p><strong>34.</strong> Make a note of your current navigation. For example, you may be navigated to Plant.</p>
-<p><strong>35.</strong> Navigate to a different item in the navigation.</p>
-<p>For example, navigate to Plant \ Packaging.</p>
-<p>Notice that the Nav Back button is now enabled, because you have navigated to a different</p>
-<p>item within the ViewApp.</p>
+
+<!-- ============================================================ -->
+<h2>51.8 Test the ViewApp in a Preview Session</h2>
+<p class="page-ref">Reference: Module 13, Lab 25 — Testing (pages 703–704)</p>
+
+<p>Switch to the ViewApp preview session to test your changes. When the preview opens, the Nav Back button appears at the top of the ViewApp, to the right of the NavBreadcrumbControl. Initially, the button is <strong>grayed out and disabled</strong> because you haven't navigated anywhere yet — the PreviousItem property is empty.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0703_0.png" alt="Page 703">
-  <div class="caption">Page 703</div>
+  <img src="../images/page_0703_0.png" alt="Preview session showing the disabled Nav Back button at the top of the ViewApp">
+  <div class="caption">The ViewApp preview session with the Nav Back button displayed but grayed out (disabled). Since no navigation has occurred yet, PreviousItem is empty and the Disable animation prevents clicking.</div>
 </div>
+
+<p>Make a note of your current navigation position (for example, Plant), then navigate to a different item such as Plant \ Packaging. Notice that the Nav Back button is now <strong>enabled</strong> because you've navigated to a different item — the PreviousItem property now holds a value.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0703_1.png" alt="Page 703">
-  <div class="caption">Page 703</div>
+  <img src="../images/page_0703_1.png" alt="ViewApp navigated to Plant > Packaging with alarm indicators">
+  <div class="caption">The ViewApp after navigating to Plant > Packaging. The breadcrumb shows the current location with alarm status indicators (green, yellow, red counts).</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0703_2.png" alt="Page 703">
-  <div class="caption">Page 703</div>
+  <img src="../images/page_0703_2.png" alt="Nav Back button now enabled after navigating to a different item">
+  <div class="caption">The Nav Back button is now enabled (dark gray, clickable) because the user has navigated away from the initial location. The PreviousItem property now contains a value.</div>
 </div>
-<p>(/tmp/aveva_pages/page_0704.png)</p>
-<p><strong>Page 13-20, Module 13 – Scripting in Graphics</strong>.</p>
-<p>• <strong>Step 36</strong>: Click Nav Back - navigates back to Plant (previous item)</p>
-<p>• <strong>Observation</strong>: Nav Back button disabled after navigating back</p>
-<p>• <strong>Step 37</strong>: Navigate to different items, test Nav Back</p>
-<p>• <strong>Step 38</strong>: Minimize preview session and ViewApp Editor when finished</p>
-<p>• <strong><End of Lab></strong></p>
-<p>• <strong>Screenshot - Navigation View</strong>:</p>
-<p>• Title bar: AVEVA OMI Training Application</p>
-<p>• Hamburger menu, Home icon > <strong>Plant</strong> (current location)</p>
-<p>• Plant status indicators: Red Diamond 32, Yellow Triangle 24, Blue Square 10</p>
-<p>• <strong>Watermark</strong>: DO NOT COPY</p>
-<p>• <strong>Footer</strong>: AVEVA™ Training]</p>
-<p>Module 13 – Scripting in Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>36.</strong> Click Nav Back.</p>
-<p>Notice that you have navigated back to the previous item, which in this example, is Plant.</p>
-<p>The Nav Back button is disabled.</p>
-<p><strong>37.</strong> Navigate to different items in the ViewApp, and then use the Nav Back button to navigate to</p>
-<p>the previous item.</p>
-<p><strong>38.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<p><End of Lab></p>
+
+<p>Click the Nav Back button. You navigate back to the previous item (Plant in this example), and the Nav Back button becomes disabled again. Navigate to different items and use Nav Back to verify the behavior works correctly.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0704_0.png" alt="Page 704">
-  <div class="caption">Page 704</div>
+  <img src="../images/page_0704_0.png" alt="ViewApp after clicking Nav Back - navigated back to Plant">
+  <div class="caption">After clicking Nav Back, the ViewApp returns to the Plant location. The Nav Back button is disabled again since there's no previous navigation to return to.</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">← L50: Scripting Introduction and Symbol Script</a> &nbsp;|&nbsp;
-  <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functi →</a>
+
+<p>When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
+
+<hr>
+
+<!-- ============================================================ -->
+<h2>Lab Summary</h2>
+
+<div class="key-concept">
+<strong>What You Accomplished:</strong>
+<ul>
+  <li>Created a <strong>BackButton</strong> symbol with custom properties (CurrentItem, PreviousItem) to track navigation state</li>
+  <li>Wrote a <strong>NavigationChanged</strong> named script with DataChange trigger to record navigation changes</li>
+  <li>Wrote a <strong>ResetNavBackButton</strong> named script with OnTrue trigger to clear PreviousItem when navigating back</li>
+  <li>Added an <strong>Action Script</strong> to the button that sets the current navigation to the previous item on click</li>
+  <li>Configured <strong>Disable</strong> and <strong>Element Style</strong> animations for visual feedback</li>
+  <li>Integrated the button into the Main layout via a new pane in the Layout Editor</li>
+</ul>
+</div>
+
+<hr>
+
+<!-- Quiz -->
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+<details>
+<summary>Q1: What custom properties are created for the BackButton symbol?</summary>
+<p class="answer">Two String properties: CurrentItem (tracks the current navigation item) and PreviousItem (tracks the previous navigation item). Both are set to Private visibility with blank defaults.</p>
+</details>
+
+<details>
+<summary>Q2: What trigger type is used for the NavigationChanged script and why?</summary>
+<p class="answer">DataChange trigger, with the expression MyViewApp.Navigation.Current. This ensures the script runs whenever the current navigation item changes, allowing it to record the previous item.</p>
+</details>
+
+<details>
+<summary>Q3: What does the Disable animation do on the Nav Back button?</summary>
+<p class="answer">It disables the button when PreviousItem equals an empty string (""), preventing the user from clicking Nav Back when there's no previous location to return to.</p>
+</details>
+
+<details>
+<summary>Q4: How does the Element Style animation provide visual feedback?</summary>
+<p class="answer">When PreviousItem is not empty (True), the button uses the Navigation style. When empty (False), it switches to Intensity2, giving a visually distinct inactive appearance that matches the disabled state.</p>
+</details>
+
+<details>
+<summary>Q5: What happens when you click the Nav Back button?</summary>
+<p class="answer">The Action Script sets MyViewApp.Navigation.Current to the value of PreviousItem, navigating back to the previous location. The ResetNavBackButton script then fires (OnTrue) and clears PreviousItem to an empty string, disabling the button again.</p>
+</details>
+</div>
+
+<hr>
+<p class="source">Source: AVEVA Operations Management Interface 2023 Training Manual, Module 13 – Scripting in Graphics, Lab 25</p>
+<p class="page-ref">Pages 693–704</p>
+
+<nav>
+  <a href="L50-Scripting-Introduction-and-Symbol-Scripts.html">← L50: Scripting Introduction and Symbol Scripts</a> &nbsp;|&nbsp;
+  <a href="L52-Layout-Scripts-and-Graphic-Client-Functions.html">L52: Layout Scripts and Graphic Client Functions →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

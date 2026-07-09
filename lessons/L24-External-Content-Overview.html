@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -122,180 +123,168 @@
 </nav>
 
 <h1>📖 L24: External Content Overview</h1>
-<p class="source">Module 5 — External Content | Pages 351-356</p>
-<p>Section 1 – Introduction to External Content</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction to External Content</p>
-<p>Introduction</p>
-<p>External content refers to media content outside of a Galaxy that can be linked to a ViewApp and</p>
-<p>displayed during runtime. System Platform includes some pre-built Apps to show content specified</p>
-<p>by external content items, such as web content, Microsoft Word documents, images, and more.</p>
-<p>An external content item is created in the Graphics tab, and then configured with the External</p>
-<p>Content Editor to identify the location of the external media and content types. External content</p>
-<p>items are managed within the Graphics tab hierarchy of content items, which is visible in the</p>
-<p>System Platform IDE and the Toolbox or Assets areas of the Layout and ViewApp Editors.</p>
-<p>To associate external content to a ViewApp, you can manually assign the external content item to</p>
-<p>a layout pane. You can also link an external content item to an automation object for auto-fill</p>
-<p>navigation. A single external content item can be linked to multiple objects.</p>
-<p>Media Files</p>
-<p>Keep the following in mind for your media files:</p>
-<p></p>
-<p>If you are placing media files for the external content on a remote computer in your</p>
-<p>network, ensure the connectivity between the computer where the ViewApp will run and</p>
-<p>the computer where the remote media is stored.</p>
-<p></p>
-<p>If you are planning to specify the location of a media file for external content with a URI set</p>
-<p>to a standard Windows mapped drive, it is important that the computer on which the</p>
-<p>ViewApp is launched has the same drive letter mapped to the location having the</p>
-<p>referenced content.</p>
-<p></p>
-<p>If you intend to show videos within a running ViewApp on a computer running a supported</p>
-<p>version of Windows Server 2012, ensure the Desktop Experience feature is enabled.</p>
-<p>Desktop Experience includes required media features that are not enabled by default on</p>
-<p>the different versions of Windows Server 2012 supported by System Platform.</p>
-<p>In later operating systems, installing the Full GUI includes the Desktop Experience and</p>
-<p>support for showing videos within a running ViewApp.</p>
-<p>This section introduces using external content in ViewApps, including how to create, configure,</p>
-<p>and manage external content items.</p>
-<div class="screenshot">
-  <img src="../images/page_0351_0.jpeg" alt="Page 351">
-  <div class="caption">Page 351</div>
+<p class="source">Module 5 — External Content | Section 1: Introduction to External Content</p>
+<p class="page-ref">Pages 351–355</p>
+
+<h2>What Is External Content?</h2>
+
+<p>External content refers to media content that lives outside of a Galaxy but can be linked to a ViewApp and displayed at runtime. System Platform includes several pre-built viewer Apps that can render this content — web pages, Microsoft Word documents, images, PDFs, spreadsheets, and more. Rather than rebuilding everything from scratch, you simply point to existing media files and let the built-in viewers handle the display.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> An external content item is a named reference created in the Graphics tab that identifies the location and type of external media. It can be linked to one or more layout panes or automation objects for display at runtime.
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>Create External Content Items</p>
-<p>You create external content items in the Graphics tab in the System Platform IDE. From the</p>
-<p>Graphics tab, right-click the Galaxy name or a toolset name and select New | External Content.</p>
-<p>The following shows creating a new external content item in a toolset named Training.</p>
-<p>The external content item appears in the Graphics tab with an identifying icon. It is created with a</p>
-<p>default name of ExternalContent_001 for the first external content item, but you can rename it.</p>
-<p>Once the external content item is created, you can configure it in the External Content Editor.</p>
-<div class="key-concept">Note: Before configuring an external content item in the External Content Editor, you must know</div>
-<p>the location of the external media, the type of media, and the content types of the layout pane that</p>
-<p>can host the external content.</p>
-<p>External Content Editor</p>
-<p>You configure external content items in the External Content Editor. From the Graphics tab,</p>
-<p>double-click the external content item to open it in the editor.</p>
-<p></p>
-<p>URL or URI: The location of an external media item using a standard format. Can be</p>
-<p>specified as either a static string or an expression/reference.</p>
+
+<p>External content items are created within the Graphics tab and configured using the External Content Editor, which specifies the location of the media and the content type. These items are managed in the Graphics tab hierarchy, visible in both the System Platform IDE and the Toolbox or Assets areas of the Layout and ViewApp Editors.</p>
+
+<p>To associate external content with a ViewApp, you can either manually assign the external content item to a layout pane, or link it to an automation object for auto-fill navigation. A single external content item can be linked to multiple objects, making it a flexible mechanism for displaying shared resources.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0352_0.png" alt="Page 352">
-  <div class="caption">Page 352</div>
+  <img src="../images/page_0351_0.jpeg" alt="Windows Server Add Roles and Features Wizard showing Desktop Experience feature selected">
+  <div class="caption">Windows Server Add Roles and Features Wizard — the Desktop Experience feature must be enabled on Windows Server 2012 to support video playback in ViewApps</div>
 </div>
+
+<h2>Important Considerations for Media Files</h2>
+
+<p>When working with external media files, there are several important factors to keep in mind regarding connectivity, drive mapping, and operating system features.</p>
+
+<div class="pitfall">
+<strong>Pitfall:</strong> If you are showing videos within a running ViewApp on Windows Server 2012, you must enable the Desktop Experience feature. This feature includes required media components that are not enabled by default on Windows Server 2012. On later operating systems, installing the Full GUI automatically includes Desktop Experience.
+</div>
+
+<p>Here are the key considerations for your media files:</p>
+
+<ul>
+  <li><strong>Remote media files:</strong> If you are placing media files on a remote computer in your network, ensure that the computer where the ViewApp runs has reliable connectivity to the remote storage location.</li>
+  <li><strong>Mapped drive URIs:</strong> If you specify a media file location using a Windows mapped drive letter, the computer launching the ViewApp must have the same drive letter mapped to the same location. Different machines may have different mappings.</li>
+  <li><strong>Video on Windows Server 2012:</strong> Enable the Desktop Experience feature through the Add Roles and Features Wizard, as shown above. Without it, video content will not render in the ViewApp.</li>
+</ul>
+
+<h2>Creating External Content Items</h2>
+
+<p>You create external content items in the Graphics tab of the System Platform IDE. Right-click the Galaxy name or a toolset name, then select <strong>New → External Content</strong>. The item appears with an identifying icon and a default name of <code>ExternalContent_001</code>, which you can rename at any time.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0352_1.png" alt="Page 352">
-  <div class="caption">Page 352</div>
+  <img src="../images/page_0352_0.png" alt="System Platform IDE Graphics tab showing the right-click context menu with External Content option">
+  <div class="caption">Creating a new external content item — right-click the Training toolset and select New → External Content</div>
 </div>
-<p>Section 1 – Introduction to External Content</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The Mode icon on the left of the field provides options to select Constant or Reference Or</p>
-<p>Expression to set the mode for the field. Click the down-arrow to display the drop-down</p>
-<p>list.</p>
-<p>If set to Constant, an ellipsis to the right of the field provides options to browse for an</p>
-<p>external media file and to specify a URL using HTTP or HTTPs. If set to Reference Or</p>
-<p>Expression, an ellipsis to the right of the field opens the Galaxy Browser that can be used</p>
-<p>to select references. You can build a custom expression to specify the location of the</p>
-<p>media file.</p>
-<p></p>
-<p>Open: If the mode for the URL or URI field is Constant, the Open button validates the</p>
-<p>location of external media specified in the URL or URI field. An attempt is made to display</p>
-<p>the external media in an application assigned as the default by the operating system, not</p>
-<p>the App specified for the external content media type. A warning appears if the external</p>
-<p>media cannot be found at the location specified in the URL or URI field.</p>
-<p>If the mode for the URL or URI field is Expression Or Reference, the Open button is</p>
-<p>disabled.</p>
-<p></p>
-<p>Media Type: A two-part identifier that specifies the type of application required to process</p>
-<p>or view the media item. A media type can be entered in the field or selected from a drop-</p>
-<p>down list. Available media types are listed in the drop-down list in bold text. If an</p>
-<p>unavailable media type is entered or selected, the external content may not display</p>
-<p>properly in the running ViewApp.</p>
-<p></p>
-<p>Suggest: If the mode for the URL or URI field is Constant, the Suggest button selects a</p>
-<p>media type based on the entry in the URL or URI field. The entered value can be changed</p>
-<p>if the suggestion does not match the expected media type.</p>
-<p>If the mode for the URL or URI field is Expression Or Reference, the Suggest button is</p>
-<p>disabled.</p>
-<p></p>
-<p>Content Type(s): Content type(s) of the external media item. The content types specified</p>
-<p>for the external media must match with the content types configured for the layout panes</p>
-<p>that will show the external media at runtime.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0353_0.png" alt="Page 353">
-  <div class="caption">Page 353</div>
+  <img src="../images/page_0352_1.png" alt="External Content Editor window with URL/URI, Media Type, and Content Type fields">
+  <div class="caption">The External Content Editor — configure the URL or URI, Media Type, and Content Type(s) for the external content item</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>Out-of-the-Box Viewer OMI Apps</p>
-<p>Out-of-the-box Apps for viewing external content include the WebBrowser control, which provides</p>
-<p>a full-featured, standards-complaint web browser to the ViewApp, as well as the following:</p>
-<p></p>
-<p>DocViewerApp shows a Microsoft Word document within a pane of a running ViewApp. It</p>
-<p>initially shows the first page of the document at 100 percent zoom scale. It includes a set</p>
-<p>of visual controls for zooming the display of the document or searching the content. No</p>
-<p>permanent editing changes can be made to the Word document from within the</p>
-<p>DocViewerApp.</p>
-<p></p>
-<p>ImageViewerApp shows an image within a pane of a running ViewApp. It includes a set</p>
-<p>of visual controls for zooming, flipping, or rotating the display of the image. No permanent</p>
-<p>editing changes can be made to the image from within the ImageViewerApp.</p>
-<p></p>
-<p>PDFViewerApp shows a Portable Document Format (PDF) document within a pane of a</p>
-<p>running ViewApp. It initially shows the first page of the document at 100 percent zoom</p>
-<p>scale. It includes a set of visual controls for zooming, searching the content, paging</p>
-<p>through the document, rotating the document, or changing the number of pages displayed.</p>
-<p>No permanent editing changes can be made to the PDF document from within the</p>
-<p>PDFViewerApp.</p>
-<p></p>
-<p>SpreadsheetViewerApp shows a Microsoft Excel spreadsheet within a pane of a running</p>
-<p>ViewApp. It initially shows the first worksheet of the spreadsheet at 100 percent zoom</p>
-<p>scale. It includes a set of visual controls for zooming the content. No permanent editing</p>
-<p>changes can be made to the spreadsheet from within the SpreadsheetViewerApp.</p>
-<p>External Content in Automation Objects</p>
-<p>You can link an external content item to an automation object for auto-fill navigation. A single</p>
-<p>external content item can be linked to multiple objects.</p>
-<p>When editing an object in the Object Editor, you can link an external content item to the object from</p>
-<p>the Content pane on the Attributes tab. Clicking the Link Content button opens the Galaxy</p>
-<p>Browser, allowing you to navigate to the location where the external content is stored and select</p>
-<p>the media file.</p>
+
+<div class="key-concept">
+<strong>Before you configure:</strong> Before opening the External Content Editor, you must know three things: (1) the location of the external media, (2) the type of media (e.g., image, PDF, spreadsheet), and (3) the content types of the layout pane that will host the content.
+</div>
+
+<h2>The External Content Editor</h2>
+
+<p>Double-click an external content item in the Graphics tab to open it in the External Content Editor. The editor provides several fields for configuring how the external content is loaded and displayed.</p>
+
+<h3>URL or URI Field</h3>
+
+<p>The URL or URI field specifies the location of the external media. It can be set as a static string (Constant mode) or as a dynamic reference/expression. The Mode icon on the left of the field lets you switch between these modes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0354_0.png" alt="Page 354">
-  <div class="caption">Page 354</div>
+  <img src="../images/page_0353_0.png" alt="URL/URI field showing the mode dropdown with Constant and Reference Or Expression options">
+  <div class="caption">URL/URI field configuration — the mode icon on the left lets you choose between Constant and Reference Or Expression modes</div>
 </div>
-<p>Section 1 – Introduction to External Content</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Delete an External Content Item</p>
-<p>You can delete an external content item from the Graphics tab by right-clicking the external</p>
-<p>content item and selecting Delete. The Confirm delete dialog box appears, listing any references</p>
-<p>to the external content item and allowing you to confirm or cancel the deletion.</p>
-<p>Import and Export External Content Items</p>
-<p>An external content item in a Galaxy can be managed from the Graphics tab using standard</p>
-<p>options from the right-click shortcut menu or from the Edit options of the System Platform IDE</p>
-<p>menu bar. For example, you can right-click an external content item in the Graphics tab and select</p>
-<p>from the shortcut menu.</p>
-<p>A ViewApp containing Apps designed to display external content can be exported from one Galaxy</p>
-<p>and imported to another Galaxy. The External Content Editor is capable of recognizing a new</p>
-<p>media type from the imported App.</p>
-<p>An external content item can be:</p>
-<p></p>
-<p>Exported to an aaPKG file</p>
-<p></p>
-<p>Imported from an aaPKG file</p>
-<p></p>
-<p>Included in a Galaxy backup</p>
-<p></p>
-<p>Restored from a Galaxy backup</p>
-<p></p>
-<p>Included in an export of layouts or ViewApps that have external content items associated</p>
-<p>with them</p>
+
+<p>In <strong>Constant mode</strong>, an ellipsis button appears to the right that lets you browse for a file or specify an HTTP/HTTPS URL. In <strong>Reference Or Expression mode</strong>, the ellipsis opens the Galaxy Browser, where you can select references or build a custom expression to locate the media dynamically.</p>
+
+<h3>Other Editor Fields</h3>
+
+<table>
+  <tr><th>Field</th><th>Description</th></tr>
+  <tr><td><strong>URL or URI</strong></td><td>The location of external media. Can be a file path, HTTP URL, or dynamic expression.</td></tr>
+  <tr><td><strong>Open</strong></td><td>In Constant mode, validates the media location and attempts to open it with the OS default application. Disabled in Expression/Reference mode.</td></tr>
+  <tr><td><strong>Media Type</strong></td><td>A two-part MIME identifier (e.g., <code>image/png</code>, <code>text/plain</code>) specifying the type of application needed to process the media. Available types appear in bold in the dropdown.</td></tr>
+  <tr><td><strong>Suggest</strong></td><td>Auto-detects the media type based on the file extension. Only works in Constant mode.</td></tr>
+  <tr><td><strong>Content Type(s)</strong></td><td>The content types assigned to this item. Must match the content types configured for the layout panes that will display the content at runtime.</td></tr>
+</table>
+
+<h2>Out-of-the-Box Viewer Apps</h2>
+
+<p>System Platform provides several built-in Apps for displaying external content. These viewers handle rendering and user interaction (zoom, search, paging) without allowing permanent edits to the source files.</p>
+
+<table>
+  <tr><th>Viewer App</th><th>Supported Format</th><th>Key Features</th></tr>
+  <tr><td><strong>WebBrowser</strong></td><td>Web pages (HTML)</td><td>Full-featured standards-compliant web browser control</td></tr>
+  <tr><td><strong>DocViewerApp</strong></td><td>Microsoft Word documents</td><td>First page at 100% zoom, zoom/search controls, no editing</td></tr>
+  <tr><td><strong>ImageViewerApp</strong></td><td>Images (PNG, JPG, etc.)</td><td>Zoom, flip, and rotate controls, no editing</td></tr>
+  <tr><td><strong>PDFViewerApp</strong></td><td>PDF documents</td><td>First page at 100% zoom, zoom/search/paging/rotate, no editing</td></tr>
+  <tr><td><strong>SpreadsheetViewerApp</strong></td><td>Microsoft Excel spreadsheets</td><td>First worksheet at 100% zoom, zoom controls, no editing</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0355_0.png" alt="Page 355">
-  <div class="caption">Page 355</div>
+  <img src="../images/page_0354_0.png" alt="Content pane in the Object Editor showing the Link Content button for associating external content with automation objects">
+  <div class="caption">Linking external content to an automation object — click the Link Content button (double-plus icon) in the Content pane on the Attributes tab</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h2>Linking External Content to Automation Objects</h2>
+
+<p>You can link an external content item to an automation object for auto-fill navigation. This means that when a user navigates to the object at runtime, the associated external content automatically appears in the layout. A single external content item can be linked to multiple objects.</p>
+
+<p>To create this link, open the object in the Object Editor, go to the Content pane on the Attributes tab, and click the <strong>Link Content</strong> button. The Galaxy Browser opens, allowing you to navigate to and select the external content item.</p>
+
+<h2>Deleting External Content Items</h2>
+
+<p>To delete an external content item, right-click it in the Graphics tab and select <strong>Delete</strong>. A Confirm Delete dialog appears that lists any objects referencing the item, allowing you to review dependencies before confirming the deletion.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0355_0.png" alt="Confirm Delete dialog showing references to the external content item before deletion">
+  <div class="caption">Confirm Delete dialog — review any references to the external content item before confirming deletion</div>
+</div>
+
+<h2>Import and Export</h2>
+
+<p>External content items can be managed using standard import/export operations from the Graphics tab. A ViewApp containing Apps designed to display external content can be exported from one Galaxy and imported to another. The External Content Editor automatically recognizes new media types from imported Apps.</p>
+
+<div class="key-concept">
+<strong>External content items support:</strong>
+<ul style="margin:0.5em 0 0 0;">
+  <li>Export to and import from aaPKG files</li>
+  <li>Inclusion in Galaxy backups and restoration from backups</li>
+  <li>Bundling with layouts or ViewApps that reference them</li>
+</ul>
+</div>
+
+<h2>Knowledge Check</h2>
+
+<div class="quiz">
+<h3>Quiz</h3>
+
+<details>
+<summary>Q1: What is external content in the context of System Platform?</summary>
+<p class="answer">External content refers to media content outside of a Galaxy that can be linked to a ViewApp and displayed at runtime. This includes web pages, Word documents, images, PDFs, and spreadsheets.</p>
+</details>
+
+<details>
+<summary>Q2: What must you know before configuring an external content item in the External Content Editor?</summary>
+<p class="answer">You must know the location of the external media, the type of media (e.g., image, PDF), and the content types of the layout pane that will host the content.</p>
+</details>
+
+<details>
+<summary>Q3: What are the two modes for the URL or URI field in the External Content Editor?</summary>
+<p class="answer">Constant mode (for static file paths or URLs) and Reference Or Expression mode (for dynamic references or expressions using the Galaxy Browser).</p>
+</details>
+
+<details>
+<summary>Q4: Name three out-of-the-box viewer Apps for external content.</summary>
+<p class="answer">DocViewerApp (Word documents), ImageViewerApp (images), PDFViewerApp (PDFs), SpreadsheetViewerApp (Excel spreadsheets), and WebBrowser (web pages).</p>
+</details>
+
+<details>
+<summary>Q5: Can a single external content item be linked to multiple automation objects?</summary>
+<p class="answer">Yes. A single external content item can be linked to multiple objects for auto-fill navigation.</p>
+</details>
+
+<details>
+<summary>Q6: What special feature must be enabled on Windows Server 2012 to show videos in a ViewApp?</summary>
+<p class="answer">The Desktop Experience feature must be enabled through the Add Roles and Features Wizard. It includes required media features not enabled by default on Windows Server 2012.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L23-Lab-11---Rebuilding-the-Navigation-Model.html">← L23: Lab 11 – Rebuilding the Navigation Model</a> &nbsp;|&nbsp;
   <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">L25: Lab 12 – Creating External Content for a →</a>

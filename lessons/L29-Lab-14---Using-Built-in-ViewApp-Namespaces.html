@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 29: Lab 14 – Using Built-in ViewApp Namespaces</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -24,10 +25,11 @@
   .answer { color: #2c5f2d; font-weight: bold; }
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
-  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .source, .page-ref { font-size: 0.85em; color: #777; font-style: italic; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -121,225 +123,261 @@
 </div>
 </nav>
 
-<h1>🔬 L29: Lab 14 – Using Built-in ViewApp Namespaces</h1>
-<p class="source">Module 7 — ViewApp Namespaces | Pages 397-408</p>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>Introduction</p>
-<p>In this lab, you will create a symbol with two buttons for navigating to the previous and next sibling</p>
-<p>navigation items within the Line1 and Line2 areas at runtime.</p>
-<p>When configuring animations for the buttons, you will use attributes from the Navigation</p>
-<p>namespace to control whether the buttons are active or disabled at runtime, based on whether a</p>
-<p>next or previous sibling navigation item is available within the area.</p>
-<p>Then you will add a pane to Asset_Layout and assign the symbol to it. You will also configure the</p>
-<p>divider for the pane so that it will be hidden at runtime.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use the attributes in the Navigation namespace</p>
-<p></p>
-<p>Add custom navigation buttons to a layout</p>
-<div class="screenshot">
-  <img src="../images/page_0397_0.png" alt="Page 397">
-  <div class="caption">Page 397</div>
+<h1>🧪 L29: Lab 14 – Using Built-in ViewApp Namespaces</h1>
+<p class="source">Module 7 — ViewApp Namespaces | Lab 14</p>
+<p class="page-ref">Pages 397–408</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will create a symbol with two buttons for navigating to the previous and next sibling navigation items within the Line1 and Line2 areas at runtime. When configuring animations for the buttons, you will use attributes from the Navigation namespace to control whether the buttons are active or disabled at runtime, based on whether a next or previous sibling navigation item is available within the area.</p>
+
+<p>You will then add a pane to Asset_Layout and assign the symbol to it. You will also configure the divider for the pane so that it will be hidden at runtime.</p>
+
+<div class="lab">
+<strong>Objectives:</strong>
+<ul>
+<li>Use the attributes in the Navigation namespace</li>
+<li>Add custom navigation buttons to a layout</li>
+</ul>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>Create a Sibling Navigation Symbol</p>
-<p>In the following steps, you will create a sibling navigation symbol with two buttons. Then you will</p>
-<p>configure animations for the buttons.</p>
-<p>1.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, create a symbol and name it</p>
-<p>SiblingNavigation.</p>
-<p>2.</p>
-<p>Double-click SiblingNavigation to open it in the Graphic Editor.</p>
-<p>3.</p>
-<p>Draw a button on the drawing canvas, and enter Previous for the text.</p>
-<p>The name assigned to the button is Button1. It should look similar to the following.</p>
-<p>In this example, the Appearance \ Width property is 100 and the Appearance \ Height</p>
-<p>property is 30.</p>
-<p>4.</p>
-<p>Double-click Button1 to open the Edit Animations dialog box.</p>
+
+<h2>Button Interface Preview</h2>
+
 <div class="screenshot">
-  <img src="../images/page_0398_0.png" alt="Page 398">
-  <div class="caption">Page 398</div>
+  <img src="../images/page_0397_0.png" alt="Sibling Navigation Symbol Preview">
+  <div class="caption">The SiblingNavigation symbol will contain two flat gray rectangular buttons — "Previous" on the left and "Next" on the right — arranged in a grid container.</div>
 </div>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>5.</p>
-<p>Add a Pushbutton animation, and configure it as follows:</p>
-<p>States:</p>
-<p>String</p>
-<p>Reference (String):</p>
-<p>MyViewApp.Navigation.Current</p>
-<p>Action:</p>
-<p>Set</p>
-<p>Values \ Value1:</p>
-<p>(Switch to Expression or Reference mode)</p>
-<p>MyViewApp.Navigation.PrevSibling</p>
-<p>Send Value:</p>
-<p>On button release checked</p>
+
+<h2>Create a Sibling Navigation Symbol</h2>
+
+<p><strong>Step 1:</strong> On the Graphics tab, in the Training \ Symbols toolset, create a symbol and name it <code>SiblingNavigation</code>.</p>
+
+<p><strong>Step 2:</strong> Double-click <code>SiblingNavigation</code> to open it in the Graphic Editor.</p>
+
+<p><strong>Step 3:</strong> Draw a button on the drawing canvas and enter <em>Previous</em> for the text. The button is auto-named <code>Button1</code>. In this example, the Appearance \ Width property is 100 and the Appearance \ Height property is 30.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0399_0.png" alt="Page 399">
-  <div class="caption">Page 399</div>
+  <img src="../images/page_0398_0.png" alt="Graphic Editor with Previous Button">
+  <div class="caption">The Graphic Editor showing a gridded white canvas with a light gray "Previous" button (Button1) selected, displaying blue resize handles on all edges and corners.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>6.</p>
-<p>Add a Disable animation, and configure it as follows:</p>
-<p>States:</p>
-<p>Boolean</p>
-<p>Expression Or Reference (Boolean):</p>
-<p>MyViewApp.Navigation.PrevSiblingCount == 0</p>
+
+<p><strong>Step 4:</strong> Double-click Button1 to open the Edit Animations dialog box.</p>
+
+<h2>Configure Button1 Animations</h2>
+
+<p><strong>Step 5:</strong> Add a Pushbutton animation and configure it with the following settings:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>States</td><td>String</td></tr>
+<tr><td>Reference (String)</td><td><code>MyViewApp.Navigation.Current</code></td></tr>
+<tr><td>Action</td><td>Set</td></tr>
+<tr><td>Values \ Value1</td><td><code>MyViewApp.Navigation.PrevSibling</code> (use Expression or Reference mode)</td></tr>
+<tr><td>Send Value</td><td>On button release (checked)</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0400_0.png" alt="Page 400">
-  <div class="caption">Page 400</div>
+  <img src="../images/page_0399_0.png" alt="Pushbutton Animation Configuration">
+  <div class="caption">The Edit Animations dialog for Button1 showing the Pushbutton animation configured with String states, reference to MyViewApp.Navigation.Current, Set action, and Value1 set to MyViewApp.Navigation.PrevSibling.</div>
 </div>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>7.</p>
-<p>Add an Element Style animation, and configure it as follows:</p>
-<p>8.</p>
-<p>Click OK to close the Edit Animations dialog box.</p>
-<p>9.</p>
-<p>On the drawing canvas, right-click Button1 and select Duplicate.</p>
-<p>The Button1 symbol is duplicated. The name of the duplicate symbol is Button2.</p>
-<p><strong>10.</strong> Ensure Button2 is selected and move it to the right side of Button1.</p>
-<p>The buttons should look similar to the following:</p>
-<p>States:</p>
-<p>Boolean</p>
-<p>Expression Or Reference (Boolean):</p>
-<p>MyViewApp.Navigation.PrevSiblingCount > 0</p>
-<p>Values \ True, 1, On:</p>
-<p>Element Style checked (default)</p>
-<p>Navigation selected</p>
-<p>Values \ False, 0, Off:</p>
-<p>Element Style checked (default)</p>
-<p>Intensity2 selected</p>
+
+<p><strong>Step 6:</strong> Add a Disable animation and configure it as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>States</td><td>Boolean</td></tr>
+<tr><td>Expression Or Reference</td><td><code>MyViewApp.Navigation.PrevSiblingCount == 0</code></td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0401_0.png" alt="Page 401">
-  <div class="caption">Page 401</div>
+  <img src="../images/page_0400_0.png" alt="Disable Animation Configuration">
+  <div class="caption">The Edit Animations dialog showing the Disable animation with Boolean state. The expression "MyViewApp.Navigation.PrevSiblingCount == 0" disables the button when there is no previous sibling.</div>
 </div>
+
+<p><strong>Step 7:</strong> Add an Element Style animation and configure it as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>States</td><td>Boolean</td></tr>
+<tr><td>Expression Or Reference</td><td><code>MyViewApp.Navigation.PrevSiblingCount > 0</code></td></tr>
+<tr><td>Values \ True</td><td>Element Style checked, <strong>Navigation</strong> selected</td></tr>
+<tr><td>Values \ False</td><td>Element Style checked, <strong>Intensity2</strong> selected</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0401_1.png" alt="Page 401">
-  <div class="caption">Page 401</div>
+  <img src="../images/page_0401_0.png" alt="Element Style Animation Configuration">
+  <div class="caption">The Element Style animation configuration showing the expression MyViewApp.Navigation.PrevSiblingCount > 0, with the Navigation element style applied when true and Intensity2 when false.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>11.</strong> On the Properties tab for Button2, modify the Appearance \ Text property to Next.</p>
-<p>The text on Button2 changes as follows:</p>
-<p><strong>12.</strong> Right-click Button2 and select Substitute | Substitute References.</p>
-<p><strong>13.</strong> Use Find & Replace to replace all occurrences of the following:</p>
-<p>Important: Be sure to click Replace All to replace all of the references. When you are</p>
-<p>finished, ensure that the references in the New column are as shown below.</p>
-<p><strong>14.</strong> Click OK to close the Substitute Reference dialog box.</p>
-<p><strong>15.</strong> Save and close the SiblingNavigation symbol, and check it in.</p>
-<p>Find What?:</p>
-<p>Prev</p>
-<p>Replace with:</p>
-<p>Next</p>
+
 <div class="screenshot">
-  <img src="../images/page_0402_0.png" alt="Page 402">
-  <div class="caption">Page 402</div>
+  <img src="../images/page_0401_1.png" alt="Element Style Dropdown Selection">
+  <div class="caption">Detail of the Element Style dropdown showing "Navigation" selected for the True state, providing visual feedback that the button is active and clickable.</div>
 </div>
+
+<p><strong>Step 8:</strong> Click OK to close the Edit Animations dialog box.</p>
+
+<p><strong>Step 9:</strong> On the drawing canvas, right-click Button1 and select <em>Duplicate</em>. A new button named <code>Button2</code> is created.</p>
+
+<p><strong>Step 10:</strong> Ensure Button2 is selected and move it to the right side of Button1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0402_1.png" alt="Page 402">
-  <div class="caption">Page 402</div>
+  <img src="../images/page_0402_0.png" alt="Two Side-by-Side Navigation Buttons">
+  <div class="caption">The Graphic Editor showing two buttons side by side: "Previous" (Button1, unselected) on the left and a duplicated button (Button2, selected with blue resize handles) on the right.</div>
 </div>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Assign the Symbol to the Asset Layout</p>
-<p>In the following steps, you will add a pane to Asset_Layout and assign the SiblingNavigation</p>
-<p>symbol to the new pane.</p>
-<p><strong>16.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Asset_Layout to open it</p>
-<p>in the Layout Editor.</p>
-<p><strong>17.</strong> With Pane1 selected, click the Add new pane up-arrow to add a pane above.</p>
-<p>A new pane named Pane4 is added above Pane1.</p>
+
+<h2>Configure Button2 for Next Navigation</h2>
+
+<p><strong>Step 11:</strong> On the Properties tab for Button2, modify the Appearance \ Text property to <em>Next</em>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0403_0.jpeg" alt="Page 403">
-  <div class="caption">Page 403</div>
+  <img src="../images/page_0402_1.png" alt="Button2 Text Changed to Next">
+  <div class="caption">Button2 text updated to "Next" — two grid-aligned buttons: Previous (left) and Next (right, selected with blue resize handles).</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>18.</strong> Select Pane4, and on the Properties tab, configure properties as follows:</p>
-<p>Size \ Height:</p>
-<p>30</p>
-<p>Size \ Height Sizing:</p>
-<p>Fixed</p>
-<p>Appearance \ Content Alignment:</p>
-<p>Right</p>
+
+<p><strong>Step 12:</strong> Right-click Button2 and select <em>Substitute | Substitute References</em>.</p>
+
+<p><strong>Step 13:</strong> Use Find &amp; Replace to replace all occurrences of <code>Prev</code> with <code>Next</code>. Be sure to click <strong>Replace All</strong>. When finished, ensure the references in the New column are correct:</p>
+
+<table>
+<tr><th>Old Reference</th><th>New Reference</th></tr>
+<tr><td>MyViewApp.Navigation.Current</td><td>MyViewApp.Navigation.Current (unchanged)</td></tr>
+<tr><td>MyViewApp.Navigation.PrevSibling</td><td>MyViewApp.Navigation.NextSibling</td></tr>
+<tr><td>MyViewApp.Navigation.PrevSiblingCount</td><td>MyViewApp.Navigation.NextSiblingCount</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0404_0.png" alt="Page 404">
-  <div class="caption">Page 404</div>
+  <img src="../images/page_0403_0.jpeg" alt="Substitute Reference Dialog">
+  <div class="caption">The Substitute Reference dialog showing Find & Replace with "Prev" replaced by "Next" — 2 strings replaced, updating all Navigation namespace references for the Next button.</div>
 </div>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>19.</strong> On the Toolbox tab, search for the SiblingNavigation symbol.</p>
-<p><strong>20.</strong> Drag the SiblingNavigation symbol to Pane4.</p>
-<p><strong>21.</strong> Click the pane divider between Pane1 and Pane4, but do not move the divider.</p>
-<p>Divider properties appear on the Properties tab.</p>
-<p><strong>22.</strong> On the Properties tab, uncheck the General \ Is Visible property.</p>
-<p><strong>23.</strong> Save and close Asset_Layout, and check it in.</p>
+
+<p><strong>Step 14:</strong> Click OK to close the Substitute Reference dialog box.</p>
+
+<p><strong>Step 15:</strong> Save and close the <code>SiblingNavigation</code> symbol, and check it in.</p>
+
+<h2>Assign the Symbol to the Asset Layout</h2>
+
+<p>In the following steps, you will add a pane to <code>Asset_Layout</code> and assign the <code>SiblingNavigation</code> symbol to the new pane.</p>
+
+<p><strong>Step 16:</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click <code>Asset_Layout</code> to open it in the Layout Editor.</p>
+
+<p><strong>Step 17:</strong> With Pane1 selected, click the Add new pane up-arrow to add a pane above. A new pane named Pane4 is added above Pane1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0405_0.png" alt="Page 405">
-  <div class="caption">Page 405</div>
+  <img src="../images/page_0404_0.png" alt="Layout Editor with New Pane4">
+  <div class="caption">The Layout Editor for Asset_Layout showing the newly added Pane4 at the top, with Pane1 (default, selected with blue border), Pane3, and Pane2 (containing Asset Information and Device Information tabs) visible below.</div>
 </div>
+
+<p><strong>Step 18:</strong> Select Pane4 and on the Properties tab, configure properties as follows:</p>
+
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Size \ Height</td><td>30</td></tr>
+<tr><td>Size \ Height Sizing</td><td>Fixed</td></tr>
+<tr><td>Appearance \ Content Alignment</td><td>Right</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0405_1.jpeg" alt="Page 405">
-  <div class="caption">Page 405</div>
+  <img src="../images/page_0405_0.png" alt="Pane4 Properties Configuration">
+  <div class="caption">The Properties tab for Pane4 showing Size configuration (Height: 30, Height Sizing: Fixed) and Appearance settings (Content Alignment: Right), highlighted with red arrows.</div>
 </div>
+
+<p><strong>Step 19:</strong> On the Toolbox tab, search for the <code>SiblingNavigation</code> symbol.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0405_2.png" alt="Page 405">
-  <div class="caption">Page 405</div>
+  <img src="../images/page_0405_1.jpeg" alt="Toolbox Search for SiblingNavigation">
+  <div class="caption">Toolbox tab with search string "sibli" entered, showing 1 matching content item — the SiblingNavigation widget with its Previous and Next button preview.</div>
 </div>
+
+<p><strong>Step 20:</strong> Drag the SiblingNavigation symbol to Pane4.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0405_3.png" alt="Page 405">
-  <div class="caption">Page 405</div>
+  <img src="../images/page_0405_2.png" alt="SiblingNavigation Placed in Pane4">
+  <div class="caption">The Layout Editor showing SiblingNavigation (Previous and Next buttons) placed in Pane4 at the top of the layout, above the main content panes.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>In the following steps, you will test your changes in the ViewApp preview session.</p>
-<p><strong>24.</strong> Switch to the ViewApp preview session.</p>
-<p><strong>25.</strong> Navigate to Mixer100.</p>
-<p>Notice that the Previous and Next navigation buttons appear on the top-right corner of the</p>
-<p>mixer graphic. The divider is not visible, which makes the navigation buttons appear to be part</p>
-<p>of the mixer graphic.</p>
-<p>Also notice that the Previous button is grayed or dimmed. This is because there is no</p>
-<p>previous sibling for Mixer100 in the Line1 area, so the button is disabled and displays with the</p>
-<p>Intensity2 element style.</p>
-<p>The Next button is active, so you can click it to navigate to the next sibling navigation item.</p>
+
+<p><strong>Step 21:</strong> Click the pane divider between Pane1 and Pane4, but do not move the divider. Divider properties appear on the Properties tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0406_0.png" alt="Page 406">
-  <div class="caption">Page 406</div>
+  <img src="../images/page_0405_3.png" alt="Pane Divider Selected">
+  <div class="caption">The horizontal divider between Pane1 and Pane4, highlighted with an orange line and central drag handle, with Divider properties shown in the Properties tab.</div>
 </div>
-<p>Lab 14 – Using Built-in ViewApp Namespaces</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>26.</strong> Click Next.</p>
-<p>Notice that the navigation moves to Mixer200. The Previous button is now active, because</p>
-<p>Mixer100 is the previous sibling of Mixer200.</p>
+
+<p><strong>Step 22:</strong> On the Properties tab, uncheck the General \ Is Visible property to hide the divider at runtime.</p>
+
+<div class="tip">
+<strong>Tip:</strong> Hiding the divider makes the navigation buttons appear to be seamlessly part of the mixer graphic, creating a more polished operator interface.
+</div>
+
+<p><strong>Step 23:</strong> Save and close <code>Asset_Layout</code>, and check it in.</p>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
+<p><strong>Step 24:</strong> Switch to the ViewApp preview session.</p>
+
+<p><strong>Step 25:</strong> Navigate to Mixer100.</p>
+
+<p>Notice that the Previous and Next navigation buttons appear on the top-right corner of the mixer graphic. The divider is not visible, which makes the navigation buttons appear to be part of the mixer graphic.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0407_0.png" alt="Page 407">
-  <div class="caption">Page 407</div>
+  <img src="../images/page_0406_0.png" alt="Mixer100 with Navigation Buttons">
+  <div class="caption">The running ViewApp navigated to Mixer100 showing the Previous/Next buttons in the top-right corner. The Previous button is grayed out (disabled) because Mixer100 has no previous sibling in the Line1 hierarchy. The Next button is active and clickable.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p><strong>27.</strong> Click Next two more times to navigate to Mixer400.</p>
-<p>Now the Next button is disabled, because Mixer400 is the last sibling in the Line1 area.</p>
-<div class="key-concept">Note:</div>
-<p>You can also test with the mixers in Line2.</p>
-<p><strong>28.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
+
+<p>The Previous button is grayed or dimmed because there is no previous sibling for Mixer100 in the Line1 area, so the button is disabled and displays with the Intensity2 element style. The Next button is active, so you can click it to navigate to the next sibling navigation item.</p>
+
+<p><strong>Step 26:</strong> Click Next.</p>
+
+<p>Notice that the navigation moves to Mixer200. The Previous button is now active, because Mixer100 is the previous sibling of Mixer200.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0408_0.png" alt="Page 408">
-  <div class="caption">Page 408</div>
+  <img src="../images/page_0407_0.png" alt="Mixer200 with Active Previous Button">
+  <div class="caption">The ViewApp navigated to Mixer200. The Previous button is now active (since Mixer100 exists as a previous sibling), and the Next button remains active for navigating forward.</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<p><strong>Step 27:</strong> Click Next two more times to navigate to Mixer400. Now the Next button is disabled, because Mixer400 is the last sibling in the Line1 area.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0408_0.png" alt="Mixer400 with Disabled Next Button">
+  <div class="caption">The ViewApp at Mixer400 (the last sibling in Line1). The Previous button is active, but the Next button is grayed out/disabled since there are no more siblings to navigate to.</div>
+</div>
+
+<div class="tip">
+<strong>Note:</strong> You can also test the navigation with the mixers in Line2.
+</div>
+
+<p><strong>Step 28:</strong> When you are finished testing, minimize the preview session.</p>
+
+<p class="lab"><strong>&lt;End of Lab&gt;</strong></p>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: Which Navigation namespace attribute determines the current navigation item?</summary>
+<p class="answer"><code>MyViewApp.Navigation.Current</code> returns the current navigation item and is used as the reference for the Pushbutton animation's Set action.</p>
+</details>
+
+<details>
+<summary>Q2: How does the Disable animation know when to disable the Previous button?</summary>
+<p class="answer">The expression <code>MyViewApp.Navigation.PrevSiblingCount == 0</code> evaluates to true when there is no previous sibling, which triggers the Disable animation to disable the button.</p>
+</details>
+
+<details>
+<summary>Q3: What is the purpose of the Element Style animation in this lab?</summary>
+<p class="answer">The Element Style animation visually distinguishes active and inactive buttons — when the sibling exists, it applies the "Navigation" element style (normal appearance); when no sibling exists, it applies "Intensity2" (dimmed/grayed appearance).</p>
+</details>
+
+<details>
+<summary>Q4: Why do we hide the pane divider at runtime?</summary>
+<p class="answer">Hiding the divider makes the navigation buttons appear to be seamlessly part of the mixer graphic, creating a more integrated and polished operator interface.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L28-ViewApp-Namespaces-Introduction.html">← L28: ViewApp Namespaces Introduction</a> &nbsp;|&nbsp;
   <a href="L30-Custom-ViewApp-Namespaces-and-Attributes.html">L30: Custom ViewApp Namespaces and Attributes →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

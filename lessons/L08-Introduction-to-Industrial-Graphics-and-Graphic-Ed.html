@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -32,7 +33,7 @@
 <body>
 <nav>
   <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">← L07: Lab 3 – Creating and Running a ViewApp</a> &nbsp;|&nbsp;
-  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dash →</a>
+  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using SA Dashboard Symbols →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -105,7 +106,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -122,391 +123,294 @@
 </nav>
 
 <h1>📖 L08: Introduction to Industrial Graphics and Graphic Editor</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 141-154</p>
-<p>Section 1 – Introduction to Industrial Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction to Industrial Graphics</p>
-<p>Introduction</p>
-<p>Industrial graphics can be used to customize graphic representations of your processes in a view</p>
-<p>application. They can be embedded in or linked to automation objects, providing an efficient way to</p>
-<p>visualize object-specific information in your application, such as processing status, alarms, history,</p>
-<p>and more. They also support the use of custom properties, relative references, scripts, and more.</p>
-<p>Industrial graphics are also known as symbols. Prebuilt libraries of symbols are provided with</p>
-<p>System Platform, including the Industrial Graphic Library and the Situational Awareness Library.</p>
-<p>You can use symbols from these libraries in your applications, or create your own symbols with the</p>
-<p>Graphic Editor in the System Platform IDE.</p>
-<p>Graphics Tab</p>
-<p>The Graphics tab in the System Platform IDE hosts libraries of symbols, controls, profiles, layouts,</p>
-<p>and other graphic-related content that can be used in the Galaxy. Items available on the Graphics</p>
-<p>tab by default depend on which Galaxy template was used to create the Galaxy.</p>
-<p>For example, the following shows the default items on the Graphics tab for a Galaxy created with</p>
-<p>the Blank template, which creates a Galaxy based on the Default_EMPTY.cab Galaxy type. It</p>
-<p>contains pre-built symbol libraries, as well as a basic set of OMI Apps, widgets, and controls.</p>
-<p>This section introduces industrial graphics, including managing them in the System Platform IDE</p>
-<p>and the out-of-the-box symbol libraries provided with Application Server. It also provides an</p>
-<p>overview of Situational Awareness concepts.</p>
-<div class="screenshot">
-  <img src="../images/page_0141_0.jpeg" alt="Page 141">
-  <div class="caption">Page 141</div>
+<p class="source">Module 3 — Industrial Graphics | Sections 1 &amp; 2</p>
+<p class="page-ref">Pages 141–153 | AVEVA™ Operations Management Interface 2023</p>
+
+<h2>Introduction to Industrial Graphics</h2>
+<p>Industrial graphics — also known as symbols — can be used to customize graphic representations of your processes in a ViewApp. They can be embedded in or linked to automation objects, providing an efficient way to visualize object-specific information such as processing status, alarms, history, and more. Symbols support custom properties, relative references, scripts, and other advanced features.</p>
+
+<p>Prebuilt libraries of symbols are provided with System Platform, including the <strong>Industrial Graphic Library</strong> and the <strong>Situational Awareness Library</strong>. You can use symbols from these libraries in your applications, or create your own symbols with the <strong>Graphic Editor</strong> in the System Platform IDE.</p>
+
+<div class="key-concept">
+<strong>Industrial Graphics (Symbols):</strong> Customizable graphic assets for visualizing process status, alarms, history, and object-specific data. They can be embedded or linked to automation objects and support custom properties, references, scripts, and more.
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>As another example, the following shows the default items in the Graphics tab for a Galaxy</p>
-<p>created with the Default template, which creates a Galaxy based on the Default.cab Galaxy type. It</p>
-<p>contains pre-built symbols, screen profiles, and layouts, as well as OMI Apps, widgets, and</p>
-<p>controls.</p>
-<p>Some of the pre-built content items provided by default on the Graphics tab are specifically for</p>
-<p>Operations Management Interface ViewApps. Some examples are screen profiles, layouts, and</p>
-<p>out-of-the-box OMI Apps.</p>
-<p>Graphic Toolsets</p>
-<p>Symbols, controls, and other items listed in the Graphics tab can be organized into a hierarchy of</p>
-<p>toolsets. Some toolsets are included on the Graphics tab by default, depending on the Galaxy type</p>
-<p>used to create the Galaxy. You can also create your own toolsets and sub-toolsets to organize</p>
-<p>your symbols, controls, and other items as needed.</p>
-<p>Graphic toolsets and the organization of items within the Graphics tab are shared by all users of</p>
-<p>the Galaxy. Top-level graphic toolsets can be hidden or shown in the toolbox as needed, which in</p>
-<p>turn will hide or show any sub-toolsets. The configuration is associated with the currently logged-in</p>
-<p>user and saved as part of the Galaxy configuration. This allows users to access the Galaxy from</p>
-<p>different computers using the System Platform IDE and retrieve their custom views of the Graphics</p>
-<p>tab.</p>
+
+<h2>The Graphics Tab</h2>
+<p>The Graphics tab in the System Platform IDE hosts libraries of symbols, controls, profiles, layouts, and other graphic-related content that can be used in the Galaxy. Items available on the Graphics tab depend on which Galaxy template was used to create the Galaxy.</p>
+
+<p>For example, a Galaxy created with the <strong>Blank</strong> template (based on <code>Default_EMPTY.cab</code>) contains prebuilt symbol libraries, a basic set of OMI Apps, widgets, and controls.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0142_0.png" alt="Page 142">
-  <div class="caption">Page 142</div>
+  <img src="../images/page_0141_0.jpeg" alt="Graphics tab — Blank template Galaxy">
+  <div class="caption">The Graphics tab for a Galaxy created with the Blank template, showing prebuilt libraries including Industrial Graphic Library, Situational Awareness Library, and basic OMI Apps</div>
 </div>
-<p>Section 1 – Introduction to Industrial Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Symbol Management</p>
-<p>Depending on your application development needs, you can create symbols in the Graphics tab or</p>
-<p>create them directly in automation objects. Some guidelines include:</p>
-<p></p>
-<p>Create symbols on the Graphics tab to use them as reusable, standard symbols.</p>
-<p></p>
-<p>Create symbols in an object template to use them in objects derived from the template.</p>
-<p></p>
-<p>Create symbols in an object instance to use them only in that object instance.</p>
-<p>Symbols created within automation objects only exist in the objects and are not listed on the</p>
-<p>Graphics tab.</p>
-<p>Create Symbols on the Graphics Tab</p>
-<p>To create a symbol on the Graphics tab, right-click the Galaxy name or a toolset name on the</p>
-<p>Graphics tab and select New | Symbol. The default name for the newly created symbol is</p>
-<p>Symbol_00n, where n is the number of the symbol, but you can rename the symbol. Once created,</p>
-<p>you can double-click the symbol to edit it in the Graphic Editor.</p>
-<p>Import and Export Symbols</p>
-<p>You can export one or more selected symbols or graphic toolsets to an aaPKG file. From the</p>
-<p>Graphics tab, select the symbols or graphic toolsets that you want to export. Then from the Galaxy</p>
-<p>menu, select Export | Object(s).</p>
-<p>Note that when exporting automation objects that contain symbols:</p>
-<p></p>
-<p>The symbols are exported with the automation objects.</p>
-<p></p>
-<p>Exporting all automation objects also exports all symbols contained by automation objects</p>
-<p>and all symbols on the Graphics tab.</p>
-<p></p>
-<p>If symbols in an automation object contain embedded symbols from the Graphics tab, then</p>
-<p>these symbols along with the ones on the Graphics tab are all exported with the</p>
-<p>automation object.</p>
-<p></p>
-<p>If symbols in an automation object contain symbols embedded from other automation</p>
-<p>objects, exporting the automation object does not export other automation objects and</p>
-<p>their symbols.</p>
-<p></p>
-<p>If a symbol on the Graphics tab contains embedded symbols from an automation object,</p>
-<p>exporting the symbol can also export embedded symbols and its host automation object.</p>
-<p></p>
-<p>The export process preserves the toolset hierarchy containing the symbol.</p>
-<p>You can import symbols from an aaPKG file to the Graphics tab.</p>
-<p>Note that when importing automation objects that contain symbols:</p>
-<p></p>
-<p>When you import templates or instances that contain symbols, the symbols are imported</p>
-<p>with the template or instance.</p>
-<p></p>
-<p>When you import all automation objects, the contained symbols and the symbols in the</p>
-<p>graphic toolsets are also imported.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Symbol Libraries</p>
+
+<p>A Galaxy created with the <strong>Default</strong> template (based on <code>Default.cab</code>) contains additional prebuilt content including screen profiles, layouts, OMI Apps, widgets, and controls.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0142_0.png" alt="Graphics tab — Default template Galaxy">
+  <div class="caption">The Graphics tab for a Default template Galaxy, showing additional content including Screen Profiles, Layouts, and organized Default/My Content folders</div>
+</div>
+
+<h2>Graphic Toolsets</h2>
+<p>Symbols, controls, and other items listed in the Graphics tab can be organized into a hierarchy of <strong>toolsets</strong>. Some toolsets are included by default, depending on the Galaxy type. You can create your own toolsets and sub-toolsets to organize your content as needed.</p>
+
+<p>Graphic toolsets and the organization of items within the Graphics tab are shared by all users of the Galaxy. Top-level graphic toolsets can be hidden or shown in the toolbox as needed, which in turn hides or shows any sub-toolsets. The configuration is associated with the currently logged-in user and saved as part of the Galaxy configuration, allowing users to retrieve their custom views of the Graphics tab from different computers.</p>
+
+<h2>Symbol Management</h2>
+<p>Depending on your development needs, you can create symbols in three locations:</p>
+
+<table>
+<thead>
+<tr><th>Location</th><th>Purpose</th><th>Visibility</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Graphics tab</strong></td><td>Reusable, standard symbols</td><td>Available system-wide on the Graphics tab</td></tr>
+<tr><td><strong>Object template</strong></td><td>Symbols for objects derived from that template</td><td>Only within objects derived from the template</td></tr>
+<tr><td><strong>Object instance</strong></td><td>Symbols for that single instance</td><td>Only within that specific instance</td></tr>
+</tbody>
+</table>
+
+<div class="pitfall">
+<strong>Important:</strong> Symbols created within automation objects only exist in those objects and are <em>not</em> listed on the Graphics tab.
+</div>
+
+<h2>Creating Symbols on the Graphics Tab</h2>
+<p>To create a symbol, right-click the Galaxy name or a toolset name on the Graphics tab and select <strong>New &gt; Symbol</strong>. The default name is <code>Symbol_00n</code> (where n is the sequential number), but you can rename the symbol. Once created, double-click the symbol to edit it in the Graphic Editor.</p>
+
+<h2>Import and Export Symbols</h2>
+<p>You can export selected symbols or graphic toolsets to an <code>.aaPKG</code> file by selecting them and choosing <strong>Galaxy &gt; Export &gt; Object(s)</strong>. When exporting automation objects that contain symbols, several rules apply:</p>
+
+<ul>
+<li>Symbols are exported with their parent automation objects</li>
+<li>Exporting all automation objects also exports all symbols contained by automation objects and all symbols on the Graphics tab</li>
+<li>If symbols in an automation object contain embedded symbols from the Graphics tab, these are all exported together</li>
+<li>Exporting the automation object does <em>not</em> export other automation objects and their symbols</li>
+<li>Exporting a symbol on the Graphics tab can also export embedded symbols and its host automation object</li>
+<li>The export process preserves the toolset hierarchy</li>
+</ul>
+
+<p>Symbols can be imported from an <code>.aaPKG</code> file to the Graphics tab using <strong>Galaxy &gt; Import &gt; Objects &gt; From package</strong>.</p>
+
+<h2>Symbol Libraries</h2>
 <p>Two symbol libraries are provided on the Graphics tab for all Galaxy types:</p>
-<p></p>
-<p>Industrial Graphic Library contains pre-built, realistic-looking symbols of standard</p>
-<p>industrial objects.</p>
-<p></p>
-<p>Situational Awareness Library contains pre-built symbols with a simplified look and</p>
-<p>minimum visual detail, designed to enhance an operator’s situational awareness of current</p>
-<p>process conditions.</p>
-<p>Situational Awareness Visualization</p>
-<p>Situational awareness visualization provides an operator with contextual information to allow them</p>
-<p>to figure out what actions to take. In broad terms, it can be broken down into three levels: the</p>
-<p>perception of new information, the comprehension of the information, and the projection of</p>
-<p>impact the information has on goals. Achieving proper situational awareness can help you make</p>
-<p>effective decisions to deliver overall business success.</p>
-<p>In an HMI/SCADA application, situational awareness is a visual design approach devoted to</p>
-<p>providing operators with the most relevant and necessary information at the right time. The idea is</p>
-<p>to present users with contextualized and easily-interpreted information that is specific to the most</p>
-<p>important process issues, while filtering out “visual noise” to keep operators focused on what</p>
-<p>matters most. Operators see the situation at hand in full context of what is happening in real time,</p>
-<p>how the current situation links to previous events, and where the process might be headed. This</p>
-<p>enables operators to more easily move from perception to comprehension and then to projection</p>
-<p>for better and safer operating conditions.</p>
-<div class="screenshot">
-  <img src="../images/page_0144_0.png" alt="Page 144">
-  <div class="caption">Page 144</div>
+
+<table>
+<thead>
+<tr><th>Library</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Industrial Graphic Library</strong></td><td>Pre-built, realistic-looking symbols of standard industrial objects such as pumps, valves, motors, and heat exchangers</td></tr>
+<tr><td><strong>Situational Awareness Library</strong></td><td>Pre-built symbols with a simplified look and minimum visual detail, designed to enhance operator situational awareness of current process conditions</td></tr>
+</tbody>
+</table>
+
+<h2>Situational Awareness Visualization</h2>
+<p>Situational awareness visualization provides operators with contextual information to help them determine what actions to take. It can be broken down into three levels:</p>
+
+<ol>
+<li><strong>Perception</strong> of new information → <em>Cognition</em></li>
+<li><strong>Comprehension</strong> of the information → <em>Judgment</em></li>
+<li><strong>Projection</strong> of impact on goals → <em>Decision Making</em></li>
+</ol>
+
+<div class="key-concept">
+<strong>Situational Awareness</strong> is a visual design approach in HMI/SCADA applications that presents operators with contextualized, easily-interpreted information specific to important process issues while filtering out "visual noise." This enables operators to move from perception to comprehension to projection for safer operating conditions.
 </div>
-<p>Section 1 – Introduction to Industrial Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The situational awareness approach also encourages standardization, which helps to eliminate</p>
-<p>the confusion of an inconsistent use of color and other visual elements. Some of the benefits of</p>
-<p>incorporating situational awareness principles into visualization applications include:</p>
-<p></p>
-<p>Faster problem identification</p>
-<p></p>
-<p>Maximized uptime</p>
-<p></p>
-<p>Accelerated alarm recognition</p>
-<p></p>
-<p>Increased operational consistency</p>
-<p></p>
-<p>Safer conditions</p>
-<p>System Platform includes features and tools that allow the creation of displays based on</p>
-<p>situational awareness concepts.</p>
-<p>Situational Awareness Library Symbols</p>
-<p>The Situational Awareness Library provided with System Platform contains symbols created with</p>
-<p>situational awareness in mind. The symbols have a simplified look and provide a minimum of</p>
-<p>visual detail to efficiently convey their functional purpose and status, without showing extraneous</p>
-<p>information that could be distracting to operators.</p>
-<p>By default, symbols in the Situational Awareness Library use a color palette designed to increase</p>
-<p>the contrast between normal operating conditions and abnormal operating conditions. Normal</p>
-<p>operating conditions are shown in largely monochromatic colors, while abnormal operating</p>
-<p>conditions are shown in more vivid colors.</p>
-<p>Most Situational Awareness Library symbols are designed as symbol wizards that incorporate</p>
-<p>multiple visual and functional configurations in each symbol. Selecting a functional configuration of</p>
-<p>a symbol is a simple matter of selecting options from the symbol’s Wizard Options. One example is</p>
-<p>the SA_Meters symbol, which can be used as a flow meter, temperature meter, level meter, or</p>
-<p>other meter types simply by configuring Wizard Options for the symbol.</p>
-<p>Situational Awareness Library symbols are provided with an extensive set of default custom</p>
-<p>properties. The properties can be set to show or hide parts of the symbol itself, set a full array of</p>
-<p>alarm conditions, and show reported values based on the configuration.</p>
-<p>Symbols in Automation Objects</p>
-<p>When adding symbols into an automation object, you can create symbols in the object and then</p>
-<p>develop the symbol as needed. These symbols become content of the automation object.</p>
-<p>Alternatively, you can create symbols on the Graphics tab and use the linked content feature,</p>
-<p>whereby you directly link external symbols from the Graphics tab to the automation object. Linked</p>
-<p>symbols remain on the Graphics tab, but are associated with the automation object as its content.</p>
-<p>[$gArea]` (text/chart thumbnail)</p>
-<p><strong>2.</strong> <code>Overview [Line1_Overview]</code> (bar graph thumbnail)</p>
-<p>• Status: "2 of 2 displayed, 1 selected"</p>
-<p>• <strong>Red arrow</strong> points to <strong>Link Content</strong> button — critical UI element for linking external symbols</p>
-<p><strong>Footer:</strong> Object name "Line1"</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>When editing an object in the Object Editor, you can link an external symbol to the object from the</p>
-<p>Content pane on the Attributes tab. Clicking the Link Content button opens the Galaxy Browser,</p>
-<p>allowing you to browse for and select a symbol from the Graphics tab to link.</p>
-<div class="key-concept">Note: You can also use the Link Content icon in the Object Editor to link external content or a</div>
-<p>layout to an automation object.</p>
+
+<p>The benefits of incorporating situational awareness principles include faster problem identification, maximized uptime, accelerated alarm recognition, increased operational consistency, and safer conditions.</p>
+
+<h2>Situational Awareness Library Symbols</h2>
+<p>Symbols in the Situational Awareness Library have a simplified look that efficiently conveys their functional purpose and status. By default, they use a color palette that increases contrast between normal operating conditions (shown in monochromatic colors) and abnormal conditions (shown in vivid colors).</p>
+
+<p>Most Situational Awareness Library symbols are designed as <strong>symbol wizards</strong> that incorporate multiple visual and functional configurations. Selecting a configuration is done through the symbol's <strong>Wizard Options</strong>. For example, the <code>SA_Meters</code> symbol can be used as a flow meter, temperature meter, level meter, or other meter types simply by configuring Wizard Options.</p>
+
+<p>Situational Awareness Library symbols include an extensive set of default custom properties that can be set to show or hide parts of the symbol, configure alarm conditions, and show reported values based on the configuration.</p>
+
+<h2>Symbols in Automation Objects</h2>
+<p>When adding symbols into an automation object, you have two options:</p>
+
+<ol>
+<li><strong>Direct Creation:</strong> Create symbols directly inside the automation object — these become content of the automation object</li>
+<li><strong>Linked Content:</strong> Create symbols on the Graphics tab and use the linked content feature to link external symbols to the automation object — linked symbols remain on the Graphics tab but are associated with the automation object as its content</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0146_0.png" alt="Page 146">
-  <div class="caption">Page 146</div>
+  <img src="../images/page_0146_0.png" alt="Link Content button in Object Editor">
+  <div class="caption">The Object Editor's Attributes tab showing the Link Content button in the Content pane, used to link external symbols from the Graphics tab to an automation object</div>
 </div>
-<p>Section 2 – Graphic Editor</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – Graphic Editor</p>
-<p>Introduction</p>
-<p>You can use the Graphic Editor to create, configure, and modify symbols. The editor provides a</p>
-<p>drawing area called the canvas, on which you can build symbols. You can embed basic graphic</p>
-<p>elements, such as lines, rectangles, curves, and more onto the canvas. Or, you can embed</p>
-<p>symbols from Toolbox tab, Assets tab, and Templates tab onto the canvas and use the symbols</p>
-<p>as-is or modify them.</p>
-<p>The appearance of graphic elements and embedded symbols on the canvas can be changed</p>
-<p>through their properties or tools available from toolbars and menus. Additionally, you can configure</p>
-<p>elements and embedded symbols with animations, scripts, custom properties, and more.</p>
-<p></p>
-<p>(1) Toolbars and Menus: Buttons and menu commands for performing various functions,</p>
-<p>such as saving the symbol, zooming the display, selecting line color, and more.</p>
-<p></p>
-<p>(2) Drawing Canvas: Area where elements are placed and arranged to create a symbol.</p>
-<p></p>
-<p>(3) Elements List: Hierarchical list of elements on the canvas.</p>
-<p></p>
-<p>(4) Element Tools: Collection of elements that you can use to create symbols on the</p>
-<p>canvas. Includes basic elements, such as lines, rectangles, and so on, as well as other</p>
-<p>tools and controls.</p>
-<p></p>
-<p>(5) Tabbed Area:</p>
-<p></p>
-<p>Properties tab: Lists properties belonging to selected elements or the embedded</p>
-<p>symbols on the canvas. When no element is selected on the canvas, this tab lists</p>
-<p>properties belonging to the symbol itself.</p>
-<p></p>
-<p>Assets tab: Provides access to graphics found in instances.</p>
-<p></p>
-<p>Toolbox tab: Provides access to graphics found in the symbol libraries.</p>
-<p></p>
-<p>Templates tab: Provides access to graphics found in templates.</p>
-<p>This section describes the Graphic Editor, including an overview of its interface and configuration</p>
-<p>of embedded symbols.</p>
+
+<div class="tip">
+<strong>Tip:</strong> You can also use the Link Content icon in the Object Editor to link external content or a layout to an automation object.
+</div>
+
+<h2>Graphic Editor Overview</h2>
+<p>The Graphic Editor is the tool used to create, configure, and modify symbols. It provides a grid-based <strong>canvas</strong> on which you can build symbols by adding basic graphic elements (lines, rectangles, curves, etc.) or embedding pre-made symbols from the Toolbox, Assets, or Templates tabs.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0147_0.jpeg" alt="Page 147">
-  <div class="caption">Page 147</div>
+  <img src="../images/page_0147_0.jpeg" alt="Graphic Editor interface overview">
+  <div class="caption">The Graphic Editor interface with its five key areas: (1) Toolbars and Menus, (2) Drawing Canvas, (3) Elements List, (4) Element Tools, and (5) Tabbed Area with Properties, Toolbox, Assets, and Templates tabs</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Properties of the Canvas</p>
-<p>When the canvas is selected, the Properties tab updates to show properties of the entire symbol.</p>
-<p>The properties are organized into categories, such as the ones listed below.</p>
-<p></p>
-<p>Graphic: Includes a description of the symbol and canvas sizing properties. By default,</p>
-<p>the Size property of a symbol is set to Auto, which automatically sizes the symbol by</p>
-<p>cropping all white space outside of the graphics that appear at runtime. When set to Fixed,</p>
-<p>the FixedWidth and FixedHeight properties determine the absolute size at runtime. This</p>
-<p>allows the designer to add additional white space where desired.</p>
-<p></p>
-<p>Appearance: Includes anchor properties and smoothing properties.</p>
-<p></p>
-<p>Runtime Behavior: Includes content types, faceplate mode, scripts, zoom percent</p>
-<p>properties.</p>
-<p></p>
-<p>Custom Properties: Lists custom properties defined for the symbol.</p>
-<p>Apply Content Types to Symbols</p>
-<p>A content type can be assigned to a symbol using the ContentType property in the Graphic Editor.</p>
-<p>The available types match the content types that can be associated with a layout pane.</p>
-<p>By default, ContentType for a symbol is set to None. You can check one or more available content</p>
-<p>types that apply to the symbol. Symbols can be assigned the All content type, which will match any</p>
-<p>type of layout pane.</p>
-<div class="key-concept">Note: For more information about how content types are used in a ViewApp, refer to the sections</div>
-<p>“Auto-Fill” on page 2-57 and “Content Navigation” on page 2-57.</p>
+
+<p>The Graphic Editor consists of five key areas:</p>
+
+<table>
+<thead>
+<tr><th>#</th><th>Area</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><strong>Toolbars and Menus</strong></td><td>Buttons and menu commands for saving, zooming, line formatting, and more</td></tr>
+<tr><td>2</td><td><strong>Drawing Canvas</strong></td><td>Grid-based central workspace for placing and arranging elements</td></tr>
+<tr><td>3</td><td><strong>Elements List</strong></td><td>Hierarchical list of elements on the canvas (left panel)</td></tr>
+<tr><td>4</td><td><strong>Element Tools</strong></td><td>Collection of tools for creating symbols — lines, shapes, text, controls (left panel)</td></tr>
+<tr><td>5</td><td><strong>Tabbed Area</strong></td><td>Properties, Toolbox, Assets, and Templates tabs for configuring elements and accessing libraries</td></tr>
+</tbody>
+</table>
+
+<h2>Canvas Properties</h2>
+<p>When the canvas is selected, the Properties tab shows properties organized into four categories:</p>
+
+<ul>
+<li><strong>Graphic:</strong> Symbol description and canvas sizing. Default size is <code>Auto</code> (crops white space). Setting to <code>Fixed</code> uses FixedWidth and FixedHeight for the absolute runtime size.</li>
+<li><strong>Appearance:</strong> Anchor properties (AnchorFixedTo) and smoothing properties (Smoothing).</li>
+<li><strong>Runtime Behavior:</strong> Content types, faceplate mode, scripts, and zoom settings.</li>
+<li><strong>Custom Properties:</strong> User-defined properties for the symbol.</li>
+</ul>
+
+<h2>Content Types</h2>
+<p>A content type can be assigned to a symbol using the <strong>ContentType</strong> property in the Graphic Editor. The available types match those that can be associated with a layout pane. By default, ContentType is set to <strong>None</strong>. Selecting <strong>All</strong> makes the symbol match any type of layout pane.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0148_0.jpeg" alt="Page 148">
-  <div class="caption">Page 148</div>
+  <img src="../images/page_0148_0.jpeg" alt="ContentType property in Graphic Editor">
+  <div class="caption">The ContentType property dropdown in the Graphic Editor showing available content types including Overview, Detailed, Faceplate, Alarm Banner, and others</div>
 </div>
-<p>Section 2 – Graphic Editor</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Embedded Symbols</p>
-<p>Embedding a symbol creates a linked copy of the original symbol. If the original symbol is</p>
-<p>modified, the changes are propagated to all the embedded locations. Existing symbols can be</p>
-<p>embedded onto the Graphic Editor’s drawing canvas and edited as needed. They can be</p>
-<p>embedded from the Industrial Graphic Library and the Situational Awareness Library in the</p>
-<p>Graphics tab, and from templates and instances available in the Galaxy.</p>
-<p>In the Graphic Editor, there are two ways of using the Galaxy Browser to select a source symbol to</p>
-<p>embed onto the drawing canvas. One way is by clicking the Embed Graphic icon from the Graphic</p>
-<p>Editor’s toolbar. Another way is by right-clicking the canvas and selecting Embed Industrial</p>
-<p>Graphic from the context menu. Both approaches open the Galaxy Browser, allowing you to select</p>
-<p>a graphic from the Graphics tab.</p>
-<p>Another way of embedding a graphic is by finding the graphic from Toolbox, Assets, or Templates</p>
-<p>tabs available in the Graphic Editor, and then dragging and dropping the symbol from the preview</p>
-<p>area onto the canvas. For example, you can navigate to the Situational Awareness Library from</p>
-<p>the Toolbox tab and select the Meters toolset. All the symbols in that toolset appear in the Toolbox</p>
-<p>tab preview area, and you can drag the symbol you want to embed onto the drawing canvas.</p>
-<p>Additionally, the Toolbox, Assets, and Templates tabs include a search feature, allowing you to</p>
-<p>search for symbols. For example, on the Toolbox tab, you can enter text in the search box to</p>
-<p>search for symbol names that match the text. In this example, the text meter is entered in the</p>
-<p>search box and symbols with names that include the search string are found.</p>
-<p>Note that embedding a symbol from a template will initiate a process to create an instance, and</p>
-<p>then embed the symbol on the canvas.</p>
-<p>Once a source symbol is embedded in another symbol, changes to the source symbol are</p>
-<p>propagated to all other symbols in which the source symbol is embedded.</p>
-<p>An embedded symbol can be customized by configuring its available properties and other</p>
-<p>configurations. For example, if wizard options are available for the embedded symbol, they can be</p>
-<p>configured as needed. Changes made to the embedded symbol will not impact the source symbol.</p>
-<p>The embedded symbol can also be duplicated to create another embedded symbol or converted</p>
-<p>to a group of elements.</p>
+
+<h2>Embedded Symbols</h2>
+<p>Embedding a symbol creates a <strong>linked copy</strong> of the original. If the original symbol is modified, changes propagate to all embedded locations. You can embed symbols from the Industrial Graphic Library, Situational Awareness Library, templates, and instances.</p>
+
+<p>There are three ways to embed a symbol onto the drawing canvas:</p>
+
+<ol>
+<li>Click the <strong>Embed Graphic</strong> icon from the toolbar, or right-click the canvas and select <strong>Embed Industrial Graphic</strong> — both open the Galaxy Browser</li>
+<li>Drag-and-drop from the Toolbox, Assets, or Templates tabs in the Graphic Editor</li>
+<li>Use the search feature in the Toolbox, Assets, or Templates tabs to find symbols by name</li>
+</ol>
+
 <div class="screenshot">
-  <img src="../images/page_0149_0.jpeg" alt="Page 149">
-  <div class="caption">Page 149</div>
+  <img src="../images/page_0149_0.jpeg" alt="Toolbox search for meter symbols">
+  <div class="caption">The Toolbox tab with "meter" entered in the search field, showing 31 matching content items including AnalogMeter symbols ready to be embedded on the canvas</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Properties of Embedded Symbols</p>
-<p>Properties for a graphic embedded on the Graphic Editor’s drawing canvas are available on the</p>
-<p>Properties tab, when the embedded graphic is selected. The properties are organized into</p>
-<p>categories such as the ones listed below, as appropriate for the selected embedded graphic.</p>
-<p></p>
-<p>Graphic: Name of selected embedded symbol.</p>
-<p></p>
-<p>Appearance: Parameters related to the appearance of the selected embedded symbol,</p>
-<p>such as X and Y location, size, orientation, and more.</p>
-<p></p>
-<p>Runtime Behavior: Parameters related to visibility, tab order, symbol reference, and other</p>
-<p>runtime behaviors.</p>
-<p></p>
-<p>Custom Properties: User-defined properties that have been created in the embedded</p>
-<p>symbol to extend its functionality. Only public custom properties are available in this</p>
-<p>category.</p>
-<p>OwningObject Property</p>
-<p>The OwningObject property is one of the Runtime Behavior properties of an embedded symbol. It</p>
-<p>is a runtime property that is used to dynamically change the references within an embedded</p>
-<p>symbol from one instance to another.</p>
-<p>The OwningObject property can be used as the object reference to replace all "Me." references in</p>
-<p>expressions and scripts. The object name can be set, either using the tagname or hierarchical</p>
-<p>name of an Automation Object.</p>
+
+<div class="tip">
+<strong>Tip:</strong> Embedding a symbol from a template will initiate a process to create an instance first, and then embed the symbol on the canvas.
+</div>
+
+<h2>Properties of Embedded Symbols</h2>
+<p>Properties for an embedded symbol are available on the Properties tab when the symbol is selected on the canvas:</p>
+
+<ul>
+<li><strong>Graphic:</strong> Name of the embedded symbol</li>
+<li><strong>Appearance:</strong> X and Y location, size, orientation, anchor points, and scaling</li>
+<li><strong>Runtime Behavior:</strong> Visibility, tab order, symbol references, container status, and the OwningObject property</li>
+<li><strong>Custom Properties:</strong> User-defined public properties from the embedded symbol</li>
+</ul>
+
+<h2>The OwningObject Property</h2>
+<p>The <strong>OwningObject</strong> property is a runtime property used to dynamically change the references within an embedded symbol from one instance to another. It replaces all <code>Me.</code> references in expressions and scripts. The object name can be set using the tagname or hierarchical name of an automation object.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0150_0.jpeg" alt="Page 150">
-  <div class="caption">Page 150</div>
+  <img src="../images/page_0150_0.jpeg" alt="OwningObject property configuration">
+  <div class="caption">The OwningObject property being configured to reference Agitator_002, dynamically rebinding the embedded symbol to a different automation object instance</div>
 </div>
-<p>Section 2 – Graphic Editor</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Symbol Wizard Options</p>
-<p>If a graphic for which Wizard Options have been configured is selected on the drawing canvas, its</p>
-<p>Wizard Options properties appear on the Properties tab. Many of the symbols from the Situational</p>
-<p>Awareness Library have Wizard Options already configured.</p>
-<p>Custom Properties Configuration</p>
-<p>You can configure custom properties with the Edit Custom Properties dialog box. Right-click an</p>
-<p>embedded symbol and select Custom Properties. If custom properties are available within the</p>
-<p>embedded symbol, the Edit Custom Properties dialog box appears.</p>
-<p>Each available custom property has a defined data type, default value, visibility setting, and a</p>
-<p>description. The default value is the initial value as defined in the source symbol, which can be</p>
-<p>overridden with a value, reference, or expression.</p>
-<p>Available custom properties for a selected symbol and their default value configurations are also</p>
-<p>listed and editable on the Properties tab in the Graphic Editor.</p>
+
+<h2>Symbol Wizard Options</h2>
+<p>If a symbol with Wizard Options is selected on the drawing canvas, its Wizard Options appear on the Properties tab. Many Situational Awareness Library symbols have Wizard Options pre-configured for easy configuration of functional modes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0151_0.png" alt="Page 151">
-  <div class="caption">Page 151</div>
+  <img src="../images/page_0151_0.png" alt="Wizard Options for SA_Meters1">
+  <div class="caption">The Properties tab showing Wizard Options for the SA_Meters1 symbol, with configurable options for Type, Orientation, Label, and display settings</div>
 </div>
+
+<h2>Custom Properties Configuration</h2>
+<p>Custom properties can be configured through the <strong>Edit Custom Properties</strong> dialog box (right-click an embedded symbol and select <strong>Custom Properties</strong>). Each property has a defined data type, default value, visibility setting, and description. The default value can be overridden with a value, reference, or expression.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0151_1.png" alt="Page 151">
-  <div class="caption">Page 151</div>
+  <img src="../images/page_0151_1.png" alt="Edit Custom Properties dialog">
+  <div class="caption">The Edit Custom Properties dialog showing properties like EngUnitsVisible, LabelVisible, and PV with their data types, default values, and visibility settings</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Substitute Strings</p>
-<p>You can search for and replace strings of any element on the canvas that has the Text property.</p>
-<p>To substitute strings for an embedded symbol that has text graphics, select the embedded symbol</p>
-<p>on the drawing canvas, and then select Special | Substitute Strings from the menu. Or, right-click</p>
-<p>the embedded symbol on the canvas and select Substitute | Substitute Strings from the context</p>
-<p>menu. The Substitute Strings dialog box appears.</p>
-<p>You can use the basic mode to replace the strings in a list, or use Find & Replace functions, such</p>
-<p>as Find What and Replace with, Match Case, Use Wildcards, and others.</p>
+
+<h2>Substitute Strings and References</h2>
+<p>You can search for and replace strings of any element on the canvas that has the <strong>Text</strong> property using <strong>Special &gt; Substitute Strings</strong> or the right-click context menu. This supports basic list-based replacement as well as advanced Find &amp; Replace with Match Case, Wildcards, and other options.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0152_0.png" alt="Page 152">
-  <div class="caption">Page 152</div>
+  <img src="../images/page_0152_0.png" alt="Substitute Strings dialog">
+  <div class="caption">The Substitute Strings dialog showing Old/New columns for replacing text strings, with Find &amp; Replace options for advanced search</div>
 </div>
-<p>Section 2 – Graphic Editor</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Substitute References</p>
-<p>You can search for and replace references used by any element on the canvas.</p>
-<p>To substitute references for an embedded symbol that has references configured, select the</p>
-<p>embedded symbol on the drawing canvas, and then select Special | Substitute References from</p>
-<p>the menu. Or, right-click the embedded symbol on the canvas and select Substitute | Substitute</p>
-<p>References from the context menu. The Substitute Reference dialog box appears.</p>
-<p>You can use the basic mode to replace references in a list, or use Find & Replace functions, such</p>
-<p>as Find What and Replace with, Match Case, Use Wildcards, and others.</p>
-<div class="key-concept">Note: You can use the Galaxy Browser to select a new reference, but the auto-complete function</div>
-<p>is not available in the Substitute Reference dialog box.</p>
+
+<p>Similarly, you can search for and replace <strong>reference paths</strong> on canvas elements using <strong>Special &gt; Substitute References</strong>. The Galaxy Browser can be used to select new references, though auto-complete is not available in this dialog.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0153_0.png" alt="Page 153">
-  <div class="caption">Page 153</div>
+  <img src="../images/page_0153_0.png" alt="Substitute Reference dialog">
+  <div class="caption">The Substitute Reference dialog showing Old/New columns for replacing reference paths like Me.PV, with Find &amp; Replace capabilities</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">← L07: Lab 3 – Creating and Running a ViewApp</a> &nbsp;|&nbsp;
-  <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dash →</a>
-</nav>
+
+<div class="key-concept">
+<strong>Key Takeaway:</strong> The Graphic Editor is the central tool for creating and customizing industrial graphics in System Platform. It supports embedding linked copies of prebuilt symbols, configuring content types for ViewApp integration, using Wizard Options for rapid symbol configuration, and substituting strings and references for customization.
+</div>
+
+<h2>Quiz</h2>
+<div class="quiz">
+<h3>Test Your Knowledge</h3>
+
+<details>
+<summary>1. What are the two prebuilt symbol libraries provided with System Platform?</summary>
+<p class="answer">The Industrial Graphic Library (realistic, detailed symbols of standard industrial equipment) and the Situational Awareness Library (simplified symbols designed for quick process condition interpretation with minimal visual detail).</p>
+</details>
+
+<details>
+<summary>2. What are the three locations where symbols can be created, and how do they differ?</summary>
+<p class="answer">Symbols can be created on the Graphics tab (reusable, system-wide), in an object template (available to objects derived from that template), or in an object instance (available only in that specific instance). Symbols created within automation objects do not appear on the Graphics tab.</p>
+</details>
+
+<details>
+<summary>3. What happens when you embed a symbol from the Situational Awareness Library?</summary>
+<p class="answer">Embedding creates a linked copy of the original symbol. If the original symbol is modified, changes propagate to all embedded locations. Custom edits to the embedded copy do not affect the source symbol. The embedded symbol can be customized through properties, Wizard Options, and custom properties.</p>
+</details>
+
+<details>
+<summary>4. What is the purpose of the OwningObject property?</summary>
+<p class="answer">The OwningObject property is a runtime property that dynamically rebinding an embedded symbol to a different automation object instance. It replaces all "Me." references in expressions and scripts, allowing the same embedded symbol to display data from different instances.</p>
+</details>
+
+<details>
+<summary>5. What is the difference between the Substitute Strings and Substitute References features?</summary>
+<p class="answer">Substitute Strings searches for and replaces text content of elements with the Text property (like chart headings and labels). Substitute References searches for and replaces reference paths on graphic elements (like Me.PV or Me.Level.PV). Both support basic list-based replacement and advanced Find &amp; Replace functions.</p>
+</details>
+</div>
+
 <script>
-function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
-function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
-function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
-window.addEventListener('load',loadProgress);
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('input[data-lesson]');
+  const progress = {};
+  checkboxes.forEach(cb => { progress[cb.dataset.lesson] = cb.checked; });
+  localStorage.setItem('omi-progress', JSON.stringify(progress));
+  updateProgressText();
+}
+function loadProgress() {
+  const data = localStorage.getItem('omi-progress');
+  if (!data) return;
+  const progress = JSON.parse(data);
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    if (progress[cb.dataset.lesson]) cb.checked = true;
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  const total = document.querySelectorAll('input[data-lesson]').length;
+  const done = document.querySelectorAll('input[data-lesson]:checked').length;
+  document.getElementById('progress-text').textContent = done === total ? '🎉 All lessons complete!' : `${done}/${total} lessons completed`;
+}
+loadProgress();
 </script>
 </body>
 </html>

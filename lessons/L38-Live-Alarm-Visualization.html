@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 38: Live Alarm Visualization</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,13 +26,15 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Graphics</a> &nbsp;|&nbsp;
   <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display →</a>
 </nav>
 
@@ -122,383 +125,242 @@
 </nav>
 
 <h1>📖 L38: Live Alarm Visualization</h1>
-<p class="source">Module 9 — Alarms and Events | Pages 531-542</p>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>Introduction</p>
-<p>Application Server handles the real-time reporting of alarms, and provides clients for viewing</p>
-<p>current alarms. Application Server can detect events and report them to clients as recent events.</p>
-<p>You can create ViewApps that include a display for alarms and events, and allow operators to view</p>
-<p>and manage alarms and events. Current alarms require immediate attention, and operators can</p>
-<p>acknowledge alarms within the ViewApp. Operators can also view recent events for analysis and</p>
-<p>reporting.</p>
-<p>An out-of-the box OMI App is provided to display alarms and events in ViewApps. Using the</p>
-<p>AlarmApp, an operator can view the current alarms and recent events, acknowledge current</p>
-<p>alarms, query and filter alarms and events, and more.</p>
-<p>AlarmApp</p>
-<p>AlarmApp is an OMI App that you can place in your ViewApps to show live and historical alarms</p>
-<p>and events. At runtime, the pane configured with the AlarmApp shows alarms and events in</p>
-<p>tabular form, with each row representing a single alarm or event. The background color of a row</p>
-<p>for an alarm indicates the severity and current state of the alarms.</p>
-<p>You can configure the AlarmApp to show current alarms, recent alarms and events, historical</p>
-<p>alarms, historical events, or historical alarms and events. You can specify queries to subscribe</p>
-<p>alarms and events from the alarm provider. You can specify conditions to filter alarms and events</p>
-<p>displayed in the AlarmApp.</p>
-<p>To use the AlarmApp in a ViewApp, you must assign it to a layout pane. You can assign the</p>
-<p>AlarmApp to a pane from the Layout Editor or ViewApp Editor. Select the AlarmApp from the</p>
-<p>Toolbox tab, and then from the preview area, drag and drop the AlarmControl to the pane.</p>
-<p>Configure the AlarmApp</p>
-<p>You can configure AlarmControl properties from either the Layout Editor or the ViewApp Editor.</p>
-<p>When configuring the AlarmApp, properties appear on the Properties tab when the pane that</p>
-<p>contains the AlarmControl is selected.</p>
-<p></p>
-<p>General properties are:</p>
-<p></p>
-<p>Name: Shows the name of the content. By default, it is an auto-generated name</p>
-<p>based on the assigned control. It is editable.</p>
-<p></p>
-<p>Content: Shows the name of the AlarmControl assigned as the content. By default, it</p>
-<p>displays as AlarmApp.AlarmControl.</p>
-<p></p>
-<p>Pane: Shows the pane that contains the AlarmControl.</p>
-<p>This section describes how to use the AlarmApp to display and manage alarms and events in a</p>
-<p>ViewApp. It also describes how to customize the appearance and runtime behavior of the</p>
-<p>AlarmApp.</p>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p></p>
-<p>Run-Time Behavior properties provide configurations for AlarmApp runtime behaviors,</p>
-<p>such as how the AlarmApp works within the context of the current area, whether column</p>
-<p>headings are shown in the alarm grid, how alarms can be grouped by column within the</p>
-<p>alarm grid, whether signatures are required to acknowledge alarms, and others. Some</p>
-<p>examples are:</p>
-<p></p>
-<p>Follow Current Context: Determines if the AlarmApp participates in the context of</p>
-<p>the current area. When this property is enabled, the alarm query automatically</p>
-<p>changes to “\Galaxy!<CurrentArea>” at runtime.</p>
-<p></p>
-<p>Only Show Alarms on Current Asset: Determines if the AlarmApp shows</p>
-<p>aggregated alarms for all assets contained in the currently-selected area, or if it shows</p>
-<p>only alarms for the currently-selected asset. When this property is enabled, only</p>
-<p>alarms for the currently-selected asset are shown, even if the asset is an area. This</p>
-<p>property only has an effect when Follow Current Context is enabled.</p>
-<p></p>
-<p>Navigate On Double Click: Determines if the user must double-click on an alarm to</p>
-<p>navigate to the asset from which the alarm is generated. This property is enabled by</p>
-<p>default.</p>
-<p></p>
-<p>Configuration properties are:</p>
-<p></p>
-<p>Configuration: Provides an ellipsis button to open the configuration editor for the</p>
-<p>AlarmApp.</p>
-<p></p>
-<p>Run-Time Values properties are:</p>
-<p></p>
-<p>Selected Row Tagname: Read-only property that can be used to bind a reference,</p>
-<p>such as a ViewApp namespace attribute to get the Selected Row Tagname. At</p>
-<p>runtime, the selected row tagname will output to the reference as a String value. This</p>
-<p>is only applicable when a user manually selects the row, not when the system selects</p>
-<p>the row.</p>
-<p></p>
-<p>Selected Row Asset: Read-only property that can be used to bind a reference, such</p>
-<p>as a ViewApp namespace attribute to get the Selected Row Asset. At runtime, the</p>
-<p>selected row asset name will output to the reference as a String value.</p>
-<p></p>
-<p>Appearance properties include the configurations of the background and foreground</p>
-<p>colors for the AlarmControl. These colors may apply to the command bar and buttons and</p>
-<p>the area hierarchy display. These colors do not apply to the Alarm grid.</p>
-<p></p>
-<p>Command Bar properties include configurations for the AlarmApp command bar. For</p>
-<p>example, Show Command Bar determines if the command bar is shown above the alarm</p>
-<p>grid area at runtime, and other properties in this category determine which buttons are</p>
-<p>included in the displayed command bar. Available buttons include Navigate, Ack Selected,</p>
-<p>Ack All, Ack Visible, Requery, Connect, and Disconnect. The Show Command Bar</p>
-<p>property can be used to bind a reference, such as a ViewApp namespace attribute, which</p>
-<p>can show or hide the Command Bar at runtime based on the reference value.</p>
-<p></p>
-<p>Alarm Mode properties are:</p>
-<p></p>
-<p>Alarm Query: Read/write property to get or set an alarm query dynamically at</p>
-<p>runtime. It can be used to bind a reference to a ViewApp namespace attribute or to an</p>
-<p>application object attribute. This query overrides the query configured in the</p>
-<p>Configuration dialog box.</p>
-<p></p>
-<p>Client Mode: Read/Write integer value (1-5) that determines the type of alarm data</p>
-<p>shown in the AlarmApp. This property can dynamically bind to a namespace reference</p>
-<p>or to an attribute.</p>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p></p>
-<p>Area Hierarchy properties determine if the area hierarchy tree is shown or hidden in the</p>
-<p>AlarmApp at runtime. Also included are properties for configuring font settings for the</p>
-<p>hierarchy tree if shown. Some examples of Area Hierarchy properties include:</p>
-<p></p>
-<p>Show Area Hierarchy: Determines if the area hierarchy tree view appears within the</p>
-<p>AlarmApp. This property is disabled by default, which hides the area hierarchy tree</p>
-<p>view. This property can be used to bind a reference, such as a ViewApp namespace</p>
-<p>attribute, which can show or hide the area hierarchy tree at runtime based on the</p>
-<p>reference value.</p>
-<p></p>
-<p>Show Alarm Indicator: Determines if an alarm indicator appears beneath an area</p>
-<p>name shown on the area hierarchy of the AlarmApp. This property is enabled by</p>
-<p>default, which shows the alarm indicators.</p>
-<p></p>
-<p>.NET Alarm Client control properties are from the underlying .NET control of the</p>
-<p>AlarmApp, which are exposed and can be assigned values from the Layout Editor or</p>
-<p>included in scripts.</p>
-<p>.NET property groups are identified by the AlarmClientControl prefix in their titles that</p>
-<p>appear on the Properties tab. For example, the AlarmClientControl.Accessibility title</p>
-<p>appears immediately beneath the Area Hierarchy group of properties.</p>
-<p>For more information about .NET properties. please refer to Microsoft resources, such as:</p>
-<p>http://docs.microsoft.com/en-us/donet/api/system.windows.forms</p>
-<p>For more information about Alarm Client Control properties and methods, refer to the AVEVA</p>
-<p>Alarm Client Control User Guide that is delivered with System Platform 2023.</p>
-<div class="screenshot">
-  <img src="../images/page_0533_0.jpeg" alt="Page 533">
-  <div class="caption">Page 533</div>
+<p class="source">Module 9 — Alarms and Events Visualization, Section 2</p>
+<p class="page-ref">Pages 531–542</p>
+
+<h2>Introduction</h2>
+
+<p>Application Server handles the real-time reporting of alarms and provides clients for viewing current alarms. It can also detect events and report them to clients as recent events. You can create ViewApps that include a display for alarms and events, allowing operators to view and manage both current alarms and recent events. Current alarms require immediate attention, and operators can acknowledge them directly within the ViewApp. Recent events can be reviewed for analysis and reporting purposes.</p>
+
+<div class="key-concept">
+<strong>AlarmApp</strong> is an out-of-the-box OMI App provided to display alarms and events in ViewApps. Using the AlarmApp, an operator can view current alarms and recent events, acknowledge current alarms, query and filter alarms and events, and more.
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Binding AlarmApp Run-Time Properties</p>
-<p>The AlarmApp includes runtime properties that are exposed as configurable properties, which</p>
-<p>determine the visual aspects or functional behaviors of the AlarmApp during runtime. Configuring</p>
-<p>some of these properties also applies to the configurations available in the Configuration Editor,</p>
-<p>such as Alarm Query, Client Mode, and Requires Ack Signature.</p>
-<p>Most of the properties include a list of binding options to configure a static or dynamic value based</p>
-<p>on the type of binding between the property and its associated reference. You can select a</p>
-<p>dynamic binding option from the list and then configure the value by specifying a reference, such</p>
-<p>as a reference to an attribute defined in a custom ViewApp namespace or a public custom</p>
-<p>property of a symbol assigned in the same layout. With a dynamic binding option, these properties</p>
-<p>can be changed dynamically based on the reference values at runtime.</p>
-<p>In the example below, the Show Command Bar property is binding to the reference:</p>
-<p>MyContent.AlarmAppConfig1.ShowCommands</p>
-<p>ShowCommands is a public custom property defined in a symbol named AlarmAppConfig, which</p>
-<p>is assigned to the same layout with the AlarmControl.</p>
+
+<h2>The AlarmApp</h2>
+
+<p>The AlarmApp is an OMI App that you can place in your ViewApps to show live and historical alarms and events. At runtime, the pane configured with the AlarmApp shows alarms and events in tabular form, with each row representing a single alarm or event. The background color of a row for an alarm indicates the severity and current state of the alarm.</p>
+
+<p>You can configure the AlarmApp to show current alarms, recent alarms and events, historical alarms, historical events, or historical alarms and events. You can specify queries to subscribe alarms and events from the alarm provider, and you can specify conditions to filter which alarms and events are displayed.</p>
+
+<p>To use the AlarmApp in a ViewApp, you must assign it to a layout pane. You can do this from either the Layout Editor or the ViewApp Editor. Select the AlarmApp from the Toolbox tab, and from the preview area, drag and drop the AlarmControl to the target pane.</p>
+
+<h2>Configure the AlarmApp</h2>
+
+<p>You can configure AlarmControl properties from either the Layout Editor or the ViewApp Editor. When configuring the AlarmApp, properties appear on the Properties tab when the pane that contains the AlarmControl is selected.</p>
+
+<h3>General Properties</h3>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Name</strong></td><td>Shows the name of the content. By default, it is auto-generated based on the assigned control. It is editable.</td></tr>
+<tr><td><strong>Content</strong></td><td>Shows the name of the AlarmControl assigned as the content. By default, displays as <code>AlarmApp.AlarmControl</code>.</td></tr>
+<tr><td><strong>Pane</strong></td><td>Shows the pane that contains the AlarmControl.</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0534_0.png" alt="Page 534">
-  <div class="caption">Page 534</div>
+  <img src="../images/page_0533_0.jpeg" alt="Properties Panel showing General and property groups for AlarmControl">
+  <div class="caption">Properties panel displaying the General section and collapsible property groups for the AlarmControl, including Run-Time Behavior, Configuration, Run-Time Values, Appearance, Command Bar, Alarm Mode, Area Hierarchy, and .NET AlarmClientControl groups</div>
 </div>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Event Handlers</p>
-<p>The Event Handlers category on the Properties tab lists all available events for the control, and</p>
-<p>you can create an event handler script by selecting an event from the list.</p>
-<p>The underlying control of the AlarmApp includes a set of public events that can be used for</p>
-<p>creating event handler scripts. These events are identified by the AlarmClientControl prefix in their</p>
-<p>names that appear in the list of the available events. You can select a public event of the control</p>
-<p>from the list to add an event handler script.</p>
-<p>After the event handler script is created, you can navigate to the Script page to edit the script by</p>
-<p>clicking the ellipsis button to the right of the added script. More information about layout scripts is</p>
-<p>provided in Module 13.</p>
-<p>In the example below, the AlarmClientControl.NewAlarm event handler script is created.</p>
+
+<h3>Run-Time Behavior Properties</h3>
+
+<p>Run-Time Behavior properties provide configurations for AlarmApp runtime behaviors, such as how the AlarmApp works within the context of the current area, whether column headings are shown, how alarms can be grouped, and whether signatures are required to acknowledge alarms. Key properties include:</p>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Follow Current Context</strong></td><td>Determines if the AlarmApp participates in the context of the current area. When enabled, the alarm query automatically changes to <code>\\Galaxy\&lt;CurrentArea&gt;</code> at runtime.</td></tr>
+<tr><td><strong>Only Show Alarms on Current Asset</strong></td><td>When Follow Current Context is enabled, this determines if the AlarmApp shows aggregated alarms for all assets in the area, or only alarms for the currently-selected asset.</td></tr>
+<tr><td><strong>Navigate On Double Click</strong></td><td>Determines if double-clicking an alarm navigates to the asset that generated it. Enabled by default.</td></tr>
+</table>
+
+<h3>Configuration, Run-Time Values, and Appearance Properties</h3>
+
+<p>The <strong>Configuration</strong> property provides an ellipsis button to open the configuration editor for the AlarmApp, where you can set alarm mode, colors, columns, queries, and more.</p>
+
+<p><strong>Run-Time Values</strong> properties include read-only properties like <strong>Selected Row Tagname</strong> and <strong>Selected Row Asset</strong>, which can be bound to references (such as ViewApp namespace attributes) to retrieve the tagname or asset of a manually selected row at runtime.</p>
+
+<p><strong>Appearance</strong> properties configure the background and foreground colors for the AlarmControl's command bar, buttons, and area hierarchy display. These colors do not apply to the alarm grid itself.</p>
+
+<h3>Command Bar Properties</h3>
+
+<p>Command Bar properties control the alarm grid's command bar. <strong>Show Command Bar</strong> determines if the command bar is shown above the alarm grid at runtime. Available buttons include Navigate, Ack Selected, Ack All, Ack Visible, Requery, Connect, and Disconnect. The Show Command Bar property can bind to a reference (such as a ViewApp namespace attribute) to dynamically show or hide the command bar at runtime.</p>
+
+<h3>Alarm Mode Properties</h3>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Alarm Query</strong></td><td>Read/write property to get or set an alarm query dynamically at runtime. Can bind to a ViewApp namespace attribute or application object attribute. Overrides the query in the Configuration dialog.</td></tr>
+<tr><td><strong>Client Mode</strong></td><td>Read/write integer value (1–5) that determines the type of alarm data shown in the AlarmApp. Can bind to a namespace reference or attribute.</td></tr>
+</table>
+
+<h3>Area Hierarchy Properties</h3>
+
+<p>Area Hierarchy properties determine if the area hierarchy tree is shown or hidden in the AlarmApp at runtime, and include font settings for the tree if shown.</p>
+
+<table>
+<tr><th>Property</th><th>Default</th><th>Description</th></tr>
+<tr><td><strong>Show Area Hierarchy</strong></td><td>Disabled</td><td>Toggles the area hierarchy tree view within the AlarmApp. Can bind to a reference for dynamic toggling at runtime.</td></tr>
+<tr><td><strong>Show Alarm Indicator</strong></td><td>Enabled</td><td>Determines if an alarm indicator appears beneath an area name in the area hierarchy.</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0535_0.jpeg" alt="Page 535">
-  <div class="caption">Page 535</div>
+  <img src="../images/page_0534_0.png" alt="Command Bar binding to a custom symbol reference">
+  <div class="caption">Binding the Show Command Bar property to a dynamic reference — here the property is bound to <code>MyContent.AlarmAppConfig1.ShowCommands</code>, a public custom property on a symbol in the same layout</div>
 </div>
+
+<h2>Binding AlarmApp Run-Time Properties</h2>
+
+<p>The AlarmApp includes runtime properties exposed as configurable properties, which determine the visual aspects or functional behaviors of the AlarmApp during runtime. Configuring some of these properties also applies to the configurations available in the Configuration Editor, such as Alarm Query, Client Mode, and Requires Ack Signature.</p>
+
+<p>Most properties include a list of binding options to configure a static or dynamic value. You can select a dynamic binding option and configure the value by specifying a reference — for example, a reference to an attribute defined in a custom ViewApp namespace, or a public custom property of a symbol assigned in the same layout. With dynamic binding, these properties can change at runtime based on the reference values.</p>
+
+<div class="tip">
+<strong>Example:</strong> The <code>Show Command Bar</code> property can bind to <code>MyContent.AlarmAppConfig1.ShowCommands</code>, where <code>ShowCommands</code> is a public custom property defined in a symbol named <code>AlarmAppConfig</code>, assigned to the same layout as the AlarmControl.
+</div>
+
+<h2>Event Handlers</h2>
+
+<p>The Event Handlers category on the Properties tab lists all available events for the AlarmControl, and you can create an event handler script by selecting an event from the list. The underlying control includes a set of public events identified by the <code>AlarmClientControl</code> prefix in their names. After creating an event handler script, you can navigate to the Script page to edit it by clicking the ellipsis button to the right of the added script.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0535_1.png" alt="Page 535">
-  <div class="caption">Page 535</div>
+  <img src="../images/page_0535_0.jpeg" alt="Event Handlers dropdown showing available AlarmClientControl events">
+  <div class="caption">The Event Handlers section on the Properties tab, listing available AlarmClientControl events (such as NewAlarm, FocusChanged, etc.) — the count shows 191 available events</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>AlarmApp Configuration Editor</p>
-<p>The AlarmApp configuration editor allows you to configure alarm mode, color, column detail,</p>
-<p>queries and filters, time, and runtime behavior settings.</p>
-<p></p>
-<p>Alarm Mode: Allows you to specify Client Mode, a default Alarm Query, and a default</p>
-<p>acknowledgment comment.</p>
-<p></p>
-<p>Colors: Allows you to specify text and background colors for events, headings, alarm</p>
-<p>states, and more.</p>
-<p></p>
-<p>Column Details: Allows you to specify display names and widths for columns, as well the</p>
-<p>sort order for alarm records shown at runtime.</p>
-<p></p>
-<p>Queries and Filters: Allows you to specify query and filter favorites.</p>
-<p></p>
-<p>Time Settings: Allows you to specify time zones and date/time formats for alarm and</p>
-<p>event records shown at runtime.</p>
-<p></p>
-<p>Runtime Behavior: Allows you to configure the behavior and appearance of the</p>
-<p>AlarmApp at runtime.</p>
-<p>Alarm Mode Page</p>
-<p>Options on the Alarm Mode page depend on which Client Mode is selected. For example:</p>
-<p></p>
-<p>If Current Alarms or Recent Alarms and Events is selected, fields for specifying a default</p>
-<p>alarm query and default acknowledgment comment appear. A default alarm query must</p>
-<p>include Provider and Group as criteria.</p>
-<p></p>
-<p>If Historical Alarms, Historical Events, or Historical Alarms and Events is selected, fields</p>
-<p>for specifying database connectivity and other settings appear.</p>
-<p>Configure AlarmApp for Current or Recent Alarms and Events</p>
-<p>To configure the AlarmApp to show current alarms, set Client Mode to Current Alarms. To</p>
-<p>configure the AlarmApp to show recent alarms and events, set Client Mode to Recent Alarms and</p>
-<p>Events. Then, provide the default query filter.</p>
-<p>Optionally, you check the Use Default Ack Comment option and enter text for the default</p>
-<p>acknowledgment comment.</p>
+
+<h2>AlarmApp Configuration Editor</h2>
+
+<p>The AlarmApp configuration editor allows you to configure alarm mode, color, column detail, queries and filters, time settings, and runtime behavior settings through the following tabs:</p>
+
+<table>
+<tr><th>Tab</th><th>Purpose</th></tr>
+<tr><td><strong>Alarm Mode</strong></td><td>Specify Client Mode, a default Alarm Query, and a default acknowledgment comment</td></tr>
+<tr><td><strong>Colors</strong></td><td>Specify text and background colors for events, headings, alarm states, and more</td></tr>
+<tr><td><strong>Column Details</strong></td><td>Specify display names and widths for columns, and the sort order for alarm records</td></tr>
+<tr><td><strong>Queries and Filters</strong></td><td>Create and manage query and filter favorites</td></tr>
+<tr><td><strong>Time Settings</strong></td><td>Specify time zones and date/time formats for alarm and event records</td></tr>
+<tr><td><strong>Run-Time Behavior</strong></td><td>Configure runtime appearance and behavior of the AlarmApp</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0536_0.png" alt="Page 536">
-  <div class="caption">Page 536</div>
+  <img src="../images/page_0536_0.png" alt="Configuration Dialog with Alarm Mode tab selected">
+  <div class="caption">The AlarmApp Configuration Editor — Alarm Mode tab showing Client Mode set to "Current Alarms" and the Alarm Query field with the query string</div>
 </div>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Alarm Queries</p>
-<p>The AlarmApp supports standard Galaxy alarm query formats. Some example formats are:</p>
-<p></p>
-<p>\galaxy!area</p>
-<p></p>
-<p>\\node\galaxy!area</p>
-<p>Query syntax is the same for both Current Alarms and Recent Alarms and Events. Queries for</p>
-<p>Historical Alarms, Historical Events, and Historical Alarms and Events follow syntax rules for SQL</p>
-<p>Server database queries.</p>
-<p>Queries and Filters Page</p>
-<p>You can use the Queries and Filters page to create queries and filters to show alarms and events</p>
-<p>as needed. When the AlarmApp is configured for Current Alarms or Recent Alarms and Events,</p>
-<p>the default query specified on the Alarm Mode page is displayed on the Queries and Filters page</p>
-<p>as the “Default” query. The default query cannot be deleted, but it can be customized from the</p>
-<p>Queries and Filters page.</p>
-<p>Queries and filters configured on this page are available from a list of preconfigured queries and</p>
-<p>filters at runtime. At runtime, you can also create new queries and filters or modify existing queries</p>
-<p>and filters to show alarms and events as needed.</p>
-<p>For example, the following shows the default query is configured to display current alarms from</p>
-<p>Line1 and Line2 areas:</p>
-<p>Queries and filters can be exported to an XML file, and you can load queries and filters from a file.</p>
+
+<h3>Alarm Mode Page</h3>
+
+<p>Options on the Alarm Mode page depend on which Client Mode is selected. If <strong>Current Alarms</strong> or <strong>Recent Alarms and Events</strong> is selected, fields for specifying a default alarm query and default acknowledgment comment appear. A default alarm query must include Provider and Group as criteria. If <strong>Historical Alarms</strong>, <strong>Historical Events</strong>, or <strong>Historical Alarms and Events</strong> is selected, fields for database connectivity and other settings appear instead.</p>
+
+<h2>Alarm Queries</h2>
+
+<p>The AlarmApp supports standard Galaxy alarm query formats. Examples include:</p>
+
+<table>
+<tr><th>Query Format</th><th>Description</th></tr>
+<tr><td><code>\galaxy!area</code></td><td>Local Galaxy query for a specified area</td></tr>
+<tr><td><code>\\node\galaxy!area</code></td><td>Remote Galaxy query targeting a specific node</td></tr>
+</table>
+
+<p>Query syntax is the same for both Current Alarms and Recent Alarms and Events. Queries for Historical Alarms, Historical Events, and Historical Alarms and Events follow SQL Server database query rules instead.</p>
+
+<h3>Queries and Filters Page</h3>
+
+<p>You can use the Queries and Filters page to create queries and filters to show alarms and events as needed. The default query specified on the Alarm Mode page is displayed as the "Default" query — it cannot be deleted but can be customized. Queries and filters configured on this page are available from a list of preconfigured queries and filters at runtime. You can also create new queries and filters at runtime.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0537_0.png" alt="Page 537">
-  <div class="caption">Page 537</div>
+  <img src="../images/page_0537_0.png" alt="Queries and Filters tab showing a multi-line query with OR/AND logic">
+  <div class="caption">The Queries and Filters page — the default query is configured to display current alarms from Line1 and Line2 areas using OR/AND logic</div>
 </div>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>Runtime Behavior Page</p>
-<p>You use the Runtime Behavior page to configure the appearance and behavior of the AlarmApp at</p>
-<p>runtime.</p>
-<p>For example, you can enable or disable options such as Show Heading, Show Grid, and Show</p>
-<p>Status Bar to control the appearance of the control at runtime. For configuring runtime behavior,</p>
-<p>options such as Disable File Browsing, Overwrite Design Time Queries and Filters, and options for</p>
-<p>requiring signatures for shelving and acknowledging alarms are available.</p>
-<p>Manage Alarms at Runtime</p>
-<p>You can use the AlarmApp to manage alarms at runtime, including acknowledging alarms,</p>
-<p>shelving and unshelving alarms, hiding alarms and events, filtering alarms and events, and more.</p>
-<p>Acknowledge Alarms</p>
-<p>Acknowledging current alarms ensures that an operator is aware of a temporary alarm state</p>
-<p>change. To be able to acknowledge alarms through the AlarmApp in a running ViewApp, the</p>
-<p>AlarmApp must have the Client Mode configured as Current Alarms.</p>
-<p>You can use the AlarmApp to acknowledge:</p>
-<p></p>
-<p>One or more selected alarms</p>
-<p></p>
-<p>All alarms, including alarms that are not visible due to the limited display space of the</p>
-<p>AlarmApp</p>
-<p></p>
-<p>All visible alarms</p>
-<p></p>
-<p>All alarms with common values, such as alarm priority</p>
-<p>A comment can optionally be entered when acknowledging an alarm at runtime. The comment will</p>
-<p>be logged with the alarm acknowledgment record.</p>
-<p>When security is enabled in the Galaxy, alarms can be acknowledged only by operators with</p>
-<p>proper authorization.</p>
+
+<h2>Runtime Behavior Page</h2>
+
+<p>You use the Runtime Behavior page to configure the appearance and behavior of the AlarmApp at runtime. This includes toggling options such as Show Heading, Show Grid, and Show Status Bar to control the visual appearance, and behavior options like Disable File Browsing and Overwrite Design Time Queries and Filters. You can also configure whether signatures are required for shelving and acknowledging alarms.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0538_0.png" alt="Page 538">
-  <div class="caption">Page 538</div>
+  <img src="../images/page_0538_0.png" alt="Run-Time Behavior tab with checkboxes for appearance and context menu options">
+  <div class="caption">The Run-Time Behavior page — left pane shows appearance checkboxes (Show Heading, Show Status Bar, Query on Startup, etc.), right pane shows Context Menu command options</div>
 </div>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Shelve and Unshelve Alarms</p>
-<p>Shelving alarms allows operators to temporarily suppress them for a fixed period. Shelving alarms</p>
-<p>will temporarily filter them from showing through the alarm grid. The shelved alarms can only be</p>
-<p>shown when a query or filter that is configured to show the shelved alarms is selected at runtime.</p>
-<p>To shelve or unshelve alarms through the AlarmControl at runtime only applies when the</p>
-<p>AlarmControl has the Client Mode configured as Current Alarms.</p>
-<p>You can use the AlarmApp to shelve:</p>
-<p></p>
-<p>One or more selected alarms</p>
-<p></p>
-<p>All alarms</p>
-<p></p>
-<p>All visible alarms</p>
-<p></p>
-<p>All alarms with common values, such as alarm priority</p>
-<p>When shelving alarms, you must provide a duration for which the alarms remain shelved and enter</p>
-<p>a mandatory comment.</p>
-<p>Shelved alarms can be manually unshelved before the shelved duration expires. To unshelve</p>
-<p>alarms, you need to create a query or filter to show the currently shelved alarms, and then use the</p>
-<p>context menu within the alarm grid to unshelve alarms as needed.</p>
-<p>When security is enabled in the Galaxy, alarms can be shelved and unshelved only by operators</p>
-<p>with proper authorization.</p>
-<p>Query and Filter Alarms at Runtime</p>
-<p>Alarms can be queried and filtered at runtime by using the queries and filters that are already</p>
-<p>defined in the configuration. You can select an existing query to subscribe alarms and events that</p>
-<p>meet the criteria, and then select a filter to narrow the criteria without re-running the query or</p>
-<p>modifying the query.</p>
-<p>Queries and filters can also be created at runtime, and if the AlarmControl is configured with</p>
-<p>Overwrite Design Time Queries and Filters enabled, the queries and filters created at runtime</p>
-<p>always take precedence over the queries and filters created at design time. If Disable File</p>
-<p>Browsing is unchecked, the AlarmApp allows queries and filters to be exported to an *.xml file and</p>
-<p>queries and filters to be imported from an existing *.xml file.</p>
-<p>Hide Alarms and Events</p>
-<p>Alarms can be hidden or unhidden in the AlarmApp grid. When the AlarmApp is hiding alarms, it</p>
-<p>ignores the hidden alarms until they are unhidden. The actual alarm generation is completely</p>
-<p>unaffected by hiding the alarm records. Alarm records are still logged into the alarm history.</p>
-<p>Sort Alarms During Runtime</p>
-<p>The AlarmApp supports alarm sorting for up to four columns at design time and runtime. At</p>
-<p>runtime, operators can configure sorting of even more columns by clicking on the column headers</p>
-<p>of the AlarmControl. You can sort alarms in ascending or descending order for selected columns.</p>
-<p>Changes made to the sorting at runtime are lost when you switch back to design time.</p>
-<p>Acknowledge Alarms that Require Signatures</p>
-<p>When the AlarmControl is configured to require an acknowledgment signature for alarms with an</p>
-<p>alarm priority range, you must provide your signature in the Ack Alarm dialog box to acknowledge</p>
-<p>alarms at runtime. If one or more of the selected alarms falls within the configured priority range,</p>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<p>the comment is prefixed in the alarm record with "Signed ACK -" indicating that it is a signed</p>
-<p>acknowledgment. Otherwise, it is prefixed with "Std ACK -" indicating that it is a standard</p>
-<p>acknowledgment.</p>
-<p>Shelve Alarms that Require Signatures</p>
-<p>If a shelving signature is required and application security is active, attempting to shelve alarms</p>
-<p>from the alarm grid displays a Shelve Comment dialog box. The dialog box includes fields for the</p>
-<p>operator to enter user credentials (name, password, domain), select a shelve duration, and enter a</p>
-<p>mandatory comment.</p>
-<p>By default, the logged-in user appears in the Username field. If the application security type is</p>
-<p>ArchestrA, then ArchestrA appears in the Domain field and cannot be edited. If the credentials are</p>
-<p>valid, the AlarmApp attempts to shelve the selected alarms.</p>
-<p>If the user credentials are not valid, the AlarmApp shows an error message. When the operator</p>
-<p>clicks OK on the error message, the Shelve Comment dialog appears again with the entered user</p>
-<p>name, comment, and duration. The Password (or PIN) field is blank. The operator can attempt to</p>
-<p>authenticate again or cancel.</p>
+
+<h2>Manage Alarms at Runtime</h2>
+
+<p>The AlarmApp provides comprehensive alarm management capabilities at runtime, including acknowledging, shelving, hiding, querying, filtering, and sorting alarms.</p>
+
+<h3>Acknowledge Alarms</h3>
+
+<p>Acknowledging current alarms ensures that an operator is aware of a temporary alarm state change. To acknowledge alarms through the AlarmApp, the Client Mode must be configured as Current Alarms. You can acknowledge one or more selected alarms, all alarms (including those not visible due to display limitations), all visible alarms, or all alarms with common values such as alarm priority. An optional comment can be entered and will be logged with the acknowledgment record. When security is enabled, alarms can only be acknowledged by operators with proper authorization.</p>
+
+<h3>Shelve and Unshelve Alarms</h3>
+
+<p>Shelving alarms allows operators to temporarily suppress them for a fixed period. Shelved alarms are filtered from the alarm grid and can only be shown when a query or filter configured to show shelved alarms is selected at runtime. Shelving/unshelving only applies when the Client Mode is configured as Current Alarms. Shelved alarms can be manually unshelved before the shelving duration expires by first creating a query or filter to show them, then using the context menu to unshelve.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0540_0.png" alt="Page 540">
-  <div class="caption">Page 540</div>
+  <img src="../images/page_0540_0.png" alt="Ack Alarm dialog and Shelve Comment dialog with credential fields">
+  <div class="caption">Ack Alarm dialog (left) with Comment, Username, Password, and Domain fields for signed acknowledgment; Shelve Comment dialog (right) with Duration, Reason, and credential fields</div>
 </div>
+
+<h3>Query and Filter at Runtime</h3>
+
+<p>Alarms can be queried and filtered at runtime using pre-defined queries and filters. You select an existing query to subscribe to matching alarms, then apply a filter to narrow the results without re-running the query. Queries and filters can also be created at runtime. If Overwrite Design Time Queries and Filters is enabled, runtime queries always take precedence. If Disable File Browsing is unchecked, queries and filters can be exported to and imported from XML files.</p>
+
+<h3>Hide and Sort Alarms</h3>
+
+<p>Alarms can be hidden or unhidden in the AlarmApp grid. Hiding alarms causes the AlarmApp to ignore them, but the actual alarm generation is completely unaffected — alarm records are still logged into alarm history. The AlarmApp supports sorting for up to four columns at design time, and operators can configure additional column sorting at runtime by clicking column headers. Changes to sorting at runtime are lost when returning to design time.</p>
+
+<h3>Freeze and Unfreeze</h3>
+
+<p>You can freeze the alarm grid to prevent updates. For example, if new alarms occur while the grid is frozen, they only appear after unfreezing. If a duration is configured, the grid automatically unfreezes after that period. The grid also automatically unfreezes when the Alarm Mode, Alarm Query, or Query Filter changes.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0540_1.png" alt="Page 540">
-  <div class="caption">Page 540</div>
+  <img src="../images/page_0540_1.png" alt="Ack Alarm dialog showing signed acknowledgment">
+  <div class="caption">The Ack Alarm dialog for signed acknowledgment — when alarms fall within the configured priority range, the comment is prefixed with "Signed ACK -" indicating a signed acknowledgment</div>
 </div>
-<p>Section 2 – Live Alarm Visualization</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Freeze and Unfreeze the AlarmApp Grid</p>
-<p>You can freeze the alarm grid to prevent the grid from being updated with changes. For example, if</p>
-<p>new alarms occur while the alarm grid is frozen, the new alarms are only shown after you unfreeze</p>
-<p>the alarm grid.</p>
-<p>If a duration is configured for freezing alarms, then after that time period, the alarm grid</p>
-<p>automatically unfreezes to avoid the grid unintentionally remaining frozen. An example would be if</p>
-<p>an operator leaves the workstation and returns without realizing that the alarm grid is still frozen.</p>
-<p>The alarm grid automatically unfreezes when any of the following change:</p>
-<p></p>
-<p>Alarm Mode</p>
-<p></p>
-<p>Alarm Query</p>
-<p></p>
-<p>Query Filter</p>
-<p>After you unfreeze the alarm grid, it updates with the new alarm records and any other updates</p>
-<p>that occurred while the grid was frozen.</p>
-<p>Module 9 – Alarms and Events Visualization</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h2>Key Takeaways</h2>
+
+<div class="key-concept">
+<ul>
+<li>The <strong>AlarmApp</strong> is the primary OMI App for displaying and managing alarms and events in ViewApps</li>
+<li>Assign it to a layout pane via drag-and-drop from the Toolbox tab</li>
+<li>Properties control runtime behavior, appearance, alarm queries, and command bar visibility</li>
+<li>Most properties support <strong>dynamic binding</strong> to namespace attributes or symbol properties for runtime flexibility</li>
+<li>The <strong>Configuration Editor</strong> provides six tabs for alarm mode, colors, columns, queries, time, and runtime behavior</li>
+<li>Alarms can be acknowledged, shelved, hidden, queried, filtered, and sorted at runtime</li>
+</ul>
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What is the AlarmApp?</summary>
+<p class="answer">The AlarmApp is an out-of-the-box OMI App used to display live and historical alarms and events in ViewApps. It shows alarms in tabular form with row background colors indicating severity and state.</p>
+</details>
+
+<details>
+<summary>Q2: How do you assign the AlarmApp to a ViewApp?</summary>
+<p class="answer">Select the AlarmApp from the Toolbox tab in the Layout Editor or ViewApp Editor, then drag and drop the AlarmControl to the desired layout pane.</p>
+</details>
+
+<details>
+<summary>Q3: What does the "Follow Current Context" property do?</summary>
+<p class="answer">When enabled, the AlarmApp participates in the context of the current area, and the alarm query automatically changes to show alarms for the currently-navigated area at runtime.</p>
+</details>
+
+<details>
+<summary>Q4: What are the three main alarm management operations available at runtime?</summary>
+<p class="answer">Acknowledging alarms, shelving/unshelving alarms, and hiding/unhiding alarms. Queries, filters, and sorting are also available.</p>
+</details>
+
+<details>
+<summary>Q5: What does the "Show Command Bar" property control?</summary>
+<p class="answer">It determines whether the command bar (with buttons like Navigate, Ack Selected, Ack All, Requery, Connect, Disconnect) appears above the alarm grid at runtime. It can be bound to a reference for dynamic toggling.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Gra</a> &nbsp;|&nbsp;
+  <a href="L37-Lab-18---Adding-Alarm-Information-to-Graphics.html">← L37: Lab 18 – Adding Alarm Information to Graphics</a> &nbsp;|&nbsp;
   <a href="L39-Lab-19---Creating-a-Live-Alarm-Display.html">L39: Lab 19 – Creating a Live Alarm Display →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

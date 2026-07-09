@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 20: Layout and Pane Customizations</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,13 +26,15 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; font-style: italic; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">← L19: Lab 9 – Linking a Layout as Content in a</a> &nbsp;|&nbsp;
+  <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">← L19: Lab 9 – Linking a Layout as Content</a> &nbsp;|&nbsp;
   <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout →</a>
 </nav>
 
@@ -122,140 +125,162 @@
 </nav>
 
 <h1>📖 L20: Layout and Pane Customizations</h1>
-<p class="source">Module 4 — ViewApp Customizations | Pages 301-308</p>
-<p>Lab 9 – Linking a Layout as Content in an Object</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 9 – Linking a Layout as Content in an</p>
-<p>Object</p>
-<p>Introduction</p>
-<p>In this lab, you will create a new layout named Asset_Layout for assets in the Galaxy. It will contain</p>
-<p>two panes: One will be configured with the Detailed content type and the other will contain a</p>
-<p>prebuilt faceplate symbol configured to show device information.</p>
-<p>The whole layout will be configured with the Detailed content type, so that it can appear within the</p>
-<p>Main layout.</p>
-<p>Then you will link Asset_Layout to the $Mixer template.</p>
-<p>At runtime, when navigated to a mixer object, you will see the mixer symbol as well as the</p>
-<p>faceplate symbol showing information about that mixer.</p>
-<p>Content workflow highlight: Linking a layout to an object</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Link a layout to objects</p>
-<p></p>
-<p>Use a linked layout to auto-fill content</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Import a Faceplate Symbol</p>
-<p>In the following steps, you will import a faceplate symbol provided for you. This symbol is designed</p>
-<p>as a simple faceplate symbol for the assets in this Galaxy.</p>
-<p>1.</p>
-<p>On the Galaxy menu, select Import | Objects | From package.</p>
-<p>The Import Objects from package dialog box appears.</p>
-<p>2.</p>
-<p>Navigate to C:\Training, select Lab 9 - AssetInfo Faceplate_Prebuilt.aaPKG, and then click</p>
-<p>Open.</p>
-<p>The Import Preferences dialog box appears.</p>
-<p>3.</p>
-<p>Leave default import preferences and click Import.</p>
-<p>4.</p>
-<p>When the import is complete, click Close to close the Import Objects from package dialog</p>
-<p>box.</p>
-<p>5.</p>
-<p>In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
-<p>Lab 9 – Linking a Layout as Content in an Object</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>6.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, verify that the AssetInfo_Faceplate</p>
-<p>symbol is listed.</p>
-<div class="key-concept">Note:</div>
-<p>You can open the symbol to review it. It will be used in the layout for assets that you</p>
-<p>will create in the next task.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>Create a Layout for Assets</p>
-<p>In the following steps, you will create a layout with two panes that will be used for assets in the</p>
-<p>Galaxy. You will configure a content type for one pane, and manually assign the faceplate symbol</p>
-<p>to the other pane.</p>
-<p>7.</p>
-<p>On the Graphics tab, in the Training \ Layouts toolset, create a new layout and name it</p>
-<p>Asset_Layout.</p>
-<p>8.</p>
-<p>Double-click Asset_Layout to open it in the Layout Editor.</p>
-<p>9.</p>
-<p>With Pane1 selected in the preview area, click the Add new pane right-arrow to add a pane to</p>
-<p>the right.</p>
-<p>` buttons at top, left, right, bottom for adding new panes</p>
-<p>• Four-way arrow icon inside Pane1 (active/editable state)</p>
-<p>• <strong>Top Tabs</strong>: <code>Properties</code> (active, blue underline), <code>Toolbox</code>, <code>Assets</code>, <code>></code> collapse button</p>
-<p>• <strong>Search bar</strong> with <code>Search...</code> placeholder</p>
-<p>• <strong>Property Groups</strong>:</p>
-<p><strong>1.</strong> <strong>General</strong>:</p>
-<p>• <code>Content Type(s)</code>: Set to <strong><code>Detailed</code></strong> via dropdown</p>
-<p>• <code>Use For Auto-Fill</code>: Enabled (checked blue box)</p>
-<p><strong>2.</strong> <strong>Size</strong>:</p>
-<p>• <code>Width</code>: <code>960</code></p>
-<p>• <code>Width Sizing</code>: <code>Variable</code> (dropdown)</p>
-<p>• <code>Minimum Width</code>: <code>2</code></p>
-<p>• <code>Maximum Width</code>: Blank/unspecified</p>
-<p>• <code>Hide Column When Empty</code>: Enabled (checked blue box)</p>
-<p>• <code>Aspect Ratio</code>: <code>1.12 : 1</code>]</p>
-<p>Lab 9 – Linking a Layout as Content in an Object</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>A new pane named Pane2 is added to the right of Pane1.</p>
-<p><strong>10.</strong> With Pane1 selected, on the Properties tab, configure the General \ Content Type(s)</p>
-<p>property as Detailed.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>11.</strong> On the Toolbox tab, search for the AssetInfo_Faceplate symbol.</p>
-<p><strong>12.</strong> Assign the AssetInfo_Faceplate symbol to Pane2.</p>
-<p>Lab 9 – Linking a Layout as Content in an Object</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Configure the Layout Content Type</p>
-<p>To use Asset_Layout for auto-fill in the Main layout, you must configure the Content Type(s)</p>
-<p>property for the layout.</p>
-<p><strong>13.</strong> In the preview area for Asset_Layout, click outside of the panes to select the whole layout</p>
-<p>and display layout properties on the Properties tab.</p>
-<p><strong>14.</strong> On the Properties tab, configure the General \ Content Type(s) property for the layout as</p>
-<p>Detailed.</p>
-<p><strong>15.</strong> Save and close Asset_Layout, and check it in.</p>
-<p>Link the Layout to the Mixer Template</p>
-<p>Next, you will link Asset_Layout to the $Mixer template to auto-fill content within the scope of the</p>
-<p>mixer objects. At runtime, it will be used as content for mixer objects and displayed in the Main</p>
-<p>layout as Detailed content.</p>
-<p><strong>16.</strong> On the Templates tab, in the Training \ Project toolset, double-click $Mixer to open it in the</p>
-<p>Object Editor.</p>
-<p><strong>17.</strong> On the Attributes tab, in the Content pane, click Link Content.</p>
-<p>The Galaxy Browser appears.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p><strong>18.</strong> In the Graphic Toolbox pane on the left, select the Training \ Layouts toolset, and in the</p>
-<p>right pane, select Asset_Layout.</p>
-<p><strong>19.</strong> Click OK to close the Galaxy Browser.</p>
-<p>Asset_Layout is linked to the $Mixer template.</p>
-<p><strong>20.</strong> Save and close the $Mixer template, and check it in.</p>
-<p>Lab 9 – Linking a Layout as Content in an Object</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the ViewApp preview session.</p>
-<p><strong>21.</strong> Switch to the ViewApp preview session and ensure you are navigated to Mixer100.</p>
-<p>Notice that the mixer symbol displays in the left pane and the faceplate symbol displays in the</p>
-<p>right pane. The faceplate symbol contains an area for general information, as well as an area</p>
-<p>for some device-specific information.</p>
-<p>In the faceplate graphic, notice that the Device Information area includes a Mixing Time</p>
-<p>Setpoint field.</p>
-<p>Module 4 – ViewApp Application Customizations</p>
-<p>AVEVA™ Training</p>
-<p>In the following steps you will modify the Mixing Time Setpoint for the agitator.</p>
-<p><strong>22.</strong> Click in the Mixing Time Setpoint field to make the value editable.</p>
-<p><strong>23.</strong> In the Mixing Time Setpoint field, enter 10 and press ENTER.</p>
-<p>The Mixing Time Setpoint is set to 10 seconds.</p>
-<p><strong>24.</strong> Navigate to other Mixer objects to view the related information.</p>
-<p><strong>25.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 4: ViewApp Application Customizations</p>
+<p class="page-ref">Pages 301–308 (Section 2 – Layout and Pane Customizations, pp. 4-15 to 4-22)</p>
+
+<h2>Introduction</h2>
+
+<p>Once you have created layouts and assigned content to panes, there are numerous customization options available to fine-tune how your ViewApp looks and behaves at runtime. This section covers the key layout and pane properties that control sizing, display modes, appearance, and interaction behavior. Understanding these properties is essential for creating polished, professional operator interfaces.</p>
+
+<h2>Layout Properties</h2>
+
+<p>When you select the entire layout in the Layout Editor (by clicking outside of any pane), the Properties tab displays layout-level properties. These properties control the overall behavior of the layout, including its title, content type, target display, and dimensions.</p>
+
+<div class="key-concept">
+<strong>Key Concept: Layout-Level vs. Pane-Level Properties</strong><br>
+Layout properties affect the entire layout — things like the overall content type, title mode, and target dimensions. Pane properties are specific to individual panes within the layout, controlling their size, content type, appearance, and interaction behavior. Always select the correct element (layout vs. pane) to see the relevant properties.
+</div>
+
+<p>The <strong>Content Type(s)</strong> property determines which content types the layout can display. For example, setting it to <em>Detailed</em> means the layout will appear when the ViewApp navigates to content of that type. The <strong>Title Mode</strong> property controls how the layout title is displayed, with options like <em>IncludeDefaultPaneContent</em> that pull the title from the default pane's content.</p>
+
+<h2>Pane Properties</h2>
+
+<p>Each pane within a layout has its own set of properties organized into several groups. These properties control the pane's size, content assignment, appearance, and interaction behavior.</p>
+
+<h3>General Properties</h3>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Content Type(s)</strong></td><td>Defines what content types this pane can display (e.g., Overview, Detailed). Multiple types can be assigned using comma separation.</td></tr>
+<tr><td><strong>Use For Auto-Fill</strong></td><td>When checked, this pane will be filled automatically by the AutoFill mechanism if it has no manually assigned content.</td></tr>
+</table>
+
+<h3>Size Properties</h3>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Width / Height</strong></td><td>The fixed or initial dimension of the pane in pixels.</td></tr>
+<tr><td><strong>Width Sizing / Height Sizing</strong></td><td>Determines how the pane resizes: <em>Fixed</em> (constant size), <em>Variable</em> (flexible), or proportional.</td></tr>
+<tr><td><strong>Minimum Width / Height</strong></td><td>The smallest allowed dimension for the pane.</td></tr>
+<tr><td><strong>Maximum Width / Height</strong></td><td>The largest allowed dimension for the pane.</td></tr>
+<tr><td><strong>Hide Column/Row When Empty</strong></td><td>When checked, the pane collapses if it has no content assigned.</td></tr>
+</table>
+
+<h3>Appearance Properties</h3>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Background</strong></td><td>Sets the background color using RGBA hex codes (e.g., <code>#FFE4E4E4</code>). The Alpha channel controls transparency.</td></tr>
+<tr><td><strong>Padding</strong></td><td>Adds blank-space pixels between the pane border and its content (format: <code>top,right,bottom,left</code>).</td></tr>
+<tr><td><strong>Interaction Mode</strong></td><td>Controls runtime interaction: <em>None</em>, <em>PanAndZoom</em>, or other modes.</td></tr>
+<tr><td><strong>Display Mode</strong></td><td>Controls how content is displayed: <em>MaintainAspect</em>, <em>Stretch</em>, etc.</td></tr>
+</table>
+
+<div class="screenshot">
+<img src="../images/page_0303_0.jpeg" alt="Properties tab showing NavBreadcrumbControl1 with General, Navigation, Alarms, and Appearance property groups expanded">
+<div class="caption">A control's Properties tab organized into collapsible groups: General, Navigation, Alarms, Appearance, and Event Handlers</div>
+</div>
+
+<h2>Pane Display Modes</h2>
+
+<p>When multiple panes are arranged in a layout, you can control how they are displayed using the display mode dropdown. This dropdown appears on the pane divider and offers three modes:</p>
+
+<table>
+<tr><th>Mode</th><th>Description</th></tr>
+<tr><td><strong>Single</strong></td><td>Displays content in one full pane at a time, hiding the others. Useful for focused views.</td></tr>
+<tr><td><strong>Multiple</strong></td><td>Shows all panes simultaneously in a split layout. This is the default for most layouts.</td></tr>
+<tr><td><strong>Tabbed</strong></td><td>Groups panes into tabs, allowing the user to switch between them by clicking tab headers.</td></tr>
+</table>
+
+<div class="screenshot">
+<img src="../images/page_0307_0.jpeg" alt="Layout Editor showing four panes with a dropdown menu offering Single, Multiple, and Tabbed display mode options">
+<div class="caption">The display mode dropdown on a pane divider, offering Single, Multiple, and Tabbed viewing modes</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0308_0.png" alt="Layout Editor showing Pane3 selected with a blue border and three-dot menu, with Pane4 below it">
+<div class="caption">Selecting a pane in the Layout Editor shows its properties and provides access to pane-specific options via the three-dot menu</div>
+</div>
+
+<h2>Navigation Controls</h2>
+
+<p>Layouts can include built-in navigation controls that help users move through the application hierarchy. The two primary navigation controls are the <strong>NavBreadcrumbControl</strong> and the <strong>NavTreeControl</strong>, both of which are available in the Toolbox.</p>
+
+<h3>NavBreadcrumbControl</h3>
+
+<p>The breadcrumb control displays the current navigation path as a series of clickable items (e.g., <em>Assets → Plant → Production → Line1 → Mixer100</em>). It provides quick access to any level of the hierarchy. Key properties include:</p>
+
+<ul>
+<li><strong>Root Path</strong> — Defines the starting point for the breadcrumb hierarchy</li>
+<li><strong>Show Root</strong> — Controls whether the root-level item is visible in the breadcrumb</li>
+<li><strong>Show Alarms</strong> — Enables alarm status indicators on breadcrumb items</li>
+</ul>
+
+<div class="screenshot">
+<img src="../images/page_0305_0.png" alt="Navigation properties showing Root Path field and Show Root dropdown with Constant option selected">
+<div class="caption">Configuring the NavBreadcrumbControl's Navigation properties, including Root Path and Show Root settings</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0305_1.png" alt="Navigation properties showing Root Path with In option and Show Root checkbox unchecked">
+<div class="caption">The Show Root option set to In, with the checkbox controlling root visibility</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0305_2.png" alt="Navigation properties showing Root Path with Out option selected">
+<div class="caption">Alternative Root Path configuration using the Out direction setting</div>
+</div>
+
+<div class="screenshot">
+<img src="../images/page_0305_3.png" alt="Navigation properties showing InOut option tooltip for the Root Path control">
+<div class="caption">The InOut option provides bidirectional navigation from the root path</div>
+</div>
+
+<h3>NavTreeControl</h3>
+
+<p>The tree control displays a hierarchical navigation tree that users can expand and collapse to navigate through the plant model. It is typically assigned to a slide-in pane and provides a comprehensive view of the asset hierarchy.</p>
+
+<div class="screenshot">
+<img src="../images/page_0306_0.png" alt="Galaxy Browser showing NavTreeControl1 selected with its full property table including ActualHeight, Background, BorderBrush, and ContentTemplate">
+<div class="caption">The NavTreeControl in the Galaxy Browser, showing its extensive property list for customization</div>
+</div>
+
+<h2>Show Actions</h2>
+
+<p>Controls can be configured with Show actions that make other controls visible when triggered. This is useful for creating conditional UI elements that appear or disappear based on user interaction. The Actions panel lists all configured Show actions, with each action specifying the target control, source pane, and trigger condition.</p>
+
+<div class="screenshot">
+<img src="../images/page_0306_1.png" alt="Actions panel showing two Show actions - one for NavBreadcrumbControl from Pane2 and one for AdditionalTools from Pane8 with edit and remove options">
+<div class="caption">Configuring Show actions to control visibility of navigation and additional tool controls</div>
+</div>
+
+<div class="key-concept">
+<strong>Key Concept: Transparency via RGBA</strong><br>
+The background color property uses RGBA hex codes where the first two characters represent the Alpha (transparency) channel. Setting Alpha to <code>00</code> makes the pane fully transparent (e.g., <code>#00E4E4E4</code>), which is useful for overlay panes that should not obscure content behind them.
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+<details>
+<summary>Q1: What are the three pane display modes available in the Layout Editor?</summary>
+<p class="answer">Single (one pane at a time), Multiple (all panes visible in split view), and Tabbed (panes grouped as switchable tabs).</p>
+</details>
+<details>
+<summary>Q2: How do you make a pane's background fully transparent?</summary>
+<p class="answer">Set the Alpha channel of the Background color to 0 (e.g., <code>#00E4E4E4</code>). You can also change the first two digits of the hex code to 00.</p>
+</details>
+<details>
+<summary>Q3: What is the difference between layout-level and pane-level Content Type(s)?</summary>
+<p class="answer">The layout-level Content Type determines when the entire layout appears in the ViewApp (based on navigation context). The pane-level Content Type determines what kind of content that specific pane can display.</p>
+</details>
+<details>
+<summary>Q4: What does the "Hide Column/Row When Empty" property do?</summary>
+<p class="answer">When checked, the pane collapses and takes up no space if it has no content assigned, preventing empty gaps in the layout.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">← L19: Lab 9 – Linking a Layout as Content in a</a> &nbsp;|&nbsp;
+  <a href="L19-Lab-9---Linking-a-Layout-as-Content-in-an-Object.html">← L19: Lab 9 – Linking a Layout as Content</a> &nbsp;|&nbsp;
   <a href="L21-Lab-10---Enhancing-the-ViewApp-Layout.html">L21: Lab 10 – Enhancing the ViewApp Layout →</a>
 </nav>
 <script>

@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 16: Galaxy Styles</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -122,179 +125,183 @@
 </nav>
 
 <h1>📖 L16: Galaxy Styles</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 259-264</p>
-<p>Enable Quality and Status Display` (checked)</p>
-<p>• Grid of status state cards (13 categories):</p>
-<p><strong>1.</strong> Communication Error (red lightning bolt icon)</p>
-<p><strong>2.</strong> Configuration Error (red gear icon)</p>
-<p><strong>3.</strong> Pending (yellow clock icon)</p>
-<p><strong>4.</strong> Operational Error (red warning icon)</p>
-<p><strong>5.</strong> Software Error (red circle-slash icon)</p>
-<p><strong>6.</strong> Security Error (red shield/X icon)</p>
-<p><strong>7.</strong> Warning (yellow triangle warning icon)</p>
-<p><strong>8.</strong> Out Of Service (yellow circle-line icon)</p>
-<p><strong>9.</strong> Device Failure (red triangle warning icon)</p>
-<p><strong>10.</strong> Bad (red circle-slash icon)</p>
-<p><strong>11.</strong> Uncertain (yellow question mark icon)</p>
-<p><strong>12.</strong> Initializing (yellow clock icon)</p>
-<p><strong>13.</strong> Live Value Playback (blue play icon)</p>
-<p>Section 6 – Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 6 – Galaxy Styles</p>
-<p>Introduction</p>
-<p>A Galaxy Style applies visual and numerical styles to the presentation of graphics in an Operations</p>
-<p>Management Interface ViewApp. Styles provide a means for developers to establish consistent</p>
-<p>visual standards in the presentation of the applications. A Galaxy Style includes visual overrides</p>
-<p>for Quality & Status, HMI Element, Alarm Element, Trend Element, User defined, and Format</p>
-<p>styles.</p>
-<p>You can view the Galaxy Styles available to a Galaxy, as well as manage and configure them, in</p>
-<p>the Configure Galaxy Styles area. To open it, from the Galaxy menu, select Configure | Galaxy |</p>
-<p>Styles. Predefined styles cannot be deleted and new styles cannot be added to a Galaxy Style list.</p>
-<p>The Styles area lists each style as a card. Each card gives access to all available overrides.</p>
-<p>By default, the Standard_Style is provided, and it is set as the active style for the Galaxy. You can</p>
-<p>add and configure additional styles, designate a different active style, delete styles, duplicate</p>
-<p>styles, and more from the configuration area.</p>
-<p>This section explains how to work with Galaxy Styles.</p>
-<div class="screenshot">
-  <img src="../images/page_0259_0.png" alt="Page 259">
-  <div class="caption">Page 259</div>
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 — Module 3: Industrial Graphics, Section 6</p>
+<p class="page-ref">Pages 259–264 (Book pages 3-121 to 3-126)</p>
+
+<h2>Introduction</h2>
+
+<p>A Galaxy Style applies consistent visual and numerical styling to the presentation of graphics in an OMI ViewApp. Styles provide a means for developers to establish standardized visual themes across an entire application, ensuring that all symbols, alarms, trends, and numerical displays follow the same look and feel. Rather than configuring visual properties individually on each symbol, Galaxy Styles allow you to define overrides once and apply them globally.</p>
+
+<div class="key-concept">
+<strong>Galaxy Style Categories:</strong> A Galaxy Style includes visual overrides for six categories:
+<ul style="margin:0.5em 0;">
+<li><strong>Quality &amp; Status</strong> — visual elements for quality/status states at runtime</li>
+<li><strong>HMI Element</strong> — text, fill, line, and outline properties for symbols</li>
+<li><strong>Alarm Element</strong> — severity colors, acknowledgment states, and alarm borders</li>
+<li><strong>Trend Element</strong> — styles for SA_SinglePen and SA_MultiTrendPen symbols</li>
+<li><strong>User defined</strong> — 24 user-customizable styles</li>
+<li><strong>Format</strong> — visual overrides for numerical value display (25 format styles)</li>
+</ul>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Quality & Status Styles</p>
-<p>Quality & Status styles can be used to provide visual elements specific to quality and status states</p>
-<p>at runtime. You can configure text, fill, outline, blink, and associated display icons for</p>
-<p>communication errors, configuration errors, warnings, bad quality, security errors, and more.</p>
-<p>In the configuration area, the Quality & Status tab shows the visual overrides for quality and status.</p>
-<p>For example, at runtime, quality and status indicators appear in the Navigation App adorners for</p>
-<p>each node in the navigation hierarchy. If communication is lost, the appropriate icon will appear to</p>
-<p>indicate the type of failure that has occurred.</p>
-<p>HMI Element Styles</p>
-<p>An HMI Element style defines a set of visual properties that determine the appearance of text,</p>
-<p>lines, outlines, and fills of elements shown in symbols. The list of visual overrides for these</p>
-<p>elements are shown on the HMI Element Styles tab. Each override specifies a preconfigured</p>
-<p>visual property that takes precedence over the native visual properties for an element.</p>
-<p>You modify properties by setting overrides on the HMI Element Styles tab.</p>
-<p></p>
-<p>Text: These properties modify the appearance of text by setting overrides for text font,</p>
-<p>size, style, color, and blink settings.</p>
-<p></p>
-<p>Fill: These properties modify the appearance of graphic fills by setting overrides for fill</p>
-<p>color and blink settings.</p>
-<p></p>
-<p>Line: These properties modify the appearance of lines by setting overrides for patterns,</p>
-<p>weight, color, and blink settings.</p>
-<p></p>
-<p>Outline: These properties modify the appearance of outlines by specifying whether</p>
-<p>outlines are shown.</p>
+
+<h2>Accessing Galaxy Styles</h2>
+
+<p>To view and manage Galaxy Styles, open the <strong>Configure Galaxy Styles</strong> area from the Galaxy menu by selecting <strong>Configure → Galaxy → Styles</strong>. Predefined styles cannot be deleted and new styles cannot be added to the Galaxy Style list, but you can add, configure, designate a default, duplicate, delete, import, and export style cards within the configuration area.</p>
+
+<p>By default, the <code>Standard_Style</code> is provided and set as the active style for the Galaxy. The Styles area lists each style as a card, and each card provides access to all available overrides for that style.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0260_0.png" alt="Page 260">
-  <div class="caption">Page 260</div>
+  <img src="../images/page_0259_0.png" alt="Galaxy Styles configuration interface showing the Styles panel with Standard_Style selected and Quality & Status tab active with 13 status indicator cards">
+  <div class="caption">Galaxy Styles configuration — the Styles panel displays predefined style cards (APG, Aqua, BlueSteel, Brick, Denim, Flora) in a scrollable row. The Standard_Style (Default) is selected, showing the Quality &amp; Status tab with 13 status/error indicator categories including Communication Error, Pending, Warning, Bad, and more.</div>
 </div>
-<p>Section 6 – Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Alarm Element Styles</p>
-<p>Alarm Element styles define the visual appearance of alarm severity, alarm states, and user</p>
-<p>acknowledgment. The four severities are color coded as:</p>
-<p></p>
-<p>Red - Critical</p>
-<p></p>
-<p>Yellow - High</p>
-<p></p>
-<p>Cyan - Medium</p>
-<p></p>
-<p>Magenta - Low</p>
-<p>The visual indicators also includes three states of these severities:</p>
-<p></p>
-<p>ACK - acknowledged but in alarm</p>
-<p></p>
-<p>RTN - return to normal but unacknowledged</p>
-<p></p>
-<p>UNACK - unacknowledged and in alarm</p>
-<p>The Alarm Element styles also include alarm border styles in the form of visual outlines.</p>
-<p>Trend Element Styles</p>
-<p>Trend Element styles support the SA_SinglePen and SA_MultiTrendPen symbols found in the</p>
-<p>Situation Awareness Library.</p>
-<p>User defined Styles</p>
-<p>This list provides 24 user-customizable styles.</p>
-<p>Format Styles</p>
-<p>Format styles are used to provide visual overrides for numerical values displayed in the ViewApp.</p>
-<p>These styles allow overriding the format of value range, fixed width, and precision for each</p>
-<p>numerical value. This allows standardization across the ViewApp for the display of numbers. The</p>
-<p>list also contains 25 user-defined format styles.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Manage Style List</p>
-<p>In the top-right of the Styles area, buttons are available for adding and deleting style cards, as well</p>
-<p>as displaying a menu of options for importing and exporting style cards.</p>
-<p>Add or Delete a Style Card</p>
-<p>You can add new Style card to the list of styles by clicking the Add button. The card that is</p>
-<p>selected when you click Add is duplicated with a incremented name and a copy of all styles from</p>
-<p>the selected card. The new card can be renamed and edited.</p>
-<p>You can delete a card by selecting a card and clicking the Delete button.</p>
+
+<h2>Quality &amp; Status Styles</h2>
+
+<p>Quality &amp; Status styles define the visual elements that appear at runtime to indicate quality and status conditions. You can configure text, fill, outline, blink behavior, and display icons for various states including communication errors, configuration errors, warnings, bad quality, and security errors. At runtime, these indicators appear in the Navigation App adorners for each node in the hierarchy — for example, if communication is lost, the appropriate icon appears to indicate the type of failure.</p>
+
+<p>The Quality &amp; Status tab displays 13 status categories, each with a colored icon, a text field for the numeric value, and an edit button (pencil icon) for modifying the visual override. The categories are: Communication Error, Configuration Error, Pending, Operational Error, Software Error, Security Error, Warning, Out Of Service, Device Failure, Bad, Uncertain, Initializing, and Live Value Playback.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0262_0.png" alt="Page 262">
-  <div class="caption">Page 262</div>
+  <img src="../images/page_0260_0.png" alt="Quality and Status configuration showing the 13 status category cards with colored icons and edit buttons">
+  <div class="caption">Quality &amp; Status tab — 13 status/error categories displayed as cards. Each card shows the status name, a colored icon representing the condition (red for errors, yellow for warnings, green for playback), and edit controls for customizing the visual override.</div>
 </div>
-<p>Section 6 – Galaxy Styles</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Import and Export Style Cards</p>
-<p>The Configure Styles area provides a menu for importing one or more styles and for exporting all</p>
-<p>styles. In the top-right of the Configure Styles area, click the vertical ellipsis to display the menu.</p>
-<p></p>
-<p>Import allows you to import one or more styles. Additional styles are available in the</p>
-<p>product installation path:</p>
-<p>C:\Program Files (x86)\ArchestrA\FrameWork\Bin\AdditionalElementStyles</p>
-<p>This folder contains a list of XML files which may be imported for use in your Galaxy.</p>
-<p></p>
-<p>Export All allows you to export all of the style cards from the list. The export file format is</p>
-<p>XML type.</p>
-<p>Manage Style Cards</p>
-<p>Each style card allows you to make default, rename, duplicate, delete, and export that style. In the</p>
-<p>bottom-right of a card, click the vertical ellipsis to display a menu of options.</p>
-<p></p>
-<p>Make default activates the selected style card for the Galaxy. Only one style card can be</p>
-<p>active (default) in the Galaxy at a time.</p>
-<p></p>
-<p>Rename allows you to rename the selected style card. Alternatively, you can click the title</p>
-<p>of the card to make the title editable or select a card and press F2.</p>
-<p></p>
-<p>Duplicate makes a copy of the selected style card. Alternatively, you can select a card</p>
-<p>and press Ctrl+D.</p>
-<p></p>
-<p>Delete allows you to delete the selected style card.</p>
-<p></p>
-<p>Export allows you to export the selected style card.</p>
+
+<h2>HMI Element Styles</h2>
+
+<p>An HMI Element style defines the visual properties that determine how text, lines, outlines, and fills appear in symbols. Each override specifies a preconfigured visual property that takes precedence over the native visual properties of an element. You modify these on the <strong>HMI Element</strong> tab with overrides for:</p>
+
+<table>
+<thead>
+<tr><th>Property Group</th><th>Overridable Settings</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Text</strong></td><td>Font, size, style, color, and blink settings</td></tr>
+<tr><td><strong>Fill</strong></td><td>Fill color and blink settings</td></tr>
+<tr><td><strong>Line</strong></td><td>Patterns, weight, color, and blink settings</td></tr>
+<tr><td><strong>Outline</strong></td><td>Whether outlines are shown</td></tr>
+</tbody>
+</table>
+
+<h2>Alarm Element Styles</h2>
+
+<p>Alarm Element styles define the visual appearance of alarm severity levels, alarm states, and user acknowledgment. The four severity levels use distinct color coding, and each severity has three visual indicator states.</p>
+
+<table>
+<thead>
+<tr><th>Severity</th><th>Color</th></tr>
+</thead>
+<tbody>
+<tr><td>Critical</td><td>Red</td></tr>
+<tr><td>High</td><td>Yellow</td></tr>
+<tr><td>Medium</td><td>Cyan</td></tr>
+<tr><td>Low</td><td>Magenta</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr><th>State</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>ACK</strong></td><td>Acknowledged but still in alarm</td></tr>
+<tr><td><strong>RTN</strong></td><td>Return to normal but unacknowledged</td></tr>
+<tr><td><strong>UNACK</strong></td><td>Unacknowledged and still in alarm</td></tr>
+</tbody>
+</table>
+
+<p>Alarm Element styles also include alarm border styles in the form of visual outlines that frame alarm-related elements.</p>
+
+<h2>Trend, User Defined, and Format Styles</h2>
+
+<p><strong>Trend Element</strong> styles support the <code>SA_SinglePen</code> and <code>SA_MultiTrendPen</code> symbols from the Situation Awareness Library, controlling how trend lines and pens are displayed.</p>
+
+<p><strong>User defined</strong> styles provide 24 customizable style slots that you can configure for any purpose specific to your application.</p>
+
+<p><strong>Format</strong> styles are used to provide visual overrides for numerical values displayed in the ViewApp. These styles allow overriding the format of value range, fixed width, and precision for each numerical value, enabling standardization across the ViewApp for number display. The list contains 25 user-defined format styles.</p>
+
+<h2>Managing Style Cards</h2>
+
+<p>The Styles area provides buttons in the top-right for adding, deleting, and managing style cards. You can also access a menu for importing and exporting style cards.</p>
+
+<h3>Adding and Deleting Styles</h3>
+
+<p>Click the <strong>Add</strong> (+) button to duplicate the currently selected style card with an incremented name. The new card can be renamed and edited independently. To delete a style, select the card and click the <strong>Delete</strong> (−) button.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0263_0.png" alt="Page 263">
-  <div class="caption">Page 263</div>
+  <img src="../images/page_0262_0.png" alt="Styles panel with Add button highlighted showing the Standard_Style card selected">
+  <div class="caption">Adding a style card — click the + button to duplicate the selected style card. The new card inherits all settings from the original and can be renamed and customized.</div>
 </div>
+
+<h3>Import and Export</h3>
+
+<p>Click the vertical ellipsis (three dots) in the top-right of the Styles area to access Import and Export All options. Import allows you to bring in one or more style files (XML format). Additional predefined styles are available in the installation path at <code>C:\Program Files (x86)\ArchestrA\Framework\Bin\AdditionalElementStyles</code>. Export All exports every style card to XML format.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0263_1.png" alt="Page 263">
-  <div class="caption">Page 263</div>
+  <img src="../images/page_0263_0.png" alt="Dropdown menu showing Import and Export All options for style management">
+  <div class="caption">Import/Export menu — click the ellipsis button to access Import (for importing XML style files) and Export All (for exporting all style cards to XML).</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>TitlebarApp</p>
-<p>The TitlebarApp can be configured to include a button with the name of the active style on the title</p>
-<p>bar at runtime. Clicking the button displays a drop-down list of all the styles in the Galaxy, allowing</p>
-<p>users to activate a different style in the running ViewApp.</p>
-<p>You enable this feature by selecting the location on the title bar where you want the Style Libraries</p>
-<p>button to appear. A list of locations is available in the Properties list. For example, to show the style</p>
-<p>libraries button on the right side of the second row of the title bar, you would select</p>
-<p>SecondaryRight.</p>
-<p>The following example shows the style libraries button on the right side of the second row of the</p>
-<p>title bar in a running ViewApp. The name of the button is Standard_Style, which reflects the active</p>
-<p>style library.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0264_0.jpeg" alt="Page 264">
-  <div class="caption">Page 264</div>
+  <img src="../images/page_0263_1.png" alt="Context menu for a style card showing Make default, Rename, Duplicate, Delete, and Export options">
+  <div class="caption">Style card context menu — each card offers Make default (activate for Galaxy), Rename (or press F2), Duplicate (or Ctrl+D), Delete, and Export options.</div>
 </div>
+
+<h3>Managing Individual Style Cards</h3>
+
+<p>Each style card has a context menu accessible from the vertical ellipsis at the bottom-right of the card. Key operations include:</p>
+
+<ul>
+<li><strong>Make default</strong> — activates the selected style for the Galaxy (only one style can be active at a time)</li>
+<li><strong>Rename</strong> — changes the card name (or click the title directly, or press F2)</li>
+<li><strong>Duplicate</strong> — creates a copy of the style card (or press Ctrl+D)</li>
+<li><strong>Delete</strong> — removes the selected style card</li>
+<li><strong>Export</strong> — exports the specific selected style card</li>
+</ul>
+
+<h2>TitlebarApp Style Libraries</h2>
+
+<p>The TitlebarApp can be configured to include a button displaying the active style name on the title bar at runtime. Clicking this button shows a drop-down list of all styles in the Galaxy, allowing users to switch styles on the fly. To enable this, set the <strong>Content and Display Area → Style Libraries</strong> property to a location on the title bar, such as <code>SecondaryRight</code> (right side of the second title bar row).</p>
+
 <div class="screenshot">
-  <img src="../images/page_0264_1.png" alt="Page 264">
-  <div class="caption">Page 264</div>
+  <img src="../images/page_0264_0.jpeg" alt="Properties panel showing Style Libraries set to SecondaryRight and a runtime ViewApp title bar with the Standard_Style button">
+  <div class="caption">TitlebarApp configuration — the Style Libraries property is set to SecondaryRight to place the style selector button on the right side of the second title bar row. At runtime, clicking this button opens a dropdown to switch styles.</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="screenshot">
+  <img src="../images/page_0264_1.png" alt="Runtime ViewApp title bar showing the Standard_Style button and date/time display">
+  <div class="caption">Runtime style selector — the title bar displays "Standard_Style" as the active style. Clicking this button reveals a dropdown listing all available Galaxy styles for dynamic switching.</div>
+</div>
+
+<div class="quiz">
+<h3>📝 Knowledge Check</h3>
+
+<details>
+<summary>Q1: What are the six categories of visual overrides in a Galaxy Style?</summary>
+<p class="answer">Quality &amp; Status, HMI Element, Alarm Element, Trend Element, User defined, and Format styles.</p>
+</details>
+
+<details>
+<summary>Q2: How do you access the Galaxy Styles configuration area?</summary>
+<p class="answer">From the Galaxy menu, select Configure → Galaxy → Styles.</p>
+</details>
+
+<details>
+<details>
+<summary>Q3: What are the four alarm severity levels and their colors?</summary>
+<p class="answer">Critical (Red), High (Yellow), Medium (Cyan), and Low (Magenta).</p>
+</details>
+
+<details>
+<summary>Q4: How do you enable the style selector button on the ViewApp title bar?</summary>
+<p class="answer">Set the TitlebarApp's Content and Display Area → Style Libraries property to a title bar location such as SecondaryRight. This places a clickable style name button on the title bar that opens a dropdown of available styles.</p>
+</details>
+
+<details>
+<summary>Q5: Can you delete a predefined style from the Galaxy Style list?</summary>
+<p class="answer">No. Predefined styles cannot be deleted and new styles cannot be added to the Galaxy Style list. However, you can duplicate a predefined style and then modify the copy.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L15-Lab-7---Creating-a-Custom-Symbol.html">← L15: Lab 7 – Creating a Custom Symbol</a> &nbsp;|&nbsp;
   <a href="L17-Lab-8---Working-with-Galaxy-Styles.html">L17: Lab 8 – Working with Galaxy Styles →</a>

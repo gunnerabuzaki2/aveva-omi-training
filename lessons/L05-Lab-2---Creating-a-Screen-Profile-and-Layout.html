@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 05: Lab 2 – Creating a Screen Profile and Layout</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,11 +26,14 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
+
 <nav>
   <a href="L04-Screen-Profiles-and-Layouts.html">← L04: Screen Profiles and Layouts</a> &nbsp;|&nbsp;
   <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview →</a>
@@ -122,400 +126,452 @@
 </nav>
 
 <h1>🔬 L05: Lab 2 – Creating a Screen Profile and Layout</h1>
-<p class="source">Module 2 — Getting Started | Pages 69-94</p>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>Introduction</p>
-<p>In this lab, you will create graphic toolsets on the Graphics tab for organizing some out-of-the-box</p>
-<p>items, as well as a Training toolset for organizing the graphic items created in this course.</p>
-<p>You will create two screen profiles and review the default settings in the Screen Profile Editor.</p>
-<p>Then, you will create a layout and configure it in the Layout Editor. The layout you create will</p>
-<p>contain three panes, one of which will be a slide-in pane.</p>
-<p>As part of the configuration, you will assign OMI Apps to two of the panes, to be used for</p>
-<p>navigation in a running ViewApp. You will specify a content type for one of the panes, which will</p>
-<p>enable it to be used for auto-fill purposes at runtime.</p>
-<p>You will be able to view the configurations in a running ViewApp in later labs.</p>
-<p>Content workflow highlight: Assigning content directly to layout panes</p>
-<p>Objectives</p>
+<p class="source">Based on Module 2 — Getting Started: Lab 2 (pages 2-27 through 2-52)</p>
+
+<div class="lab">
+  <strong>Lab Overview:</strong> In this lab, you will create graphic toolsets on the Graphics tab for organizing out-of-the-box items, create two screen profiles, build and configure a three-pane layout with one slide-in pane, and assign OMI Apps to panes. The configurations created here will be viewable in a running ViewApp in later labs.
+</div>
+
+<div class="key-concept">
+  <strong>Content Workflow Highlight:</strong> This lab focuses on assigning content directly to layout panes — a key technique for structuring ViewApp content before building the ViewApp itself.
+</div>
+
+<h2>Objectives</h2>
 <p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a toolset</p>
-<p></p>
-<p>Create a screen profile</p>
-<p></p>
-<p>Create a layout with multiple panes</p>
-<p></p>
-<p>Configure pane properties</p>
-<p></p>
-<p>Add and configure a slide-in pane</p>
-<p></p>
-<p>Search for content in the Layout Editor</p>
-<p></p>
-<p>Assign OMI Apps to panes</p>
-<div class="screenshot">
-  <img src="../images/page_0069_0.png" alt="Page 69">
-  <div class="caption">Page 69</div>
+<ul>
+  <li>Create a toolset</li>
+  <li>Create a screen profile</li>
+  <li>Create a layout with multiple panes</li>
+  <li>Configure pane properties</li>
+  <li>Add and configure a slide-in pane</li>
+  <li>Search for content in the Layout Editor</li>
+  <li>Assign OMI Apps to panes</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>Part 1: Create Graphic Toolsets</h2>
+<p class="page-ref">Source: pages 2-28 to 2-33</p>
+
+<p>You will create three graphic toolsets on the Graphics tab: one for Apps, one for .NET controls, and one for organizing graphic items created in this course.</p>
+
+<h3>Step 1: Create the Apps Toolset</h3>
+
+<div class="lab">
+  <p><strong>1.</strong> On the Graphics tab, right-click <code>TrainingGalaxy</code> and select <strong>New → Graphic Toolset</strong>.</p>
+  <p>A new graphic toolset with the default name is created on the Graphics tab.</p>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Create New Graphic Toolsets</p>
-<p>In the following steps, you will create three graphic toolsets on the Graphics tab: One for Apps, one</p>
-<p>for .NET controls, and one for organizing graphic items created in this course.</p>
-<p>1.</p>
-<p>On the Graphics tab, right-click TrainingGalaxy and select New | Graphic Toolset.</p>
-<p>A new graphic toolset with the default name is created on the Graphics tab.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0070_0.png" alt="Page 70">
-  <div class="caption">Page 70</div>
+  <img src="../images/page_0070_0.png" alt="Right-click context menu on TrainingGalaxy showing New submenu with Graphic Toolset option">
+  <div class="caption">Right-click TrainingGalaxy on the Graphics tab and select New → Graphic Toolset from the context menu.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0070_1.png" alt="Page 70">
-  <div class="caption">Page 70</div>
+  <img src="../images/page_0070_1.png" alt="New toolset created with default name in the tree">
+  <div class="caption">A new graphic toolset appears under Industrial Graphic Library with the default name.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>2.</p>
-<p>Rename the new toolset to Apps.</p>
+
+<div class="lab">
+  <p><strong>2.</strong> Rename the new toolset to <strong>Apps</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0071_0.png" alt="Page 71">
-  <div class="caption">Page 71</div>
+  <img src="../images/page_0071_0.png" alt="Apps toolset renamed and selected in Graphics tab tree">
+  <div class="caption">The toolset renamed to "Apps" — now ready to receive OMI App items.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>3.</p>
-<p>On the Graphics tab, select the following items and drag them to the Apps toolset.</p>
-<p></p>
-<p>AlarmApp</p>
-<p></p>
-<p>ContentPresenterApp</p>
-<p></p>
-<p>DocViewerApp</p>
-<p></p>
-<p>GraphicRepeaterApp</p>
-<p></p>
-<p>HamburgerApp</p>
-<p></p>
-<p>HistoricalTrendApp</p>
-<p></p>
-<p>ImageViewerApp</p>
-<p></p>
-<p>InSightApp</p>
-<p></p>
-<p>MapApp</p>
-<p></p>
-<p>NavigationApp</p>
-<p></p>
-<p>PDFViewerApp</p>
-<p></p>
-<p>SpreadsheetViewerApp</p>
-<p></p>
-<p>TitleBarApp</p>
-<p></p>
-<p>WWWebAppControls</p>
+
+<div class="lab">
+  <p><strong>3.</strong> On the Graphics tab, select the following items and drag them to the Apps toolset:</p>
+  <p>AlarmApp, ContentPresenterApp, DocViewerApp, GraphicRepeaterApp, HamburgerApp, HistoricalTrendApp, ImageViewerApp, InSightApp, MapApp, NavigationApp, PDFViewerApp, SpreadsheetViewerApp, TitleBarApp, WWWebAppControls</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0072_0.png" alt="Page 72">
-  <div class="caption">Page 72</div>
+  <img src="../images/page_0072_0.png" alt="All OMI App items listed in expanded Apps toolset">
+  <div class="caption">All 14 OMI App items dragged into the Apps toolset, ready for use in layouts.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>4.</p>
-<p>On the Graphics tab, right-click TrainingGalaxy again and select New | Graphic Toolset.</p>
-<p>5.</p>
-<p>Rename the new toolset to .NET Controls.</p>
-<p>6.</p>
-<p>On the Graphics tab, select the following items and drag them to the .NET Controls toolset.</p>
-<p></p>
-<p>aaTrendControl</p>
-<p></p>
-<p>AlarmClient</p>
-<p></p>
-<p>TrendClient</p>
+
+<h3>Step 2: Create the .NET Controls Toolset</h3>
+
+<div class="lab">
+  <p><strong>4.</strong> On the Graphics tab, right-click TrainingGalaxy again and select <strong>New → Graphic Toolset</strong>.</p>
+  <p><strong>5.</strong> Rename the new toolset to <strong>.NET Controls</strong>.</p>
+  <p><strong>6.</strong> Select and drag <code>aaTrendControl</code>, <code>AlarmClient</code>, and <code>TrendClient</code> into the .NET Controls toolset.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0073_0.png" alt="Page 73">
-  <div class="caption">Page 73</div>
+  <img src="../images/page_0073_0.png" alt="Graphics tab showing .NET Controls and Apps toolsets">
+  <div class="caption">The .NET Controls toolset (expanded) alongside the Apps toolset, both organized under TrainingGalaxy.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>7.</p>
-<p>On the Graphics tab, right-click TrainingGalaxy again and select New | Graphic Toolset.</p>
-<p>8.</p>
-<p>Rename the new toolset to Training.</p>
+
+<h3>Step 3: Create the Training Toolset</h3>
+
+<div class="lab">
+  <p><strong>7.</strong> Right-click TrainingGalaxy and select <strong>New → Graphic Toolset</strong>.</p>
+  <p><strong>8.</strong> Rename the new toolset to <strong>Training</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0074_0.png" alt="Page 74">
-  <div class="caption">Page 74</div>
+  <img src="../images/page_0074_0.png" alt="Training toolset created and highlighted in the tree">
+  <div class="caption">The Training toolset created to organize course-specific graphic items.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Create a New Sub-Toolset and Two Screen Profiles</p>
-<p>In the following steps, you will create a new sub-toolset under the Training toolset for organizing</p>
-<p>screen profiles. Then, you will create two screen profiles.</p>
-<p>9.</p>
-<p>On the Graphics tab, right-click the Training toolset and select New | Graphic Toolset.</p>
-<p>A new toolset with the default name is created under the Training toolset.</p>
-<p><strong>10.</strong> Rename the new toolset to Screen Profiles.</p>
+
+<!-- ============================================================ -->
+<h2>Part 2: Create Screen Profiles</h2>
+<p class="page-ref">Source: pages 2-33 to 2-38</p>
+
+<h3>Step 4: Create the Screen Profiles Sub-Toolset</h3>
+
+<div class="lab">
+  <p><strong>9.</strong> Right-click the Training toolset and select <strong>New → Graphic Toolset</strong>.</p>
+  <p><strong>10.</strong> Rename the new toolset to <strong>Screen Profiles</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0075_0.png" alt="Page 75">
-  <div class="caption">Page 75</div>
+  <img src="../images/page_0075_0.png" alt="Screen Profiles sub-toolset under Training">
+  <div class="caption">The Screen Profiles sub-toolset created under Training for organizing screen profiles.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>11.</strong> Right-click the Training \ Screen Profiles toolset and select New | Screen Profile.</p>
-<p>A new screen profile with the default name is created in the Training \ Screen Profiles</p>
-<p>toolset.</p>
+
+<h3>Step 5: Create the SingleScreen Profile</h3>
+
+<div class="lab">
+  <p><strong>11.</strong> Right-click the Training → Screen Profiles toolset and select <strong>New → Screen Profile</strong>.</p>
+  <p><strong>12.</strong> Rename the new screen profile to <strong>SingleScreen</strong>.</p>
+  <p><strong>13.</strong> Double-click SingleScreen to open it in the Screen Profile Editor.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0076_0.png" alt="Page 76">
-  <div class="caption">Page 76</div>
+  <img src="../images/page_0076_0.png" alt="Context menu showing New → Screen Profile option">
+  <div class="caption">Right-click the Screen Profiles toolset and select New → Screen Profile to create a new profile.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>12.</strong> Rename the new screen profile to SingleScreen.</p>
-<p><strong>13.</strong> Double-click SingleScreen to open it in the Screen Profile Editor.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0077_0.png" alt="Page 77">
-  <div class="caption">Page 77</div>
+  <img src="../images/page_0077_0.png" alt="SingleScreen profile opened in editor with default 1920x1080 settings">
+  <div class="caption">The SingleScreen profile in the Screen Profile Editor: a single Primary screen at 1920×1080, Landscape orientation.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0077_1.jpeg" alt="Page 77">
-  <div class="caption">Page 77</div>
+  <img src="../images/page_0077_1.jpeg" alt="Screen Profile Editor properties panel showing default settings">
+  <div class="caption">Default screen properties: Name "Primary," Landscape orientation, 1920×1080 resolution, taskbar enabled at bottom.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>14.</strong> Review the configuration, but leave all the default settings.</p>
-<p><strong>15.</strong> Click Close to close the Screen Profile Editor.</p>
-<p><strong>16.</strong> On the Graphics tab, right-click the Training \ Screen Profiles toolset and select New |</p>
-<p>Screen Profile.</p>
-<p>A new screen profile with the default name is created in the Training \ Screen Profiles</p>
-<p>toolset.</p>
-<p><strong>17.</strong> Rename the new screen profile to DualScreen.</p>
+
+<div class="lab">
+  <p><strong>14.</strong> Review the configuration, but leave all the default settings.</p>
+  <p><strong>15.</strong> Click Close to close the Screen Profile Editor.</p>
+</div>
+
+<h3>Step 6: Create the DualScreen Profile</h3>
+
+<div class="lab">
+  <p><strong>16.</strong> Right-click Training → Screen Profiles and select <strong>New → Screen Profile</strong>.</p>
+  <p><strong>17.</strong> Rename the new screen profile to <strong>DualScreen</strong>.</p>
+  <p><strong>18.</strong> Double-click DualScreen to open it in the Screen Profile Editor.</p>
+  <p><strong>19.</strong> Click <strong>Add Screen</strong> to add a second screen to the profile.</p>
+  <p><strong>20.</strong> Ensure Screen1 is selected, and in the Name property, rename the screen to <strong>Secondary</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0078_0.png" alt="Page 78">
-  <div class="caption">Page 78</div>
+  <img src="../images/page_0079_0.jpeg" alt="Screen Profile Editor with Add Screen button highlighted">
+  <div class="caption">Click the Add Screen button to add a second monitor to the DualScreen profile.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0078_1.png" alt="Page 78">
-  <div class="caption">Page 78</div>
+  <img src="../images/page_0079_1.jpeg" alt="Second screen added to the profile">
+  <div class="caption">After adding Screen1 — a second 1920×1080 screen appears to the right of the Primary screen.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>18.</strong> Double-click DualScreen to open it in the Screen Profile Editor.</p>
-<p><strong>19.</strong> Click Add Screen to add a second screen to the screen profile.</p>
-<p>A new screen is added with the name Screen1.</p>
-<p><strong>20.</strong> Ensure Screen1 is selected, and in the Name property in the properties list, rename the</p>
-<p>screen to Secondary.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0079_0.jpeg" alt="Page 79">
-  <div class="caption">Page 79</div>
+  <img src="../images/page_0079_2.jpeg" alt="Screen renamed to Secondary">
+  <div class="caption">The second screen renamed to "Secondary" — the DualScreen profile now has two named screens.</div>
 </div>
+
+<div class="lab">
+  <p><strong>21.</strong> Click <strong>Save and Close</strong> to save and close the DualScreen screen profile.</p>
+  <p><strong>22.</strong> Click <strong>Check-in</strong> to check in the DualScreen screen profile.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0079_1.jpeg" alt="Page 79">
-  <div class="caption">Page 79</div>
+  <img src="../images/page_0080_0.png" alt="Save and Close button in Screen Profile Editor toolbar">
+  <div class="caption">Click Save and Close to save the DualScreen profile, then check it in when prompted.</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>Part 3: Create the Layout</h2>
+<p class="page-ref">Source: pages 2-39 to 2-42</p>
+
+<h3>Step 7: Create the Layouts Sub-Toolset and Layout</h3>
+
+<div class="lab">
+  <p><strong>23.</strong> Right-click the Training toolset and select <strong>New → Graphic Toolset</strong>.</p>
+  <p><strong>24.</strong> Rename the new toolset to <strong>Layouts</strong>.</p>
+  <p><strong>25.</strong> Right-click the Training → Layouts toolset and select <strong>New → Layout</strong>.</p>
+  <p><strong>26.</strong> Rename the new layout to <strong>Main</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0079_2.jpeg" alt="Page 79">
-  <div class="caption">Page 79</div>
+  <img src="../images/page_0081_0.png" alt="Layouts sub-toolset created under Training">
+  <div class="caption">The Layouts sub-toolset created under Training, ready to hold the Main layout.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>21.</strong> Click Save and Close to save and close the DualScreen screen profile.</p>
-<p>The Check-in dialog box appears.</p>
-<p><strong>22.</strong> Click Check-in to check in the DualScreen screen profile.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0080_0.png" alt="Page 80">
-  <div class="caption">Page 80</div>
+  <img src="../images/page_0082_0.png" alt="Context menu showing New → Layout option">
+  <div class="caption">Right-click the Layouts toolset and select New → Layout to create the Main layout.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Create a New Sub-Toolset and Layout</p>
-<p>In the following steps, you will create a new sub-toolset in the Training toolset for organizing</p>
-<p>layouts. Then you will create a layout. Initially, the layout will have one pane, but you will add two</p>
-<p>more panes to the layout and configure them. One of the panes will be a slide-in pane.</p>
-<p><strong>23.</strong> On the Graphics tab, right-click the Training toolset and select New | Graphic Toolset.</p>
-<p>A new toolset with the default name is created under the Training toolset.</p>
-<p><strong>24.</strong> Rename the new toolset to Layouts.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0081_0.png" alt="Page 81">
-  <div class="caption">Page 81</div>
+  <img src="../images/page_0083_0.png" alt="Main layout renamed in the tree">
+  <div class="caption">The layout renamed to "Main" in the Layouts toolset.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>25.</strong> On the Graphics tab, right-click the Training \ Layouts toolset and select New | Layout.</p>
+
+<div class="lab">
+  <p><strong>27.</strong> Double-click Main to open it in the Layout Editor.</p>
+  <p><strong>28.</strong> In the top-right corner of the editor, click <strong>Maximize</strong> to maximize the editor window to full screen.</p>
+  <p><strong>29.</strong> At the bottom of the editor, click <strong>Zoom to Fit</strong> to maximize the layout preview.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0082_0.png" alt="Page 82">
-  <div class="caption">Page 82</div>
+  <img src="../images/page_0084_0.jpeg" alt="Layout Editor showing default Pane1">
+  <div class="caption">The Layout Editor opens with a single Pane1 (default). The Properties tab shows General, Size, Appearance, and Navigation settings.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>A new layout with the default name is created in the Training \ Layouts toolset.</p>
-<p><strong>26.</strong> Rename the new layout to Main.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0083_0.png" alt="Page 83">
-  <div class="caption">Page 83</div>
+  <img src="../images/page_0084_1.png" alt="Maximize button highlighted in Layout Editor toolbar">
+  <div class="caption">Click the Maximize button in the top-right corner to expand the Layout Editor to full screen.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>27.</strong> Double-click Main to open it in the Layout Editor.</p>
-<p>Notice that by default, the new layout contains one pane named Pane1, which is set as the</p>
-<p>default pane.</p>
-<p><strong>28.</strong> In the top-right corner of the editor, click Maximize to maximize the editor window to full</p>
-<p>screen.</p>
-<p><strong>29.</strong> At the bottom of the editor, click Zoom to Fit to maximize the layout preview.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0084_0.jpeg" alt="Page 84">
-  <div class="caption">Page 84</div>
+  <img src="../images/page_0084_2.png" alt="Zoom to Fit button in bottom toolbar">
+  <div class="caption">Click Zoom to Fit in the bottom toolbar to maximize the layout preview within the editor.</div>
 </div>
+
+<!-- ============================================================ -->
+<h2>Part 4: Configure Panes</h2>
+<p class="page-ref">Source: pages 2-43 to 2-46</p>
+
+<h3>Step 8: Add Pane2 Above Pane1</h3>
+
+<div class="lab">
+  <p><strong>30.</strong> In the layout preview area, select Pane1.</p>
+  <p><strong>31.</strong> Click the <strong>Add new pane up-arrow</strong> to add a new pane above Pane1.</p>
+  <p>A new pane named <strong>Pane2</strong> is added above Pane1.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0084_1.png" alt="Page 84">
-  <div class="caption">Page 84</div>
+  <img src="../images/page_0085_0.png" alt="Add new pane control with up-arrow highlighted">
+  <div class="caption">Select Pane1 and click the Add new pane up-arrow to create Pane2 above it.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0084_2.png" alt="Page 84">
-  <div class="caption">Page 84</div>
+  <img src="../images/page_0085_1.png" alt="Pane2 added above Pane1 in the layout">
+  <div class="caption">After adding Pane2: two stacked panes with Pane2 at the top and Pane1 (default) at the bottom.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>30.</strong> In the layout preview area, select Pane1.</p>
-<p><strong>31.</strong> Click the Add new pane up-arrow to add a new pane.</p>
-<p>A new pane is added above Pane1.</p>
-<p>The name of the new pane is Pane2.</p>
+
+<h3>Step 9: Resize Pane2</h3>
+
+<div class="lab">
+  <p><strong>32.</strong> Select Pane2, and on the Properties tab, change the Size → <strong>Height</strong> property to <strong>100</strong> and press Enter.</p>
+  <p>Pane2 is resized to 100 px in the layout preview area.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0085_0.png" alt="Page 85">
-  <div class="caption">Page 85</div>
+  <img src="../images/page_0086_0.png" alt="Height property set to 100 in Properties tab">
+  <div class="caption">Set the Height property to 100 pixels to make Pane2 a thin horizontal bar at the top of the layout.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0085_1.png" alt="Page 85">
-  <div class="caption">Page 85</div>
+  <img src="../images/page_0086_1.png" alt="Pane2 resized to 100px in layout preview">
+  <div class="caption">Pane2 resized to 100px — now a narrow horizontal bar above the larger Pane1.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>32.</strong> Select Pane2, and on the Properties tab, change the Size \ Height property to 100 and press</p>
-<p>Enter.</p>
-<p>Pane2 is resized to 100 px in the layout preview area.</p>
+
+<h3>Step 10: Add a Slide-In Pane</h3>
+
+<div class="lab">
+  <p><strong>33.</strong> On the left side of the layout, click the <strong>Add Slide-In Pane</strong> button.</p>
+  <p>A slide-in pane named <strong>Pane3</strong> is added on the left side of the layout.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0086_0.png" alt="Page 86">
-  <div class="caption">Page 86</div>
+  <img src="../images/page_0087_0.png" alt="Add Slide-In Pane button on left edge of layout">
+  <div class="caption">Click the Add Slide-In Pane button on the left edge of the layout to create a collapsible side panel.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0086_1.png" alt="Page 86">
-  <div class="caption">Page 86</div>
+  <img src="../images/page_0087_1.png" alt="Pane3 slide-in pane added to left side">
+  <div class="caption">Pane3 added as a slide-in pane on the left — a narrow vertical panel that slides in at runtime.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>33.</strong> On the left side of the layout, click the Add Slide-In Pane button.</p>
-<p>A slide-in pane is added on the left side of the layout.</p>
-<p>The name of the slide-in pane is Pane3.</p>
+
+<!-- ============================================================ -->
+<h2>Part 5: Assign Content to Panes</h2>
+<p class="page-ref">Source: pages 2-46 to 2-51</p>
+
+<h3>Step 11: Search for Navigation Controls</h3>
+
+<div class="lab">
+  <p><strong>34.</strong> On the right side of the Layout Editor, select the <strong>Toolbox</strong> tab.</p>
+  <p><strong>35.</strong> In the Search field, enter <strong>nav</strong>.</p>
+  <p>Multiple items are found, including <strong>NavBreadcrumbControl</strong> and <strong>NavTreeControl</strong>.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0087_0.png" alt="Page 87">
-  <div class="caption">Page 87</div>
+  <img src="../images/page_0088_0.png" alt="Toolbox tab with Search field">
+  <div class="caption">Select the Toolbox tab on the right side of the Layout Editor. The Search field at the top helps locate content quickly.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0087_1.png" alt="Page 87">
-  <div class="caption">Page 87</div>
+  <img src="../images/page_0089_0.png" alt="Search results showing NavBreadcrumbControl and NavTreeControl">
+  <div class="caption">Searching for "nav" reveals 8 matching items. The two key controls are NavBreadcrumbControl and NavTreeControl from NavigationApp.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Assign Content to Panes</p>
-<p>Now you will assign content to two of the panes. You will use the Search field on the Toolbox tab</p>
-<p>to find navigation controls to add to the layout. You will add a navigation breadcrumb control to</p>
-<p>Pane2, which is the pane at the very top of the layout. You will also add a navigation tree control to</p>
-<p>Pane3, which is the slide-in pane on the left side of the layout.</p>
-<p><strong>34.</strong> On the right side of the Layout Editor, select the Toolbox tab.</p>
-<p>Notice the Search field at the top of the tab.</p>
+
+<div class="tip">
+  <strong>Tip:</strong> Rather than searching, you can alternatively expand Training → Apps on the Toolbox tab to find the NavigationApp.
+</div>
+
+<h3>Step 12: Drag Controls to Panes</h3>
+
+<div class="lab">
+  <p><strong>36.</strong> From the Toolbox tab preview area, drag <strong>NavBreadcrumbControl</strong> to Pane2.</p>
+  <p><strong>37.</strong> From the Toolbox tab preview area, drag <strong>NavTreeControl</strong> to Pane3.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0088_0.png" alt="Page 88">
-  <div class="caption">Page 88</div>
+  <img src="../images/page_0090_0.png" alt="Dragging NavBreadcrumbControl toward Pane2">
+  <div class="caption">Drag NavBreadcrumbControl from the Toolbox preview area onto Pane2. Panes highlight as you drag to indicate drop targets.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>35.</strong> In the Search field, enter nav.</p>
-<p>Multiple items are found and shown in the preview area on the Toolbox tab. Two controls from</p>
-<p>the NavigationApp are shown as NavBreadcrumbControl and NavTreeControl.</p>
-<div class="key-concept">Note:</div>
-<p>Rather than searching, you can alternatively expand Training \ Apps on the Toolbox</p>
-<p>tab to find the NavigationApp.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0089_0.png" alt="Page 89">
-  <div class="caption">Page 89</div>
+  <img src="../images/page_0090_1.png" alt="NavBreadcrumbControl previewed in Pane2">
+  <div class="caption">NavBreadcrumbControl previewed in Pane2 — shows the breadcrumb navigation path.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>36.</strong> From the Toolbox tab preview area, drag NavBreadcrumbControl to Pane2.</p>
-<p>As you drag the control over the preview area, panes become highlighted to indicate where</p>
-<p>you can drop the control. The following example shows Pane2 highlighted.</p>
-<p>The NavBreadcrumbControl is previewed in Pane2.</p>
-<p><strong>37.</strong> From the Toolbox tab preview area, drag NavTreeControl to Pane3.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0090_0.png" alt="Page 90">
-  <div class="caption">Page 90</div>
+  <img src="../images/page_0090_2.png" alt="Dragging NavTreeControl toward Pane3">
+  <div class="caption">Drag NavTreeControl from the Toolbox preview area onto Pane3 (the slide-in pane).</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0090_1.png" alt="Page 90">
-  <div class="caption">Page 90</div>
+  <img src="../images/page_0091_0.png" alt="Complete three-pane layout with NavTreeControl in Pane3">
+  <div class="caption">The completed layout: Pane3 (slide-in sidebar with NavTreeControl), Pane2 (top bar with NavBreadcrumbControl), and Pane1 (main content area).</div>
 </div>
+
+<h3>Step 13: Configure Content Types for Pane1</h3>
+
+<div class="lab">
+  <p><strong>38.</strong> In the layout preview area, select Pane1.</p>
+  <p><strong>39.</strong> On the Properties tab, click the drop-down arrow for the <strong>Content Type(s)</strong> property.</p>
+  <p><strong>40.</strong> Check the <strong>Overview</strong> content type.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0090_2.png" alt="Page 90">
-  <div class="caption">Page 90</div>
+  <img src="../images/page_0092_0.jpeg" alt="Content Type dropdown showing available types">
+  <div class="caption">The Content Type(s) dropdown shows all available types. By default, no types are checked (None).</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The NavTreeControl is previewed in Pane3.</p>
-<p>The layout in the preview area should look as follows:</p>
+
 <div class="screenshot">
-  <img src="../images/page_0091_0.png" alt="Page 91">
-  <div class="caption">Page 91</div>
+  <img src="../images/page_0093_0.jpeg" alt="Overview content type selected with Use For Auto-Fill checked">
+  <div class="caption">After selecting "Overview" as the content type, the Use For Auto-Fill checkbox is automatically checked — enabling auto-fill behavior for this pane.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Configure Content Types for the Default Pane</p>
-<p>In the following steps, you will configure a content type for Pane1, which is the default pane. The</p>
-<p>content type determines which type of content can be displayed in that pane at runtime.</p>
-<p><strong>38.</strong> In the layout preview area, select Pane1.</p>
-<p><strong>39.</strong> With Pane1 selected, on the Properties tab, click the drop-down arrow on the right side of the</p>
-<p>General \ Content Type(s) property.</p>
-<p>A list of content types appears. Notice that by default, no content types are checked.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0092_0.jpeg" alt="Page 92">
-  <div class="caption">Page 92</div>
+  <img src="../images/page_0093_1.png" alt="Content Type set to Overview in Properties panel">
+  <div class="caption">The General section now shows Content Type(s): Overview and Use For Auto-Fill: checked.</div>
 </div>
-<p>Lab 2 – Creating a Screen Profile and Layout</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>40.</strong> Check the Overview content type.</p>
-<div class="key-concept">Note:</div>
-<p>You may need to click off the drop-down to dismiss the list after you make your</p>
-<p>selection.</p>
-<p>The General \ Content Type(s) property reflects your selection.</p>
-<p>Notice that after a content type is selected, the Use For Auto-Fill check box is automatically</p>
-<p>checked.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> When you select a content type for a pane, the "Use For Auto-Fill" checkbox is automatically checked. This means at runtime, any content with a matching "Overview" content type will automatically fill this pane.
+</div>
+
+<h3>Step 14: Save and Check-in</h3>
+
+<div class="lab">
+  <p><strong>41.</strong> In the top-left corner of the editor, click <strong>Save and Close</strong> to save and close the Main layout.</p>
+  <p><strong>42.</strong> Click <strong>Check-in</strong> to check in the Main layout.</p>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0093_0.jpeg" alt="Page 93">
-  <div class="caption">Page 93</div>
+  <img src="../images/page_0094_0.png" alt="Save and Close button in Layout Editor">
+  <div class="caption">Click Save and Close to save the completed Main layout, then check it in when prompted.</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0093_1.png" alt="Page 93">
-  <div class="caption">Page 93</div>
+
+<div class="tip">
+  <strong>Note:</strong> You will see the layout configurations in a running ViewApp in later labs.
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p><strong>41.</strong> In the top-left corner of the editor, click Save and Close to save and close the Main layout.</p>
-<p>The Check-in dialog box appears.</p>
-<p><strong>42.</strong> Click Check-in to check in the Main layout.</p>
-<div class="key-concept">Note:</div>
-<p>You will see the layout configurations in a running ViewApp in later labs.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0094_0.png" alt="Page 94">
-  <div class="caption">Page 94</div>
+
+<!-- ============================================================ -->
+<h2>Lab Summary</h2>
+
+<p>In this lab, you completed the following:</p>
+
+<table>
+  <thead>
+    <tr><th>Task</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Created 3 graphic toolsets</td><td>Apps, .NET Controls, Training</td></tr>
+    <tr><td>Organized OMI Apps and .NET controls</td><td>14 apps in Apps toolset, 3 controls in .NET Controls</td></tr>
+    <tr><td>Created SingleScreen profile</td><td>1 screen: Primary at 1920×1080</td></tr>
+    <tr><td>Created DualScreen profile</td><td>2 screens: Primary + Secondary at 1920×1080 each</td></tr>
+    <tr><td>Created Main layout</td><td>3 panes: Pane1 (default, Overview content type), Pane2 (100px height), Pane3 (slide-in)</td></tr>
+    <tr><td>Assigned content to panes</td><td>NavBreadcrumbControl → Pane2, NavTreeControl → Pane3</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>Quiz</h2>
+<div class="quiz">
+<h3>Test Your Knowledge</h3>
+
+<details>
+<summary>1. How do you create a new graphic toolset on the Graphics tab?</summary>
+<p class="answer">Right-click the Galaxy name or an existing toolset and select New → Graphic Toolset.</p>
+</details>
+
+<details>
+<summary>2. What is the default name of the first screen profile created?</summary>
+<p class="answer">ScreenProfile_001.</p>
+</details>
+
+<details>
+<summary>3. How do you add a second screen to a screen profile?</summary>
+<p class="answer">Open the screen profile in the Screen Profile Editor and click the Add Screen button (the "+" button). The new screen is added to the right of the selected screen.</p>
+</details>
+
+<details>
+<summary>4. What is the default height of a newly added pane in a layout?</summary>
+<p class="answer">It fills the available space. In this lab, we resized Pane2 to 100px by setting the Height property.</p>
+</details>
+
+<details>
+<summary>5. How do you add a slide-in pane to a layout?</summary>
+<p class="answer">Click the Add Slide-In Pane button on the edge of the layout where you want the slide-in pane to appear.</p>
+</details>
+
+<details>
+<summary>6. What happens to the "Use For Auto-Fill" checkbox when you select a content type for a pane?</summary>
+<p class="answer">It is automatically checked, enabling the pane to receive content via Auto-Fill at runtime.</p>
+</details>
+
+<details>
+<summary>7. Can a slide-in pane be set as the default pane?</summary>
+<p class="answer">No. Slide-in panes cannot be set as the default pane for a layout.</p>
+</details>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L04-Screen-Profiles-and-Layouts.html">← L04: Screen Profiles and Layouts</a> &nbsp;|&nbsp;
-  <a href="L06-ViewApps-Overview.html">L06: ViewApps Overview →</a>
-</nav>
+
 <script>
-function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
-function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
-function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
-window.addEventListener('load',loadProgress);
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('input[data-lesson]');
+  const total = checkboxes.length;
+  let completed = 0;
+  checkboxes.forEach(cb => {
+    if (cb.checked) completed++;
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked);
+  });
+  const text = document.getElementById('progress-text');
+  if (text) text.textContent = completed + ' / ' + total + ' completed';
+}
+document.querySelectorAll('input[data-lesson]').forEach(cb => {
+  if (localStorage.getItem('omi_' + cb.dataset.lesson) === 'true') cb.checked = true;
+});
+saveProgress();
 </script>
+
 </body>
 </html>

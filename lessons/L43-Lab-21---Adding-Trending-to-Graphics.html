@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 43: Lab 21 – Adding Trending to Graphics</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,9 +26,11 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
@@ -121,206 +124,160 @@
 </div>
 </nav>
 
-<h1>🔬 L43: Lab 21 – Adding Trending to Graphics</h1>
-<p class="source">Module 10 — Trends | Pages 607-616</p>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>Introduction</p>
-<p>In this lab, you will use the SA_Trend_MultiPen symbol from the Situational Awareness Library to</p>
-<p>create a display for real-time trending in your ViewApp.</p>
-<p>You will create the symbol within the $Mixer template, and configure the symbol to have three</p>
-<p>pens: one for level, one for temperature, and one for agitator speed.</p>
-<p>Objectives</p>
+<h1>📖 L43: Lab 21 – Adding Trending to Graphics</h1>
+<p class="source">Module 10 — Trends, Section 2</p>
+<p class="page-ref">Pages 607–616</p>
+
+<div class="lab">
+<h3>Objectives</h3>
 <p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Use the SA_Trend symbols for real-time trending</p>
-<div class="screenshot">
-  <img src="../images/page_0607_0.jpeg" alt="Page 607">
-  <div class="caption">Page 607</div>
+<ul>
+<li>Use the SA_Trend symbols for real-time trending</li>
+</ul>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>Create Symbol</p>
-<p>First, you will create and configure a symbol within the $Mixer template.</p>
-<p>1.</p>
-<p>On the Templates tab, in the Training \ Project toolset, double-click $Mixer to open it in the</p>
-<p>Object Editor.</p>
-<p>2.</p>
-<p>In the Content pane, click Add to add a symbol and name it RealTimeTrend.</p>
-<p>3.</p>
-<p>Double-click RealTimeTrend to open it in the Graphic Editor.</p>
-<p>4.</p>
-<p>On the Toolbox tab, enter a search string to find the SA_Trend_MultiPen symbol and drag it</p>
-<p>to the drawing canvas.</p>
+
+<h2>Create Symbol</h2>
+
+<p>First, you create and configure a trend symbol within the <code>$Mixer</code> template. On the Templates tab, in the Training &gt; Project toolset, double-click <strong>$Mixer</strong> to open it in the Object Editor. In the Content pane, click Add to create a new symbol named <strong>RealTimeTrend</strong>. Double-click RealTimeTrend to open it in the Graphic Editor. On the Toolbox tab, search for the <strong>SA_Trend_MultiPen</strong> symbol and drag it to the drawing canvas.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0608_0.png" alt="Page 608">
-  <div class="caption">Page 608</div>
+  <img src="../images/page_0608_0.png" alt="SA_Trend_MultiPen placed on drawing canvas">
+  <div class="caption">SA_Trend_MultiPen symbol dragged to the drawing canvas — displaying a multi-pen trend with two visible data traces (stepped and sinusoidal) and value placeholders</div>
 </div>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>5.</p>
-<p>On the Properties tab, configure properties as follows:</p>
-<p>6.</p>
-<p>Right-click the symbol on the drawing canvas and select Custom Properties.</p>
-<p>The Edit Custom Properties dialog box appears.</p>
-<p>Wizard Options \ PenCount:</p>
-<p>3Pens</p>
-<p>Wizard Options \ Label:</p>
-<p>True</p>
-<p>Wizard Options \ LabelType:</p>
-<p>ObjectName</p>
-<p>Wizard Options \ SymbolMode:</p>
-<p>Advanced</p>
-<p>Wizard Options \ EngUnits:</p>
-<p>True</p>
-<p>Wizard Options \ Floating Tooltip:</p>
-<p>True</p>
+
+<h3>Configure Wizard Options</h3>
+
+<p>On the Properties tab, configure the following Wizard Options properties:</p>
+
+<table>
+<tr><th>Property Path</th><th>Value</th><th>Purpose</th></tr>
+<tr><td>Wizard Options &gt; PenCount</td><td><code>3Pens</code></td><td>Enables 3 data curves on the trend graph</td></tr>
+<tr><td>Wizard Options &gt; Label</td><td><code>True</code></td><td>Displays labels (A, B, C) next to each curve</td></tr>
+<tr><td>Wizard Options &gt; LabelType</td><td><code>ObjectName</code></td><td>Labels derived from the trend's object name</td></tr>
+<tr><td>Wizard Options &gt; SymbolMode</td><td><code>Advanced</code></td><td>Unlocks advanced trend features</td></tr>
+<tr><td>Wizard Options &gt; EngUnits</td><td><code>True</code></td><td>Shows engineering units (EU) on the graph</td></tr>
+<tr><td>Wizard Options &gt; Floating Tooltip</td><td><code>True</code></td><td>Enables hover tooltips for real-time values</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0609_0.png" alt="Page 609">
-  <div class="caption">Page 609</div>
+  <img src="../images/page_0609_0.png" alt="Wizard Options configured for 3 pens">
+  <div class="caption">Properties tab showing Wizard Options with PenCount=3Pens, Label=True, LabelType=ObjectName, SymbolMode=Advanced; the trend symbol displays three pens (A, B, C) with time range selectors and statistics panel</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>7.</p>
-<p>Configure custom properties as follows:</p>
-<p>8.</p>
-<p>Click OK to close the Edit Custom Properties dialog box.</p>
-<p>9.</p>
-<p>Right-click the symbol and select Substitute | Substitute Strings.</p>
-<p>The Substitute Strings dialog box appears.</p>
-<p>Name</p>
-<p>Default Value</p>
-<p>PenA:</p>
-<p>Me.Level.PV</p>
-<p>PenA_EngUnits:</p>
-<p>Me.Level.PV.EngUnits</p>
-<p>PenA_Tagname: (switch to reference mode)</p>
-<p>Me.Level.PV.Description</p>
-<p>PenB:</p>
-<p>Me.Temperature.PV</p>
-<p>PenB_EngUnits:</p>
-<p>Me.Temperature.PV.EngUnits</p>
-<p>PenB_Tagname: (switch to reference mode)</p>
-<p>Me.Temperature.PV.Description</p>
-<p>PenC:</p>
-<p>Me.Agitator.Speed.PV</p>
-<p>PenC_EngUnits:</p>
-<p>Me.Agitator.Speed.PV.EngUnits</p>
-<p>PenC_Tagname: (switch to reference mode)</p>
-<p>Me.Agitator.Speed.PV.Description</p>
+
+<h3>Configure Custom Properties</h3>
+
+<p>Right-click the symbol on the drawing canvas and select Custom Properties. Configure the following properties using the references shown — note that the Tagname properties should be set to reference mode:</p>
+
+<table>
+<tr><th>Name</th><th>Default Value</th></tr>
+<tr><td><code>PenA</code></td><td><code>Me.Level.PV</code></td></tr>
+<tr><td><code>PenA_EngUnits</code></td><td><code>Me.Level.PV.EngUnits</code></td></tr>
+<tr><td><code>PenA_Tagname</code></td><td><code>Me.Level.PV.Description</code> (reference mode)</td></tr>
+<tr><td><code>PenB</code></td><td><code>Me.Temperature.PV</code></td></tr>
+<tr><td><code>PenB_EngUnits</code></td><td><code>Me.Temperature.PV.EngUnits</code></td></tr>
+<tr><td><code>PenB_Tagname</code></td><td><code>Me.Temperature.PV.Description</code> (reference mode)</td></tr>
+<tr><td><code>PenC</code></td><td><code>Me.Agitator.Speed.PV</code></td></tr>
+<tr><td><code>PenC_EngUnits</code></td><td><code>Me.Agitator.Speed.PV.EngUnits</code></td></tr>
+<tr><td><code>PenC_Tagname</code></td><td><code>Me.Agitator.Speed.PV.Description</code> (reference mode)</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0610_0.png" alt="Page 610">
-  <div class="caption">Page 610</div>
+  <img src="../images/page_0610_0.png" alt="Custom properties with pen data sources">
+  <div class="caption">Edit Custom Properties dialog showing PenA, PenB, and PenC properties with their data source, engineering units, and tagname references — tagname properties use reference mode (orange icon)</div>
 </div>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>10.</strong> In the New column, replace strings as shown below.</p>
-<p>For the purposes of this lab, the L stands for level, the T is for temperature, and the A is for</p>
-<p>agitator speed.</p>
-<div class="key-concept">Note:</div>
-<p>Replace only the A, B, and C strings. Do not perform a “replace all” operation.</p>
-<p><strong>11.</strong> Click OK to close the Substitute Strings dialog box.</p>
-<p>Notice the updated strings in the symbol.</p>
-<p>Old</p>
-<p>New</p>
-<p>A</p>
-<p>L</p>
-<p>B</p>
-<p>T</p>
-<p>C</p>
-<p>A</p>
+
+<h3>Substitute Strings</h3>
+
+<p>Right-click the symbol and select Substitute | Substitute Strings. In the dialog, replace only three strings: change <strong>A</strong> to <strong>L</strong> (level), <strong>B</strong> to <strong>T</strong> (temperature), and <strong>C</strong> to <strong>A</strong> (agitator speed). Click OK to close the dialog and observe the updated labels in the trend symbol.</p>
+
+<div class="tip">
+<strong>Note:</strong> Replace only the A, B, and C strings. Do not perform a "replace all" operation, as this would change other unrelated strings in the symbol.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0611_0.png" alt="Page 611">
-  <div class="caption">Page 611</div>
+  <img src="../images/page_0611_0.png" alt="Substitute Strings dialog with replacements">
+  <div class="caption">Substitute Strings dialog showing the three replacement rows — Old A → New L, Old B → New T, Old C → New A — with red arrows highlighting the modified entries</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0611_1.png" alt="Page 611">
-  <div class="caption">Page 611</div>
+  <img src="../images/page_0612_0.jpeg" alt="Updated trend symbol with new labels">
+  <div class="caption">SA_Trend_MultiPen with updated labels — L, T, A replacing the original A, B, C labels on the pen selector buttons and trend lines</div>
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p><strong>12.</strong> Click the drawing canvas, and on the Properties tab, change the Graphic \ Size property to</p>
-<p>Fixed.</p>
-<p><strong>13.</strong> Resize the canvas to fit the graphic.</p>
-<p>For example, set both Graphic \ FixedWidth and Graphic \ FixedHeight to 320.</p>
-<p><strong>14.</strong> Arrange the symbol in the center of the canvas and ensure all visual elements are within the</p>
-<p>fixed area.</p>
-<p>The graphic should look similar to the following.</p>
-<p><strong>15.</strong> Click the drawing canvas, and on the Properties tab, configure Runtime Behavior \</p>
-<p>ContentType as Real Time Trend.</p>
-<p><strong>16.</strong> Save and close the RealTimeTrend symbol.</p>
-<p><strong>17.</strong> Save and close the $Mixer template, and check it in.</p>
+
+<h3>Set Canvas Properties</h3>
+
+<p>Click the drawing canvas and on the Properties tab, change Graphic &gt; Size to <strong>Fixed</strong>. Set both FixedWidth and FixedHeight to <strong>320</strong>. Center the trend symbol on the canvas. Then set Runtime Behavior &gt; ContentType to <strong>Real Time Trend</strong>. Save and close the RealTimeTrend symbol, then save and close the $Mixer template, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0612_0.jpeg" alt="Page 612">
-  <div class="caption">Page 612</div>
+  <img src="../images/page_0613_0.png" alt="Canvas size and content type settings">
+  <div class="caption">Properties tab showing Graphic Size set to Fixed (320×320), and Runtime Behavior ContentType set to "Real Time Trend" — the trend symbol is centered on the fixed canvas</div>
 </div>
+
+<h2>Update the Asset Layout</h2>
+
+<p>On the Graphics tab, open <strong>Asset_Layout</strong> in the Layout Editor. Select Pane2 and add a new pane to the right (Pane5). Configure Pane5: set Content Type(s) to <strong>Real Time Trend</strong> and Width to <strong>300</strong>. Save and close the Asset_Layout, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0612_1.png" alt="Page 612">
-  <div class="caption">Page 612</div>
+  <img src="../images/page_0614_0.jpeg" alt="Asset Layout with new trend pane">
+  <div class="caption">Asset Layout in the Layout Editor with Pane5 added to the right of Pane2 — Pane5 configured with Content Type "Real Time Trend" and Width 300</div>
 </div>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Update the Asset Layout</p>
-<p><strong>18.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Asset_Layout to open it</p>
-<p>in the Layout Editor.</p>
-<p><strong>19.</strong> Select Pane2.</p>
-<p><strong>20.</strong> Click the Add new pane right-arrow to add a pane to the right of Pane2.</p>
-<p>A new pane named Pane5 is added.</p>
-<p><strong>21.</strong> Select Pane5 and configure its properties:</p>
-<p><strong>22.</strong> Save and close Asset_Layout, and check it in.</p>
-<p>General \ Content Type(s):</p>
-<p>Real Time Trend</p>
-<p>Size \ Width:</p>
-<p>300</p>
+
+<h2>Test the ViewApp in a Preview Session</h2>
+
+<p>Switch to the ViewApp preview session and navigate to <strong>Mixer100</strong>. The RealTimeTrend graphic should display in the top-right pane. Above the trend, click <strong>L</strong> in the legend to select the Level pen.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0613_0.png" alt="Page 613">
-  <div class="caption">Page 613</div>
+  <img src="../images/page_0615_0.jpeg" alt="Real-time trend display with pen selection and tooltip">
+  <div class="caption">Mixer100 view with RealTimeTrend showing three trend pens (L, T, A) with time selector dropdown; floating tooltip displays PV: 19.88, Max: 98.66, Min: 0.00, Avg: 49.33, EU: 1</div>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0613_1.jpeg" alt="Page 613">
-  <div class="caption">Page 613</div>
+
+<div class="key-concept">
+<strong>Floating Tooltip:</strong> You must first select a pen by clicking its label (L, T, or A) to view the floating tooltip. The tooltip shows PV (current process value), Max, Min, Avg, and EU for the selected pen. The Avg value is calculated as (Max + Min) / 2, not a moving average.
 </div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the ViewApp preview session.</p>
-<p><strong>23.</strong> Switch to the ViewApp preview session.</p>
-<p>Notice that <domain>\jamess is still logged in.</p>
-<p><strong>24.</strong> Navigate to Mixer100.</p>
-<p>Notice that the RealTimeTrend graphic displays in the top-right pane.</p>
-<p><strong>25.</strong> Above the trend, in the legend, click L to select the pen for level.</p>
-<div class="key-concept">Note:</div>
-<p>You must select a pen to view floating tooltip.</p>
-<p>Moving your mouse over the trend will display a floating tooltip, which includes PV, Max, Min,</p>
-<p>Avg, and EU information for the currently selected trend pen.</p>
-<p>The formula for the Avg value is (Max + Min) / 2, and not a moving average.</p>
-<div class="screenshot">
-  <img src="../images/page_0614_0.jpeg" alt="Page 614">
-  <div class="caption">Page 614</div>
+
+<p>You can also click the arrow at the top of the trend chart to select a different duration — for example, 5 minutes. When you are finished testing, minimize the preview session.</p>
+
+<h2>Key Takeaways</h2>
+
+<div class="key-concept">
+<ul>
+<li>The <strong>SA_Trend_MultiPen</strong> supports up to 3 or 4 pens with configurable wizard options</li>
+<li>Custom properties allow you to bind pen data sources, engineering units, and tagnames to object references</li>
+<li>The <strong>Substitute Strings</strong> dialog lets you rename pen labels without editing individual text elements</li>
+<li>Set the canvas ContentType to <strong>Real Time Trend</strong> for the symbol to function as a trend display</li>
+<li>Layout panes must have matching <strong>Content Types</strong> to display trend content</li>
+</ul>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0614_1.jpeg" alt="Page 614">
-  <div class="caption">Page 614</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What Wizard Options property controls the number of trend pens?</summary>
+<p class="answer">The PenCount property in Wizard Options — set it to 3Pens or 4Pens to configure the number of data curves displayed.</p>
+</details>
+
+<details>
+<summary>Q2: Why must the tagname custom properties be set to reference mode?</summary>
+<p class="answer">Reference mode allows the property to dynamically resolve to the actual tagname of the automation object at runtime, rather than using a static string value.</p>
+</details>
+
+<details>
+<summary>Q3: What ContentType must the drawing canvas be set to for trend display?</summary>
+<p class="answer">Real Time Trend — this tells the runtime to treat the symbol as a real-time trend display.</p>
+</details>
+
+<details>
+<summary>Q4: How do you view the floating tooltip on a multi-pen trend?</summary>
+<p class="answer">You must first select a pen by clicking its label (L, T, or A) at the top of the trend. Then hovering over the trend chart displays the floating tooltip with PV, Max, Min, Avg, and EU values.</p>
+</details>
 </div>
-<p>Lab 21 – Adding Trending to Graphics</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>You can also click the arrow at the top of the trend chart to select a different duration for the</p>
-<p>trend.</p>
-<p>The following example indicates the current duration for the trend is 5m (5 minutes).</p>
-<p><strong>26.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
-<div class="screenshot">
-  <img src="../images/page_0615_0.jpeg" alt="Page 615">
-  <div class="caption">Page 615</div>
-</div>
-<p>Module 10 – Trends</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L42-Historization-and-Real-Time-Trending.html">← L42: Historization and Real-Time Trending</a> &nbsp;|&nbsp;
   <a href="L44-Historical-Trending.html">L44: Historical Trending →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

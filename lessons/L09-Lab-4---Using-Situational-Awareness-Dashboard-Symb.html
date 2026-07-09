@@ -25,13 +25,14 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
 <nav>
-  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">← L08: Introduction to Industrial Graphics and </a> &nbsp;|&nbsp;
+  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">← L08: Introduction to Industrial Graphics</a> &nbsp;|&nbsp;
   <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects →</a>
 </nav>
 
@@ -105,7 +106,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -121,508 +122,433 @@
 </div>
 </nav>
 
-<h1>🔬 L09: Lab 4 – Using Situational Awareness Dashboard Symbols</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 155-182</p>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 4 – Using Situational Awareness</p>
-<p>Dashboard Symbols</p>
-<p>Introduction</p>
-<p>In this lab, you will create a sub-toolset under Training on the Graphics tab for organizing symbols.</p>
-<p>You will use the SA_ColumnChart symbol from Dashboard Tools in the Situational Awareness</p>
-<p>Library to create an overview symbol and configure it to show level and temperature information</p>
-<p>for mixers in an area. Then, you will link the symbol to an area object in the Galaxy.</p>
-<p>Once you create one symbol and link it to an area object, you will import some prebuilt symbols</p>
-<p>and link them to other area objects in the Galaxy.</p>
-<p>You will test your ViewApp in a ViewApp preview session and be able to view the symbols, such as</p>
-<p>the one shown below.</p>
-<p>Content workflow highlight: Linking content to an object</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create a symbol on the Graphics tab</p>
-<p></p>
-<p>Search for symbols to embed in the Graphic Editor</p>
-<p></p>
-<p>Embed symbols from the Situational Awareness Library</p>
-<p></p>
-<p>Configure embedded symbol wizard options and custom properties</p>
-<p></p>
-<p>Substitute strings for an embedded symbol</p>
-<p></p>
-<p>Substitute references for an embedded symbol</p>
-<p></p>
-<p>Configure the Content Type property of a symbol</p>
-<p></p>
-<p>Link content to instance objects</p>
-<p></p>
-<p>Change content name within an object</p>
-<p></p>
-<p>Import symbols</p>
-<p></p>
-<p>Use the Auto-Fill content feature to display content while navigating a ViewApp at runtime</p>
-<div class="screenshot">
-  <img src="../images/page_0155_0.jpeg" alt="Page 155">
-  <div class="caption">Page 155</div>
+<h1>📖 L09: Lab 4 – Using Situational Awareness Dashboard Symbols</h1>
+<p class="source">Module 3 — Industrial Graphics | Lab 4</p>
+<p class="page-ref">Pages 155–181 | AVEVA™ Operations Management Interface 2023</p>
+
+<h2>Introduction</h2>
+<p>In this lab, you will create a sub-toolset under Training on the Graphics tab for organizing symbols. You will use the <code>SA_ColumnChart</code> symbol from Dashboard Tools in the Situational Awareness Library to create an overview symbol and configure it to show level and temperature information for mixers in an area. Then, you will link the symbol to an area object in the Galaxy.</p>
+
+<p>Once you create one symbol and link it to an area object, you will import some prebuilt symbols and link them to other area objects. Finally, you will test the ViewApp in a preview session to verify the symbols display correctly with the auto-fill content feature.</p>
+
+<div class="lab">
+<strong>Example Output:</strong> When complete, your ViewApp will display dashboard-style bar charts showing mixer levels and temperatures, automatically filled based on the navigation context — for example, navigating to Line1 shows Line1's mixer data.
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Create a New Graphic Toolset and a Symbol</p>
-<p>In the following steps, you will create a graphic toolset on the Graphics tab to organize the symbols</p>
-<p>you will create for this course. Then you will create a new symbol named Line1_Overview.</p>
-<p>1.</p>
-<p>On the Graphics tab, right-click the Training toolset and select New | Graphic Toolset.</p>
-<p>A new toolset with the default name is created under Training.</p>
-<p>2.</p>
-<p>Rename the new toolset to Symbols.</p>
-<p>3.</p>
-<p>Right-click the Training \ Symbols toolset and select New | Symbol.</p>
-<div class="screenshot">
-  <img src="../images/page_0156_0.png" alt="Page 156">
-  <div class="caption">Page 156</div>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong> Upon completion you will be able to create symbols on the Graphics tab, search for and embed symbols from the Situational Awareness Library, configure wizard options and custom properties, substitute strings and references, configure content types, link content to automation objects, and use the Auto-Fill content feature.
 </div>
+
+<h2>Creating a New Graphic Toolset and Symbol</h2>
+<p>On the Graphics tab, right-click the <code>Training</code> toolset and select <strong>New &gt; Graphic Toolset</strong>. Rename the new toolset to <strong>Symbols</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0156_1.png" alt="Page 156">
-  <div class="caption">Page 156</div>
+  <img src="../images/page_0156_0.png" alt="Graphics tab with new Symbols toolset">
+  <div class="caption">The Graphics tab showing the Training folder expanded with the newly created Symbols toolset, alongside Layouts, Screen Profiles, and Widgets</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>A new symbol with the default name is created in the Training \ Symbols toolset.</p>
-<p>4.</p>
-<p>Rename the new symbol to Line1_Overview.</p>
+
+<p>Right-click <code>Training \ Symbols</code> and select <strong>New &gt; Symbol</strong>. A new symbol with the default name <code>Symbol_001</code> is created.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0157_0.png" alt="Page 157">
-  <div class="caption">Page 157</div>
+  <img src="../images/page_0156_1.png" alt="Right-click context menu for creating new symbol">
+  <div class="caption">Right-click context menu on the Symbols toolset showing the New &gt; Symbol option highlighted</div>
 </div>
+
+<p>Rename the new symbol to <code>Line1_Overview</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0157_1.png" alt="Page 157">
-  <div class="caption">Page 157</div>
+  <img src="../images/page_0157_0.png" alt="Symbol with default name Symbol_001">
+  <div class="caption">The newly created Symbol_001 in an editable field, ready to be renamed</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Configure Content Type for the Symbol</p>
-<p>In the next steps, you will open the Line1_Overview symbol in the Graphic Editor and configure a</p>
-<p>content type for it.</p>
-<p>5.</p>
-<p>On the Graphics tab, in the Training \ Symbols toolset, double-click Line1_Overview to</p>
-<p>open it in the Graphic Editor.</p>
-<p>The Graphic Editor appears.</p>
-<p>You can maximize the editor to optimize the view.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0158_0.png" alt="Page 158">
-  <div class="caption">Page 158</div>
+  <img src="../images/page_0157_1.png" alt="Symbol renamed to Line1_Overview">
+  <div class="caption">The symbol renamed to Line1_Overview under the Training &gt; Symbols toolset</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>6.</p>
-<p>On the Properties tab for the symbol, select the Runtime Behavior \ ContentType property.</p>
-<p>7.</p>
-<p>Click the down-arrow on the right side of the field to display a drop-down list of content types.</p>
-<p>8.</p>
-<p>Check Overview as the content type.</p>
-<div class="key-concept">Note:</div>
-<p>You may need to click the canvas to close the drop-down list.</p>
+
+<h2>Configuring Content Type</h2>
+<p>On the Graphics tab, double-click <code>Line1_Overview</code> to open it in the Graphic Editor. You can maximize the editor for a better view.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0159_0.png" alt="Page 159">
-  <div class="caption">Page 159</div>
+  <img src="../images/page_0158_0.png" alt="Empty canvas in Graphic Editor">
+  <div class="caption">The Graphic Editor with the empty Line1_Overview symbol open, showing the Properties tab with ContentType set to None (to be configured)</div>
 </div>
+
+<p>On the Properties tab, select the <strong>Runtime Behavior &gt; ContentType</strong> property. Click the down-arrow to display the drop-down list, and check <strong>Overview</strong> as the content type.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0159_1.png" alt="Page 159">
-  <div class="caption">Page 159</div>
+  <img src="../images/page_0159_0.png" alt="ContentType dropdown with available options">
+  <div class="caption">The ContentType dropdown showing available content types: All, Overview, Detailed, Faceplate, Alarm Banner, and others</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>The Runtime Behavior \ ContentType property is set to Overview.</p>
-<p>Embed Symbols and Configure the Embedded Symbols</p>
-<p>Now, you will search for symbols and embed SA_ColumnChart from the Situational Awareness</p>
-<p>Library dashboard tools. You will configure custom properties for the embedded symbols to</p>
-<p>reference level and temperature attributes from objects within Line1. You will also use string</p>
-<p>substitution to customize the labels in the embedded symbols to display chart information, such as</p>
-<p>the chart heading and the horizontal axis description.</p>
-<p>9.</p>
-<p>On the right side of the Graphic Editor, select the Toolbox tab.</p>
-<p>Notice that it provides a Search field.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0160_0.png" alt="Page 160">
-  <div class="caption">Page 160</div>
+  <img src="../images/page_0159_1.png" alt="ContentType set to Overview">
+  <div class="caption">The ContentType property now set to Overview, indicating this symbol will display in layout panes configured for Overview content</div>
 </div>
+
+<div class="tip">
+<strong>Tip:</strong> You may need to click the canvas to close the drop-down list after selecting a content type.
+</div>
+
+<h2>Embedding the SA_ColumnChart Symbol</h2>
+<p>Now you will search for and embed the <code>SA_ColumnChart</code> symbol from the Situational Awareness Library. On the right side of the Graphic Editor, select the <strong>Toolbox</strong> tab — it provides a Search field for finding symbols.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0160_1.png" alt="Page 160">
-  <div class="caption">Page 160</div>
+  <img src="../images/page_0160_0.png" alt="ContentType confirmed as Overview">
+  <div class="caption">The Properties tab confirming ContentType is set to Overview, with other Runtime Behavior properties visible</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>10.</strong> In the Search field, enter columnchart as a search string.</p>
-<p>Items matching the columnchart search string are found.</p>
-<p><strong>11.</strong> From the Toolbox tab preview area, drag SA_ColumnChart to the drawing canvas.</p>
-<p>A symbol named SA_ColumnChart1 is placed on the canvas.</p>
-<p>Notice that by default, the symbol includes ten bars.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0161_0.png" alt="Page 161">
-  <div class="caption">Page 161</div>
+  <img src="../images/page_0160_1.png" alt="Toolbox tab with Search field">
+  <div class="caption">The Toolbox tab showing the Search field and the hierarchy tree including Industrial Graphic Library, Situational Awareness Library, and other folders</div>
 </div>
+
+<p>In the Search field, enter <code>columnchart</code> as a search string. Items matching the search are found. Drag <code>SA_ColumnChart</code> from the Toolbox preview area to the drawing canvas. A symbol named <code>SA_ColumnChart1</code> is placed on the canvas with ten bars by default.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0161_1.png" alt="Page 161">
-  <div class="caption">Page 161</div>
+  <img src="../images/page_0161_0.png" alt="Search results for columnchart">
+  <div class="caption">The Toolbox search results showing 5 content items matching "columnchart", including SA_ColumnChart variants</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>12.</strong> With SA_ColumnChart1 still selected on the drawing canvas, select the Properties tab.</p>
-<p><strong>13.</strong> On the Properties tab, select Wizard Options \ NumberofBars.</p>
-<p><strong>14.</strong> Click the down-arrow to display a drop-down list, and then select Four.</p>
-<p>The Wizard Options \ NumberofBars property is set to Four.</p>
-<p>Notice that the SA_ColumnChart1 symbol on the drawing canvas changes to display four</p>
-<p>bars.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0162_0.png" alt="Page 162">
-  <div class="caption">Page 162</div>
+  <img src="../images/page_0161_1.png" alt="SA_ColumnChart1 placed on canvas">
+  <div class="caption">SA_ColumnChart1 placed on the drawing canvas with default settings: Chart Heading, 10 bars (B1-B10), and axis descriptions</div>
 </div>
+
+<h2>Configuring Wizard Options</h2>
+<p>With <code>SA_ColumnChart1</code> selected on the drawing canvas, go to the Properties tab. Select <strong>Wizard Options &gt; NumberofBars</strong>, click the down-arrow, and select <strong>Four</strong>. The symbol updates to display four bars.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0162_1.png" alt="Page 162">
-  <div class="caption">Page 162</div>
+  <img src="../images/page_0162_0.png" alt="NumberofBars dropdown open">
+  <div class="caption">The Wizard Options section showing the NumberofBars dropdown with options from One through Ten, with Four highlighted</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0162_2.png" alt="Page 162">
-  <div class="caption">Page 162</div>
+  <img src="../images/page_0162_1.png" alt="NumberofBars set to Four">
+  <div class="caption">After selecting Four, the SA_ColumnChart1 symbol updates to show only four bars on the canvas</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>15.</strong> Right-click the SA_ColumnChart1 symbol and select Custom Properties.</p>
-<p>The Edit Custom Properties dialog box appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0163_0.png" alt="Page 163">
-  <div class="caption">Page 163</div>
+  <img src="../images/page_0162_2.png" alt="Updated canvas with 4 bars">
+  <div class="caption">The canvas showing SA_ColumnChart1 with 4 bars (B1-B4), Chart Heading, and axis descriptions</div>
 </div>
+
+<h2>Configuring Custom Properties</h2>
+<p>Right-click the <code>SA_ColumnChart1</code> symbol and select <strong>Custom Properties</strong>. The Edit Custom Properties dialog box appears, showing properties for each bar and chart settings.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0163_1.png" alt="Page 163">
-  <div class="caption">Page 163</div>
+  <img src="../images/page_0163_0.png" alt="Right-click menu with Custom Properties">
+  <div class="caption">Right-click context menu on SA_ColumnChart1 showing the Custom Properties option highlighted</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>16.</strong> In the left pane, ensure Bar01 is selected.</p>
-<p><strong>17.</strong> In the right pane, in the Default Value field, remove the three dashes ( --- ) from the field.</p>
-<p>The field appears with a red outline.</p>
-<p><strong>18.</strong> Click the ellipsis button to the right of the Default Value field.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0164_0.png" alt="Page 164">
-  <div class="caption">Page 164</div>
+  <img src="../images/page_0163_1.png" alt="Edit Custom Properties dialog">
+  <div class="caption">The Edit Custom Properties dialog showing Bar01 through Bar04 properties with their data types, default values, and visibility settings</div>
 </div>
+
+<p>Select <code>Bar01</code> in the left pane. In the right pane, remove the three dashes (<code>---</code>) from the Default Value field. Click the ellipsis button to open the Galaxy Browser.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0164_1.png" alt="Page 164">
-  <div class="caption">Page 164</div>
+  <img src="../images/page_0164_0.png" alt="Bar01 with dashes removed">
+  <div class="caption">Bar01 selected with the Default Value field cleared (red outline indicating a required value), ready to browse for a reference</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The Galaxy Browser appears.</p>
-<p><strong>19.</strong> In the Galaxy Browser, click Show Hierarchical Name.</p>
-<p><strong>20.</strong> In the Instances list, select Mixer100.Level, and in the Attribute list, select PV.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0165_0.png" alt="Page 165">
-  <div class="caption">Page 165</div>
+  <img src="../images/page_0164_1.png" alt="Ellipsis button for Galaxy Browser">
+  <div class="caption">The Default Value field with the ellipsis button highlighted, which opens the Galaxy Browser for selecting a tag reference</div>
 </div>
+
+<p>In the Galaxy Browser, click <strong>Show Hierarchical Name</strong> to switch to hierarchical naming. In the Instances list, select <code>Mixer100.Level</code>, and in the Attribute list, select <code>PV</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0165_1.png" alt="Page 165">
-  <div class="caption">Page 165</div>
+  <img src="../images/page_0165_0.png" alt="Galaxy Browser showing instances">
+  <div class="caption">The Galaxy Browser with the Attribute Browser tab showing instances and attributes for browsing tag references</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0165_2.png" alt="Page 165">
-  <div class="caption">Page 165</div>
+  <img src="../images/page_0165_1.png" alt="Show Hierarchical Name button">
+  <div class="caption">The Show Hierarchical Name button in the Galaxy Browser toolbar, used to switch to hierarchical naming for easier navigation</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>21.</strong> Click OK to close the Galaxy Browser.</p>
-<p>The Default Value field for Bar01 now shows Mixer100.Level.PV.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0166_0.png" alt="Page 166">
-  <div class="caption">Page 166</div>
+  <img src="../images/page_0165_2.png" alt="Mixer100.Level.PV selected">
+  <div class="caption">After navigating to Mixer100.Level, the PV attribute is highlighted in the attribute list, ready to be assigned to Bar01</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>22.</strong> In the Edit Custom Properties dialog box, configure other custom properties as follows:</p>
-<div class="key-concept">Note:</div>
-<p>You can refer to Steps 16-21 to configure the custom properties by selecting attributes</p>
-<p>from the Galaxy Browser. Or, you can use the auto-complete feature to complete the</p>
-<p>configuration for each custom property by typing the reference in the Default Value field.</p>
-<p>Custom properties appear as shown below.</p>
-<p><strong>23.</strong> Click OK to close the Edit Custom Properties dialog box.</p>
-<p>Name</p>
-<p>Default Value</p>
-<p>Bar02</p>
-<p>Mixer200.Level.PV</p>
-<p>Bar03</p>
-<p>Mixer300.Level.PV</p>
-<p>Bar04</p>
-<p>Mixer400.Level.PV</p>
+
+<p>Click OK. The Default Value for Bar01 now shows <code>Mixer100.Level.PV</code>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0167_0.png" alt="Page 167">
-  <div class="caption">Page 167</div>
+  <img src="../images/page_0166_0.png" alt="Bar01 configured with Mixer100.Level.PV">
+  <div class="caption">The Edit Custom Properties dialog showing Bar01 configured with the reference Mixer100.Level.PV</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>24.</strong> On the drawing canvas, right-click the SA_ColumnChart1 symbol and select Substitute |</p>
-<p>Substitute Strings.</p>
-<p>The Substitute Strings dialog box appears.</p>
+
+<p>Configure the remaining bars as follows:</p>
+
+<table>
+<thead>
+<tr><th>Property</th><th>Default Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Bar01</td><td><code>Mixer100.Level.PV</code></td></tr>
+<tr><td>Bar02</td><td><code>Mixer200.Level.PV</code></td></tr>
+<tr><td>Bar03</td><td><code>Mixer300.Level.PV</code></td></tr>
+<tr><td>Bar04</td><td><code>Mixer400.Level.PV</code></td></tr>
+</tbody>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0168_0.png" alt="Page 168">
-  <div class="caption">Page 168</div>
+  <img src="../images/page_0167_0.png" alt="All bar properties configured">
+  <div class="caption">The Edit Custom Properties dialog showing all four bars configured with Level.PV references for Mixer100 through Mixer400</div>
 </div>
+
+<div class="tip">
+<strong>Tip:</strong> You can use the Galaxy Browser (as shown for Bar01) or the auto-complete feature to complete the configuration for each custom property by typing the reference in the Default Value field.
+</div>
+
+<h2>Substituting Strings</h2>
+<p>On the drawing canvas, right-click the <code>SA_ColumnChart1</code> symbol and select <strong>Substitute &gt; Substitute Strings</strong>. The Substitute Strings dialog appears with all text strings that can be replaced.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0168_1.png" alt="Page 168">
-  <div class="caption">Page 168</div>
+  <img src="../images/page_0168_0.png" alt="Substitute Strings option in context menu">
+  <div class="caption">Right-click context menu on SA_ColumnChart1 showing the Substitute &gt; Substitute Strings option highlighted</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>25.</strong> In the Substitute Strings dialog box, configure strings in the New column as follows:</p>
-<p>The strings that were changed appear as bold in the New column.</p>
-<p>Old</p>
-<p>New</p>
-<p>Chart Heading</p>
-<p>Line 1</p>
-<p>Horizontal Axis Description</p>
-<p>Mixers</p>
-<p>Short Description</p>
-<p>Current level of mixers in Line 1</p>
-<p>Vertical Axis Description</p>
-<p>Current Level</p>
+
 <div class="screenshot">
-  <img src="../images/page_0169_0.png" alt="Page 169">
-  <div class="caption">Page 169</div>
+  <img src="../images/page_0168_1.png" alt="Substitute Strings dialog">
+  <div class="caption">The Substitute Strings dialog showing 11 string pairs (Old/New columns) including chart heading, axis descriptions, and bar labels</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>26.</strong> Click Find & Replace.</p>
-<p>The Find & Replace area expands to show additional fields.</p>
-<p><strong>27.</strong> In the Find What? field, enter B, and in the Replace with field, enter M.</p>
-<div class="key-concept">Note:</div>
-<p>For the purposes of this lab, the letter M is used in the column headings for this</p>
-<p>symbol to stand for “mixers.”</p>
+
+<p>Configure the strings in the New column as follows:</p>
+
+<table>
+<thead>
+<tr><th>Old</th><th>New</th></tr>
+</thead>
+<tbody>
+<tr><td>Chart Heading</td><td><strong>Line 1</strong></td></tr>
+<tr><td>Horizontal Axis Description</td><td><strong>Mixers</strong></td></tr>
+<tr><td>Short Description</td><td><strong>Current level of mixers in Line 1</strong></td></tr>
+<tr><td>Vertical Axis Description</td><td><strong>Current Level</strong></td></tr>
+</tbody>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0170_0.png" alt="Page 170">
-  <div class="caption">Page 170</div>
+  <img src="../images/page_0169_0.png" alt="Configured substitute strings">
+  <div class="caption">The Substitute Strings dialog with modified strings displayed in bold: Line 1, Mixers, Current level of mixers in Line 1, and Current Level</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>28.</strong> Click Replace All.</p>
-<p>Notice that the replaced text displays as bold in the New column.</p>
-<p><strong>29.</strong> Click OK to close the Substitute Strings dialog box.</p>
-<p>The strings on SA_ColumnChart1 are updated.</p>
+
+<p>Click <strong>Find &amp; Replace</strong> to expand the section. In the <strong>Find What?</strong> field, enter <code>B</code>, and in the <strong>Replace with</strong> field, enter <code>M</code>. Click <strong>Replace All</strong>. This changes B1→M1, B2→M2, B3→M3, B4→M4 in the column headings.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0171_0.png" alt="Page 171">
-  <div class="caption">Page 171</div>
+  <img src="../images/page_0170_0.png" alt="Find & Replace B to M">
+  <div class="caption">The Substitute Strings dialog with Find &amp; Replace expanded, showing Find What: B and Replace with: M for renaming bar labels to mixer labels</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>30.</strong> On the drawing canvas, right-click the SA_ColumnChart1 symbol and select Duplicate.</p>
-<p>The SA_ColumnChart1 symbol is duplicated on the canvas.</p>
-<p>The name of the duplicate symbol is EmbeddedSymbol1.</p>
-<p><strong>31.</strong> On the drawing canvas, ensure EmbeddedSymbol1 is selected and move it to the right of</p>
-<p>SA_ColumnChart1.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0172_0.png" alt="Page 172">
-  <div class="caption">Page 172</div>
+  <img src="../images/page_0171_0.png" alt="Replace All results">
+  <div class="caption">After clicking Replace All, the bar labels change from B1-B4 to M1-M4 (displayed in bold), with 4 strings replaced</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>32.</strong> Right-click EmbeddedSymbol1 and select Substitute | Substitute References.</p>
-<p>The Substitute Reference dialog box appears.</p>
+
+<div class="tip">
+<strong>Tip:</strong> For the purposes of this lab, the letter M is used in the column headings to stand for "mixers."
+</div>
+
+<h2>Duplicating the Symbol</h2>
+<p>On the drawing canvas, right-click <code>SA_ColumnChart1</code> and select <strong>Duplicate</strong>. The symbol is duplicated as <code>EmbeddedSymbol1</code>. Move it to the right of the original.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0173_0.png" alt="Page 173">
-  <div class="caption">Page 173</div>
+  <img src="../images/page_0172_0.png" alt="Two chart symbols side by side">
+  <div class="caption">The canvas showing two identical chart symbols side by side — SA_ColumnChart1 (left, level data) and EmbeddedSymbol1 (right, to be configured for temperature)</div>
 </div>
+
+<h2>Substituting References for Temperature</h2>
+<p>Right-click <code>EmbeddedSymbol1</code> and select <strong>Substitute &gt; Substitute References</strong>. The Substitute Reference dialog appears with the Level.PV references from the original symbol.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0173_1.png" alt="Page 173">
-  <div class="caption">Page 173</div>
+  <img src="../images/page_0173_0.png" alt="Substitute References option">
+  <div class="caption">Right-click context menu on EmbeddedSymbol1 showing the Substitute &gt; Substitute References option</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>33.</strong> Click Find & Replace.</p>
-<p><strong>34.</strong> In the Find What? field, enter Level, and in the Replace with field, enter Temperature.</p>
-<p><strong>35.</strong> Click Replace All.</p>
-<p>The references in the New column appear as shown below.</p>
-<p><strong>36.</strong> Click OK to close the Substitute Reference dialog box.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0174_0.png" alt="Page 174">
-  <div class="caption">Page 174</div>
+  <img src="../images/page_0173_1.png" alt="Substitute Reference dialog">
+  <div class="caption">The Substitute Reference dialog showing 4 reference pairs with Level.PV references ready to be changed to Temperature.PV</div>
 </div>
+
+<p>Click <strong>Find &amp; Replace</strong>. In <strong>Find What?</strong>, enter <code>Level</code>, and in <strong>Replace with</strong>, enter <code>Temperature</code>. Click <strong>Replace All</strong>. All four references change from Level.PV to Temperature.PV.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0174_1.png" alt="Page 174">
-  <div class="caption">Page 174</div>
+  <img src="../images/page_0174_0.png" alt="Find & Replace Level to Temperature">
+  <div class="caption">The Find &amp; Replace section showing Find What: Level and Replace with: Temperature for converting level references to temperature references</div>
 </div>
-<p>|</p>
-<p><strong>Screenshot — Substitute Strings Dialog:</strong></p>
-<p>• Row "Current Level" → <strong>Current Temperature</strong> (bold)</p>
-<p>• Row "Current level of mixers in Line 1" → <strong>Current temperature of mixers in Line 1</strong> (bold)</p>
-<p>• Row "Line 1" → <strong>|</strong> (single space, red arrow with annotation "This is one space")</p>
-<p>• Status: String 6 of 11</p>
-<p>• Find & Replace section collapsed</p>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>37.</strong> Right-click EmbeddedSymbol1 and select Substitute | Substitute Strings.</p>
-<p><strong>38.</strong> In the Substitute Strings dialog box, configure strings in the New column as follows:</p>
-<div class="key-concept">Note:</div>
-<p>Line 1 already displays as the chart heading in the SA_ColumnChart1 symbol, so</p>
-<p>there is no need to have it display for EmbeddedSymbol1.</p>
-<p><strong>39.</strong> Click OK to close the Substitute Strings dialog box.</p>
-<p>Old</p>
-<p>New</p>
-<p>Current Level</p>
-<p>Current Temperature</p>
-<p>Current level of mixers in Line 1</p>
-<p>Current temperature of mixers in Line 1</p>
-<p>Line 1</p>
-<p><Enter one space. Empty strings cannot be</p>
-<p>used in the New column.></p>
+
 <div class="screenshot">
-  <img src="../images/page_0175_0.png" alt="Page 175">
-  <div class="caption">Page 175</div>
+  <img src="../images/page_0174_1.png" alt="References changed to Temperature">
+  <div class="caption">After Replace All, the New column shows Mixer100.Temperature.PV through Mixer400.Temperature.PV, with 4 strings replaced</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Save and Check In the Symbol</p>
-<p><strong>40.</strong> Click Save and Close to save the symbol and close the Graphic Editor.</p>
-<p>The Check-in dialog box appears.</p>
-<p><strong>41.</strong> Click Check-in to check in the symbol.</p>
-<p>Associate the Symbol with an Automation Object</p>
-<p>In the following steps, you will link the Line1_Overview symbol to the Line1 automation object.</p>
-<p><strong>42.</strong> In the Deployment view, double-click Line1 to open it in the Object Editor.</p>
-<p><strong>43.</strong> On the Attributes tab, in the Content pane, click Link Content.</p>
-<p>The Galaxy Browser appears.</p>
+
+<p>Click OK. Then right-click <code>EmbeddedSymbol1</code> and select <strong>Substitute &gt; Substitute Strings</strong> to update the text labels.</p>
+
+<table>
+<thead>
+<tr><th>Old</th><th>New</th></tr>
+</thead>
+<tbody>
+<tr><td>Current Level</td><td><strong>Current Temperature</strong></td></tr>
+<tr><td>Current level of mixers in Line 1</td><td><strong>Current temperature of mixers in Line 1</strong></td></tr>
+<tr><td>Line 1</td><td><em>(single space — empty strings cannot be used)</em></td></tr>
+</tbody>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0176_0.png" alt="Page 176">
-  <div class="caption">Page 176</div>
+  <img src="../images/page_0175_0.png" alt="Temperature substitute strings configured">
+  <div class="caption">The Substitute Strings dialog for EmbeddedSymbol1 showing the text changes: Current Level → Current Temperature, and Line 1 → single space</div>
 </div>
+
+<div class="pitfall">
+<strong>Important:</strong> The Line 1 chart heading is replaced with a single space (not left empty) because empty strings cannot be used in the New column. This is fine since "Line 1" already displays as the chart heading in SA_ColumnChart1.
+</div>
+
+<h2>Save, Check In, and Link to Object</h2>
+<p>Click <strong>Save and Close</strong> to save the symbol and close the Graphic Editor. Check in the symbol when prompted.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0176_1.png" alt="Page 176">
-  <div class="caption">Page 176</div>
+  <img src="../images/page_0176_0.png" alt="Save and Close button">
+  <div class="caption">The Graphic Editor toolbar with the Save and Close button highlighted, ready to save and check in the Line1_Overview symbol</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>44.</strong> In the Graphic Toolbox pane, select the Training \ Symbols toolset, and in the Symbols</p>
-<p>pane, select Line1_Overview.</p>
-<p><strong>45.</strong> Click OK to close the Galaxy Browser.</p>
-<p>Notice that Line1_Overview is linked to the Line1 object.</p>
+
+<p>In the Deployment view, double-click <code>Line1</code> to open it in the Object Editor. On the Attributes tab, in the Content pane, click <strong>Link Content</strong>.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0177_0.png" alt="Page 177">
-  <div class="caption">Page 177</div>
+  <img src="../images/page_0176_1.png" alt="Link Content button in Object Editor">
+  <div class="caption">The Object Editor's Attributes tab for Line1, with the Link Content button highlighted in the Content pane</div>
 </div>
+
+<p>In the Galaxy Browser, select <code>Training \ Symbols</code>, then select <code>Line1_Overview</code>. Click OK. The symbol is now linked to the Line1 object.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0177_1.jpeg" alt="Page 177">
-  <div class="caption">Page 177</div>
+  <img src="../images/page_0177_0.png" alt="Selecting Line1_Overview in Galaxy Browser">
+  <div class="caption">The Galaxy Browser showing the Training &gt; Symbols toolset selected, with Line1_Overview displayed in the Symbols pane</div>
 </div>
-<p>(selected)</p>
-<p>• Name field: red arrow points here</p>
-<p>• Description field: empty</p>
-<p>• Preview: Two vertical bars M1, M2 (0.00), 0 at bottom</p>
-<p>• Status: 1 of 1 displayed, 1 selected</p>
-<p>• Blue footer: Line1 * (asterisk = unsaved)</p>
-<p><strong>Step 47:</strong> Save and close Line1 object, check it in.</p>
-<p><strong>Section: Update Other Area Objects</strong></p>
-<p>• Import prebuilt .aaPKG file (ContentType = Overview)</p>
-<p>• Steps 48-51:</p>
-<p><strong>48.</strong> Galaxy menu → Import | Objects | From package</p>
-<p><strong>49.</strong> Navigate to C:\Training, select "Lab 4 - Overview Symbols_Prebuilt.aaPKG", click Open</p>
-<p><strong>50.</strong> Leave default import preferences, click Import</p>
-<p><strong>51.</strong> Click Close when complete</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p><strong>46.</strong> In the Name field, rename the symbol to Overview and press Enter.</p>
-<p><strong>47.</strong> Save and close the Line1 object, and check it in.</p>
-<p>Update Other Area Objects</p>
-<p>Now you will update other area objects to include overview symbols. For the purposes of this lab,</p>
-<p>you will import the other overview symbols from a prebuilt aaPKG file. These symbols have</p>
-<p>already been configured with the ContentType property set to Overview.</p>
-<p><strong>48.</strong> On the ribbon, select the Galaxy menu, and then select Import | Objects | From package.</p>
-<p>The Import Objects from package dialog box appears.</p>
-<p><strong>49.</strong> Navigate to C:\Training, select the Lab 4 - Overview Symbols_Prebuilt.aaPKG file, and</p>
-<p>then click Open.</p>
-<p>The Import preferences dialog box appears.</p>
-<p><strong>50.</strong> Leave the default import preferences and click Import.</p>
-<p><strong>51.</strong> When the import process is complete, click Close.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0178_0.png" alt="Page 178">
-  <div class="caption">Page 178</div>
+  <img src="../images/page_0177_1.jpeg" alt="Line1_Overview linked to Line1 object">
+  <div class="caption">The main IDE showing Line1_Overview linked to the Line1 object, with a preview of the two bar charts (level and temperature)</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>52.</strong> In the top-left corner of the backstage view, click the left arrow button to return to the main</p>
-<p>page of the System Platform IDE.</p>
-<p>Several symbols are imported to the Graphics tab and listed in the Training \ Symbols</p>
-<p>toolset with Line1_Overview.</p>
-<p><strong>53.</strong> Repeat Steps 42-47 to link symbols to automation objects as follows:</p>
-<p>Area Object</p>
-<p>Symbol</p>
-<p>Name</p>
-<p>Line2</p>
-<p>Line2_Overview</p>
-<p>Overview</p>
-<p>Packaging</p>
-<p>Packaging_Overview</p>
-<p>Overview</p>
-<p>Production</p>
-<p>Production_Overview</p>
-<p>Overview</p>
+
+<p>In the Name field, rename the symbol to <strong>Overview</strong>. Save and close the Line1 object, and check it in.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0179_0.png" alt="Page 179">
-  <div class="caption">Page 179</div>
+  <img src="../images/page_0178_0.png" alt="Content renamed to Overview">
+  <div class="caption">The Object Editor Content pane showing the symbol renamed to Overview [Line1_Overview] with a preview of the bar charts</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test the ViewApp in a preview session to see the symbols.</p>
-<p><strong>54.</strong> On the Templates tab, in the Training \ ViewApps toolset, double-click $ViewApp_Training</p>
-<p>to open it in the ViewApp Editor.</p>
-<p><strong>55.</strong> In the top-right corner of the ViewApp Editor, click Preview.</p>
-<div class="key-concept">Note:</div>
-<p>You may need to wait for a few seconds for Preview to become available.</p>
-<p>The preview session opens and is available in the task bar.</p>
-<p>When the preview session opens, notice that the Overview symbol from the Packaging area</p>
-<p>displays in Pane1, which is configured to display Overview type of content.</p>
+
+<h2>Importing Prebuilt Symbols</h2>
+<p>Now you will import prebuilt overview symbols for the other areas. On the ribbon, select <strong>Galaxy &gt; Import &gt; Objects &gt; From package</strong>. Navigate to <code>C:\Training</code>, select the file <code>Lab 4 - Overview Symbols_Prebuilt.aaPKG</code>, and click Open. Leave the default import preferences and click Import.</p>
+
+<p>After import, several symbols appear in the Training &gt; Symbols toolset alongside Line1_Overview.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0180_0.jpeg" alt="Page 180">
-  <div class="caption">Page 180</div>
+  <img src="../images/page_0179_0.png" alt="Imported symbols in Training &gt; Symbols">
+  <div class="caption">The Graphics panel showing imported symbols: Line1_Overview, Line2_Overview, Packaging_Overview, and Production_Overview in the Training &gt; Symbols toolset</div>
 </div>
-<p>Lab 4 – Using Situational Awareness Dashboard Symbols</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>56.</strong> Use the navigation tools to navigate to different areas and observe the auto-fill behavior.</p>
-<div class="key-concept">Note:</div>
-<p>You can navigate using the NavBreadcrumbControl or the NavTreeControl.</p>
-<p>For example:</p>
-<p></p>
-<p>Navigate to Production. The display shows Production Overview.</p>
-<p></p>
-<p>Navigate to Line1. The display shows Line1 Overview.</p>
-<p>The following example shows the ViewApp navigated to Line1.</p>
-<p><strong>57.</strong> Now navigate to the following:</p>
-<p></p>
-<p>Navigate to Line2:</p>
-<p></p>
-<p>What do you expect to see? ________________________________________</p>
-<p></p>
-<p>Why? __________________________________________________________</p>
-<p></p>
-<p>Navigate to Mixer500:</p>
-<p></p>
-<p>What do you expect to see? ________________________________________</p>
-<p></p>
-<p>Why? __________________________________________________________</p>
-<p><strong>58.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
-<p><End of Lab></p>
+
+<h2>Linking Imported Symbols to Area Objects</h2>
+<p>Repeat the linking process for each imported symbol, following the same pattern used for Line1:</p>
+
+<table>
+<thead>
+<tr><th>Area Object</th><th>Symbol</th><th>Content Name</th></tr>
+</thead>
+<tbody>
+<tr><td>Line2</td><td>Line2_Overview</td><td>Overview</td></tr>
+<tr><td>Packaging</td><td>Packaging_Overview</td><td>Overview</td></tr>
+<tr><td>Production</td><td>Production_Overview</td><td>Overview</td></tr>
+</tbody>
+</table>
+
+<h2>Testing the ViewApp in Preview</h2>
+<p>On the Templates tab, open <code>$ViewApp_Training</code> in the ViewApp Editor. Click <strong>Preview</strong> to open a preview session. When the preview session opens, the Overview symbol from the Packaging area displays in Pane1, which is configured to display Overview-type content.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0181_0.jpeg" alt="Page 181">
-  <div class="caption">Page 181</div>
+  <img src="../images/page_0180_0.jpeg" alt="Preview showing Packaging overview with heat exchanger temperatures">
+  <div class="caption">The ViewApp preview session showing the Packaging area's overview symbol with a bar chart of heat exchanger temperatures</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">← L08: Introduction to Industrial Graphics and </a> &nbsp;|&nbsp;
-  <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects →</a>
-</nav>
+
+<div class="screenshot">
+  <img src="../images/page_0181_0.jpeg" alt="Preview navigated to Line1 showing mixer level and temperature">
+  <div class="caption">The ViewApp navigated to Line1, showing two side-by-side bar charts: current level of mixers (left) and current temperature of mixers (right) with M1-M4 data</div>
+</div>
+
+<p>Use the navigation tools (NavBreadcrumbControl or NavTreeControl) to navigate to different areas and observe the auto-fill behavior:</p>
+
+<ul>
+<li>Navigate to <strong>Production</strong> → the display shows Production Overview</li>
+<li>Navigate to <strong>Line1</strong> → the display shows Line1 Overview with mixer level and temperature charts</li>
+<li>Navigate to <strong>Line2</strong> → you should see Line2's overview (same structure, different data)</li>
+<li>Navigate to <strong>Mixer500</strong> → you should see Mixer500's individual metrics</li>
+</ul>
+
+<div class="key-concept">
+<strong>Key Takeaway:</strong> The Auto-Fill content feature automatically displays the appropriate Overview symbol based on the navigation context. Because the ContentType is set to Overview on each symbol, and Pane1 is configured for Overview content, the correct symbol fills the pane at each level of the navigation hierarchy.
+</div>
+
+<div class="tip">
+<strong>Tip:</strong> You can leave the ViewApp running on the production node while you make additional changes on the engineering node and redeploy.
+</div>
+
+<h2>Quiz</h2>
+<div class="quiz">
+<h3>Test Your Knowledge</h3>
+
+<details>
+<summary>1. Why do you set the ContentType property to Overview on the symbol?</summary>
+<p class="answer">Setting ContentType to Overview allows the symbol to be automatically displayed in layout panes that are configured to show Overview-type content. This is what enables the Auto-Fill feature to match the correct symbol to the correct pane during navigation.</p>
+</details>
+
+<details>
+<summary>2. What is the difference between Substitute Strings and Substitute References?</summary>
+<p class="answer">Substitute Strings replaces text content (like chart headings and axis descriptions), while Substitute References replaces tag references (like Mixer100.Level.PV → Mixer100.Temperature.PV). Both features are used to customize embedded symbols for different purposes.</p>
+</details>
+
+<details>
+<summary>3. Why must you enter a single space instead of leaving the New column empty for the "Line 1" string?</summary>
+<p class="answer">The Substitute Strings dialog does not allow empty strings in the New column. Entering a single space effectively hides the redundant chart heading since "Line 1" already displays as the chart heading from the SA_ColumnChart1 symbol.</p>
+</details>
+
+<details>
+<summary>4. What does the Auto-Fill content feature do in a ViewApp?</summary>
+<p class="answer">Auto-Fill automatically places content in layout panes based on the current navigation context. It searches for content matching the pane's configured content type and fills available panes, eliminating the need to manually configure each view for every navigation item.</p>
+</details>
+
+<details>
+<summary>5. How do you link a symbol from the Graphics tab to an automation object?</summary>
+<p class="answer">Open the automation object in the Object Editor, go to the Attributes tab, click Link Content in the Content pane, browse to the symbol on the Graphics tab using the Galaxy Browser, select it, and click OK. The symbol remains on the Graphics tab but is associated with the automation object as its content.</p>
+</details>
+</div>
+
 <script>
-function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
-function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
-function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
-window.addEventListener('load',loadProgress);
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('input[data-lesson]');
+  const progress = {};
+  checkboxes.forEach(cb => { progress[cb.dataset.lesson] = cb.checked; });
+  localStorage.setItem('omi-progress', JSON.stringify(progress));
+  updateProgressText();
+}
+function loadProgress() {
+  const data = localStorage.getItem('omi-progress');
+  if (!data) return;
+  const progress = JSON.parse(data);
+  document.querySelectorAll('input[data-lesson]').forEach(cb => {
+    if (progress[cb.dataset.lesson]) cb.checked = true;
+  });
+  updateProgressText();
+}
+function updateProgressText() {
+  const total = document.querySelectorAll('input[data-lesson]').length;
+  const done = document.querySelectorAll('input[data-lesson]:checked').length;
+  document.getElementById('progress-text').textContent = done === total ? '🎉 All lessons complete!' : `${done}/${total} lessons completed`;
+}
+loadProgress();
 </script>
 </body>
 </html>

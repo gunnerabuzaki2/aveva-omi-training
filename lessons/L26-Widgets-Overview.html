@@ -25,13 +25,14 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
 </head>
 <body>
 <nav>
-  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a ViewApp</a> &nbsp;|&nbsp;
   <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel →</a>
 </nav>
 
@@ -122,147 +123,158 @@
 </nav>
 
 <h1>📖 L26: Widgets Overview</h1>
-<p class="source">Module 6 — Widgets | Pages 379-382</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Introduction</p>
-<p>Overview</p>
-<p>Widgets are “mini apps” that you can use in your visualization applications. They are reusable</p>
-<p>controls designed with web technology and generally display data. They take up more space in the</p>
-<p>interface than a single icon and can be interactive and resizable. Widgets are most frequently used</p>
-<p>to provide on-screen user interface elements that integrate with other platforms and data sources.</p>
-<p>They are supported in Operations Management Interface applications.</p>
-<p>Widgets are different from OMI Apps: Widgets are self-contained programs that run automatically</p>
-<p>to show information when the ViewApp starts, whereas Apps are typically programs that you must</p>
-<p>interact with to run.</p>
-<p>Out-of-the-Box Widgets</p>
-<p>The following widgets are provided out-of-the-box with Application Server. They are available from</p>
-<p>the Graphics tab in Galaxies created with the Default or the Default_EMPTY Galaxy types.</p>
-<p></p>
-<p>Carousel widget cycles through a series of selected graphics, rotating them at a</p>
-<p>configurable, predefined interval. For example, it might be used to display dashboards,</p>
-<p>alerts, or alarm information on large monitors on the plant floor.</p>
-<p></p>
-<p>Datagrid widget shows tabular data within a layout pane of a ViewApp during runtime.</p>
-<p>Data shown in the widget can be filtered by the user. The widget also includes a set of</p>
-<p>visual properties to customize the appearance of the widget and its displayed tabular data.</p>
-<p></p>
-<p>MapApp widget shows a map containing symbols within a running application. During</p>
-<p>runtime, the map provides controls and touch support to enable users to pan to different</p>
-<p>areas of the map and zoom in or out to show more or less map detail. Custom symbols</p>
-<p>displayed on the map are user-interactive. For example, clicking a symbol that represents</p>
-<p>an asset can be used to automatically navigate the ViewApp to that asset. Symbols shown</p>
-<p>on the map typically use latitude and longitude for accurate geo location.</p>
-<p>This section introduces using widgets in your ViewApps. It describes the widgets provided out-of-</p>
-<p>the-box with Application Server, as well as how to import other widgets into a Galaxy.</p>
-<p>Property</p>
-<p>Description</p>
-<p>Autoplay</p>
-<p>If True, the Carousel widget will automatically start on load. If False, the</p>
-<p>user must select the next item to start the carousel. The default is True.</p>
-<p>BackgroundColor</p>
-<p>The background color of the widget.</p>
-<p>GraphicNames</p>
-<p>A comma-separated list of graphics for the carousel to display at runtime.</p>
-<p>Linked graphics that are renamed cannot be displayed with the Carousel</p>
-<p>widget. At runtime, they will appear as empty graphics.</p>
-<p>Interval</p>
-<p>The amount of time (in milliseconds) to delay between automatically</p>
-<p>cycling to the next item in the list of graphics to display.</p>
-<p>Keyboard</p>
-<p>If True, the carousel will respond to keyboard inputs. The default is True.</p>
-<p>Loop</p>
-<p>If True, the carousel will continuously cycle through the items to display. If</p>
-<p>False, the carousel will stop after a single cycle. The default is True.</p>
-<p>Pause</p>
-<p>If True, the carousel will pause when it detects a mouse-enter or a touch-</p>
-<p>down event, and resume cycling of graphics on mouse-leave or touch-up.</p>
-<p>If False, the carousel will not pause. The default is True.</p>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<p></p>
-<p>QRCode_Scanner widget connects to a camera to scan a QR code and returns the result</p>
-<p>as a string. The default value of the string is an empty string.</p>
-<p>To use this widget, the device showing the ViewApp must have a camera. It is</p>
-<p>recommended for use on a physical machine instead of a virtual machine.</p>
-<p>When using the Web Client remotely, use a secure URL (https://).</p>
-<p>You can configure a script to read the QR code and display a graphic based on the</p>
-<p>scanned value. At runtime, the QRCode_Scanner object will appear with two buttons:</p>
-<p>Start Camera and Stop Camera. Users can click Start Camera to scan the QR code. If the</p>
-<p>scanned code matches the return value of the script or graphic name, the graphic will</p>
-<p>display.</p>
-<p></p>
-<p>Teamwork widget is a Software-as-a-Service (SaaS) interface that allows workers to</p>
-<p>connect to AVEVA Teamwork to perform tasks, achieve learning goals, identify and</p>
-<p>manage issues, and capture and document standards. Industrial organizations use</p>
-<p>Teamwork to implement skills development, knowledge sharing, and collaboration</p>
-<p>management across their enterprise from the cloud. This can be done by using the</p>
-<p>Teamwork widget to provide training videos, digital logbook, or for answering calls for</p>
-<p>help.</p>
-<p></p>
-<p>Web_Browser widget can display a web site.</p>
-<p>Assign a Widget to a Layout Pane</p>
-<p>For Operations Management Interface ViewApps, you can assign widgets to a pane from the</p>
-<p>Layout Editor or ViewApp Editor. Select the widget from the Toolbox tab, and then from the</p>
-<p>preview area, drag and drop the widget to the pane. Once assigned, you can configure properties</p>
-<p>for the widget from the Properties tab.</p>
-<p>Property</p>
-<p>Description</p>
-<p>QRCode</p>
-<p>The resulting string of the scanned QR code.</p>
-<p>AutoStart</p>
-<p>If True, the camera will start on load.</p>
-<p>AutoStop</p>
-<p>If True, the camera will stop after the QR code is scanned.</p>
-<p>StartStop</p>
-<p>If True, the camera will start. If False, the camera will stop.</p>
-<p>BackgroundColor</p>
-<p>The background color of the widget.</p>
-<p>Property</p>
-<p>Description</p>
-<p>URL</p>
-<p>The address of a web page to display. The URL must be a valid URL.</p>
-<p>If the Web Client is running in HTTPS, then only the HTTPS URL page can</p>
-<p>be loaded. If running in HTTP, then both HTTP and HTTPS can be loaded. If</p>
-<p>the policy of the web site blocks cross-domain access, then this widget will</p>
-<p>not work.</p>
-<p>Section 1 – Introduction</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Layout Considerations</p>
-<p>It will be tempting to lay out your widgets according to the dimensions of the placement grid of a</p>
-<p>particular device that you own and develop with. This can be a useful initial approximation as you</p>
-<p>lay out your widget, but keep the following in mind:</p>
-<p></p>
-<p>The number, size, and spacing of cells can vary widely from device to device, so it is very</p>
-<p>important that your widget is flexible and can accommodate more or less space than</p>
-<p>anticipated.</p>
-<p></p>
-<p>As the user resizes a widget, the system will respond with a device independent (dp) size</p>
-<p>range in which your widget can redraw itself. Planning your widget-resizing strategy</p>
-<p>across “size buckets” rather than variable grid dimensions will give you the most reliable</p>
-<p>results.</p>
-<p>Gestures</p>
-<p>Because widgets live on the home screen, they have to co-exist with the navigation that is</p>
-<p>established there. This limits the gesture support that is available in a widget compared to a full-</p>
-<p>screen App. For example, while Apps may support a view pager that allows the user to navigate</p>
-<p>between screens laterally, that gesture is already taken on the home screen for the purpose of</p>
-<p>navigating between home panels.</p>
-<p>The only gestures available for widgets are touch and vertical swipe.</p>
-<p>Import and Export Widgets</p>
-<p>You can import a widget into your Galaxy for use in an Operations Management Interface ViewApp</p>
-<p>or an InTouch application.</p>
-<p>From the Galaxy menu, select Import | HTML5 Widget and then select a .CWP (Custom Widget</p>
-<p>Package) file to import. The .CWP file includes HTML5, CSS, and Javascript files.</p>
-<p>When the import is complete, the widget will appear in the Galaxy Toolbox and is available for use</p>
-<p>in a symbol or a layout. Available widget properties can be configured after the widget is</p>
-<p>embedded in a symbol or assigned to a layout pane.</p>
-<p>Widgets can also be imported and exported from a Galaxy as objects. In this case, the widget(s)</p>
-<p>are imported or exported as aaPKG files.</p>
-<p>Module 6 – Widgets</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+<p class="source">Module 6 — Widgets | Section 1: Introduction</p>
+<p class="page-ref">Pages 379–381</p>
+
+<h2>What Are Widgets?</h2>
+
+<p>Widgets are "mini apps" that you can embed in your visualization applications. They are reusable controls built with web technology that generally display data and provide on-screen user interface elements integrating with other platforms and data sources. Unlike a single icon, widgets take up more space in the interface and can be interactive and resizable. They are supported in Operations Management Interface applications.</p>
+
+<div class="key-concept">
+<strong>Widgets vs. OMI Apps:</strong> Widgets are self-contained programs that run automatically to show information when the ViewApp starts. OMI Apps, by contrast, are typically programs that you must interact with to run. This makes widgets ideal for dashboards, live data displays, and other always-on content.
+</div>
+
+<h2>Out-of-the-Box Widgets</h2>
+
+<p>Application Server provides several widgets out of the box, available from the Graphics tab in Galaxies created with the Default or Default_EMPTY Galaxy types. Each widget serves a distinct purpose and can be configured through its properties.</p>
+
+<h3>Carousel Widget</h3>
+
+<p>The Carousel widget cycles through a series of selected graphics, rotating them at a configurable, predefined interval. It is commonly used to display dashboards, alerts, or alarm information on large monitors on the plant floor. The carousel supports keyboard navigation, mouse-hover pausing, and continuous looping.</p>
+
+<table>
+  <tr><th>Property</th><th>Description</th></tr>
+  <tr><td><strong>Autoplay</strong></td><td>If True, the carousel automatically starts on load. If False, the user must select the next item. Default: True.</td></tr>
+  <tr><td><strong>BackgroundColor</strong></td><td>The background color of the widget.</td></tr>
+  <tr><td><strong>GraphicNames</strong></td><td>A comma-separated list of graphics for the carousel to display at runtime. Linked graphics that are renamed will appear as empty graphics.</td></tr>
+  <tr><td><strong>Interval</strong></td><td>The delay in milliseconds between automatically cycling to the next graphic.</td></tr>
+  <tr><td><strong>Keyboard</strong></td><td>If True, the carousel responds to keyboard inputs. Default: True.</td></tr>
+  <tr><td><strong>Loop</strong></td><td>If True, the carousel continuously cycles. If False, it stops after a single cycle. Default: True.</td></tr>
+  <tr><td><strong>Pause</strong></td><td>If True, the carousel pauses on mouse-enter or touch-down and resumes on mouse-leave or touch-up. Default: True.</td></tr>
+</table>
+
+<h3>Datagrid Widget</h3>
+
+<p>The Datagrid widget displays tabular data within a layout pane during runtime. Users can filter the data displayed in the widget, and the widget includes visual properties to customize its appearance and the formatting of the tabular data.</p>
+
+<h3>MapApp Widget</h3>
+
+<p>The MapApp widget shows a map containing interactive symbols within a running application. During runtime, the map provides pan and zoom controls with touch support. Clicking a symbol that represents an asset can automatically navigate the ViewApp to that asset. Symbols on the map typically use latitude and longitude for accurate geo-location.</p>
+
+<h3>QRCode_Scanner Widget</h3>
+
+<p>The QRCode_Scanner widget connects to a device camera to scan a QR code and returns the result as a string. To use this widget, the device showing the ViewApp must have a camera — it is recommended for use on a physical machine rather than a virtual machine. When using the Web Client remotely, you must use a secure URL (https://).</p>
+
+<table>
+  <tr><th>Property</th><th>Description</th></tr>
+  <tr><td><strong>QRCode</strong></td><td>The resulting string of the scanned QR code.</td></tr>
+  <tr><td><strong>AutoStart</strong></td><td>If True, the camera starts automatically on load.</td></tr>
+  <tr><td><strong>AutoStop</strong></td><td>If True, the camera stops after the QR code is scanned.</td></tr>
+  <tr><td><strong>StartStop</strong></td><td>If True, the camera starts. If False, the camera stops.</td></tr>
+  <tr><td><strong>BackgroundColor</strong></td><td>The background color of the widget.</td></tr>
+</table>
+
+<div class="tip">
+<strong>Tip:</strong> You can configure a script to read the QR code and display a graphic based on the scanned value. At runtime, the QRCode_Scanner object shows Start Camera and Stop Camera buttons. If the scanned code matches a script return value or graphic name, the corresponding graphic displays.
+</div>
+
+<h3>Teamwork Widget</h3>
+
+<p>The Teamwork widget is a Software-as-a-Service (SaaS) interface that connects workers to AVEVA Teamwork. It supports task management, learning goals, issue identification and resolution, and standards documentation. Industrial organizations use Teamwork for skills development, knowledge sharing, and collaboration management across the enterprise from the cloud. The widget can provide training videos, a digital logbook, or a help-call interface.</p>
+
+<h3>Web_Browser Widget</h3>
+
+<p>The Web_Browser widget displays a web site within a layout pane.</p>
+
+<table>
+  <tr><th>Property</th><th>Description</th></tr>
+  <tr><td><strong>URL</strong></td><td>The address of a web page to display. Must be a valid URL. If the Web Client runs in HTTPS, only HTTPS pages can be loaded. If the site blocks cross-domain access, the widget will not work.</td></tr>
+</table>
+
+<h2>Assigning a Widget to a Layout Pane</h2>
+
+<p>For Operations Management Interface ViewApps, you can assign widgets to a pane from either the Layout Editor or the ViewApp Editor. Select the widget from the Toolbox tab, then drag and drop it from the preview area to the target pane. Once assigned, you can configure the widget's properties from the Properties tab.</p>
+
+<div class="key-concept">
+<strong>Assignment steps:</strong>
+<ol style="margin:0.5em 0 0 0;">
+  <li>Select the widget from the <strong>Toolbox</strong> tab (Widgets toolset)</li>
+  <li>Drag the widget to the target <strong>layout pane</strong></li>
+  <li>Configure properties via the <strong>Properties</strong> tab</li>
+</ol>
+</div>
+
+<h2>Layout Considerations</h2>
+
+<p>When designing widget layouts, it is tempting to lay out widgets according to the dimensions of a specific device you develop with. While this can be a useful initial approximation, keep these important factors in mind:</p>
+
+<ul>
+  <li><strong>Device variability:</strong> The number, size, and spacing of cells can vary widely from device to device. Your widget must be flexible enough to accommodate more or less space than anticipated.</li>
+  <li><strong>Size buckets:</strong> As the user resizes a widget, the system responds with a device-independent (dp) size range. Planning your resizing strategy across "size buckets" rather than variable grid dimensions gives the most reliable results.</li>
+</ul>
+
+<div class="pitfall">
+<strong>Important:</strong> Do not design widgets for a single fixed grid size. Always plan for multiple size buckets to ensure your widgets render correctly across different devices and screen resolutions.
+</div>
+
+<h2>Gestures</h2>
+
+<p>Because widgets live on the home screen, they must co-exist with the navigation established there. This limits the gesture support available compared to a full-screen App. For example, while Apps may support a view pager for lateral screen navigation, that gesture is already reserved on the home screen for navigating between home panels.</p>
+
+<p>The only gestures available for widgets are <strong>touch tap/hold</strong> and <strong>vertical swipe</strong>. Horizontal swipe is reserved for home screen panel navigation.</p>
+
+<h2>Import and Export Widgets</h2>
+
+<p>You can import custom widgets into your Galaxy for use in OMI ViewApps or InTouch applications. From the Galaxy menu, select <strong>Import → HTML5 Widget</strong> and then select a <strong>.CWP</strong> (Custom Widget Package) file. The .CWP file bundles HTML5, CSS, and Javascript files together.</p>
+
+<p>When the import is complete, the widget appears in the Galaxy Toolbox and is available for use in symbols or layouts. Widget properties can be configured after the widget is embedded in a symbol or assigned to a layout pane. Widgets can also be imported and exported as Galaxy objects using aaPKG files.</p>
+
+<div class="key-concept">
+<strong>Widget import formats:</strong>
+<ul style="margin:0.5em 0 0 0;">
+  <li><strong>.CWP files</strong> (Custom Widget Packages) — bundle HTML5, CSS, and Javascript</li>
+  <li><strong>.aaPKG files</strong> — standard Galaxy object export/import format</li>
+</ul>
+</div>
+
+<h2>Knowledge Check</h2>
+
+<div class="quiz">
+<h3>Quiz</h3>
+
+<details>
+<summary>Q1: What is the key difference between widgets and OMI Apps?</summary>
+<p class="answer">Widgets run automatically when the ViewApp starts to show information, whereas Apps are typically programs that require user interaction to run.</p>
+</details>
+
+<details>
+<summary>Q2: Name the six out-of-the-box widgets provided with Application Server.</summary>
+<p class="answer">Carousel, Datagrid, MapApp, QRCode_Scanner, Teamwork, and Web_Browser.</p>
+</details>
+
+<details>
+<summary>Q3: What does the Carousel widget's Pause property control?</summary>
+<p class="answer">If True, the carousel pauses when it detects a mouse-enter or touch-down event and resumes on mouse-leave or touch-up. If False, it will not pause. Default is True.</p>
+</details>
+
+<details>
+<summary>Q4: What file format is used to import custom widgets?</summary>
+<p class="answer">.CWP (Custom Widget Package) files, which bundle HTML5, CSS, and Javascript. Widgets can also be imported/exported as .aaPKG files.</p>
+</details>
+
+<details>
+<summary>Q5: Why is it important to design widgets for "size buckets" rather than fixed grid dimensions?</summary>
+<p class="answer">Because the number, size, and spacing of cells vary widely across devices. Planning for device-independent (dp) size ranges (size buckets) ensures widgets render correctly across different devices and screen resolutions.</p>
+</details>
+
+<details>
+<summary>Q6: What gestures are available for widgets on the home screen?</summary>
+<p class="answer">Only touch tap/hold and vertical swipe. Horizontal swipe is reserved for home screen panel navigation.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a</a> &nbsp;|&nbsp;
+  <a href="L25-Lab-12---Creating-External-Content-for-a-ViewApp.html">← L25: Lab 12 – Creating External Content for a ViewApp</a> &nbsp;|&nbsp;
   <a href="L27-Lab-13---Adding-a-Home-Carousel.html">L27: Lab 13 – Adding a Home Carousel →</a>
 </nav>
 <script>

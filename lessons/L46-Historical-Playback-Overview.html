@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 46: Historical Playback Overview</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.85em; color: #777; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Histor</a> &nbsp;|&nbsp;
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playbac →</a>
+  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Historical Trend</a> &nbsp;|&nbsp;
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -122,130 +125,133 @@
 </nav>
 
 <h1>📖 L46: Historical Playback Overview</h1>
-<p class="source">Module 11 — Historical Playback | Pages 639-642</p>
-<p>Section 1 – Historical Playback</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 1 – Historical Playback</p>
-<p>Introduction</p>
-<p>Operations Management Interface provides the ability to play back data historized with Historian.</p>
-<p>This could be useful for analyzing historical data for key performance indicators (KPIs) and</p>
-<p>overview information through graphics.</p>
-<p>System attributes specifically for the playback feature can be used with animations and scripts</p>
-<p>within Industrial graphics to provide the functionality to play back historical data in a running</p>
-<p>ViewApp. Examples are enabling playback mode and setting the start time and end time of the</p>
-<p>historical data that can be displayed.</p>
-<p>Before using the playback feature in a running ViewApp, you must create and deploy an instance</p>
-<p>of the playback service from the System Platform IDE. Additionally, Historian must be started and</p>
-<p>historized data points must be available.</p>
-<div class="key-concept">Note: The historical playback feature is designed to replay historized data through graphics, not</div>
-<p>to replay action commands.</p>
-<p>Historical Playback Service</p>
-<p>To use the historical playback feature, you must create and deploy an instance of the playback</p>
-<p>service from the Configure Services dialog box in the System Platform IDE.</p>
-<p>Note the following:</p>
-<p></p>
-<p>The name of the playback service is ASB.HistoricalDataReplayService.1.0.</p>
-<p></p>
-<p>Once the instance is created, you must name it to the name of the computer hosting</p>
-<p>Historian Server for the Galaxy.</p>
-<p>Historical Playback-Related System Attributes</p>
-<p>Playback-related system attributes operate in the MyViewApp.Playback namespace. The names</p>
-<p>of the playback attributes are specified with the prefix MyViewApp.Playback. For example, you</p>
-<p>might use MyViewApp.Playback.attribute_name.</p>
-<p>The playback-related attributes described below are predefined and available only for Operations</p>
-<p>Management Interface ViewApps. Playback attributes are not supported in an InTouch application.</p>
-<p>The following historical playback-related system attributes are provided as Read and Write, so that</p>
-<p>they can be referenced by graphic elements with animations or scripts. You can create a symbol</p>
-<p>using these attributes to provide the playback functionality for a ViewApp, such as enabling or</p>
-<p>This section describes how to configure and start the historical playback service, and how to</p>
-<p>implement historical playback in a ViewApp.</p>
-<p>Module 11 – Historical Playback</p>
-<p>AVEVA™ Training</p>
-<p>disabling playback mode to switch between real time or historical data through the graphics,</p>
-<p>playing or pausing the playback, and changing the playback speed.</p>
-<p>Attribute</p>
-<p>Data Type</p>
-<p>Type</p>
-<p>Description</p>
-<p>Enabled</p>
-<p>Boolean</p>
-<p>Read/Write</p>
-<p>When True, other attributes are initialized to their</p>
-<p>default values and playback is enabled. When False,</p>
-<p>playback is disabled.</p>
-<p>HistorianServer</p>
-<p>String</p>
-<p>Read/Write</p>
-<p>Node name of the computer hosting the Historian and</p>
-<p>its historical data. This attribute is retentive, and the</p>
-<p>initial value is an empty string. When the value is</p>
-<p>empty, it is assumed that the Historian is on the GR</p>
-<p>node.</p>
-<p>The value of HistorianServer is used to discover the</p>
-<p>replay service. The value must match with one of the</p>
-<p>replay services defined in the Galaxy to enable</p>
-<p>playback at runtime. If the Enabled attribute is True</p>
-<p>(Playback is enabled), HistorianServer is read-only</p>
-<p>and cannot be changed.</p>
-<p>Playing</p>
-<p>Boolean</p>
-<p>Read/Write</p>
-<p>When True, playback becomes active and Speed is</p>
-<p>set to 1. When False, playback stops or pauses and</p>
-<p>Speed is set to 0. The Enabled attribute must be True</p>
-<p>to be able to set Playing to True.</p>
-<p>Speed</p>
-<p>Integer</p>
-<p>Read/Write</p>
-<p>Historical playback speed, where 0 represents</p>
-<p>playback is stopped or paused, 1 represents normal</p>
-<p>playback speed, and values greater than 1 are</p>
-<p>functionally equivalent to fast forward.</p>
-<p>StartTime</p>
-<p>DateTime</p>
-<p>Read/Write</p>
-<p>Initialized to 8 hours prior to the current time when the</p>
-<p>Enabled attribute is set to True. Setting StartTime</p>
-<p>adjusts the starting time of the historical playback</p>
-<p>range.</p>
-<p>EndTime</p>
-<p>DateTime</p>
-<p>Read/Write</p>
-<p>Initialized to the current time when the Enabled</p>
-<p>attribute is True. Setting EndTime adjusts the ending</p>
-<p>time of the historical playback range.</p>
-<p>CurrentTime</p>
-<p>DateTime</p>
-<p>Read/Write</p>
-<p>Initialized to the same time as StartTime when the</p>
-<p>Enabled attribute is set to True.</p>
-<p>Setting this attribute adjusts the current playback time.</p>
-<p>Time assigned to CurrentTime can only be within the</p>
-<p>historical playback period.</p>
-<p>When Speed is set to 0 (paused), if both the EndTime</p>
-<p>and CurrentTime attributes are set to the current</p>
-<p>system time, then the client will receive a data update</p>
-<p>based on that time.</p>
-<p>Section 1 – Historical Playback</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Live Data Override Indicator</p>
-<p>Starting with System Platform 2023, a Live Value Playback icon is built into Situational Awareness</p>
-<p>Library symbols. During historical playback, the icon will appear on graphics that contain</p>
-<p>references to non-historized attributes. It informs viewers that live values are substituted in the</p>
-<p>display, because not all references used in the graphic can be resolved from historized sources.</p>
-<p>The following example shows the Live Value Playback icon displayed on an outlet pump symbol</p>
-<p>during historical playback.</p>
-<div class="screenshot">
-  <img src="../images/page_0641_0.png" alt="Page 641">
-  <div class="caption">Page 641</div>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 11: Historical Playback</p>
+<p class="page-ref">Pages 639–642 (Section 1 – Historical Playback)</p>
+
+<h2>Introduction</h2>
+
+<p>Operations Management Interface provides the ability to play back data historized with Historian. This could be useful for analyzing historical data for key performance indicators (KPIs) and overview information through graphics. System attributes specifically for the playback feature can be used with animations and scripts within Industrial graphics to provide the functionality to play back historical data in a running ViewApp. Examples are enabling playback mode and setting the start time and end time of the historical data that can be displayed.</p>
+
+<div class="key-concept">
+<strong>Prerequisites:</strong> Before using the playback feature in a running ViewApp, you must:
+<ol>
+<li>Create and deploy an instance of the playback service from the <strong>System Platform IDE</strong></li>
+<li>Ensure Historian must be started and historized data points must be available</li>
+</ol>
 </div>
-<p>Module 11 – Historical Playback</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="pitfall">
+<strong>Important:</strong> The historical playback feature is designed to replay <em>historized data through graphics</em>, not to replay action commands. It does not replay operator actions or write commands.
+</div>
+
+<h2>Historical Playback Service</h2>
+
+<p>To use the historical playback feature, you must create and deploy an instance of the playback service from the Configure Services dialog box in the System Platform IDE. Note the following:</p>
+
+<ul>
+<li>The name of the playback service is <code>ASB.HistoricalDataReplayService.1.0</code></li>
+<li>Once the instance is created, you must name it to the name of the computer hosting Historian Server for the Galaxy</li>
+</ul>
+
+<h2>Historical Playback-Related System Attributes</h2>
+
+<p>Playback-related system attributes operate in the <code>MyViewApp.Playback</code> namespace. The names of the playback attributes are specified with the prefix <code>MyViewApp.Playback</code>. For example, you might use <code>MyViewApp.Playback.attribute_name</code>.</p>
+
+<p>The playback-related attributes described below are predefined and available only for Operations Management Interface ViewApps. Playback attributes are not supported in an InTouch application. The following historical playback-related system attributes are provided as Read and Write, so that they can be referenced by graphic elements with animations or scripts.</p>
+
+<table>
+<thead>
+<tr><th>Attribute</th><th>Data Type</th><th>Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Enabled</code></td>
+<td>Boolean</td>
+<td>Read/Write</td>
+<td>Master toggle. When <strong>True</strong>, other attributes are initialized to their default values and playback is enabled. When <strong>False</strong>, playback is disabled.</td>
+</tr>
+<tr>
+<td><code>HistorianServer</code></td>
+<td>String</td>
+<td>Read/Write</td>
+<td>Node name of the computer hosting the Historian and its historical data. This attribute is retentive, and the initial value is an empty string. When the value is empty, it is assumed that the Historian is on the GR node. Must match a replay service defined in the Galaxy. Read-only when <code>Enabled=True</code>.</td>
+</tr>
+<tr>
+<td><code>Playing</code></td>
+<td>Boolean</td>
+<td>Read/Write</td>
+<td>When <strong>True</strong>, playback becomes active and Speed is set to 1. When <strong>False</strong>, playback stops or pauses and Speed is set to 0. The <code>Enabled</code> attribute must be True to set Playing to True.</td>
+</tr>
+<tr>
+<td><code>Speed</code></td>
+<td>Integer</td>
+<td>Read/Write</td>
+<td>Historical playback speed: <strong>0</strong> = stopped/paused, <strong>1</strong> = normal speed, values <strong>&gt;1</strong> = fast forward.</td>
+</tr>
+<tr>
+<td><code>StartTime</code></td>
+<td>DateTime</td>
+<td>Read/Write</td>
+<td>Initialized to 8 hours prior to the current time when <code>Enabled</code> is set to True. Setting StartTime adjusts the starting time of the historical playback range.</td>
+</tr>
+<tr>
+<td><code>EndTime</code></td>
+<td>DateTime</td>
+<td>Read/Write</td>
+<td>Initialized to the current time when the <code>Enabled</code> attribute is True. Setting EndTime adjusts the ending time of the historical playback range.</td>
+</tr>
+<tr>
+<td><code>CurrentTime</code></td>
+<td>DateTime</td>
+<td>Read/Write</td>
+<td>Initialized to the same time as StartTime when the <code>Enabled</code> attribute is set to True. Setting this attribute adjusts the current playback time. Time assigned to CurrentTime can only be within the historical playback period. When Speed=0 (paused), if both EndTime and CurrentTime are set to the current system time, the client receives real-time data.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Live Data Override Indicator</h2>
+
+<p>Starting with System Platform 2023, a <strong>Live Value Playback icon</strong> is built into Situational Awareness Library symbols. During historical playback, the icon will appear on graphics that contain references to non-historized attributes. It informs viewers that live values are substituted in the display, because not all references used in the graphic can be resolved from historized sources.</p>
+
+<div class="screenshot">
+  <img src="../images/page_0641_0.png" alt="Live Value Playback icon (green triangle) displayed above an outlet pump symbol during historical playback">
+  <div class="caption">The Live Value Playback icon (green triangle) appears above the Outlet_001 pump symbol, indicating that some displayed values are from live sources rather than historized data</div>
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: What is the official service name for the historical playback service?</summary>
+<p class="answer">ASB.HistoricalDataReplayService.1.0</p>
+</details>
+
+<details>
+<summary>Q2: In what namespace do playback-related system attributes operate?</summary>
+<p class="answer">They operate in the MyViewApp.Playback namespace, with the prefix MyViewApp.Playback (e.g., MyViewApp.Playback.Enabled).</p>
+</details>
+
+<details>
+<summary>Q3: What happens when the StartTime attribute is initialized?</summary>
+<p class="answer">It is initialized to 8 hours prior to the current time when the Enabled attribute is set to True.</p>
+</details>
+
+<details>
+<summary>Q4: Under what condition does the client receive real-time data during playback?</summary>
+<p class="answer">When Speed is set to 0 (paused) and both the EndTime and CurrentTime attributes are set to the current system time, the client receives a data update based on that real-time.</p>
+</details>
+
+<details>
+<summary>Q5: What does the Live Value Playback icon indicate during historical playback?</summary>
+<p class="answer">It indicates that some values on the graphic are from live (non-historized) sources, because not all data references can be resolved from historized data during playback.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Histor</a> &nbsp;|&nbsp;
-  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playbac →</a>
+  <a href="L45-Lab-22---Using-the-InSightApp-for-Historical-Trend.html">← L45: Lab 22 – Using the InSightApp for Historical Trend</a> &nbsp;|&nbsp;
+  <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

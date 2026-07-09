@@ -25,6 +25,7 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
   #progress-text { color: #2c5f2d; font-weight: bold; }</style>
@@ -121,363 +122,383 @@
 </div>
 </nav>
 
-<h1>🔬 L25: Lab 12 – Creating External Content for a ViewApp</h1>
-<p class="source">Module 5 — External Content | Pages 357-376</p>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Lab 12 – Creating External Content for a</p>
-<p>ViewApp</p>
-<p>Introduction</p>
-<p>In this lab, you will create another sub-toolset under the Training toolset on the Graphics tab and</p>
-<p>use it for storing external content items. Then you will create two external content items.</p>
-<p>The first external content item will be configured for displaying an image file showing a picture of a</p>
-<p>simulated plant layout. You will associate it with a navigation item in the ViewApp Editor, so that</p>
-<p>when navigated to that item at runtime, the image of the simulated plant layout will display.</p>
-<p>The second external content item will be configured for displaying a spreadsheet of information</p>
-<p>about a selected mixer, and then linked to the $Mixer template object. You will configure the</p>
-<p>external content item with a dynamic string, which will update based on the mixer asset name.</p>
-<p>When navigated to a mixer at runtime, the spreadsheet with information about the selected mixer</p>
-<p>will display.</p>
-<p>Objectives</p>
-<p>Upon completion of this lab, you will be able to:</p>
-<p></p>
-<p>Create external content items on the Graphics tab</p>
-<p></p>
-<p>Configure external content item with static link to content</p>
-<p></p>
-<p>Configure external content item with dynamic link to content</p>
-<p></p>
-<p>Link external content to automation objects</p>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>Create and Configure an External Content Item</p>
-<p>In the following steps, you will create a new sub-toolset under Training on the Graphics tab for</p>
-<p>organizing external content items. Then, you will create and configure an external content item.</p>
-<p>1.</p>
-<p>On the Graphics tab, right-click the Training toolset and select New | Graphic Toolset.</p>
-<p>A new toolset with the default name is created under the Training toolset.</p>
-<p>2.</p>
-<p>Rename the new toolset to External Content.</p>
-<p>3.</p>
-<p>Right-click the Training \ External Content toolset and select New | External Content.</p>
-<div class="screenshot">
-  <img src="../images/page_0358_0.png" alt="Page 358">
-  <div class="caption">Page 358</div>
+<h1>📖 L25: Lab 12 – Creating External Content for a ViewApp</h1>
+<p class="source">Module 5 — External Content | Lab Exercise</p>
+<p class="page-ref">Pages 357–376</p>
+
+<h2>Introduction</h2>
+
+<p>In this lab, you will create a new sub-toolset under the Training toolset on the Graphics tab for organizing external content items. You will then build two external content items: one with a <strong>static link</strong> to an image file (a simulated plant layout), and one with a <strong>dynamic link</strong> to an Excel spreadsheet that updates based on the selected mixer asset name at runtime.</p>
+
+<div class="key-concept">
+<strong>Lab Objectives:</strong>
+<ul style="margin:0.5em 0 0 0;">
+  <li>Create external content items on the Graphics tab</li>
+  <li>Configure a static link to an image file</li>
+  <li>Configure a dynamic link using an expression with <code>Me.Tagname</code></li>
+  <li>Link external content to automation objects for auto-fill navigation</li>
+</ul>
 </div>
-<div class="screenshot">
-  <img src="../images/page_0358_1.png" alt="Page 358">
-  <div class="caption">Page 358</div>
+
+<h2>Part 1: Create a Static External Content Item</h2>
+
+<h3>Create the Sub-Toolset</h3>
+
+<div class="lab">
+<p><strong>Steps 1–3:</strong></p>
+<ol>
+  <li>On the Graphics tab, right-click the <strong>Training</strong> toolset and select <strong>New → Graphic Toolset</strong>.</li>
+  <li>Rename the new toolset to <strong>External Content</strong>.</li>
+  <li>Right-click <strong>Training \ External Content</strong> and select <strong>New → External Content</strong>.</li>
+</ol>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>An external content item is created in the Training \ External Content toolset with the default</p>
-<p>name.</p>
-<p>4.</p>
-<p>Rename the new external content item to PlantLayout.</p>
-<p>5.</p>
-<p>On the Graphics tab, in the Training \ External Content toolset, double-click PlantLayout to</p>
-<p>open it in the External Content Editor.</p>
-<p>The External Content Editor appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0359_0.png" alt="Page 359">
-  <div class="caption">Page 359</div>
+  <img src="../images/page_0358_0.png" alt="Graphics tab tree showing Training toolset with right-click menu for creating a new graphic toolset">
+  <div class="caption">Step 1: Right-click the Training toolset and select New → Graphic Toolset to create a sub-toolset</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0359_1.png" alt="Page 359">
-  <div class="caption">Page 359</div>
+  <img src="../images/page_0358_1.png" alt="Graphics tab showing right-click menu with New → External Content option highlighted">
+  <div class="caption">Step 3: Right-click the External Content toolset and select New → External Content</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>6.</p>
-<p>To the right of the URL or URI field, click the ellipsis to display a drop-down menu, and then</p>
-<p>select Browse for file.</p>
-<p>The Open dialog box appears.</p>
-<p>7.</p>
-<p>Navigate to the C:\Training\Other Files folder, select Plant_Layout.PNG, and click Open.</p>
-<div class="key-concept">Note:</div>
-<p>Be sure to select Plant_Layout.PNG, which is an image file.</p>
+
+<h3>Configure the PlantLayout Item</h3>
+
+<div class="lab">
+<p><strong>Steps 4–5:</strong></p>
+<ol start="4">
+  <li>Rename the new external content item to <strong>PlantLayout</strong>.</li>
+  <li>Double-click PlantLayout to open it in the External Content Editor.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0360_0.png" alt="Page 360">
-  <div class="caption">Page 360</div>
+  <img src="../images/page_0359_0.png" alt="Graphics panel showing PlantLayout item selected in the External Content toolset">
+  <div class="caption">Step 4: The PlantLayout item appears with its identifying icon in the External Content toolset</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0360_1.png" alt="Page 360">
-  <div class="caption">Page 360</div>
+  <img src="../images/page_0359_1.png" alt="External Content Editor window for PlantLayout showing default URL/URI and Media Type fields">
+  <div class="caption">Step 5: The External Content Editor opens with default values — URL/URI shows about:blank and Media Type shows text/plain</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>The path to the file appears in the URL or URI field.</p>
-<p>Notice that Media Type is set to text/plain by default.</p>
-<p>8.</p>
-<p>Click Suggest.</p>
-<p>Media Type changes to the suggested media type image/png, based on the file extension of</p>
-<p>the external media selected for the URL or URI field.</p>
+
+<div class="lab">
+<p><strong>Steps 6–10:</strong></p>
+<ol start="6">
+  <li>Click the ellipsis to the right of the URL or URI field, then select <strong>Browse for file</strong>.</li>
+  <li>Navigate to <code>C:\Training\Other Files</code>, select <strong>Plant_Layout.PNG</strong>, and click <strong>Open</strong>.</li>
+  <li>Click <strong>Suggest</strong> — the Media Type changes from <code>text/plain</code> to <code>image/png</code>.</li>
+  <li>For Content Type(s), select <strong>Docs</strong> from the dropdown.</li>
+  <li>Click <strong>Save and Close</strong>, then check in the PlantLayout external content item.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0361_0.png" alt="Page 361">
-  <div class="caption">Page 361</div>
+  <img src="../images/page_0360_0.png" alt="URL/URI field with ellipsis dropdown showing Browse for file option">
+  <div class="caption">Step 6: Click the ellipsis and select Browse for file to open the file selection dialog</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0361_1.png" alt="Page 361">
-  <div class="caption">Page 361</div>
+  <img src="../images/page_0360_1.png" alt="Windows Open File dialog navigating to C:\Training\Other Files with Plant_Layout.PNG selected">
+  <div class="caption">Step 7: Navigate to C:\Training\Other Files and select Plant_Layout.PNG</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>9.</p>
-<p>For Content Type(s), click the down-arrow on the right side of the field and select Docs.</p>
-<p>You may need to click off the list to close the list.</p>
-<p>Content Type(s) shows that Docs is the content type assigned to this external content item.</p>
-<p><strong>10.</strong> Click Save and Close, and check in the PlantLayout external content item.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0362_0.png" alt="Page 362">
-  <div class="caption">Page 362</div>
+  <img src="../images/page_0361_0.png" alt="External Content Editor showing the URL populated with the file path and default text/plain Media Type">
+  <div class="caption">Step 7 (after): The URL/URI field now shows the file path to Plant_Layout.PNG</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0362_1.png" alt="Page 362">
-  <div class="caption">Page 362</div>
+  <img src="../images/page_0361_1.png" alt="External Content Editor after clicking Suggest — Media Type changed to image/png">
+  <div class="caption">Step 8: After clicking Suggest, the Media Type automatically changes to image/png based on the file extension</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Link External Content to a Navigation Item</p>
-<p>In the following steps, you will link the PlantLayout external content item to a navigation item in the</p>
-<p>ViewApp Editor. Then you will test the navigation item in the ViewApp preview session.</p>
-<p><strong>11.</strong> Switch to the ViewApp Editor.</p>
-<p><strong>12.</strong> In the Navigation pane, select Plant.</p>
-<p><strong>13.</strong> On the Toolbox tab, search for PlantLayout.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0363_0.png" alt="Page 363">
-  <div class="caption">Page 363</div>
+  <img src="../images/page_0362_0.png" alt="External Content Editor with Content Type set to Docs">
+  <div class="caption">Step 9: Set Content Type(s) to Docs to match the layout pane configuration</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0363_1.png" alt="Page 363">
-  <div class="caption">Page 363</div>
+  <img src="../images/page_0362_1.png" alt="External Content Editor showing Save and Close button in the title bar">
+  <div class="caption">Step 10: Click Save and Close, then check in the PlantLayout external content item</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p><strong>14.</strong> Drag PlantLayout to Pane1.</p>
-<p>The preview area updates to show the external content in Pane1.</p>
-<p><strong>15.</strong> Click Update to save changes to the ViewApp and update the preview session.</p>
-<p>The ViewApp preview opens, navigated to Plant.</p>
-<p>Notice that the PlantLayout image displays when the Plant navigation item is selected.</p>
+
+<h2>Part 2: Link Static External Content to a Navigation Item</h2>
+
+<div class="lab">
+<p><strong>Steps 11–15:</strong></p>
+<ol start="11">
+  <li>Switch to the ViewApp Editor.</li>
+  <li>In the Navigation pane, select <strong>Plant</strong>.</li>
+  <li>On the Toolbox tab, search for <strong>PlantLayout</strong>.</li>
+  <li>Drag PlantLayout to <strong>Pane1</strong>.</li>
+  <li>Click <strong>Update</strong> to save changes and update the preview session.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0364_0.png" alt="Page 364">
-  <div class="caption">Page 364</div>
+  <img src="../images/page_0363_0.png" alt="Navigation pane with Plant selected and Toolbox showing PlantLayout search result">
+  <div class="caption">Steps 12–13: Select Plant in the Navigation pane and search for PlantLayout on the Toolbox tab</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0364_1.png" alt="Page 364">
-  <div class="caption">Page 364</div>
+  <img src="../images/page_0363_1.png" alt="Toolbox tab showing PlantLayout search result as a thumbnail">
+  <div class="caption">Step 13: The PlantLayout content item appears in the Toolbox search results</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0364_2.png" alt="Page 364">
-  <div class="caption">Page 364</div>
+  <img src="../images/page_0364_0.png" alt="ViewApp Editor showing PlantLayout assigned to Pane1 with external content details">
+  <div class="caption">Step 14: Drag PlantLayout to Pane1 — the preview area updates to show the external content with media type image/png</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>16.</strong> Hover your mouse over the pane.</p>
-<p>Notice that flip, rotate, and zoom tools are available at the bottom of the pane.</p>
-<p><strong>17.</strong> Use the tools at the bottom of the pane to flip, rotate, and zoom in and out the content. You can</p>
-<p>also press CTRL and use the mouse wheel to zoom in and out.</p>
-<p><strong>18.</strong> When you are finished testing, minimize the preview session and the ViewApp Editor.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0365_0.png" alt="Page 365">
-  <div class="caption">Page 365</div>
+  <img src="../images/page_0364_1.png" alt="ViewApp Editor toolbar showing the Update button">
+  <div class="caption">Step 15: Click Update to save changes and launch the preview session</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>Create and Configure External Content Item for Mixer Assets</p>
-<p>In the following steps, you will create another external content item, which will be used for Mixer</p>
-<p>assets. This time, you will use a dynamic string for the URL or URI field.</p>
-<p><strong>19.</strong> On the Graphics tab, right-click the Training \ External Content toolset, and select New |</p>
-<p>External Content.</p>
-<p><strong>20.</strong> Rename the new external content item to MixerEquipmentList.</p>
-<p><strong>21.</strong> Double-click MixerEquipmentList to open it in the External Content Editor.</p>
-<p><strong>22.</strong> To the right of the URL or URI field, click the ellipsis button and select Browse for file.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0366_0.png" alt="Page 366">
-  <div class="caption">Page 366</div>
+  <img src="../images/page_0364_2.png" alt="AVEVA OMI Training Application showing the simulated factory layout diagram">
+  <div class="caption">The Plant navigation item now displays the PlantLayout image showing Receiving, Production, Packaging, and Shipping areas</div>
 </div>
+
+<div class="tip">
+<strong>Tip:</strong> Hover your mouse over the pane to reveal flip, rotate, and zoom tools at the bottom. You can also press CTRL and use the mouse wheel to zoom in and out.
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0366_1.png" alt="Page 366">
-  <div class="caption">Page 366</div>
+  <img src="../images/page_0365_0.png" alt="AVEVA OMI Training Application showing the PlantLayout image with toolbar controls for flip, rotate, and zoom">
+  <div class="caption">Steps 16–17: The ImageViewerApp provides flip, rotate, and zoom tools at the bottom of the pane</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>23.</strong> Navigate to the C:\Training\Other Files folder, select Mixer100_ Equipment_List.xlsx, and</p>
-<p>click Open.</p>
-<p>The path to the file appears in the URL or URI field.</p>
-<p><strong>24.</strong> Expand the External Content Editor to see all the text in the URL or URI field.</p>
-<p><strong>25.</strong> Select all the text in the URL or URI field, right-click, and then select Copy.</p>
-<p>This will copy the text to the clipboard.</p>
-<p>You will paste the text and modify it in a later step.</p>
+
+<h2>Part 3: Create a Dynamic External Content Item</h2>
+
+<h3>Create MixerEquipmentList</h3>
+
+<div class="lab">
+<p><strong>Steps 19–25:</strong></p>
+<ol start="19">
+  <li>On the Graphics tab, right-click <strong>Training \ External Content</strong> and select <strong>New → External Content</strong>.</li>
+  <li>Rename the new item to <strong>MixerEquipmentList</strong>.</li>
+  <li>Double-click MixerEquipmentList to open it in the External Content Editor.</li>
+  <li>Click the ellipsis and select <strong>Browse for file</strong>.</li>
+  <li>Navigate to <code>C:\Training\Other Files</code>, select <strong>Mixer100_Equipment_List.xlsx</strong>, and click <strong>Open</strong>.</li>
+  <li>Expand the editor to see all text in the URL or URI field.</li>
+  <li>Select all text in the URL or URI field, right-click, and select <strong>Copy</strong>.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0367_0.png" alt="Page 367">
-  <div class="caption">Page 367</div>
+  <img src="../images/page_0366_0.png" alt="Graphics panel showing MixerEquipmentList item created in the External Content toolset">
+  <div class="caption">Steps 19–20: The new MixerEquipmentList item appears in the External Content toolset</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0367_1.jpeg" alt="Page 367">
-  <div class="caption">Page 367</div>
+  <img src="../images/page_0366_1.png" alt="External Content Editor for MixerEquipmentList with ellipsis menu showing Browse for file">
+  <div class="caption">Steps 21–22: Open the editor and click Browse for file to select the Excel spreadsheet</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p><strong>26.</strong> Click Suggest.</p>
-<p>Media Type changes to the suggested media type application/vnd.openxmlformats-</p>
-<p>officedocument.spreadsheetml.sheet, based on the file extension of the external media</p>
-<p>selected for the URL or URI field.</p>
-<p>In the next steps, you will modify the text you copied from the URL or URI field to make it a</p>
-<p>dynamic string, which will update based on the mixer asset name at runtime.</p>
-<p><strong>27.</strong> Click the down-arrow to the right of the Constant Mode icon in the URL or URI field and</p>
-<p>select Reference Or Expression from the drop-down list.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0368_0.png" alt="Page 368">
-  <div class="caption">Page 368</div>
+  <img src="../images/page_0367_0.png" alt="External Content Editor showing the full file path to Mixer100_Equipment_List.xlsx">
+  <div class="caption">Step 23: The URL/URI field shows the full path to the Excel file</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0368_1.png" alt="Page 368">
-  <div class="caption">Page 368</div>
+  <img src="../images/page_0367_1.jpeg" alt="Right-click context menu on the URL/URI text showing Cut, Copy, Paste options">
+  <div class="caption">Step 25: Copy the URL text to the clipboard — you will modify it into a dynamic expression in the next steps</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Notice that the icon for the field changes.</p>
-<p><strong>28.</strong> In the URL or URI field, right-click and select Paste.</p>
-<p>The text from the clipboard is pasted in the field. An error occurs because the text is not</p>
-<p>formatted properly for a dynamic expression. You will format the text in the following steps.</p>
-<p><strong>29.</strong> In the URL or URI field, modify the expression text as follows:</p>
-<p>"file:///C:/Training/Other%20Files/" + Me.Tagname + "_Equipment_List.xlsx"</p>
+
+<h3>Configure the Dynamic Expression</h3>
+
+<div class="lab">
+<p><strong>Steps 26–29:</strong></p>
+<ol start="26">
+  <li>Click <strong>Suggest</strong> — the Media Type changes to the spreadsheet MIME type.</li>
+  <li>Click the down-arrow on the Constant Mode icon and select <strong>Reference Or Expression</strong>.</li>
+  <li>In the URL or URI field, right-click and select <strong>Paste</strong>. An error will appear because the raw file path is not a valid expression.</li>
+  <li>Modify the expression as follows:<br>
+  <code>"file:///C:/Training/Other%20Files/" + Me.Tagname + "_Equipment_List.xlsx"</code></li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0369_0.png" alt="Page 369">
-  <div class="caption">Page 369</div>
+  <img src="../images/page_0368_0.png" alt="External Content Editor showing auto-detected spreadsheet media type after clicking Suggest">
+  <div class="caption">Step 26: After clicking Suggest, the Media Type is auto-detected as the Excel spreadsheet MIME type</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0369_1.png" alt="Page 369">
-  <div class="caption">Page 369</div>
+  <img src="../images/page_0368_1.png" alt="Constant Mode dropdown showing Reference Or Expression option">
+  <div class="caption">Step 27: Switch from Constant mode to Reference Or Expression mode to enable dynamic expressions</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0369_2.png" alt="Page 369">
-  <div class="caption">Page 369</div>
+  <img src="../images/page_0369_0.png" alt="URL/URI field showing the Dynamic Expression icon after switching modes">
+  <div class="caption">Step 28: After switching modes, the icon changes to indicate dynamic expression mode</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p><strong>30.</strong> For Content Type(s), click the down-arrow on the right side of the field and select Docs.</p>
-<p>You may need to click off the drop-down list to close it.</p>
-<p><strong>31.</strong> Save and close the MixerEquipmentList external content item, and check it in.</p>
-<p>Link External Content to an Object</p>
-<p>In the following steps, you will link the MixerEquipmentList external content item to the $Mixer</p>
-<p>template object.</p>
-<p><strong>32.</strong> On the Templates tab, in the Training \ Project toolset, double-click $Mixer to open it in the</p>
-<p>Object Editor.</p>
-<p><strong>33.</strong> On the Attributes tab, in the Content pane, click Link Content.</p>
-<p>The Galaxy Browser appears.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0370_0.png" alt="Page 370">
-  <div class="caption">Page 370</div>
+  <img src="../images/page_0369_1.png" alt="URL/URI field showing error message Not expecting slash after pasting raw file path">
+  <div class="caption">Step 28 (error): Pasting the raw file path generates an error — it is not formatted as a valid expression</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0370_1.png" alt="Page 370">
-  <div class="caption">Page 370</div>
+  <img src="../images/page_0369_2.png" alt="URL/URI field showing the corrected dynamic expression with Me.Tagname variable">
+  <div class="caption">Step 29: The corrected expression concatenates the file path with Me.Tagname to create a dynamic URL per mixer</div>
 </div>
-<p>(selected)</p>
-<p>• Name field: "EquipmentList"</p>
-<p>• Status unchanged</p>
-<p><strong>Step 36:</strong> Save and close $Mixer template, check it in]</p>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>34.</strong> In the Galaxy Browser, navigate to Training \ External Content, select</p>
-<p>MixerEquipmentList, and click OK.</p>
-<p>MixerEquipmentList appears in the Content pane.</p>
-<p>You may need to resize the Content pane to see all of the items associated with the object, as</p>
-<p>well as the Name and Description fields for the selected item.</p>
-<p><strong>35.</strong> With MixerEquipmentList selected, in the Name field, change the name to EquipmentList.</p>
-<p><strong>36.</strong> Save and close the $Mixer template, and check it in.</p>
+
+<div class="key-concept">
+<strong>Dynamic Expression:</strong> The expression <code>"file:///C:/Training/Other%20Files/" + Me.Tagname + "_Equipment_List.xlsx"</code> uses <code>Me.Tagname</code> to dynamically resolve the file path based on which mixer object is currently displayed. When navigating to Mixer100, it resolves to Mixer100_Equipment_List.xlsx; for Mixer200, it resolves to Mixer200_Equipment_List.xlsx.
+</div>
+
+<h3>Finalize and Link to Automation Object</h3>
+
+<div class="lab">
+<p><strong>Steps 30–36:</strong></p>
+<ol start="30">
+  <li>Set Content Type(s) to <strong>Docs</strong>.</li>
+  <li>Save and close MixerEquipmentList, and check it in.</li>
+  <li>On the Templates tab, in the Training \ Project toolset, double-click <strong>$Mixer</strong> to open it in the Object Editor.</li>
+  <li>On the Attributes tab, in the Content pane, click <strong>Link Content</strong>.</li>
+  <li>In the Galaxy Browser, navigate to Training \ External Content, select <strong>MixerEquipmentList</strong>, and click <strong>OK</strong>.</li>
+  <li>With MixerEquipmentList selected, change the name to <strong>EquipmentList</strong>.</li>
+  <li>Save and close the $Mixer template, and check it in.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0371_0.png" alt="Page 371">
-  <div class="caption">Page 371</div>
+  <img src="../images/page_0370_0.png" alt="External Content Editor showing Content Type set to Docs">
+  <div class="caption">Step 30: Set Content Type(s) to Docs to match the layout pane configuration</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0371_1.png" alt="Page 371">
-  <div class="caption">Page 371</div>
+  <img src="../images/page_0370_1.png" alt="Object Editor Content pane showing the Link Content button">
+  <div class="caption">Step 33: Click Link Content in the Content pane to open the Galaxy Browser</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0371_2.png" alt="Page 371">
-  <div class="caption">Page 371</div>
+  <img src="../images/page_0371_0.png" alt="Galaxy Browser showing Training \ External Content with MixerEquipmentList selected">
+  <div class="caption">Step 34: Select MixerEquipmentList from Training \ External Content in the Galaxy Browser</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p>Update Asset_Layout to Autofill the External Content Item</p>
-<p>In the following steps, you will add a new pane to Asset_Layout and configure it to show the</p>
-<p>external content items.</p>
-<p><strong>37.</strong> On the Graphics tab, in the Training \ Layouts toolset, double-click Asset_Layout to open it</p>
-<p>in the Layout Editor.</p>
-<p><strong>38.</strong> In the layout preview area, select Pane2.</p>
-<p><strong>39.</strong> Click the Add new pane down-arrow to add a pane below Pane2.</p>
-<p>A new pane named Pane3 is added below Pane2.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0372_0.png" alt="Page 372">
-  <div class="caption">Page 372</div>
+  <img src="../images/page_0371_1.png" alt="Content pane showing MixerEquipmentList added to the object">
+  <div class="caption">After linking: MixerEquipmentList appears in the Content pane alongside existing content items</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0372_1.jpeg" alt="Page 372">
-  <div class="caption">Page 372</div>
+  <img src="../images/page_0371_2.png" alt="Content pane showing MixerEquipmentList renamed to EquipmentList">
+  <div class="caption">Step 35: Rename MixerEquipmentList to EquipmentList for cleaner display at runtime</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>40.</strong> Select Pane3, and on the Properties tab, configure the General \ Content Type(s) property</p>
-<p>as Docs.</p>
-<p><strong>41.</strong> Select the divider between Pane2 and Pane3, but do not move it.</p>
-<p>Divider properties appear on the Properties tab.</p>
+
+<h2>Part 4: Update Asset_Layout for Auto-Fill</h2>
+
+<div class="lab">
+<p><strong>Steps 37–43:</strong></p>
+<ol start="37">
+  <li>On the Graphics tab, double-click <strong>Asset_Layout</strong> to open it in the Layout Editor.</li>
+  <li>In the layout preview, select <strong>Pane2</strong>.</li>
+  <li>Click the <strong>Add new pane</strong> down-arrow to add a new Pane3 below Pane2.</li>
+  <li>Select Pane3 and set General → Content Type(s) to <strong>Docs</strong>.</li>
+  <li>Select the divider between Pane2 and Pane3 (do not move it).</li>
+  <li>On the Properties tab, check the <strong>General → Is Interactive</strong> property on the divider.</li>
+  <li>Save and close Asset_Layout, and check it in.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0373_0.png" alt="Page 373">
-  <div class="caption">Page 373</div>
+  <img src="../images/page_0372_0.png" alt="Layout Editor showing Pane2 selected with add pane controls visible">
+  <div class="caption">Step 39: Click the down-arrow on Pane2's add pane control to create a new Pane3 below it</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0373_1.jpeg" alt="Page 373">
-  <div class="caption">Page 373</div>
+  <img src="../images/page_0372_1.jpeg" alt="Layout Editor showing the new Pane3 added below Pane2">
+  <div class="caption">After adding Pane3: The layout now has three panes — Pane1 (left), Pane2 (top-right), Pane3 (bottom-right)</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p><strong>42.</strong> On the Properties tab, check the General \ Is Interactive property.</p>
-<p><strong>43.</strong> Save and close Asset_Layout, and check it in.</p>
-<p>Test the ViewApp in a Preview Session</p>
-<p>Now you will test your changes in the ViewApp preview session.</p>
-<p><strong>44.</strong> Switch to the ViewApp preview session.</p>
-<p><strong>45.</strong> Navigate to Mixer100.</p>
-<p>The equipment detail information associated with the $Mixer template object is displayed in</p>
-<p>the bottom-right pane. The spreadsheet viewer displays the file in its original size, so only a</p>
-<p>portion of the content is visible.</p>
-<p>Notice that zoom tools are available at the top and bottom of the pane, and scroll bars are</p>
-<p>provided.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0374_0.png" alt="Page 374">
-  <div class="caption">Page 374</div>
+  <img src="../images/page_0373_0.png" alt="Properties tab showing Content Type set to Docs and Use For Auto-Fill checked for Pane3">
+  <div class="caption">Step 40: Set Pane3's Content Type(s) to Docs and ensure Use For Auto-Fill is checked</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0374_1.png" alt="Page 374">
-  <div class="caption">Page 374</div>
+  <img src="../images/page_0373_1.jpeg" alt="Layout Editor showing the divider between Pane2 and Pane3 selected">
+  <div class="caption">Step 41: Select the divider between Pane2 and Pane3 to configure its properties</div>
 </div>
-<p>Lab 12 – Creating External Content for a ViewApp</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p><strong>46.</strong> Use the zoom tools at the top of the pane or the zoom slider at the bottom of the pane to zoom</p>
-<p>in and out of the content. The following example shows the display zoomed to 70%.</p>
-<p>Alternatively, you can press CTRL and use the mouse wheel to zoom in and out.</p>
-<p><strong>47.</strong> Move the divider between Pane2 and Pane3 to resize the pane with the external content.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0375_0.png" alt="Page 375">
-  <div class="caption">Page 375</div>
+  <img src="../images/page_0374_0.png" alt="Properties panel showing Is Interactive checkbox checked for the divider">
+  <div class="caption">Step 42: Enable Is Interactive on the divider so users can resize the panes at runtime</div>
 </div>
+
+<h2>Part 5: Test the ViewApp</h2>
+
+<div class="lab">
+<p><strong>Steps 44–49:</strong></p>
+<ol start="44">
+  <li>Switch to the ViewApp preview session.</li>
+  <li>Navigate to <strong>Mixer100</strong>.</li>
+  <li>Use the zoom tools to adjust the spreadsheet view (try 70%).</li>
+  <li>Move the divider between Pane2 and Pane3 to resize the panes.</li>
+  <li>Navigate to <strong>Mixer200</strong> — notice the equipment list updates dynamically.</li>
+  <li>When finished testing, minimize the preview session.</li>
+</ol>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0375_1.png" alt="Page 375">
-  <div class="caption">Page 375</div>
+  <img src="../images/page_0374_1.png" alt="Spreadsheet viewer showing Mixer100 equipment list with zoom controls">
+  <div class="caption">Step 45: Navigating to Mixer100 displays the equipment spreadsheet in the bottom-right pane with zoom and scroll controls</div>
 </div>
-<p>Module 5 – External Content</p>
-<p>AVEVA™ Training</p>
-<p><strong>48.</strong> Navigate to Mixer200.</p>
-<p>Notice the external content is updated with the equipment list information for Mixer200.</p>
-<p>You can navigate to other mixers and verify the corresponding equipment information.</p>
-<p><strong>49.</strong> When you are finished testing, minimize the preview session.</p>
-<p><End of Lab></p>
+
 <div class="screenshot">
-  <img src="../images/page_0376_0.png" alt="Page 376">
-  <div class="caption">Page 376</div>
+  <img src="../images/page_0375_0.png" alt="Spreadsheet viewer zoomed to 70% showing full equipment data">
+  <div class="caption">Step 46: Zoom to 70% to see more of the equipment data — the spreadsheet includes signal names, I/O types, ranges, and descriptions</div>
 </div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<div class="screenshot">
+  <img src="../images/page_0375_1.png" alt="Full ViewApp window showing Mixer100 with process schematic and resized spreadsheet pane">
+  <div class="caption">Step 47: Drag the divider to resize the spreadsheet pane — the layout adjusts dynamically at runtime</div>
+</div>
+
+<div class="screenshot">
+  <img src="../images/page_0376_0.png" alt="AVEVA OMI Training Application showing Mixer200 with updated equipment list">
+  <div class="caption">Step 48: Navigate to Mixer200 — the dynamic expression resolves to Mixer200_Equipment_List.xlsx, displaying the correct equipment data</div>
+</div>
+
+<div class="key-concept">
+<strong>What you accomplished:</strong> You created two external content items — one static (PlantLayout image) and one dynamic (MixerEquipmentList spreadsheet). The static item is linked directly to a navigation item, while the dynamic item uses <code>Me.Tagname</code> to resolve the correct spreadsheet file based on which mixer is selected at runtime.
+</div>
+
+<h2>Knowledge Check</h2>
+
+<div class="quiz">
+<h3>Quiz</h3>
+
+<details>
+<summary>Q1: What is the difference between a static and a dynamic external content item?</summary>
+<p class="answer">A static external content item points to a fixed file path (e.g., an image), while a dynamic item uses an expression with variables like Me.Tagname to resolve different files at runtime based on the selected object.</p>
+</details>
+
+<details>
+<summary>Q2: What does the Suggest button do in the External Content Editor?</summary>
+<p class="answer">The Suggest button auto-detects the Media Type based on the file extension of the selected media. For example, selecting a .PNG file changes the Media Type from text/plain to image/png.</p>
+</details>
+
+<details>
+<summary>Q3: Why must you switch from Constant to Reference Or Expression mode before using Me.Tagname?</summary>
+<p class="answer">Constant mode only accepts static file paths or URLs. To use dynamic expressions with variables like Me.Tagname, you must switch to Reference Or Expression mode, which allows building expressions that resolve at runtime.</p>
+</details>
+
+<details>
+<summary>Q4: How do you link an external content item to an automation object?</summary>
+<p class="answer">Open the object in the Object Editor, go to the Content pane on the Attributes tab, and click Link Content. Then select the external content item from the Galaxy Browser.</p>
+</details>
+
+<details>
+<summary>Q5: What Content Type must be set on a layout pane to display external content?</summary>
+<p class="answer">The layout pane's Content Type(s) must match the Content Type(s) set on the external content item. In this lab, both were set to Docs.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
   <a href="L24-External-Content-Overview.html">← L24: External Content Overview</a> &nbsp;|&nbsp;
   <a href="L26-Widgets-Overview.html">L26: Widgets Overview →</a>

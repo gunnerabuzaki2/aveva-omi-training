@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 06: ViewApps Overview</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,13 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
+
 <nav>
-  <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">← L05: Lab 2 – Creating a Screen Profile and La</a> &nbsp;|&nbsp;
+  <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">← L05: Lab 2 – Creating a Screen Profile and Layout</a> &nbsp;|&nbsp;
   <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp →</a>
 </nav>
 
@@ -122,378 +126,332 @@
 </nav>
 
 <h1>📖 L06: ViewApps Overview</h1>
-<p class="source">Module 2 — Getting Started | Pages 95-106</p>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 4 – ViewApps</p>
-<p>Introduction</p>
-<p>$ViewApp is provided in the Galaxy as a base system object to create Operations Management</p>
-<p>Interface applications. A derived ViewApp template can be configured in the ViewApp Editor for</p>
-<p>creating a view application as needed. After a derived ViewApp object is configured, an instance</p>
-<p>can be derived and deployed to run the view application.</p>
-<p>Derive a ViewApp Template</p>
-<p>To create a ViewApp, you must derive a ViewApp template from the $ViewApp base system</p>
-<p>object, initialize and configure the template, and then derive a ViewApp instance from the ViewApp</p>
-<p>template.</p>
-<p>ViewApp Initialization</p>
-<p>The first time you open the derived ViewApp template, the ViewApp Initialization wizard appears</p>
-<p>so that you can select a screen profile and layouts for the screens to use in the ViewApp.</p>
-<p>From the Templates tab, double-click the new derived ViewApp template. The ViewApp</p>
-<p>Initialization wizard appears. On the first wizard page, select a screen profile and click Next.</p>
-<p>This section introduces the ViewApp object, including its editor, capabilities, and components.</p>
-<div class="screenshot">
-  <img src="../images/page_0095_0.png" alt="Page 95">
-  <div class="caption">Page 95</div>
+<p class="source">Based on Module 2 — Getting Started: Section 4 — ViewApps (pages 2-53 through 2-64)</p>
+
+<p>The ViewApp is the central object in AVEVA Operations Management Interface. It brings together screen profiles, layouts, navigation, and content into a cohesive application that operators use to monitor and control their processes. This lesson covers how ViewApps are created, configured, navigated, previewed, deployed, and launched.</p>
+
+<!-- ============================================================ -->
+<h2>1. The ViewApp Object</h2>
+<p class="page-ref">Source: page 2-53</p>
+
+<p><code>$ViewApp</code> is provided in the Galaxy as a base system object to create Operations Management Interface applications. A derived ViewApp template can be configured in the ViewApp Editor for creating a view application as needed. After a derived ViewApp object is configured, an instance can be derived and deployed to run the view application.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The ViewApp creation process follows the standard template-instance pattern: derive a template from <code>$ViewApp</code>, configure it in the ViewApp Editor, then derive an instance from the template for deployment.
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>On the second wizard page, select a screen and a layout for that screen and click Finish. You can</p>
-<p>assign layouts to additional screens through this wizard page, but at a minimum, you must specify</p>
-<p>a layout for at least one screen in the profile.</p>
-<p>Once you click Finish, the ViewApp Editor appears.</p>
-<p>The initialization wizard appears only the first time a derived ViewApp template is opened.</p>
-<p>However, you can edit or change screen profiles and layouts from the ViewApp Editor.</p>
-<p>ViewApp Editor</p>
-<p>You use the ViewApp Editor to build a ViewApp and perform operations such as:</p>
-<p></p>
-<p>Configure and customize the navigation model for the ViewApp</p>
-<p></p>
-<p>Edit or change the screen profile associated with the ViewApp</p>
-<p></p>
-<p>Edit, change, or remove a layout associated with the ViewApp</p>
-<p></p>
-<p>Edit or add content to layout panes</p>
-<p></p>
-<p>Test the ViewApp in preview mode, without deploying or redeploying the instance</p>
-<p>If you are configuring a derived ViewApp template for the first time, the ViewApp Initialization</p>
-<p>wizard will appear first. The ViewApp Editor will open when you click Finish from the Initialization</p>
+
+<!-- ============================================================ -->
+<h2>2. ViewApp Initialization</h2>
+<p class="page-ref">Source: pages 2-53 to 2-54</p>
+
+<p>The first time you open a derived ViewApp template, the <strong>ViewApp Initialization wizard</strong> appears. This wizard guides you through selecting a screen profile and associating layouts with screens.</p>
+
+<h3>Wizard Step 1: Select Screen Profile</h3>
+<p>On the first wizard page, you select a screen profile from the available profiles in the Galaxy. The screen profile determines how many monitors the ViewApp will use and their physical arrangement.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0096_0.png" alt="Page 96">
-  <div class="caption">Page 96</div>
+  <img src="../images/page_0095_0.png" alt="ViewApp Initialization wizard - Select Screen Profile page">
+  <div class="caption">The ViewApp Initialization wizard Step 1: select a screen profile. The available profiles are listed with thumbnail previews.</div>
 </div>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>wizard. Otherwise, you can open the ViewApp Editor by double-clicking the derived ViewApp</p>
-<p>template from the Templates tab.</p>
-<p></p>
-<p>(1) Navigation List: Shows the hierarchy of items in the navigation model for the</p>
-<p>ViewApp. The default built-in navigation model is based on the plant model, but the</p>
-<p>navigation model can be customized.</p>
-<p></p>
-<p>(2) Actions List: Shows a list of content assigned to the panes of the layout applied to the</p>
-<p>selected screen. By default, it lists items for the primary screen.</p>
-<p></p>
-<p>(3) Selected Screen Profile, Layout, Pane Content: Shows the screen profile and layout</p>
-<p>associated with the ViewApp. Zoom and pan controls are available for display.</p>
-<p></p>
-<p>(4) Tabbed Area:</p>
-<p></p>
-<p>Properties tab provides access to all available properties for navigation items and</p>
-<p>content.</p>
-<p></p>
-<p>Toolbox tab provides access to symbols and controls from the Graphics tab.</p>
-<p></p>
-<p>Assets tab provides access to the Model view of the Galaxy.</p>
-<p>A search field is available for all tabs. A preview area is available at the bottom of the</p>
-<p>tabbed area for previewing available content, such as graphics and assets.</p>
-<p></p>
-<p>(5) Preview Commands: Allow you to view the ViewApp in a preview session and enable/</p>
-<p>disable automatic updates for the preview session.</p>
-<p>ViewApp Navigation</p>
-<p>The navigation mechanism within a ViewApp controls the presentation of content at runtime. For</p>
-<p>example, a ViewApp can include a tree control that shows the hierarchical organization of the built-</p>
-<p>in navigation of the ViewApp. Selecting an item from the tree at runtime displays corresponding</p>
-<p>content in one or more panes of the ViewApp layout.</p>
-<p>As another example, consider a pane with Enable Hierarchy Navigation and Show Navigation</p>
-<p>Buttons properties checked. A navigation tool appears on the top or bottom of the pane when the</p>
-<p>user hovers a mouse over the pane at runtime, allowing the user to navigate to the “next” or</p>
-<p>“previous” sibling navigation item as reflected in the defined navigation hierarchy of the ViewApp.</p>
+
+<h3>Wizard Step 2: Associate Layout</h3>
+<p>On the second wizard page, you select a screen and assign a layout to it. You can assign layouts to multiple screens, but at least one screen must have a layout assigned. Once you click Finish, the ViewApp Editor opens.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0097_0.jpeg" alt="Page 97">
-  <div class="caption">Page 97</div>
+  <img src="../images/page_0096_0.png" alt="ViewApp Initialization wizard - Associate Layout page">
+  <div class="caption">Step 2: select a screen and associate a layout with it. The left panel shows the screen selection; the right panel shows available layouts.</div>
 </div>
-<p>: HeatEx100, HeatEx200, HeatEx300, HeatEx400</p>
-<p>• Production [Production]: Line1, Line2, Receiving, Shipping, Sys</p>
-<p>• Tabs at bottom: Model - Tagname (selected), Deployment, Derivation</p>
-<p><strong>Right Pane - "Navigation" (ViewApp navigation list)</strong>:</p>
-<p>• Tree mirrors left pane: Home → Assets → Plant</p>
-<p>• Packaging (HeatEx100-HeatEx400)</p>
-<p>• Production (Line1, Line2, Receiving, Shipping, Sys)</p>
-<p>• Menu icon at top-right for additional options</p>
-<p>• "In the System Platform IDE Model view, it is possible to assign alias names to objects to provide more meaningful names for operators. The alias names appear in the navigation model of a running ViewApp and in preview mode."]</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>There are three essential components of ViewApp navigation:</p>
-<p></p>
-<p>Navigation model: Defines a hierarchy of navigation items, references to visual content</p>
-<p>used by navigation-aware controls, and actions to execute for a navigation item. The</p>
-<p>navigation model drives the presentation of content from a layout or ViewApp to the</p>
-<p>screen viewed by a user.</p>
-<p></p>
-<p>Navigation item: A unique element in the navigation model that contains the necessary</p>
-<p>information to show a visual representation of an item and triggers one or more navigation</p>
-<p>actions after being selected during runtime.</p>
-<p></p>
-<p>Navigation actions: Navigation behavior during runtime by navigation-aware controls to</p>
-<p>show information present in the navigation model.</p>
-<p>Both the Layout Editor and the ViewApp Editor provide integrated components and properties for</p>
-<p>configuring ViewApp navigation.</p>
-<p>Built-In Navigation</p>
-<p>By default, the built-in ViewApp navigation model reflects the plant model for the Galaxy.</p>
-<p>In the navigation list in the ViewApp Editor, the root of the model is named Home, with Assets</p>
-<p>shown as a top-level item for objects as reflected in the Model view.</p>
-<p>The navigation is customizable. For example, you can add and remove custom navigation items to</p>
-<p>the navigation hierarchy. The root item (named Home by default) cannot be deleted, but it can be</p>
-<p>renamed.</p>
-<div class="key-concept">Note: In the System Platform IDE Model view, it is possible to assign alias names to objects to</div>
-<p>provide more meaningful names for operators. The alias names appear in the navigation model of</p>
-<p>a running ViewApp and in preview mode.</p>
+
+<div class="tip">
+  <strong>Tip:</strong> The initialization wizard only appears the first time a derived ViewApp template is opened. However, you can edit or change screen profiles and layouts later from the ViewApp Editor.
+</div>
+
+<!-- ============================================================ -->
+<h2>3. The ViewApp Editor</h2>
+<p class="page-ref">Source: pages 2-54 to 2-55</p>
+
+<p>The ViewApp Editor is the primary interface for building and configuring a ViewApp. You can perform the following operations:</p>
+
+<ul>
+  <li>Configure and customize the navigation model</li>
+  <li>Edit or change the screen profile associated with the ViewApp</li>
+  <li>Edit, change, or remove a layout associated with the ViewApp</li>
+  <li>Edit or add content to layout panes</li>
+  <li>Test the ViewApp in preview mode without deploying or redeploying</li>
+</ul>
+
+<h3>Editor Components</h3>
+
 <div class="screenshot">
-  <img src="../images/page_0098_0.jpeg" alt="Page 98">
-  <div class="caption">Page 98</div>
+  <img src="../images/page_0097_0.jpeg" alt="ViewApp Editor interface with 5 annotated sections">
+  <div class="caption">The ViewApp Editor interface: (1) Navigation List showing the hierarchy, (2) Actions List showing pane content, (3) screen profile and layout preview, (4) tabbed area with Properties/Toolbox/Assets, (5) Preview commands.</div>
 </div>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Auto-Fill</p>
-<p>Auto-Fill is a navigation behavior that controls how content is automatically placed in panes,</p>
-<p>without having to configure each view of a running ViewApp.</p>
-<p>To use this feature:</p>
-<p></p>
-<p>The layout panes of the ViewApp must have the Use For Auto-Fill property enabled.</p>
-<p></p>
-<p>The navigation items of the ViewApp must have Auto-Fill Content configured as Current</p>
-<p>only; Current, then up; or Current, up, then down; but not None.</p>
-<p>In the ViewApp Editor, Auto-Fill Content only needs to be configured for each top-level navigation</p>
-<p>item, which by default includes Home and Assets.</p>
-<p>Auto-Fill Content options are:</p>
-<p></p>
-<p>Current only: At runtime, content from the current navigation item is automatically placed</p>
-<p>in available panes of the layouts assigned to screens of the screen profile. If there is no</p>
-<p>layout assigned to screens for the current navigation item, layouts assigned to screens for</p>
-<p>the Home navigation item are displayed and used for auto-fill content associated with the</p>
-<p>current navigation item.</p>
-<p></p>
-<p>Current, then up: At runtime, Auto-Fill searches for layouts that initially fill the screens</p>
-<p>prior to determining the content to be shown in specific panes. The current navigation item</p>
-<p>is inspected for any commands that place layouts or content full screen. For screens that</p>
-<p>remain empty, Auto-Fill examines the parent navigation item up to the root of the</p>
-<p>navigation hierarchy for additional content to apply to the empty screens. After content has</p>
-<p>been assigned to screens, any content residing on the current navigation item is shown on</p>
-<p>the screen using the best available pane algorithm for each individual piece of content.</p>
-<p></p>
-<p>Current, up, then down: Similar to Current, then up with an additional action. At runtime,</p>
-<p>if the Auto-Fill search reaches the root of the navigation hierarchy and there are still empty</p>
-<p>screens or panes, the first child of the current navigation item is inspected to see if it has</p>
-<p>content that applies to the available screens or panes. This process continues down the</p>
-<p>navigation hierarchy by inspecting the first child navigation item at each level until arriving</p>
-<p>at a leaf node. Then, Auto-Fill stops.</p>
-<p></p>
-<p>None: At runtime, no content associated with this navigation item is automatically shown</p>
-<p>unless specific commands have been created to show content in a running ViewApp.</p>
-<p>Content must be manually assigned to specific panes when configuring the ViewApp.</p>
-<p>Content Navigation</p>
-<p>At runtime, content for a navigation item is displayed in the layout panes of a ViewApp based</p>
-<p>on the:</p>
-<p></p>
-<p>Content types of the content found from the navigation</p>
-<p></p>
-<p>Available panes configured to display content with those content types</p>
-<p></p>
-<p>Auto-Fill settings</p>
-<p>Auto-Fill settings include the Use For Auto-Fill property configured for layout panes, as well as the</p>
-<p>Auto-Fill Content property associated with navigation items. Panes enabled for Auto-Fill have their</p>
-<p>Use For Auto-Fill property checked. Navigation items enabled for Auto-Fill have their Auto-Fill</p>
-<p>Content property set to an option such as Current only; Current, then up; or Current, up, then</p>
-<p>down.</p>
-<p>With Auto-Fill in effect, if there are panes available to receive the content types of the content in</p>
-<p>the current navigation item, parent items, and child items, the panes will be populated with that</p>
-<p>content.</p>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>For example, assume that the Auto-Fill Content property for the current navigation item is Current</p>
-<p>only. The navigation item contains three symbols with content types of Overview, Detail, and</p>
-<p>Trend. If three panes with content types that match the content types of the symbols are available,</p>
-<p>the panes will be populated at runtime as follows:</p>
-<p>If multiple panes configured for the same content types are available, but there is only one symbol</p>
-<p>with a content type that matches the panes, then only that symbol will be populated in one of the</p>
-<p>panes. Panes are filled in alphabetical order of the pane names. In the following example, only the</p>
-<p>Detail symbol is filled to Pane01.</p>
-<p>Additionally, multi-content panes can be the destination of multiple content items for an Auto-Fill</p>
-<p>navigation action. Multi-content panes include panes with a presentation style of Tabbed or</p>
-<p>Multiple.</p>
-<p>As another example, assume that the Auto-Fill Content property for the current navigation item is</p>
-<p>Current, then up. The current navigation item contains one symbol with a content type of Trend.</p>
-<p>Only Pane03 is available to display Trend content, so Pane03 is filled first with the Trend symbol.</p>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Component</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Navigation List</strong></td><td>Shows the hierarchy of items in the navigation model. The default is based on the plant model but can be customized.</td></tr>
+    <tr><td>2</td><td><strong>Actions List</strong></td><td>Shows content assigned to the panes of the layout applied to the selected screen.</td></tr>
+    <tr><td>3</td><td><strong>Screen Profile / Layout Preview</strong></td><td>Shows the screen profile and layout associated with the ViewApp, with zoom and pan controls.</td></tr>
+    <tr><td>4</td><td><strong>Tabbed Area</strong></td><td>Properties tab (navigation item and content properties), Toolbox tab (symbols and controls from Graphics), Assets tab (Model view of Galaxy).</td></tr>
+    <tr><td>5</td><td><strong>Preview Commands</strong></td><td>Allow you to view the ViewApp in a preview session and enable/disable automatic updates.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>4. ViewApp Navigation</h2>
+<p class="page-ref">Source: pages 2-55 to 2-56</p>
+
+<p>The navigation mechanism within a ViewApp controls the presentation of content at runtime. For example, a tree control shows the hierarchical organization of the built-in navigation. Selecting an item from the tree displays corresponding content in one or more panes of the ViewApp layout.</p>
+
+<h3>Three Essential Components of Navigation</h3>
+
+<table>
+  <thead>
+    <tr><th>Component</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Navigation Model</strong></td><td>Defines a hierarchy of navigation items, references to visual content, and actions for navigation-aware controls. Drives the presentation of content from layout to screen.</td></tr>
+    <tr><td><strong>Navigation Item</strong></td><td>A unique element in the navigation model containing visual representation info and triggers for navigation actions after being selected at runtime.</td></tr>
+    <tr><td><strong>Navigation Actions</strong></td><td>Runtime behavior of navigation-aware controls to show information present in the navigation model.</td></tr>
+  </tbody>
+</table>
+
+<h3>Built-In Navigation</h3>
+
+<p>By default, the built-in ViewApp navigation model reflects the plant model for the Galaxy. In the navigation list, the root is named <strong>Home</strong> with <strong>Assets</strong> shown as a top-level item. The navigation is fully customizable — you can add and remove custom navigation items, and the root item can be renamed (though not deleted).</p>
+
 <div class="screenshot">
-  <img src="../images/page_0100_0.png" alt="Page 100">
-  <div class="caption">Page 100</div>
+  <img src="../images/page_0098_0.jpeg" alt="Navigation model comparison - System Platform Model view vs ViewApp Navigation">
+  <div class="caption">The ViewApp navigation model mirrors the System Platform Model view. Alias names assigned to objects in the Model view appear in the navigation model of a running ViewApp.</div>
 </div>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The navigation model is automatically generated from the Galaxy's plant model. Objects organized under areas in the Model view appear as hierarchical navigation items in the ViewApp. You can customize this hierarchy, but the default structure provides immediate, meaningful navigation for operators.
+</div>
+
+<!-- ============================================================ -->
+<h2>5. Auto-Fill</h2>
+<p class="page-ref">Source: pages 2-57 to 2-59</p>
+
+<p>Auto-Fill is a navigation behavior that automatically places content in panes without having to configure each view of a running ViewApp. It requires two conditions:</p>
+
+<ol>
+  <li>Layout panes must have the <strong>Use For Auto-Fill</strong> property enabled</li>
+  <li>Navigation items must have <strong>Auto-Fill Content</strong> configured to something other than "None"</li>
+</ol>
+
+<h3>Auto-Fill Content Options</h3>
+
+<table>
+  <thead>
+    <tr><th>Option</th><th>Behavior</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Current only</strong></td><td>Content from the current navigation item is automatically placed in available panes. If no layout is assigned, the Home item's layouts are used.</td></tr>
+    <tr><td><strong>Current, then up</strong></td><td>Searches the current item first, then moves up the hierarchy to find content for empty screens. Content is placed using the best available pane algorithm.</td></tr>
+    <tr><td><strong>Current, up, then down</strong></td><td>Similar to "Current, then up," but also checks the first child at each level going down until reaching a leaf node.</td></tr>
+    <tr><td><strong>None</strong></td><td>No content is automatically shown. Content must be manually assigned to specific panes.</td></tr>
+  </tbody>
+</table>
+
+<h3>Auto-Fill Matching Behavior</h3>
+
+<p>Content display at runtime is based on three factors: the content types of content found from navigation, the available panes configured for those specific content types, and the Auto-Fill settings. When a content item's type matches a pane's configured type, the content fills that pane automatically.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0100_1.png" alt="Page 100">
-  <div class="caption">Page 100</div>
+  <img src="../images/page_0100_0.png" alt="Auto-Fill matching diagram showing content types matching to panes">
+  <div class="caption">Auto-Fill matching: content items with types (Overview, Detail, Trend) are matched to panes configured with the same content types. Panes are filled in alphabetical order when multiple panes share the same type.</div>
 </div>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>However, additional panes are available for content and the Auto-Fill Content property for the</p>
-<p>navigation item is Current, then up. So, the next navigation item up from the current navigation</p>
-<p>item is inspected for possible content items to display in the available panes. An Overview symbol</p>
-<p>and a Detail symbol are found, which matches the content types for the available panes. So</p>
-<p>Pane01 is filled next, followed by Pane02.</p>
-<p>Preview Mode</p>
-<p>You can use the preview mode from the ViewApp Editor to test your ViewApp without deploying or</p>
-<p>redeploying it to runtime. The preview session launches immediately and runs in a separate</p>
-<p>window to show the current content and ViewApp configuration. The current navigation item in the</p>
-<p>preview session is based on which navigation item is selected in the ViewApp Editor.</p>
-<p>The preview session can be kept open while editing the ViewApp in the ViewApp Editor.</p>
-<p>Additionally, the preview feature supports an automatic update mode. With automatic update</p>
-<p>enabled, the preview refreshes to show updates when you save changes to the ViewApp.</p>
-<div class="key-concept">Note: Preview mode is intended for testing purposes only: It is not intended for production use.</div>
-<p>Show a Preview Session</p>
-<p>To show the runtime preview, you can click the Preview button in the top-right corner of the</p>
-<p>ViewApp Editor to view the ViewApp in a native ViewApp. By default, switching to runtime preview</p>
-<p>saves the changes made to the ViewApp.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0101_0.png" alt="Page 101">
-  <div class="caption">Page 101</div>
+  <img src="../images/page_0100_1.png" alt="Auto-Fill behavior when multiple panes share the same content type">
+  <div class="caption">When multiple panes have the same content type but only one symbol matches, the alphabetically first pane (Pane01) receives the content. Tabbed or Multiple presentation panes can accept multiple content items.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0101_1.jpeg" alt="Page 101">
-  <div class="caption">Page 101</div>
+  <img src="../images/page_0101_0.png" alt="Auto-Fill navigation hierarchy diagram showing Current, then up behavior">
+  <div class="caption">Auto-Fill with "Current, then up": when the current item's Trend symbol fills Pane03 first, the parent item's Overview and Detail symbols fill Pane01 and Pane02 respectively.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Update a Preview Session</p>
-<p>If a preview session is active and changes are made to the ViewApp in the ViewApp Editor but not</p>
-<p>saved, the Preview button changes to Update. Clicking Update will save and update the changes</p>
-<p>in the preview session.</p>
-<p>Automatic Update Mode</p>
-<p>Preview mode supports an automatic update option. It is enabled by default, but you can disable it</p>
-<p>or enable it again by clicking the automatic update toggle icon on the left side of the Preview</p>
-<p>button.</p>
-<p></p>
-<p>When automatic update is enabled, changes saved to the ViewApp are automatically</p>
-<p>reflected in the preview session.</p>
-<p></p>
-<p>When automatic update is disabled, changes saved to the ViewApp can be reflected in</p>
-<p>the preview session by manually clicking Update.</p>
-<p>Close a Preview Session</p>
-<p>To close the preview, you can click the Close button, which is the X icon in the upper-right corner of</p>
-<p>the preview display. Note that closing the ViewApp Editor also closes the preview session.</p>
-<p>Derive a ViewApp Instance</p>
-<p>Once the derived ViewApp template is configured, a ViewApp instance object can be derived from</p>
-<p>the derived ViewApp template. Right-click the derived ViewApp template and select New |</p>
-<p>Instance. In the Deployment view, the ViewApp instance must be hosted by a ViewEngine object</p>
-<p>before it can be deployed to the target node where the application will run.</p>
-<p>Note that:</p>
-<p></p>
-<p>You cannot derive an instance directly from the $ViewApp base system object. The</p>
-<p>instance must be derived from a derived ViewApp template.</p>
-<p></p>
-<p>In Deployment view, only ViewEngine objects can host ViewApp objects. The host</p>
-<p>ViewEngine object must be deployed before ViewApp instances can be deployed.</p>
-<p></p>
-<p>In Model view, a ViewApp object can be assigned to an area object to organize the</p>
-<p>ViewApp instances.</p>
+
+<!-- ============================================================ -->
+<h2>6. Preview Mode</h2>
+<p class="page-ref">Source: pages 2-59 to 2-60</p>
+
+<p>You can use the preview mode from the ViewApp Editor to test your ViewApp without deploying or redeploying it to runtime. The preview session launches immediately and runs in a separate window to show the current content and ViewApp configuration.</p>
+
+<div class="tip">
+  <strong>Tip:</strong> Preview mode is intended for <strong>testing purposes only</strong> — it is not intended for production use.
+</div>
+
+<h3>Starting a Preview Session</h3>
+
+<p>Click the <strong>Preview</strong> button in the top-right corner of the ViewApp Editor to view the ViewApp in a native ViewApp window. By default, switching to runtime preview saves all current changes.</p>
+
+<h3>Updating a Preview Session</h3>
+
+<p>If a preview session is active and unsaved changes exist, the Preview button transforms to an <strong>Update</strong> button. Clicking Update saves changes and refreshes the preview session.</p>
+
+<h3>Automatic Update Mode</h3>
+
+<p>Preview mode supports automatic update, enabled by default. Toggle it via the refresh icon to the left of the Preview button:</p>
+<ul>
+  <li><strong>Enabled:</strong> Changes saved to the ViewApp are automatically reflected in the preview session.</li>
+  <li><strong>Disabled:</strong> Changes must be manually pushed by clicking Update.</li>
+</ul>
+
+<h3>Closing a Preview Session</h3>
+
+<p>Click the Close button (× icon) in the upper-right corner of the preview display. Note that closing the ViewApp Editor also closes the preview session.</p>
+
+<!-- ============================================================ -->
+<h2>7. Deriving and Deploying a ViewApp Instance</h2>
+<p class="page-ref">Source: pages 2-60 to 2-61</p>
+
+<p>Once the derived ViewApp template is configured, you create a ViewApp instance from it. Right-click the derived ViewApp template and select <strong>New → Instance</strong>. In the Deployment view, the ViewApp instance must be hosted by a ViewEngine object before it can be deployed.</p>
+
+<div class="pitfall">
+  <strong>Important Rules:</strong>
+  <ul>
+    <li>You <strong>cannot</strong> derive an instance directly from the <code>$ViewApp</code> base system object — it must come from a derived template.</li>
+    <li>In Deployment view, <strong>only ViewEngine objects</strong> can host ViewApp objects.</li>
+    <li>The host ViewEngine object <strong>must be deployed before</strong> ViewApp instances can be deployed.</li>
+  </ul>
+</div>
+
+<h3>Deployment Process</h3>
+
+<p>ViewApp instances are deployed from the System Platform IDE like other objects. Right-click the ViewApp instance in Deployment view and select Deploy. Application files are asynchronously transferred to the target node — an orange icon appears during transfer, changing once complete.</p>
+
+<p>Multiple instances of the same ViewApp can run on one node. If changes are made to the derived template while an instance is deployed, the icon indicates "deployed, but pending configuration changes."</p>
+
 <div class="screenshot">
-  <img src="../images/page_0102_0.jpeg" alt="Page 102">
-  <div class="caption">Page 102</div>
+  <img src="../images/page_0103_0.png" alt="Deployment icons showing transfer in progress and complete states">
+  <div class="caption">Deployment status icons: the orange circular-arrow icon indicates files are being transferred; the blue window icon indicates the transfer is complete and the ViewApp is ready to launch.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0102_1.jpeg" alt="Page 102">
-  <div class="caption">Page 102</div>
+  <img src="../images/page_0103_1.png" alt="Open Updated ViewApp dialog prompt">
+  <div class="caption">When a ViewApp is running and its template has changed, this dialog allows you to update the running ViewApp immediately.</div>
 </div>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Deploy a ViewApp</p>
-<p>ViewApp instances are deployed like other objects from the System Platform IDE. For example,</p>
-<p>you can right-click the ViewApp instance from Deployment view and select Deploy with the</p>
-<p>applicable deployment options to use. Progress and status of the deployment operation are</p>
-<p>displayed.</p>
-<p>ViewApp application files are asynchronously transferred to the target node at the end of the</p>
-<p>deployment operation. While this happens, an orange icon appears for the ViewApp application in</p>
-<p>Deployment view. Once the files are transferred to the target node, the icon for the ViewApp</p>
-<p>application changes as shown below, and the ViewApp can be launched with the AVEVA OMI</p>
-<p>Application Manager or the AVEVA Application Manager. You can deploy multiple instances of a</p>
-<p>ViewApp to the same node. Multiple instances of the same view application can be running on a</p>
-<p>node.</p>
-<p>Note that if changes are made to the derived ViewApp template for which its instance object is</p>
-<p>already deployed, the icon for the instance object will change to reflect deployed, but pending</p>
-<p>configuration changes. If you attempt to redeploy a ViewApp that is running, the following</p>
-<p>message appears, allowing you to choose to update the running ViewApp.</p>
+
+<!-- ============================================================ -->
+<h2>8. Launching a ViewApp</h2>
+<p class="page-ref">Source: pages 2-62 to 2-63</p>
+
+<p>Deployed ViewApps can be launched from two application managers:</p>
+
+<h3>AVEVA OMI Application Manager</h3>
+
+<p>This manager is specifically for OMI ViewApps. ViewApps are listed by instance name, file path, size, and deployment date/time. Multiple ViewApps can be deployed and running on the same node.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0103_0.png" alt="Page 103">
-  <div class="caption">Page 103</div>
+  <img src="../images/page_0104_0.png" alt="AVEVA OMI Application Manager showing ViewApp_Training_001">
+  <div class="caption">The AVEVA OMI Application Manager: ViewApps are listed with instance names, file paths, and deployment details. Click LAUNCH to start the ViewApp.</div>
 </div>
+
+<h3>AVEVA Application Manager</h3>
+
+<p>This general-purpose manager can launch both OMI ViewApps (on the OMI tab) and InTouch applications. Click the Details button to view file paths, deployment dates, and other information.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0103_1.png" alt="Page 103">
-  <div class="caption">Page 103</div>
+  <img src="../images/page_0105_0.png" alt="AVEVA Application Manager showing OMI tab with ViewApp">
+  <div class="caption">The AVEVA Application Manager with the OMI tab selected, showing deployed ViewApps with thumbnail previews. The OMI Viewer button launches the selected app.</div>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>Launch a ViewApp</p>
-<p>Operations Management Interface ViewApps can be launched with the AVEVA OMI Application</p>
-<p>Manager or the InTouch HMI Application Manager. You can find these application managers from</p>
-<p>the Windows Start menu. A shortcut to the AVEVA OMI Application Manager is provided on the</p>
-<p>node where the Operations Management Interface runtime components were installed.</p>
-<p>With the AVEVA OMI Application Manager, ViewApps are listed by the names of their associated</p>
-<p>ViewApp instance objects, along with other information such as the path to the location of the View</p>
-<p>application’s files on the target node, the size of the application, and the date and time it was</p>
-<p>deployed. Multiple ViewApps can be deployed and running the same node.</p>
-<p>The AVEVA OMI Application Manager is used to launch Operations Management Interface</p>
-<p>ViewApps. It is not used to launch InTouch or InTouch for System Platform view applications.</p>
+
+<div class="key-concept">
+  <strong>Key Concept:</strong> The AVEVA OMI Application Manager is for OMI ViewApps only. The AVEVA Application Manager can launch both OMI and InTouch applications. Use the appropriate manager for your application type.
+</div>
+
+<!-- ============================================================ -->
+<h2>9. TitleBarApp</h2>
+<p class="page-ref">Source: page 2-64</p>
+
+<p>The TitleBarApp is an OMI App that shows title bar information in a running ViewApp. It is typically placed in a pane at the top of the ViewApp window and provides functional components like Home, Login, Language, and Keyboard buttons.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0104_0.png" alt="Page 104">
-  <div class="caption">Page 104</div>
+  <img src="../images/page_0106_0.jpeg" alt="TitleBarApp in Toolbox with TitleBarControl preview">
+  <div class="caption">The TitleBarApp in the Toolbox tab. Select it and drag TitleBarControl to a pane to add a title bar to your ViewApp.</div>
 </div>
-<p>Section 4 – ViewApps</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>With the AVEVA Application Manager, deployed ViewApps appear on the OMI page as shown in</p>
-<p>the following example. You can click the Details button to view the path to the location of the View</p>
-<p>application’s files on the target node, the date and time it was deployed, and other information.</p>
-<p>In addition to launching Operations Management Interface applications, the AVEVA Application</p>
-<p>Manager can also be used to launch InTouch applications.</p>
-<div class="screenshot">
-  <img src="../images/page_0105_0.png" alt="Page 105">
-  <div class="caption">Page 105</div>
+
+<h3>TitleBarApp Configuration Categories</h3>
+
+<table>
+  <thead>
+    <tr><th>Category</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Appearance</strong></td><td>Visual characteristics: foreground/background color, font, secondary row settings.</td></tr>
+    <tr><td><strong>Content and Display Area</strong></td><td>Content displayed and locations (e.g., Home button position on the left side of the primary row).</td></tr>
+    <tr><td><strong>Window Buttons</strong></td><td>Enable minimize, maximize, and close buttons. Close buttons include options to close the ViewApp or close the layout window.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>Quiz</h2>
+<div class="quiz">
+<h3>Test Your Knowledge</h3>
+
+<details>
+<summary>1. What is the name of the wizard that appears the first time you open a derived ViewApp template?</summary>
+<p class="answer">The ViewApp Initialization wizard. It guides you through selecting a screen profile and associating layouts with screens.</p>
+</details>
+
+<details>
+<summary>2. What are the five main components of the ViewApp Editor?</summary>
+<p class="answer">(1) Navigation List, (2) Actions List, (3) Screen Profile/Layout Preview, (4) Tabbed Area (Properties/Toolbox/Assets), (5) Preview Commands.</p>
+</details>
+
+<details>
+<summary>3. What are the three essential components of ViewApp navigation?</summary>
+<p class="answer">Navigation Model (defines hierarchy), Navigation Item (unique element with visual info and actions), and Navigation Actions (runtime behavior of controls).</p>
+</details>
+
+<details>
+<summary>4. What is the default name of the root item in the built-in navigation model?</summary>
+<p class="answer">"Home" — it cannot be deleted but can be renamed. "Assets" appears as a top-level item beneath it.</p>
+</details>
+
+<details>
+<summary>5. What are the four Auto-Fill Content options?</summary>
+<p class="answer">Current only, Current then up, Current up then down, and None.</p>
+</details>
+
+<details>
+<summary>6. Can you derive a ViewApp instance directly from the $ViewApp base object?</summary>
+<p class="answer">No. You must first derive a template from $ViewApp, configure it, and then derive an instance from the derived template.</p>
+</details>
+
+<details>
+<summary>7. What type of object must host a ViewApp instance in Deployment view?</summary>
+<p class="answer">A ViewEngine object. The ViewEngine must be deployed before ViewApp instances can be deployed.</p>
+</details>
+
+<details>
+<summary>8. What happens when automatic update is enabled in preview mode?</summary>
+<p class="answer">Changes saved to the ViewApp are automatically reflected in the preview session without needing to manually click Update.</p>
+</details>
 </div>
-<p>Module 2 – Getting Started</p>
-<p>AVEVA™ Training</p>
-<p>TitleBarApp</p>
-<p>The TitleBarApp is an OMI App that shows title bar information in a running ViewApp.</p>
-<p>Assign TitleBarApp to a Pane</p>
-<p>You can add the TitleBarApp to a pane from the Layout Editor or the ViewApp Editor. Select the</p>
-<p>TitleBarApp from the Toolbox tab, and from the preview area, drag TitleBarControl to the pane.</p>
-<p>The TitleBarControl would typically be used in a pane placed at the top of a ViewApp window.</p>
-<p>Configure the TitleBarApp</p>
-<p>Properties available for configuring the TitleBarApp include settings to specify the appearance of</p>
-<p>the title bar, text to display in the title bar, and functional components to add to the title bar. They</p>
-<p>are organized into categories as shown below:</p>
-<p></p>
-<p>Appearance: Properties that specify visual characteristics of the TitleBarApp, such</p>
-<p>foreground and background color, font for text, and more. You can also enable a</p>
-<p>secondary row in the TitleBarApp.</p>
-<p></p>
-<p>Content and Display Area: Properties that specify content to be displayed on the</p>
-<p>TitleBarApp and their locations. For example, you can configure the Home button to</p>
-<p>display on the left side of the primary row.</p>
-<p></p>
-<p>Window Buttons: These properties allow you to enable the minimize, maximize, and</p>
-<p>close buttons. Close buttons include buttons to close the ViewApp and close the layout</p>
-<p>window.</p>
-<div class="screenshot">
-  <img src="../images/page_0106_0.jpeg" alt="Page 106">
-  <div class="caption">Page 106</div>
-</div>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
-<nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L05-Lab-2---Creating-a-Screen-Profile-and-Layout.html">← L05: Lab 2 – Creating a Screen Profile and La</a> &nbsp;|&nbsp;
-  <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp →</a>
-</nav>
+
 <script>
-function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
-function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
-function updateProgressText(){var t=document.querySelectorAll('input[data-lesson]').length,d=document.querySelectorAll('input[data-lesson]:checked').length,e=document.getElementById('progress-text');if(e)e.textContent=d+' / '+t+' lessons completed'}
-window.addEventListener('load',loadProgress);
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('input[data-lesson]');
+  const total = checkboxes.length;
+  let completed = 0;
+  checkboxes.forEach(cb => {
+    if (cb.checked) completed++;
+    localStorage.setItem('omi_' + cb.dataset.lesson, cb.checked);
+  });
+  const text = document.getElementById('progress-text');
+  if (text) text.textContent = completed + ' / ' + total + ' completed';
+}
+document.querySelectorAll('input[data-lesson]').forEach(cb => {
+  if (localStorage.getItem('omi_' + cb.dataset.lesson) === 'true') cb.checked = true;
+});
+saveProgress();
 </script>
+
 </body>
 </html>

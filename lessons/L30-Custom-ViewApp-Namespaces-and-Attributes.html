@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 30: Custom ViewApp Namespaces and Attributes</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -24,14 +25,15 @@
   .answer { color: #2c5f2d; font-weight: bold; }
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
-  .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .source, .page-ref { font-size: 0.85em; color: #777; font-style: italic; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespac</a> &nbsp;|&nbsp;
+  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespaces</a> &nbsp;|&nbsp;
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces →</a>
 </nav>
 
@@ -122,128 +124,134 @@
 </nav>
 
 <h1>📖 L30: Custom ViewApp Namespaces and Attributes</h1>
-<p class="source">Module 7 — ViewApp Namespaces | Pages 409-412</p>
-<p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
-<p>Introduction</p>
-<p>You can create a ViewApp namespace from the Graphics tab in the System Platform IDE. The</p>
-<p>Graphics tab does not contain a default ViewApp namespace.</p>
-<p>To create a ViewApp namespace, you can:</p>
-<p></p>
-<p>Use the New | ViewApp Namespace option from the Galaxy menu</p>
-<p></p>
-<p>Press Ctrl + Shift + V</p>
-<p></p>
-<p>Right-click in the Graphics tab, and then select New | ViewApp Namespace</p>
-<p>Once the ViewApp namespace is created, you can double-click it in the Graphics tab to open the</p>
-<p>ViewApp Namespace Editor.</p>
-<p>ViewApp Namespace Editor</p>
-<p>You use the ViewApp Namespace Editor to create and configure attributes that can be used by all</p>
-<p>ViewApps in a Galaxy.</p>
-<p></p>
-<p>(1) Menu Bar: Commands to save, save and close, and close the ViewApp Namespace</p>
-<p>Editor.</p>
-<p></p>
-<p>(2) Command Bar: Commands to add, duplicate, and remove attributes from the list of</p>
-<p>attributes.</p>
-<p></p>
-<p>(3) Search Field: Allows you to enter text to filter the attributes in the list. The text can</p>
-<p>appear in any part of the attribute name. The Modified Only check box filters for attributes</p>
-<p>with unsaved modifications.</p>
-<p></p>
-<p>(4) Attributes List: List of attributes defined for the ViewApp namespace. The columns</p>
-<p>show the configuration of the attributes, such as attribute name, type, initial value, and</p>
-<p>This section describes how to manage and configure ViewApp namespace attributes using the</p>
-<p>ViewApp Namespace Editor.</p>
+<p class="source">Module 7 — ViewApp Namespaces | Section 2 – Custom ViewApp Namespaces and Attributes</p>
+<p class="page-ref">Pages 409–412</p>
+
+<h2>Creating a ViewApp Namespace</h2>
+
+<p>You can create a ViewApp namespace from the Graphics tab in the System Platform IDE. Note that the Graphics tab does not contain a default ViewApp namespace — you must create one explicitly. There are three ways to create a ViewApp namespace:</p>
+
+<ul>
+<li>Use the <em>New | ViewApp Namespace</em> option from the Galaxy menu</li>
+<li>Press <strong>Ctrl + Shift + V</strong></li>
+<li>Right-click in the Graphics tab and select <em>New | ViewApp Namespace</em></li>
+</ul>
+
+<p>Once the ViewApp namespace is created, you can double-click it in the Graphics tab to open the ViewApp Namespace Editor.</p>
+
+<h2>The ViewApp Namespace Editor</h2>
+
+<p>The ViewApp Namespace Editor is the tool you use to create and configure attributes that can be used by all ViewApps in a Galaxy. The editor is organized into several key areas:</p>
+
 <div class="screenshot">
-  <img src="../images/page_0409_0.png" alt="Page 409">
-  <div class="caption">Page 409</div>
+  <img src="../images/page_0409_0.png" alt="ViewApp Namespace Editor Overview">
+  <div class="caption">The ViewApp Namespace Editor (ViewAppNamespace_001) with annotated sections: (1) Menu Bar for save/close operations, (2) Command Bar with Add/Duplicate/Remove buttons, (3) Search Field with Modified Only checkbox, and (4) Attributes List table showing six attributes with columns for Name, Type, Initial Value, Readonly, Retentive, and Description.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>more. You can click on a column name to sort the list by that column. For example, you</p>
-<p>can click Name to sort the list of attributes by name.</p>
-<p>Add Attributes</p>
-<p>In the ViewApp Namespace Editor, you use the Add command to add a new attribute to the list of</p>
-<p>attributes.</p>
-<p>An attribute is added to the list with the default name of Attribute00n, but you can rename it.</p>
-<p>Configure Attributes</p>
-<p>Once an attribute is added to the list of attributes, you can configure the attribute:</p>
-<p></p>
-<p>Name: Name of the attribute.</p>
-<p></p>
-<p>Type: Data type of the attribute. Can be Boolean, Integer, String, Float, Double, Time, or</p>
-<p>ElapsedTime. The default data type is Boolean.</p>
-<p></p>
-<p>Initial Value: The initial value for the attribute at runtime.</p>
-<p>For Boolean attributes, a check box is provided in the Initial Value field. Checking the</p>
-<p>check box sets the initial value for the Boolean attribute to true. The default initial value for</p>
-<p>a Boolean attribute is false (the check box is unchecked).</p>
-<div class="key-concept">Note: The Initial Value field does not support expressions.</div>
-<p></p>
-<p>Readonly: When checked, designates the attribute as a read-only attribute. The default</p>
-<p>value is false (not read-only, but read/write).</p>
-<p></p>
-<p>Retentive: When checked, designates the attribute as a retentive attribute. This means</p>
-<p>that the value of the attribute will be maintained if the ViewApp is shut down, and restored</p>
-<p>to that value when the ViewApp is restarted. However, the value of the attribute will not be</p>
-<p>retained when a ViewApp is undeployed.</p>
-<div class="key-concept">Note: An attribute cannot be designated as both read-only and retentive. The default</div>
-<p>value is false (non-retentive).</p>
-<p></p>
-<p>Description: Text that describes the attribute.</p>
+
+<p>The editor contains four main areas:</p>
+
+<table>
+<tr><th>Area</th><th>Description</th></tr>
+<tr><td><strong>(1) Menu Bar</strong></td><td>Commands to save, save and close, and close the ViewApp Namespace Editor.</td></tr>
+<tr><td><strong>(2) Command Bar</strong></td><td>Commands to add, duplicate, and remove attributes from the list of attributes.</td></tr>
+<tr><td><strong>(3) Search Field</strong></td><td>Enter text to filter the attribute list. The Modified Only checkbox filters for attributes with unsaved modifications.</td></tr>
+<tr><td><strong>(4) Attributes List</strong></td><td>Table listing all attributes with columns for name, type, initial value, and more. Click a column header to sort.</td></tr>
+</table>
+
+<h2>Adding Attributes</h2>
+
+<p>In the ViewApp Namespace Editor, use the Add command to add a new attribute to the list. A new attribute appears with the default name <code>Attribute00n</code>, but you can rename it immediately.</p>
+
+<h2>Configuring Attributes</h2>
+
+<p>Once an attribute is added to the list, you can configure its properties:</p>
+
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td><strong>Name</strong></td><td>The name of the attribute.</td></tr>
+<tr><td><strong>Type</strong></td><td>Data type of the attribute. Options: Boolean, Integer, String, Float, Double, Time, ElapsedTime. Default: Boolean.</td></tr>
+<tr><td><strong>Initial Value</strong></td><td>The starting value at runtime. For Boolean attributes, a checkbox is provided (checked = true, unchecked = false). Note: The Initial Value field does not support expressions.</td></tr>
+<tr><td><strong>Readonly</strong></td><td>When checked, the attribute is read-only and cannot be written to. Default: false (read/write).</td></tr>
+<tr><td><strong>Retentive</strong></td><td>When checked, the value is maintained if the ViewApp is shut down and restored when restarted. However, the value is not retained when a ViewApp is undeployed.</td></tr>
+<tr><td><strong>Description</strong></td><td>Free text describing the attribute's purpose.</td></tr>
+</table>
+
 <div class="screenshot">
-  <img src="../images/page_0410_0.jpeg" alt="Page 410">
-  <div class="caption">Page 410</div>
+  <img src="../images/page_0410_0.jpeg" alt="Attribute Editor Toolbar and Add Button">
+  <div class="caption">The ViewApp Namespace Editor toolbar showing the Add (+), Duplicate (copy), and Remove (trash) buttons, along with the search field and Modified Only checkbox. The Add button is used to create new attributes.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0410_1.png" alt="Page 410">
-  <div class="caption">Page 410</div>
+  <img src="../images/page_0410_1.png" alt="Configuring a New Attribute">
+  <div class="caption">A newly added attribute (Attribute001) with Boolean type default. The attribute name is editable, and all configuration columns (Type, Initial Value, Readonly, Retentive, Description) are available for editing.</div>
 </div>
-<p>Section 2 – Custom ViewApp Namespaces and Attributes</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Duplicate Attributes</p>
-<p>You can use the Duplicate command to duplicate an attribute in the list of attributes. Just select an</p>
-<p>attribute in the list and click Duplicate.</p>
-<p>The new attribute has all of the properties of the attribute from which it was duplicated. You can</p>
-<p>configure the new attribute as needed.</p>
-<p>You can select multiple attributes using the Shift or Ctrl keys and duplicate all selected attributes in</p>
-<p>a single operation.</p>
-<p>Remove Attributes</p>
-<p>You can use the Remove command to remove an attribute. Just select an attribute and click</p>
-<p>Remove.</p>
-<p>You can select multiple attributes using the Shift or Ctrl keys and remove all selected attributes in a</p>
-<p>single operation.</p>
-<p>Search for Attributes</p>
-<p>You can enter a search string to filter the list of attributes to only attributes that contain the search</p>
-<p>string in their name. This might be useful if there are many attributes defined for the namespace.</p>
-<p>If the “Modified Only” check box is checked, only attributes with unsaved modifications are shown.</p>
+
+<div class="pitfall">
+<strong>Important:</strong> An attribute cannot be designated as both read-only and retentive. The default value for both is false (non-retentive, read/write).
+</div>
+
+<h2>Duplicating and Removing Attributes</h2>
+
+<p>The Duplicate command creates a copy of the selected attribute with all of its properties preserved. You can then configure the new attribute as needed. Select multiple attributes using the Shift or Ctrl keys and duplicate them all in a single operation.</p>
+
+<p>Similarly, the Remove command deletes the selected attribute. You can remove multiple attributes at once using Shift or Ctrl multi-select.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0411_0.png" alt="Page 411">
-  <div class="caption">Page 411</div>
+  <img src="../images/page_0411_0.png" alt="Duplicating an Attribute">
+  <div class="caption">Before and after duplication: Attribute001 (Boolean type, selected) is duplicated to create an identical Attribute002. The duplicate preserves all original properties.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0411_1.png" alt="Page 411">
-  <div class="caption">Page 411</div>
+  <img src="../images/page_0411_1.png" alt="Two Attributes After Duplication">
+  <div class="caption">The attribute list after duplication showing two identical attributes: Attribute001 (original) and Attribute002 (duplicated), both with Boolean type and default properties.</div>
 </div>
+
 <div class="screenshot">
-  <img src="../images/page_0411_2.jpeg" alt="Page 411">
-  <div class="caption">Page 411</div>
+  <img src="../images/page_0411_2.jpeg" alt="Empty Attribute List with Search">
+  <div class="caption">The ViewApp Namespace Editor with an empty attribute list, ready for new attributes to be added. The search field and Modified Only checkbox are available for filtering.</div>
 </div>
-<p>Module 7 – ViewApp Namespaces</p>
-<p>AVEVA™ Training</p>
-<p>Import and Export ViewApp Namespaces</p>
-<p>ViewApp namespaces can be exported as standalone, reusable objects for use in other Galaxies.</p>
-<p>For example, you might create a ViewApp namespace that is broadly applicable across a variety</p>
-<p>of Galaxies for multiple locations, and export it as an .aaPKG file. Once you import that ViewApp</p>
-<p>namespace into another Galaxy, you can customize it in that Galaxy as needed.</p>
-<p>When exporting a ViewApp, all ViewApp namespaces in the Galaxy are exported with it.</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h2>Searching for Attributes</h2>
+
+<p>You can enter a search string to filter the list to only attributes that contain the search string in their name. This is useful when a namespace contains many attributes. If the <strong>Modified Only</strong> checkbox is checked, only attributes with unsaved modifications are shown.</p>
+
+<h2>Import and Export</h2>
+
+<p>ViewApp namespaces are standalone, reusable objects that can be moved between different Galaxies. They can be exported as <strong>.aaPKG files</strong>. Once imported into a new Galaxy, the namespace can be customized as needed.</p>
+
+<div class="key-concept">
+<strong>Key Concept:</strong> When you export a ViewApp, all ViewApp namespaces in the Galaxy are automatically included in the export package. This ensures that dependent data travels with the ViewApp when sharing between Galaxies.
+</div>
+
+<div class="quiz">
+<h3>Knowledge Check</h3>
+
+<details>
+<summary>Q1: How do you create a new ViewApp namespace?</summary>
+<p class="answer">You can create one via the Galaxy menu (New | ViewApp Namespace), the keyboard shortcut Ctrl+Shift+V, or by right-clicking in the Graphics tab and selecting New | ViewApp Namespace.</p>
+</details>
+
+<details>
+<summary>Q2: What data types are available for ViewApp namespace attributes?</summary>
+<p class="answer">Boolean, Integer, String, Float, Double, Time, and ElapsedTime. The default type is Boolean.</p>
+</details>
+
+<details>
+<summary>Q3: Can an attribute be both read-only and retentive?</summary>
+<p class="answer">No. An attribute cannot be designated as both read-only and retentive. These two properties are mutually exclusive.</p>
+</details>
+
+<details>
+<summary>Q4: What file format is used when exporting a ViewApp namespace?</summary>
+<p class="answer">ViewApp namespaces are exported as .aaPKG files, which can be imported into other Galaxies and customized as needed.</p>
+</details>
+</div>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespac</a> &nbsp;|&nbsp;
+  <a href="L29-Lab-14---Using-Built-in-ViewApp-Namespaces.html">← L29: Lab 14 – Using Built-in ViewApp Namespaces</a> &nbsp;|&nbsp;
   <a href="L31-Lab-15---Creating-Custom-Namespaces.html">L31: Lab 15 – Creating Custom Namespaces →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}

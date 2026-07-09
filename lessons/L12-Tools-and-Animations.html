@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lesson 12: Tools and Animations</title>
-<style>  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
+<style>
+  body { font-family: Georgia, serif; max-width: 900px; margin: 2em auto; padding: 0 1em; line-height: 1.7; color: #1a1a1a; }
   h1 { font-size: 1.8em; border-bottom: 2px solid #333; padding-bottom: 0.3em; }
   h2 { font-size: 1.3em; color: #2c5f2d; margin-top: 1.5em; }
   h3 { font-size: 1.1em; color: #555; }
@@ -25,14 +26,16 @@
   nav { margin-bottom: 2em; font-size: 0.9em; }
   nav a { color: #2c5f2d; }
   .source { font-size: 0.85em; color: #777; font-style: italic; }
+  .page-ref { font-size: 0.8em; color: #999; }
   .checkbox-label { cursor: pointer; }
   .checkbox-label input { margin-right: 0.3em; }
-  #progress-text { color: #2c5f2d; font-weight: bold; }</style>
+  #progress-text { color: #2c5f2d; font-weight: bold; }
+</style>
 </head>
 <body>
 <nav>
-  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">← L11: Lab 5 – Creating Symbols for Automation </a> &nbsp;|&nbsp;
-  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment →</a>
+  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">← L11: Lab 5 – Creating Symbols for Automation Objects</a> &nbsp;|&nbsp;
+  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L12: Lab 6 – Creating Symbols for Containment Objects →</a>
 </nav>
 
 <nav style="margin-bottom:1.5em;">
@@ -50,8 +53,8 @@
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L07" onchange="saveProgress()"> <a href="L07-Lab-3---Creating-and-Running-a-ViewApp.html">L07: Lab 3 – Creating and Running a ViewApp</a></label><br>
 <br>
 <strong>Module 3 — Industrial Graphics</strong><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Ed</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symb</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L08" onchange="saveProgress()"> <a href="L08-Introduction-to-Industrial-Graphics-and-Graphic-Ed.html">L08: Introduction to Industrial Graphics and Graphic Editor</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L09" onchange="saveProgress()"> <a href="L09-Lab-4---Using-Situational-Awareness-Dashboard-Symb.html">L09: Lab 4 – Using Situational Awareness Dashboard Symbols</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L10" onchange="saveProgress()"> <a href="L10-Industrial-Graphics-with-Objects.html">L10: Industrial Graphics with Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L11" onchange="saveProgress()"> <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">L11: Lab 5 – Creating Symbols for Automation Objects</a></label><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L12" onchange="saveProgress()"> <a href="L12-Tools-and-Animations.html" style="font-weight:bold;color:#1a1a1a;">L12: Tools and Animations</a></label><br>
@@ -105,7 +108,7 @@
 <br>
 <strong>Module 11 — Historical Playback</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L46" onchange="saveProgress()"> <a href="L46-Historical-Playback-Overview.html">L46: Historical Playback Overview</a></label><br>
-<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a Vie</a></label><br>
+<label style="cursor:pointer;"><input type="checkbox" data-lesson="L47" onchange="saveProgress()"> <a href="L47-Lab-23---Implementing-Historical-Playback-in-a-Vie.html">L47: Lab 23 – Implementing Historical Playback in a ViewApp</a></label><br>
 <br>
 <strong>Module 12 — .NET Controls</strong><br>
 <label style="cursor:pointer;"><input type="checkbox" data-lesson="L48" onchange="saveProgress()"> <a href="L48-NET-Controls-Overview.html">L48: .NET Controls Overview</a></label><br>
@@ -122,179 +125,263 @@
 </nav>
 
 <h1>📖 L12: Tools and Animations</h1>
-<p class="source">Module 3 — Industrial Graphics | Pages 207-212</p>
-<p>Section 4 – Tools and Animations</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Section 4 – Tools and Animations</p>
-<p>Introduction</p>
-<p>You can use tools from the Graphic Editor to draw graphic elements on the drawing canvas.</p>
-<p>Graphic elements can be directly edited on the canvas using tools provided in the Graphic Editor,</p>
-<p>such as menu options, toolbar options, properties, and more. Animations can also be added to the</p>
-<p>graphic elements.</p>
-<p>Tools Pane</p>
-<p>The Graphic Editor provides a set of element tools that you can use to draw and select elements</p>
-<p>on the drawing canvas.</p>
-<p>The Tools pane is a collection of elements that you can use when creating and editing symbols.</p>
-<p>The Tools pane includes:</p>
-<p></p>
-<p>Basic shapes, such as lines, rectangles, polygons, and arcs</p>
-<p></p>
-<p>A pointer tool to select and move elements on the drawing canvas</p>
-<p></p>
-<p>Common Windows controls, such as combo boxes, calendar controls, radio button</p>
-<p>groups, and more</p>
-<p></p>
-<p>A Status element to indicate quality and status conditions of attributes contained in</p>
-<p>selected animated elements and/or specified attributes</p>
-<p>This section describes element tools and menus available in the Graphic Editor, symbol and</p>
-<p>graphic element properties, and visualization and interaction animations.</p>
+<p class="source">AVEVA™ Operations Management Interface 2023 — Module 3, Section 4</p>
+<p class="page-ref">Pages 207–212 (Section 3-69 to 3-74)</p>
+
+<!-- ============================================================ -->
+<h2>Introduction</h2>
+
+<p>The Graphic Editor provides a comprehensive set of tools for creating and editing industrial graphics. These tools range from basic drawing elements like lines, rectangles, and polygons to advanced components like connection points, connectors, and Windows controls. Beyond simply drawing shapes, you can apply animations to make your graphics respond to live data and user interaction at runtime.</p>
+
+<p>This section describes the element tools and menus available in the Graphic Editor, symbol and graphic element properties, and the two categories of animations — visualization and interaction.</p>
+
+<!-- ============================================================ -->
+<h2>The Tools Pane</h2>
+<p class="page-ref">Reference: Section 3-69 (Page 207)</p>
+
+<p>The Tools pane is your primary toolbox for creating and editing symbols. It contains a grid of icon-based tools that you can select to draw elements on the drawing canvas. Each tool creates a different type of graphic element.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0207_0.png" alt="Page 207">
-  <div class="caption">Page 207</div>
+  <img src="../images/page_0207_0.png" alt="Tools pane showing all available drawing and editing tools">
+  <div class="caption">The Tools pane — a collection of element tools for creating and editing symbols. It includes basic shapes (lines, rectangles, polygons, arcs), a pointer tool for selection, common Windows controls (combo boxes, calendar controls, radio button groups), and a Status element for quality/status conditions. (Section 3-69)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>Elements List</p>
-<p>The Elements pane shows a hierarchical list of graphic elements and embedded symbols by name</p>
-<p>on the drawing canvas.</p>
-<p>The order of the items in the Elements list determines which element or embedded symbol</p>
-<p>appears on top if they overlap on the drawing canvas. When adding a new item to the canvas, by</p>
-<p>default, it is listed at the top of the Elements list. The order can be manually changed.</p>
-<p>Elements and embedded symbols can be selected on the canvas or from the Elements list.</p>
-<p>Selecting from the Elements list can be particularly useful for selecting one or more elements and</p>
-<p>embedded symbols that are visually hidden by other elements on the canvas.</p>
-<p>Elements and embedded symbols can be managed through the Elements list as well, such as</p>
-<p>duplicating items, changing the order of selected items, renaming items, grouping items, and</p>
-<p>editing items within a group.</p>
-<p>Elements and embedded symbols can be used as references for animations and scripts within the</p>
-<p>symbol. They are referenced in a format as <Element name>.<Property name>. If an element, a</p>
-<p>group, or an embedded symbol is referenced in an animation or a script, then renaming the</p>
-<p>element, group, or embedded symbol will not update the references automatically. Animations or</p>
-<p>scripts referencing the old name will need to be updated manually.</p>
-<p>Edit Operations</p>
-<p>Editing operations assist you in editing elements and symbols on the drawing canvas. Most of the</p>
-<p>operations are available from the Edit menu and from toolbar buttons. Some of the operations</p>
-<p>include:</p>
-<p></p>
-<p>Undoing and redoing operations</p>
-<p></p>
-<p>Duplicating selected elements</p>
-<p></p>
-<p>Cutting, copying, and pasting elements</p>
-<p></p>
-<p>Deleting elements</p>
-<p></p>
-<p>Selecting all elements on the canvas</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Tools Pane Contents</strong><br>
+  The Tools pane includes:<br>
+  <ul>
+    <li><strong>Basic shapes:</strong> lines, rectangles, polygons, and arcs for drawing process diagrams</li>
+    <li><strong>Pointer tool:</strong> for selecting and moving elements on the drawing canvas</li>
+    <li><strong>Windows controls:</strong> combo boxes, calendar controls, radio button groups, and more</li>
+    <li><strong>Status element:</strong> indicates quality and status conditions of attributes in animated elements</li>
+    <li><strong>Connection Point:</strong> for creating snap points where connectors attach</li>
+    <li><strong>Connector:</strong> for drawing lines between connection points to represent process flow</li>
+  </ul>
+</div>
+
+<div class="tip">
+  <strong>Tip:</strong> Double-clicking an element tool in the Tools pane keeps it active for placing multiple identical elements. After you draw the first element, the tool remains selected so you can draw additional elements without reselecting. Click another tool or press ESC to cancel.
+</div>
+
+<!-- ============================================================ -->
+<h2>The Elements List</h2>
+<p class="page-ref">Reference: Section 3-70 (Page 208)</p>
+
+<p>The Elements pane shows a hierarchical list of all graphic elements and embedded symbols on the drawing canvas. This tree-view panel is essential for managing complex symbols with many overlapping elements.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0208_0.png" alt="Page 208">
-  <div class="caption">Page 208</div>
+  <img src="../images/page_0208_0.png" alt="Elements pane showing hierarchical list of graphic elements">
+  <div class="caption">The Elements pane — a tree-view panel listing all graphic elements and embedded symbols by name. The order of items determines the visual stacking (z-order): items at the top of the list appear in front. Elements can be selected from the canvas or from this list, which is especially useful for hidden or overlapping elements. (Section 3-70)</div>
 </div>
-<p>Section 4 – Tools and Animations</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>Arrangement Operations</p>
-<p>Arrangement operations allow you to arrange elements and symbols on the drawing canvas. Most</p>
-<p>of the operations are available from the Arrange menu and from toolbar buttons. Some of the</p>
-<p>operations include:</p>
-<p></p>
-<p>Sending elements backward or forward</p>
-<p></p>
-<p>Aligning elements to the left, right, top, or bottom</p>
-<p></p>
-<p>Rotating or flipping elements</p>
-<p></p>
-<p>Distributing elements horizontally or vertically</p>
-<p></p>
-<p>Making elements the same size</p>
-<p></p>
-<p>Grouping multiple elements or ungrouping them</p>
-<p></p>
-<p>Creating a path graphic from multiple open line elements</p>
-<p>Format Operations</p>
-<p>Formatting operations allow you to specify formats for text and lines on the canvas. Most of the</p>
-<p>operations are available from the Format menu and from toolbar buttons. Some of the operations</p>
-<p>include:</p>
-<p></p>
-<p>Specifying font settings for text</p>
-<p></p>
-<p>Aligning text</p>
-<p></p>
-<p>Specifying line settings, such as weight, pattern, ends, and more</p>
-<p></p>
-<p>Specifying transparency</p>
-<p>Graphic Element Properties</p>
-<p>When a graphic element is selected on the drawing canvas, its properties appear on the</p>
-<p>Properties tab. The properties are organized into categories such as the ones listed below, as</p>
-<p>appropriate for the graphic element.</p>
-<p></p>
-<p>Graphic: Name of the selected graphic element.</p>
-<p></p>
-<p>Appearance: Properties related to the appearance of the selected graphic element, such</p>
-<p>as X and Y location, size, orientation, element style, and more.</p>
-<p></p>
-<p>Fill Style: Properties related to the fill of the selected graphic element, such as fill</p>
-<p>orientation, color, direction, and more.</p>
-<p></p>
-<p>Line Style: Properties related to the line appearance of the selected graphic element,</p>
-<p>such as line weight and line color.</p>
-<p></p>
-<p>Text Style: Properties related to text appearance of the selected graphic element.</p>
-<p></p>
-<p>Runtime Behavior: Properties related to visibility, tab order, and other runtime behaviors.</p>
-<p>Different types of graphic elements may have different properties. For example, a text element has</p>
-<p>text style properties, such as font and text color, but it does not have fill or line style properties. If</p>
-<p>multiple graphic elements are selected, only their common properties are listed on the Properties</p>
-<p>tab.</p>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<p>ElementStyle Property</p>
-<p>One of the properties in the Appearance category is the ElementStyle property, which you can use</p>
-<p>to apply a style to elements on the drawing canvas. Using the ElementStyle property is a way to</p>
-<p>standardize the appearance of elements in symbols in a Galaxy. Applying styles to graphic</p>
-<p>elements overrides the native visual properties of the graphic elements, such as font, fill color, line</p>
-<p>color, line weight, and transparency.</p>
-<p>To apply the ElementStyle property to one or more elements on the drawing canvas, select them</p>
-<p>directly on the canvas or from the Elements list. Then, on the Properties tab, select the</p>
-<p>ElementStyle property to show the drop-down arrow for the property. Click the drop-down arrow for</p>
-<p>the ElementStyle property to view a list of styles.</p>
-<p>Predefined styles are provided, as well as a set of user-defined styles. The available styles are</p>
-<p>organized in categories, such as HMI, Alarm, and Trend. You can scroll to find the style you want</p>
-<p>or use the Search field at the top to search for it.</p>
-<p>The available styles in the drop-down list for the ElementStyle property and their configurations</p>
-<p>are based on the active style in the Galaxy. Refer to Section 6, “Galaxy Styles” for more</p>
-<p>information about Styles.</p>
-<p>Animations</p>
-<p>Animations can be used to change the appearance of graphic elements and allow users to interact</p>
-<p>with the view application at runtime. Some animations can be driven by data from automation</p>
-<p>objects, element properties, and other data sources.</p>
-<p>There are two types of animations:</p>
-<p></p>
-<p>Visualization animations determine the appearance of the element, such as blinking, fill</p>
-<p>style, percent fill horizontal, and value display.</p>
-<p></p>
-<p>Interaction animations determine the behavior of an element, such as horizontal sliders</p>
-<p>and user input.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Z-Order and Element Management</strong><br>
+  The order of items in the Elements list determines which element appears on top when they overlap on the canvas. When adding a new item, it appears at the top of the list by default. You can manually reorder elements, duplicate them, rename them, group them, and edit items within groups. Elements are referenced in animations and scripts using the format <code>&lt;Element name&gt;.Property name</code> — but renaming an element does <em>not</em> automatically update these references.
+</div>
+
+<div class="pitfall">
+  <strong>Pitfall — Renaming Breaks References:</strong> If an element, group, or embedded symbol is referenced in an animation or script, renaming it will <em>not</em> update the references automatically. Animations or scripts referencing the old name must be updated manually after renaming.
+</div>
+
+<!-- ============================================================ -->
+<h2>Edit, Arrangement, and Format Operations</h2>
+<p class="page-ref">Reference: Section 3-70 to 3-71 (Pages 208–209)</p>
+
+<p>The Graphic Editor provides three categories of operations for working with elements on the canvas:</p>
+
+<h3>Edit Operations</h3>
+<p>Available from the Edit menu and toolbar buttons, these operations help you manage elements during the design process:</p>
+<ul>
+  <li><strong>Undo/Redo:</strong> reverse or reapply your most recent changes</li>
+  <li><strong>Duplicate:</strong> create a copy of the selected element(s)</li>
+  <li><strong>Cut/Copy/Paste:</strong> move or copy elements between locations</li>
+  <li><strong>Delete:</strong> remove selected elements from the canvas</li>
+  <li><strong>Select All:</strong> select every element on the canvas at once</li>
+</ul>
+
+<h3>Arrangement Operations</h3>
+<p>Available from the Arrange menu and toolbar buttons, these operations control the layout and positioning of elements:</p>
+<ul>
+  <li><strong>Send Forward/Backward:</strong> change the stacking order of overlapping elements</li>
+  <li><strong>Align:</strong> align elements to the left, right, top, or bottom of the selection</li>
+  <li><strong>Rotate/Flip:</strong> rotate or mirror elements</li>
+  <li><strong>Distribute:</strong> space elements evenly in horizontal or vertical directions</li>
+  <li><strong>Same Size:</strong> make all selected elements the same dimensions</li>
+  <li><strong>Group/Ungroup:</strong> combine elements into a single group or separate them</li>
+  <li><strong>Path:</strong> create a path graphic from multiple open line elements</li>
+</ul>
+
+<h3>Format Operations</h3>
+<p>Available from the Format menu and toolbar buttons, these operations control the visual appearance of text and lines:</p>
+<ul>
+  <li><strong>Font settings:</strong> configure text font, size, and style</li>
+  <li><strong>Text alignment:</strong> align text within its bounding box</li>
+  <li><strong>Line settings:</strong> configure line weight, pattern, and end styles</li>
+  <li><strong>Transparency:</strong> set the transparency level for elements</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>Graphic Element Properties</h2>
+<p class="page-ref">Reference: Section 3-71 (Page 209)</p>
+
+<p>When you select a graphic element on the drawing canvas, its properties appear on the Properties tab, organized into logical categories. The available properties depend on the type of element selected.</p>
+
+<table>
+  <tr><th>Property Category</th><th>What It Controls</th></tr>
+  <tr>
+    <td><strong>Graphic</strong></td>
+    <td>The name of the selected element</td>
+  </tr>
+  <tr>
+    <td><strong>Appearance</strong></td>
+    <td>X/Y location, size, orientation, element style, and other visual attributes</td>
+  </tr>
+  <tr>
+    <td><strong>Fill Style</strong></td>
+    <td>Fill orientation, color, and direction for shapes</td>
+  </tr>
+  <tr>
+    <td><strong>Line Style</strong></td>
+    <td>Line weight and line color</td>
+  </tr>
+  <tr>
+    <td><strong>Text Style</strong></td>
+    <td>Font, text color, and appearance (only for text elements)</td>
+  </tr>
+  <tr>
+    <td><strong>Runtime Behavior</strong></td>
+    <td>Visibility, tab order, and other runtime behaviors</td>
+  </tr>
+</table>
+
+<div class="tip">
+  <strong>Tip:</strong> Different element types have different properties. A text element has text style properties (font, color) but no fill or line style properties. When multiple elements are selected, only their shared/common properties appear on the Properties tab.
+</div>
+
+<!-- ============================================================ -->
+<h2>The ElementStyle Property</h2>
+<p class="page-ref">Reference: Section 3-72 (Page 210)</p>
+
+<p>The ElementStyle property, found in the Appearance category of the Properties tab, is a powerful tool for standardizing the appearance of elements across your Galaxy. Applying a style overrides the element's native visual properties — font, fill color, line color, line weight, and transparency — ensuring visual consistency.</p>
+
 <div class="screenshot">
-  <img src="../images/page_0210_0.png" alt="Page 210">
-  <div class="caption">Page 210</div>
+  <img src="../images/page_0210_0.png" alt="Properties panel showing ElementStyle dropdown with categorized styles">
+  <div class="caption">Properties panel with the ElementStyle dropdown expanded — styles are organized into categories (HMI, Alarm, Trend, etc.) and can be searched. Selecting a style like "Title" or "Heading" applies a standardized visual appearance to the selected element, overriding its native properties. (Section 3-72)</div>
 </div>
-<p>Section 4 – Tools and Animations</p>
-<p>AVEVA™ Operations Management Interface 2023</p>
-<p>There are some animations that are specific to certain elements. For example, the DataStatus</p>
-<p>animation is specific to the Status element. Element-specific animations also determine element</p>
-<p>behavior and appearance. Additionally, some types of elements do not support certain animations.</p>
-<p>For example, a rectangle element that does not contain text will not support the Value Display</p>
-<p>animation that requires text.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — ElementStyle</strong><br>
+  To apply an ElementStyle: select element(s) on the canvas or from the Elements list, go to the Properties tab, find the ElementStyle property in the Appearance category, click the dropdown arrow, and select a style. The available styles are based on the active style in the Galaxy. Styles can be predefined (like HMI, Alarm, Trend categories) or user-defined. Using styles ensures visual consistency across all symbols in your Galaxy.
+</div>
+
+<!-- ============================================================ -->
+<h2>Animations</h2>
+<p class="page-ref">Reference: Section 3-72 to 3-73 (Pages 210–211)</p>
+
+<p>Animations are the bridge between static graphics and dynamic, interactive displays. They allow graphic elements to respond to live data and user interaction at runtime. Animations can be driven by data from automation objects, element properties, and other data sources.</p>
+
+<div class="key-concept">
+  <strong>Key Concept — Two Types of Animations</strong><br>
+  <ul>
+    <li><strong>Visualization animations:</strong> Control the <em>visual appearance</em> of an element — blinking, fill style, percent fill, value display, visibility, location, orientation, and more.</li>
+    <li><strong>Interaction animations:</strong> Control the <em>behavior</em> of an element — sliders, user input controls, pushbuttons, action scripts, hyperlinks, and show/hide symbol actions.</li>
+  </ul>
+</div>
+
 <div class="screenshot">
-  <img src="../images/page_0211_0.png" alt="Page 211">
-  <div class="caption">Page 211</div>
+  <img src="../images/page_0211_0.png" alt="Edit Animations dialog showing Visualization and Interaction animation categories">
+  <div class="caption">The Edit Animations dialog — two columns list all available animation types. The left column shows Visualization animations (Visibility, Fill Style, Blink, % Fill, Location, Value Display, etc.) and the right column shows Interaction animations (Disable, User Input, Slider, Pushbutton, Action Scripts, Show/Hide Symbol, Hyperlink). Click the "+" button to add an animation to the selected element. (Section 3-73)</div>
 </div>
-<p>Module 3 – Industrial Graphics</p>
-<p>AVEVA™ Training</p>
-<div class="quiz"><h3>Knowledge Check</h3><details><summary>Q1: What are the main concepts?</summary><p class="answer">Review above.</p></details></div>
+
+<h3>Visualization Animations</h3>
+<table>
+  <tr><th>Animation</th><th>What It Does</th></tr>
+  <tr><td><strong>Visibility</strong></td><td>Shows or hides the element based on a data condition</td></tr>
+  <tr><td><strong>Fill Style</strong></td><td>Changes the fill color based on a data value or state</td></tr>
+  <tr><td><strong>Line Style</strong></td><td>Changes the line color or weight based on conditions</td></tr>
+  <tr><td><strong>Text Style</strong></td><td>Changes text appearance (color, font) based on conditions</td></tr>
+  <tr><td><strong>Blink</strong></td><td>Makes the element blink at a configurable rate</td></tr>
+  <tr><td><strong>% Fill Horizontal/Vertical</strong></td><td>Fills the element proportionally based on a data value</td></tr>
+  <tr><td><strong>Location Horizontal/Vertical</strong></td><td>Moves the element based on a data value</td></tr>
+  <tr><td><strong>Orientation</strong></td><td>Rotates the element based on a data value</td></tr>
+  <tr><td><strong>Value Display</strong></td><td>Displays a data value as text within the element</td></tr>
+  <tr><td><strong>Tooltip</strong></td><td>Shows a tooltip with information on hover</td></tr>
+</table>
+
+<h3>Interaction Animations</h3>
+<table>
+  <tr><th>Animation</th><th>What It Does</th></tr>
+  <tr><td><strong>Disable</strong></td><td>Enables or disables user interaction based on conditions</td></tr>
+  <tr><td><strong>User Input</strong></td><td>Allows the user to enter a value that writes to an attribute</td></tr>
+  <tr><td><strong>Slider Horizontal/Vertical</strong></td><td>Provides a slider control for adjusting a value</td></tr>
+  <tr><td><strong>Pushbutton</strong></td><td>Makes the element act as a clickable pushbutton</td></tr>
+  <tr><td><strong>Action Scripts</strong></td><td>Executes a script when the element is clicked</td></tr>
+  <tr><td><strong>Show/Hide Symbol</strong></td><td>Shows or hides an embedded symbol on click</td></tr>
+  <tr><td><strong>Hyperlink</strong></td><td>Navigates to a URL or internal resource on click</td></tr>
+</table>
+
+<div class="tip">
+  <strong>Tip:</strong> Some animations are specific to certain element types. For example, the DataStatus animation is only available for the Status element. A rectangle element that does not contain text will not support the Value Display animation. When selecting multiple elements, only animations supported by all selected element types will be available.
+</div>
+
+<!-- ============================================================ -->
+<h2>Quiz</h2>
+
+<div class="quiz">
+  <h3>Question 1</h3>
+  <p>What happens to the visual stacking order when you add a new element to the canvas?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">New elements are listed at the top of the Elements list by default, which means they appear <strong>in front of</strong> (on top of) all other elements on the canvas. The order can be manually changed using arrangement operations like Send To Back or Bring To Front.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 2</h3>
+  <p>Why is it important to be careful when renaming elements that are referenced in animations or scripts?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">Renaming an element, group, or embedded symbol does <strong>not</strong> automatically update references in animations or scripts. If the element is referenced using the format <code>&lt;Element name&gt;.Property name</code>, the old reference will break after renaming. You must manually update all animations and scripts that reference the old name.</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 3</h3>
+  <p>What is the difference between visualization animations and interaction animations?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer"><strong>Visualization animations</strong> control the visual appearance of an element — how it looks at runtime (blinking, color changes, fill levels, value display). <strong>Interaction animations</strong> control the behavior and functionality of an element — how users can interact with it (sliders, input fields, pushbuttons, hyperlinks, action scripts).</p>
+  </details>
+</div>
+
+<div class="quiz">
+  <h3>Question 4</h3>
+  <p>What does applying an ElementStyle to a graphic element do to its native properties?</p>
+  <details>
+    <summary style="cursor:pointer;color:#2c5f2d;font-weight:bold;">Click to reveal answer</summary>
+    <p class="answer">Applying an ElementStyle <strong>overrides</strong> the native visual properties of the graphic element — including font, fill color, line color, line weight, and transparency. This ensures visual consistency across all symbols in the Galaxy that use the same style. The available styles are determined by the active style configuration in the Galaxy.</p>
+  </details>
+</div>
+
+<!-- ============================================================ -->
+<h2>Key Takeaways</h2>
+<ol>
+  <li>The <strong>Tools pane</strong> provides all drawing and editing tools — basic shapes, pointers, Windows controls, connection points, and connectors.</li>
+  <li>The <strong>Elements pane</strong> shows the hierarchical list and z-order of all elements; selecting from the list is useful for hidden elements.</li>
+  <li><strong>Edit, Arrange, and Format</strong> operations provide comprehensive element management from the menu and toolbar.</li>
+  <li><strong>Element properties</strong> are organized into categories (Graphic, Appearance, Fill Style, Line Style, Text Style, Runtime Behavior).</li>
+  <li>The <strong>ElementStyle</strong> property standardizes appearance across the Galaxy by overriding native properties.</li>
+  <li><strong>Visualization animations</strong> control appearance; <strong>interaction animations</strong> control user behavior.</li>
+  <li><strong>Renaming elements</strong> does not update animation or script references — manual updates are required.</li>
+</ol>
+
+<p class="source">Source: AVEVA™ Operations Management Interface 2023 Training Manual, Module 3, Section 4 (pages 3-69 to 3-74)</p>
+
 <nav style="margin-top:2em; border-top:1px solid #ddd; padding-top:1em;">
-  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">← L11: Lab 5 – Creating Symbols for Automation </a> &nbsp;|&nbsp;
-  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment →</a>
+  <a href="L11-Lab-5---Creating-Symbols-for-Automation-Objects.html">← L11: Lab 5 – Creating Symbols for Automation Objects</a> &nbsp;|&nbsp;
+  <a href="L13-Lab-6---Creating-Symbols-for-Containment-Objects.html">L13: Lab 6 – Creating Symbols for Containment Objects →</a>
 </nav>
+
 <script>
 function saveProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{localStorage.setItem('omi_'+c.dataset.lesson,c.checked?'1':'0')});updateProgressText()}
 function loadProgress(){document.querySelectorAll('input[data-lesson]').forEach(c=>{c.checked=localStorage.getItem('omi_'+c.dataset.lesson)==='1'});updateProgressText()}
